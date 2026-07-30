@@ -1,0 +1,15 @@
+# Env (single .env lives here at the repo root; see backend/bootstrap/app.php)
+.env
+.env.backup
+.env.production
+
+# Solver-service (Python)
+solver-service/venv/
+solver-service/**/__pycache__/
+solver-service/.pytest_cache/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

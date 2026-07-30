@@ -14,11 +14,13 @@ DisasterResource+ — a resource optimization and visualization system for disas
 - `solver-service/` — Python FastAPI microservice wrapping OR-Tools (routing) and PuLP (allocation LP)
 - `docker/` — shared infra (PostGIS bootstrap script for the `postgres` service)
 
-Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, backend on 8000 (HTTP) + 8080 (Reverb), solver-service on 8001.
+Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, `backend` (web) on 8000, `queue` (queue worker, no exposed port), `reverb` (websocket server) on 8080, `solver-service` on 8001. `queue` and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD` — see the Docker Compose section below.
+
+There is a single `.env` at the repo root, not one per service. `backend/bootstrap/app.php` calls `Application::useEnvironmentPath()` to point Laravel's env lookup at the repo root (two directories up from `backend/bootstrap/`) instead of the default `backend/.env` — so `php artisan` commands run from inside `backend/` still read/write the root file. Docker gets the same file via `docker-compose.yml`'s `env_file: - .env` on every service (that mechanism is independent of Laravel's own env-file lookup — it injects real container env vars either way).
 
 ## Commands
 
-**Docker (all services):**
+**Docker (all services — backend, queue worker, Reverb, solver-service, Postgres):**
 
 ```bash
 cp .env.example .env
@@ -28,12 +30,15 @@ docker compose up --build
 **Backend:**
 
 ```bash
+cp .env.example .env   # once, at the repo root — not inside backend/
 cd backend
 composer install && npm install
-cp .env.example .env && php artisan key:generate
+php artisan key:generate    # writes into the root .env
 php artisan migrate --seed
-npm run dev        # vite dev server for Inertia/React assets
+npm run dev                 # vite dev server for Inertia/React assets
 php artisan serve
+php artisan queue:work      # separate terminal — processes RunOptimizationJob
+php artisan reverb:start    # separate terminal — realtime broadcasting
 ```
 
 Frontend typecheck: `npm run typecheck` (tsc --noEmit). Frontend build: `npm run build`.

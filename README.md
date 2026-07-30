@@ -23,14 +23,20 @@ docker compose up --build
 
 ## Local development without Docker
 
+The `.env` at the repo root is the single source of config for both Docker and local dev — `backend/bootstrap/app.php` points Laravel's env lookup there instead of `backend/.env`, so run `cp .env.example .env` once at the root before either flow.
+
 **Backend**
 ```bash
+cp .env.example .env   # once, at the repo root
 cd backend
 composer install
 npm install
-php artisan migrate
+php artisan key:generate
+php artisan migrate --seed
 npm run dev
 php artisan serve
+php artisan queue:work      # processes RunOptimizationJob (separate terminal)
+php artisan reverb:start    # realtime broadcasting (separate terminal)
 ```
 
 **Solver service**
