@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgis/postgis:16-3.4
+    container_name: disasterresource-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: disasterresource
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: change-me
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init-postgis.sh:/docker-entrypoint-initdb.d/init-postgis.sh
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: disasterresource-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - solver-service
+    ports:
+      - "8000:8000"   # Laravel (web/api)
+      - "8080:8080"   # Reverb (realtime)
+    volumes:
+      - ./backend:/var/www/html
+
+  solver-service:
+    build:
+      context: ./solver-service
+      dockerfile: Dockerfile
+    container_name: disasterresource-solver
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./solver-service:/app
+
+volumes:
+  pgdata:

@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Design tokens mirrored from the UI/UX prototype (EOC dark theme, amber accent).
+  Consider lifting these into tailwind.config.js `theme.extend.colors` once that
+  config file is added to the project.
+*/
+:root {
+  --bg-void: #0b0d0c;
+  --bg-panel: #14181a;
+  --bg-panel-raised: #1c2224;
+  --amber: #f2a63c;
+  --critical: #e14b3f;
+  --ok: #3fa98c;
+  --pending: #e8c468;
+  --text-primary: #edede6;
+  --text-secondary: #98a19b;
+}
