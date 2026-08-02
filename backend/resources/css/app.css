@@ -11,12 +11,29 @@
   --bg-void: #0b0d0c;
   --bg-panel: #14181a;
   --bg-panel-raised: #1c2224;
+  --line: #262e2f;
+  --line-strong: #39433f;
   --amber: #f2a63c;
   --critical: #e14b3f;
   --ok: #3fa98c;
   --pending: #e8c468;
   --text-primary: #edede6;
   --text-secondary: #98a19b;
+}
+
+/* Light theme override — toggled via `useTheme()` (Hooks/use-theme.ts), values mirrored from backend/docs/disasterresource-design.html. */
+:root[data-theme='light'] {
+  --bg-void: #f3f1ea;
+  --bg-panel: #ffffff;
+  --bg-panel-raised: #efebe1;
+  --line: #e1dcce;
+  --line-strong: #c8c1ae;
+  --amber: #b5761f;
+  --critical: #c23b2e;
+  --ok: #1f7a5e;
+  --pending: #8a6a1a;
+  --text-primary: #1d1f1e;
+  --text-secondary: #54605b;
 }
 
 @layer components {

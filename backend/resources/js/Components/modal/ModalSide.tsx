@@ -69,7 +69,7 @@ export function ModalSide<T>({
                 data-cy="modal-side-div-scrim"
             />
             <div
-                className={`absolute inset-y-0 z-60 flex h-full flex-col bg-white shadow-md ${SIDE_CLASSES[side]}`}
+                className={`absolute inset-y-0 z-60 flex h-full flex-col border-t-2 border-amber bg-bg-panel shadow-lg ${SIDE_CLASSES[side]}`}
                 style={{
                     width,
                     maxWidth: '94vw',
@@ -81,13 +81,13 @@ export function ModalSide<T>({
             >
                 {(title || subtitle) && (
                     <header
-                        className="flex shrink-0 items-start justify-between gap-3.5 border-b border-[#f1f2f5] px-6 pt-5.5 pb-4"
+                        className="flex shrink-0 items-center justify-between gap-3.5 border-b border-line px-6 py-3.5"
                         data-cy="modal-side-header-3"
                     >
                         <div className="min-w-0" data-cy="modal-side-div-4">
                             {title && (
                                 <h2
-                                    className="text-[17px] font-extrabold tracking-[-0.01em] text-[#14151a]"
+                                    className="text-lg font-semibold uppercase tracking-wide text-[var(--text-primary)]"
                                     data-cy="modal-side-h2-5"
                                 >
                                     {title}
@@ -95,7 +95,7 @@ export function ModalSide<T>({
                             )}
                             {subtitle && (
                                 <p
-                                    className="mt-0.5 text-[12.5px] text-gray-500"
+                                    className="mt-0.5 text-xs text-[var(--text-secondary)]"
                                     data-cy="modal-side-p-6"
                                 >
                                     {subtitle}
@@ -104,7 +104,7 @@ export function ModalSide<T>({
                         </div>
                         <button
                             type="button"
-                            className="fl-iconbtn"
+                            className="text-[var(--text-secondary)] hover:text-amber"
                             onClick={onClose}
                             aria-label="Close"
                             data-cy="modal-side-button-close"

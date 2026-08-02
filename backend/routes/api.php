@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\DepotController;
 use App\Http\Controllers\Api\DirectionsController;
 use App\Http\Controllers\Api\IncidentController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\ResourceTypeController;
@@ -30,6 +31,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/incidents', [IncidentController::class, 'index']);
     Route::get('/incidents/{incident}', [IncidentController::class, 'show']);
     Route::post('/incidents', [IncidentController::class, 'store']);
+
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
 
     Route::get('/directions', [DirectionsController::class, 'index']);
 

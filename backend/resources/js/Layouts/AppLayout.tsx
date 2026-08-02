@@ -1,4 +1,5 @@
 import { PropsWithChildren } from "react";
+import { UserProfileSection } from "@/Components/UserProfileSection";
 
 /**
  * Outermost shell for non-admin/developer roles: brand bar + notification
@@ -12,7 +13,9 @@ export default function AppLayout({ children }: PropsWithChildren) {
         <div className="flex items-center gap-2 font-semibold uppercase tracking-wide">
           Disaster<span className="text-[var(--amber)]">Resource+</span>
         </div>
-        {/* Theme toggle, notifications bell go here */}
+        <div className="w-64">
+          <UserProfileSection variant="header" />
+        </div>
       </header>
       <main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
     </div>

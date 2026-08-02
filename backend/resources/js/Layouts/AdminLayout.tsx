@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Link, usePage } from "@inertiajs/react";
+import { UserProfileSection } from "@/Components/UserProfileSection";
 
 const navItems = [
   { href: "/", label: "Dashboard" },
@@ -26,23 +27,26 @@ export default function AdminLayout({ children }: PropsWithChildren) {
         </div>
       </header>
       <div className="flex flex-1 overflow-hidden">
-        <nav className="w-[180px] shrink-0 overflow-y-auto border-r border-white/10 py-2">
-          {navItems.map((item) => {
-            const active = item.href === "/" ? url === "/" : url.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block border-l-2 px-5 py-2.5 text-sm ${
-                  active
-                    ? "border-[var(--amber)] bg-white/5 text-[var(--text-primary)]"
-                    : "border-transparent text-[var(--text-secondary)] hover:bg-white/5 hover:text-[var(--text-primary)]"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+        <nav className="flex w-[180px] shrink-0 flex-col border-r border-white/10">
+          <div className="flex-1 overflow-y-auto py-2">
+            {navItems.map((item) => {
+              const active = item.href === "/" ? url === "/" : url.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`block border-l-2 px-5 py-2.5 text-sm ${
+                    active
+                      ? "border-[var(--amber)] bg-white/5 text-[var(--text-primary)]"
+                      : "border-transparent text-[var(--text-secondary)] hover:bg-white/5 hover:text-[var(--text-primary)]"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+          <UserProfileSection />
         </nav>
         <main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
       </div>

@@ -16,4 +16,9 @@ class ResourceInventoryController extends Controller
     {
         return Inertia::render('Resources/Index');
     }
+
+    public function types(): Response
+    {
+        return Inertia::render('Resources/Types');
+    }
 }

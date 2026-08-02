@@ -84,14 +84,14 @@ export function FormModalBody({
             </div>
 
             {formik.status && (
-                <p className="mx-6 rounded-md bg-danger-50 px-3 py-2 text-xs text-danger-600">
+                <p className="mx-6 border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">
                     {String(formik.status)}
                 </p>
             )}
 
             {uploadProgress != null && (
                 <div className="px-6 pb-2">
-                    <div className="mb-1 flex items-center justify-between text-xs font-medium text-neutral-500">
+                    <div className="mb-1 flex items-center justify-between text-xs font-medium text-[var(--text-secondary)]">
                         <span>
                             {uploadProgress >= 100
                                 ? 'Processing…'
@@ -99,21 +99,21 @@ export function FormModalBody({
                         </span>
                         <span>{uploadProgress}%</span>
                     </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-neutral-100">
+                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-[var(--bg-void)]">
                         <div
-                            className="h-full rounded-full bg-brand-500 transition-[width] duration-200 ease-out"
+                            className="h-full rounded-full bg-amber transition-[width] duration-200 ease-out"
                             style={{ width: `${uploadProgress}%` }}
                         />
                     </div>
                 </div>
             )}
 
-            <div className="mt-auto flex w-full items-center gap-2 border-t border-neutral-100 px-6 py-4">
+            <div className="mt-auto flex w-full items-center justify-end gap-2.5 border-t border-line px-6 py-3.5">
                 <button
                     type="button"
                     onClick={close}
                     disabled={formik.isSubmitting}
-                    className="inline-flex w-2/3 justify-center rounded-md border border-neutral-200 px-4 py-2 text-center text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50 disabled:opacity-60"
+                    className="border border-line-strong px-4 py-2 text-sm text-[var(--text-secondary)] transition-colors hover:border-[var(--text-secondary)] hover:text-[var(--text-primary)] disabled:opacity-60"
                     data-cy={closeButtonDataCy ?? 'close-button'}
                 >
                     {cancelLabel}
@@ -121,7 +121,7 @@ export function FormModalBody({
                 <button
                     type="submit"
                     disabled={formik.isSubmitting}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-500/90 disabled:opacity-60"
+                    className="inline-flex items-center justify-center gap-2 bg-amber px-4 py-2 text-sm font-semibold tracking-wide text-[#1a1200] uppercase transition-opacity hover:opacity-90 disabled:opacity-60"
                     data-cy={submitButtonDataCy ?? 'submit-button'}
                 >
                     {formik.isSubmitting && (

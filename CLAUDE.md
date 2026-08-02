@@ -118,6 +118,8 @@ Inertia + React + TypeScript, Tailwind v3 for styling (`tailwind.config.js`/`pos
 
 `resources/js/bootstrap.ts` wires Axios (CSRF header) and a Laravel Echo client over Reverb (`window.Echo`), configured from `VITE_REVERB_*` env vars — no page currently subscribes to the `disasters` channel from the frontend yet; that's the next piece to wire up for realtime updates.
 
+**Subtabs must be real routes, not `useState`.** When a page has switchable subtabs (e.g. Resources' Stock/Resource-types, Settings' Users/Routing), each subtab is its own Inertia route + `Web\*Controller` action + `Pages/**/*.tsx` page (see `routes/web.php`'s `/resources` + `/resources/types`, and `/settings/users` + `/settings/routing`), with a shared tab-bar component using `<Link>` + `usePage().url` for the active state (see `Pages/Resources/shared.tsx`'s `ResourcesTabs`). Do not gate subtab content behind a local `useState` — it isn't bookmarkable/shareable/back-button-able and breaks the "everything is a URL" convention the rest of the app follows.
+
 ### Solver-service structure
 
 - `main.py` — FastAPI app entrypoint, mounts `app/api/optimize.py` under `/api/v1/optimize`, plus `/health`.

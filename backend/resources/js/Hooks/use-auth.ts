@@ -1,13 +1,11 @@
 import { usePage } from '@inertiajs/react';
 
 export interface AuthUser {
-    id: number;
-    first_name: string;
-    last_name: string;
+    id: string;
     name: string;
     email: string;
-    roles: string[];
-    permissions: string[];
+    role: string;
+    is_active?: boolean;
 }
 
 function initialsFor(name: string): string {
@@ -19,20 +17,16 @@ function initialsFor(name: string): string {
 }
 
 /**
- * The logged-in user, shared globally by
- * App\Http\Middleware\HandleInertiaRequests. Almost every module in the LSS
- * admin frontend is now backend-driven; the Seminars admin module is the
- * sole remaining exception still reading from data/mockData.ts (deferred —
- * see memory).
+ * The logged-in user, shared by App\Http\Middleware\HandleInertiaRequests
+ * (raw `auth()->user()` model — `{id, name, email, role, is_active}`).
  */
 export function useAuth() {
     const { props } = usePage();
-    const user = props.auth?.user ?? null;
-    const role = user?.roles?.[0] ?? 'admin';
+    const user = (props.auth?.user ?? null) as AuthUser | null;
 
     return {
         user,
-        role,
+        role: user?.role ?? 'viewer',
         displayName: user?.name ?? 'Guest',
         email: user?.email ?? '',
         initials: user ? initialsFor(user.name) : '—',

@@ -19,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:admin,developer'])->group(function () {
         Route::get('/incidents', [IncidentController::class, 'index'])->name('web.incidents.index');
         Route::get('/resources', [ResourceInventoryController::class, 'index'])->name('resources.index');
+        Route::get('/resources/types', [ResourceInventoryController::class, 'types'])->name('resources.types');
         Route::get('/depots', [DepotController::class, 'index'])->name('depots.index');
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
         Route::get('/settings/users', [UsersController::class, 'index'])->name('settings.users');

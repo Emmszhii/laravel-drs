@@ -58,7 +58,7 @@ return null;
                 onClick={onClose}
             />
             <div
-                className="absolute top-1/2 left-1/2 z-60 max-h-[calc(100dvh-100px)] -translate-1/2 transform rounded-md bg-white shadow-md"
+                className="absolute top-1/2 left-1/2 z-60 max-h-[calc(100dvh-100px)] -translate-1/2 transform border-t-2 border-amber bg-bg-panel shadow-lg"
                 style={{
                     width: WIDTHS[size],
                     maxWidth: '92vw',
@@ -70,18 +70,18 @@ return null;
             >
                 {title && (
                     <header
-                        className="flex shrink-0 items-start justify-between gap-3.5 border-b border-[#f1f2f5] px-6 pt-5.5 pb-4"
+                        className="flex shrink-0 items-center justify-between gap-3.5 border-b border-line px-6 py-3.5"
                         data-cy="modal-center-header-3"
                     >
                         <h2
-                            className="fl-center-title"
+                            className="text-lg font-semibold uppercase tracking-wide text-[var(--text-primary)]"
                             data-cy="modal-center-h2-4"
                         >
                             {title}
                         </h2>
                         <button
                             type="button"
-                            className="fl-iconbtn"
+                            className="text-lg leading-none text-[var(--text-secondary)] hover:text-amber"
                             onClick={onClose}
                             aria-label="Close"
                             data-cy="modal-center-button-close"

@@ -214,17 +214,14 @@ export function AsyncSelectField({
                     }
                     setOpen((o) => !o);
                 }}
-                className={`flex w-full items-center justify-between rounded-xl border bg-white px-3 py-2.5 text-left text-sm ${error ? 'border-rose-300' : 'border-slate-200'} ${disabled ? 'cursor-not-allowed bg-slate-50/20' : 'text-slate-900 hover:border-slate-300'} dark:text-white`}
+                className={`flex h-9 w-full items-center justify-between border bg-[var(--bg-void)] px-2.5 text-left text-sm text-[var(--text-primary)] transition-colors ${error ? 'border-critical' : 'border-line-strong'} ${disabled ? 'cursor-not-allowed opacity-50' : 'hover:border-amber'}`}
                 data-cy="use-async-select-field-button-button"
             >
-                <span
-                    className={`text-black ${currentLabel ? '' : ''}`}
-                    data-cy="use-async-select-field-span-3"
-                >
-                    {currentLabel || placeholder}
+                <span data-cy="use-async-select-field-span-3">
+                    {currentLabel || <span className="text-[var(--text-secondary)]">{placeholder}</span>}
                 </span>
                 <ChevronDown
-                    className="h-4 w-4"
+                    className="h-4 w-4 text-[var(--text-secondary)]"
                     data-cy="use-async-select-field-chevron-down-4"
                 />
             </button>
@@ -242,11 +239,11 @@ export function AsyncSelectField({
                             bottom: menuPos.bottom,
                             zIndex: 60,
                         }}
-                        className="dark:bg-sidebar rounded-xl border border-slate-200 bg-white shadow-lg"
+                        className="border border-line-strong bg-bg-panel-raised shadow-lg"
                         data-cy="use-async-select-field-div-5"
                     >
                         <div
-                            className="border-b border-slate-100 p-2"
+                            className="border-b border-line p-2"
                             data-cy="use-async-select-field-div-6"
                         >
                             <input
@@ -255,7 +252,7 @@ export function AsyncSelectField({
                                 value={query}
                                 onChange={(e) => setQuery(e.target.value)}
                                 placeholder={placeholder}
-                                className="w-full rounded-lg border border-slate-200 px-2.5 py-1.5 text-sm text-neutral-900 focus:border-slate-400 focus:outline-none"
+                                className="w-full border border-line-strong bg-[var(--bg-void)] px-2.5 py-1.5 text-sm text-[var(--text-primary)] focus:border-amber focus:outline-none"
                                 data-cy="use-async-select-field-input-placeholder"
                             />
                         </div>
@@ -265,7 +262,7 @@ export function AsyncSelectField({
                         >
                             {loading && (
                                 <div
-                                    className="flex items-center justify-center gap-2 px-3 py-3 text-sm"
+                                    className="flex items-center justify-center gap-2 px-3 py-3 text-sm text-[var(--text-secondary)]"
                                     data-cy="use-async-select-field-div-searching"
                                 >
                                     <Loader2
@@ -277,7 +274,7 @@ export function AsyncSelectField({
                             )}
                             {!loading && options.length === 0 && (
                                 <div
-                                    className="px-3 py-3 text-sm"
+                                    className="px-3 py-3 text-sm text-[var(--text-secondary)]"
                                     data-cy="use-async-select-field-div-no-results"
                                 >
                                     No results.
@@ -299,13 +296,13 @@ export function AsyncSelectField({
                                                 setOpen(false);
                                                 setQuery('');
                                             }}
-                                            className="hover:brand-400/10 flex w-full items-center justify-between px-3 py-2 text-left text-sm"
+                                            className="flex w-full items-center justify-between px-3 py-2 text-left text-sm text-[var(--text-primary)] hover:bg-[var(--bg-void)]"
                                             data-cy="use-async-select-field-button-button-2"
                                         >
                                             {opt.label}
                                             {isSelected && (
                                                 <Check
-                                                    className="h-3.5 w-3.5 text-slate-900"
+                                                    className="h-3.5 w-3.5 text-amber"
                                                     data-cy="use-async-select-field-check-13"
                                                 />
                                             )}

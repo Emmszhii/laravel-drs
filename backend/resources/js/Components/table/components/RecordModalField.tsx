@@ -94,7 +94,7 @@ export function DynamicField<T>({
         return (
             <div data-cy="record-modal-field-div-checkbox-wrapper">
                 <label
-                    className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-neutral-200 px-3 py-2.5"
+                    className="flex cursor-pointer items-center gap-2.5 border border-line-strong px-3 py-2.5"
                     data-cy="record-modal-field-label-5"
                 >
                     <input
@@ -102,11 +102,11 @@ export function DynamicField<T>({
                         checked={Boolean(value)}
                         disabled={disabled}
                         onChange={(e) => onChange(e.target.checked)}
-                        className="h-4 w-4 rounded border-neutral-300 text-brand-500 focus:ring-brand-100"
+                        className="h-4 w-4 accent-amber"
                         data-cy="record-modal-field-input-checkbox"
                     />
                     <span
-                        className="text-sm font-medium text-neutral-700"
+                        className="text-sm font-medium text-[var(--text-primary)]"
                         data-cy="record-modal-field-span-7"
                     >
                         {field.label}
@@ -114,7 +114,7 @@ export function DynamicField<T>({
                 </label>
                 {error && (
                     <p
-                        className="mt-1 text-xs text-danger-600"
+                        className="mt-1 text-xs text-critical"
                         data-cy="record-modal-field-p-checkbox-error"
                     >
                         {error}
