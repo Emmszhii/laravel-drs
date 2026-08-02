@@ -104,11 +104,25 @@ export const stockColumns: ColumnDef<ResourceStock>[] = [
   { key: "depot", label: "Depot" },
   { key: "quantity_available", label: "Available" },
   { key: "quantity_reserved", label: "Reserved" },
+  {
+    key: "depot_id",
+    label: "Depot",
+    filterable: true,
+    type: "async-select",
+    loadOptions: async (q: string) =>
+      (await depotsService.getAll())
+        .filter((d) => d.name.toLowerCase().includes(q.toLowerCase()))
+        .map((d) => ({ value: d.id, label: d.name })),
+  },
 ];
 
 export const typeColumns: ColumnDef<ResourceType>[] = [
   { key: "name", label: "Name", filterable: false },
-  { key: "unit", label: "Unit" },
+  {
+    key: "unit",
+    label: "Unit",
+    filterable: true,
+  },
 ];
 
 export const stockFields: FieldDef<ResourceStock>[] = [

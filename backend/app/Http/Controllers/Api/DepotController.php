@@ -33,7 +33,8 @@ class DepotController extends BaseController
             'status' => ['required', 'in:OPERATIONAL,LIMITED CAPACITY,OFFLINE'],
             'lat' => ['required', 'numeric'],
             'lng' => ['required', 'numeric'],
-            'contact_name' => ['nullable', 'string', 'max:255'],
+            'contact_first_name' => ['nullable', 'string', 'max:255'],
+            'contact_last_name' => ['nullable', 'string', 'max:255'],
             'contact_email' => ['nullable', 'email', 'max:255'],
             'contact_phone' => ['nullable', 'string', 'max:50'],
         ];
@@ -47,7 +48,8 @@ class DepotController extends BaseController
             'status' => ['sometimes', 'in:OPERATIONAL,LIMITED CAPACITY,OFFLINE'],
             'lat' => ['sometimes', 'numeric'],
             'lng' => ['sometimes', 'numeric'],
-            'contact_name' => ['nullable', 'string', 'max:255'],
+            'contact_first_name' => ['nullable', 'string', 'max:255'],
+            'contact_last_name' => ['nullable', 'string', 'max:255'],
             'contact_email' => ['nullable', 'email', 'max:255'],
             'contact_phone' => ['nullable', 'string', 'max:50'],
         ];

@@ -15,6 +15,8 @@ class ResourceTypeController extends BaseController
 
     protected array $searchable = ['name'];
 
+    protected array $filterable = ['unit'];
+
     protected array $sortable = ['id', 'name', 'created_at'];
 
     protected string $sortBy = 'name';

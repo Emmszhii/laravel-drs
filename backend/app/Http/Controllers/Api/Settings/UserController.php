@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api\Settings;
 
 use App\Http\Controllers\BaseController;
+use App\Mail\NewAccountMail;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password;
 
 /**
  * Users CRUD — backs Settings → Users. Keeps the legacy `role` string
@@ -17,22 +20,22 @@ class UserController extends BaseController
 {
     protected string $model = User::class;
 
-    protected array $searchable = ['name', 'email'];
+    protected array $searchable = ['first_name', 'last_name', 'email'];
 
     protected array $filterable = ['role', 'is_active'];
 
     protected array $exactFilters = ['role', 'is_active'];
 
-    protected array $sortable = ['id', 'name', 'created_at'];
+    protected array $sortable = ['id', 'first_name', 'last_name', 'created_at'];
 
-    protected string $sortBy = 'name';
+    protected string $sortBy = 'first_name';
 
     protected function storeRules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8'],
             'role' => ['required', 'in:developer,admin,coordinator,viewer,respondent'],
             'is_active' => ['sometimes', 'boolean'],
         ];
@@ -41,7 +44,8 @@ class UserController extends BaseController
     protected function updateRules(Model $model): array
     {
         return [
-            'name' => ['sometimes', 'string', 'max:255'],
+            'first_name' => ['sometimes', 'string', 'max:255'],
+            'last_name' => ['sometimes', 'string', 'max:255'],
             'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$model->id],
             'password' => ['nullable', 'string', 'min:8'],
             'role' => ['sometimes', 'in:developer,admin,coordinator,viewer,respondent'],
@@ -61,6 +65,20 @@ class UserController extends BaseController
     protected function afterCreate(Model $model): void
     {
         $model->syncRoles([$model->role]);
+
+        $token = Password::broker()->createToken($model);
+        $setPasswordUrl = url(route('password.reset', [
+            'token' => $token,
+            'email' => $model->email,
+        ], false));
+
+        Mail::to($model->email)->send(new NewAccountMail(
+            userName: $model->name,
+            userEmail: $model->email,
+            userRole: $model->role,
+            setPasswordUrl: $setPasswordUrl,
+            expiryHours: (int) ceil(((int) config('auth.passwords.users.expire', 60)) / 60),
+        ));
     }
 
     protected function afterUpdate(Model $model): void

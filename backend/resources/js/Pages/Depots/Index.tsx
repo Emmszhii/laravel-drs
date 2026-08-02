@@ -19,7 +19,8 @@ const emptyForm = {
   address: "",
   lat: null as number | null,
   lng: null as number | null,
-  contact_name: "",
+  contact_first_name: "",
+  contact_last_name: "",
   contact_email: "",
   contact_phone: "",
 };
@@ -27,7 +28,17 @@ const emptyForm = {
 const columns: ColumnDef<Depot>[] = [
   { key: "name", label: "Name" },
   { key: "address", label: "Address" },
-  { key: "status", label: "Status" },
+  {
+    key: "status",
+    label: "Status",
+    filterable: true,
+    type: "select",
+    typeData: [
+      { value: "OPERATIONAL", label: "Operational" },
+      { value: "LIMITED CAPACITY", label: "Limited capacity" },
+      { value: "OFFLINE", label: "Offline" },
+    ],
+  },
 ];
 
 function DepotCard(row: Depot, actions: CardActions) {
@@ -100,7 +111,8 @@ function DepotsIndex() {
       address: row.address,
       lat: row.lat,
       lng: row.lng,
-      contact_name: row.contact_name ?? "",
+      contact_first_name: row.contact_first_name ?? "",
+      contact_last_name: row.contact_last_name ?? "",
       contact_email: row.contact_email ?? "",
       contact_phone: row.contact_phone ?? "",
     });
@@ -129,7 +141,8 @@ function DepotsIndex() {
         address: form.address,
         lat: form.lat ?? 0,
         lng: form.lng ?? 0,
-        contact_name: form.contact_name || undefined,
+        contact_first_name: form.contact_first_name || undefined,
+        contact_last_name: form.contact_last_name || undefined,
         contact_email: form.contact_email || undefined,
         contact_phone: form.contact_phone || undefined,
       };
@@ -290,16 +303,30 @@ function DepotsIndex() {
           <div className="flex gap-3">
             <div className="flex-1">
               <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Contact name
+                Contact first name
               </label>
               <input
-                value={form.contact_name}
+                value={form.contact_first_name}
                 onChange={(e) =>
-                  setForm({ ...form, contact_name: e.target.value })
+                  setForm({ ...form, contact_first_name: e.target.value })
                 }
                 className="input"
               />
             </div>
+            <div className="flex-1">
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Contact last name
+              </label>
+              <input
+                value={form.contact_last_name}
+                onChange={(e) =>
+                  setForm({ ...form, contact_last_name: e.target.value })
+                }
+                className="input"
+              />
+            </div>
+          </div>
+          <div className="flex gap-3">
             <div className="flex-1">
               <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
                 Contact phone
@@ -312,19 +339,19 @@ function DepotsIndex() {
                 className="input"
               />
             </div>
-          </div>
-          <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-              Contact email
-            </label>
-            <input
-              type="email"
-              value={form.contact_email}
-              onChange={(e) =>
-                setForm({ ...form, contact_email: e.target.value })
-              }
-              className="input"
-            />
+            <div className="flex-1">
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Contact email
+              </label>
+              <input
+                type="email"
+                value={form.contact_email}
+                onChange={(e) =>
+                  setForm({ ...form, contact_email: e.target.value })
+                }
+                className="input"
+              />
+            </div>
           </div>
         </form>
       </Modal>

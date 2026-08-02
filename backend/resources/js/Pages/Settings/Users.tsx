@@ -5,6 +5,7 @@ import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
+import { useToast } from "@/Components/Toast";
 import { usersService } from "@/api-service/modules/users";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
@@ -25,10 +26,24 @@ function SettingsUsersTabs() {
   );
 }
 
+const roleOptions = [
+  { value: "developer", label: "Developer" },
+  { value: "admin", label: "Admin" },
+  { value: "coordinator", label: "Coordinator" },
+  { value: "viewer", label: "Viewer" },
+  { value: "respondent", label: "Respondent" },
+];
+
 const columns: ColumnDef<AdminUser>[] = [
   { key: "name", label: "Name" },
   { key: "email", label: "Email" },
-  { key: "role", label: "Role" },
+  {
+    key: "role",
+    label: "Role",
+    filterable: true,
+    type: "select",
+    typeData: roleOptions,
+  },
 ];
 
 function UserCard(row: AdminUser, actions: CardActions) {
@@ -68,25 +83,10 @@ function UserCard(row: AdminUser, actions: CardActions) {
   );
 }
 
-const roleOptions = [
-  { value: "developer", label: "Developer" },
-  { value: "admin", label: "Admin" },
-  { value: "coordinator", label: "Coordinator" },
-  { value: "viewer", label: "Viewer" },
-  { value: "respondent", label: "Respondent" },
-];
-
 const userFields: FieldDef<AdminUser>[] = [
-  { key: "name", label: "Full name", required: true },
+  { key: "first_name", label: "First name", required: true },
+  { key: "last_name", label: "Last name", required: true },
   { key: "email", label: "Email", type: "email", required: true },
-  {
-    key: "password",
-    label: "Password",
-    type: "password",
-    showOnEdit: false,
-    required: true,
-    helpText: "Minimum 8 characters.",
-  },
   {
     key: "role",
     label: "Role",
@@ -102,6 +102,7 @@ function SettingsUsersIndex() {
     mode: "create" | "edit";
     row?: AdminUser;
   } | null>(null);
+  const { showToast } = useToast();
 
   return (
     <div>
@@ -138,7 +139,12 @@ function SettingsUsersIndex() {
                   payload as Partial<AdminUser>,
                 )
           }
-          onSuccess={() => setModal(null)}
+          onSuccess={() => {
+            if (modal.mode === "create") {
+              showToast("User created — an email has been sent to set their password.");
+            }
+            setModal(null);
+          }}
         />
       )}
     </div>

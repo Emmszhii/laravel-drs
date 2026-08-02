@@ -20,7 +20,8 @@ class DepotFactory extends Factory
             'status' => fake()->randomElement(['OPERATIONAL', 'LIMITED CAPACITY', 'OFFLINE']),
             'lat' => fake()->latitude(5, 19),
             'lng' => fake()->longitude(117, 127),
-            'contact_name' => fake()->name(),
+            'contact_first_name' => fake()->firstName(),
+            'contact_last_name' => fake()->lastName(),
             'contact_email' => fake()->unique()->safeEmail(),
             'contact_phone' => '+63 9'.fake()->numerify('## ### ####'),
         ];

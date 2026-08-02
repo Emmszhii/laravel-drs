@@ -23,6 +23,7 @@ const emptyForm = {
 
 function IncidentsIndex() {
   const [page, setPage] = useState<PaginatedResponse<Disaster> | null>(null);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [signalFilter, setSignalFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
@@ -40,7 +41,11 @@ function IncidentsIndex() {
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
 
+  const MIN_LOADING_MS = 400;
+
   const load = () => {
+    setLoading(true);
+    const startedAt = Date.now();
     incidentsService
       .getPaginatedFilterSearch({
         search,
@@ -48,7 +53,12 @@ function IncidentsIndex() {
         per_page: 10,
         page: currentPage,
       })
-      .then(setPage);
+      .then(setPage)
+      .finally(() => {
+        const elapsed = Date.now() - startedAt;
+        const remaining = Math.max(0, MIN_LOADING_MS - elapsed);
+        setTimeout(() => setLoading(false), remaining);
+      });
   };
 
   useEffect(load, [search, signalFilter, statusFilter, currentPage]);
@@ -162,22 +172,29 @@ function IncidentsIndex() {
 
       <div className="flex flex-1 overflow-hidden">
         <div className="w-[280px] shrink-0 overflow-y-auto border-r border-white/10">
-          {incidents.map((inc) => (
-            <div
-              key={inc.id}
-              onClick={() => setSelectedId(inc.id)}
-              className={`cursor-pointer border-b border-white/10 p-3 text-sm ${
-                inc.id === selectedId
-                  ? "border-l-2 border-l-[var(--amber)] bg-white/5"
-                  : "hover:bg-white/5"
-              }`}
-            >
-              <div className="font-semibold">{inc.name}</div>
-              <div className="text-xs text-[var(--text-secondary)]">
-                {inc.zone} · Signal {inc.signal} · {inc.status}
-              </div>
-            </div>
-          ))}
+          {loading && incidents.length === 0
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="border-b border-white/10 p-3">
+                  <div className="mb-2 h-3.5 w-3/4 animate-pulse rounded bg-white/10" />
+                  <div className="h-3 w-1/2 animate-pulse rounded bg-white/5" />
+                </div>
+              ))
+            : incidents.map((inc) => (
+                <div
+                  key={inc.id}
+                  onClick={() => setSelectedId(inc.id)}
+                  className={`cursor-pointer border-b border-white/10 p-3 text-sm ${
+                    inc.id === selectedId
+                      ? "border-l-2 border-l-[var(--amber)] bg-white/5"
+                      : "hover:bg-white/5"
+                  }`}
+                >
+                  <div className="font-semibold">{inc.name}</div>
+                  <div className="text-xs text-[var(--text-secondary)]">
+                    {inc.zone} · Signal {inc.signal} · {inc.status}
+                  </div>
+                </div>
+              ))}
         </div>
         <div className="flex-1 overflow-y-auto p-6">
           {selected ? (

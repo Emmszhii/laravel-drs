@@ -39,7 +39,7 @@ export function StatusFilter({
 }: StatusFilterProps) {
     return (
         <div
-            className="inline-flex items-center rounded-xl border border-slate-200 p-0.5"
+            className="inline-flex items-center border border-line-strong p-0.5"
             data-cy="status-filter-div-1"
         >
             {tabs.map((tab) => (
@@ -47,7 +47,7 @@ export function StatusFilter({
                     key={tab.value}
                     type="button"
                     onClick={() => onChange(tab.value)}
-                    className={`rounded-lg bg-white px-3 py-2 text-sm font-medium transition-colors ${value === tab.value ? 'text-brand-400' : 'text-slate-600 hover:bg-slate-50'}`}
+                    className={`px-3 py-2 text-sm font-medium transition-colors ${value === tab.value ? 'bg-amber text-[#1a1200]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                     data-cy="status-filter-button-button"
                 >
                     {tab.label}

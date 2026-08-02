@@ -19,7 +19,8 @@ class Depot extends Model
         'status',
         'lat',
         'lng',
-        'contact_name',
+        'contact_first_name',
+        'contact_last_name',
         'contact_email',
         'contact_phone',
     ];

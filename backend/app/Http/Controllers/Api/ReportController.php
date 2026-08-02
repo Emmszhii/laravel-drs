@@ -18,6 +18,10 @@ class ReportController extends BaseController
 
     protected array $searchable = ['name', 'disaster.name'];
 
+    protected array $filterable = ['type'];
+
+    protected array $exactFilters = ['type'];
+
     protected array $sortable = ['id', 'generated_at'];
 
     protected string $sortBy = 'generated_at';

@@ -10,7 +10,17 @@ import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { Report } from "@/Types/models";
 
 const columns: ColumnDef<Report>[] = [
-  { key: "type", label: "Report" },
+  {
+    key: "type",
+    label: "Report",
+    filterable: true,
+    type: "select",
+    typeData: [
+      { value: "After-action summary", label: "After-action summary" },
+      { value: "Resource utilization", label: "Resource utilization" },
+      { value: "Response timeline", label: "Response timeline" },
+    ],
+  },
   {
     key: "disaster",
     label: "Incident",

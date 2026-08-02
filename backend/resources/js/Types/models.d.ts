@@ -49,7 +49,8 @@ export interface Depot {
   status: "OPERATIONAL" | "LIMITED CAPACITY" | "OFFLINE";
   lat: number;
   lng: number;
-  contact_name?: string;
+  contact_first_name?: string;
+  contact_last_name?: string;
   contact_email?: string;
   contact_phone?: string;
 }
@@ -77,6 +78,8 @@ export interface ResourceStock {
 export interface AdminUser {
   [key: string]: unknown;
   id: string;
+  first_name: string;
+  last_name: string;
   name: string;
   email: string;
   role: "developer" | "admin" | "coordinator" | "viewer" | "respondent";

@@ -31,10 +31,10 @@ export function CardFilterPanel<T>({
     statusFilterOptions,
 }: CardFilterPanelProps<T>) {
     return (
-        <div className="mt-3 space-y-4 rounded-xl border border-slate-200 p-4">
+        <div className="mt-3 space-y-4 border border-line-strong bg-[var(--bg-panel)] p-4">
             {enableStatusFilter && (
                 <div>
-                    <span className="mb-1.5 block text-xs font-medium">
+                    <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-[var(--text-secondary)]">
                         Status
                     </span>
                     <StatusFilter
@@ -57,7 +57,7 @@ export function CardFilterPanel<T>({
                                 <div className="relative block" key={i}>
                                     <label
                                         htmlFor={col.label}
-                                        className="mb-1 block text-xs font-medium"
+                                        className="mb-1 block text-xs font-medium text-[var(--text-secondary)]"
                                     >
                                         {col.label}
                                     </label>
@@ -90,7 +90,7 @@ export function CardFilterPanel<T>({
 
                             return (
                                 <label key={col.key} className="block min-w-50">
-                                    <span className="mb-1 block text-xs font-medium">
+                                    <span className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">
                                         {col.label}
                                     </span>
                                     <AsyncMultiSelectField
@@ -116,7 +116,7 @@ export function CardFilterPanel<T>({
 
                             return (
                                 <label key={col.key} className="block min-w-50">
-                                    <span className="mb-1 block text-xs font-medium">
+                                    <span className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">
                                         {col.label}
                                     </span>
                                     <div className="flex items-center gap-1.5">
@@ -133,10 +133,10 @@ export function CardFilterPanel<T>({
                                                     e.target.value,
                                                 )
                                             }
-                                            className="w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm outline-none focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
+                                            className="w-full border border-line-strong bg-[var(--bg-void)] px-2 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-amber"
                                             data-cy={`data-input-${fromKey}`}
                                         />
-                                        <span className="text-xs text-slate-400">
+                                        <span className="text-xs text-[var(--text-secondary)]">
                                             to
                                         </span>
                                         <input
@@ -152,7 +152,7 @@ export function CardFilterPanel<T>({
                                                     e.target.value,
                                                 )
                                             }
-                                            className="w-full rounded-lg border border-slate-200 bg-white px-2 py-2 text-sm outline-none focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
+                                            className="w-full border border-line-strong bg-[var(--bg-void)] px-2 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-amber"
                                             data-cy={`data-input-${toKey}`}
                                         />
                                     </div>
@@ -169,7 +169,7 @@ export function CardFilterPanel<T>({
 
                             return (
                                 <label key={col.key} className="block min-w-50">
-                                    <span className="mb-1 block text-xs font-medium">
+                                    <span className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">
                                         {col.label}
                                     </span>
                                     <AsyncSelectField
@@ -198,7 +198,7 @@ export function CardFilterPanel<T>({
 
                         return (
                             <label key={col.key} className="block">
-                                <span className="mb-1 block text-xs font-medium">
+                                <span className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">
                                     {col.label}
                                 </span>
                                 <input
@@ -212,7 +212,7 @@ export function CardFilterPanel<T>({
                                         onColumnFilter(col.key, e.target.value)
                                     }
                                     placeholder={`Filter by ${col.label.toLowerCase()}…`}
-                                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm outline-none focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10"
+                                    className="w-full border border-line-strong bg-[var(--bg-void)] px-3 py-2 text-sm text-[var(--text-primary)] outline-none focus:border-amber"
                                     data-cy={`data-input-${col.key}`}
                                 />
                             </label>
