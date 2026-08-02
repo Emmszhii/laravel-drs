@@ -6,6 +6,7 @@ import IncidentMap from "../../Components/Map/IncidentMap";
 import DepotPickMap from "../../Components/Map/DepotPickMap";
 import usePsgc from "../../Hooks/usePsgc";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
+import { ApiError } from "@/api-service/client";
 import { depotsService } from "@/api-service/depots";
 import type { ColumnDef, CardActions } from "@/Components/table";
 import type { Depot } from "@/Types/models";
@@ -61,6 +62,7 @@ function DepotsIndex() {
   const [editing, setEditing] = useState<Depot | null>(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const psgc = usePsgc();
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
@@ -76,6 +78,8 @@ function DepotsIndex() {
     setForm(emptyForm);
     setRegion("");
     setProvince("");
+    setSaveError(null);
+    psgc.reset();
     setModalOpen(true);
     psgc.loadRegions();
   };
@@ -92,11 +96,23 @@ function DepotsIndex() {
       contact_email: row.contact_email ?? "",
       contact_phone: row.contact_phone ?? "",
     });
+    setRegion("");
+    setProvince("");
+    setSaveError(null);
+    psgc.reset();
     setModalOpen(true);
+    psgc.loadRegions();
   };
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    setSaveError(null);
+
+    if (!form.name.trim() || !form.address.trim()) {
+      setSaveError("Depot name and address are required.");
+      return;
+    }
+
     setSaving(true);
     try {
       const payload = {
@@ -118,6 +134,8 @@ function DepotsIndex() {
 
       setModalOpen(false);
       loadMap();
+    } catch (err) {
+      setSaveError(err instanceof ApiError ? err.message : "Failed to save depot. Please try again.");
     } finally {
       setSaving(false);
     }
@@ -161,6 +179,7 @@ function DepotsIndex() {
         }
       >
         <form onSubmit={submit} className="flex flex-col gap-3">
+          {saveError && <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">{saveError}</p>}
           <div>
             <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Depot name</label>
             <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="input" />

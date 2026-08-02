@@ -63,7 +63,7 @@ export function ConfirmInUseModal({
             <div
                 role="alertdialog"
                 aria-modal="true"
-                className="w-full max-w-sm rounded-2xl bg-neutral-50 p-6 shadow-xl"
+                className="w-full max-w-sm border-t-2 border-amber bg-bg-panel p-6 shadow-lg"
                 data-cy="confirm-in-use-modal-div-2"
             >
                 {/* Header */}
@@ -76,17 +76,17 @@ export function ConfirmInUseModal({
                         data-cy="confirm-in-use-modal-div-4"
                     >
                         <span
-                            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-100"
+                            className="flex h-9 w-9 shrink-0 items-center justify-center border border-pending bg-[var(--bg-void)]"
                             data-cy="confirm-in-use-modal-span-5"
                         >
                             <AlertTriangle
-                                className="h-5 w-5 text-amber-600"
+                                className="h-5 w-5 text-pending"
                                 strokeWidth={1.75}
                                 data-cy="confirm-in-use-modal-alert-triangle-6"
                             />
                         </span>
                         <h2
-                            className="text-base font-semibold"
+                            className="text-base font-semibold text-[var(--text-primary)]"
                             data-cy="confirm-in-use-modal-h2-7"
                         >
                             {title}
@@ -95,7 +95,7 @@ export function ConfirmInUseModal({
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-md p-1 hover:bg-slate-100"
+                        className="p-1 text-[var(--text-secondary)] hover:text-amber"
                         aria-label="Close"
                         data-cy="confirm-in-use-modal-button-close"
                     >
@@ -111,7 +111,7 @@ export function ConfirmInUseModal({
                     className="mt-4 space-y-3"
                     data-cy="confirm-in-use-modal-div-10"
                 >
-                    <p className="text-sm" data-cy="confirm-in-use-modal-p-11">
+                    <p className="text-sm text-[var(--text-primary)]" data-cy="confirm-in-use-modal-p-11">
                         {description ?? (
                             <>
                                 <span
@@ -129,13 +129,13 @@ export function ConfirmInUseModal({
                     {/* Usage breakdown */}
                     {usages.length > 0 && (
                         <ul
-                            className="divide-y divide-slate-100 rounded-xl border border-slate-200"
+                            className="divide-y divide-line border border-line-strong"
                             data-cy="confirm-in-use-modal-ul-13"
                         >
                             {usages.map((u) => (
                                 <li
                                     key={u.label}
-                                    className="flex items-center justify-between px-4 py-2.5 text-sm"
+                                    className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--text-primary)]"
                                     data-cy="confirm-in-use-modal-li-14"
                                 >
                                     <span
@@ -156,7 +156,7 @@ export function ConfirmInUseModal({
                     )}
 
                     <p
-                        className="text-xs"
+                        className="text-xs text-[var(--text-secondary)]"
                         data-cy="confirm-in-use-modal-p-reassign-or-remove-all-references-before"
                     >
                         Reassign or remove all references before trying again.
@@ -171,7 +171,7 @@ export function ConfirmInUseModal({
                     <button
                         type="button"
                         onClick={onClose}
-                        className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium hover:bg-slate-50/10"
+                        className="border border-line-strong px-4 py-2 text-sm text-[var(--text-secondary)] hover:border-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                         data-cy="confirm-in-use-modal-button-button"
                     >
                         Got it

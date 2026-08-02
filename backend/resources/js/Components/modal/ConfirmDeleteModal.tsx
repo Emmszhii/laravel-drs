@@ -68,17 +68,17 @@ export function ConfirmDeleteModal({
             <div
                 role="alertdialog"
                 aria-modal="true"
-                className="w-full max-w-sm rounded-2xl bg-neutral-50 p-6 shadow-xl"
+                className="w-full max-w-sm border-t-2 border-amber bg-bg-panel p-6 shadow-lg"
                 data-cy="confirm-delete-modal-div-2"
             >
                 {isSelfDelete ? (
                     <h2
-                        className="text-lg font-semibold"
+                        className="text-lg font-semibold text-[var(--text-primary)]"
                         data-cy="confirm-delete-modal-h2-are-you-sure-you-want-to"
                     >
                         Are you sure you want to delete your own account?
                         <span
-                            className="mt-1 block text-sm font-normal text-primary"
+                            className="mt-1 block text-sm font-normal text-[var(--text-secondary)]"
                             data-cy="confirm-delete-modal-span-you-will-be-automatically-logged-out"
                         >
                             You will be automatically logged out.
@@ -86,7 +86,7 @@ export function ConfirmDeleteModal({
                     </h2>
                 ) : (
                     <h2
-                        className="text-lg font-semibold"
+                        className="text-lg font-semibold text-[var(--text-primary)]"
                         data-cy="confirm-delete-modal-h2-delete"
                     >
                         Delete {label ?? 'this record'}?
@@ -94,7 +94,7 @@ export function ConfirmDeleteModal({
                 )}
 
                 <p
-                    className="mt-1.5 text-sm text-slate-500"
+                    className="mt-1.5 text-sm text-[var(--text-secondary)]"
                     data-cy="confirm-delete-modal-p-this-action-cannot-be-undone-the"
                 >
                     This action cannot be undone. The record will be permanently
@@ -105,10 +105,10 @@ export function ConfirmDeleteModal({
                     <div className="mt-4" data-cy="confirm-delete-modal-type-to-confirm">
                         <label
                             htmlFor="confirm-delete-typed-value"
-                            className="mb-1.5 block text-xs text-slate-500"
+                            className="mb-1.5 block text-xs text-[var(--text-secondary)]"
                         >
                             Type{' '}
-                            <span className="font-semibold text-slate-700">
+                            <span className="font-semibold text-[var(--text-primary)]">
                                 {confirmText}
                             </span>{' '}
                             to confirm.
@@ -121,21 +121,21 @@ export function ConfirmDeleteModal({
                             value={typedValue}
                             onChange={(e) => setTypedValue(e.target.value)}
                             disabled={busy}
-                            className="w-full rounded-xl border border-slate-200 px-3 py-2 text-sm focus:border-rose-400 focus:outline-none focus:ring-1 focus:ring-rose-400"
+                            className="w-full border border-line-strong bg-[var(--bg-void)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-critical focus:outline-none"
                             data-cy="confirm-delete-modal-input-confirm-text"
                         />
                     </div>
                 )}
 
                 <div
-                    className="mt-6 flex items-center justify-end gap-2"
+                    className="mt-6 flex items-center justify-end gap-2.5"
                     data-cy="confirm-delete-modal-div-7"
                 >
                     <button
                         type="button"
                         onClick={onCancel}
                         disabled={busy}
-                        className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-medium hover:bg-slate-50"
+                        className="border border-line-strong px-4 py-2 text-sm text-[var(--text-secondary)] hover:border-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                         data-cy="confirm-delete-modal-button-button"
                     >
                         Cancel
@@ -144,7 +144,7 @@ export function ConfirmDeleteModal({
                         type="button"
                         onClick={onConfirm}
                         disabled={busy || !isUnlocked}
-                        className="inline-flex items-center gap-1.5 rounded-xl bg-rose-600 px-4 py-2.5 text-sm font-medium text-white hover:bg-rose-700 disabled:opacity-60"
+                        className="inline-flex items-center gap-1.5 bg-critical px-4 py-2 text-sm font-semibold tracking-wide text-white uppercase hover:opacity-90 disabled:opacity-60"
                         data-cy="confirm-delete-modal-button-button-2"
                     >
                         {busy && (

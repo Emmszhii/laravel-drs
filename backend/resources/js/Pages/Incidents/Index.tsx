@@ -4,8 +4,10 @@ import FilterBar from "../../Components/Common/FilterBar";
 import Pagination from "../../Components/Common/Pagination";
 import Modal from "../../Components/Common/Modal";
 import Button from "../../Components/Common/Button";
+import { ConfirmDeleteModal } from "@/Components/modal/ConfirmDeleteModal";
 import TriggerSolver from "../Optimization/TriggerSolver";
 import usePsgc from "../../Hooks/usePsgc";
+import { ApiError } from "@/api-service/client";
 import { incidentsService } from "@/api-service/incidents";
 import { PaginatedResponse } from "@/Types/pagination";
 import { Disaster } from "@/Types/models";
@@ -30,6 +32,9 @@ function IncidentsIndex() {
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Disaster | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const psgc = usePsgc();
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
@@ -65,11 +70,20 @@ function IncidentsIndex() {
     setRegion("");
     setProvince("");
     setCity("");
+    setSaveError(null);
+    psgc.reset();
     setModalOpen(true);
   };
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    setSaveError(null);
+
+    if (!form.name.trim() || !form.zone.trim()) {
+      setSaveError("Incident name and affected municipality are required.");
+      return;
+    }
+
     setSaving(true);
     try {
       await incidentsService.create({
@@ -82,16 +96,24 @@ function IncidentsIndex() {
       });
       setModalOpen(false);
       load();
+    } catch (err) {
+      setSaveError(err instanceof ApiError ? err.message : "Failed to log incident. Please try again.");
     } finally {
       setSaving(false);
     }
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("Delete this incident?")) return;
-    await incidentsService.delete(id);
-    if (selectedId === id) setSelectedId(null);
-    load();
+  const remove = async () => {
+    if (!deleteTarget) return;
+    setDeleting(true);
+    try {
+      await incidentsService.delete(deleteTarget.id);
+      if (selectedId === deleteTarget.id) setSelectedId(null);
+      setDeleteTarget(null);
+      load();
+    } finally {
+      setDeleting(false);
+    }
   };
 
   const incidents = page?.data ?? [];
@@ -146,7 +168,7 @@ function IncidentsIndex() {
                     {selected.type} · {selected.zone} · Signal {selected.signal} · {selected.status}
                   </p>
                 </div>
-                <button onClick={() => remove(selected.id)} className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]">
+                <button onClick={() => setDeleteTarget(selected)} className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]">
                   Remove
                 </button>
               </div>
@@ -194,6 +216,7 @@ function IncidentsIndex() {
         }
       >
         <form onSubmit={submit} className="flex flex-col gap-3">
+          {saveError && <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">{saveError}</p>}
           <Field label="Incident name">
             <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. Typhoon Marina" className="input" />
           </Field>
@@ -286,6 +309,14 @@ function IncidentsIndex() {
           </div>
         </form>
       </Modal>
+
+      <ConfirmDeleteModal
+        open={!!deleteTarget}
+        busy={deleting}
+        label={deleteTarget?.name}
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={remove}
+      />
     </div>
   );
 }

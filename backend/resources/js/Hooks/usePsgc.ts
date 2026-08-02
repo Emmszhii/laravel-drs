@@ -99,6 +99,13 @@ export default function usePsgc() {
     }
   }, []);
 
+  /** Clears the dependent cascade (provinces/cities/barangays) — call this when a modal reopens so stale options from a previous session don't linger. */
+  const reset = useCallback(() => {
+    setProvinces([]);
+    setCities([]);
+    setBarangays([]);
+  }, []);
+
   return {
     regions,
     provinces,
@@ -110,5 +117,6 @@ export default function usePsgc() {
     loadCitiesForRegion,
     loadCities,
     loadBarangays,
+    reset,
   };
 }
