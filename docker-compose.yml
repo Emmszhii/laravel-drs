@@ -53,6 +53,26 @@ services:
     volumes:
       - ./backend:/var/www/html
 
+  # Runs the Laravel scheduler (routes/console.php): polls the configured
+  # disaster feeds (USGS/GDACS) on the admin-set interval and auto-resolves
+  # stale incidents. Without this, nothing ever triggers PollDisasterFeedsJob
+  # / AutoResolveIncidentsJob — the `queue` service above must also be up
+  # since scheduled jobs are dispatched onto the queue, not run inline.
+  scheduler:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: disasterresource-scheduler
+    restart: unless-stopped
+    command: php artisan schedule:work
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/var/www/html
+
   # Websocket server for App\Events\DisasterAlertEvent (routes/channels.php).
   reverb:
     build:

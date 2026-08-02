@@ -54,5 +54,42 @@ class DisasterDataSeeder extends Seeder
             'lng' => 121.1029,
             'status' => 'ACTIVE',
         ]);
+
+        // Feed-sourced examples (shape matches App\Services\DisasterFeed\* output)
+        // so the Settings → Disaster feed UI and auto-resolve are demoable
+        // without waiting on a live poll — see CLAUDE.md's "Automated disaster
+        // feed" section.
+        Disaster::create([
+            'name' => 'M 5.4 Earthquake — 21 km SE of Bacacay',
+            'type' => 'Earthquake',
+            'signal' => 3,
+            'zone' => '21 km SE of Bacacay, Philippines',
+            'lat' => 13.2130,
+            'lng' => 123.8560,
+            'status' => 'ACTIVE',
+            'source' => 'usgs',
+            'external_id' => 'us7000seed1',
+            'source_url' => 'https://earthquake.usgs.gov/earthquakes/eventpage/us7000seed1',
+            'external_updated_at' => now()->subHours(6),
+        ]);
+
+        // Backdated past DISASTER_FEED_AUTO_RESOLVE_MAX_DAYS with no zones/requests —
+        // the intended first subject for AutoResolveIncidentsJob.
+        $stale = Disaster::create([
+            'name' => 'Tropical Cyclone Bising (GDACS Orange alert)',
+            'type' => 'Typhoon',
+            'signal' => 2,
+            'zone' => 'Philippines',
+            'lat' => 12.8797,
+            'lng' => 124.7740,
+            'status' => 'ACTIVE',
+            'source' => 'gdacs',
+            'external_id' => 'TC-1000987',
+            'source_url' => 'https://www.gdacs.org/report.aspx?eventid=1000987&eventtype=TC',
+            'external_updated_at' => now()->subDays(6),
+        ]);
+        // created_at isn't fillable and saveQuietly() skips the audit observer
+        // (no spurious app_loggers row for what is really just seed backdating).
+        $stale->forceFill(['created_at' => now()->subDays(6)])->saveQuietly();
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\DepotController;
+use App\Http\Controllers\Web\DisasterFeedSettingsController;
 use App\Http\Controllers\Web\IncidentController;
 use App\Http\Controllers\Web\OptimizationController;
 use App\Http\Controllers\Web\ReportController;
@@ -26,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/settings/routing', [RoutingSettingsController::class, 'index'])
             ->name('settings.routing');
+
+        Route::get('/settings/disaster-feed', [DisasterFeedSettingsController::class, 'index'])
+            ->name('settings.disaster-feed');
     });
 });
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Link } from "@inertiajs/react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
+import { SettingsTabs } from "@/Components/settings/SettingsTabs";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
@@ -9,22 +9,6 @@ import { useToast } from "@/Components/Toast";
 import { usersService } from "@/api-service/modules/users";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
-
-function SettingsUsersTabs() {
-  return (
-    <div className="flex gap-5 border-b border-white/10 px-6">
-      <button className="border-b-2 border-[var(--amber)] py-2.5 text-sm font-semibold uppercase tracking-wide">
-        Users
-      </button>
-      <Link
-        href="/settings/routing"
-        className="border-b-2 border-transparent py-2.5 text-sm font-semibold uppercase tracking-wide text-[var(--text-secondary)]"
-      >
-        Routing
-      </Link>
-    </div>
-  );
-}
 
 const roleOptions = [
   { value: "developer", label: "Developer" },
@@ -106,7 +90,7 @@ function SettingsUsersIndex() {
 
   return (
     <div>
-      <SettingsUsersTabs />
+      <SettingsTabs />
       <div className="flex items-center justify-between px-6 py-3">
         <h2 className="text-lg font-semibold uppercase">Users</h2>
         <Button onClick={() => setModal({ mode: "create" })}>+ Add user</Button>

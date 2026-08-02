@@ -242,7 +242,20 @@ function IncidentsIndex() {
                       : "hover:bg-white/5"
                   }`}
                 >
-                  <div className="font-semibold">{inc.name}</div>
+                  <div className="flex items-center gap-1.5 font-semibold">
+                    {inc.name}
+                    {inc.source && (
+                      <a
+                        href={inc.source_url ?? undefined}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="border border-white/20 px-1 py-0.5 text-[9px] font-normal uppercase tracking-wide text-[var(--text-secondary)] hover:text-[var(--amber)]"
+                      >
+                        {inc.source}
+                      </a>
+                    )}
+                  </div>
                   <div className="text-xs text-[var(--text-secondary)]">
                     {inc.zone} · Signal {inc.signal} · {inc.status}
                   </div>

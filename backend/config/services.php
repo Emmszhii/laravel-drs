@@ -43,4 +43,18 @@ return [
         'url' => env('OSRM_URL', 'http://osrm:5000'),
     ],
 
+    'disaster_feed' => [
+        'usgs_url' => env('DISASTER_FEED_USGS_URL', 'https://earthquake.usgs.gov/fdsnws/event/1/query'),
+        'gdacs_url' => env('DISASTER_FEED_GDACS_URL', 'https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH'),
+        'lookback_days' => (int) env('DISASTER_FEED_LOOKBACK_DAYS', 3),
+        'auto_resolve_max_days' => (int) env('DISASTER_FEED_AUTO_RESOLVE_MAX_DAYS', 3),
+        // Philippines area of responsibility — keeps both feeds scoped to PH-relevant events.
+        'bbox' => [
+            'min_lat' => 4.5,
+            'max_lat' => 21.5,
+            'min_lng' => 116.0,
+            'max_lng' => 127.0,
+        ],
+    ],
+
 ];

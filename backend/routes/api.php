@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\DepotController;
 use App\Http\Controllers\Api\DirectionsController;
+use App\Http\Controllers\Api\DisasterFeedSettingController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportController;
@@ -47,6 +48,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/routing-settings', [RoutingSettingController::class, 'show']);
         Route::patch('/routing-settings', [RoutingSettingController::class, 'update']);
         Route::post('/routing-settings/test', [RoutingSettingController::class, 'test']);
+
+        Route::get('/disaster-feed-settings', [DisasterFeedSettingController::class, 'show']);
+        Route::patch('/disaster-feed-settings', [DisasterFeedSettingController::class, 'update']);
+        Route::post('/disaster-feed-settings/run', [DisasterFeedSettingController::class, 'run']);
 
         Route::post('/incidents/{incident}', [IncidentController::class, 'update']);
         Route::delete('/incidents/{incident}', [IncidentController::class, 'destroy']);

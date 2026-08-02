@@ -21,7 +21,7 @@ declare module '@inertiajs/core' {
 export interface Disaster {
   id: string;
   name: string;
-  type: "Typhoon" | "Flood" | "Earthquake" | "Fire" | "Landslide";
+  type: "Typhoon" | "Flood" | "Earthquake" | "Fire" | "Landslide" | "Volcano" | "Drought";
   signal: 1 | 2 | 3 | 4 | 5;
   zone: string;
   lat: number;
@@ -29,6 +29,10 @@ export interface Disaster {
   status: "ACTIVE" | "MONITORING" | "RESOLVED";
   zones?: Zone[];
   created_at?: string;
+  /** null = manually logged; otherwise which feed created/adopted this incident. */
+  source?: "usgs" | "gdacs" | null;
+  external_id?: string | null;
+  source_url?: string | null;
 }
 
 export interface Zone {
@@ -160,4 +164,20 @@ export interface RoutingSettingsData {
   fallback_reason: "cap_exceeded" | "provider_error" | null;
   last_test_status: "ok" | "failed" | null;
   last_test_at: string | null;
+}
+
+export interface DisasterFeedSettingsData {
+  usgs_enabled: boolean;
+  usgs_min_magnitude: number;
+  gdacs_enabled: boolean;
+  gdacs_min_alert_level: "Green" | "Orange" | "Red";
+  poll_interval_minutes: number;
+  poll_interval_options: number[];
+  auto_resolve_enabled: boolean;
+  auto_resolve_max_days: number;
+  last_run_at: string | null;
+  last_run_status: "ok" | "partial" | "failed" | null;
+  last_run_error: string | null;
+  last_run_created_count: number;
+  last_run_updated_count: number;
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * A geofenced affected area tied to a Disaster — e.g. a barangay-level
@@ -41,5 +42,10 @@ class Zone extends Model
     public function disaster(): BelongsTo
     {
         return $this->belongsTo(Disaster::class);
+    }
+
+    public function requests(): HasMany
+    {
+        return $this->hasMany(ResourceRequest::class);
     }
 }

@@ -14,7 +14,7 @@ DisasterResource+ — a resource optimization and visualization system for disas
 - `solver-service/` — Python FastAPI microservice wrapping OR-Tools (routing) and PuLP (allocation LP)
 - `docker/` — shared infra (PostGIS bootstrap script for the `postgres` service)
 
-Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, `backend` (web) on 8000, `queue` (queue worker, no exposed port), `reverb` (websocket server) on 8080, `solver-service` on 8001, `osrm` (routing engine) on 5001. `queue` and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD` — see the Docker Compose section below.
+Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, `backend` (web) on 8000, `queue` (queue worker, no exposed port), `scheduler` (Laravel scheduler, no exposed port), `reverb` (websocket server) on 8080, `solver-service` on 8001, `osrm` (routing engine) on 5001. `queue`, `scheduler`, and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD` — see the Docker Compose section below.
 
 There is a single `.env` at the repo root, not one per service. `backend/bootstrap/app.php` calls `Application::useEnvironmentPath()` to point Laravel's env lookup at the repo root (two directories up from `backend/bootstrap/`) instead of the default `backend/.env` — so `php artisan` commands run from inside `backend/` still read/write the root file. Docker gets the same file via `docker-compose.yml`'s `env_file: - .env` on every service (that mechanism is independent of Laravel's own env-file lookup — it injects real container env vars either way). `backend/vite.config.ts` similarly sets `envDir` to the repo root, since Vite (unlike Laravel) only auto-loads `.env` from its own project root by default — without that, every `VITE_*` var (Reverb config, `VITE_APP_NAME`) silently resolves to `undefined` in the frontend.
 
@@ -37,8 +37,9 @@ php artisan key:generate    # writes into the root .env
 php artisan migrate --seed
 npm run dev                 # vite dev server for Inertia/React assets
 php artisan serve
-php artisan queue:work      # separate terminal — processes RunOptimizationJob
+php artisan queue:work      # separate terminal — processes RunOptimizationJob, PollDisasterFeedsJob, AutoResolveIncidentsJob
 php artisan reverb:start    # separate terminal — realtime broadcasting
+php artisan schedule:work   # separate terminal — ticks routes/console.php's Schedule:: entries every minute (disaster feed polling + auto-resolve); Docker runs this as the `scheduler` service instead
 ```
 
 Frontend typecheck: `npm run typecheck` (tsc --noEmit). Frontend build: `npm run build`.
@@ -74,9 +75,9 @@ pytest tests/test_solvers.py::test_pulp_solver_fully_satisfies_demand_within_cap
 
 ### Domain model (backend/app/Models, backend/database/migrations)
 
-All custom domain tables use an `app_` prefix (`app_disasters`, `app_zones`, `app_depots`, `app_resource_types`, `app_resources`, `app_requests`, `app_allocations`, `app_optimization_runs`, `app_settings_routing`) — Laravel's own framework tables (`users`, `cache`, `jobs`, `sessions`, `password_reset_tokens`, `migrations`) do not get the prefix. Since Eloquent has no global table-prefix setting, every domain model sets `protected $table = 'app_...'` explicitly (its name no longer matches the class-name convention) — new domain migrations/models should follow the same `app_` prefix.
+All custom domain tables use an `app_` prefix (`app_disasters`, `app_zones`, `app_depots`, `app_resource_types`, `app_resources`, `app_requests`, `app_allocations`, `app_optimization_runs`, `app_settings_routing`, `app_settings_disaster_feed`) — Laravel's own framework tables (`users`, `cache`, `jobs`, `sessions`, `password_reset_tokens`, `migrations`) do not get the prefix. Since Eloquent has no global table-prefix setting, every domain model sets `protected $table = 'app_...'` explicitly (its name no longer matches the class-name convention) — new domain migrations/models should follow the same `app_` prefix.
 
-`Disaster` (UUID PK) has many `Zone`s (barangay-level areas with `population_affected`/`severity_level`), many `ResourceRequest`s (table `app_requests`, model deliberately renamed to avoid clashing with Laravel's HTTP `Request`), and many `OptimizationRun`s. `Depot` holds `Resource` rows keyed by `ResourceType` (quantity available/reserved). `Allocation` links a `ResourceRequest` + `Depot` + optional `OptimizationRun`.
+`Disaster` (UUID PK) has many `Zone`s (barangay-level areas with `population_affected`/`severity_level`), many `ResourceRequest`s (table `app_requests`, model deliberately renamed to avoid clashing with Laravel's HTTP `Request` — note `Disaster::requests()` is a `hasManyThrough(Zone)`, since `app_requests` links to a disaster only via `app_zones.disaster_id`, not a direct column), and many `OptimizationRun`s. `Depot` holds `Resource` rows keyed by `ResourceType` (quantity available/reserved). `Allocation` links a `ResourceRequest` + `Depot` + optional `OptimizationRun`.
 
 All domain models (including `User`) use `HasUuids` — the migrations declare `uuid('id')->primary()` with no default, so Eloquent must generate the key on `create()`. If you add a new model backed by a `uuid()` primary key, add `HasUuids` or inserts will fail with a NOT NULL constraint on `id`.
 
@@ -91,6 +92,16 @@ Lat/lng are plain `double` columns for now; migrations have commented-out `$tabl
 5. `TriggerSolver.tsx` (Inertia page) lets a coordinator manually re-run the solver for a given incident in addition to the automatic trigger.
 
 Both solvers implement `BaseSolver` (`solver-service/app/solvers/base.py`) so `optimize.py` can swap implementations without route changes.
+
+### Automated disaster feed (backend/app/Services/DisasterFeed)
+
+Pulls incidents automatically from two free, keyless external sources — USGS (earthquakes) and GDACS (typhoons/floods/volcanoes/etc.) — separate from the coordinator-driven manual "Log incident" flow.
+
+- `UsgsEarthquakeFeedClient` / `GdacsFeedClient` — normalize each source's response into a common incident shape (`source`, `external_id`, `name`, `type`, `signal`, `zone`, `lat`, `lng`, `source_url`, `external_updated_at`). Never throw — return `['ok' => bool, 'error' => ?string, 'incidents' => array]`, same convention as `OsrmDirectionsProvider`. GDACS's JSON shape is less stable than USGS's, so its client parses defensively via `data_get()` and skips (logs) malformed features rather than failing the whole run.
+- `DisasterFeedIngestor` — dedups/upserts into `app_disasters` by `(source, external_id)` (unique index), with a near-duplicate guard (same type, non-resolved, within 25km via `GeofenceService::distanceKm()`) so the feed adopts a coordinator's manually-logged incident instead of duplicating it. Never overwrites `status` on update — a coordinator's manual status change always wins.
+- `PollDisasterFeedsJob` (queued) — reads `DisasterFeedSetting::current()` (singleton, `app_settings_disaster_feed`, admin-configured at **Settings → Disaster feed**, `/settings/disaster-feed`), calls enabled clients, ingests, records `last_run_*`. Dispatched by `routes/console.php`'s `Schedule::call(...)->everyFiveMinutes()`, which checks `DisasterFeedSetting::dueToPoll()` — the admin-picked poll interval (15/30/60/360/1440 min) is enforced by this in-code check, not by the scheduler itself, since `Schedule::` only supports fixed frequencies. Also runnable manually via `php artisan disaster-feed:poll --force` or the Settings page's "Run now" button (`POST /api/disaster-feed-settings/run`).
+- `AutoResolveIncidentsJob` (queued, `Schedule::job(...)->hourly()`) — resolves **any** `ACTIVE`/`MONITORING` incident (feed-sourced or manual) once it has had no open resource requests for `DISASTER_FEED_AUTO_RESOLVE_MAX_DAYS` days and depot stock covers any remaining demand (`DepotCapacityChecker`, a plain aggregate comparison — not a solver call). Toggle lives on the same settings row.
+- No incident created by the feed auto-triggers `RunOptimizationJob` — feed incidents arrive with zero `app_zones`, so there's nothing yet for the solver to optimize against.
 
 ### Directions / turn-by-turn navigation (backend/app/Services/Directions)
 
