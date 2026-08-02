@@ -27,6 +27,8 @@ class AuthenticatedSessionController extends Controller
             'password' => ['required', 'string'],
         ]);
 
+        // Inactive accounts are rejected earlier, before Auth::attempt() even
+        // resolves — see App\Listeners\PreventInactiveLogin (Attempting event).
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()->withErrors([
                 'email' => 'These credentials do not match our records.',

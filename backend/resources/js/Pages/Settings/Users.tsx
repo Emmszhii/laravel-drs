@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
 import { SettingsTabs } from "@/Components/settings/SettingsTabs";
@@ -6,6 +7,7 @@ import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { useToast } from "@/Components/Toast";
+import { ApiError } from "@/api-service/client";
 import { usersService } from "@/api-service/modules/users";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
@@ -30,41 +32,74 @@ const columns: ColumnDef<AdminUser>[] = [
   },
 ];
 
-function UserCard(row: AdminUser, actions: CardActions) {
-  return (
-    <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
-      <div>
-        <div className="flex items-center gap-2 font-semibold">
-          {row.name}
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${row.is_active ? "bg-[var(--ok,#3FA98C)]" : "bg-[var(--text-secondary)]"}`}
-            title={row.is_active ? "Active" : "Inactive"}
-          />
+/**
+ * Factory (rather than a module-level component) so the row buttons can
+ * close over the page's showToast/invalidate handlers without calling
+ * hooks from inside a function that's invoked once per row — DataTableCardField
+ * calls `renderCard(row, actions)` directly, not as a mounted React component.
+ */
+function makeUserCard(handlers: {
+  onSuspend: (row: AdminUser) => void;
+  onActivate: (row: AdminUser) => void;
+  onResetPassword: (row: AdminUser) => void;
+}) {
+  return function UserCard(row: AdminUser, actions: CardActions) {
+    return (
+      <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
+        <div>
+          <div className="flex items-center gap-2 font-semibold">
+            {row.name}
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${row.is_active ? "bg-[var(--ok,#3FA98C)]" : "bg-[var(--text-secondary)]"}`}
+              title={row.is_active ? "Active" : "Inactive"}
+            />
+          </div>
+          <div className="text-xs text-[var(--text-secondary)]">
+            {row.email} · {row.role}
+          </div>
         </div>
-        <div className="text-xs text-[var(--text-secondary)]">
-          {row.email} · {row.role}
-        </div>
-      </div>
-      <div className="flex gap-3 text-xs">
-        {actions.canEdit && (
+        <div className="flex gap-3 text-xs">
+          {actions.canEdit && (
+            <button
+              onClick={actions.onEdit}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            >
+              Edit
+            </button>
+          )}
           <button
-            onClick={actions.onEdit}
+            onClick={() => handlers.onResetPassword(row)}
             className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
           >
-            Edit
+            Reset password
           </button>
-        )}
-        {actions.canDelete && (
-          <button
-            onClick={actions.onDelete}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
-          >
-            Remove
-          </button>
-        )}
+          {row.is_active ? (
+            <button
+              onClick={() => handlers.onSuspend(row)}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--pending)]"
+            >
+              Suspend
+            </button>
+          ) : (
+            <button
+              onClick={() => handlers.onActivate(row)}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--ok)]"
+            >
+              Activate
+            </button>
+          )}
+          {actions.canDelete && (
+            <button
+              onClick={actions.onDelete}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+            >
+              Remove
+            </button>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 }
 
 const userFields: FieldDef<AdminUser>[] = [
@@ -87,6 +122,39 @@ function SettingsUsersIndex() {
     row?: AdminUser;
   } | null>(null);
   const { showToast } = useToast();
+  const queryClient = useQueryClient();
+
+  const invalidateUsers = () =>
+    tableListInvalidateKeys("users").forEach((queryKey) =>
+      queryClient.invalidateQueries({ queryKey }),
+    );
+
+  const withErrorToast = async (action: () => Promise<unknown>, fallback: string) => {
+    try {
+      await action();
+      invalidateUsers();
+    } catch (err) {
+      showToast(err instanceof ApiError ? err.message : fallback, "error");
+    }
+  };
+
+  const renderCard = makeUserCard({
+    onSuspend: (row) =>
+      withErrorToast(async () => {
+        await usersService.suspend(row.id);
+        showToast("User suspended.");
+      }, "Failed to suspend user."),
+    onActivate: (row) =>
+      withErrorToast(async () => {
+        await usersService.activate(row.id);
+        showToast("User activated.");
+      }, "Failed to activate user."),
+    onResetPassword: (row) =>
+      withErrorToast(async () => {
+        await usersService.resetPassword(row.id);
+        showToast("Password reset email sent.");
+      }, "Failed to send password reset email."),
+  });
 
   return (
     <div>
@@ -101,7 +169,7 @@ function SettingsUsersIndex() {
           apiUrl="/api/settings/users"
           apiQueryKey="users"
           columns={columns}
-          renderCard={UserCard}
+          renderCard={renderCard}
           onEditRow={(row) => setModal({ mode: "edit", row })}
         />
       </div>

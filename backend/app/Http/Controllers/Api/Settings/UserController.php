@@ -100,4 +100,39 @@ class UserController extends BaseController
 
         return response()->json(null, 204);
     }
+
+    public function suspend(int|string $id): JsonResponse
+    {
+        $model = $this->resolveModel($id);
+
+        if ($model->id === auth()->id()) {
+            return $this->sendError("You can't suspend your own account.", 422);
+        }
+
+        $model->update(['is_active' => false]);
+
+        return $this->sendResponse($model->fresh(), 'User suspended.');
+    }
+
+    public function activate(int|string $id): JsonResponse
+    {
+        $model = $this->resolveModel($id);
+
+        $model->update(['is_active' => true]);
+
+        return $this->sendResponse($model->fresh(), 'User activated.');
+    }
+
+    /**
+     * Reuses the same broker + User::sendPasswordResetNotification() ->
+     * PasswordResetMail flow already wired for new-account setup.
+     */
+    public function resetPassword(int|string $id): JsonResponse
+    {
+        $model = $this->resolveModel($id);
+
+        Password::sendResetLink(['email' => $model->email]);
+
+        return $this->sendResponse(null, 'Password reset email sent.');
+    }
 }

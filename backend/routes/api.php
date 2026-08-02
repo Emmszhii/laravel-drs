@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
  *   POST   /{resource}/{id}               update (not PUT/PATCH — see http.ts)
  *   DELETE /{resource}/{id}                destroy
  */
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'active'])->group(function () {
     // Static-segment routes (pagination-search) MUST be registered before the
     // {incident} wildcard route below, or Laravel matches the wildcard first
     // and treats "pagination-search" as an incident ID.
@@ -80,6 +80,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/settings/users/pagination-search', [UserController::class, 'paginationSearch']);
         Route::post('/settings/users', [UserController::class, 'store']);
         Route::post('/settings/users/{id}', [UserController::class, 'update']);
+        Route::post('/settings/users/{id}/suspend', [UserController::class, 'suspend']);
+        Route::post('/settings/users/{id}/activate', [UserController::class, 'activate']);
+        Route::post('/settings/users/{id}/reset-password', [UserController::class, 'resetPassword']);
         Route::delete('/settings/users/{id}', [UserController::class, 'destroy']);
 
         Route::get('/reports', [ReportController::class, 'index']);

@@ -31,6 +31,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'role' => 'viewer',
+            // Explicit rather than relying on the DB column default — a
+            // freshly `create()`d model's in-memory attributes don't reflect
+            // a DB-level default until the model is refreshed, which bites
+            // anything (e.g. actingAs() in tests) that reads it immediately.
+            'is_active' => true,
             'remember_token' => Str::random(10),
         ];
     }

@@ -11,7 +11,7 @@ use App\Http\Controllers\Web\RoutingSettingsController;
 use App\Http\Controllers\Web\Settings\UsersController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::post('/incidents/{disaster}/optimize', [OptimizationController::class, 'trigger'])

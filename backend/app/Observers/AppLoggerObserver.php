@@ -38,7 +38,13 @@ class AppLoggerObserver
     /** active -> inactive = archive, inactive -> active = restore, else update. */
     private function classifyUpdate(Model $model): string
     {
-        if (! array_key_exists('status', $model->getChanges())) {
+        $changes = $model->getChanges();
+
+        if (array_key_exists('is_active', $changes)) {
+            return $changes['is_active'] ? 'restore' : 'archive';
+        }
+
+        if (! array_key_exists('status', $changes)) {
             return 'update';
         }
 
