@@ -13,7 +13,7 @@ type Props = {
 };
 
 /** Click-to-place-pin map + Nominatim "Locate address" geocode button. */
-export default function DepotPickMap({ lat, lng, address, onChange }: Props) {
+export default function LocationPickMap({ lat, lng, address, onChange }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMap = useRef<L.Map | null>(null);
   const marker = useRef<L.Marker | null>(null);

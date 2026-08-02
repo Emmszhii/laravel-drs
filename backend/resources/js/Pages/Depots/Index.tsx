@@ -3,7 +3,7 @@ import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
 import Modal from "../../Components/Common/Modal";
 import IncidentMap from "../../Components/Map/IncidentMap";
-import DepotPickMap from "../../Components/Map/DepotPickMap";
+import LocationPickMap from "../../Components/Map/LocationPickMap";
 import usePsgc from "../../Hooks/usePsgc";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { ApiError } from "@/api-service/client";
@@ -293,7 +293,7 @@ function DepotsIndex() {
             />
           </div>
 
-          <DepotPickMap
+          <LocationPickMap
             lat={form.lat}
             lng={form.lng}
             address={form.address}

@@ -6,19 +6,22 @@ import Modal from "../../Components/Common/Modal";
 import Button from "../../Components/Common/Button";
 import { ConfirmDeleteModal } from "@/Components/modal/ConfirmDeleteModal";
 import TriggerSolver from "../Optimization/TriggerSolver";
+import IncidentMap from "../../Components/Map/IncidentMap";
+import LocationPickMap from "../../Components/Map/LocationPickMap";
 import usePsgc from "../../Hooks/usePsgc";
 import { ApiError } from "@/api-service/client";
 import { incidentsService } from "@/api-service/modules/incidents";
+import { depotsService } from "@/api-service/modules/depots";
 import { PaginatedResponse } from "@/Types/pagination";
-import { Disaster } from "@/Types/models";
+import { Disaster, Depot } from "@/Types/models";
 
 const emptyForm = {
   name: "",
   type: "Typhoon",
   signal: "1",
   zone: "",
-  lat: "",
-  lng: "",
+  lat: null as number | null,
+  lng: null as number | null,
 };
 
 function IncidentsIndex() {
@@ -36,6 +39,8 @@ function IncidentsIndex() {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<Disaster | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [depots, setDepots] = useState<Depot[]>([]);
+  const [allIncidents, setAllIncidents] = useState<Disaster[]>([]);
   const psgc = usePsgc();
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
@@ -64,6 +69,11 @@ function IncidentsIndex() {
   useEffect(load, [search, signalFilter, statusFilter, currentPage]);
 
   useEffect(() => {
+    incidentsService.getAll().then(setAllIncidents);
+    depotsService.getAll().then(setDepots);
+  }, []);
+
+  useEffect(() => {
     if (!selectedId) {
       setSelected(null);
       return;
@@ -87,12 +97,27 @@ function IncidentsIndex() {
     setModalOpen(true);
   };
 
+  const openModalAt = (lat: number, lng: number) => {
+    setForm({ ...emptyForm, lat, lng });
+    setRegion("");
+    setProvince("");
+    setCity("");
+    setSaveError(null);
+    psgc.reset();
+    setModalOpen(true);
+  };
+
   const submit = async (e: FormEvent) => {
     e.preventDefault();
     setSaveError(null);
 
     if (!form.name.trim() || !form.zone.trim()) {
       setSaveError("Incident name and affected municipality are required.");
+      return;
+    }
+
+    if (form.lat == null || form.lng == null) {
+      setSaveError("Pick a location on the map before saving.");
       return;
     }
 
@@ -103,11 +128,12 @@ function IncidentsIndex() {
         type: form.type as Disaster["type"],
         signal: Number(form.signal) as Disaster["signal"],
         zone: form.zone,
-        lat: Number(form.lat),
-        lng: Number(form.lng),
+        lat: form.lat,
+        lng: form.lng,
       });
       setModalOpen(false);
       load();
+      incidentsService.getAll().then(setAllIncidents);
     } catch (err) {
       setSaveError(
         err instanceof ApiError
@@ -133,6 +159,8 @@ function IncidentsIndex() {
   };
 
   const incidents = page?.data ?? [];
+  const isInitialLoad = loading && !page;
+  const isRefetching = loading && !!page;
 
   return (
     <div className="flex h-full flex-col">
@@ -172,11 +200,16 @@ function IncidentsIndex() {
 
       <div className="flex flex-1 flex-col overflow-y-auto md:flex-row md:overflow-hidden">
         <div className="max-h-[260px] w-full shrink-0 overflow-y-auto border-b border-white/10 md:max-h-none md:w-[280px] md:border-r md:border-b-0">
-          {loading && incidents.length === 0
+          {isRefetching && (
+            <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-1.5 text-[11px] text-[var(--text-secondary)]">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--amber)]" />
+              Updating…
+            </div>
+          )}
+          {isInitialLoad
             ? Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="border-b border-white/10 p-3">
-                  <div className="mb-2 h-3.5 w-3/4 animate-pulse rounded bg-white/10" />
-                  <div className="h-3 w-1/2 animate-pulse rounded bg-white/5" />
+                  <div className="h-16 animate-pulse bg-white/5" />
                 </div>
               ))
             : incidents.map((inc) => (
@@ -237,9 +270,20 @@ function IncidentsIndex() {
               <TriggerSolver disasterId={selected.id} />
             </>
           ) : (
-            <p className="text-sm text-[var(--text-secondary)]">
-              Select an incident to see details.
-            </p>
+            <div className="flex h-full flex-col">
+              <p className="mb-2 text-xs text-[var(--text-secondary)]">
+                Select an incident on the left, or click the map to log a new
+                incident at that location.
+              </p>
+              <div className="min-h-[320px] flex-1 relative z-10">
+                <IncidentMap
+                  incidents={allIncidents}
+                  depots={depots}
+                  onSelectIncident={setSelectedId}
+                  onMapClick={openModalAt}
+                />
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -384,26 +428,14 @@ function IncidentsIndex() {
               className="input"
             />
           </Field>
-          <div className="flex gap-3">
-            <Field label="Latitude" className="flex-1">
-              <input
-                type="number"
-                step="any"
-                value={form.lat}
-                onChange={(e) => setForm({ ...form, lat: e.target.value })}
-                className="input"
-              />
-            </Field>
-            <Field label="Longitude" className="flex-1">
-              <input
-                type="number"
-                step="any"
-                value={form.lng}
-                onChange={(e) => setForm({ ...form, lng: e.target.value })}
-                className="input"
-              />
-            </Field>
-          </div>
+          <Field label="Location">
+            <LocationPickMap
+              lat={form.lat}
+              lng={form.lng}
+              address={form.zone}
+              onChange={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
+            />
+          </Field>
         </form>
       </Modal>
 

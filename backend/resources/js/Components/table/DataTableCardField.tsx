@@ -83,7 +83,7 @@ export function DataTableCardField<T extends Record<string, unknown>>(
     ) : (
       <div
         key={i}
-        className="h-22 animate-pulse rounded-2xl border border-slate-200 bg-gray-300/40 dark:bg-gray-300/80"
+        className="h-22 animate-pulse  border border-slate-100 bg-gray-300/40 dark:bg-gray-300/80"
       />
     ),
   );
@@ -93,7 +93,7 @@ export function DataTableCardField<T extends Record<string, unknown>>(
       className={
         isTable
           ? "px-6 py-12 text-center"
-          : "rounded-2xl border border-dashed border-slate-200 px-6 py-12 text-center"
+          : " border border-dashed border-slate-100 px-6 py-12 text-center"
       }
     >
       <p className="text-sm">No records found.</p>
@@ -111,9 +111,9 @@ export function DataTableCardField<T extends Record<string, unknown>>(
   // Table view keeps the column headers; card view drops all table chrome.
   const listShell = (content: React.ReactNode) =>
     isTable ? (
-      <div className="overflow-hidden rounded-2xl border border-[#ecedf1]/30  shadow-sm">
+      <div className="overflow-hidden border border-[#ecedf1]/30  shadow-sm">
         {listHeader}
-        <div className="divide-y divide-gray-100">{content}</div>
+        <div className="divide-y divide-gray-100/30">{content}</div>
       </div>
     ) : (
       <div className="space-y-3">{content}</div>
@@ -173,7 +173,7 @@ export function DataTableCardField<T extends Record<string, unknown>>(
       )}
 
       {c.isError && (
-        <div className="mb-4 flex items-center justify-between rounded-xl border border-rose-200 px-4 py-3 text-sm text-rose-700">
+        <div className="mb-4 flex items-center justify-between border border-rose-200 px-4 py-3 text-sm text-rose-700">
           <span>⚠ {c.error?.message}</span>
           <button
             onClick={() => c.refetch()}

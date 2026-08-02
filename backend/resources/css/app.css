@@ -8,6 +8,10 @@
   config file is added to the project.
 */
 :root {
+  /* Tells the browser to render native controls (select option popups,
+     scrollbars, etc.) with its dark UI instead of always defaulting to light,
+     since those aren't styleable via app CSS. */
+  color-scheme: dark;
   --bg-void: #0b0d0c;
   --bg-panel: #14181a;
   --bg-panel-raised: #1c2224;
@@ -23,6 +27,7 @@
 
 /* Light theme override — toggled via `useTheme()` (Hooks/use-theme.ts), values mirrored from backend/docs/disasterresource-design.html. */
 :root[data-theme="light"] {
+  color-scheme: light;
   --bg-void: #f3f1ea;
   --bg-panel: #ffffff;
   --bg-panel-raised: #efebe1;

@@ -21,6 +21,7 @@ type Props = {
   onSelectIncident?: (id: string) => void;
   route?: RouteGeometry | null;
   selectedIncidentId?: string;
+  onMapClick?: (lat: number, lng: number) => void;
 };
 
 const PH_CENTER: [number, number] = [12.8797, 121.774];
@@ -36,12 +37,15 @@ export default function IncidentMap({
   onSelectIncident,
   route,
   selectedIncidentId,
+  onMapClick,
 }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMap = useRef<L.Map | null>(null);
   const routeLayers = useRef<L.Layer[]>([]);
   const depotMarkers = useRef<Record<string, L.CircleMarker>>({});
   const yourLocationMarker = useRef<L.CircleMarker | null>(null);
+  const onMapClickRef = useRef(onMapClick);
+  onMapClickRef.current = onMapClick;
 
   const [navTarget, setNavTarget] = useState<Depot | null>(null);
   const [userLocation, setUserLocation] = useState<{
@@ -64,6 +68,10 @@ export default function IncidentMap({
         maxZoom: 18,
       },
     ).addTo(leafletMap.current);
+
+    leafletMap.current.on("click", (e: L.LeafletMouseEvent) => {
+      onMapClickRef.current?.(e.latlng.lat, e.latlng.lng);
+    });
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
