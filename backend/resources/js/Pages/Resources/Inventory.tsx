@@ -1,8 +1,6 @@
-import { PageProps } from "@/Types/models";
-
-type Props = PageProps<{
+type Props = {
   stock: Array<{ id: string; type: string; depot: string; available: number; reserved: number }>;
-}>;
+};
 
 /**
  * Stock tab of the Resources module — should be the default tab, per

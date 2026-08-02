@@ -1,20 +1,15 @@
-import { useCallback, useState } from "react";
 import { PageProps } from "@/Types/models";
+import AppLayout from "../Layouts/AppLayout";
+import AdminLayout from "../Layouts/AdminLayout";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import IncidentMap from "../Components/Map/IncidentMap";
-import DirectionsPanel from "../Components/Map/DirectionsPanel";
 
 type Props = PageProps<{
   incidents: Array<{ id: string; name: string; lat: number; lng: number; signal: number }>;
   depots: Array<{ id: string; name: string; lat: number; lng: number }>;
 }>;
 
-export default function Dashboard({ incidents, depots }: Props) {
-  const [routeGeometry, setRouteGeometry] = useState<[number, number][] | null>(null);
-  const onRouteChange = useCallback((geometry: [number, number][] | null) => {
-    setRouteGeometry(geometry);
-  }, []);
-
+function Dashboard({ incidents, depots }: Props) {
   return (
     <DashboardLayout
       rail={
@@ -26,11 +21,17 @@ export default function Dashboard({ incidents, depots }: Props) {
           ))}
         </ul>
       }
-      statColumn={
-        <DirectionsPanel depots={depots} destinations={incidents} onRouteChange={onRouteChange} />
-      }
     >
-      <IncidentMap incidents={incidents} depots={depots} route={routeGeometry} />
+      <IncidentMap incidents={incidents} depots={depots} />
     </DashboardLayout>
   );
 }
+
+Dashboard.layout = (page: JSX.Element) => {
+  const role = (page.props as Props).auth.user?.role;
+  const isAdminOrDeveloper = role === "admin" || role === "developer";
+
+  return isAdminOrDeveloper ? <AdminLayout>{page}</AdminLayout> : <AppLayout>{page}</AppLayout>;
+};
+
+export default Dashboard;

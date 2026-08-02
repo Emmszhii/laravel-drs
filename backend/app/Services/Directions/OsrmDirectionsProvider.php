@@ -2,6 +2,7 @@
 
 namespace App\Services\Directions;
 
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -24,13 +25,19 @@ class OsrmDirectionsProvider implements DirectionsProvider
         // OSRM expects lng,lat order — the reverse of how this app stores coordinates.
         $coordinates = "{$fromLng},{$fromLat};{$toLng},{$toLat}";
 
-        $response = Http::timeout(10)
-            ->retry(2, 300)
-            ->get("{$this->baseUrl}/route/v1/driving/{$coordinates}", [
-                'steps' => 'true',
-                'geometries' => 'geojson',
-                'overview' => 'full',
-            ]);
+        try {
+            $response = Http::timeout(10)
+                ->retry(2, 300)
+                ->get("{$this->baseUrl}/route/v1/driving/{$coordinates}", [
+                    'steps' => 'true',
+                    'geometries' => 'geojson',
+                    'overview' => 'full',
+                ]);
+        } catch (ConnectionException $e) {
+            Log::error('OSRM connection failed', ['message' => $e->getMessage()]);
+
+            return ['ok' => false, 'error' => 'osrm_unavailable'];
+        }
 
         if ($response->failed()) {
             Log::error('OSRM directions request failed', [

@@ -1,9 +1,27 @@
 import { FormEvent, useState } from "react";
 import axios from "axios";
+import { Link } from "@inertiajs/react";
 import { PageProps, RoutingSettingsData } from "@/Types/models";
 import Button from "../../Components/Common/Button";
+import AdminLayout from "../../Layouts/AdminLayout";
 
 type Props = PageProps<{ settings: RoutingSettingsData }>;
+
+function SettingsRoutingTabs() {
+  return (
+    <div className="flex gap-5 border-b border-white/10 px-6">
+      <Link
+        href="/settings/users"
+        className="border-b-2 border-transparent py-2.5 text-sm font-semibold uppercase tracking-wide text-[var(--text-secondary)]"
+      >
+        Users
+      </Link>
+      <button className="border-b-2 border-[var(--amber)] py-2.5 text-sm font-semibold uppercase tracking-wide">
+        Routing
+      </button>
+    </div>
+  );
+}
 
 const FALLBACK_MESSAGES: Record<string, string> = {
   cap_exceeded: "Premium routing limit reached this month — using basic (OSRM) navigation.",
@@ -16,7 +34,7 @@ const FALLBACK_MESSAGES: Record<string, string> = {
  * screen only controls the premium tier layered on top (see
  * App\Services\Directions\DirectionsRouter).
  */
-export default function RoutingSettings({ settings: initial }: Props) {
+function RoutingSettings({ settings: initial }: Props) {
   const [settings, setSettings] = useState(initial);
   const [baseUrl, setBaseUrl] = useState(initial.premium_base_url ?? "");
   const [apiKey, setApiKey] = useState("");
@@ -68,7 +86,9 @@ export default function RoutingSettings({ settings: initial }: Props) {
       : null;
 
   return (
-    <div className="mx-auto max-w-2xl p-8 text-[var(--text-primary)]">
+    <div>
+      <SettingsRoutingTabs />
+      <div className="mx-auto max-w-2xl p-8 text-[var(--text-primary)]">
       <h1 className="mb-1 text-lg font-semibold uppercase tracking-wide">Routing settings</h1>
       <p className="mb-6 text-sm text-[var(--text-secondary)]">
         Basic navigation (self-hosted OSRM) is always free and always available. Configure an
@@ -173,6 +193,11 @@ export default function RoutingSettings({ settings: initial }: Props) {
           </Button>
         </div>
       </form>
+      </div>
     </div>
   );
 }
+
+RoutingSettings.layout = (page: JSX.Element) => <AdminLayout>{page}</AdminLayout>;
+
+export default RoutingSettings;
