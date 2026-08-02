@@ -5,14 +5,16 @@ import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
-import { usersService } from "@/api-service/users";
+import { usersService } from "@/api-service/modules/users";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
 
 function SettingsUsersTabs() {
   return (
     <div className="flex gap-5 border-b border-white/10 px-6">
-      <button className="border-b-2 border-[var(--amber)] py-2.5 text-sm font-semibold uppercase tracking-wide">Users</button>
+      <button className="border-b-2 border-[var(--amber)] py-2.5 text-sm font-semibold uppercase tracking-wide">
+        Users
+      </button>
       <Link
         href="/settings/routing"
         className="border-b-2 border-transparent py-2.5 text-sm font-semibold uppercase tracking-wide text-[var(--text-secondary)]"
@@ -46,12 +48,18 @@ function UserCard(row: AdminUser, actions: CardActions) {
       </div>
       <div className="flex gap-3 text-xs">
         {actions.canEdit && (
-          <button onClick={actions.onEdit} className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]">
+          <button
+            onClick={actions.onEdit}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+          >
             Edit
           </button>
         )}
         {actions.canDelete && (
-          <button onClick={actions.onDelete} className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]">
+          <button
+            onClick={actions.onDelete}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+          >
             Remove
           </button>
         )}
@@ -71,13 +79,29 @@ const roleOptions = [
 const userFields: FieldDef<AdminUser>[] = [
   { key: "name", label: "Full name", required: true },
   { key: "email", label: "Email", type: "email", required: true },
-  { key: "password", label: "Password", type: "password", showOnEdit: false, required: true, helpText: "Minimum 8 characters." },
-  { key: "role", label: "Role", type: "select", required: true, options: roleOptions },
+  {
+    key: "password",
+    label: "Password",
+    type: "password",
+    showOnEdit: false,
+    required: true,
+    helpText: "Minimum 8 characters.",
+  },
+  {
+    key: "role",
+    label: "Role",
+    type: "select",
+    required: true,
+    options: roleOptions,
+  },
   { key: "is_active", label: "Active", type: "checkbox", defaultValue: true },
 ];
 
 function SettingsUsersIndex() {
-  const [modal, setModal] = useState<{ mode: "create" | "edit"; row?: AdminUser } | null>(null);
+  const [modal, setModal] = useState<{
+    mode: "create" | "edit";
+    row?: AdminUser;
+  } | null>(null);
 
   return (
     <div>
@@ -109,7 +133,10 @@ function SettingsUsersIndex() {
           mutationFn={async (payload) =>
             modal.mode === "create"
               ? usersService.create(payload as Partial<AdminUser>)
-              : usersService.update(modal.row!.id, payload as Partial<AdminUser>)
+              : usersService.update(
+                  modal.row!.id,
+                  payload as Partial<AdminUser>,
+                )
           }
           onSuccess={() => setModal(null)}
         />
@@ -118,6 +145,8 @@ function SettingsUsersIndex() {
   );
 }
 
-SettingsUsersIndex.layout = (page: JSX.Element) => <AdminLayout>{page}</AdminLayout>;
+SettingsUsersIndex.layout = (page: JSX.Element) => (
+  <AdminLayout>{page}</AdminLayout>
+);
 
 export default SettingsUsersIndex;

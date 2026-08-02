@@ -4,14 +4,18 @@ import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
-import { reportsService } from "@/api-service/reports";
-import { incidentsService } from "@/api-service/incidents";
+import { reportsService } from "@/api-service/modules/reports";
+import { incidentsService } from "@/api-service/modules/incidents";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { Report } from "@/Types/models";
 
 const columns: ColumnDef<Report>[] = [
   { key: "type", label: "Report" },
-  { key: "disaster", label: "Incident", render: (v) => (v as Report["disaster"])?.name ?? "—" },
+  {
+    key: "disaster",
+    label: "Incident",
+    render: (v) => (v as Report["disaster"])?.name ?? "—",
+  },
   { key: "generated_at", label: "Generated" },
 ];
 
@@ -21,15 +25,22 @@ function ReportCard(row: Report, actions: CardActions) {
       <div>
         <div className="font-semibold">{row.type}</div>
         <div className="text-xs text-[var(--text-secondary)]">
-          {row.disaster?.name ?? "—"} · {new Date(row.generated_at).toLocaleString()}
+          {row.disaster?.name ?? "—"} ·{" "}
+          {new Date(row.generated_at).toLocaleString()}
         </div>
       </div>
       <div className="flex gap-3 text-xs">
-        <a href={reportsService.downloadUrl(row.id)} className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]">
+        <a
+          href={reportsService.downloadUrl(row.id)}
+          className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+        >
           Download
         </a>
         {actions.canDelete && (
-          <button onClick={actions.onDelete} className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]">
+          <button
+            onClick={actions.onDelete}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+          >
             Remove
           </button>
         )}
@@ -73,7 +84,13 @@ function ReportsIndex() {
       </div>
 
       <div className="p-6">
-        <DataTableCardField<Report> apiUrl="/api/reports" apiQueryKey="reports" columns={columns} renderCard={ReportCard} enableEdit={false} />
+        <DataTableCardField<Report>
+          apiUrl="/api/reports"
+          apiQueryKey="reports"
+          columns={columns}
+          renderCard={ReportCard}
+          enableEdit={false}
+        />
       </div>
 
       <FormModal<Report>
@@ -83,7 +100,11 @@ function ReportsIndex() {
         fields={reportFields}
         mode="create"
         invalidateKeys={tableListInvalidateKeys("reports")}
-        mutationFn={async (payload) => reportsService.create(payload as { disaster_id: string; type: Report["type"] })}
+        mutationFn={async (payload) =>
+          reportsService.create(
+            payload as { disaster_id: string; type: Report["type"] },
+          )
+        }
         onSuccess={() => setModalOpen(false)}
       />
     </div>

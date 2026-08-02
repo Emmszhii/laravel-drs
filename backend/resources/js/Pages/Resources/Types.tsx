@@ -4,18 +4,24 @@ import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
-import { resourceTypesService } from "@/api-service/resourceTypes";
+import { resourceTypesService } from "@/api-service/modules/resourceTypes";
 import { ResourcesTabs, TypeCard, typeColumns, typeFields } from "./shared";
 import type { ResourceType } from "@/Types/models";
 
 function ResourcesTypesIndex() {
-  const [typeModal, setTypeModal] = useState<{ mode: "create" | "edit"; row?: ResourceType } | null>(null);
+  const [typeModal, setTypeModal] = useState<{
+    mode: "create" | "edit";
+    row?: ResourceType;
+  } | null>(null);
 
   return (
     <div>
       <div className="flex items-center justify-between border-b border-white/10 px-6">
         <ResourcesTabs />
-        <Button className="my-2" onClick={() => setTypeModal({ mode: "create" })}>
+        <Button
+          className="my-2"
+          onClick={() => setTypeModal({ mode: "create" })}
+        >
           + Add type
         </Button>
       </div>
@@ -34,7 +40,11 @@ function ResourcesTypesIndex() {
         <FormModal<ResourceType>
           open
           onClose={() => setTypeModal(null)}
-          title={typeModal.mode === "create" ? "Add resource type" : "Edit resource type"}
+          title={
+            typeModal.mode === "create"
+              ? "Add resource type"
+              : "Edit resource type"
+          }
           submitLabel="Save type"
           fields={typeFields}
           mode={typeModal.mode}
@@ -43,7 +53,10 @@ function ResourcesTypesIndex() {
           mutationFn={async (payload) =>
             typeModal.mode === "create"
               ? resourceTypesService.create(payload as Partial<ResourceType>)
-              : resourceTypesService.update(typeModal.row!.id, payload as Partial<ResourceType>)
+              : resourceTypesService.update(
+                  typeModal.row!.id,
+                  payload as Partial<ResourceType>,
+                )
           }
           onSuccess={() => setTypeModal(null)}
         />
@@ -52,6 +65,8 @@ function ResourcesTypesIndex() {
   );
 }
 
-ResourcesTypesIndex.layout = (page: JSX.Element) => <AdminLayout>{page}</AdminLayout>;
+ResourcesTypesIndex.layout = (page: JSX.Element) => (
+  <AdminLayout>{page}</AdminLayout>
+);
 
 export default ResourcesTypesIndex;

@@ -1,6 +1,6 @@
 import { Link, usePage } from "@inertiajs/react";
-import { depotsService } from "@/api-service/depots";
-import { resourceTypesService } from "@/api-service/resourceTypes";
+import { depotsService } from "@/api-service/modules/depots";
+import { resourceTypesService } from "@/api-service/modules/resourceTypes";
 import type { CardActions, ColumnDef, FieldDef } from "@/Components/table";
 import type { ResourceStock, ResourceType } from "@/Types/models";
 
@@ -14,7 +14,9 @@ export function ResourcesTabs() {
       <Link
         href="/resources"
         className={`border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
-          onTypes ? "border-transparent text-[var(--text-secondary)]" : "border-[var(--amber)]"
+          onTypes
+            ? "border-transparent text-[var(--text-secondary)]"
+            : "border-[var(--amber)]"
         }`}
       >
         Stock
@@ -22,7 +24,9 @@ export function ResourcesTabs() {
       <Link
         href="/resources/types"
         className={`border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
-          onTypes ? "border-[var(--amber)]" : "border-transparent text-[var(--text-secondary)]"
+          onTypes
+            ? "border-[var(--amber)]"
+            : "border-transparent text-[var(--text-secondary)]"
         }`}
       >
         Resource types
@@ -37,18 +41,25 @@ export function StockCard(row: ResourceStock, actions: CardActions) {
       <div>
         <div className="font-semibold">{row.resource_type?.name ?? "—"}</div>
         <div className="text-xs text-[var(--text-secondary)]">
-          {row.depot?.name ?? "—"} · Available {row.quantity_available} · Reserved {row.quantity_reserved}
+          {row.depot?.name ?? "—"} · Available {row.quantity_available} ·
+          Reserved {row.quantity_reserved}
           {row.expiry_date ? ` · Expires ${row.expiry_date}` : ""}
         </div>
       </div>
       <div className="flex gap-3 text-xs">
         {actions.canEdit && (
-          <button onClick={actions.onEdit} className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]">
+          <button
+            onClick={actions.onEdit}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+          >
             Edit
           </button>
         )}
         {actions.canDelete && (
-          <button onClick={actions.onDelete} className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]">
+          <button
+            onClick={actions.onDelete}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+          >
             Remove
           </button>
         )}
@@ -62,16 +73,24 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
     <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
       <div>
         <div className="font-semibold">{row.name}</div>
-        <div className="text-xs text-[var(--text-secondary)]">Unit: {row.unit}</div>
+        <div className="text-xs text-[var(--text-secondary)]">
+          Unit: {row.unit}
+        </div>
       </div>
       <div className="flex gap-3 text-xs">
         {actions.canEdit && (
-          <button onClick={actions.onEdit} className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]">
+          <button
+            onClick={actions.onEdit}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+          >
             Edit
           </button>
         )}
         {actions.canDelete && (
-          <button onClick={actions.onDelete} className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]">
+          <button
+            onClick={actions.onDelete}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+          >
             Remove
           </button>
         )}
@@ -115,12 +134,39 @@ export const stockFields: FieldDef<ResourceStock>[] = [
         .filter((t) => t.name.toLowerCase().includes(q.toLowerCase()))
         .map((t) => ({ value: t.id, label: t.name })),
   },
-  { key: "quantity_available", label: "Quantity available", type: "number", required: true },
-  { key: "quantity_reserved", label: "Reserved", type: "number", defaultValue: 0 },
-  { key: "expiry_date", label: "Expiry date (optional)", type: "date", colSpan: 2 },
+  {
+    key: "quantity_available",
+    label: "Quantity available",
+    type: "number",
+    required: true,
+  },
+  {
+    key: "quantity_reserved",
+    label: "Reserved",
+    type: "number",
+    defaultValue: 0,
+  },
+  {
+    key: "expiry_date",
+    label: "Expiry date (optional)",
+    type: "date",
+    colSpan: 2,
+  },
 ];
 
 export const typeFields: FieldDef<ResourceType>[] = [
-  { key: "name", label: "Name", required: true, colSpan: 2, placeholder: "e.g. Hygiene kits" },
-  { key: "unit", label: "Unit", required: true, colSpan: 2, placeholder: "e.g. kits, packs, containers" },
+  {
+    key: "name",
+    label: "Name",
+    required: true,
+    colSpan: 2,
+    placeholder: "e.g. Hygiene kits",
+  },
+  {
+    key: "unit",
+    label: "Unit",
+    required: true,
+    colSpan: 2,
+    placeholder: "e.g. kits, packs, containers",
+  },
 ];

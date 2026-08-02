@@ -7,7 +7,7 @@ import DepotPickMap from "../../Components/Map/DepotPickMap";
 import usePsgc from "../../Hooks/usePsgc";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { ApiError } from "@/api-service/client";
-import { depotsService } from "@/api-service/depots";
+import { depotsService } from "@/api-service/modules/depots";
 import type { ColumnDef, CardActions } from "@/Components/table";
 import type { Depot } from "@/Types/models";
 
@@ -37,18 +37,26 @@ function DepotCard(row: Depot, actions: CardActions) {
         <div className="text-[15px] font-medium">{row.name}</div>
         <div className="flex gap-2 text-xs">
           {actions.canEdit && (
-            <button onClick={actions.onEdit} className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]">
+            <button
+              onClick={actions.onEdit}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            >
               Edit
             </button>
           )}
           {actions.canDelete && (
-            <button onClick={actions.onDelete} className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]">
+            <button
+              onClick={actions.onDelete}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+            >
               Remove
             </button>
           )}
         </div>
       </div>
-      <div className="mb-2.5 text-xs text-[var(--text-secondary)]">{row.address}</div>
+      <div className="mb-2.5 text-xs text-[var(--text-secondary)]">
+        {row.address}
+      </div>
       <span className="inline-block bg-[var(--ok-dim,rgba(63,169,140,0.15))] px-2 py-0.5 font-mono text-xs text-[var(--ok,#3FA98C)]">
         {row.status}
       </span>
@@ -135,7 +143,11 @@ function DepotsIndex() {
       setModalOpen(false);
       loadMap();
     } catch (err) {
-      setSaveError(err instanceof ApiError ? err.message : "Failed to save depot. Please try again.");
+      setSaveError(
+        err instanceof ApiError
+          ? err.message
+          : "Failed to save depot. Please try again.",
+      );
     } finally {
       setSaving(false);
     }
@@ -143,7 +155,7 @@ function DepotsIndex() {
 
   return (
     <div>
-      <div className="h-[300px] border-b border-white/10">
+      <div className="h-[300px] border-b border-white/10 relative z-10">
         <IncidentMap incidents={NO_INCIDENTS} depots={mapDepots} />
       </div>
 
@@ -179,15 +191,33 @@ function DepotsIndex() {
         }
       >
         <form onSubmit={submit} className="flex flex-col gap-3">
-          {saveError && <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">{saveError}</p>}
+          {saveError && (
+            <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">
+              {saveError}
+            </p>
+          )}
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Depot name</label>
-            <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="input" />
+            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              Depot name
+            </label>
+            <input
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              className="input"
+            />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Status</label>
-            <select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as Depot["status"] })} className="input">
+            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              Status
+            </label>
+            <select
+              value={form.status}
+              onChange={(e) =>
+                setForm({ ...form, status: e.target.value as Depot["status"] })
+              }
+              className="input"
+            >
               <option value="OPERATIONAL">Operational</option>
               <option value="LIMITED CAPACITY">Limited capacity</option>
               <option value="OFFLINE">Offline</option>
@@ -196,7 +226,9 @@ function DepotsIndex() {
 
           <div className="flex gap-3">
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Region</label>
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Region
+              </label>
               <select
                 value={region}
                 onChange={(e) => {
@@ -215,7 +247,9 @@ function DepotsIndex() {
               </select>
             </div>
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Province</label>
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Province
+              </label>
               <select
                 value={province}
                 onChange={(e) => {
@@ -235,7 +269,9 @@ function DepotsIndex() {
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Address</label>
+            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              Address
+            </label>
             <input
               value={form.address}
               onChange={(e) => setForm({ ...form, address: e.target.value })}
@@ -253,20 +289,40 @@ function DepotsIndex() {
 
           <div className="flex gap-3">
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Contact name</label>
-              <input value={form.contact_name} onChange={(e) => setForm({ ...form, contact_name: e.target.value })} className="input" />
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Contact name
+              </label>
+              <input
+                value={form.contact_name}
+                onChange={(e) =>
+                  setForm({ ...form, contact_name: e.target.value })
+                }
+                className="input"
+              />
             </div>
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Contact phone</label>
-              <input value={form.contact_phone} onChange={(e) => setForm({ ...form, contact_phone: e.target.value })} className="input" />
+              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+                Contact phone
+              </label>
+              <input
+                value={form.contact_phone}
+                onChange={(e) =>
+                  setForm({ ...form, contact_phone: e.target.value })
+                }
+                className="input"
+              />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">Contact email</label>
+            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              Contact email
+            </label>
             <input
               type="email"
               value={form.contact_email}
-              onChange={(e) => setForm({ ...form, contact_email: e.target.value })}
+              onChange={(e) =>
+                setForm({ ...form, contact_email: e.target.value })
+              }
               className="input"
             />
           </div>

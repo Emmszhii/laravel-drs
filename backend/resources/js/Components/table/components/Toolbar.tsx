@@ -129,7 +129,7 @@ export function Toolbar<T>({
               <select
                 value={sortBy}
                 onChange={(e) => onSortByChange(e.target.value)}
-                className="w-full appearance-none rounded-xl border border-slate-200 py-2.5 pr-8 pl-3 text-sm font-medium outline-none hover:bg-slate-50 focus:border-slate-300 bg-transparent"
+                className="w-full appearance-none rounded-xl border border-slate-200 py-2.5 pr-8 pl-3 text-sm font-medium outline-none focus:border-slate-300 bg-transparent"
                 data-cy="toolbar-select-sort-by-change"
               >
                 {sortableColumns.map((c) => (

@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
  * Generic JSON CRUD base for Api\* controllers — configuration-driven
  * (searchable/filterable/sortable columns) so each concrete controller is a
  * thin binding. Pairs with resources/js/api-service/http.ts's
- * createCrudResource, which expects exactly this envelope/endpoint shape.
+ * createModuleResource, which expects exactly this envelope/endpoint shape.
  *
  * Route-level `auth:sanctum` + `role:...` middleware (see routes/api.php) is
  * this app's actual authorization mechanism — no per-model Policy classes
@@ -77,7 +77,7 @@ abstract class BaseController extends Controller
             if (is_array($value)) {
                 $cleanedValue = array_values(array_filter(
                     $value,
-                    fn ($v) => $v !== null && $v !== '',
+                    fn($v) => $v !== null && $v !== '',
                 ));
                 $isEmpty = count($cleanedValue) === 0;
             } else {
@@ -197,8 +197,8 @@ abstract class BaseController extends Controller
         $model->loadCount($this->inUseRelations);
 
         return collect($this->inUseRelations)
-            ->filter(fn ($relation) => $model->{"{$relation}_count"} > 0)
-            ->map(fn ($relation) => ['label' => ucfirst($relation), 'count' => $model->{"{$relation}_count"}])
+            ->filter(fn($relation) => $model->{"{$relation}_count"} > 0)
+            ->map(fn($relation) => ['label' => ucfirst($relation), 'count' => $model->{"{$relation}_count"}])
             ->values()
             ->all();
     }

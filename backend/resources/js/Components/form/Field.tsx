@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { formatDateShort } from '@/lib/date';
+import type { ReactNode } from "react";
+import { formatDateShort } from "@/lib/date";
 
 /**
  * Shared form-field atoms — the single source of truth for label / input / error
@@ -7,81 +7,79 @@ import { formatDateShort } from '@/lib/date';
  * generic DataTableField record modal (RecordModal). Extracted here so the two
  * modals stay visually identical without duplicating the utility strings.
  */
-export const labelCls = 'mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-[var(--text-secondary)]';
+export const labelCls =
+  "mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-[var(--text-secondary)]";
 
 /** Single-line input / select styling — matches the design system's `.field input/select` (sharp corners, void bg, amber focus). */
 export const inputCls =
-    'w-full border border-line-strong bg-[var(--bg-void)] px-2.5 h-9 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] transition-colors focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-50';
+  "w-full border border-line-strong bg-[var(--bg-void)] px-2.5 h-9 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] transition-colors focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-50";
 
 /** Multi-line textarea styling (same look, no fixed height, no resize handle). */
 export const textareaCls =
-    'w-full border border-line-strong bg-[var(--bg-void)] px-2.5 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] transition-colors focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 resize-none';
+  "w-full border border-line-strong bg-[var(--bg-void)] px-2.5 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] transition-colors focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 resize-none";
 
 /** "Mon D, YYYY" — the read-only Created-date display format. */
 export const formatDate = formatDateShort;
 export function Field({
-    label,
-    error,
-    required,
-    helpText,
-    children,
+  label,
+  error,
+  required,
+  helpText,
+  children,
 }: {
-    label: string;
-    error?: string;
-    required?: boolean;
-    helpText?: string;
-    children: ReactNode;
+  label: string;
+  error?: string;
+  required?: boolean;
+  helpText?: string;
+  children: ReactNode;
 }) {
-    return (
-        <div data-cy="field-div-1" className="relative">
-            <label className={labelCls} data-cy="field-label-2">
-                {label}
-                {required && (
-                    <span
-                        className="ml-0.5 text-critical"
-                        data-cy="field-span-3"
-                    >
-                        *
-                    </span>
-                )}
-            </label>
-            {children}
-            {helpText && !error && (
-                <p className="mt-1 text-xs text-[var(--text-secondary)]" data-cy="field-p-help">
-                    {helpText}
-                </p>
-            )}
-            {error && (
-                <p
-                    className="mt-1 text-xs text-critical"
-                    data-cy="field-p-5"
-                >
-                    {error}
-                </p>
-            )}
-        </div>
-    );
+  return (
+    <div data-cy="field-div-1" className="relative">
+      <label className={labelCls} data-cy="field-label-2">
+        {label}
+        {required && (
+          <span className="ml-0.5 text-critical" data-cy="field-span-3">
+            *
+          </span>
+        )}
+      </label>
+      {children}
+      {helpText && !error && (
+        <p
+          className="mt-1 text-xs text-[var(--text-secondary)]"
+          data-cy="field-p-help"
+        >
+          {helpText}
+        </p>
+      )}
+      {error && (
+        <p className="mt-1 text-xs text-critical" data-cy="field-p-5">
+          {error}
+        </p>
+      )}
+    </div>
+  );
 }
 export function ReadonlyField({
-    label,
-    value,
-    mono,
+  label,
+  value,
+  mono,
 }: {
-    label: string;
-    value: string;
-    mono?: boolean;
+  label: string;
+  value: string;
+  mono?: boolean;
 }) {
-    return (
-        <div data-cy="field-div-6">
-            <label className={labelCls} data-cy="field-label-7">
-                {label}
-            </label>
-            <div
-                className={`flex h-9 items-center border border-line-strong bg-[var(--bg-panel-raised)] px-2.5 text-sm text-[var(--text-secondary)] ${mono ? 'font-mono' : ''}`}
-                data-cy="field-div-8"
-            >
-                {value}
-            </div>
-        </div>
-    );
+  return (
+    <div data-cy="field-div-6">
+      <label className={labelCls} data-cy="field-label-7">
+        {label}
+      </label>
+      <div
+        className={`flex h-9 items-center border border-line-strong bg-[var(--bg-panel-raised)] px-2.5 text-sm text-[var(--text-secondary)] ${mono ? "font-mono" : ""}`}
+        data-cy="field-div-8"
+      >
+        {value}
+      </div>
+    </div>
+  );
 }

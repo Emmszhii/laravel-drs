@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 /**
  * CRUD modules below all follow a fixed convention (matches
- * resources/js/api-service/http.ts's createCrudResource):
+ * resources/js/api-service/http.ts's createModuleResource):
  *   GET    /{resource}                    index
  *   GET    /{resource}/pagination-search  paginationSearch
  *   POST   /{resource}                    store

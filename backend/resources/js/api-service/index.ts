@@ -4,18 +4,23 @@
  * the CRUD factory, role helpers, and every resource service.
  */
 
-export { http, createHttpClient, unwrap, ApiError } from './client';
-export type { ApiEnvelope } from './client';
-export { createCrudResource } from './http';
-export type { CrudResource, CrudResourceOptions, LookupOption, WriteOptions } from './http';
-export { buildFormData, buildQueryString, hasBinaryFiles } from './form-data';
+export { http, createHttpClient, unwrap, ApiError } from "./client";
+export type { ApiEnvelope } from "./client";
+export { createModuleResource } from "./http";
+export type {
+  CrudResource,
+  CrudResourceOptions,
+  LookupOption,
+  WriteOptions,
+} from "./http";
+export { buildFormData, buildQueryString, hasBinaryFiles } from "./form-data";
 
-export { APP_ROLES, normalizeRole, sharesAdminAccess } from './roles';
-export type { AppRole } from './roles';
+export { APP_ROLES, normalizeRole, sharesAdminAccess } from "./modules/roles";
+export type { AppRole } from "./modules/roles";
 
-export { incidentsService } from './incidents';
-export { depotsService } from './depots';
-export { resourceTypesService } from './resourceTypes';
-export { resourcesService } from './resources';
-export { usersService } from './users';
-export { reportsService } from './reports';
+export { incidentsService } from "./modules/incidents";
+export { depotsService } from "./modules/depots";
+export { resourceTypesService } from "./modules/resourceTypes";
+export { resourcesService } from "./modules/resources";
+export { usersService } from "./modules/users";
+export { reportsService } from "./modules/reports";

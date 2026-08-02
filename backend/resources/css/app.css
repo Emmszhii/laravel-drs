@@ -22,7 +22,7 @@
 }
 
 /* Light theme override — toggled via `useTheme()` (Hooks/use-theme.ts), values mirrored from backend/docs/disasterresource-design.html. */
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --bg-void: #f3f1ea;
   --bg-panel: #ffffff;
   --bg-panel-raised: #efebe1;
@@ -39,5 +39,10 @@
 @layer components {
   .input {
     @apply w-full border border-white/20 bg-transparent p-2 text-sm text-[var(--text-primary)];
+  }
+  input,
+  select,
+  textarea {
+    @apply !border-black/20;
   }
 }

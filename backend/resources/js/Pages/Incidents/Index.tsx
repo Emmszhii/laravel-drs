@@ -8,7 +8,7 @@ import { ConfirmDeleteModal } from "@/Components/modal/ConfirmDeleteModal";
 import TriggerSolver from "../Optimization/TriggerSolver";
 import usePsgc from "../../Hooks/usePsgc";
 import { ApiError } from "@/api-service/client";
-import { incidentsService } from "@/api-service/incidents";
+import { incidentsService } from "@/api-service/modules/incidents";
 import { PaginatedResponse } from "@/Types/pagination";
 import { Disaster } from "@/Types/models";
 
@@ -58,7 +58,9 @@ function IncidentsIndex() {
       setSelected(null);
       return;
     }
-    incidentsService.getAll().then((all) => setSelected(all.find((i) => i.id === selectedId) ?? null));
+    incidentsService
+      .getAll()
+      .then((all) => setSelected(all.find((i) => i.id === selectedId) ?? null));
   }, [selectedId]);
 
   useEffect(() => {
@@ -97,7 +99,11 @@ function IncidentsIndex() {
       setModalOpen(false);
       load();
     } catch (err) {
-      setSaveError(err instanceof ApiError ? err.message : "Failed to log incident. Please try again.");
+      setSaveError(
+        err instanceof ApiError
+          ? err.message
+          : "Failed to log incident. Please try again.",
+      );
     } finally {
       setSaving(false);
     }
@@ -124,8 +130,17 @@ function IncidentsIndex() {
         <h1 className="text-lg font-semibold uppercase">Incidents</h1>
         <Button onClick={openModal}>+ Log incident</Button>
       </div>
-      <FilterBar search={search} onSearchChange={setSearch} placeholder="Search name or municipality…" count={page ? `${page.meta.total} total` : ""}>
-        <select value={signalFilter} onChange={(e) => setSignalFilter(e.target.value)} className="border border-white/20 bg-transparent p-2 text-sm">
+      <FilterBar
+        search={search}
+        onSearchChange={setSearch}
+        placeholder="Search name or municipality…"
+        count={page ? `${page.meta.total} total` : ""}
+      >
+        <select
+          value={signalFilter}
+          onChange={(e) => setSignalFilter(e.target.value)}
+          className="border border-white/20 bg-transparent p-2 text-sm"
+        >
           <option value="">All signals</option>
           {[1, 2, 3, 4, 5].map((s) => (
             <option key={s} value={s}>
@@ -133,7 +148,11 @@ function IncidentsIndex() {
             </option>
           ))}
         </select>
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className="border border-white/20 bg-transparent p-2 text-sm">
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="border border-white/20 bg-transparent p-2 text-sm"
+        >
           <option value="">All statuses</option>
           <option value="ACTIVE">Active</option>
           <option value="MONITORING">Monitoring</option>
@@ -148,7 +167,9 @@ function IncidentsIndex() {
               key={inc.id}
               onClick={() => setSelectedId(inc.id)}
               className={`cursor-pointer border-b border-white/10 p-3 text-sm ${
-                inc.id === selectedId ? "border-l-2 border-l-[var(--amber)] bg-white/5" : "hover:bg-white/5"
+                inc.id === selectedId
+                  ? "border-l-2 border-l-[var(--amber)] bg-white/5"
+                  : "hover:bg-white/5"
               }`}
             >
               <div className="font-semibold">{inc.name}</div>
@@ -165,10 +186,14 @@ function IncidentsIndex() {
                 <div>
                   <h2 className="text-xl font-semibold">{selected.name}</h2>
                   <p className="text-sm text-[var(--text-secondary)]">
-                    {selected.type} · {selected.zone} · Signal {selected.signal} · {selected.status}
+                    {selected.type} · {selected.zone} · Signal {selected.signal}{" "}
+                    · {selected.status}
                   </p>
                 </div>
-                <button onClick={() => setDeleteTarget(selected)} className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]">
+                <button
+                  onClick={() => setDeleteTarget(selected)}
+                  className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]"
+                >
                   Remove
                 </button>
               </div>
@@ -193,12 +218,21 @@ function IncidentsIndex() {
               <TriggerSolver disasterId={selected.id} />
             </>
           ) : (
-            <p className="text-sm text-[var(--text-secondary)]">Select an incident to see details.</p>
+            <p className="text-sm text-[var(--text-secondary)]">
+              Select an incident to see details.
+            </p>
           )}
         </div>
       </div>
 
-      {page && <Pagination currentPage={page.meta.current_page} lastPage={page.meta.last_page} total={page.meta.total} onPageChange={setCurrentPage} />}
+      {page && (
+        <Pagination
+          currentPage={page.meta.current_page}
+          lastPage={page.meta.last_page}
+          total={page.meta.total}
+          onPageChange={setCurrentPage}
+        />
+      )}
 
       <Modal
         open={modalOpen}
@@ -216,20 +250,39 @@ function IncidentsIndex() {
         }
       >
         <form onSubmit={submit} className="flex flex-col gap-3">
-          {saveError && <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">{saveError}</p>}
+          {saveError && (
+            <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">
+              {saveError}
+            </p>
+          )}
           <Field label="Incident name">
-            <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. Typhoon Marina" className="input" />
+            <input
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              placeholder="e.g. Typhoon Marina"
+              className="input"
+            />
           </Field>
           <div className="flex gap-3">
             <Field label="Type" className="flex-1">
-              <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })} className="input">
-                {["Typhoon", "Flood", "Earthquake", "Fire", "Landslide"].map((t) => (
-                  <option key={t}>{t}</option>
-                ))}
+              <select
+                value={form.type}
+                onChange={(e) => setForm({ ...form, type: e.target.value })}
+                className="input"
+              >
+                {["Typhoon", "Flood", "Earthquake", "Fire", "Landslide"].map(
+                  (t) => (
+                    <option key={t}>{t}</option>
+                  ),
+                )}
               </select>
             </Field>
             <Field label="Signal level" className="flex-1">
-              <select value={form.signal} onChange={(e) => setForm({ ...form, signal: e.target.value })} className="input">
+              <select
+                value={form.signal}
+                onChange={(e) => setForm({ ...form, signal: e.target.value })}
+                className="input"
+              >
                 {[1, 2, 3, 4, 5].map((s) => (
                   <option key={s} value={s}>
                     Signal {s}
@@ -280,10 +333,18 @@ function IncidentsIndex() {
               <select
                 value={city}
                 onChange={(e) => {
-                  const cityName = psgc.cities.find((c) => c.code === e.target.value)?.name ?? "";
-                  const provinceName = psgc.provinces.find((p) => p.code === province)?.name ?? "";
+                  const cityName =
+                    psgc.cities.find((c) => c.code === e.target.value)?.name ??
+                    "";
+                  const provinceName =
+                    psgc.provinces.find((p) => p.code === province)?.name ?? "";
                   setCity(e.target.value);
-                  setForm({ ...form, zone: provinceName ? `${cityName}, ${provinceName}` : cityName });
+                  setForm({
+                    ...form,
+                    zone: provinceName
+                      ? `${cityName}, ${provinceName}`
+                      : cityName,
+                  });
                 }}
                 className="input"
               >
@@ -297,14 +358,31 @@ function IncidentsIndex() {
             </Field>
           </div>
           <Field label="Affected municipality (editable)">
-            <input value={form.zone} onChange={(e) => setForm({ ...form, zone: e.target.value })} placeholder="e.g. Legazpi City, Albay" className="input" />
+            <input
+              value={form.zone}
+              onChange={(e) => setForm({ ...form, zone: e.target.value })}
+              placeholder="e.g. Legazpi City, Albay"
+              className="input"
+            />
           </Field>
           <div className="flex gap-3">
             <Field label="Latitude" className="flex-1">
-              <input type="number" step="any" value={form.lat} onChange={(e) => setForm({ ...form, lat: e.target.value })} className="input" />
+              <input
+                type="number"
+                step="any"
+                value={form.lat}
+                onChange={(e) => setForm({ ...form, lat: e.target.value })}
+                className="input"
+              />
             </Field>
             <Field label="Longitude" className="flex-1">
-              <input type="number" step="any" value={form.lng} onChange={(e) => setForm({ ...form, lng: e.target.value })} className="input" />
+              <input
+                type="number"
+                step="any"
+                value={form.lng}
+                onChange={(e) => setForm({ ...form, lng: e.target.value })}
+                className="input"
+              />
             </Field>
           </div>
         </form>
@@ -321,15 +399,27 @@ function IncidentsIndex() {
   );
 }
 
-function Field({ label, children, className = "" }: { label: string; children: React.ReactNode; className?: string }) {
+function Field({
+  label,
+  children,
+  className = "",
+}: {
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     <div className={className}>
-      <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">{label}</label>
+      <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+        {label}
+      </label>
       {children}
     </div>
   );
 }
 
-IncidentsIndex.layout = (page: JSX.Element) => <AdminLayout>{page}</AdminLayout>;
+IncidentsIndex.layout = (page: JSX.Element) => (
+  <AdminLayout>{page}</AdminLayout>
+);
 
 export default IncidentsIndex;
