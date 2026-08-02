@@ -93,7 +93,7 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto">
-      <div className="h-[500px] shrink-0 md:h-[520px]">
+      <div className="shrink-0 lg:h-[520px]">
         <DashboardLayout
           rail={
             <div>
@@ -124,7 +124,7 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
             </div>
           }
           statColumn={
-            <div className="flex flex-col gap-4 p-4">
+            <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-1">
               <div className="border border-white/10 p-3">
                 <div className="text-xs tracking-wide text-[var(--text-secondary)] uppercase">
                   Unmet demand
@@ -139,7 +139,7 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
                 </div>
                 <div className="mt-1 text-2xl font-bold">{stats.deployed}</div>
               </div>
-              <div className="border border-white/10 p-3">
+              <div className="border border-white/10 p-3 sm:col-span-2 lg:col-span-1">
                 <div className="mb-2 text-xs tracking-wide text-[var(--text-secondary)] uppercase">
                   Utilization by type
                 </div>
@@ -165,7 +165,7 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
             </div>
           }
         >
-          <div className="relative h-full w-full z-10">
+          <div className="relative z-10 h-72 w-full sm:h-96 lg:h-full">
             <IncidentMap
               incidents={incidents}
               depots={depots}

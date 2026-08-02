@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# On Git Bash for Windows, MSYS auto-converts any argument that looks like an
+# absolute POSIX path (e.g. /opt/car.lua, /data/...) into a Windows path
+# before it reaches `docker run` — but those paths are meant to be resolved
+# *inside* the Linux container, not on the host. MSYS_NO_PATHCONV disables
+# that rewriting; it's a no-op on Linux/macOS.
+export MSYS_NO_PATHCONV=1
+
 # One-time OSRM data preparation for the Philippines road network.
 # Run this manually before `docker compose up` will serve real directions —
 # it is NOT run automatically as part of the compose stack because it is

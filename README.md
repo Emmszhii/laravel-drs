@@ -40,6 +40,11 @@ php artisan queue:work      # processes RunOptimizationJob (separate terminal)
 php artisan reverb:start    # realtime broadcasting (separate terminal)
 ```
 
+**OSRM service IN DOCKER**
+run docker
+docker compose up -d osrm
+curl "http://localhost:5001/route/v1/driving/121.774,12.8797;121.0,13.0?overview=false"
+
 **Solver service**
 ```bash
 cd solver-service
