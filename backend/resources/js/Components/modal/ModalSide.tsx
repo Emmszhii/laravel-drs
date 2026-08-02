@@ -64,12 +64,12 @@ export function ModalSide<T>({
             data-cy="modal-side-div-overlay-click"
         >
             <div
-                className="absolute inset-0 z-50 animate-fadeIn bg-black/40"
+                className="absolute inset-0 z-40 animate-fadeIn bg-black/40"
                 onClick={onClose}
                 data-cy="modal-side-div-scrim"
             />
             <div
-                className={`absolute inset-y-0 z-60 flex h-full flex-col border-t-2 border-amber bg-bg-panel shadow-lg ${SIDE_CLASSES[side]}`}
+                className={`absolute inset-y-0 z-50 flex h-full flex-col border-t-2 border-amber bg-bg-panel shadow-lg ${SIDE_CLASSES[side]}`}
                 style={{
                     width,
                     maxWidth: '94vw',

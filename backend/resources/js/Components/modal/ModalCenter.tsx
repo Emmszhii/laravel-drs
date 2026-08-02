@@ -54,11 +54,11 @@ return null;
             data-cy="modal-center-div-overlay-click"
         >
             <div
-                className="relative z-50 h-full w-full bg-black/40"
+                className="relative z-40 h-full w-full bg-black/40"
                 onClick={onClose}
             />
             <div
-                className="absolute top-1/2 left-1/2 z-60 max-h-[calc(100dvh-100px)] -translate-1/2 transform border-t-2 border-amber bg-bg-panel shadow-lg"
+                className="absolute top-1/2 left-1/2 z-50 max-h-[calc(100dvh-100px)] -translate-x-1/2 -translate-y-1/2 transform border-t-2 border-amber bg-bg-panel shadow-lg"
                 style={{
                     width: WIDTHS[size],
                     maxWidth: '92vw',
