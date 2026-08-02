@@ -20,6 +20,7 @@ docker compose up --build
 - Laravel: http://localhost:8000
 - Solver service: http://localhost:8001
 - Postgres: localhost:5432
+- OSRM routing: http://localhost:5001 (see [Routing (OSRM)](#routing-osrm) below — needs a one-time data prep step first)
 
 ## Local development without Docker
 
@@ -46,6 +47,20 @@ python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 ```
+
+## Routing (OSRM)
+
+Turn-by-turn directions run on a **self-hosted OSRM** instance (free, no API key, no usage cap, no traffic data) instead of a paid provider like Google Maps or Mapbox — those require a billing-enabled account even on their "free tier." The trade-off: routes use static OpenStreetMap road-network data, not live traffic.
+
+Before directions will work, prepare the Philippines road-network data once (large download + CPU/RAM-heavy preprocessing, ~10-30+ min):
+
+```bash
+./docker/osrm/prepare.sh
+```
+
+This downloads `philippines-latest.osm.pbf` from Geofabrik into `docker/osrm/data/` and runs OSRM's extract/partition/customize steps via Docker. It only needs to be re-run if you want to refresh the road data later. Once done, `docker compose up` (or `docker compose up -d osrm`) serves it on port 5001.
+
+An admin can optionally configure a paid, Mapbox-Directions-API-compatible provider as a "premium" tier from **Settings → Routing** in the app — with usage metering against a configured monthly cap and automatic fallback to the free OSRM tier if the cap is hit or the provider errors out.
 
 ## Folder structure
 

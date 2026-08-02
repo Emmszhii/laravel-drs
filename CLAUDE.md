@@ -14,7 +14,7 @@ DisasterResource+ — a resource optimization and visualization system for disas
 - `solver-service/` — Python FastAPI microservice wrapping OR-Tools (routing) and PuLP (allocation LP)
 - `docker/` — shared infra (PostGIS bootstrap script for the `postgres` service)
 
-Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, `backend` (web) on 8000, `queue` (queue worker, no exposed port), `reverb` (websocket server) on 8080, `solver-service` on 8001. `queue` and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD` — see the Docker Compose section below.
+Services are wired together via `docker-compose.yml`: Postgres/PostGIS on 5432, `backend` (web) on 8000, `queue` (queue worker, no exposed port), `reverb` (websocket server) on 8080, `solver-service` on 8001, `osrm` (routing engine) on 5001. `queue` and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD` — see the Docker Compose section below.
 
 There is a single `.env` at the repo root, not one per service. `backend/bootstrap/app.php` calls `Application::useEnvironmentPath()` to point Laravel's env lookup at the repo root (two directories up from `backend/bootstrap/`) instead of the default `backend/.env` — so `php artisan` commands run from inside `backend/` still read/write the root file. Docker gets the same file via `docker-compose.yml`'s `env_file: - .env` on every service (that mechanism is independent of Laravel's own env-file lookup — it injects real container env vars either way).
 
@@ -42,6 +42,13 @@ php artisan reverb:start    # separate terminal — realtime broadcasting
 ```
 
 Frontend typecheck: `npm run typecheck` (tsc --noEmit). Frontend build: `npm run build`.
+
+**Routing (OSRM), one-time setup before directions work locally:**
+
+```bash
+./docker/osrm/prepare.sh   # downloads PH OSM extract + preprocesses it into docker/osrm/data/
+docker compose up -d osrm  # or run osrm-routed directly against docker/osrm/data if not using Docker for this piece
+```
 
 **Solver service:**
 
@@ -79,6 +86,17 @@ Lat/lng are plain `double` columns for now; migrations have commented-out `$tabl
 5. `TriggerSolver.tsx` (Inertia page) lets a coordinator manually re-run the solver for a given incident in addition to the automatic trigger.
 
 Both solvers implement `BaseSolver` (`solver-service/app/solvers/base.py`) so `optimize.py` can swap implementations without route changes.
+
+### Directions / turn-by-turn navigation (backend/app/Services/Directions)
+
+Separate from the optimizer above — this is human-facing point-to-point navigation (draw a route, show turn-by-turn steps, speak them via the browser's Web Speech API), not the solver's depot-assignment optimization.
+
+- `DirectionsProvider` — interface both engines implement (`getRoute(fromLat, fromLng, toLat, toLng): array`, normalized shape with `ok`/`distance_m`/`duration_s`/`geometry`/`steps`).
+- `OsrmDirectionsProvider` — free, self-hosted, no API key, no usage cap, no live traffic. Calls the `osrm` docker-compose service (`OSRM_URL`/`services.osrm.url`), which requires `docker/osrm/prepare.sh` to have been run once (see Commands above) — it downloads a Philippines OSM extract and preprocesses it; the compose service only serves pre-built data, it doesn't build it. Builds plain-English instructions itself (`OsrmDirectionsProvider::humanize()`) since raw OSRM only returns structured maneuver data, not sentences.
+- `PremiumDirectionsProvider` — optional paid tier, generic to any Mapbox Directions API v5-shaped endpoint (not hardcoded to Mapbox specifically). Base URL/API key are admin-configured at runtime (`RoutingSetting`), not baked into env — configured from **Settings → Routing** (`/settings/routing`, `role:admin`-gated). Throws `ProviderQuotaExceededException` on a 429 or a quota-shaped error message.
+- `DirectionsRouter` — the actual entry point `Api\DirectionsController` calls. Reads `RoutingSetting::current()` (a lazily-created singleton row), resets the monthly usage counter when the calendar month rolls over, and picks OSRM vs. premium: skips premium (falls back to OSRM) if usage is at/over the admin-set `premium_monthly_cap`, or if the premium call throws `ProviderQuotaExceededException`. Either fallback tags the response with `fallback_reason` (`cap_exceeded` | `provider_error`) so the frontend can explain why a route came from the free engine.
+- `GET /api/directions?from_lat=&from_lng=&to_lat=&to_lng=` — the endpoint the frontend calls; always goes through `DirectionsRouter`, never a provider directly.
+- Frontend: `Hooks/useDirections.ts` (fetches + owns the current turn-by-turn step index), `Hooks/useVoiceGuidance.ts` (speaks the current step via `SpeechSynthesisUtterance` — no live GPS auto-advance yet, since `navigator.geolocation` needs a secure context and this stack currently serves plain HTTP), `Components/Map/DirectionsPanel.tsx` (origin/destination pickers + step list), and `IncidentMap.tsx`'s `route` prop (draws the polyline — stays imperative/vanilla Leaflet like the rest of that file).
 
 ### Backend request layering
 

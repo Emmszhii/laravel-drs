@@ -39,4 +39,8 @@ return [
         'url' => env('OPTIMIZATION_SERVICE_URL', 'http://solver-service:8001'),
     ],
 
+    'osrm' => [
+        'url' => env('OSRM_URL', 'http://osrm:5000'),
+    ],
+
 ];

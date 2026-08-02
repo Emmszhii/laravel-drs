@@ -82,5 +82,18 @@ services:
     volumes:
       - ./solver-service:/app
 
+  # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
+  # Requires `docker/osrm/prepare.sh` to have been run at least once — this
+  # service does not build/extract OSM data itself, only serves it.
+  osrm:
+    image: osrm/osrm-backend
+    container_name: disasterresource-osrm
+    restart: unless-stopped
+    command: osrm-routed --algorithm mld /data/philippines-latest.osrm
+    volumes:
+      - ./docker/osrm/data:/data:ro
+    ports:
+      - "5001:5000"
+
 volumes:
   pgdata:

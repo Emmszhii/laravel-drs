@@ -8,6 +8,10 @@ solver-service/venv/
 solver-service/**/__pycache__/
 solver-service/.pytest_cache/
 
+# OSRM routing data (large binary build artifacts — see docker/osrm/prepare.sh)
+docker/osrm/data/*
+!docker/osrm/data/.gitkeep
+
 # OS / editor
 .DS_Store
 Thumbs.db

@@ -1,6 +1,8 @@
+import { useCallback, useState } from "react";
 import { PageProps } from "@/Types/models";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import IncidentMap from "../Components/Map/IncidentMap";
+import DirectionsPanel from "../Components/Map/DirectionsPanel";
 
 type Props = PageProps<{
   incidents: Array<{ id: string; name: string; lat: number; lng: number; signal: number }>;
@@ -8,6 +10,11 @@ type Props = PageProps<{
 }>;
 
 export default function Dashboard({ incidents, depots }: Props) {
+  const [routeGeometry, setRouteGeometry] = useState<[number, number][] | null>(null);
+  const onRouteChange = useCallback((geometry: [number, number][] | null) => {
+    setRouteGeometry(geometry);
+  }, []);
+
   return (
     <DashboardLayout
       rail={
@@ -19,9 +26,11 @@ export default function Dashboard({ incidents, depots }: Props) {
           ))}
         </ul>
       }
-      statColumn={<div className="p-4 text-sm text-[var(--text-secondary)]">Utilization stats go here</div>}
+      statColumn={
+        <DirectionsPanel depots={depots} destinations={incidents} onRouteChange={onRouteChange} />
+      }
     >
-      <IncidentMap incidents={incidents} depots={depots} />
+      <IncidentMap incidents={incidents} depots={depots} route={routeGeometry} />
     </DashboardLayout>
   );
 }

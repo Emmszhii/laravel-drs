@@ -5,10 +5,14 @@ import "leaflet/dist/leaflet.css";
 type Incident = { id: string; name: string; lat: number; lng: number; signal: number };
 type Depot = { id: string; name: string; lat: number; lng: number };
 
+/** [lng, lat] pairs — matches the GeoJSON order returned by GET /api/directions. */
+type RouteGeometry = [number, number][];
+
 type Props = {
   incidents: Incident[];
   depots: Depot[];
   onSelectIncident?: (id: string) => void;
+  route?: RouteGeometry | null;
 };
 
 const PH_CENTER: [number, number] = [12.8797, 121.774];
@@ -18,9 +22,10 @@ const PH_CENTER: [number, number] = [12.8797, 121.774];
  * view, same as the prototype. Wire up geolocation + theme-aware tile
  * switching (CARTO dark/light) as documented in SUMMARY.md.
  */
-export default function IncidentMap({ incidents, depots, onSelectIncident }: Props) {
+export default function IncidentMap({ incidents, depots, onSelectIncident, route }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMap = useRef<L.Map | null>(null);
+  const routeLayers = useRef<L.Layer[]>([]);
 
   useEffect(() => {
     if (!mapRef.current || leafletMap.current) return;
@@ -54,6 +59,26 @@ export default function IncidentMap({ incidents, depots, onSelectIncident }: Pro
         .bindPopup(d.name);
     });
   }, [incidents, depots, onSelectIncident]);
+
+  useEffect(() => {
+    if (!leafletMap.current) return;
+
+    routeLayers.current.forEach((layer) => layer.remove());
+    routeLayers.current = [];
+
+    if (!route || route.length === 0) return;
+
+    const latlngs: [number, number][] = route.map(([lng, lat]) => [lat, lng]);
+
+    const polyline = L.polyline(latlngs, { color: "#f2a63c", weight: 4 }).addTo(leafletMap.current);
+    const start = L.circleMarker(latlngs[0], { radius: 7, color: "#3FA98C" }).addTo(leafletMap.current);
+    const end = L.circleMarker(latlngs[latlngs.length - 1], { radius: 7, color: "#E14B3F" }).addTo(
+      leafletMap.current
+    );
+
+    routeLayers.current = [polyline, start, end];
+    leafletMap.current.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+  }, [route]);
 
   return <div ref={mapRef} className="h-full w-full" />;
 }
