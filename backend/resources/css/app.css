@@ -48,6 +48,17 @@
   input,
   select,
   textarea {
-    @apply !border-black/20;
+    @apply !border-black/20 text-[var(--text-primary)];
+  }
+  /*
+    Tailwind's `dark:` variant follows the OS's prefers-color-scheme media
+    query, not this app's own data-theme toggle (use-theme.ts) — so it can't
+    be used here. Every <select>, including ones styled via inline utility
+    classes like `bg-transparent` elsewhere in the app, needs an explicit,
+    theme-variable-driven background to actually track light/dark mode.
+  */
+  select {
+    background-color: var(--bg-panel-raised) !important;
+    color: var(--text-primary) !important;
   }
 }

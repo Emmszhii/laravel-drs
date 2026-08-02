@@ -14,6 +14,8 @@ import { incidentsService } from "@/api-service/modules/incidents";
 import { depotsService } from "@/api-service/modules/depots";
 import { PaginatedResponse } from "@/Types/pagination";
 import { Disaster, Depot } from "@/Types/models";
+import { reverseGeocode } from "@/Utils/geocoding";
+import { matchPsgcLocation } from "@/Utils/psgcLookup";
 
 const emptyForm = {
   name: "",
@@ -97,6 +99,20 @@ function IncidentsIndex() {
     setModalOpen(true);
   };
 
+  const applyPsgcMatch = async (municipality?: string, province?: string) => {
+    const match = await matchPsgcLocation(municipality, province);
+    if (!match) return;
+    setRegion(match.regionCode);
+    await psgc.loadProvinces(match.regionCode);
+    if (match.provinceCode) {
+      setProvince(match.provinceCode);
+      await psgc.loadCities(match.provinceCode);
+    } else {
+      setProvince("");
+    }
+    setCity(match.cityCode);
+  };
+
   const openModalAt = (lat: number, lng: number) => {
     setForm({ ...emptyForm, lat, lng });
     setRegion("");
@@ -105,6 +121,10 @@ function IncidentsIndex() {
     setSaveError(null);
     psgc.reset();
     setModalOpen(true);
+    reverseGeocode(lat, lng).then((resolved) => {
+      if (resolved.display) setForm((f) => ({ ...f, zone: resolved.display! }));
+      applyPsgcMatch(resolved.municipality, resolved.province);
+    });
   };
 
   const submit = async (e: FormEvent) => {
@@ -434,6 +454,8 @@ function IncidentsIndex() {
               lng={form.lng}
               address={form.zone}
               onChange={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
+              onResolveAddress={(zone) => setForm((f) => ({ ...f, zone }))}
+              onResolvePsgc={applyPsgcMatch}
             />
           </Field>
         </form>

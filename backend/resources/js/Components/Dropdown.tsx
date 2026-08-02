@@ -11,7 +11,12 @@ interface DropdownProps {
 }
 
 /** Plain native-select dropdown used by CardFilterPanel/ColumnFilterControl's "select" column filters. */
-export function Dropdown({ options, value, onChange, placeholder = 'All' }: DropdownProps) {
+export function Dropdown({
+  options,
+  value,
+  onChange,
+  placeholder = "All",
+}: DropdownProps) {
   return (
     <select
       value={value}

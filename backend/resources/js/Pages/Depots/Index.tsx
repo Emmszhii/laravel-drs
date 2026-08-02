@@ -5,6 +5,7 @@ import Modal from "../../Components/Common/Modal";
 import IncidentMap from "../../Components/Map/IncidentMap";
 import LocationPickMap from "../../Components/Map/LocationPickMap";
 import usePsgc from "../../Hooks/usePsgc";
+import { matchPsgcLocation } from "@/Utils/psgcLookup";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { ApiError } from "@/api-service/client";
 import { depotsService } from "@/api-service/modules/depots";
@@ -88,6 +89,14 @@ function DepotsIndex() {
 
   const loadMap = () => {
     depotsService.getAll().then(setMapDepots);
+  };
+
+  const applyPsgcMatch = async (municipality?: string, province?: string) => {
+    const match = await matchPsgcLocation(municipality, province);
+    if (!match) return;
+    setRegion(match.regionCode);
+    await psgc.loadProvinces(match.regionCode);
+    setProvince(match.provinceCode ?? "");
   };
 
   useEffect(loadMap, []);
@@ -298,6 +307,8 @@ function DepotsIndex() {
             lng={form.lng}
             address={form.address}
             onChange={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
+            onResolveAddress={(address) => setForm((f) => ({ ...f, address }))}
+            onResolvePsgc={applyPsgcMatch}
           />
 
           <div className="flex gap-3">

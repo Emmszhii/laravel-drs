@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Button from "../Common/Button";
+import { reverseGeocode } from "@/Utils/geocoding";
 
 const PH_CENTER: [number, number] = [12.8797, 121.774];
 
@@ -10,16 +11,23 @@ type Props = {
   lng: number | null;
   address: string;
   onChange: (lat: number, lng: number) => void;
+  onResolveAddress?: (address: string) => void;
+  onResolvePsgc?: (municipality?: string, province?: string) => void;
 };
 
 /** Click-to-place-pin map + Nominatim "Locate address" geocode button. */
-export default function LocationPickMap({ lat, lng, address, onChange }: Props) {
+export default function LocationPickMap({ lat, lng, address, onChange, onResolveAddress, onResolvePsgc }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMap = useRef<L.Map | null>(null);
   const marker = useRef<L.Marker | null>(null);
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
+  const onResolveAddressRef = useRef(onResolveAddress);
+  onResolveAddressRef.current = onResolveAddress;
+  const onResolvePsgcRef = useRef(onResolvePsgc);
+  onResolvePsgcRef.current = onResolvePsgc;
   const [geocoding, setGeocoding] = useState(false);
+  const [resolvingAddress, setResolvingAddress] = useState(false);
   const [hint, setHint] = useState("No location selected — click the map to place the pin.");
 
   useEffect(() => {
@@ -31,7 +39,18 @@ export default function LocationPickMap({ lat, lng, address, onChange }: Props) 
     );
 
     leafletMap.current.on("click", (e: L.LeafletMouseEvent) => {
-      onChangeRef.current(e.latlng.lat, e.latlng.lng);
+      const { lat: clickedLat, lng: clickedLng } = e.latlng;
+      onChangeRef.current(clickedLat, clickedLng);
+
+      if (onResolveAddressRef.current || onResolvePsgcRef.current) {
+        setResolvingAddress(true);
+        reverseGeocode(clickedLat, clickedLng)
+          .then((resolved) => {
+            if (resolved.display) onResolveAddressRef.current?.(resolved.display);
+            onResolvePsgcRef.current?.(resolved.municipality, resolved.province);
+          })
+          .finally(() => setResolvingAddress(false));
+      }
     });
 
     return () => {
@@ -88,7 +107,10 @@ export default function LocationPickMap({ lat, lng, address, onChange }: Props) 
       <div className="overflow-hidden border border-white/20">
         <div ref={mapRef} className="h-[180px] w-full" />
       </div>
-      <p className="mt-1 text-xs text-[var(--text-secondary)]">{hint}</p>
+      <p className="mt-1 text-xs text-[var(--text-secondary)]">
+        {hint}
+        {resolvingAddress && " · Resolving address…"}
+      </p>
     </div>
   );
 }
