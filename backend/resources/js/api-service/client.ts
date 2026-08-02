@@ -19,7 +19,11 @@ import type {
     AxiosResponse,
     InternalAxiosRequestConfig,
 } from 'axios';
-import { getCsrfToken } from '@/components/table/utils';
+
+/** Reads the <meta name="csrf-token"> tag Laravel's Blade layout renders. */
+function getCsrfToken(): string | null {
+    return document.querySelector<HTMLMetaElement>('meta[name="csrf-token"]')?.content ?? null;
+}
 
 /** Validation-aware error thrown for any non-2xx API response. */
 export class ApiError extends Error {

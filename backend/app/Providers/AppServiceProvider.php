@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,22 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        /**
+         * REUSABLE API
+         */
+        Route::macro('module', function (string $prefix, string $controller, string $name) {
+            Route::prefix($prefix)->name("{$name}.")->group(function () use ($controller) {
+                Route::get('/', [$controller, 'index'])->name('index');
+                Route::get('/pagination-search', [$controller, 'paginationSearch'])->name('pagination-search');
+                Route::get('/search-active', [$controller, 'searchActive'])->name('search-active');
+                Route::get('/lookup', [$controller, 'lookup'])->name('lookup');
+                Route::get('/{id}/in-use', [$controller, 'inUse'])->name('in-use');
+                Route::post('/', [$controller, 'store'])->name('store');
+                Route::post('/{id}', [$controller, 'update'])->name('update'); // post is needed for files uploading
+                Route::patch('/{id}/archive', [$controller, 'archive'])->name('archive');
+                Route::patch('/{id}/restore', [$controller, 'restore'])->name('restore');
+                Route::delete('/{id}', [$controller, 'destroy'])->name('destroy');
+            });
+        });
     }
 }

@@ -3,7 +3,13 @@ import "../css/app.css";
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SystemToastProvider } from "./Components/Toast";
 import AppLayout from "./Layouts/AppLayout";
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 
 createInertiaApp({
   title: (title) => `${title} — DisasterResource+`,
@@ -16,6 +22,12 @@ createInertiaApp({
       return module;
     }),
   setup({ el, App, props }) {
-    createRoot(el).render(<App {...props} />);
+    createRoot(el).render(
+      <QueryClientProvider client={queryClient}>
+        <SystemToastProvider>
+          <App {...props} />
+        </SystemToastProvider>
+      </QueryClientProvider>
+    );
   },
 });

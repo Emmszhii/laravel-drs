@@ -7,8 +7,8 @@ use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * Reports placeholder (Inertia page: Pages/Reports/Index.tsx), admin/developer only.
- * No Report model exists yet — the design prototype's reports are static demo data.
+ * Reports page (Inertia page: Pages/Reports/Index.tsx), admin/developer only.
+ * Data is fetched client-side via resources/js/api-service/reports.ts.
  */
 class ReportController extends Controller
 {

@@ -18,3 +18,9 @@
   --text-primary: #edede6;
   --text-secondary: #98a19b;
 }
+
+@layer components {
+  .input {
+    @apply w-full border border-white/20 bg-transparent p-2 text-sm text-[var(--text-primary)];
+  }
+}

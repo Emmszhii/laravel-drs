@@ -4,6 +4,20 @@ export type PageProps<T = {}> = T & {
   };
 };
 
+/** Shared props every Inertia page receives (see HandleInertiaRequests) — augments usePage()'s default typing. */
+declare module '@inertiajs/core' {
+  interface PageProps {
+    auth?: {
+      user:
+        | ({ id: string; name: string; email: string; role: string } & {
+            roles?: string[];
+            permissions?: string[];
+          })
+        | null;
+    };
+  }
+}
+
 export interface Disaster {
   id: string;
   name: string;
@@ -13,6 +27,8 @@ export interface Disaster {
   lat: number;
   lng: number;
   status: "ACTIVE" | "MONITORING" | "RESOLVED";
+  zones?: Zone[];
+  created_at?: string;
 }
 
 export interface Zone {
@@ -26,6 +42,7 @@ export interface Zone {
 }
 
 export interface Depot {
+  [key: string]: unknown;
   id: string;
   name: string;
   address: string;
@@ -38,9 +55,42 @@ export interface Depot {
 }
 
 export interface ResourceType {
+  [key: string]: unknown;
   id: string;
   name: string;
   unit: string;
+}
+
+/** A stock (depot inventory) row — GET /api/resources. */
+export interface ResourceStock {
+  [key: string]: unknown;
+  id: string;
+  depot_id: string;
+  resource_type_id: string;
+  quantity_available: number;
+  quantity_reserved: number;
+  expiry_date: string | null;
+  depot?: Depot;
+  resource_type?: ResourceType;
+}
+
+export interface AdminUser {
+  [key: string]: unknown;
+  id: string;
+  name: string;
+  email: string;
+  role: "developer" | "admin" | "coordinator" | "viewer" | "respondent";
+  is_active: boolean;
+}
+
+export interface Report {
+  [key: string]: unknown;
+  id: string;
+  disaster_id: string | null;
+  name: string;
+  type: "After-action summary" | "Resource utilization" | "Response timeline";
+  generated_at: string;
+  disaster?: Disaster;
 }
 
 export interface ResourceRequest {
