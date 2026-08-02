@@ -20,6 +20,7 @@ type Props = {
   depots: Depot[];
   onSelectIncident?: (id: string) => void;
   route?: RouteGeometry | null;
+  selectedIncidentId?: string;
 };
 
 const PH_CENTER: [number, number] = [12.8797, 121.774];
@@ -34,11 +35,13 @@ export default function IncidentMap({
   depots,
   onSelectIncident,
   route,
+  selectedIncidentId,
 }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const leafletMap = useRef<L.Map | null>(null);
   const routeLayers = useRef<L.Layer[]>([]);
   const depotMarkers = useRef<Record<string, L.CircleMarker>>({});
+  const yourLocationMarker = useRef<L.CircleMarker | null>(null);
 
   const [navTarget, setNavTarget] = useState<Depot | null>(null);
   const [userLocation, setUserLocation] = useState<{
@@ -62,11 +65,36 @@ export default function IncidentMap({
       },
     ).addTo(leafletMap.current);
 
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          if (!leafletMap.current) return;
+          yourLocationMarker.current = L.circleMarker(
+            [pos.coords.latitude, pos.coords.longitude],
+            { radius: 7, color: "#4A9EFF", fillColor: "#4A9EFF", fillOpacity: 0.9 },
+          )
+            .addTo(leafletMap.current)
+            .bindPopup("Your location");
+        },
+        () => {
+          // Denied/unavailable — no marker, no error surfaced (best-effort only).
+        },
+        { enableHighAccuracy: false, timeout: 8000 },
+      );
+    }
+
     return () => {
       leafletMap.current?.remove();
       leafletMap.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    if (!leafletMap.current || !selectedIncidentId) return;
+    const inc = incidents.find((i) => i.id === selectedIncidentId);
+    if (!inc) return;
+    leafletMap.current.flyTo([inc.lat, inc.lng], 10);
+  }, [selectedIncidentId, incidents]);
 
   function requestNavigation(depot: Depot, marker: L.CircleMarker) {
     if (!navigator.geolocation) {

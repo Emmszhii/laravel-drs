@@ -1,18 +1,22 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useAuth } from "@/Hooks/use-auth";
 import { useTheme } from "@/Hooks/use-theme";
 import { ChangePasswordModal } from "@/Components/ChangePasswordModal";
 
 interface UserProfileSectionProps {
-  /** 'sidebar' = bottom-of-nav block (border above); 'header' = compact, no border. Default 'sidebar'. */
+  /** 'sidebar' = bottom-of-nav block (border above); 'header' = compact icon button + dropdown. Default 'sidebar'. */
   variant?: "sidebar" | "header";
 }
 
 /**
  * Bottom-of-sidebar (AdminLayout) / header-right (AppLayout) block: avatar
- * initials + name/email/role, click to change password, theme toggle in the
- * upper-right corner of the block.
+ * initials + name/email/role, click to change password, theme toggle.
+ *
+ * `variant="header"` renders as a single compact icon button (same footprint
+ * as NotificationBell) that opens a dropdown, so it doesn't consume extra
+ * header height on mobile. `variant="sidebar"` keeps the always-expanded
+ * three-row block.
  */
 export function UserProfileSection({
   variant = "sidebar",
@@ -20,11 +24,84 @@ export function UserProfileSection({
   const { displayName, email, role, initials } = useAuth();
   const { theme, toggle } = useTheme();
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [open]);
+
+  if (variant === "header") {
+    return (
+      <div className="relative" ref={wrapRef}>
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--amber)] text-xs font-semibold text-[var(--amber)] hover:bg-white/5"
+          aria-label="Account menu"
+          title={displayName}
+        >
+          {initials}
+        </button>
+
+        {open && (
+          <div className="absolute top-[calc(100%+8px)] right-0 z-[4000] w-64 max-w-[calc(100vw-24px)] border border-white/20 bg-[var(--bg-panel-raised)] shadow-lg">
+            <div className="flex items-center justify-between gap-2.5 border-b border-white/10 p-3">
+              <span className="min-w-0 flex-1">
+                <span className="block truncate text-sm font-medium text-[var(--text-primary)]">
+                  {displayName}
+                </span>
+                <span className="block truncate text-xs text-[var(--text-secondary)]">
+                  {email}
+                </span>
+                <span className="mt-0.5 block text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
+                  {role}
+                </span>
+              </span>
+              <button
+                type="button"
+                onClick={toggle}
+                title={
+                  theme === "dark"
+                    ? "Switch to light mode"
+                    : "Switch to dark mode"
+                }
+                aria-label="Toggle theme"
+                className="shrink-0 rounded p-1.5 text-[var(--text-secondary)] hover:text-[var(--amber)]"
+              >
+                {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+              </button>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                setPasswordModalOpen(true);
+              }}
+              className="block w-full px-3 py-2.5 text-left text-xs hover:bg-white/5"
+            >
+              Change password
+            </button>
+          </div>
+        )}
+
+        <ChangePasswordModal
+          open={passwordModalOpen}
+          onClose={() => setPasswordModalOpen(false)}
+        />
+      </div>
+    );
+  }
 
   return (
-    <div
-      className={`relative p-3 ${variant === "sidebar" ? "border-t border-white/10" : ""}`}
-    >
+    <div className="relative border-t border-white/10 p-3">
       <button
         type="button"
         onClick={toggle}

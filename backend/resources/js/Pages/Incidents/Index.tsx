@@ -170,8 +170,8 @@ function IncidentsIndex() {
         </select>
       </FilterBar>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-[280px] shrink-0 overflow-y-auto border-r border-white/10">
+      <div className="flex flex-1 flex-col overflow-y-auto md:flex-row md:overflow-hidden">
+        <div className="max-h-[260px] w-full shrink-0 overflow-y-auto border-b border-white/10 md:max-h-none md:w-[280px] md:border-r md:border-b-0">
           {loading && incidents.length === 0
             ? Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="border-b border-white/10 p-3">
@@ -214,24 +214,26 @@ function IncidentsIndex() {
                   Remove
                 </button>
               </div>
-              <table className="mb-6 w-full text-sm">
-                <thead>
-                  <tr className="text-left text-xs uppercase text-[var(--text-secondary)]">
-                    <th className="p-2">Area</th>
-                    <th className="p-2">Population affected</th>
-                    <th className="p-2">Severity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {(selected.zones ?? []).map((z) => (
-                    <tr key={z.id} className="border-t border-white/10">
-                      <td className="p-2">{z.name}</td>
-                      <td className="p-2">{z.population_affected}</td>
-                      <td className="p-2">{z.severity_level}</td>
+              <div className="mb-6 overflow-x-auto">
+                <table className="w-full min-w-[420px] text-sm">
+                  <thead>
+                    <tr className="text-left text-xs uppercase text-[var(--text-secondary)]">
+                      <th className="p-2">Area</th>
+                      <th className="p-2">Population affected</th>
+                      <th className="p-2">Severity</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {(selected.zones ?? []).map((z) => (
+                      <tr key={z.id} className="border-t border-white/10">
+                        <td className="p-2">{z.name}</td>
+                        <td className="p-2">{z.population_affected}</td>
+                        <td className="p-2">{z.severity_level}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               <TriggerSolver disasterId={selected.id} />
             </>
           ) : (

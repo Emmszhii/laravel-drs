@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\DepotController;
 use App\Http\Controllers\Api\DirectionsController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportController;
+use App\Http\Controllers\Api\RequestController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\ResourceTypeController;
 use App\Http\Controllers\Api\RoutingSettingController;
@@ -33,6 +35,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/incidents', [IncidentController::class, 'store']);
 
     Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
+
+    Route::get('/activity-log', [ActivityLogController::class, 'index']);
+
+    Route::get('/requests', [RequestController::class, 'index']);
+    Route::get('/requests/pagination-search', [RequestController::class, 'paginationSearch']);
 
     Route::get('/directions', [DirectionsController::class, 'index']);
 

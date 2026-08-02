@@ -97,12 +97,29 @@ export interface Report {
 }
 
 export interface ResourceRequest {
+  [key: string]: unknown;
   id: string;
   zone_id: string;
   resource_type_id: string;
   quantity_requested: number;
   priority: "low" | "medium" | "high" | "critical";
   status: "pending" | "enroute" | "unmet" | "fulfilled";
+  zone?: Zone & { disaster?: Disaster };
+  resource_type?: ResourceType;
+}
+
+/** Aggregate dashboard stats — GET / (Web\DashboardController). */
+export interface DashboardStats {
+  unmet_pct: number;
+  deployed: number;
+}
+
+/** Per-resource-type stock utilization — GET / (Web\DashboardController). */
+export interface UtilizationRow {
+  id: string;
+  name: string;
+  unit: string;
+  pct: number;
 }
 
 /** Minimal GeoJSON point, for future PostGIS-backed API responses. */

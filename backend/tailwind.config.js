@@ -17,6 +17,35 @@ export default {
         ok: "var(--ok)",
         pending: "var(--pending)",
       },
+      keyframes: {
+        ticker: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        slideInRight: {
+          from: { transform: "translateX(100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        slideInLeft: {
+          from: { transform: "translateX(-100%)" },
+          to: { transform: "translateX(0)" },
+        },
+        shimmer: {
+          from: { backgroundPosition: "200% 0" },
+          to: { backgroundPosition: "-200% 0" },
+        },
+      },
+      animation: {
+        ticker: "ticker 40s linear infinite",
+        fadeIn: "fadeIn 0.2s ease-out",
+        slideInRight: "slideInRight 0.25s ease-out",
+        slideInLeft: "slideInLeft 0.25s ease-out",
+        shimmer: "shimmer 1.5s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

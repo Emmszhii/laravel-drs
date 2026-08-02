@@ -28,6 +28,11 @@ class ResourceRequest extends Model
         return $this->belongsTo(Zone::class);
     }
 
+    public function resourceType(): BelongsTo
+    {
+        return $this->belongsTo(ResourceType::class);
+    }
+
     public function allocations(): HasMany
     {
         return $this->hasMany(Allocation::class, 'request_id');

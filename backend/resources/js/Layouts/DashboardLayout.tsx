@@ -12,10 +12,14 @@ type Props = PropsWithChildren<{
  */
 export default function DashboardLayout({ rail, children, statColumn }: Props) {
   return (
-    <div className="flex h-full">
-      <aside className="w-[220px] shrink-0 overflow-y-auto border-r border-white/10">{rail}</aside>
-      <div className="flex-1 overflow-hidden">{children}</div>
-      <aside className="w-[300px] shrink-0 overflow-y-auto border-l border-white/10">{statColumn}</aside>
+    <div className="flex h-full flex-col overflow-y-auto md:flex-row md:overflow-hidden">
+      <aside className="max-h-[240px] w-full shrink-0 overflow-y-auto border-b border-white/10 md:h-full md:max-h-none md:w-[220px] md:border-r md:border-b-0">
+        {rail}
+      </aside>
+      <div className="min-h-[300px] flex-1 overflow-hidden">{children}</div>
+      <aside className="w-full shrink-0 overflow-y-auto border-t border-white/10 md:h-full md:w-[300px] md:border-t-0 md:border-l">
+        {statColumn}
+      </aside>
     </div>
   );
 }
