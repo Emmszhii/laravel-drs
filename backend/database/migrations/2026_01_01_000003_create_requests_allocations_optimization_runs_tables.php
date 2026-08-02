@@ -8,9 +8,9 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('optimization_runs', function (Blueprint $table) {
+        Schema::create('app_optimization_runs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('disaster_id')->constrained('disasters')->cascadeOnDelete();
+            $table->foreignUuid('disaster_id')->constrained('app_disasters')->cascadeOnDelete();
             $table->foreignUuid('triggered_by')->nullable()->constrained('users')->nullOnDelete();
             $table->string('algorithm_used')->nullable();
             $table->float('objective_value')->nullable();
@@ -19,10 +19,10 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('requests', function (Blueprint $table) {
+        Schema::create('app_requests', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('zone_id')->constrained('zones')->cascadeOnDelete();
-            $table->foreignUuid('resource_type_id')->constrained('resource_types')->cascadeOnDelete();
+            $table->foreignUuid('zone_id')->constrained('app_zones')->cascadeOnDelete();
+            $table->foreignUuid('resource_type_id')->constrained('app_resource_types')->cascadeOnDelete();
             $table->unsignedInteger('quantity_requested');
             $table->string('priority')->default('medium'); // low | medium | high | critical
             $table->string('status')->default('pending'); // pending | enroute | unmet | fulfilled
@@ -30,11 +30,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('allocations', function (Blueprint $table) {
+        Schema::create('app_allocations', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('request_id')->constrained('requests')->cascadeOnDelete();
-            $table->foreignUuid('depot_id')->constrained('depots')->cascadeOnDelete();
-            $table->foreignUuid('optimization_run_id')->nullable()->constrained('optimization_runs')->nullOnDelete();
+            $table->foreignUuid('request_id')->constrained('app_requests')->cascadeOnDelete();
+            $table->foreignUuid('depot_id')->constrained('app_depots')->cascadeOnDelete();
+            $table->foreignUuid('optimization_run_id')->nullable()->constrained('app_optimization_runs')->nullOnDelete();
             $table->unsignedInteger('quantity_allocated');
             $table->string('status')->default('pending'); // pending | en_route | delivered | cancelled
             $table->timestamps();
@@ -43,8 +43,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('allocations');
-        Schema::dropIfExists('requests');
-        Schema::dropIfExists('optimization_runs');
+        Schema::dropIfExists('app_allocations');
+        Schema::dropIfExists('app_requests');
+        Schema::dropIfExists('app_optimization_runs');
     }
 };

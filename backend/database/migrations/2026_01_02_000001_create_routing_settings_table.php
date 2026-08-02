@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('routing_settings', function (Blueprint $table) {
+        Schema::create('app_settings_routing', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('active_provider')->default('osrm'); // osrm | premium
             $table->string('premium_base_url')->nullable();
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('routing_settings');
+        Schema::dropIfExists('app_settings_routing');
     }
 };

@@ -14,6 +14,8 @@ class Resource extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_resources';
+
     protected $fillable = [
         'depot_id',
         'resource_type_id',

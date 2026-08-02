@@ -11,6 +11,8 @@ class Allocation extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_allocations';
+
     protected $fillable = [
         'request_id',
         'depot_id',

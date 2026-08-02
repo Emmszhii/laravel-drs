@@ -12,7 +12,7 @@ class ResourceRequest extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'requests';
+    protected $table = 'app_requests';
 
     protected $fillable = [
         'zone_id',

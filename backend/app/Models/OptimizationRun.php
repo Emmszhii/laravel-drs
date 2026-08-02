@@ -17,6 +17,8 @@ class OptimizationRun extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_optimization_runs';
+
     protected $fillable = [
         'disaster_id',
         'triggered_by',

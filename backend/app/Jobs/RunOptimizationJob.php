@@ -32,7 +32,7 @@ class RunOptimizationJob implements ShouldQueue
         $result = $client->optimizeAllocation($this->disaster);
 
         // Persist as a suggested (not yet approved) allocation batch.
-        // See database/migrations for the `optimization_runs` / `allocations` tables.
+        // See database/migrations for the `app_optimization_runs` / `app_allocations` tables.
         $this->disaster->optimizationRuns()->create([
             'algorithm_used' => $result['algorithm'] ?? 'unknown',
             'objective_value' => $result['objective_value'] ?? null,

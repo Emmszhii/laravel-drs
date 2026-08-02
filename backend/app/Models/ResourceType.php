@@ -10,5 +10,7 @@ class ResourceType extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_resource_types';
+
     protected $fillable = ['name', 'unit'];
 }

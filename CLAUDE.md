@@ -43,6 +43,8 @@ php artisan reverb:start    # separate terminal — realtime broadcasting
 
 Frontend typecheck: `npm run typecheck` (tsc --noEmit). Frontend build: `npm run build`.
 
+**Local dev without `pdo_pgsql`:** if `php artisan migrate` errors with `could not find driver (Connection: pgsql...)`, the local PHP install has no `pdo_pgsql` (common with minimal single-binary distributions like php.new/Herd-Lite — check via `php -m`; if there's no `ext/` directory or `extension_dir` at all, it can't be added). Don't switch the project's real DB engine — use SQLite as a local-only fallback instead: `touch backend/database/database.sqlite`, then in the root `.env` set `DB_CONNECTION=sqlite` and comment out/clear the `pgsql` block (`DB_DATABASE` must be unset, not just emptied to a stray value, for `config/database.php`'s `env('DB_DATABASE', database_path('database.sqlite'))` default to kick in). Switch back to `pgsql`/`DB_HOST=postgres` before using Docker, whose `backend/Dockerfile` already installs `pdo_pgsql`. This schema has no Postgres-specific raw SQL and the PostGIS geography columns are still commented out, so SQLite runs the full migration set cleanly.
+
 **Routing (OSRM), one-time setup before directions work locally:**
 
 ```bash
@@ -71,7 +73,9 @@ pytest tests/test_solvers.py::test_pulp_solver_fully_satisfies_demand_within_cap
 
 ### Domain model (backend/app/Models, backend/database/migrations)
 
-`Disaster` (UUID PK) has many `Zone`s (barangay-level areas with `population_affected`/`severity_level`), many `ResourceRequest`s (table `requests`, model deliberately renamed to avoid clashing with Laravel's HTTP `Request`), and many `OptimizationRun`s. `Depot` holds `Resource` rows keyed by `ResourceType` (quantity available/reserved). `Allocation` links a `ResourceRequest` + `Depot` + optional `OptimizationRun`.
+All custom domain tables use an `app_` prefix (`app_disasters`, `app_zones`, `app_depots`, `app_resource_types`, `app_resources`, `app_requests`, `app_allocations`, `app_optimization_runs`, `app_settings_routing`) — Laravel's own framework tables (`users`, `cache`, `jobs`, `sessions`, `password_reset_tokens`, `migrations`) do not get the prefix. Since Eloquent has no global table-prefix setting, every domain model sets `protected $table = 'app_...'` explicitly (its name no longer matches the class-name convention) — new domain migrations/models should follow the same `app_` prefix.
+
+`Disaster` (UUID PK) has many `Zone`s (barangay-level areas with `population_affected`/`severity_level`), many `ResourceRequest`s (table `app_requests`, model deliberately renamed to avoid clashing with Laravel's HTTP `Request`), and many `OptimizationRun`s. `Depot` holds `Resource` rows keyed by `ResourceType` (quantity available/reserved). `Allocation` links a `ResourceRequest` + `Depot` + optional `OptimizationRun`.
 
 All domain models (including `User`) use `HasUuids` — the migrations declare `uuid('id')->primary()` with no default, so Eloquent must generate the key on `create()`. If you add a new model backed by a `uuid()` primary key, add `HasUuids` or inserts will fail with a NOT NULL constraint on `id`.
 

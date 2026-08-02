@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('disasters', function (Blueprint $table) {
+        Schema::create('app_disasters', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
             $table->string('type'); // typhoon, flood, earthquake, fire, landslide
@@ -22,9 +22,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('zones', function (Blueprint $table) {
+        Schema::create('app_zones', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('disaster_id')->constrained('disasters')->cascadeOnDelete();
+            $table->foreignUuid('disaster_id')->constrained('app_disasters')->cascadeOnDelete();
             $table->string('name'); // barangay name
             $table->unsignedInteger('population_affected')->default(0);
             $table->string('severity_level')->default('Medium'); // High | Medium
@@ -37,7 +37,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('zones');
-        Schema::dropIfExists('disasters');
+        Schema::dropIfExists('app_zones');
+        Schema::dropIfExists('app_disasters');
     }
 };

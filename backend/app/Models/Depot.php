@@ -11,6 +11,8 @@ class Depot extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_depots';
+
     protected $fillable = [
         'name',
         'address',

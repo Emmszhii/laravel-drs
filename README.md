@@ -48,6 +48,16 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 ```
 
+### Local dev without pdo_pgsql
+
+If `php artisan migrate` fails with `could not find driver (Connection: pgsql...)`, your PHP install doesn't have the `pdo_pgsql` extension (common with minimal single-binary distributions like php.new/Herd-Lite, which only ship `pdo_mysql`/`pdo_sqlite` and have no `ext/` directory to add it to). Rather than switching the project off Postgres, use SQLite as a **local-only** fallback:
+
+```bash
+touch backend/database/database.sqlite
+```
+
+Then in the root `.env`, set `DB_CONNECTION=sqlite` (comment out the `pgsql` block below it — `DB_DATABASE` must be empty/unset for SQLite to use `database_path('database.sqlite')` by default). Switch back to `pgsql`/`DB_HOST=postgres` before using Docker, which already has `pdo_pgsql` installed (see `backend/Dockerfile`).
+
 ## Routing (OSRM)
 
 Turn-by-turn directions run on a **self-hosted OSRM** instance (free, no API key, no usage cap, no traffic data) instead of a paid provider like Google Maps or Mapbox — those require a billing-enabled account even on their "free tier." The trade-off: routes use static OpenStreetMap road-network data, not live traffic.

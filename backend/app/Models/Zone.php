@@ -20,6 +20,8 @@ class Zone extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_zones';
+
     protected $fillable = [
         'disaster_id',
         'name',

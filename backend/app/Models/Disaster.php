@@ -11,6 +11,8 @@ class Disaster extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'app_disasters';
+
     protected $fillable = [
         'name',
         'type',

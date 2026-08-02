@@ -16,6 +16,8 @@ class RoutingSetting extends Model
 {
     use HasUuids;
 
+    protected $table = 'app_settings_routing';
+
     protected $fillable = [
         'active_provider',
         'premium_base_url',
