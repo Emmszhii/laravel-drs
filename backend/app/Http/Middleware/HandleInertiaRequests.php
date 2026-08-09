@@ -40,6 +40,10 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            // Exposes back()->with('status', ...) flashes (forgot-password
+            // confirmation, password-reset success) as a page prop — Inertia
+            // doesn't read the session flash bag on its own.
+            'status' => fn () => $request->session()->get('status'),
         ];
     }
 }

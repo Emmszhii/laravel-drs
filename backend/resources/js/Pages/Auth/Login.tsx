@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { useForm } from "@inertiajs/react";
+import { Link, useForm } from "@inertiajs/react";
 import Button from "../../Components/Common/Button";
 
 /**
@@ -41,9 +41,17 @@ export default function Login() {
         </div>
 
         <div className="space-y-1">
-          <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-            Password
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              Password
+            </label>
+            <Link
+              href="/forgot-password"
+              className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <input
             type="password"
             value={data.password}
@@ -57,6 +65,13 @@ export default function Login() {
         <Button type="submit" disabled={processing} className="w-full">
           {processing ? "Signing in…" : "Sign in"}
         </Button>
+
+        <Link
+          href="/about"
+          className="block text-center text-xs uppercase tracking-wide text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
+        >
+          About this system
+        </Link>
       </form>
     </div>
   );

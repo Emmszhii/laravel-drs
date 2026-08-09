@@ -7,6 +7,9 @@
 
     <title inertia>{{ config('app.name', 'DisasterResource+') }}</title>
 
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.tsx'])
     @inertiaHead

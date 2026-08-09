@@ -10,6 +10,9 @@ use App\Http\Controllers\Web\ResourceInventoryController;
 use App\Http\Controllers\Web\RoutingSettingsController;
 use App\Http\Controllers\Web\Settings\UsersController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/about', fn () => Inertia::render('About'))->name('about');
 
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

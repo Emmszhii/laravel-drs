@@ -19,6 +19,24 @@ use Inertia\Response;
  */
 class PasswordResetController extends Controller
 {
+    public function forgotPassword(): Response
+    {
+        return Inertia::render('Auth/ForgotPassword');
+    }
+
+    public function sendResetLink(Request $request): RedirectResponse
+    {
+        $request->validate(['email' => ['required', 'email']]);
+
+        // Same broker call UserController::resetPassword() uses for the
+        // admin-triggered reset — always report success regardless of
+        // whether the email matches an account, to avoid leaking which
+        // addresses have accounts.
+        Password::sendResetLink($request->only('email'));
+
+        return back()->with('status', 'If that email is registered, a reset link is on its way.');
+    }
+
     public function create(Request $request, string $token): Response
     {
         return Inertia::render('Auth/ResetPassword', [

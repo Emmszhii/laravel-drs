@@ -8,6 +8,9 @@ Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
 
+    Route::get('forgot-password', [PasswordResetController::class, 'forgotPassword'])->name('password.request');
+    Route::post('forgot-password', [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+
     Route::get('password/reset/{token}', [PasswordResetController::class, 'create'])->name('password.reset');
     Route::post('password/reset', [PasswordResetController::class, 'store'])->name('password.update');
 });

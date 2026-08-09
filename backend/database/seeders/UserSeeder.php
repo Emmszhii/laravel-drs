@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
         // Legacy `users.role` is set to 'admin' so this account keeps passing
         // today's role:admin-gated routes, alongside the Spatie 'developer' role.
         $user = User::firstOrCreate(
-            ['email' => 'emmanuelmanalo707@gmai.com'],
+            ['email' => 'emmanuelmanalo707@gmail.com'],
             [
                 'first_name' => 'Emmanuel',
                 'last_name' => 'Manalo',
