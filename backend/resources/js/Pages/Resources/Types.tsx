@@ -5,6 +5,7 @@ import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { resourceTypesService } from "@/api-service/modules/resourceTypes";
+import { usePermission } from "@/Hooks/use-permissions";
 import { ResourcesTabs, TypeCard, typeColumns, typeFields } from "./shared";
 import type { ResourceType } from "@/Types/models";
 
@@ -13,17 +14,21 @@ function ResourcesTypesIndex() {
     mode: "create" | "edit";
     row?: ResourceType;
   } | null>(null);
+  const { can } = usePermission();
+  const canManage = can("manage-depots");
 
   return (
     <div>
       <div className="flex items-center justify-between border-b border-white/10 px-6">
         <ResourcesTabs />
-        <Button
-          className="my-2"
-          onClick={() => setTypeModal({ mode: "create" })}
-        >
-          + Add type
-        </Button>
+        {canManage && (
+          <Button
+            className="my-2"
+            onClick={() => setTypeModal({ mode: "create" })}
+          >
+            + Add type
+          </Button>
+        )}
       </div>
 
       <div className="p-6">
@@ -32,6 +37,8 @@ function ResourcesTypesIndex() {
           apiQueryKey="resource-types"
           columns={typeColumns}
           renderCard={TypeCard}
+          editPermission="manage-depots"
+          deletePermission="manage-depots"
           onEditRow={(row) => setTypeModal({ mode: "edit", row })}
         />
       </div>

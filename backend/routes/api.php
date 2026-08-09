@@ -29,8 +29,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'active'])->group(function () {
     // Static-segment routes (pagination-search) MUST be registered before the
     // {incident} wildcard route below, or Laravel matches the wildcard first
-    // and treats "pagination-search" as an incident ID.
-    Route::middleware(['role:admin,developer'])->group(function () {
+    // and treats "pagination-search" as an incident ID. Matches the read-only
+    // tier (view-incidents permission / role:...,coordinator,respondent group
+    // on the web /incidents route) — this used to be admin,developer-only,
+    // leaving coordinator/respondent with a permanently empty incidents list
+    // despite having page access.
+    Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
         Route::get('/incidents/pagination-search', [IncidentController::class, 'paginationSearch']);
     });
 

@@ -19,6 +19,7 @@ import { PaginatedResponse } from "@/Types/pagination";
 import { Disaster, Depot, Zone } from "@/Types/models";
 import { reverseGeocode } from "@/Utils/geocoding";
 import { matchPsgcLocation } from "@/Utils/psgcLookup";
+import { usePermission } from "@/Hooks/use-permissions";
 
 const emptyForm = {
   name: "",
@@ -51,6 +52,11 @@ function IncidentsIndex() {
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
+  const { can, hasRole } = usePermission();
+  const canManageIncidents = can("manage-incidents");
+  // DELETE /api/incidents/{id} is admin/developer-only (stricter than
+  // manage-incidents, which coordinator also holds for create/edit).
+  const canDeleteIncidents = hasRole("admin") || hasRole("developer");
 
   const MIN_LOADING_MS = 400;
 
@@ -206,7 +212,9 @@ function IncidentsIndex() {
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between border-b border-white/10 p-4">
         <h1 className="text-lg font-semibold uppercase">Incidents</h1>
-        <Button onClick={openModal}>+ Log incident</Button>
+        {canManageIncidents && (
+          <Button onClick={openModal}>+ Log incident</Button>
+        )}
       </div>
       <FilterBar
         search={search}
@@ -293,12 +301,14 @@ function IncidentsIndex() {
                     · {selected.status}
                   </p>
                 </div>
-                <button
-                  onClick={() => setDeleteTarget(selected)}
-                  className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]"
-                >
-                  Remove
-                </button>
+                {canDeleteIncidents && (
+                  <button
+                    onClick={() => setDeleteTarget(selected)}
+                    className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--critical)]"
+                  >
+                    Remove
+                  </button>
+                )}
               </div>
               <div className="mb-6 overflow-x-auto">
                 <table className="w-full min-w-[420px] text-sm">
@@ -321,12 +331,14 @@ function IncidentsIndex() {
                           {z.casualties_dead + z.casualties_injured + z.casualties_missing}
                         </td>
                         <td className="p-2">
-                          <button
-                            onClick={() => setEditingZone(z)}
-                            className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
-                          >
-                            Edit
-                          </button>
+                          {canManageIncidents && (
+                            <button
+                              onClick={() => setEditingZone(z)}
+                              className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
+                            >
+                              Edit
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -342,15 +354,16 @@ function IncidentsIndex() {
           ) : (
             <div className="flex h-full flex-col">
               <p className="mb-2 text-xs text-[var(--text-secondary)]">
-                Select an incident on the left, or click the map to log a new
-                incident at that location.
+                {canManageIncidents
+                  ? "Select an incident on the left, or click the map to log a new incident at that location."
+                  : "Select an incident on the left."}
               </p>
               <div className="min-h-[320px] flex-1 relative z-10">
                 <IncidentMap
                   incidents={allIncidents}
                   depots={depots}
                   onSelectIncident={setSelectedId}
-                  onMapClick={openModalAt}
+                  onMapClick={canManageIncidents ? openModalAt : undefined}
                 />
               </div>
             </div>

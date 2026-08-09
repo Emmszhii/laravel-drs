@@ -5,6 +5,7 @@ import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { resourcesService } from "@/api-service/modules/resources";
+import { usePermission } from "@/Hooks/use-permissions";
 import { ResourcesTabs, StockCard, stockColumns, stockFields } from "./shared";
 import type { ResourceStock } from "@/Types/models";
 
@@ -13,17 +14,21 @@ function ResourcesIndex() {
     mode: "create" | "edit";
     row?: ResourceStock;
   } | null>(null);
+  const { can } = usePermission();
+  const canManage = can("manage-depots");
 
   return (
     <div>
       <div className="flex items-center justify-between border-b border-white/10 px-6">
         <ResourcesTabs />
-        <Button
-          className="my-2"
-          onClick={() => setStockModal({ mode: "create" })}
-        >
-          + Add stock
-        </Button>
+        {canManage && (
+          <Button
+            className="my-2"
+            onClick={() => setStockModal({ mode: "create" })}
+          >
+            + Add stock
+          </Button>
+        )}
       </div>
 
       <div className="p-6">
@@ -32,6 +37,8 @@ function ResourcesIndex() {
           apiQueryKey="resources"
           columns={stockColumns}
           renderCard={StockCard}
+          editPermission="manage-depots"
+          deletePermission="manage-depots"
           onEditRow={(row) => setStockModal({ mode: "edit", row })}
         />
       </div>

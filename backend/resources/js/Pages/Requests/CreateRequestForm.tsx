@@ -3,6 +3,7 @@ import Button from "@/Components/Common/Button";
 import { ApiError, http } from "@/api-service/client";
 import { resourceTypesService } from "@/api-service/modules/resourceTypes";
 import { enqueue } from "@/Offline/outbox";
+import { usePermission } from "@/Hooks/use-permissions";
 import type { ResourceType, Zone } from "@/Types/models";
 
 type Props = { zones: Zone[] };
@@ -22,6 +23,7 @@ const PRIORITIES: { value: string; label: string }[] = [
  * and it syncs automatically once connectivity returns (useOfflineSync).
  */
 export default function CreateRequestForm({ zones }: Props) {
+  const { can } = usePermission();
   const [resourceTypes, setResourceTypes] = useState<ResourceType[]>([]);
   const [zoneId, setZoneId] = useState(zones[0]?.id ?? "");
   const [resourceTypeId, setResourceTypeId] = useState("");
@@ -75,6 +77,10 @@ export default function CreateRequestForm({ zones }: Props) {
       setSaving(false);
     }
   };
+
+  if (!can("manage-requests")) {
+    return null;
+  }
 
   if (zones.length === 0) {
     return (

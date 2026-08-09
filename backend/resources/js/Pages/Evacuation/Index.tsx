@@ -6,6 +6,7 @@ import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { evacuationCentersService } from "@/api-service/modules/evacuationCenters";
 import { incidentsService } from "@/api-service/modules/incidents";
+import { usePermission } from "@/Hooks/use-permissions";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { EvacuationCenter } from "@/Types/models";
 
@@ -102,19 +103,23 @@ const fields: FieldDef<EvacuationCenter>[] = [
 function EvacuationIndex() {
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<EvacuationCenter | null>(null);
+  const { can } = usePermission();
+  const canManage = can("manage-evacuation-centers");
 
   return (
     <div>
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
         <h1 className="text-lg font-semibold uppercase">Evacuation centers</h1>
-        <Button
-          onClick={() => {
-            setEditing(null);
-            setModalOpen(true);
-          }}
-        >
-          + Log evacuation center
-        </Button>
+        {canManage && (
+          <Button
+            onClick={() => {
+              setEditing(null);
+              setModalOpen(true);
+            }}
+          >
+            + Log evacuation center
+          </Button>
+        )}
       </div>
 
       <div className="p-6">
@@ -123,6 +128,8 @@ function EvacuationIndex() {
           apiQueryKey="evacuation-centers"
           columns={columns}
           renderCard={EvacuationCard}
+          editPermission="manage-evacuation-centers"
+          deletePermission="manage-evacuation-centers"
           onEditRow={(row) => {
             setEditing(row);
             setModalOpen(true);

@@ -25,9 +25,6 @@ Route::get('/public', [PublicDashboardController::class, 'index'])->name('public
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::post('/incidents/{disaster}/optimize', [OptimizationController::class, 'trigger'])
-        ->name('incidents.optimize');
-
     // Read-only access for coordinator/respondent, in addition to admin/developer.
     Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
         Route::get('/incidents', [IncidentController::class, 'index'])->name('web.incidents.index');
@@ -36,6 +33,14 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index'])->name('depots.index');
         Route::get('/dispatch', [DispatchController::class, 'index'])->name('dispatch.index');
         Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index'])->name('evacuation-centers.index');
+    });
+
+    // Matches the `run-optimization` permission holders (RoleSeeder) — was
+    // previously only `auth`-gated (no `role:` check at all), letting any
+    // authenticated user, including viewer, trigger the solver directly.
+    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+        Route::post('/incidents/{disaster}/optimize', [OptimizationController::class, 'trigger'])
+            ->name('incidents.optimize');
     });
 
     Route::middleware(['role:admin,developer'])->group(function () {

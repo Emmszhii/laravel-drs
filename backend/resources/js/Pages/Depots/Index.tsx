@@ -9,6 +9,7 @@ import { matchPsgcLocation } from "@/Utils/psgcLookup";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { ApiError } from "@/api-service/client";
 import { depotsService } from "@/api-service/modules/depots";
+import { usePermission } from "@/Hooks/use-permissions";
 import type { ColumnDef, CardActions } from "@/Components/table";
 import type { Depot } from "@/Types/models";
 
@@ -77,6 +78,8 @@ function DepotCard(row: Depot, actions: CardActions) {
 }
 
 function DepotsIndex() {
+  const { can } = usePermission();
+  const canManage = can("manage-depots");
   const [mapDepots, setMapDepots] = useState<Depot[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editing, setEditing] = useState<Depot | null>(null);
@@ -183,7 +186,7 @@ function DepotsIndex() {
 
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
         <h1 className="text-lg font-semibold uppercase">Depots</h1>
-        <Button onClick={openCreate}>+ Add depot</Button>
+        {canManage && <Button onClick={openCreate}>+ Add depot</Button>}
       </div>
 
       <div className="p-6">
@@ -192,6 +195,8 @@ function DepotsIndex() {
           apiQueryKey="depots"
           columns={columns}
           renderCard={DepotCard}
+          editPermission="manage-depots"
+          deletePermission="manage-depots"
           onEditRow={openEdit}
           onDelete={() => loadMap()}
         />

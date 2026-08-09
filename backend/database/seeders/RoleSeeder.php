@@ -17,6 +17,7 @@ class RoleSeeder extends Seeder
             'manage-incidents',
             'manage-depots',
             'manage-requests',
+            'manage-evacuation-centers',
             'run-optimization',
             'manage-routing-settings',
             'system-configuration',
@@ -33,6 +34,7 @@ class RoleSeeder extends Seeder
             'manage-incidents',
             'manage-depots',
             'manage-requests',
+            'manage-evacuation-centers',
             'run-optimization',
             'manage-routing-settings',
         ];
@@ -47,6 +49,7 @@ class RoleSeeder extends Seeder
                 'view-requests',
                 'manage-incidents',
                 'manage-requests',
+                'manage-evacuation-centers',
                 'run-optimization',
             ],
             // Developer shares every admin feature, plus full system configuration.

@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Password;
 
 /**
- * Users CRUD — backs Settings → Users. Keeps the legacy `role` string
- * column (read by EnsureUserHasRole) and the Spatie role/permission system
- * (see RoleSeeder) in sync, same dual-system approach as UserSeeder.
+ * Users CRUD — backs Settings → Users. Legacy `role` string column (read by
+ * EnsureUserHasRole) and Spatie roles/permissions stay in sync automatically
+ * via User::booted() — see app/Models/User.php.
  */
 class UserController extends BaseController
 {
@@ -65,8 +65,6 @@ class UserController extends BaseController
 
     protected function afterCreate(Model $model): void
     {
-        $model->syncRoles([$model->role]);
-
         $token = Password::broker()->createToken($model);
         $setPasswordUrl = url(route('password.reset', [
             'token' => $token,
@@ -82,13 +80,6 @@ class UserController extends BaseController
             setPasswordUrl: $setPasswordUrl,
             expiryHours: (int) ceil(((int) config('auth.passwords.users.expire', 60)) / 60),
         ));
-    }
-
-    protected function afterUpdate(Model $model): void
-    {
-        if ($model->wasChanged('role')) {
-            $model->syncRoles([$model->role]);
-        }
     }
 
     public function destroy(int|string $id): JsonResponse

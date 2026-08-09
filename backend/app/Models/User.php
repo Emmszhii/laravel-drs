@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 #[Fillable(['first_name', 'last_name', 'email', 'password', 'role', 'is_active'])]
@@ -25,6 +26,28 @@ class User extends Authenticatable
 
     /** Computed full name, kept for every existing consumer that reads `->name`. */
     protected $appends = ['name'];
+
+    /**
+     * Keeps the legacy `role` string column (read by EnsureUserHasRole) and
+     * the Spatie role/permission system (read by the frontend's nav/`can()`
+     * checks) in sync on every create/update, regardless of which code path
+     * touched `role` — previously only Api\Settings\UserController did this
+     * explicitly, so any other creation path (factories, seeders, tinker)
+     * left a user passing backend gates with an empty/wrong sidebar.
+     * `firstOrCreate` on Role means this never needs RoleSeeder to have run
+     * first (e.g. in tests that don't seed roles/permissions).
+     */
+    protected static function booted(): void
+    {
+        static::saved(function (User $user): void {
+            if (! $user->role) {
+                return;
+            }
+
+            Role::firstOrCreate(['name' => $user->role, 'guard_name' => 'web']);
+            $user->syncRoles([$user->role]);
+        });
+    }
 
     /**
      * Get the attributes that should be cast.

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { router } from "@inertiajs/react";
 import Button from "../../Components/Common/Button";
+import { usePermission } from "@/Hooks/use-permissions";
 import type { OptimizationRun } from "@/Types/models";
 
 type Props = { disasterId: string; latestRun?: OptimizationRun | null };
@@ -17,6 +18,8 @@ const ALGORITHM_LABELS: Record<string, string> = {
  */
 export default function TriggerSolver({ disasterId, latestRun }: Props) {
   const [loading, setLoading] = useState(false);
+  const { can } = usePermission();
+  const canRunOptimization = can("run-optimization");
 
   const runOptimization = () => {
     setLoading(true);
@@ -32,9 +35,11 @@ export default function TriggerSolver({ disasterId, latestRun }: Props) {
   return (
     <div className="p-6">
       <h2 className="mb-4 text-lg font-semibold uppercase">Run optimization</h2>
-      <Button onClick={runOptimization} disabled={loading}>
-        {loading ? "Running…" : "Re-run allocation solver"}
-      </Button>
+      {canRunOptimization && (
+        <Button onClick={runOptimization} disabled={loading}>
+          {loading ? "Running…" : "Re-run allocation solver"}
+        </Button>
+      )}
 
       {latestRun && (
         <div className="mt-4 text-sm text-[var(--text-secondary)]">
