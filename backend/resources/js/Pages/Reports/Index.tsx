@@ -19,6 +19,7 @@ const columns: ColumnDef<Report>[] = [
       { value: "After-action summary", label: "After-action summary" },
       { value: "Resource utilization", label: "Resource utilization" },
       { value: "Response timeline", label: "Response timeline" },
+      { value: "NDRRMC SitRep", label: "NDRRMC SitRep" },
     ],
   },
   {
@@ -40,12 +41,29 @@ function ReportCard(row: Report, actions: CardActions) {
         </div>
       </div>
       <div className="flex gap-3 text-xs">
-        <a
-          href={reportsService.downloadUrl(row.id)}
-          className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
-        >
-          Download
-        </a>
+        {row.type === "NDRRMC SitRep" ? (
+          <>
+            <a
+              href={reportsService.downloadUrl(row.id, "pdf")}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            >
+              PDF
+            </a>
+            <a
+              href={reportsService.downloadUrl(row.id, "csv")}
+              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            >
+              CSV
+            </a>
+          </>
+        ) : (
+          <a
+            href={reportsService.downloadUrl(row.id)}
+            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+          >
+            Download
+          </a>
+        )}
         {actions.canDelete && (
           <button
             onClick={actions.onDelete}
@@ -79,6 +97,7 @@ const reportFields: FieldDef<Report>[] = [
       { value: "After-action summary", label: "After-action summary" },
       { value: "Resource utilization", label: "Resource utilization" },
       { value: "Response timeline", label: "Response timeline" },
+      { value: "NDRRMC SitRep", label: "NDRRMC SitRep" },
     ],
   },
 ];

@@ -46,6 +46,24 @@ class User extends Authenticatable
     }
 
     /**
+     * Shape shared with the frontend as `auth.user` (see HandleInertiaRequests
+     * and bootstrap/app.php's 404/429 renderers). Includes Spatie roles/
+     * permissions so Hooks/use-permissions.ts's `can`/`hasRole` checks work.
+     */
+    public function toInertiaPayload(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => $this->role,
+            'is_active' => $this->is_active,
+            'roles' => $this->getRoleNames()->all(),
+            'permissions' => $this->getAllPermissions()->pluck('name')->all(),
+        ];
+    }
+
+    /**
      * Computed `name` = "first_name last_name", so mail templates,
      * Inertia's shared auth user, and every existing `->name` read keeps
      * working after the column was split into first_name/last_name.
@@ -70,6 +88,8 @@ class User extends Authenticatable
             'token' => $token,
             'email' => $this->email,
         ], false));
+
+        SmtpSetting::current()->applyToMailer();
 
         Mail::to($this->email)->send(new PasswordResetMail(
             userName: $this->name,

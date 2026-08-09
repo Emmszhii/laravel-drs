@@ -4,6 +4,7 @@ const TABS = [
   { href: "/settings/users", label: "Users" },
   { href: "/settings/routing", label: "Routing" },
   { href: "/settings/disaster-feed", label: "Disaster feed" },
+  { href: "/settings/smtp", label: "SMTP" },
 ];
 
 /** Shared tab bar for the Settings section — each subtab is a real route (see CLAUDE.md). */

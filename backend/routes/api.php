@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\DepotController;
 use App\Http\Controllers\Api\DirectionsController;
 use App\Http\Controllers\Api\DisasterFeedSettingController;
+use App\Http\Controllers\Api\DispatchController;
+use App\Http\Controllers\Api\EvacuationCenterController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\ResourceTypeController;
 use App\Http\Controllers\Api\RoutingSettingController;
 use App\Http\Controllers\Api\Settings\UserController;
+use App\Http\Controllers\Api\SmtpSettingController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -33,7 +36,12 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
 
     Route::get('/incidents', [IncidentController::class, 'index']);
     Route::get('/incidents/{incident}', [IncidentController::class, 'show']);
-    Route::post('/incidents', [IncidentController::class, 'store']);
+
+    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+        Route::post('/incidents', [IncidentController::class, 'store']);
+        Route::post('/incidents/{incident}/areas', [IncidentController::class, 'storeArea']);
+        Route::post('/incidents/{incident}/areas/{area}', [IncidentController::class, 'updateArea']);
+    });
 
     Route::put('/profile/password', [ProfileController::class, 'updatePassword']);
 
@@ -42,7 +50,42 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     Route::get('/requests', [RequestController::class, 'index']);
     Route::get('/requests/pagination-search', [RequestController::class, 'paginationSearch']);
 
+    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+        Route::post('/requests', [RequestController::class, 'store']);
+    });
+
     Route::get('/directions', [DirectionsController::class, 'index']);
+
+    // Read-only access for coordinator/respondent, in addition to admin/developer.
+    Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
+        Route::get('/depots', [DepotController::class, 'index']);
+        Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
+
+        Route::get('/resource-types', [ResourceTypeController::class, 'index']);
+        Route::get('/resource-types/pagination-search', [ResourceTypeController::class, 'paginationSearch']);
+
+        Route::get('/resources', [ResourceController::class, 'index']);
+        Route::get('/resources/pagination-search', [ResourceController::class, 'paginationSearch']);
+
+        Route::get('/dispatches', [DispatchController::class, 'index']);
+        Route::get('/dispatches/pagination-search', [DispatchController::class, 'paginationSearch']);
+        Route::get('/dispatches/drivers', [DispatchController::class, 'drivers']);
+        // Self-authorized inside the controller: the assigned driver, or a
+        // coordinator+, may report a position/status update.
+        Route::post('/dispatches/{dispatch}/position', [DispatchController::class, 'updatePosition']);
+        Route::post('/dispatches/{dispatch}/status', [DispatchController::class, 'updateStatus']);
+
+        Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index']);
+        Route::get('/evacuation-centers/pagination-search', [EvacuationCenterController::class, 'paginationSearch']);
+    });
+
+    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+        Route::post('/dispatches', [DispatchController::class, 'store']);
+
+        Route::post('/evacuation-centers', [EvacuationCenterController::class, 'store']);
+        Route::post('/evacuation-centers/{id}', [EvacuationCenterController::class, 'update']);
+        Route::delete('/evacuation-centers/{id}', [EvacuationCenterController::class, 'destroy']);
+    });
 
     Route::middleware(['role:admin,developer'])->group(function () {
         Route::get('/routing-settings', [RoutingSettingController::class, 'show']);
@@ -53,25 +96,22 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::patch('/disaster-feed-settings', [DisasterFeedSettingController::class, 'update']);
         Route::post('/disaster-feed-settings/run', [DisasterFeedSettingController::class, 'run']);
 
+        Route::get('/smtp-settings', [SmtpSettingController::class, 'show']);
+        Route::patch('/smtp-settings', [SmtpSettingController::class, 'update']);
+        Route::post('/smtp-settings/test', [SmtpSettingController::class, 'test']);
+
         Route::post('/incidents/{incident}', [IncidentController::class, 'update']);
         Route::delete('/incidents/{incident}', [IncidentController::class, 'destroy']);
-        Route::post('/incidents/{incident}/areas', [IncidentController::class, 'storeArea']);
         Route::delete('/incidents/{incident}/areas/{area}', [IncidentController::class, 'destroyArea']);
 
-        Route::get('/depots', [DepotController::class, 'index']);
-        Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
         Route::post('/depots', [DepotController::class, 'store']);
         Route::post('/depots/{id}', [DepotController::class, 'update']);
         Route::delete('/depots/{id}', [DepotController::class, 'destroy']);
 
-        Route::get('/resource-types', [ResourceTypeController::class, 'index']);
-        Route::get('/resource-types/pagination-search', [ResourceTypeController::class, 'paginationSearch']);
         Route::post('/resource-types', [ResourceTypeController::class, 'store']);
         Route::post('/resource-types/{id}', [ResourceTypeController::class, 'update']);
         Route::delete('/resource-types/{id}', [ResourceTypeController::class, 'destroy']);
 
-        Route::get('/resources', [ResourceController::class, 'index']);
-        Route::get('/resources/pagination-search', [ResourceController::class, 'paginationSearch']);
         Route::post('/resources', [ResourceController::class, 'store']);
         Route::post('/resources/{id}', [ResourceController::class, 'update']);
         Route::delete('/resources/{id}', [ResourceController::class, 'destroy']);

@@ -38,7 +38,7 @@ class HandleInertiaRequests extends Middleware
         return [
             ...parent::share($request),
             'auth' => [
-                'user' => $request->user(),
+                'user' => $request->user()?->toInertiaPayload(),
             ],
             // Exposes back()->with('status', ...) flashes (forgot-password
             // confirmation, password-reset success) as a page prop — Inertia

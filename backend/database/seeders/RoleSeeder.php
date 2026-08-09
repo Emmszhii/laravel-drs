@@ -12,6 +12,8 @@ class RoleSeeder extends Seeder
     {
         $permissions = [
             'view-dashboard',
+            'view-incidents',
+            'view-requests',
             'manage-incidents',
             'manage-depots',
             'manage-requests',
@@ -26,6 +28,8 @@ class RoleSeeder extends Seeder
 
         $adminPermissions = [
             'view-dashboard',
+            'view-incidents',
+            'view-requests',
             'manage-incidents',
             'manage-depots',
             'manage-requests',
@@ -35,8 +39,12 @@ class RoleSeeder extends Seeder
 
         $rolePermissions = [
             'viewer' => ['view-dashboard'],
+            // Field responder: read-only access to incidents/requests, no management rights.
+            'respondent' => ['view-dashboard', 'view-incidents', 'view-requests'],
             'coordinator' => [
                 'view-dashboard',
+                'view-incidents',
+                'view-requests',
                 'manage-incidents',
                 'manage-requests',
                 'run-optimization',

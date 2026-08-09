@@ -33,6 +33,17 @@ export interface Disaster {
   source?: "usgs" | "gdacs" | null;
   external_id?: string | null;
   source_url?: string | null;
+  /** Latest solver run only (see Api\IncidentController's optimizationRuns eager-load). */
+  optimization_runs?: OptimizationRun[];
+}
+
+export interface OptimizationRun {
+  id: string;
+  disaster_id: string;
+  algorithm_used: string;
+  objective_value: number | null;
+  status: "completed" | "failed";
+  created_at?: string;
 }
 
 export interface Zone {
@@ -43,6 +54,32 @@ export interface Zone {
   severity_level: "High" | "Medium";
   lat: number;
   lng: number;
+  /** NDRRMC/Sendai DRR-standard indicator fields — see Disaster::ndrrmcSummary(). */
+  casualties_dead: number;
+  casualties_injured: number;
+  casualties_missing: number;
+  families_affected: number;
+  houses_totally_damaged: number;
+  houses_partially_damaged: number;
+  estimated_damage_cost: number | null;
+  damage_cost_currency: string;
+}
+
+/** GET /api/evacuation-centers. */
+export interface EvacuationCenter {
+  [key: string]: unknown;
+  id: string;
+  disaster_id: string;
+  zone_id: string | null;
+  name: string;
+  address: string | null;
+  lat: number;
+  lng: number;
+  capacity: number | null;
+  families_served: number;
+  individuals_served: number;
+  status: "OPEN" | "CLOSED";
+  disaster?: Disaster;
 }
 
 export interface Depot {
@@ -64,6 +101,32 @@ export interface ResourceType {
   id: string;
   name: string;
   unit: string;
+}
+
+/** One depot-to-destination resource-in-transit trip — GET /api/dispatches. */
+export interface Dispatch {
+  [key: string]: unknown;
+  id: string;
+  disaster_id: string;
+  zone_id: string | null;
+  depot_id: string;
+  allocation_id: string | null;
+  resource_type_id: string | null;
+  driver_id: string;
+  vehicle_label: string | null;
+  status: "pending" | "en_route" | "delivered" | "cancelled";
+  origin_lat: number;
+  origin_lng: number;
+  destination_lat: number;
+  destination_lng: number;
+  current_lat: number | null;
+  current_lng: number | null;
+  last_position_at: string | null;
+  dispatched_at: string | null;
+  delivered_at: string | null;
+  depot?: Depot;
+  driver?: { id: string; name: string };
+  disaster?: Disaster;
 }
 
 /** A stock (depot inventory) row — GET /api/resources. */
@@ -95,7 +158,7 @@ export interface Report {
   id: string;
   disaster_id: string | null;
   name: string;
-  type: "After-action summary" | "Resource utilization" | "Response timeline";
+  type: "After-action summary" | "Resource utilization" | "Response timeline" | "NDRRMC SitRep";
   generated_at: string;
   disaster?: Disaster;
 }
@@ -162,6 +225,20 @@ export interface RoutingSettingsData {
   usage_count: number;
   fallback_triggered_at: string | null;
   fallback_reason: "cap_exceeded" | "provider_error" | null;
+  last_test_status: "ok" | "failed" | null;
+  last_test_at: string | null;
+}
+
+export interface SmtpSettingsData {
+  is_enabled: boolean;
+  host: string | null;
+  port: number | null;
+  username: string | null;
+  password_set: boolean;
+  encryption: "tls" | "ssl" | null;
+  from_address: string | null;
+  from_name: string | null;
+  is_configured: boolean;
   last_test_status: "ok" | "failed" | null;
   last_test_at: string | null;
 }

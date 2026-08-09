@@ -42,8 +42,30 @@ class DisasterDataSeeder extends Seeder
             'status' => 'ACTIVE',
         ]);
 
-        Zone::create(['disaster_id' => $marina->id, 'name' => 'Brgy. Bogtong', 'population_affected' => 3200, 'severity_level' => 'High', 'lat' => 13.141, 'lng' => 123.745]);
-        Zone::create(['disaster_id' => $marina->id, 'name' => 'Brgy. Rawis', 'population_affected' => 5400, 'severity_level' => 'Medium', 'lat' => 13.150, 'lng' => 123.752]);
+        Zone::create([
+            'disaster_id' => $marina->id, 'name' => 'Brgy. Bogtong', 'population_affected' => 3200,
+            'severity_level' => 'High', 'lat' => 13.141, 'lng' => 123.745,
+            // Sample NDRRMC/Sendai SitRep figures for demo/evaluation purposes.
+            'casualties_dead' => 2, 'casualties_injured' => 14, 'casualties_missing' => 1,
+            'families_affected' => 640, 'houses_totally_damaged' => 38, 'houses_partially_damaged' => 112,
+            'estimated_damage_cost' => 4500000.00,
+        ]);
+        Zone::create([
+            'disaster_id' => $marina->id, 'name' => 'Brgy. Rawis', 'population_affected' => 5400,
+            'severity_level' => 'Medium', 'lat' => 13.150, 'lng' => 123.752,
+            'casualties_dead' => 0, 'casualties_injured' => 6, 'casualties_missing' => 0,
+            'families_affected' => 980, 'houses_totally_damaged' => 12, 'houses_partially_damaged' => 205,
+            'estimated_damage_cost' => 2100000.00,
+        ]);
+
+        \App\Models\EvacuationCenter::create([
+            'disaster_id' => $marina->id,
+            'name' => 'Legazpi City Convention Center',
+            'address' => 'Rizal St, Legazpi City, Albay',
+            'lat' => 13.1420, 'lng' => 123.7480,
+            'capacity' => 800, 'families_served' => 210, 'individuals_served' => 890,
+            'status' => 'OPEN',
+        ]);
 
         Disaster::create([
             'name' => 'Flooding — Marikina River',

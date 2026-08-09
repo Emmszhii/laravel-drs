@@ -53,4 +53,32 @@ class Disaster extends Model
     {
         return $this->hasMany(OptimizationRun::class);
     }
+
+    public function evacuationCenters(): HasMany
+    {
+        return $this->hasMany(EvacuationCenter::class);
+    }
+
+    /**
+     * Sums each zone's NDRRMC/Sendai-standard indicator fields into a
+     * disaster-level total, for the SitRep report (see
+     * Services\Reports\NdrrmcReportBuilder). Zone level stays the single
+     * source of truth — this is a derived rollup, not stored separately.
+     *
+     * @return array{casualties_dead: int, casualties_injured: int, casualties_missing: int, families_affected: int, houses_totally_damaged: int, houses_partially_damaged: int, estimated_damage_cost: float}
+     */
+    public function ndrrmcSummary(): array
+    {
+        $zones = $this->zones;
+
+        return [
+            'casualties_dead' => (int) $zones->sum('casualties_dead'),
+            'casualties_injured' => (int) $zones->sum('casualties_injured'),
+            'casualties_missing' => (int) $zones->sum('casualties_missing'),
+            'families_affected' => (int) $zones->sum('families_affected'),
+            'houses_totally_damaged' => (int) $zones->sum('houses_totally_damaged'),
+            'houses_partially_damaged' => (int) $zones->sum('houses_partially_damaged'),
+            'estimated_damage_cost' => (float) $zones->sum('estimated_damage_cost'),
+        ];
+    }
 }

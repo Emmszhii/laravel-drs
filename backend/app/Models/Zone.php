@@ -31,12 +31,27 @@ class Zone extends Model
         'lat',
         'lng',
         // 'boundary', // geography(Polygon, 4326) — enable once PostGIS casting is wired up
+        'casualties_dead',
+        'casualties_injured',
+        'casualties_missing',
+        'families_affected',
+        'houses_totally_damaged',
+        'houses_partially_damaged',
+        'estimated_damage_cost',
+        'damage_cost_currency',
     ];
 
     protected $casts = [
         'population_affected' => 'integer',
         'lat' => 'float',
         'lng' => 'float',
+        'casualties_dead' => 'integer',
+        'casualties_injured' => 'integer',
+        'casualties_missing' => 'integer',
+        'families_affected' => 'integer',
+        'houses_totally_damaged' => 'integer',
+        'houses_partially_damaged' => 'integer',
+        'estimated_damage_cost' => 'float',
     ];
 
     public function disaster(): BelongsTo

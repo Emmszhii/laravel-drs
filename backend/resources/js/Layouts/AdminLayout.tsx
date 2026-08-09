@@ -3,14 +3,21 @@ import { Link, usePage } from "@inertiajs/react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
 import { DispatchTicker } from "@/Components/DispatchTicker";
 import { NotificationBell } from "@/Components/NotificationBell";
+import { usePermission } from "@/Hooks/use-permissions";
+import { OfflineBanner } from "@/Components/OfflineBanner";
 
+// Roles allowed to reach each link — mirrors the `role:` middleware groups
+// in routes/web.php exactly, so the sidebar never shows a link that would
+// 403 when clicked.
 const navItems = [
-  { href: "/", label: "Dashboard" },
-  { href: "/incidents", label: "Incidents" },
-  { href: "/resources", label: "Resources" },
-  { href: "/depots", label: "Depots" },
-  { href: "/reports", label: "Reports" },
-  { href: "/settings/users", label: "Settings" },
+  { href: "/", label: "Dashboard", roles: ["admin", "developer", "coordinator", "respondent", "viewer"] },
+  { href: "/incidents", label: "Incidents", roles: ["admin", "developer", "coordinator", "respondent"] },
+  { href: "/resources", label: "Resources", roles: ["admin", "developer", "coordinator", "respondent"] },
+  { href: "/depots", label: "Depots", roles: ["admin", "developer", "coordinator", "respondent"] },
+  { href: "/dispatch", label: "Dispatch", roles: ["admin", "developer", "coordinator", "respondent"] },
+  { href: "/evacuation-centers", label: "Evacuation", roles: ["admin", "developer", "coordinator", "respondent"] },
+  { href: "/reports", label: "Reports", roles: ["admin", "developer"] },
+  { href: "/settings/users", label: "Settings", roles: ["admin", "developer"] },
 ];
 
 /**
@@ -25,6 +32,10 @@ const navItems = [
  */
 export default function AdminLayout({ children }: PropsWithChildren) {
   const { url } = usePage();
+  const { hasRole } = usePermission();
+  const visibleNavItems = navItems.filter((item) =>
+    item.roles.some((role) => hasRole(role)),
+  );
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)]">
@@ -40,11 +51,12 @@ export default function AdminLayout({ children }: PropsWithChildren) {
           <NotificationBell />
         </div>
       </header>
+      <OfflineBanner />
       <DispatchTicker />
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         <nav className="flex shrink-0 flex-row overflow-x-auto border-b border-white/10 md:w-[180px] md:flex-col md:overflow-visible md:border-r md:border-b-0">
           <div className="flex flex-1 flex-row overflow-x-auto md:flex-col md:overflow-y-auto md:py-2">
-            {navItems.map((item) => {
+            {visibleNavItems.map((item) => {
               const active = item.href === "/" ? url === "/" : url.startsWith(item.href);
               return (
                 <Link

@@ -2,6 +2,7 @@ import { PropsWithChildren } from "react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
 import { DispatchTicker } from "@/Components/DispatchTicker";
 import { NotificationBell } from "@/Components/NotificationBell";
+import { OfflineBanner } from "@/Components/OfflineBanner";
 
 /**
  * Outermost shell for non-admin/developer roles: brand bar + notification
@@ -20,6 +21,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
           <NotificationBell />
         </div>
       </header>
+      <OfflineBanner />
       <DispatchTicker />
       <main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
     </div>

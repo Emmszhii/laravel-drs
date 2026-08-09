@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PageProps } from "@/Types/models";
+import { sharesAdminAccess } from "@/api-service";
 import AppLayout from "../Layouts/AppLayout";
 import AdminLayout from "../Layouts/AdminLayout";
 import DashboardLayout from "../Layouts/DashboardLayout";
@@ -208,9 +209,8 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
 
 Dashboard.layout = (page: JSX.Element) => {
   const role = (page.props as Props).auth.user?.role;
-  const isAdminOrDeveloper = role === "admin" || role === "developer";
 
-  return isAdminOrDeveloper ? (
+  return sharesAdminAccess(role) ? (
     <AdminLayout>{page}</AdminLayout>
   ) : (
     <AppLayout>{page}</AppLayout>

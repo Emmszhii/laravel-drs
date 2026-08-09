@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Settings;
 
 use App\Http\Controllers\BaseController;
 use App\Mail\NewAccountMail;
+use App\Models\SmtpSetting;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -71,6 +72,8 @@ class UserController extends BaseController
             'token' => $token,
             'email' => $model->email,
         ], false));
+
+        SmtpSetting::current()->applyToMailer();
 
         Mail::to($model->email)->send(new NewAccountMail(
             userName: $model->name,

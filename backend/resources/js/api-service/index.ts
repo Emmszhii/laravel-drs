@@ -24,3 +24,4 @@ export { resourceTypesService } from "./modules/resourceTypes";
 export { resourcesService } from "./modules/resources";
 export { usersService } from "./modules/users";
 export { reportsService } from "./modules/reports";
+export { dispatchesService } from "./modules/dispatches";

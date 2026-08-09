@@ -8,40 +8,42 @@ import {
 } from "lucide-react";
 
 /**
- * Public "about this system" page — sourced from INTEGRATION.md's feature
- * summary. Opts out of AppLayout like Login.tsx/ResetPassword.tsx, since
- * this is reachable while unauthenticated.
+ * Public "about this system" page — originally sourced from INTEGRATION.md's
+ * feature summary before those 5 features were actually built; copy below
+ * now describes the real, shipped implementation instead. Opts out of
+ * AppLayout like Login.tsx/ResetPassword.tsx, since this is reachable while
+ * unauthenticated.
  */
 const features = [
   {
     icon: Satellite,
     title: "Real-Time Geo Tracking",
     description:
-      "Integrated Leaflet.js / Mapbox API with dynamic GPS tracking for active resource dispatch routes.",
+      "Live GPS tracking of resource dispatches on the free Leaflet + OSRM map stack — no paid map API required.",
   },
   {
     icon: ShieldCheck,
     title: "Multi-Role Security (RBAC)",
     description:
-      "Strict role-based access control for Administrators, LDRRMOs, Responders, and Public users.",
+      "Role-based access for admins, coordinators, and field respondents, plus a public read-only incident view.",
   },
   {
     icon: WifiOff,
     title: "Offline-First Capabilities",
     description:
-      "PWA Service Workers with IndexedDB local caching for field logging during cellular dropouts.",
+      "PWA service worker with an IndexedDB-backed queue for logging incidents and resource requests through cellular dropouts.",
   },
   {
     icon: Route,
     title: "Algorithmic Allocation",
     description:
-      "Heuristic optimization (Greedy / Dijkstra variants) to automate priority supply matching.",
+      "Linear-programming resource allocation, with a greedy nearest-depot heuristic as an automatic fallback if the solver is unreachable.",
   },
   {
     icon: ClipboardCheck,
     title: "Standard DRRM Compliance",
     description:
-      "Relief cataloging and reports structured according to NDRRMC and Sendai DRR frameworks.",
+      "Casualty, damage, and evacuation-center tracking with NDRRMC/Sendai-aligned SitRep reports (PDF and CSV).",
   },
 ];
 

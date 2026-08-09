@@ -9,9 +9,13 @@ export const APP_ROLES = ['developer', 'admin', 'coordinator', 'viewer', 'respon
 
 export type AppRole = (typeof APP_ROLES)[number];
 
-/** True when the role has admin-level (sidebar/CRUD) access. */
+/**
+ * True when the role has access to at least one AdminLayout sidebar link
+ * beyond Dashboard (see routes/web.php's role: groups) — `viewer` has no
+ * other accessible page, so it's the only role excluded.
+ */
 export function sharesAdminAccess(role: string | null | undefined): boolean {
-  return role === 'developer' || role === 'admin';
+  return role === 'developer' || role === 'admin' || role === 'coordinator' || role === 'respondent';
 }
 
 export function normalizeRole(role: string | null | undefined): AppRole {

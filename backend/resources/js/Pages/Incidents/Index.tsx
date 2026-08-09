@@ -6,14 +6,17 @@ import Modal from "../../Components/Common/Modal";
 import Button from "../../Components/Common/Button";
 import { ConfirmDeleteModal } from "@/Components/modal/ConfirmDeleteModal";
 import TriggerSolver from "../Optimization/TriggerSolver";
+import CreateRequestForm from "../Requests/CreateRequestForm";
+import ZoneNdrrmcModal from "./ZoneNdrrmcModal";
 import IncidentMap from "../../Components/Map/IncidentMap";
 import LocationPickMap from "../../Components/Map/LocationPickMap";
 import usePsgc from "../../Hooks/usePsgc";
 import { ApiError } from "@/api-service/client";
 import { incidentsService } from "@/api-service/modules/incidents";
 import { depotsService } from "@/api-service/modules/depots";
+import { enqueue } from "@/Offline/outbox";
 import { PaginatedResponse } from "@/Types/pagination";
-import { Disaster, Depot } from "@/Types/models";
+import { Disaster, Depot, Zone } from "@/Types/models";
 import { reverseGeocode } from "@/Utils/geocoding";
 import { matchPsgcLocation } from "@/Utils/psgcLookup";
 
@@ -43,6 +46,7 @@ function IncidentsIndex() {
   const [deleting, setDeleting] = useState(false);
   const [depots, setDepots] = useState<Depot[]>([]);
   const [allIncidents, setAllIncidents] = useState<Disaster[]>([]);
+  const [editingZone, setEditingZone] = useState<Zone | null>(null);
   const psgc = usePsgc();
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
@@ -74,6 +78,13 @@ function IncidentsIndex() {
     incidentsService.getAll().then(setAllIncidents);
     depotsService.getAll().then(setDepots);
   }, []);
+
+  const refreshSelected = () => {
+    if (!selectedId) return;
+    incidentsService
+      .getAll()
+      .then((all) => setSelected(all.find((i) => i.id === selectedId) ?? null));
+  };
 
   useEffect(() => {
     if (!selectedId) {
@@ -141,25 +152,34 @@ function IncidentsIndex() {
       return;
     }
 
+    const payload = {
+      name: form.name,
+      type: form.type as Disaster["type"],
+      signal: Number(form.signal) as Disaster["signal"],
+      zone: form.zone,
+      lat: form.lat,
+      lng: form.lng,
+    };
+
     setSaving(true);
     try {
-      await incidentsService.create({
-        name: form.name,
-        type: form.type as Disaster["type"],
-        signal: Number(form.signal) as Disaster["signal"],
-        zone: form.zone,
-        lat: form.lat,
-        lng: form.lng,
-      });
+      await incidentsService.create(payload);
       setModalOpen(false);
       load();
       incidentsService.getAll().then(setAllIncidents);
     } catch (err) {
-      setSaveError(
-        err instanceof ApiError
-          ? err.message
-          : "Failed to log incident. Please try again.",
-      );
+      const isNetworkFailure = err instanceof ApiError && err.status === 0;
+      if (isNetworkFailure || !navigator.onLine) {
+        await enqueue("incident", payload);
+        setModalOpen(false);
+        setSaveError(null);
+      } else {
+        setSaveError(
+          err instanceof ApiError
+            ? err.message
+            : "Failed to log incident. Please try again.",
+        );
+      }
     } finally {
       setSaving(false);
     }
@@ -287,6 +307,8 @@ function IncidentsIndex() {
                       <th className="p-2">Area</th>
                       <th className="p-2">Population affected</th>
                       <th className="p-2">Severity</th>
+                      <th className="p-2">Casualties</th>
+                      <th className="p-2"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -295,12 +317,27 @@ function IncidentsIndex() {
                         <td className="p-2">{z.name}</td>
                         <td className="p-2">{z.population_affected}</td>
                         <td className="p-2">{z.severity_level}</td>
+                        <td className="p-2">
+                          {z.casualties_dead + z.casualties_injured + z.casualties_missing}
+                        </td>
+                        <td className="p-2">
+                          <button
+                            onClick={() => setEditingZone(z)}
+                            className="text-xs text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
+                          >
+                            Edit
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               </div>
-              <TriggerSolver disasterId={selected.id} />
+              <TriggerSolver
+                disasterId={selected.id}
+                latestRun={selected.optimization_runs?.[0] ?? null}
+              />
+              <CreateRequestForm zones={selected.zones ?? []} />
             </>
           ) : (
             <div className="flex h-full flex-col">
@@ -481,6 +518,15 @@ function IncidentsIndex() {
         onCancel={() => setDeleteTarget(null)}
         onConfirm={remove}
       />
+
+      {editingZone && selected && (
+        <ZoneNdrrmcModal
+          disasterId={selected.id}
+          zone={editingZone}
+          onClose={() => setEditingZone(null)}
+          onSaved={refreshSelected}
+        />
+      )}
     </div>
   );
 }

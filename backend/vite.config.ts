@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,37 @@ export default defineConfig({
       refresh: true,
     }),
     react(),
+    // Offline-first scope is deliberately narrow: precache the app shell
+    // (JS/CSS) so a coordinator who already has the app open can keep
+    // logging incidents/requests through a cellular dropout (queued in
+    // IndexedDB, see resources/js/Offline/). No runtimeCaching rules are
+    // registered, so /api/* GET responses are never cached/served stale —
+    // this is not a general offline-browsing/read-cache feature.
+    VitePWA({
+      registerType: "autoUpdate",
+      injectRegister: "auto",
+      manifest: {
+        name: "DisasterResource+",
+        short_name: "DisasterResource+",
+        description: "Resource optimization and visualization for disaster response.",
+        theme_color: "#0B0D0C",
+        background_color: "#0B0D0C",
+        display: "standalone",
+        icons: [
+          {
+            src: "/favicon.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+          },
+        ],
+      },
+      workbox: {
+        // App-shell precache only — no navigateFallback (this is a
+        // server-rendered Inertia app, not a client-routed SPA) and no
+        // runtimeCaching entries, so API responses are always fetched live.
+        globPatterns: ["**/*.{js,css,svg,ico}"],
+      },
+    }),
   ],
   resolve: {
     alias: {

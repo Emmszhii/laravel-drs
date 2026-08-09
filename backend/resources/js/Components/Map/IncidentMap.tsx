@@ -12,12 +12,21 @@ type Incident = {
 };
 type Depot = { id: string; name: string; lat: number; lng: number };
 
+type DispatchMarker = {
+  id: string;
+  vehicle_label?: string | null;
+  status: string;
+  current_lat: number | null;
+  current_lng: number | null;
+};
+
 /** [lng, lat] pairs — matches the GeoJSON order returned by GET /api/directions. */
 type RouteGeometry = [number, number][];
 
 type Props = {
   incidents: Incident[];
   depots: Depot[];
+  dispatches?: DispatchMarker[];
   onSelectIncident?: (id: string) => void;
   route?: RouteGeometry | null;
   selectedIncidentId?: string;
@@ -34,6 +43,7 @@ const PH_CENTER: [number, number] = [12.8797, 121.774];
 export default function IncidentMap({
   incidents,
   depots,
+  dispatches,
   onSelectIncident,
   route,
   selectedIncidentId,
@@ -43,6 +53,7 @@ export default function IncidentMap({
   const leafletMap = useRef<L.Map | null>(null);
   const routeLayers = useRef<L.Layer[]>([]);
   const depotMarkers = useRef<Record<string, L.CircleMarker>>({});
+  const dispatchMarkers = useRef<Record<string, L.CircleMarker>>({});
   const yourLocationMarker = useRef<L.CircleMarker | null>(null);
   const onMapClickRef = useRef(onMapClick);
   onMapClickRef.current = onMapClick;
@@ -168,6 +179,48 @@ export default function IncidentMap({
       depotMarkers.current[d.id] = marker;
     });
   }, [incidents, depots, onSelectIncident]);
+
+  // True dynamic repositioning via setLatLng — unlike the incident/depot pins
+  // above, dispatch markers move on live position updates, so they must not
+  // be torn down and rebuilt every time (that would drop the popup/selection
+  // state and flicker on every GPS update).
+  useEffect(() => {
+    if (!leafletMap.current) return;
+
+    const seen = new Set<string>();
+
+    (dispatches ?? []).forEach((d) => {
+      if (d.current_lat == null || d.current_lng == null) return;
+      seen.add(d.id);
+
+      const existing = dispatchMarkers.current[d.id];
+      if (existing) {
+        existing.setLatLng([d.current_lat, d.current_lng]);
+        existing.setPopupContent(
+          `<strong>${d.vehicle_label ?? "Dispatch"}</strong><br>${d.status}`,
+        );
+        return;
+      }
+
+      const marker = L.circleMarker([d.current_lat, d.current_lng], {
+        radius: 6,
+        color: "#4A9EFF",
+        fillColor: "#4A9EFF",
+        fillOpacity: 0.9,
+      }).addTo(leafletMap.current!);
+      marker.bindPopup(
+        `<strong>${d.vehicle_label ?? "Dispatch"}</strong><br>${d.status}`,
+      );
+      dispatchMarkers.current[d.id] = marker;
+    });
+
+    Object.keys(dispatchMarkers.current).forEach((id) => {
+      if (!seen.has(id)) {
+        dispatchMarkers.current[id].remove();
+        delete dispatchMarkers.current[id];
+      }
+    });
+  }, [dispatches]);
 
   useEffect(() => {
     if (!navTarget || !directions) return;

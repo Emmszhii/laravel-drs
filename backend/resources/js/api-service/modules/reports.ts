@@ -10,5 +10,6 @@ export const reportsService = {
   ...crud,
 
   /** Native browser download (Content-Disposition: attachment) — no axios needed. */
-  downloadUrl: (id: string) => `/api/reports/${id}/download`,
+  downloadUrl: (id: string, format?: "pdf" | "csv") =>
+    `/api/reports/${id}/download${format ? `?format=${format}` : ""}`,
 };
