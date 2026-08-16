@@ -48,6 +48,14 @@ services:
       timeout: 3s
       retries: 5
       start_period: 25s
+    # Not a host-port publish (that's what caused the blue-green collision
+    # fixed earlier) — `expose:` only documents this container's listening
+    # port to Docker/Compose and to Coolify's own compose parser, which uses
+    # it (or a `:<port>` suffix on SERVICE_FQDN_BACKEND) to know which
+    # container port Traefik should target. Without either, Coolify assumes
+    # port 80 and the public domain times out even though the app is healthy.
+    expose:
+      - "8000"
     networks:
       - default
       - coolify
@@ -117,6 +125,10 @@ services:
     healthcheck:
       # See the `queue` service's comment — same reasoning applies here.
       disable: true
+    # See the `backend` service's comment — same reasoning, so Coolify's
+    # Traefik knows to target this container's 8080 instead of assuming 80.
+    expose:
+      - "8080"
     networks:
       - default
       - coolify
