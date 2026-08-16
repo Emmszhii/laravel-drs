@@ -69,6 +69,13 @@ services:
     labels:
       - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
       - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
+      # This container ends up on 3 networks (default, coolify, and
+      # Coolify's own ephemeral per-deployment ingress network) — without
+      # telling Traefik which one to route through, it can't unambiguously
+      # pick an IP even with the port label present. `coolify` is the one
+      # Traefik's own container is always attached to (no manual reconnect
+      # needed unlike the ephemeral one), so pin to it explicitly.
+      - "traefik.docker.network=coolify"
     networks:
       - default
       - coolify
@@ -149,6 +156,8 @@ services:
     labels:
       - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
       - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
+      # See the `backend` service's comment — same network-disambiguation fix.
+      - "traefik.docker.network=coolify"
     networks:
       - default
       - coolify
