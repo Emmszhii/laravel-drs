@@ -56,6 +56,19 @@ services:
     # port 80 and the public domain times out even though the app is healthy.
     expose:
       - "8000"
+    # Confirmed via live server debugging: Traefik runs with
+    # --providers.docker.exposedbydefault=false and this image EXPOSEs three
+    # ports (8000/8080/2019, shared across backend/queue/scheduler/reverb),
+    # so it can't auto-detect a single target port. Coolify's own generated
+    # router labels (Host(...) rules) don't include a matching
+    # loadbalancer.server.port, so the router matched but had no usable
+    # backend ("no available server" / 504). These label names mirror
+    # Coolify's own naming convention for this resource
+    # (x11oqof2fbwxdq26ev780h1c) — observed directly via `docker inspect` on
+    # a live container — and are stable across redeploys of this resource.
+    labels:
+      - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
+      - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
     networks:
       - default
       - coolify
@@ -129,6 +142,13 @@ services:
     # Traefik knows to target this container's 8080 instead of assuming 80.
     expose:
       - "8080"
+    # See the `backend` service's comment — same fix, targeting 8080.
+    # SERVICE_FQDN_REVERB is currently unset (no domain configured yet), so
+    # this router doesn't exist in Traefik yet, but the label is harmless to
+    # add now and will already be correct whenever a domain is set.
+    labels:
+      - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
+      - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
     networks:
       - default
       - coolify
