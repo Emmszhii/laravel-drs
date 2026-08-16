@@ -197,16 +197,28 @@ services:
       - coolify
 
   # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
-  # Requires `docker/osrm/prepare.sh` to have been run at least once — this
+  # Requires the OSRM data to have been prepared at least once — this
   # service does not build/extract OSM data itself, only serves it.
   # No `ports:` here either — see the `postgres` comment above, same reasoning.
+  #
+  # Uses a named (external) volume rather than a bind mount to
+  # `./docker/osrm/data`: Coolify checks this repo out into a fresh,
+  # ephemeral per-deployment artifact directory on every deploy, so a
+  # relative bind mount here would lose the prepared data (and crash-loop,
+  # since osrm-routed refuses to start without it) the moment the *next*
+  # deploy ran, even after preparing it once. A named volume persists
+  # independently of the deploy checkout. `external: true` (declared below)
+  # because this volume is pre-populated once directly on the host, not
+  # managed by Compose. Local dev keeps the original bind mount via
+  # docker-compose.override.yml, matching CLAUDE.md's documented
+  # `docker/osrm/prepare.sh` workflow.
   osrm:
     image: osrm/osrm-backend
     container_name: disasterresource-osrm
     restart: unless-stopped
-    command: osrm-routed --algorithm mld /data/philippines-latest.osrm
+    command: osrm-routed --algorithm mld /data/laguna-latest.osrm
     volumes:
-      - ./docker/osrm/data:/data:ro
+      - osrm-data-x11oqof2fbwxdq26ev780h1c:/data:ro
     networks:
       - default
       - coolify
@@ -220,4 +232,10 @@ services:
 # (external: false) so it doesn't require a pre-existing `coolify` network.
 networks:
   coolify:
+    external: true
+
+# Pre-populated once directly on the host via `docker volume create` +
+# `docker run` (see the `osrm` service's comment) — not managed by Compose.
+volumes:
+  osrm-data-x11oqof2fbwxdq26ev780h1c:
     external: true
