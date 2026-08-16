@@ -23,6 +23,17 @@ $app = Application::configure(basePath: dirname(__DIR__))
 
         $middleware->statefulApi();
 
+        // Traefik terminates TLS at the edge and forwards requests to this
+        // container over plain HTTP — without trusting its X-Forwarded-Proto
+        // header, Laravel/Vite generate http:// asset URLs on an https:// page,
+        // which browsers block as mixed content. `backend` has no published
+        // host port and is only reachable via Traefik on the internal `coolify`
+        // network, so trusting all proxies is safe here.
+        $middleware->trustProxies(at: '*', headers: Request::HEADER_X_FORWARDED_FOR
+            | Request::HEADER_X_FORWARDED_HOST
+            | Request::HEADER_X_FORWARDED_PORT
+            | Request::HEADER_X_FORWARDED_PROTO);
+
         $middleware->alias([
             'role' => EnsureUserHasRole::class,
             'active' => EnsureUserIsActive::class,
