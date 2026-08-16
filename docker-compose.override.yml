@@ -4,8 +4,8 @@
 # deploy logs), so it never picks up this file — these host-port publishes
 # stay purely a local convenience and never collide with the previous
 # deployment's still-running containers during a Coolify rollout (see
-# docker-compose.yml's solver-service/osrm comments for why those two
-# lost their `ports:` entries).
+# docker-compose.yml's backend/reverb/solver-service/osrm comments for why
+# those lost their `ports:` entries).
 #
 # `postgres` itself is defined ENTIRELY here, not in docker-compose.yml —
 # production already points DB_HOST at a separate, standalone PostgreSQL
@@ -37,6 +37,8 @@ services:
       retries: 10
 
   backend:
+    ports:
+      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -52,6 +54,8 @@ services:
         condition: service_healthy
 
   reverb:
+    ports:
+      - "8080:8080"
     depends_on:
       postgres:
         condition: service_healthy

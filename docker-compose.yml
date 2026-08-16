@@ -7,6 +7,14 @@ services:
   # for the investigation). It's still defined, for local dev only, in
   # docker-compose.override.yml — which Coolify's `-f docker-compose.yml`
   # -only invocation never loads.
+  # No `ports:` here on purpose — Coolify's blue-green rollout briefly runs
+  # this deployment's containers alongside the previous one's, and a static
+  # host-port publish collides between the two (same failure mode postgres/
+  # solver-service/osrm hit — see git history). Coolify's own Traefik routes
+  # to `backend`/`reverb` over the internal `coolify` Docker network via
+  # SERVICE_FQDN_BACKEND/SERVICE_URL_REVERB (see .env.production), so the
+  # host port isn't needed for external reachability. Local dev gets
+  # `localhost:8000`/`localhost:8080` back via docker-compose.override.yml.
   backend:
     build:
       context: ./backend
@@ -24,8 +32,6 @@ services:
     depends_on:
       solver-service:
         condition: service_healthy
-    ports:
-      - "8000:8000"   # Laravel (web/api)
     volumes:
       - ./backend:/var/www/html
     healthcheck:
@@ -92,8 +98,6 @@ services:
     command: php artisan reverb:start --host=0.0.0.0 --port=8080
     env_file:
       - .env
-    ports:
-      - "8080:8080"   # Reverb (realtime)
     volumes:
       - ./backend:/var/www/html
     healthcheck:
