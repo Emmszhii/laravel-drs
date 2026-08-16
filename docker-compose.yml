@@ -32,8 +32,16 @@ services:
     depends_on:
       solver-service:
         condition: service_healthy
-    volumes:
-      - ./backend:/var/www/html
+    # No bind mount here on purpose — Coolify builds from a fresh, ephemeral
+    # per-deployment artifact directory (not a persistent checkout of this
+    # repo), so bind-mounting `./backend` there shadows the image's baked-in
+    # code (from the Dockerfile's `COPY . .` + composer/npm build) with an
+    # empty directory, breaking `artisan`/`vendor`/built assets entirely (see
+    # git history for the "Could not open input file: artisan" investigation).
+    # Production always runs the code baked into the image; a code change
+    # means a new image build + Coolify's own blue-green container swap,
+    # gated by this service's healthcheck below. Local dev gets the bind
+    # mount back via docker-compose.override.yml.
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/up"]
       interval: 10s
@@ -54,8 +62,7 @@ services:
     command: php artisan queue:work --tries=3 --backoff=15
     env_file:
       - .env
-    volumes:
-      - ./backend:/var/www/html
+    # No bind mount here — see the `backend` service's comment above, same reasoning.
     stop_grace_period: 90s
     healthcheck:
       # Disables the base FrankenPHP image's default HEALTHCHECK, which
@@ -79,8 +86,7 @@ services:
     command: php artisan schedule:work
     env_file:
       - .env
-    volumes:
-      - ./backend:/var/www/html
+    # No bind mount here — see the `backend` service's comment above, same reasoning.
     stop_grace_period: 90s
     healthcheck:
       # See the `queue` service's comment — same reasoning applies here.
@@ -98,8 +104,7 @@ services:
     command: php artisan reverb:start --host=0.0.0.0 --port=8080
     env_file:
       - .env
-    volumes:
-      - ./backend:/var/www/html
+    # No bind mount here — see the `backend` service's comment above, same reasoning.
     healthcheck:
       # See the `queue` service's comment — same reasoning applies here.
       disable: true
@@ -111,8 +116,9 @@ services:
       dockerfile: Dockerfile
     container_name: disasterresource-solver
     restart: unless-stopped
-    volumes:
-      - ./solver-service:/app
+    # No bind mount here — same reasoning as the `backend` service's comment
+    # above: production runs the image's baked-in code (Dockerfile's
+    # `COPY . .`), not a bind-mounted ephemeral artifact path.
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
       interval: 10s

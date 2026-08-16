@@ -7,6 +7,14 @@
 # docker-compose.yml's backend/reverb/solver-service/osrm comments for why
 # those lost their `ports:` entries).
 #
+# The `volumes:` bind mounts below (backend/queue/scheduler/reverb/
+# solver-service) are the same story: locally they're a live-edit convenience
+# (no rebuild needed to see code changes), but in Coolify they'd bind-mount an
+# empty ephemeral artifact-directory path over the image's baked-in code,
+# wiping out `artisan`/`vendor`/`main.py` entirely (see docker-compose.yml's
+# backend service comment, and git history for the resulting
+# "Could not open input file: artisan" crash-loop investigation).
+#
 # `postgres` itself is defined ENTIRELY here, not in docker-compose.yml —
 # production already points DB_HOST at a separate, standalone PostgreSQL
 # resource created directly in the Coolify project (not this compose stack),
@@ -39,16 +47,22 @@ services:
   backend:
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/var/www/html
     depends_on:
       postgres:
         condition: service_healthy
 
   queue:
+    volumes:
+      - ./backend:/var/www/html
     depends_on:
       postgres:
         condition: service_healthy
 
   scheduler:
+    volumes:
+      - ./backend:/var/www/html
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,6 +70,8 @@ services:
   reverb:
     ports:
       - "8080:8080"
+    volumes:
+      - ./backend:/var/www/html
     depends_on:
       postgres:
         condition: service_healthy
@@ -63,6 +79,8 @@ services:
   solver-service:
     ports:
       - "8001:8001"
+    volumes:
+      - ./solver-service:/app
 
   osrm:
     ports:
