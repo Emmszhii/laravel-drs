@@ -26,6 +26,12 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # Shared across backend/queue/scheduler/reverb (identical build context +
+    # Dockerfile, just different `command:`) so Compose builds this image
+    # once and reuses it for the other three, instead of rebuilding the same
+    # heavy Dockerfile (compiles pcntl/pdo_pgsql from source) 4 separate
+    # times on every deploy.
+    image: laravel-drs-backend:latest
     container_name: disasterresource-backend
     restart: unless-stopped
     env_file:
@@ -52,6 +58,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # See the `backend` service's comment — shares the same built image.
+    image: laravel-drs-backend:latest
     container_name: disasterresource-queue
     restart: unless-stopped
     command: php artisan queue:work --tries=3 --backoff=15
@@ -78,6 +86,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # See the `backend` service's comment — shares the same built image.
+    image: laravel-drs-backend:latest
     container_name: disasterresource-scheduler
     restart: unless-stopped
     command: php artisan schedule:work
@@ -98,6 +108,8 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    # See the `backend` service's comment — shares the same built image.
+    image: laravel-drs-backend:latest
     container_name: disasterresource-reverb
     restart: unless-stopped
     command: php artisan reverb:start --host=0.0.0.0 --port=8080
