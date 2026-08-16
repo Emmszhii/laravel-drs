@@ -4,12 +4,57 @@
 # deploy logs), so it never picks up this file — these host-port publishes
 # stay purely a local convenience and never collide with the previous
 # deployment's still-running containers during a Coolify rollout (see
-# docker-compose.yml's postgres/solver-service/osrm comments for why those
-# three lost their `ports:` entries).
+# docker-compose.yml's solver-service/osrm comments for why those two
+# lost their `ports:` entries).
+#
+# `postgres` itself is defined ENTIRELY here, not in docker-compose.yml —
+# production already points DB_HOST at a separate, standalone PostgreSQL
+# resource created directly in the Coolify project (not this compose stack),
+# so a bundled postgres service in the base file would be redundant dead
+# weight there. Locally, this is the only place a database gets stood up,
+# so backend/queue/scheduler/reverb's `depends_on: postgres:` entries below
+# are added here too — Compose merges these additively with each service's
+# base-file `depends_on` (e.g. `backend` ends up depending on both `postgres`
+# and `solver-service` locally, but only `solver-service` under Coolify).
 services:
   postgres:
+    image: postgis/postgis:16-3.4
+    container_name: disasterresource-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: disasterresource
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: change-me
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./docker/postgres/init-postgis.sh:/docker-entrypoint-initdb.d/init-postgis.sh
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  queue:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  scheduler:
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  reverb:
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   solver-service:
     ports:
@@ -18,3 +63,6 @@ services:
   osrm:
     ports:
       - "5001:5000"
+
+volumes:
+  pgdata:

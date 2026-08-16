@@ -1,27 +1,12 @@
 services:
-  # No `ports:` here on purpose — only reached over the internal Docker
-  # network (DB_HOST=postgres). A statically published host port would
-  # collide with the previous deployment's still-running postgres container
-  # during a Coolify rollout (two containers can't bind the same host port).
-  # Local dev gets `localhost:5432` back via docker-compose.override.yml,
-  # which Coolify's `-f docker-compose.yml`-only invocation never loads.
-  postgres:
-    image: postgis/postgis:16-3.4
-    container_name: disasterresource-postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: disasterresource
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: change-me
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-      - ./docker/postgres/init-postgis.sh:/docker-entrypoint-initdb.d/init-postgis.sh
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-
+  # `postgres` is NOT defined here — Coolify's `.env.production` already
+  # points DB_HOST at a separate, standalone PostgreSQL resource created
+  # directly in the Coolify project, so this compose stack's own bundled
+  # postgres would be redundant dead weight in production, and it was the
+  # thing crash-looping and blocking every Coolify deploy (see git history
+  # for the investigation). It's still defined, for local dev only, in
+  # docker-compose.override.yml — which Coolify's `-f docker-compose.yml`
+  # -only invocation never loads.
   backend:
     build:
       context: ./backend
@@ -37,8 +22,6 @@ services:
     env_file:
       - .env
     depends_on:
-      postgres:
-        condition: service_healthy
       solver-service:
         condition: service_healthy
     ports:
@@ -65,9 +48,6 @@ services:
     command: php artisan queue:work --tries=3 --backoff=15
     env_file:
       - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
     volumes:
       - ./backend:/var/www/html
     stop_grace_period: 90s
@@ -93,9 +73,6 @@ services:
     command: php artisan schedule:work
     env_file:
       - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
     volumes:
       - ./backend:/var/www/html
     stop_grace_period: 90s
@@ -115,9 +92,6 @@ services:
     command: php artisan reverb:start --host=0.0.0.0 --port=8080
     env_file:
       - .env
-    depends_on:
-      postgres:
-        condition: service_healthy
     ports:
       - "8080:8080"   # Reverb (realtime)
     volumes:
@@ -153,6 +127,3 @@ services:
     command: osrm-routed --algorithm mld /data/philippines-latest.osrm
     volumes:
       - ./docker/osrm/data:/data:ro
-
-volumes:
-  pgdata:
