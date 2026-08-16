@@ -30,11 +30,17 @@ services:
       postgres:
         condition: service_healthy
       solver-service:
-        condition: service_started
+        condition: service_healthy
     ports:
       - "8000:8000"   # Laravel (web/api)
     volumes:
       - ./backend:/var/www/html
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/up"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 25s
 
   # Runs App\Jobs\RunOptimizationJob (QUEUE_CONNECTION=database) — without
   # this nothing ever processes the queued optimization calls.
@@ -52,6 +58,12 @@ services:
         condition: service_healthy
     volumes:
       - ./backend:/var/www/html
+    stop_grace_period: 90s
+    healthcheck:
+      # Disables the base FrankenPHP image's default HEALTHCHECK, which
+      # probes FrankenPHP's own admin API — not applicable here since this
+      # service runs `php artisan queue:work`, not the FrankenPHP/Caddy server.
+      disable: true
 
   # Runs the Laravel scheduler (routes/console.php): polls the configured
   # disaster feeds (USGS/GDACS) on the admin-set interval and auto-resolves
@@ -72,6 +84,10 @@ services:
         condition: service_healthy
     volumes:
       - ./backend:/var/www/html
+    stop_grace_period: 90s
+    healthcheck:
+      # See the `queue` service's comment — same reasoning applies here.
+      disable: true
 
   # Websocket server for App\Events\DisasterAlertEvent (routes/channels.php).
   reverb:
@@ -90,6 +106,9 @@ services:
       - "8080:8080"   # Reverb (realtime)
     volumes:
       - ./backend:/var/www/html
+    healthcheck:
+      # See the `queue` service's comment — same reasoning applies here.
+      disable: true
 
   solver-service:
     build:
@@ -101,6 +120,12 @@ services:
       - "8001:8001"
     volumes:
       - ./solver-service:/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
   # Requires `docker/osrm/prepare.sh` to have been run at least once — this

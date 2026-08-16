@@ -15,5 +15,5 @@ app.include_router(optimize.router, prefix="/api/v1/optimize", tags=["optimize"]
 
 @app.get("/health")
 def health():
-    """Simple health check — wire into Laravel/uptime monitoring before the demo."""
+    """Health check consumed by Docker/Compose and the backend's depends_on condition."""
     return {"status": "ok"}
