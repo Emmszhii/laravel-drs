@@ -1,5 +1,6 @@
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useForm } from "@inertiajs/react";
+import { Eye, EyeOff } from "lucide-react";
 import Button from "../../Components/Common/Button";
 
 interface ResetPasswordProps {
@@ -19,6 +20,8 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
     password: "",
     password_confirmation: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const submit = (e: FormEvent) => {
     e.preventDefault();
@@ -39,14 +42,24 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
           <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
             New password
           </label>
-          <input
-            type="password"
-            value={data.password}
-            onChange={(e) => setData("password", e.target.value)}
-            className="w-full border border-white/20 bg-transparent px-3 py-2 text-sm"
-            autoComplete="new-password"
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={data.password}
+              onChange={(e) => setData("password", e.target.value)}
+              className="w-full border border-white/20 bg-transparent px-3 py-2 pr-9 text-sm"
+              autoComplete="new-password"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              tabIndex={-1}
+              className="absolute inset-y-0 right-0 flex items-center px-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          </div>
           {errors.password && (
             <p className="text-xs text-critical">{errors.password}</p>
           )}
@@ -56,14 +69,24 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
           <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
             Confirm password
           </label>
-          <input
-            type="password"
-            value={data.password_confirmation}
-            onChange={(e) => setData("password_confirmation", e.target.value)}
-            className="w-full border border-white/20 bg-transparent px-3 py-2 text-sm"
-            autoComplete="new-password"
-            required
-          />
+          <div className="relative">
+            <input
+              type={showConfirm ? "text" : "password"}
+              value={data.password_confirmation}
+              onChange={(e) => setData("password_confirmation", e.target.value)}
+              className="w-full border border-white/20 bg-transparent px-3 py-2 pr-9 text-sm"
+              autoComplete="new-password"
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirm((v) => !v)}
+              tabIndex={-1}
+              className="absolute inset-y-0 right-0 flex items-center px-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+            >
+              {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          </div>
         </div>
 
         {errors.email && <p className="text-xs text-critical">{errors.email}</p>}

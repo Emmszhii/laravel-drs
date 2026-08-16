@@ -9,6 +9,8 @@
  *                  textarea, select, checkbox, async-select, file.
  */
 
+import { Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 import { Field, inputCls, textareaCls } from '@/Components/form/Field';
 import { AsyncSelectField } from '@/Hooks/use-async-select-field';
 import { FileUploadField } from '@/Hooks/use-file-upload-field';
@@ -201,6 +203,10 @@ function FieldControl<T>({
         );
     }
 
+    if (field.type === 'password') {
+        return <PasswordControl value={value} disabled={disabled} onChange={onChange} placeholder={field.placeholder} dataCy={dataCy} />;
+    }
+
     return (
         <input
             type={field.type ?? 'text'}
@@ -217,5 +223,45 @@ function FieldControl<T>({
             className={inputCls}
             data-cy={dataCy}
         />
+    );
+}
+
+/** Password input with a show/hide toggle — starts masked by default. */
+function PasswordControl({
+    value,
+    disabled,
+    placeholder,
+    onChange,
+    dataCy,
+}: {
+    value: unknown;
+    disabled?: boolean;
+    placeholder?: string;
+    onChange: (value: unknown) => void;
+    dataCy: string;
+}) {
+    const [visible, setVisible] = useState(false);
+
+    return (
+        <div className="relative">
+            <input
+                type={visible ? 'text' : 'password'}
+                value={(value as string) ?? ''}
+                disabled={disabled}
+                placeholder={placeholder}
+                onChange={(e) => onChange(e.target.value)}
+                className={`${inputCls} pr-9`}
+                data-cy={dataCy}
+            />
+            <button
+                type="button"
+                onClick={() => setVisible((v) => !v)}
+                tabIndex={-1}
+                className="absolute inset-y-0 right-0 flex items-center px-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                data-cy={`${dataCy}-toggle-visibility`}
+            >
+                {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+        </div>
     );
 }
