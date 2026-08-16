@@ -1,0 +1,20 @@
+# Local-development-only overrides, auto-merged by plain `docker compose` commands.
+#
+# Coolify deploys this app with an explicit `-f docker-compose.yml` (see its
+# deploy logs), so it never picks up this file — these host-port publishes
+# stay purely a local convenience and never collide with the previous
+# deployment's still-running containers during a Coolify rollout (see
+# docker-compose.yml's postgres/solver-service/osrm comments for why those
+# three lost their `ports:` entries).
+services:
+  postgres:
+    ports:
+      - "5432:5432"
+
+  solver-service:
+    ports:
+      - "8001:8001"
+
+  osrm:
+    ports:
+      - "5001:5000"

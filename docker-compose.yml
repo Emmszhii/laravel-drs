@@ -1,4 +1,10 @@
 services:
+  # No `ports:` here on purpose — only reached over the internal Docker
+  # network (DB_HOST=postgres). A statically published host port would
+  # collide with the previous deployment's still-running postgres container
+  # during a Coolify rollout (two containers can't bind the same host port).
+  # Local dev gets `localhost:5432` back via docker-compose.override.yml,
+  # which Coolify's `-f docker-compose.yml`-only invocation never loads.
   postgres:
     image: postgis/postgis:16-3.4
     container_name: disasterresource-postgres
@@ -10,8 +16,6 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init-postgis.sh:/docker-entrypoint-initdb.d/init-postgis.sh
-    ports:
-      - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -110,14 +114,13 @@ services:
       # See the `queue` service's comment — same reasoning applies here.
       disable: true
 
+  # No `ports:` here either — see the `postgres` comment above, same reasoning.
   solver-service:
     build:
       context: ./solver-service
       dockerfile: Dockerfile
     container_name: disasterresource-solver
     restart: unless-stopped
-    ports:
-      - "8001:8001"
     volumes:
       - ./solver-service:/app
     healthcheck:
@@ -130,6 +133,7 @@ services:
   # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
   # Requires `docker/osrm/prepare.sh` to have been run at least once — this
   # service does not build/extract OSM data itself, only serves it.
+  # No `ports:` here either — see the `postgres` comment above, same reasoning.
   osrm:
     image: osrm/osrm-backend
     container_name: disasterresource-osrm
@@ -137,8 +141,6 @@ services:
     command: osrm-routed --algorithm mld /data/philippines-latest.osrm
     volumes:
       - ./docker/osrm/data:/data:ro
-    ports:
-      - "5001:5000"
 
 volumes:
   pgdata:
