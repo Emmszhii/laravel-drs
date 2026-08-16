@@ -15,6 +15,12 @@
 # backend service comment, and git history for the resulting
 # "Could not open input file: artisan" crash-loop investigation).
 #
+# The top-level `networks: coolify:` override below neutralizes
+# docker-compose.yml's `external: true` (Compose merges named-network
+# definitions field-by-field) — locally this becomes an ordinary
+# project-scoped network Compose creates itself, so `docker compose up`
+# doesn't require a pre-existing `coolify` network on the dev machine.
+#
 # `postgres` itself is defined ENTIRELY here, not in docker-compose.yml —
 # production already points DB_HOST at a separate, standalone PostgreSQL
 # resource created directly in the Coolify project (not this compose stack),
@@ -85,6 +91,10 @@ services:
   osrm:
     ports:
       - "5001:5000"
+
+networks:
+  coolify:
+    external: false
 
 volumes:
   pgdata:

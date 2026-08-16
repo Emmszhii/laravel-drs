@@ -48,6 +48,9 @@ services:
       timeout: 3s
       retries: 5
       start_period: 25s
+    networks:
+      - default
+      - coolify
 
   # Runs App\Jobs\RunOptimizationJob (QUEUE_CONNECTION=database) — without
   # this nothing ever processes the queued optimization calls.
@@ -69,6 +72,9 @@ services:
       # probes FrankenPHP's own admin API — not applicable here since this
       # service runs `php artisan queue:work`, not the FrankenPHP/Caddy server.
       disable: true
+    networks:
+      - default
+      - coolify
 
   # Runs the Laravel scheduler (routes/console.php): polls the configured
   # disaster feeds (USGS/GDACS) on the admin-set interval and auto-resolves
@@ -91,6 +97,9 @@ services:
     healthcheck:
       # See the `queue` service's comment — same reasoning applies here.
       disable: true
+    networks:
+      - default
+      - coolify
 
   # Websocket server for App\Events\DisasterAlertEvent (routes/channels.php).
   reverb:
@@ -108,6 +117,9 @@ services:
     healthcheck:
       # See the `queue` service's comment — same reasoning applies here.
       disable: true
+    networks:
+      - default
+      - coolify
 
   # No `ports:` here either — see the `postgres` comment above, same reasoning.
   solver-service:
@@ -125,6 +137,9 @@ services:
       timeout: 3s
       retries: 5
       start_period: 10s
+    networks:
+      - default
+      - coolify
 
   # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
   # Requires `docker/osrm/prepare.sh` to have been run at least once — this
@@ -137,3 +152,17 @@ services:
     command: osrm-routed --algorithm mld /data/philippines-latest.osrm
     volumes:
       - ./docker/osrm/data:/data:ro
+    networks:
+      - default
+      - coolify
+
+# Coolify's shared network — needed to resolve other Coolify-managed
+# resources by container hostname (e.g. the standalone PostgreSQL resource
+# `.env.production`'s DB_HOST points at) and for Coolify's Traefik instance
+# to route to `backend`/`reverb`, which publish no host ports of their own.
+# `external: true` because Coolify owns/creates this network, not this
+# compose project. Local dev neutralizes this in docker-compose.override.yml
+# (external: false) so it doesn't require a pre-existing `coolify` network.
+networks:
+  coolify:
+    external: true
