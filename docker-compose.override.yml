@@ -15,6 +15,11 @@
 # backend service comment, and git history for the resulting
 # "Could not open input file: artisan" crash-loop investigation).
 #
+# `osrm` is NOT overridden here — it uses the same named volume + automatic
+# `osrm-prepare` init container locally as in production (see
+# docker-compose.yml), so a first local `docker compose up` downloads and
+# prepares Laguna's OSRM data automatically, no manual script needed.
+#
 # The top-level `networks: coolify:` override below neutralizes
 # docker-compose.yml's `external: true` (Compose merges named-network
 # definitions field-by-field) — locally this becomes an ordinary
@@ -91,8 +96,6 @@ services:
   osrm:
     ports:
       - "5001:5000"
-    volumes:
-      - ./docker/osrm/data:/data:ro
 
 networks:
   coolify:
@@ -100,3 +103,9 @@ networks:
 
 volumes:
   pgdata:
+  # Neutralizes docker-compose.yml's `external: true` (same technique as the
+  # `coolify` network override above) — locally this becomes an ordinary
+  # Compose-managed volume, auto-created on first `docker compose up`, no
+  # pre-existing volume required.
+  osrm-data-x11oqof2fbwxdq26ev780h1c:
+    external: false

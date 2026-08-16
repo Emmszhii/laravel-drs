@@ -46,12 +46,7 @@ Frontend typecheck: `npm run typecheck` (tsc --noEmit). Frontend build: `npm run
 
 **Local dev without `pdo_pgsql`:** if `php artisan migrate` errors with `could not find driver (Connection: pgsql...)`, the local PHP install has no `pdo_pgsql` (common with minimal single-binary distributions like php.new/Herd-Lite — check via `php -m`; if there's no `ext/` directory or `extension_dir` at all, it can't be added). Don't switch the project's real DB engine — use SQLite as a local-only fallback instead: `touch backend/database/database.sqlite`, then in the root `.env` set `DB_CONNECTION=sqlite` and comment out/clear the `pgsql` block (`DB_DATABASE` must be unset, not just emptied to a stray value, for `config/database.php`'s `env('DB_DATABASE', database_path('database.sqlite'))` default to kick in). Switch back to `pgsql`/`DB_HOST=postgres` before using Docker, whose `backend/Dockerfile` already installs `pdo_pgsql`. This schema has no Postgres-specific raw SQL and the PostGIS geography columns are still commented out, so SQLite runs the full migration set cleanly.
 
-**Routing (OSRM), one-time setup before directions work locally:**
-
-```bash
-./docker/osrm/prepare.sh   # downloads PH OSM extract + preprocesses it into docker/osrm/data/
-docker compose up -d osrm  # or run osrm-routed directly against docker/osrm/data if not using Docker for this piece
-```
+**Routing (OSRM)** — data is prepared automatically. The `osrm-prepare` service (`docker/osrm/prepare/`, built from `osrm/osrm-backend` + `osmctools`) downloads the Philippines OSM extract, clips it to Laguna province (the app's operational area — routing only works within this bounding box; seeded demo incidents outside Laguna won't get real directions), and runs `osrm-extract`/`osrm-partition`/`osrm-customize` into the named volume `osrm` serves from (`osrm-data-x11oqof2fbwxdq26ev780h1c`, `external: true` in `docker-compose.yml` since it's populated by `osrm-prepare` rather than seeded by Compose). `osrm`'s `depends_on: osrm-prepare: condition: service_completed_successfully` blocks it from starting until this finishes. It's idempotent (skips already-completed steps), so `docker compose up` is a fast no-op here after the first run — no manual script to run, locally or in production.
 
 **Solver service:**
 

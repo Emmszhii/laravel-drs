@@ -196,9 +196,24 @@ services:
       - default
       - coolify
 
+  # One-shot init container: prepares OSRM's Laguna-province road-network
+  # data into the named volume `osrm` serves from, then exits. Idempotent —
+  # skips already-completed steps (see docker/osrm/prepare/entrypoint.sh) —
+  # so this is a fast no-op on every `docker compose up`/deploy after the
+  # first successful run, and requires no manual server-side steps at all.
+  # `osrm` waits on this completing successfully before it starts.
+  osrm-prepare:
+    build:
+      context: ./docker/osrm/prepare
+      dockerfile: Dockerfile
+    container_name: disasterresource-osrm-prepare
+    restart: "no"
+    volumes:
+      - osrm-data-x11oqof2fbwxdq26ev780h1c:/data
+    networks:
+      - default
+
   # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
-  # Requires the OSRM data to have been prepared at least once — this
-  # service does not build/extract OSM data itself, only serves it.
   # No `ports:` here either — see the `postgres` comment above, same reasoning.
   #
   # Uses a named (external) volume rather than a bind mount to
@@ -206,12 +221,10 @@ services:
   # ephemeral per-deployment artifact directory on every deploy, so a
   # relative bind mount here would lose the prepared data (and crash-loop,
   # since osrm-routed refuses to start without it) the moment the *next*
-  # deploy ran, even after preparing it once. A named volume persists
-  # independently of the deploy checkout. `external: true` (declared below)
-  # because this volume is pre-populated once directly on the host, not
-  # managed by Compose. Local dev keeps the original bind mount via
-  # docker-compose.override.yml, matching CLAUDE.md's documented
-  # `docker/osrm/prepare.sh` workflow.
+  # deploy ran. A named volume persists independently of the deploy
+  # checkout, and `osrm-prepare` above (re)populates it automatically.
+  # `external: true` (declared below) because this volume is populated by
+  # `osrm-prepare`, not created/seeded by Compose itself.
   osrm:
     image: osrm/osrm-backend
     container_name: disasterresource-osrm
@@ -219,6 +232,9 @@ services:
     command: osrm-routed --algorithm mld /data/laguna-latest.osrm
     volumes:
       - osrm-data-x11oqof2fbwxdq26ev780h1c:/data:ro
+    depends_on:
+      osrm-prepare:
+        condition: service_completed_successfully
     networks:
       - default
       - coolify
