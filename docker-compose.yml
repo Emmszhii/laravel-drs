@@ -59,23 +59,29 @@ services:
     # Confirmed via live server debugging: Traefik runs with
     # --providers.docker.exposedbydefault=false and this image EXPOSEs three
     # ports (8000/8080/2019, shared across backend/queue/scheduler/reverb),
-    # so it can't auto-detect a single target port. Coolify's own generated
-    # router labels (Host(...) rules) don't include a matching
-    # loadbalancer.server.port, so the router matched but had no usable
-    # backend ("no available server" / 504). These label names mirror
-    # Coolify's own naming convention for this resource
-    # (x11oqof2fbwxdq26ev780h1c) — observed directly via `docker inspect` on
-    # a live container — and are stable across redeploys of this resource.
+    # so it can't auto-detect a single target port. Coolify's own
+    # auto-generated router labels turned out to be unreliable/unverifiable
+    # (two rounds of labels matching its naming convention didn't fix
+    # routing), so this defines a complete, self-contained Traefik
+    # router+service here instead — independent of whatever Coolify's own
+    # dashboard/label generation is doing. `coolify` is the network Traefik's
+    # own container is always attached to (confirmed via `docker top
+    # coolify-proxy`), so pin to it explicitly rather than relying on
+    # whichever of this container's other networks Traefik might guess.
     labels:
-      - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
-      - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-backend.loadbalancer.server.port=8000"
-      # This container ends up on 3 networks (default, coolify, and
-      # Coolify's own ephemeral per-deployment ingress network) — without
-      # telling Traefik which one to route through, it can't unambiguously
-      # pick an IP even with the port label present. `coolify` is the one
-      # Traefik's own container is always attached to (no manual reconnect
-      # needed unlike the ephemeral one), so pin to it explicitly.
+      - "traefik.enable=true"
       - "traefik.docker.network=coolify"
+      - "traefik.http.routers.backend-http.rule=Host(`x11oqof2fbwxdq26ev780h1c.187.77.134.143.sslip.io`)"
+      - "traefik.http.routers.backend-http.entrypoints=http"
+      - "traefik.http.routers.backend-http.middlewares=backend-redirect-https"
+      - "traefik.http.middlewares.backend-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.backend-https.rule=Host(`x11oqof2fbwxdq26ev780h1c.187.77.134.143.sslip.io`)"
+      - "traefik.http.routers.backend-https.entrypoints=https"
+      - "traefik.http.routers.backend-https.tls=true"
+      - "traefik.http.routers.backend-https.tls.certresolver=letsencrypt"
+      - "traefik.http.services.backend-svc.loadbalancer.server.port=8000"
+      - "traefik.http.routers.backend-http.service=backend-svc"
+      - "traefik.http.routers.backend-https.service=backend-svc"
     networks:
       - default
       - coolify
@@ -149,15 +155,23 @@ services:
     # Traefik knows to target this container's 8080 instead of assuming 80.
     expose:
       - "8080"
-    # See the `backend` service's comment — same fix, targeting 8080.
-    # SERVICE_FQDN_REVERB is currently unset (no domain configured yet), so
-    # this router doesn't exist in Traefik yet, but the label is harmless to
-    # add now and will already be correct whenever a domain is set.
+    # See the `backend` service's comment — same self-contained Traefik
+    # router+service approach, using the domain from .env.production's
+    # SERVICE_URL_REVERB / VITE_REVERB_HOST.
     labels:
-      - "traefik.http.services.https-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
-      - "traefik.http.services.http-0-x11oqof2fbwxdq26ev780h1c-reverb.loadbalancer.server.port=8080"
-      # See the `backend` service's comment — same network-disambiguation fix.
+      - "traefik.enable=true"
       - "traefik.docker.network=coolify"
+      - "traefik.http.routers.reverb-http.rule=Host(`reverb-x11oqof2fbwxdq26ev780h1c.187.77.134.143.sslip.io`)"
+      - "traefik.http.routers.reverb-http.entrypoints=http"
+      - "traefik.http.routers.reverb-http.middlewares=reverb-redirect-https"
+      - "traefik.http.middlewares.reverb-redirect-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.reverb-https.rule=Host(`reverb-x11oqof2fbwxdq26ev780h1c.187.77.134.143.sslip.io`)"
+      - "traefik.http.routers.reverb-https.entrypoints=https"
+      - "traefik.http.routers.reverb-https.tls=true"
+      - "traefik.http.routers.reverb-https.tls.certresolver=letsencrypt"
+      - "traefik.http.services.reverb-svc.loadbalancer.server.port=8080"
+      - "traefik.http.routers.reverb-http.service=reverb-svc"
+      - "traefik.http.routers.reverb-https.service=reverb-svc"
     networks:
       - default
       - coolify
