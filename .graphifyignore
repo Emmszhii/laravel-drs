@@ -1,0 +1,26 @@
+# .graphifyignore
+
+# Exclude massive log and data files
+*.log
+*.csv
+*.json
+
+# Exclude heavy media/documentation assets
+*.pdf
+*.png
+*.jpg
+*.mp4
+docs/archived/
+
+# Exclude specific oversized build/vendor folders not caught by gitignore
+dist/
+build/
+vendor/
+node_modules/
+rest/v1/google-api
+rest/v1/jwt
+rest/v1/lib/vendor
+rest/v1/vendor-stripe
+rest/v1/revisions
+rest/v1/db-backups
+public
