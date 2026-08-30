@@ -41,7 +41,7 @@ export function DefaultRecordCard<T extends Record<string, unknown>>({
     const isActive = (row as Record<string, unknown>).status === 'active';
 
     return (
-        <div className="group flex items-start justify-between gap-4 border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md">
+        <div className="group flex items-start justify-between gap-4 border border-line-strong bg-[var(--bg-panel)] p-5">
             <div className="min-w-0 flex-1">
                 <h3 className="truncate text-base font-semibold">
                     {formatCell(row[titleCol?.key])}
@@ -72,7 +72,7 @@ export function DefaultRecordCard<T extends Record<string, unknown>>({
                                 type="button"
                                 onClick={onEdit}
                                 title="Edit"
-                                className="rounded-md p-1.5 transition-colors hover:bg-slate-100 hover:dark:bg-slate-100/30"
+                                className="p-1.5 transition-colors hover:bg-[var(--bg-panel-raised)]"
                             >
                                 <Pencil
                                     className="size-4.5"
@@ -86,7 +86,7 @@ export function DefaultRecordCard<T extends Record<string, unknown>>({
                                 onClick={onArchive}
                                 disabled={archiving}
                                 title="Archive"
-                                className="rounded-md p-1.5 transition-colors hover:bg-slate-100 hover:dark:bg-slate-100/30"
+                                className="p-1.5 transition-colors hover:bg-[var(--bg-panel-raised)]"
                             >
                                 {archiving ? (
                                     <Loader2 className="size-4.5 animate-spin" />
@@ -106,7 +106,7 @@ export function DefaultRecordCard<T extends Record<string, unknown>>({
                             onClick={onRestore}
                             disabled={restoring}
                             title="Restore"
-                            className="rounded-md p-1.5 transition-colors hover:bg-yellow-100 hover:text-yellow-700"
+                            className="p-1.5 transition-colors hover:text-pending"
                         >
                             {restoring ? (
                                 <Loader2 className="size-4.5 animate-spin" />
@@ -122,7 +122,7 @@ export function DefaultRecordCard<T extends Record<string, unknown>>({
                                 type="button"
                                 onClick={onDelete}
                                 title="Delete"
-                                className="rounded-md p-1.5 transition-colors hover:bg-rose-50 hover:text-rose-600"
+                                className="p-1.5 transition-colors hover:text-critical"
                             >
                                 <Trash2
                                     className="size-4.5"

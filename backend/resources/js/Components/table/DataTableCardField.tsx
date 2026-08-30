@@ -15,6 +15,7 @@
 import { ConfirmInUseModal } from "@/Components/modal/ConfirmInUseModal";
 import type { CardActions } from "@/Types/reusable/card";
 import type { DataTableProps } from "@/Types/reusable/data-table";
+import { Skeleton } from "boneyard-js/react";
 import React from "react";
 import { ConfirmDeleteModal } from "../modal/ConfirmDeleteModal";
 import FetchingSpinner from "../spinners/FetchingSpinner";
@@ -77,13 +78,13 @@ export function DataTableCardField<T extends Record<string, unknown>>(
     </React.Fragment>
   ));
 
-  const skeletonNodes = Array.from({ length: 7 }).map((_, i) =>
+  const skeletonFixture = Array.from({ length: 7 }).map((_, i) =>
     isTable ? (
-      <div key={i} className="h-16 animate-pulse bg-gray-400/50" />
+      <div key={i} className="h-16 bg-[var(--bg-panel-raised)]" />
     ) : (
       <div
         key={i}
-        className="h-22 animate-pulse  border border-slate-100 bg-gray-300/40 dark:bg-gray-300/80"
+        className="h-22 border border-line-strong bg-[var(--bg-panel-raised)]"
       />
     ),
   );
@@ -93,7 +94,7 @@ export function DataTableCardField<T extends Record<string, unknown>>(
       className={
         isTable
           ? "px-6 py-12 text-center"
-          : " border border-dashed border-slate-100 px-6 py-12 text-center"
+          : " border border-dashed border-line-strong px-6 py-12 text-center"
       }
     >
       <p className="text-sm">No records found.</p>
@@ -111,9 +112,9 @@ export function DataTableCardField<T extends Record<string, unknown>>(
   // Table view keeps the column headers; card view drops all table chrome.
   const listShell = (content: React.ReactNode) =>
     isTable ? (
-      <div className="overflow-hidden border border-[#ecedf1]/30  shadow-sm">
+      <div className="overflow-hidden border border-line-strong">
         {listHeader}
-        <div className="divide-y divide-gray-100/30">{content}</div>
+        <div className="divide-y divide-line">{content}</div>
       </div>
     ) : (
       <div className="space-y-3">{content}</div>
@@ -173,7 +174,7 @@ export function DataTableCardField<T extends Record<string, unknown>>(
       )}
 
       {c.isError && (
-        <div className="mb-4 flex items-center justify-between border border-rose-200 px-4 py-3 text-sm text-rose-700">
+        <div className="mb-4 flex items-center justify-between border border-critical px-4 py-3 text-sm text-critical">
           <span>⚠ {c.error?.message}</span>
           <button
             onClick={() => c.refetch()}
@@ -185,13 +186,17 @@ export function DataTableCardField<T extends Record<string, unknown>>(
       )}
 
       <div className="relative">
-        {c.isLoading && c.displayRows.length === 0
-          ? listShell(skeletonNodes)
-          : isEmpty
+        <Skeleton
+          name="data-table-card-field"
+          loading={c.isLoading && c.displayRows.length === 0}
+          fixture={listShell(skeletonFixture)}
+        >
+          {isEmpty
             ? isTable
               ? listShell(emptyState)
               : emptyState
             : listShell(body)}
+        </Skeleton>
 
         {c.isFetching && !c.isLoading && <FetchingSpinner />}
       </div>

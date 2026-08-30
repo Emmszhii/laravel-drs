@@ -41,7 +41,7 @@ export function PageBtn({
             disabled={disabled}
             onClick={onClick}
             title={title}
-            className={`inline-flex h-8 min-w-8 items-center justify-center rounded-lg px-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${active ? 'bg-brand-400 text-white' : 'hover:brand-400/50'}`}
+            className={`inline-flex h-8 min-w-8 items-center justify-center px-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60 ${active ? 'bg-amber text-[#1a1200]' : 'text-[var(--text-primary)] hover:bg-[var(--bg-panel-raised)]'}`}
             data-cy="pagination-button-title"
         >
             {children}
