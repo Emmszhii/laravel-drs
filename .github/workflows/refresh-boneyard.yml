@@ -1,0 +1,111 @@
+name: Refresh boneyard skeletons
+
+# Keeps backend/resources/js/bones/* (boneyard-js's captured skeleton shapes)
+# in sync with the actual rendered UI. Runs a throwaway SQLite-backed instance
+# of the app (never touches the real database), logs in as the seeded
+# `coordinator` test account, re-captures skeletons, and commits the result
+# back to the branch — so Coolify's own Docker build (which never runs
+# boneyard itself, see backend/Dockerfile) always builds from fresh bones.
+#
+# The bones/** path is excluded from the trigger below so this workflow's own
+# commit doesn't re-trigger itself.
+on:
+  push:
+    branches: [master]
+    paths:
+      - "backend/resources/js/**"
+      - "backend/resources/css/**"
+      - "backend/tailwind.config.js"
+      - "backend/boneyard.config.json"
+      - "!backend/resources/js/bones/**"
+
+concurrency:
+  group: refresh-boneyard-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-bones:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: mbstring, xml, ctype, json, bcmath, pdo, pdo_sqlite, tokenizer, fileinfo, zip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install PHP dependencies
+        working-directory: backend
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Install JS dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Install Playwright's Chromium
+        working-directory: backend
+        run: npx playwright install --with-deps chromium
+
+      - name: Configure a throwaway SQLite environment
+        run: |
+          cp .env.example .env
+          sed -i 's/^DB_CONNECTION=.*/DB_CONNECTION=sqlite/' .env
+          sed -i '/^DB_DATABASE=/d' .env
+          touch backend/database/database.sqlite
+
+      - name: Generate app key
+        working-directory: backend
+        run: php artisan key:generate
+
+      - name: Migrate and seed
+        working-directory: backend
+        run: php artisan migrate --force --seed
+
+      - name: Build frontend
+        working-directory: backend
+        run: npm run build
+
+      - name: Start the app server
+        working-directory: backend
+        run: |
+          php artisan serve --host=127.0.0.1 --port=8000 &
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:8000/login > /dev/null && exit 0
+            sleep 1
+          done
+          echo "Server did not come up in time" >&2
+          exit 1
+
+      - name: Refresh the boneyard session cookie
+        working-directory: backend
+        env:
+          BONEYARD_LOGIN_EMAIL: coordinator@disasterresource.local
+          BONEYARD_LOGIN_PASSWORD: password
+        run: |
+          node scripts/refresh-boneyard-session.mjs
+          grep '^BONEYARD_SESSION_COOKIE=' ../.env >> "$GITHUB_ENV"
+
+      - name: Capture skeletons
+        working-directory: backend
+        run: npx boneyard-js build http://127.0.0.1:8000/depots
+
+      - name: Commit refreshed bones
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend/resources/js/bones
+          if git diff --cached --quiet; then
+            echo "Bones unchanged — nothing to commit."
+          else
+            git commit -m "chore: refresh boneyard skeleton captures"
+            git push
+          fi
