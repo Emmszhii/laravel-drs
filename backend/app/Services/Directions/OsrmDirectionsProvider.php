@@ -27,7 +27,7 @@ class OsrmDirectionsProvider implements DirectionsProvider
 
         try {
             $response = Http::timeout(10)
-                ->retry(2, 300)
+                ->retry(2, 300, throw: false)
                 ->get("{$this->baseUrl}/route/v1/driving/{$coordinates}", [
                     'steps' => 'true',
                     'geometries' => 'geojson',

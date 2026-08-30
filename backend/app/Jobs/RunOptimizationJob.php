@@ -31,14 +31,26 @@ class RunOptimizationJob implements ShouldQueue
     {
         $result = $client->optimizeAllocation($this->disaster);
 
+        // Routing (CVRPTW) is a second stage over the allocation stage's
+        // depot->zone quantities — only worth attempting when there's
+        // something to route.
+        $allocations = $result['allocations'] ?? [];
+        $routing = $allocations !== []
+            ? $client->optimizeRouting($this->disaster, $allocations)
+            : ['algorithm' => 'skipped', 'objective_value' => 0, 'routes' => []];
+
         // Persist as a suggested (not yet approved) allocation batch.
         // See database/migrations for the `app_optimization_runs` / `app_allocations` tables.
         $this->disaster->optimizationRuns()->create([
             'algorithm_used' => $result['algorithm'] ?? 'unknown',
             'objective_value' => $result['objective_value'] ?? null,
             'status' => 'completed',
-            'response_payload' => $result,
+            'response_payload' => [...$result, 'routing' => $routing],
         ]);
+
+        if (($routing['routes'] ?? []) !== []) {
+            RunDispatchPlanningJob::dispatch($this->disaster, $routing);
+        }
 
         broadcast(new DisasterAlertEvent($this->disaster));
     }

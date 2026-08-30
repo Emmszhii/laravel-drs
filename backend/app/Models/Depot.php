@@ -34,4 +34,9 @@ class Depot extends Model
     {
         return $this->hasMany(Resource::class);
     }
+
+    public function vehicles(): HasMany
+    {
+        return $this->hasMany(Vehicle::class);
+    }
 }

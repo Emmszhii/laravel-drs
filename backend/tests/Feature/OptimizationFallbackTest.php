@@ -3,7 +3,9 @@
 namespace Tests\Feature;
 
 use App\Jobs\RunOptimizationJob;
+use App\Models\Depot;
 use App\Models\Disaster;
+use App\Models\Resource;
 use App\Models\Zone;
 use App\Services\Optimization\OptimizationServiceClient;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -76,5 +78,42 @@ class OptimizationFallbackTest extends TestCase
         $run = $disaster->optimizationRuns()->latest()->first();
 
         $this->assertSame('pulp_linear_programming', $run->algorithm_used);
+    }
+
+    public function test_depot_capacity_is_sent_to_the_solver_service(): void
+    {
+        Http::fake([
+            '*' => Http::response([
+                'algorithm' => 'pulp_linear_programming',
+                'objective_value' => 0,
+                'allocations' => [],
+            ]),
+        ]);
+
+        $disaster = Disaster::factory()->create();
+        Zone::factory()->create(['disaster_id' => $disaster->id]);
+
+        $depot = Depot::factory()->create();
+        Resource::factory()->create([
+            'depot_id' => $depot->id,
+            'quantity_available' => 100,
+            'quantity_reserved' => 30,
+        ]);
+        Resource::factory()->create([
+            'depot_id' => $depot->id,
+            'quantity_available' => 50,
+            'quantity_reserved' => 10,
+        ]);
+
+        app(RunOptimizationJob::class, ['disaster' => $disaster])
+            ->handle(app(OptimizationServiceClient::class));
+
+        Http::assertSent(function ($request) use ($depot) {
+            $sentDepot = collect($request->data()['depots'])
+                ->firstWhere('id', $depot->id);
+
+            // (100 - 30) + (50 - 10) = 110
+            return $sentDepot !== null && $sentDepot['capacity'] === 110;
+        });
     }
 }

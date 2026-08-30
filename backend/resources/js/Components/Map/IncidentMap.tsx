@@ -5,6 +5,7 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import useDirections from "@/Hooks/useDirections";
+import useWatchPosition from "@/Hooks/useWatchPosition";
 
 // Leaflet's default Icon hardcodes root-relative image paths, which break
 // once Vite bundles/hashes this file — point it at the bundler-resolved URLs
@@ -49,6 +50,17 @@ type Props = {
 
 const PH_CENTER: [number, number] = [12.8797, 121.774];
 
+// Mapbox's congestion annotation values, per segment — see
+// PremiumDirectionsProvider::normalizeRoute(). "unknown" also covers a
+// segment value this map doesn't recognize.
+const CONGESTION_COLORS: Record<string, string> = {
+  low: "#3FA98C",
+  moderate: "#E8C468",
+  heavy: "#E8843F",
+  severe: "#E14B3F",
+  unknown: "#f2a63c",
+};
+
 /**
  * Real Leaflet map (not an illustration) — defaults to a Philippines-wide
  * view, same as the prototype. Depot markers have a "Navigate here" popup
@@ -82,6 +94,17 @@ export default function IncidentMap({
     userLocation,
     navTarget ? { lat: navTarget.lat, lng: navTarget.lng } : null,
   );
+
+  const { position: livePosition, start: startWatchingPosition, stop: stopWatchingPosition } =
+    useWatchPosition();
+
+  useEffect(() => {
+    if (navTarget) {
+      startWatchingPosition();
+    } else {
+      stopWatchingPosition();
+    }
+  }, [navTarget, startWatchingPosition, stopWatchingPosition]);
 
   useEffect(() => {
     if (!mapRef.current || leafletMap.current) return;
@@ -273,9 +296,26 @@ export default function IncidentMap({
       lng,
     ]);
 
-    const polyline = L.polyline(latlngs, { color: "#f2a63c", weight: 4 }).addTo(
-      leafletMap.current,
-    );
+    // Only present from a traffic-aware provider (see PremiumDirectionsProvider)
+    // — one entry per segment between consecutive coordinates. OSRM (no live
+    // traffic) never sets this, so the polyline falls back to a flat color.
+    const congestion = navTarget && directions?.ok ? directions.congestion : null;
+    const layers: L.Layer[] = [];
+
+    if (congestion && congestion.length === latlngs.length - 1) {
+      for (let i = 0; i < latlngs.length - 1; i++) {
+        const segment = L.polyline([latlngs[i], latlngs[i + 1]], {
+          color: CONGESTION_COLORS[congestion[i]] ?? CONGESTION_COLORS.unknown,
+          weight: 4,
+        }).addTo(leafletMap.current);
+        layers.push(segment);
+      }
+    } else {
+      layers.push(
+        L.polyline(latlngs, { color: "#f2a63c", weight: 4 }).addTo(leafletMap.current),
+      );
+    }
+
     const start = L.circleMarker(latlngs[0], {
       radius: 7,
       color: "#3FA98C",
@@ -285,9 +325,27 @@ export default function IncidentMap({
       color: "#E14B3F",
     }).addTo(leafletMap.current);
 
-    routeLayers.current = [polyline, start, end];
-    leafletMap.current.fitBounds(polyline.getBounds(), { padding: [40, 40] });
+    routeLayers.current = [...layers, start, end];
+    const bounds = L.latLngBounds(latlngs);
+    leafletMap.current.fitBounds(bounds, { padding: [40, 40] });
   }, [route, directions, navTarget]);
+
+  // Live "you are here" marker while a navigation is active — separate from
+  // the one-shot getCurrentPosition used only to seed the route's origin.
+  useEffect(() => {
+    if (!leafletMap.current || !livePosition) return;
+
+    if (yourLocationMarker.current) {
+      yourLocationMarker.current.setLatLng([livePosition.lat, livePosition.lng]);
+    } else {
+      yourLocationMarker.current = L.circleMarker(
+        [livePosition.lat, livePosition.lng],
+        { radius: 7, color: "#4A9EFF", fillColor: "#4A9EFF", fillOpacity: 0.9 },
+      )
+        .addTo(leafletMap.current)
+        .bindPopup("Your location");
+    }
+  }, [livePosition]);
 
   return <div ref={mapRef} className="h-full w-full" />;
 }

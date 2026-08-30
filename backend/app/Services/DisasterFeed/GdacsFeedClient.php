@@ -53,7 +53,7 @@ class GdacsFeedClient
 
         try {
             $response = Http::timeout(15)
-                ->retry(2, 500)
+                ->retry(2, 500, throw: false)
                 ->withHeaders(['User-Agent' => config('app.name').' (disaster-feed)'])
                 ->get($baseUrl, [
                     'country' => 'Philippines',

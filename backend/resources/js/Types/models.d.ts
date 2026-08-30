@@ -210,10 +210,13 @@ export interface DirectionsResult {
   error?: string;
   distance_m?: number;
   duration_s?: number;
+  duration_in_traffic_s?: number;
   geometry?: [number, number][]; // [lng, lat] pairs
+  congestion?: string[]; // per-segment, only present from a traffic-aware provider
   steps?: DirectionsStep[];
   provider?: "osrm" | "premium";
   fallback_reason?: "cap_exceeded" | "provider_error";
+  route_choice_reason?: "lowest_traffic_duration" | "only_route";
 }
 
 export interface RoutingSettingsData {

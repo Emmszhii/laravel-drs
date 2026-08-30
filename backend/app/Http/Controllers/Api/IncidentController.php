@@ -41,7 +41,7 @@ class IncidentController extends BaseController
     public function show(int|string $id): JsonResponse
     {
         return $this->sendResponse(
-            $this->resolveModel($id)->load('zones', 'requests', ['optimizationRuns' => fn ($q) => $q->latest()->limit(1)])
+            $this->resolveModel($id)->load(['zones', 'requests', 'optimizationRuns' => fn ($q) => $q->latest()->limit(1)])
         );
     }
 

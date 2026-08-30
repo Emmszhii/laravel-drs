@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../Common/Button";
 import useDirections from "../../Hooks/useDirections";
 import useVoiceGuidance from "../../Hooks/useVoiceGuidance";
+import useWatchPosition from "../../Hooks/useWatchPosition";
 
 type Point = { id: string; name: string; lat: number; lng: number };
 
@@ -38,11 +39,28 @@ export default function DirectionsPanel({ depots, destinations, onRouteChange }:
 
   const { route, steps, loading, error, currentStepIndex, next, prev } = useDirections(from, to);
   const currentStep = steps[currentStepIndex] ?? null;
-  const { muted, toggleMute, supported } = useVoiceGuidance(currentStep?.instruction ?? null);
+  const { position, error: positionError, watching, start: startWatching, stop: stopWatching } =
+    useWatchPosition();
+  const { muted, toggleMute, supported } = useVoiceGuidance(currentStep?.instruction ?? null, {
+    steps,
+    currentStepIndex,
+    position,
+    onAdvance: next,
+  });
 
   useEffect(() => {
     onRouteChange?.(route?.ok ? route.geometry ?? null : null);
   }, [route, onRouteChange]);
+
+  // Start/stop live tracking alongside an active navigation — this is the
+  // GPS auto-advance feed for useVoiceGuidance above.
+  useEffect(() => {
+    if (route?.ok) {
+      startWatching();
+    } else {
+      stopWatching();
+    }
+  }, [route?.ok, startWatching, stopWatching]);
 
   return (
     <div className="flex h-full flex-col p-4 text-sm">
@@ -91,7 +109,8 @@ export default function DirectionsPanel({ depots, destinations, onRouteChange }:
             <div>
               <div className="font-semibold">{formatDistance(route.distance_m ?? 0)}</div>
               <div className="text-xs text-[var(--text-secondary)]">
-                {formatDuration(route.duration_s ?? 0)}
+                {formatDuration(route.duration_in_traffic_s ?? route.duration_s ?? 0)}
+                {route.duration_in_traffic_s != null && " (with traffic)"}
               </div>
             </div>
             {supported && (
@@ -108,6 +127,15 @@ export default function DirectionsPanel({ depots, destinations, onRouteChange }:
             <p className="mb-3 border border-[var(--pending)]/40 bg-[var(--pending)]/10 p-2 text-xs text-[var(--pending)]">
               {FALLBACK_MESSAGES[route.fallback_reason]}
             </p>
+          )}
+
+          {watching && (
+            <p className="mb-3 text-xs text-[var(--text-secondary)]">
+              {position ? "Live location on — steps auto-advance as you drive." : "Locating you…"}
+            </p>
+          )}
+          {positionError && (
+            <p className="mb-3 text-xs text-[var(--critical)]">{positionError}</p>
           )}
 
           <ol className="flex-1 space-y-1 overflow-y-auto">

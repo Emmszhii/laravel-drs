@@ -23,12 +23,14 @@ class PremiumDirectionsProvider implements DirectionsProvider
     public function getRoute(float $fromLat, float $fromLng, float $toLat, float $toLng): array
     {
         $coordinates = "{$fromLng},{$fromLat};{$toLng},{$toLat}";
-        $url = rtrim($this->baseUrl, '/')."/directions/v5/mapbox/driving/{$coordinates}";
+        $url = rtrim($this->baseUrl, '/')."/directions/v5/mapbox/driving-traffic/{$coordinates}";
 
         $response = Http::timeout(10)->get($url, [
             'geometries' => 'geojson',
             'steps' => 'true',
             'overview' => 'full',
+            'alternatives' => 'true',
+            'annotations' => 'congestion,duration',
             'access_token' => $this->apiKey,
         ]);
 
@@ -60,14 +62,41 @@ class PremiumDirectionsProvider implements DirectionsProvider
             return ['ok' => false, 'error' => 'no_route_found'];
         }
 
-        $route = $body['routes'][0];
-        $leg = $route['legs'][0] ?? ['steps' => []];
+        // driving-traffic's `duration` is already traffic-adjusted (unlike
+        // the plain `driving` profile) — with `alternatives=true` there can
+        // be more than one candidate, so pick whichever has the lowest
+        // traffic-adjusted duration rather than always taking routes[0].
+        $routes = collect($body['routes'])->map(fn (array $route) => $this->normalizeRoute($route))->all();
+        usort($routes, fn (array $a, array $b) => $a['duration_in_traffic_s'] <=> $b['duration_in_traffic_s']);
+
+        $chosen = $routes[0];
 
         return [
             'ok' => true,
+            'distance_m' => $chosen['distance_m'],
+            'duration_s' => $chosen['duration_s'],
+            'duration_in_traffic_s' => $chosen['duration_in_traffic_s'],
+            'geometry' => $chosen['geometry'],
+            'congestion' => $chosen['congestion'],
+            'steps' => $chosen['steps'],
+            'routes' => $routes,
+            'route_choice_reason' => count($routes) > 1 ? 'lowest_traffic_duration' : 'only_route',
+        ];
+    }
+
+    /**
+     * @return array{distance_m: float, duration_s: float, duration_in_traffic_s: float, geometry: array, congestion: array<int, string>, steps: array}
+     */
+    protected function normalizeRoute(array $route): array
+    {
+        $leg = $route['legs'][0] ?? ['steps' => []];
+
+        return [
             'distance_m' => $route['distance'],
-            'duration_s' => $route['duration'],
+            'duration_s' => $route['duration_typical'] ?? $route['duration'],
+            'duration_in_traffic_s' => $route['duration'],
             'geometry' => $route['geometry']['coordinates'],
+            'congestion' => $leg['annotation']['congestion'] ?? [],
             'steps' => collect($leg['steps'])->map(fn (array $step) => [
                 'instruction' => $step['maneuver']['instruction']
                     ?? OsrmDirectionsProvider::humanize($step['maneuver'], $step['name'] ?? ''),

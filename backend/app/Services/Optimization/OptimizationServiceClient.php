@@ -38,10 +38,13 @@ class OptimizationServiceClient
                 'lng' => $z->lng,
                 'demand' => $z->population_affected,
             ]),
-            'depots' => \App\Models\Depot::all()->map(fn ($d) => [
+            'depots' => \App\Models\Depot::with('resources')->get()->map(fn ($d) => [
                 'id' => $d->id,
                 'lat' => $d->lat,
                 'lng' => $d->lng,
+                'capacity' => $d->resources->sum(
+                    fn ($r) => $r->quantity_available - $r->quantity_reserved
+                ),
             ]),
         ];
 
@@ -68,6 +71,93 @@ class OptimizationServiceClient
             ]);
 
             return $this->fallback->allocate($disaster);
+        }
+
+        return $response->json();
+    }
+
+    /**
+     * Calls POST /api/v1/optimize/routing with the depot->zone quantities
+     * `optimizeAllocation()` already decided, so the CVRPTW stage routes
+     * vehicles instead of re-deciding *how much* goes where.
+     *
+     * Uses each depot's real `Vehicle` rows when any exist; a depot with no
+     * fleet configured yet gets one default Vehicle created lazily here
+     * (capacity = that depot's current capacity) so routing still works
+     * before a coordinator has entered real fleet data — every subsequent
+     * run then reuses that same persisted vehicle.
+     *
+     * Never throws: returns an empty-routes payload (never fails the job)
+     * on any solver-service error, same convention as optimizeAllocation().
+     *
+     * @return array{algorithm: string, objective_value: float, routes: array}
+     */
+    public function optimizeRouting(Disaster $disaster, array $allocations): array
+    {
+        $depots = \App\Models\Depot::with(['resources', 'vehicles'])->get();
+
+        $vehicles = $depots->flatMap(function ($d) {
+            $capacity = $d->resources->sum(fn ($r) => $r->quantity_available - $r->quantity_reserved);
+
+            $fleet = $d->vehicles->isNotEmpty()
+                ? $d->vehicles
+                : collect([
+                    \App\Models\Vehicle::create([
+                        'label' => 'Vehicle 1',
+                        'capacity' => $capacity,
+                        'depot_id' => $d->id,
+                        'status' => 'available',
+                    ]),
+                ]);
+
+            return $fleet->map(fn ($v) => [
+                'id' => $v->id,
+                'capacity' => $v->capacity ?? $capacity,
+                'depot_id' => $d->id,
+            ]);
+        });
+
+        $payload = [
+            'disaster_id' => $disaster->id,
+            'zones' => $disaster->zones->map(fn ($z) => [
+                'id' => $z->id,
+                'lat' => $z->lat,
+                'lng' => $z->lng,
+                'demand' => $z->population_affected,
+            ]),
+            'depots' => $depots->map(fn ($d) => [
+                'id' => $d->id,
+                'lat' => $d->lat,
+                'lng' => $d->lng,
+                'capacity' => $d->resources->sum(
+                    fn ($r) => $r->quantity_available - $r->quantity_reserved
+                ),
+            ]),
+            'vehicles' => $vehicles,
+            'allocations' => $allocations,
+        ];
+
+        try {
+            $response = Http::timeout(15)
+                ->retry(2, 500, throw: false)
+                ->post("{$this->baseUrl}/api/v1/optimize/routing", $payload);
+        } catch (ConnectionException $e) {
+            Log::warning('Optimization service unreachable for routing — no routes produced', [
+                'disaster_id' => $disaster->id,
+                'error' => $e->getMessage(),
+            ]);
+
+            return ['algorithm' => 'unavailable', 'objective_value' => 0, 'routes' => []];
+        }
+
+        if ($response->failed()) {
+            Log::error('Optimization service routing call failed — no routes produced', [
+                'disaster_id' => $disaster->id,
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+
+            return ['algorithm' => 'unavailable', 'objective_value' => 0, 'routes' => []];
         }
 
         return $response->json();

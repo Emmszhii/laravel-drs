@@ -28,6 +28,7 @@ class Dispatch extends Model
         'resource_type_id',
         'driver_id',
         'vehicle_label',
+        'vehicle_id',
         'status',
         'origin_lat',
         'origin_lng',
@@ -76,6 +77,11 @@ class Dispatch extends Model
     public function resourceType(): BelongsTo
     {
         return $this->belongsTo(ResourceType::class);
+    }
+
+    public function vehicle(): BelongsTo
+    {
+        return $this->belongsTo(Vehicle::class);
     }
 
     public function driver(): BelongsTo
