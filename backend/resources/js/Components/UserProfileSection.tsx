@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { router } from "@inertiajs/react";
+import { LogOut, Moon, Sun } from "lucide-react";
 import { useAuth } from "@/Hooks/use-auth";
 import { useTheme } from "@/Hooks/use-theme";
 import { ChangePasswordModal } from "@/Components/ChangePasswordModal";
@@ -26,6 +27,8 @@ export function UserProfileSection({
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+
+  const logout = () => router.post("/logout");
 
   useEffect(() => {
     if (!open) return;
@@ -89,6 +92,17 @@ export function UserProfileSection({
             >
               Change password
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                logout();
+              }}
+              className="flex w-full items-center gap-1.5 px-3 py-2.5 text-left text-xs text-[var(--text-secondary)] hover:bg-white/5 hover:text-critical"
+            >
+              <LogOut size={13} />
+              Log out
+            </button>
           </div>
         )}
 
@@ -138,6 +152,15 @@ export function UserProfileSection({
       <div className="mt-1 pl-1 text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
         {role}
       </div>
+
+      <button
+        type="button"
+        onClick={logout}
+        className="mt-2 flex w-full items-center gap-2 rounded p-1 text-left text-xs text-[var(--text-secondary)] hover:text-critical"
+      >
+        <LogOut size={15} />
+        Log out
+      </button>
 
       <ChangePasswordModal
         open={passwordModalOpen}

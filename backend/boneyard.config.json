@@ -1,0 +1,19 @@
+{
+  "out": "./resources/js/bones",
+  "animate": "shimmer",
+  "color": "var(--bg-panel-raised)",
+  "darkColor": "var(--bg-panel-raised)",
+  "shimmerColor": "var(--line-strong)",
+  "darkShimmerColor": "var(--line-strong)",
+  "resolveEnvVars": true,
+  "auth": {
+    "cookies": [
+      {
+        "name": "disasterresource-session",
+        "value": "env[BONEYARD_SESSION_COOKIE]",
+        "domain": "127.0.0.1",
+        "path": "/"
+      }
+    ]
+  }
+}

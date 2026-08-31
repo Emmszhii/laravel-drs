@@ -14,15 +14,15 @@ interface ViewToggleProps {
 }
 
 const BASE =
-    'inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors';
+    'inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors';
 
 export function ViewToggle({ value, onChange }: ViewToggleProps) {
     return (
-        <div className="inline-flex items-center gap-1 rounded-xl border border-slate-200 p-1">
+        <div className="inline-flex items-center border border-line-strong p-0.5">
             <button
                 type="button"
                 onClick={() => onChange('table')}
-                className={`${BASE} ${value === 'table' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`${BASE} ${value === 'table' ? 'bg-amber text-[#1a1200]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                 aria-pressed={value === 'table'}
                 title="Table view"
             >
@@ -32,7 +32,7 @@ export function ViewToggle({ value, onChange }: ViewToggleProps) {
             <button
                 type="button"
                 onClick={() => onChange('card')}
-                className={`${BASE} ${value === 'card' ? 'bg-slate-900 text-white' : 'text-slate-600 hover:bg-slate-100'}`}
+                className={`${BASE} ${value === 'card' ? 'bg-amber text-[#1a1200]' : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}
                 aria-pressed={value === 'card'}
                 title="Card view"
             >

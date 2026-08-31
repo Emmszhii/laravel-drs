@@ -75,7 +75,7 @@ export function Toolbar<T>({
           />
           <input
             type="text"
-            className="w-full rounded-xl border border-slate-200 py-2.5 pr-9 pl-9 text-sm transition-shadow outline-none placeholder:text-slate-400 focus:border-slate-300 focus:ring-2 focus:ring-slate-900/10 bg-transparent"
+            className="w-full border border-line-strong bg-[var(--bg-void)] py-2.5 pr-9 pl-9 text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-secondary)] focus:border-amber"
             placeholder={
               searchableCols.length
                 ? `Search by ${searchableCols.join(", ")}…`
@@ -108,7 +108,7 @@ export function Toolbar<T>({
             <button
               type="button"
               onClick={onFiltersToggle}
-              className={`inline-flex items-center gap-1.5 rounded-xl border px-3 py-2.5 text-sm font-medium transition-colors ${filtersOpen || hasActiveColumnFilters ? "border-slate-300" : "border-slate-200"}`}
+              className={`inline-flex items-center gap-1.5 border px-3 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-colors ${filtersOpen || hasActiveColumnFilters ? "border-amber" : "border-line-strong"}`}
               data-cy="toolbar-button-button"
             >
               <SlidersHorizontal
@@ -129,12 +129,12 @@ export function Toolbar<T>({
               <select
                 value={sortBy}
                 onChange={(e) => onSortByChange(e.target.value)}
-                className="w-full appearance-none rounded-xl border border-slate-200 py-2.5 pr-8 pl-3 text-sm font-medium outline-none focus:border-slate-300 bg-transparent"
+                className="w-full appearance-none border border-line-strong bg-[var(--bg-void)] py-2.5 pr-8 pl-3 text-sm font-medium text-[var(--text-primary)] outline-none focus:border-amber"
                 data-cy="toolbar-select-sort-by-change"
               >
                 {sortableColumns.map((c) => (
                   <option
-                    className="bg-transparent"
+                    className="bg-[var(--bg-void)]"
                     key={c.key}
                     value={c.key}
                     data-cy="toolbar-option-sort"
@@ -169,12 +169,17 @@ export function Toolbar<T>({
           <select
             value={perPage}
             onChange={(e) => onPerPageChange(Number(e.target.value))}
-            className="min-w-30 rounded-xl border border-slate-200 px-3 py-2.5 text-sm font-medium outline-none focus:border-slate-300 bg-transparent"
+            className="min-w-30 border border-line-strong bg-[var(--bg-void)] px-3 py-2.5 text-sm font-medium text-[var(--text-primary)] outline-none focus:border-amber"
             title="Rows per page"
             data-cy="toolbar-select-rows-per-page"
           >
             {[10, 15, 25, 50, 100].map((n) => (
-              <option key={n} value={n} data-cy="toolbar-option-page">
+              <option
+                className="bg-[var(--bg-void)]"
+                key={n}
+                value={n}
+                data-cy="toolbar-option-page"
+              >
                 {n} / page
               </option>
             ))}
