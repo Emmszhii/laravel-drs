@@ -371,7 +371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller",
-      "community": 0,
+      "community": 23,
       "norm_label": "disasterfeedsettingcontroller.php"
     },
     {
@@ -381,7 +381,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_disasterfeedsettingcontroller",
-      "community": 0,
+      "community": 23,
       "norm_label": "disasterfeedsettingcontroller"
     },
     {
@@ -391,7 +391,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_disasterfeedsettingcontroller_show",
-      "community": 0,
+      "community": 23,
       "norm_label": ".show()"
     },
     {
@@ -401,7 +401,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_php_jsonresponse",
-      "community": 0,
+      "community": 23,
       "norm_label": "jsonresponse"
     },
     {
@@ -411,7 +411,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_disasterfeedsettingcontroller_update",
-      "community": 0,
+      "community": 23,
       "norm_label": ".update()"
     },
     {
@@ -421,7 +421,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_php_request",
-      "community": 0,
+      "community": 23,
       "norm_label": "request"
     },
     {
@@ -431,7 +431,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_disasterfeedsettingcontroller_disasterfeedsettingcontroller_run",
-      "community": 0,
+      "community": 23,
       "norm_label": ".run()"
     },
     {
@@ -1221,7 +1221,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller",
-      "community": 8,
+      "community": 72,
       "norm_label": "routingsettingcontroller.php"
     },
     {
@@ -1231,7 +1231,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_routingsettingcontroller",
-      "community": 8,
+      "community": 72,
       "norm_label": "routingsettingcontroller"
     },
     {
@@ -1241,7 +1241,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_routingsettingcontroller_show",
-      "community": 8,
+      "community": 72,
       "norm_label": ".show()"
     },
     {
@@ -1251,7 +1251,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_php_jsonresponse",
-      "community": 8,
+      "community": 72,
       "norm_label": "jsonresponse"
     },
     {
@@ -1261,7 +1261,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_routingsettingcontroller_update",
-      "community": 8,
+      "community": 72,
       "norm_label": ".update()"
     },
     {
@@ -1271,7 +1271,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_php_request",
-      "community": 8,
+      "community": 72,
       "norm_label": "request"
     },
     {
@@ -1281,7 +1281,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_routingsettingcontroller_routingsettingcontroller_test",
-      "community": 8,
+      "community": 72,
       "norm_label": ".test()"
     },
     {
@@ -1911,7 +1911,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_controller",
-      "community": 38,
+      "community": 57,
       "norm_label": "controller.php"
     },
     {
@@ -1921,7 +1921,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_app_http_controllers_controller_controller",
-      "community": 38,
+      "community": 57,
       "norm_label": "controller"
     },
     {
@@ -2111,7 +2111,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_depotcontroller",
-      "community": 51,
+      "community": 57,
       "norm_label": "depotcontroller.php"
     },
     {
@@ -2121,7 +2121,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_depotcontroller_depotcontroller",
-      "community": 51,
+      "community": 57,
       "norm_label": "depotcontroller"
     },
     {
@@ -2131,7 +2131,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_depotcontroller_depotcontroller_index",
-      "community": 51,
+      "community": 57,
       "norm_label": ".index()"
     },
     {
@@ -2141,7 +2141,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_depotcontroller_php_response",
-      "community": 51,
+      "community": 57,
       "norm_label": "response"
     },
     {
@@ -2151,7 +2151,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_disasterfeedsettingscontroller",
-      "community": 77,
+      "community": 51,
       "norm_label": "disasterfeedsettingscontroller.php"
     },
     {
@@ -2161,7 +2161,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_disasterfeedsettingscontroller_disasterfeedsettingscontroller",
-      "community": 77,
+      "community": 51,
       "norm_label": "disasterfeedsettingscontroller"
     },
     {
@@ -2171,7 +2171,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_disasterfeedsettingscontroller_disasterfeedsettingscontroller_index",
-      "community": 77,
+      "community": 51,
       "norm_label": ".index()"
     },
     {
@@ -2181,7 +2181,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_disasterfeedsettingscontroller_php_response",
-      "community": 77,
+      "community": 51,
       "norm_label": "response"
     },
     {
@@ -2271,7 +2271,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_incidentcontroller",
-      "community": 79,
+      "community": 57,
       "norm_label": "incidentcontroller.php"
     },
     {
@@ -2281,7 +2281,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_incidentcontroller_incidentcontroller",
-      "community": 79,
+      "community": 57,
       "norm_label": "incidentcontroller"
     },
     {
@@ -2291,7 +2291,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_incidentcontroller_incidentcontroller_index",
-      "community": 79,
+      "community": 57,
       "norm_label": ".index()"
     },
     {
@@ -2301,7 +2301,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_incidentcontroller_php_response",
-      "community": 79,
+      "community": 57,
       "norm_label": "response"
     },
     {
@@ -2351,7 +2351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_publicdashboardcontroller",
-      "community": 57,
+      "community": 51,
       "norm_label": "publicdashboardcontroller.php"
     },
     {
@@ -2361,7 +2361,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_publicdashboardcontroller_publicdashboardcontroller",
-      "community": 57,
+      "community": 51,
       "norm_label": "publicdashboardcontroller"
     },
     {
@@ -2371,7 +2371,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_publicdashboardcontroller_publicdashboardcontroller_index",
-      "community": 57,
+      "community": 51,
       "norm_label": ".index()"
     },
     {
@@ -2381,7 +2381,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_publicdashboardcontroller_php_response",
-      "community": 57,
+      "community": 51,
       "norm_label": "response"
     },
     {
@@ -2391,7 +2391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_reportcontroller",
-      "community": 38,
+      "community": 77,
       "norm_label": "reportcontroller.php"
     },
     {
@@ -2401,7 +2401,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_reportcontroller_reportcontroller",
-      "community": 38,
+      "community": 77,
       "norm_label": "reportcontroller"
     },
     {
@@ -2411,7 +2411,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_reportcontroller_reportcontroller_index",
-      "community": 38,
+      "community": 77,
       "norm_label": ".index()"
     },
     {
@@ -2421,7 +2421,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_reportcontroller_php_response",
-      "community": 38,
+      "community": 77,
       "norm_label": "response"
     },
     {
@@ -2431,7 +2431,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_resourceinventorycontroller",
-      "community": 71,
+      "community": 51,
       "norm_label": "resourceinventorycontroller.php"
     },
     {
@@ -2481,7 +2481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_routingsettingscontroller",
-      "community": 38,
+      "community": 8,
       "norm_label": "routingsettingscontroller.php"
     },
     {
@@ -2491,7 +2491,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_routingsettingscontroller_routingsettingscontroller",
-      "community": 38,
+      "community": 8,
       "norm_label": "routingsettingscontroller"
     },
     {
@@ -2501,7 +2501,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_routingsettingscontroller_routingsettingscontroller_index",
-      "community": 38,
+      "community": 8,
       "norm_label": ".index()"
     },
     {
@@ -2511,7 +2511,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_routingsettingscontroller_php_response",
-      "community": 38,
+      "community": 8,
       "norm_label": "response"
     },
     {
@@ -2521,7 +2521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller",
-      "community": 80,
+      "community": 51,
       "norm_label": "userscontroller.php"
     },
     {
@@ -2531,7 +2531,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_userscontroller",
-      "community": 80,
+      "community": 51,
       "norm_label": "userscontroller"
     },
     {
@@ -2541,7 +2541,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_userscontroller_index",
-      "community": 80,
+      "community": 51,
       "norm_label": ".index()"
     },
     {
@@ -2551,7 +2551,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_php_response",
-      "community": 80,
+      "community": 51,
       "norm_label": "response"
     },
     {
@@ -2561,7 +2561,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller",
-      "community": 81,
+      "community": 57,
       "norm_label": "smtpsettingscontroller.php"
     },
     {
@@ -2571,7 +2571,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_smtpsettingscontroller",
-      "community": 81,
+      "community": 57,
       "norm_label": "smtpsettingscontroller"
     },
     {
@@ -2581,7 +2581,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_smtpsettingscontroller_index",
-      "community": 81,
+      "community": 57,
       "norm_label": ".index()"
     },
     {
@@ -2591,7 +2591,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_php_response",
-      "community": 81,
+      "community": 57,
       "norm_label": "response"
     },
     {
@@ -2961,7 +2961,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_app_jobs_polldisasterfeedsjob_polldisasterfeedsjob_handle",
-      "community": 0,
+      "community": 40,
       "norm_label": ".handle()"
     },
     {
@@ -2991,7 +2991,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_jobs_runoptimizationjob_runoptimizationjob_construct",
-      "community": 18,
+      "community": 32,
       "norm_label": ".__construct()"
     },
     {
@@ -3011,7 +3011,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin",
-      "community": 66,
+      "community": 21,
       "norm_label": "preventinactivelogin.php"
     },
     {
@@ -3021,7 +3021,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin_preventinactivelogin",
-      "community": 66,
+      "community": 21,
       "norm_label": "preventinactivelogin"
     },
     {
@@ -3031,7 +3031,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin_preventinactivelogin_handle",
-      "community": 66,
+      "community": 21,
       "norm_label": ".handle()"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "attempting",
-      "community": 66,
+      "community": 21,
       "norm_label": "attempting"
     },
     {
@@ -3351,7 +3351,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster",
-      "community": 18,
+      "community": 3,
       "norm_label": "disaster"
     },
     {
@@ -3361,7 +3361,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster_zones",
-      "community": 18,
+      "community": 3,
       "norm_label": ".zones()"
     },
     {
@@ -3371,7 +3371,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_disaster_php_hasmany",
-      "community": 18,
+      "community": 3,
       "norm_label": "hasmany"
     },
     {
@@ -3381,7 +3381,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster_requests",
-      "community": 18,
+      "community": 3,
       "norm_label": ".requests()"
     },
     {
@@ -3391,7 +3391,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasmanythrough",
-      "community": 18,
+      "community": 3,
       "norm_label": "hasmanythrough"
     },
     {
@@ -3401,7 +3401,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster_optimizationruns",
-      "community": 18,
+      "community": 3,
       "norm_label": ".optimizationruns()"
     },
     {
@@ -3411,7 +3411,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster_evacuationcenters",
-      "community": 18,
+      "community": 3,
       "norm_label": ".evacuationcenters()"
     },
     {
@@ -3421,7 +3421,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_app_models_disaster_disaster_ndrrmcsummary",
-      "community": 18,
+      "community": 3,
       "norm_label": ".ndrrmcsummary()"
     },
     {
@@ -3441,7 +3441,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_models_disasterfeedsetting_disasterfeedsetting",
-      "community": 0,
+      "community": 23,
       "norm_label": "disasterfeedsetting"
     },
     {
@@ -3471,7 +3471,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "backend_app_models_disasterfeedsetting_disasterfeedsetting_anysourceenabled",
-      "community": 0,
+      "community": 23,
       "norm_label": ".anysourceenabled()"
     },
     {
@@ -3481,7 +3481,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "backend_app_models_disasterfeedsetting_disasterfeedsetting_duetopoll",
-      "community": 0,
+      "community": 23,
       "norm_label": ".duetopoll()"
     },
     {
@@ -3491,7 +3491,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "backend_app_models_disasterfeedsetting_disasterfeedsetting_present",
-      "community": 0,
+      "community": 23,
       "norm_label": ".present()"
     },
     {
@@ -3501,7 +3501,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_dispatch",
-      "community": 6,
+      "community": 11,
       "norm_label": "dispatch.php"
     },
     {
@@ -3601,7 +3601,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_evacuationcenter",
-      "community": 72,
+      "community": 6,
       "norm_label": "evacuationcenter.php"
     },
     {
@@ -3611,7 +3611,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_evacuationcenter_evacuationcenter",
-      "community": 72,
+      "community": 6,
       "norm_label": "evacuationcenter"
     },
     {
@@ -3621,7 +3621,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_models_evacuationcenter_evacuationcenter_disaster",
-      "community": 72,
+      "community": 6,
       "norm_label": ".disaster()"
     },
     {
@@ -3631,7 +3631,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_evacuationcenter_php_belongsto",
-      "community": 72,
+      "community": 6,
       "norm_label": "belongsto"
     },
     {
@@ -3641,7 +3641,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_models_evacuationcenter_evacuationcenter_zone",
-      "community": 72,
+      "community": 6,
       "norm_label": ".zone()"
     },
     {
@@ -3721,7 +3721,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_models_report_report",
-      "community": 60,
+      "community": 11,
       "norm_label": "report"
     },
     {
@@ -3731,7 +3731,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_models_report_report_disaster",
-      "community": 60,
+      "community": 11,
       "norm_label": ".disaster()"
     },
     {
@@ -3741,7 +3741,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_report_php_belongsto",
-      "community": 60,
+      "community": 11,
       "norm_label": "belongsto"
     },
     {
@@ -3811,7 +3811,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_resourcerequest",
-      "community": 3,
+      "community": 61,
       "norm_label": "resourcerequest"
     },
     {
@@ -3821,7 +3821,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_resourcerequest_zone",
-      "community": 3,
+      "community": 61,
       "norm_label": ".zone()"
     },
     {
@@ -3831,7 +3831,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_php_belongsto",
-      "community": 3,
+      "community": 61,
       "norm_label": "belongsto"
     },
     {
@@ -3841,7 +3841,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_resourcerequest_resourcetype",
-      "community": 3,
+      "community": 61,
       "norm_label": ".resourcetype()"
     },
     {
@@ -3851,7 +3851,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_resourcerequest_allocations",
-      "community": 3,
+      "community": 61,
       "norm_label": ".allocations()"
     },
     {
@@ -3861,7 +3861,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_resourcerequest_php_hasmany",
-      "community": 3,
+      "community": 61,
       "norm_label": "hasmany"
     },
     {
@@ -3881,7 +3881,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype",
-      "community": 3,
+      "community": 70,
       "norm_label": "resourcetype"
     },
     {
@@ -3891,7 +3891,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_resources",
-      "community": 3,
+      "community": 70,
       "norm_label": ".resources()"
     },
     {
@@ -3901,7 +3901,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_php_hasmany",
-      "community": 3,
+      "community": 70,
       "norm_label": "hasmany"
     },
     {
@@ -3911,7 +3911,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_requests",
-      "community": 3,
+      "community": 70,
       "norm_label": ".requests()"
     },
     {
@@ -4051,7 +4051,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_user",
-      "community": 62,
+      "community": 16,
       "norm_label": "user.php"
     },
     {
@@ -4081,7 +4081,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasroles",
-      "community": 62,
+      "community": 16,
       "norm_label": "hasroles"
     },
     {
@@ -4091,7 +4091,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "notifiable",
-      "community": 62,
+      "community": 16,
       "norm_label": "notifiable"
     },
     {
@@ -4141,7 +4141,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "backend_app_models_user_user_name",
-      "community": 62,
+      "community": 16,
       "norm_label": ".name()"
     },
     {
@@ -4151,7 +4151,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "attribute",
-      "community": 62,
+      "community": 16,
       "norm_label": "attribute"
     },
     {
@@ -4401,7 +4401,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_providers_eventserviceprovider",
-      "community": 66,
+      "community": 21,
       "norm_label": "eventserviceprovider.php"
     },
     {
@@ -4411,7 +4411,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_providers_eventserviceprovider_eventserviceprovider",
-      "community": 66,
+      "community": 21,
       "norm_label": "eventserviceprovider"
     },
     {
@@ -4651,7 +4651,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_services_directions_directionsrouter_directionsrouter_construct",
-      "community": 8,
+      "community": 66,
       "norm_label": ".__construct()"
     },
     {
@@ -4691,7 +4691,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_directions_osrmdirectionsprovider",
-      "community": 8,
+      "community": 66,
       "norm_label": "osrmdirectionsprovider.php"
     },
     {
@@ -4701,7 +4701,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_services_directions_osrmdirectionsprovider_osrmdirectionsprovider",
-      "community": 8,
+      "community": 66,
       "norm_label": "osrmdirectionsprovider"
     },
     {
@@ -4711,7 +4711,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "directionsprovider",
-      "community": 8,
+      "community": 66,
       "norm_label": "directionsprovider"
     },
     {
@@ -4721,7 +4721,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_directions_osrmdirectionsprovider_osrmdirectionsprovider_construct",
-      "community": 8,
+      "community": 66,
       "norm_label": ".__construct()"
     },
     {
@@ -4731,7 +4731,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_services_directions_osrmdirectionsprovider_osrmdirectionsprovider_getroute",
-      "community": 8,
+      "community": 66,
       "norm_label": ".getroute()"
     },
     {
@@ -4741,7 +4741,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "backend_app_services_directions_osrmdirectionsprovider_osrmdirectionsprovider_humanize",
-      "community": 8,
+      "community": 66,
       "norm_label": ".humanize()"
     },
     {
@@ -4751,7 +4751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_directions_premiumdirectionsprovider",
-      "community": 8,
+      "community": 66,
       "norm_label": "premiumdirectionsprovider.php"
     },
     {
@@ -4761,7 +4761,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_services_directions_premiumdirectionsprovider_premiumdirectionsprovider",
-      "community": 8,
+      "community": 66,
       "norm_label": "premiumdirectionsprovider"
     },
     {
@@ -4771,7 +4771,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_services_directions_premiumdirectionsprovider_premiumdirectionsprovider_construct",
-      "community": 8,
+      "community": 66,
       "norm_label": ".__construct()"
     },
     {
@@ -4781,7 +4781,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_services_directions_premiumdirectionsprovider_premiumdirectionsprovider_getroute",
-      "community": 8,
+      "community": 66,
       "norm_label": ".getroute()"
     },
     {
@@ -4791,7 +4791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_directions_providerquotaexceededexception",
-      "community": 8,
+      "community": 72,
       "norm_label": "providerquotaexceededexception.php"
     },
     {
@@ -4801,7 +4801,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_services_directions_providerquotaexceededexception_providerquotaexceededexception",
-      "community": 8,
+      "community": 72,
       "norm_label": "providerquotaexceededexception"
     },
     {
@@ -4811,7 +4811,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "runtimeexception",
-      "community": 8,
+      "community": 72,
       "norm_label": "runtimeexception"
     },
     {
@@ -4951,7 +4951,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient",
-      "community": 0,
+      "community": 40,
       "norm_label": "gdacsfeedclient.php"
     },
     {
@@ -4961,7 +4961,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient",
-      "community": 0,
+      "community": 40,
       "norm_label": "gdacsfeedclient"
     },
     {
@@ -4971,7 +4971,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_key",
-      "community": 0,
+      "community": 40,
       "norm_label": ".key()"
     },
     {
@@ -4981,7 +4981,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_fetchrecent",
-      "community": 0,
+      "community": 40,
       "norm_label": ".fetchrecent()"
     },
     {
@@ -4991,7 +4991,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_mapfeature",
-      "community": 0,
+      "community": 40,
       "norm_label": ".mapfeature()"
     },
     {
@@ -5001,7 +5001,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_signalfor",
-      "community": 0,
+      "community": 40,
       "norm_label": ".signalfor()"
     },
     {
@@ -5011,7 +5011,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_alertlevelsatorabove",
-      "community": 0,
+      "community": 40,
       "norm_label": ".alertlevelsatorabove()"
     },
     {
@@ -5021,7 +5021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient",
-      "community": 0,
+      "community": 40,
       "norm_label": "usgsearthquakefeedclient.php"
     },
     {
@@ -5031,7 +5031,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient",
-      "community": 0,
+      "community": 40,
       "norm_label": "usgsearthquakefeedclient"
     },
     {
@@ -5041,7 +5041,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_key",
-      "community": 0,
+      "community": 40,
       "norm_label": ".key()"
     },
     {
@@ -5051,7 +5051,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_fetchrecent",
-      "community": 0,
+      "community": 40,
       "norm_label": ".fetchrecent()"
     },
     {
@@ -5061,7 +5061,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_mapfeature",
-      "community": 0,
+      "community": 40,
       "norm_label": ".mapfeature()"
     },
     {
@@ -5071,7 +5071,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_magnitudetosignal",
-      "community": 0,
+      "community": 40,
       "norm_label": ".magnitudetosignal()"
     },
     {
@@ -5081,7 +5081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_gis_geofenceservice",
-      "community": 3,
+      "community": 33,
       "norm_label": "geofenceservice.php"
     },
     {
@@ -5101,7 +5101,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_gis_geofenceservice_geofenceservice_distancekm",
-      "community": 3,
+      "community": 33,
       "norm_label": ".distancekm()"
     },
     {
@@ -5111,7 +5111,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_services_gis_geofenceservice_geofenceservice_nearestdepots",
-      "community": 3,
+      "community": 33,
       "norm_label": ".nearestdepots()"
     },
     {
@@ -5121,7 +5121,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_services_gis_geofenceservice_php_collection",
-      "community": 3,
+      "community": 33,
       "norm_label": "collection"
     },
     {
@@ -5161,7 +5161,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_app_services_optimization_greedyallocationsolver_greedyallocationsolver_allocate",
-      "community": 33,
+      "community": 3,
       "norm_label": ".allocate()"
     },
     {
@@ -5201,7 +5201,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_services_optimization_optimizationserviceclient_optimizationserviceclient_optimizeallocation",
-      "community": 0,
+      "community": 40,
       "norm_label": ".optimizeallocation()"
     },
     {
@@ -5241,7 +5241,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_reports_ndrrmcreportbuilder",
-      "community": 18,
+      "community": 3,
       "norm_label": "ndrrmcreportbuilder.php"
     },
     {
@@ -5251,7 +5251,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_services_reports_ndrrmcreportbuilder_ndrrmcreportbuilder",
-      "community": 18,
+      "community": 3,
       "norm_label": "ndrrmcreportbuilder"
     },
     {
@@ -5261,7 +5261,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_services_reports_ndrrmcreportbuilder_ndrrmcreportbuilder_build",
-      "community": 18,
+      "community": 3,
       "norm_label": ".build()"
     },
     {
@@ -5291,7 +5291,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_app_support_activitylogger_activitylogger_log",
-      "community": 0,
+      "community": 40,
       "norm_label": ".log()"
     },
     {
@@ -5711,7 +5711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_mail",
-      "community": 62,
+      "community": 16,
       "norm_label": "mail.php"
     },
     {
@@ -5791,7 +5791,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_allocationfactory_allocationfactory",
-      "community": 19,
+      "community": 61,
       "norm_label": "allocationfactory"
     },
     {
@@ -5811,7 +5811,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_database_factories_allocationfactory_allocationfactory_definition",
-      "community": 3,
+      "community": 61,
       "norm_label": ".definition()"
     },
     {
@@ -5881,7 +5881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_dispatchfactory",
-      "community": 6,
+      "community": 19,
       "norm_label": "dispatchfactory.php"
     },
     {
@@ -5931,7 +5931,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_factories_evacuationcenterfactory_evacuationcenterfactory_definition",
-      "community": 18,
+      "community": 19,
       "norm_label": ".definition()"
     },
     {
@@ -5961,7 +5961,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_factories_optimizationrunfactory_optimizationrunfactory_definition",
-      "community": 18,
+      "community": 19,
       "norm_label": ".definition()"
     },
     {
@@ -5991,7 +5991,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_factories_reportfactory_reportfactory_definition",
-      "community": 18,
+      "community": 19,
       "norm_label": ".definition()"
     },
     {
@@ -6011,7 +6011,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_resourcefactory_resourcefactory",
-      "community": 19,
+      "community": 70,
       "norm_label": "resourcefactory"
     },
     {
@@ -6021,7 +6021,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_database_factories_resourcefactory_resourcefactory_definition",
-      "community": 3,
+      "community": 70,
       "norm_label": ".definition()"
     },
     {
@@ -6041,7 +6041,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_resourcerequestfactory_resourcerequestfactory",
-      "community": 19,
+      "community": 70,
       "norm_label": "resourcerequestfactory"
     },
     {
@@ -6051,7 +6051,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_database_factories_resourcerequestfactory_resourcerequestfactory_definition",
-      "community": 3,
+      "community": 70,
       "norm_label": ".definition()"
     },
     {
@@ -6091,7 +6091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory",
-      "community": 62,
+      "community": 47,
       "norm_label": "userfactory.php"
     },
     {
@@ -6161,7 +6161,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_factories_zonefactory_zonefactory_definition",
-      "community": 18,
+      "community": 19,
       "norm_label": ".definition()"
     },
     {
@@ -6791,7 +6791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_databaseseeder",
-      "community": 85,
+      "community": 63,
       "norm_label": "databaseseeder.php"
     },
     {
@@ -6801,7 +6801,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_database_seeders_databaseseeder_databaseseeder",
-      "community": 85,
+      "community": 63,
       "norm_label": "databaseseeder"
     },
     {
@@ -6821,7 +6821,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "withoutmodelevents",
-      "community": 85,
+      "community": 63,
       "norm_label": "withoutmodelevents"
     },
     {
@@ -6831,7 +6831,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_seeders_databaseseeder_databaseseeder_run",
-      "community": 85,
+      "community": 63,
       "norm_label": ".run()"
     },
     {
@@ -6891,7 +6891,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_database_seeders_fakerdataseeder_fakerdataseeder_run",
-      "community": 3,
+      "community": 61,
       "norm_label": ".run()"
     },
     {
@@ -6931,7 +6931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_userseeder",
-      "community": 16,
+      "community": 63,
       "norm_label": "userseeder.php"
     },
     {
@@ -6941,7 +6941,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_database_seeders_userseeder_userseeder",
-      "community": 16,
+      "community": 63,
       "norm_label": "userseeder"
     },
     {
@@ -6951,7 +6951,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_database_seeders_userseeder_userseeder_run",
-      "community": 16,
+      "community": 63,
       "norm_label": ".run()"
     },
     {
@@ -7081,7 +7081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_filterbar",
-      "community": 4,
+      "community": 14,
       "norm_label": "filterbar.tsx"
     },
     {
@@ -7091,7 +7091,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_filterbar_props",
-      "community": 4,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -7101,7 +7101,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_filterbar_filterbar",
-      "community": 4,
+      "community": 14,
       "norm_label": "filterbar()"
     },
     {
@@ -7111,7 +7111,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal",
-      "community": 25,
+      "community": 14,
       "norm_label": "modal.tsx"
     },
     {
@@ -7121,7 +7121,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal_props",
-      "community": 25,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -7131,7 +7131,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal_modal",
-      "community": 25,
+      "community": 14,
       "norm_label": "modal()"
     },
     {
@@ -7141,7 +7141,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_pagination",
-      "community": 4,
+      "community": 14,
       "norm_label": "pagination.tsx"
     },
     {
@@ -7151,7 +7151,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_pagination_props",
-      "community": 4,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -7161,7 +7161,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_pagination_pagination",
-      "community": 4,
+      "community": 14,
       "norm_label": "pagination()"
     },
     {
@@ -7231,7 +7231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox",
-      "community": 23,
+      "community": 12,
       "norm_label": "imagelightbox.tsx"
     },
     {
@@ -7241,7 +7241,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightboxprops",
-      "community": 23,
+      "community": 12,
       "norm_label": "imagelightboxprops"
     },
     {
@@ -7251,7 +7251,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightbox",
-      "community": 23,
+      "community": 12,
       "norm_label": "imagelightbox()"
     },
     {
@@ -7401,7 +7401,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_resources_js_components_map_incidentmap_incidentmap",
-      "community": 48,
+      "community": 26,
       "norm_label": "incidentmap()"
     },
     {
@@ -7411,7 +7411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_map_locationpickmap",
-      "community": 4,
+      "community": 14,
       "norm_label": "locationpickmap.tsx"
     },
     {
@@ -7421,7 +7421,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_components_map_locationpickmap_ph_center",
-      "community": 4,
+      "community": 14,
       "norm_label": "ph_center"
     },
     {
@@ -7431,7 +7431,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_components_map_locationpickmap_props",
-      "community": 4,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -7441,7 +7441,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_map_locationpickmap_locationpickmap",
-      "community": 4,
+      "community": 14,
       "norm_label": "locationpickmap()"
     },
     {
@@ -7451,7 +7451,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal",
-      "community": 14,
+      "community": 12,
       "norm_label": "modal.tsx"
     },
     {
@@ -7461,7 +7461,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalprops"
     },
     {
@@ -7471,7 +7471,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modal",
-      "community": 14,
+      "community": 12,
       "norm_label": "modal()"
     },
     {
@@ -7891,7 +7891,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field",
-      "community": 5,
+      "community": 12,
       "norm_label": "field.tsx"
     },
     {
@@ -7901,7 +7901,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field_field",
-      "community": 5,
+      "community": 12,
       "norm_label": "field()"
     },
     {
@@ -7911,7 +7911,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field_readonlyfield",
-      "community": 5,
+      "community": 12,
       "norm_label": "readonlyfield()"
     },
     {
@@ -8041,7 +8041,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodal.tsx"
     },
     {
@@ -8051,7 +8051,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal_confirmarchiveaccountmodalprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodalprops"
     },
     {
@@ -8061,7 +8061,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal_confirmarchiveaccountmodal",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodal()"
     },
     {
@@ -8071,7 +8071,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal",
-      "community": 4,
+      "community": 12,
       "norm_label": "confirmdeletemodal.tsx"
     },
     {
@@ -8081,7 +8081,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal_confirmdeletemodalprops",
-      "community": 4,
+      "community": 12,
       "norm_label": "confirmdeletemodalprops"
     },
     {
@@ -8091,7 +8091,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal_confirmdeletemodal",
-      "community": 4,
+      "community": 12,
       "norm_label": "confirmdeletemodal()"
     },
     {
@@ -8101,7 +8101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirminusemodal.tsx"
     },
     {
@@ -8121,7 +8121,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal_confirminusemodalprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirminusemodalprops"
     },
     {
@@ -8131,7 +8131,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal_confirminusemodal",
-      "community": 14,
+      "community": 12,
       "norm_label": "confirminusemodal()"
     },
     {
@@ -8141,7 +8141,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalcenter.tsx"
     },
     {
@@ -8151,7 +8151,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_size",
-      "community": 14,
+      "community": 12,
       "norm_label": "size"
     },
     {
@@ -8161,7 +8161,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_widths",
-      "community": 14,
+      "community": 12,
       "norm_label": "widths"
     },
     {
@@ -8171,7 +8171,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcomponentprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalcomponentprops"
     },
     {
@@ -8181,7 +8181,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcenterprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalcenterprops"
     },
     {
@@ -8191,7 +8191,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcenter",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalcenter()"
     },
     {
@@ -8201,7 +8201,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalside.tsx"
     },
     {
@@ -8211,7 +8211,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_side",
-      "community": 14,
+      "community": 12,
       "norm_label": "side"
     },
     {
@@ -8221,7 +8221,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_modalsideprops",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalsideprops"
     },
     {
@@ -8231,7 +8231,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_side_classes",
-      "community": 14,
+      "community": 12,
       "norm_label": "side_classes"
     },
     {
@@ -8241,7 +8241,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_modalside",
-      "community": 14,
+      "community": 12,
       "norm_label": "modalside()"
     },
     {
@@ -8331,7 +8331,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_settingstabs",
-      "community": 9,
+      "community": 1,
       "norm_label": "settingstabs.tsx"
     },
     {
@@ -8341,7 +8341,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_settingstabs_tabs",
-      "community": 9,
+      "community": 1,
       "norm_label": "tabs"
     },
     {
@@ -8351,7 +8351,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_settingstabs_settingstabs",
-      "community": 9,
+      "community": 1,
       "norm_label": "settingstabs()"
     },
     {
@@ -8741,7 +8741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination",
-      "community": 15,
+      "community": 17,
       "norm_label": "pagination.tsx"
     },
     {
@@ -8751,7 +8751,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtnprops",
-      "community": 15,
+      "community": 17,
       "norm_label": "pagebtnprops"
     },
     {
@@ -8761,7 +8761,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtn",
-      "community": 15,
+      "community": 17,
       "norm_label": "pagebtn()"
     },
     {
@@ -8771,7 +8771,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbersprops",
-      "community": 15,
+      "community": 17,
       "norm_label": "pagenumbersprops"
     },
     {
@@ -8781,7 +8781,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbers",
-      "community": 15,
+      "community": 17,
       "norm_label": "pagenumbers()"
     },
     {
@@ -8791,7 +8791,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbarprops",
-      "community": 15,
+      "community": 17,
       "norm_label": "paginationbarprops"
     },
     {
@@ -8801,7 +8801,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbar",
-      "community": 15,
+      "community": 17,
       "norm_label": "paginationbar()"
     },
     {
@@ -8811,7 +8811,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal",
-      "community": 23,
+      "community": 12,
       "norm_label": "recordmodal.tsx"
     },
     {
@@ -8831,7 +8831,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_recordmodal",
-      "community": 23,
+      "community": 12,
       "norm_label": "recordmodal()"
     },
     {
@@ -8841,7 +8841,7 @@
       "source_location": "L201",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_uploadprogress",
-      "community": 23,
+      "community": 12,
       "norm_label": "uploadprogress()"
     },
     {
@@ -8851,7 +8851,7 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_buildinitialvalues",
-      "community": 23,
+      "community": 12,
       "norm_label": "buildinitialvalues()"
     },
     {
@@ -8861,7 +8861,7 @@
       "source_location": "L246",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_seedfieldvalue",
-      "community": 23,
+      "community": 12,
       "norm_label": "seedfieldvalue()"
     },
     {
@@ -8871,7 +8871,7 @@
       "source_location": "L275",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_collecterrors",
-      "community": 23,
+      "community": 12,
       "norm_label": "collecterrors()"
     },
     {
@@ -8881,7 +8881,7 @@
       "source_location": "L297",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodal_mapapierrors",
-      "community": 23,
+      "community": 12,
       "norm_label": "mapapierrors()"
     },
     {
@@ -8891,7 +8891,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield",
-      "community": 5,
+      "community": 12,
       "norm_label": "recordmodalfield.tsx"
     },
     {
@@ -8901,7 +8901,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfieldprops",
-      "community": 5,
+      "community": 12,
       "norm_label": "dynamicfieldprops"
     },
     {
@@ -8911,7 +8911,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfield",
-      "community": 5,
+      "community": 12,
       "norm_label": "dynamicfield()"
     },
     {
@@ -8921,7 +8921,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_fieldcontrol",
-      "community": 5,
+      "community": 12,
       "norm_label": "fieldcontrol()"
     },
     {
@@ -8931,7 +8931,7 @@
       "source_location": "L230",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_passwordcontrol",
-      "community": 5,
+      "community": 12,
       "norm_label": "passwordcontrol()"
     },
     {
@@ -9061,7 +9061,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index",
-      "community": 7,
+      "community": 58,
       "norm_label": "index.ts"
     },
     {
@@ -9071,7 +9071,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index_usedebouncedvalue",
-      "community": 7,
+      "community": 58,
       "norm_label": "usedebouncedvalue()"
     },
     {
@@ -9081,7 +9081,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index_tablequeryparams",
-      "community": 7,
+      "community": 58,
       "norm_label": "tablequeryparams"
     },
     {
@@ -9091,7 +9091,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index_usetablequery",
-      "community": 7,
+      "community": 58,
       "norm_label": "usetablequery()"
     },
     {
@@ -9101,7 +9101,7 @@
       "source_location": "L142",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index_usetablerefresh",
-      "community": 7,
+      "community": 58,
       "norm_label": "usetablerefresh()"
     },
     {
@@ -9111,7 +9111,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_index_useinvalidatetable",
-      "community": 7,
+      "community": 58,
       "norm_label": "useinvalidatetable()"
     },
     {
@@ -9121,7 +9121,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_card_table_controller",
-      "community": 7,
+      "community": 58,
       "norm_label": "use-card-table-controller.ts"
     },
     {
@@ -9131,7 +9131,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_card_table_controller_isfiltervalueactive",
-      "community": 7,
+      "community": 58,
       "norm_label": "isfiltervalueactive()"
     },
     {
@@ -9141,7 +9141,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_card_table_controller_normalizequerykey",
-      "community": 7,
+      "community": 58,
       "norm_label": "normalizequerykey()"
     },
     {
@@ -9151,7 +9151,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_card_table_controller_clientmeta",
-      "community": 7,
+      "community": 58,
       "norm_label": "clientmeta()"
     },
     {
@@ -9161,7 +9161,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_card_table_controller_usecardtablecontroller",
-      "community": 7,
+      "community": 58,
       "norm_label": "usecardtablecontroller()"
     },
     {
@@ -9231,7 +9231,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_index",
-      "community": 7,
+      "community": 58,
       "norm_label": "index.ts"
     },
     {
@@ -9271,7 +9271,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_derivefieldsfromcolumns",
-      "community": 7,
+      "community": 58,
       "norm_label": "derivefieldsfromcolumns()"
     },
     {
@@ -9351,7 +9351,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_getcsrftoken",
-      "community": 7,
+      "community": 58,
       "norm_label": "getcsrftoken()"
     },
     {
@@ -9361,7 +9361,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_normalizequerykey",
-      "community": 7,
+      "community": 10,
       "norm_label": "normalizequerykey()"
     },
     {
@@ -9561,7 +9561,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field",
-      "community": 23,
+      "community": 12,
       "norm_label": "use-file-upload-field.tsx"
     },
     {
@@ -9571,7 +9571,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_formatbytes",
-      "community": 23,
+      "community": 12,
       "norm_label": "formatbytes()"
     },
     {
@@ -9581,7 +9581,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_isimagename",
-      "community": 23,
+      "community": 12,
       "norm_label": "isimagename()"
     },
     {
@@ -9591,7 +9591,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_filenamefromurl",
-      "community": 23,
+      "community": 12,
       "norm_label": "filenamefromurl()"
     },
     {
@@ -9601,7 +9601,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_normalizeexistingfiles",
-      "community": 23,
+      "community": 12,
       "norm_label": "normalizeexistingfiles()"
     },
     {
@@ -9611,7 +9611,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_emptyfilefieldvalue",
-      "community": 23,
+      "community": 12,
       "norm_label": "emptyfilefieldvalue"
     },
     {
@@ -9621,7 +9621,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_localthumb",
-      "community": 23,
+      "community": 12,
       "norm_label": "localthumb()"
     },
     {
@@ -9631,7 +9631,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfieldprops",
-      "community": 23,
+      "community": 12,
       "norm_label": "fileuploadfieldprops"
     },
     {
@@ -9641,7 +9641,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfield",
-      "community": 23,
+      "community": 12,
       "norm_label": "fileuploadfield()"
     },
     {
@@ -9691,7 +9691,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior",
-      "community": 14,
+      "community": 12,
       "norm_label": "use-modal-behavior.ts"
     },
     {
@@ -9701,7 +9701,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior_usemodalbehavioroptions",
-      "community": 14,
+      "community": 12,
       "norm_label": "usemodalbehavioroptions"
     },
     {
@@ -9711,7 +9711,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior_usemodalbehavior",
-      "community": 14,
+      "community": 12,
       "norm_label": "usemodalbehavior()"
     },
     {
@@ -9811,7 +9811,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_scroll_lock",
-      "community": 14,
+      "community": 12,
       "norm_label": "use-scroll-lock.ts"
     },
     {
@@ -9821,7 +9821,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_scroll_lock_usescrolllock",
-      "community": 14,
+      "community": 12,
       "norm_label": "usescrolllock()"
     },
     {
@@ -10081,7 +10081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout",
-      "community": 10,
+      "community": 1,
       "norm_label": "adminlayout.tsx"
     },
     {
@@ -10091,7 +10091,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout_navitems",
-      "community": 10,
+      "community": 1,
       "norm_label": "navitems"
     },
     {
@@ -10231,7 +10231,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_enqueue",
-      "community": 10,
+      "community": 60,
       "norm_label": "enqueue()"
     },
     {
@@ -10611,7 +10611,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index",
-      "community": 17,
+      "community": 10,
       "norm_label": "index.tsx"
     },
     {
@@ -10621,7 +10621,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_columns",
-      "community": 17,
+      "community": 10,
       "norm_label": "columns"
     },
     {
@@ -10631,7 +10631,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_evacuationcard",
-      "community": 17,
+      "community": 10,
       "norm_label": "evacuationcard()"
     },
     {
@@ -10641,7 +10641,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_fields",
-      "community": 17,
+      "community": 10,
       "norm_label": "fields"
     },
     {
@@ -10661,7 +10661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_index",
-      "community": 4,
+      "community": 14,
       "norm_label": "index.tsx"
     },
     {
@@ -10671,7 +10671,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_index_emptyform",
-      "community": 4,
+      "community": 14,
       "norm_label": "emptyform"
     },
     {
@@ -10681,7 +10681,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_index_incidentsindex",
-      "community": 4,
+      "community": 14,
       "norm_label": "incidentsindex()"
     },
     {
@@ -10691,7 +10691,7 @@
       "source_location": "L547",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_index_field",
-      "community": 4,
+      "community": 14,
       "norm_label": "field()"
     },
     {
@@ -10701,7 +10701,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_zonendrrmcmodal",
-      "community": 25,
+      "community": 14,
       "norm_label": "zonendrrmcmodal.tsx"
     },
     {
@@ -10711,7 +10711,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_zonendrrmcmodal_props",
-      "community": 25,
+      "community": 14,
       "norm_label": "props"
     },
     {
@@ -10721,7 +10721,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_zonendrrmcmodal_numeric_fields",
-      "community": 25,
+      "community": 14,
       "norm_label": "numeric_fields"
     },
     {
@@ -10731,7 +10731,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_zonendrrmcmodal_zonendrrmcmodal",
-      "community": 25,
+      "community": 14,
       "norm_label": "zonendrrmcmodal()"
     },
     {
@@ -10781,7 +10781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index",
-      "community": 17,
+      "community": 9,
       "norm_label": "index.tsx"
     },
     {
@@ -10791,7 +10791,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_columns",
-      "community": 17,
+      "community": 9,
       "norm_label": "columns"
     },
     {
@@ -10801,7 +10801,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportcard",
-      "community": 17,
+      "community": 9,
       "norm_label": "reportcard()"
     },
     {
@@ -10811,7 +10811,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportfields",
-      "community": 17,
+      "community": 9,
       "norm_label": "reportfields"
     },
     {
@@ -10821,7 +10821,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportsindex",
-      "community": 17,
+      "community": 10,
       "norm_label": "reportsindex()"
     },
     {
@@ -10831,7 +10831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform",
-      "community": 10,
+      "community": 60,
       "norm_label": "createrequestform.tsx"
     },
     {
@@ -10841,7 +10841,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_props",
-      "community": 10,
+      "community": 60,
       "norm_label": "props"
     },
     {
@@ -10851,7 +10851,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_priorities",
-      "community": 10,
+      "community": 60,
       "norm_label": "priorities"
     },
     {
@@ -10861,7 +10861,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_createrequestform",
-      "community": 10,
+      "community": 60,
       "norm_label": "createrequestform()"
     },
     {
@@ -10991,7 +10991,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_disasterfeed",
-      "community": 9,
+      "community": 1,
       "norm_label": "disasterfeed.tsx"
     },
     {
@@ -11001,7 +11001,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_disasterfeed_props",
-      "community": 9,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -11011,7 +11011,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_disasterfeed_interval_labels",
-      "community": 9,
+      "community": 1,
       "norm_label": "interval_labels"
     },
     {
@@ -11021,7 +11021,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_disasterfeed_status_colors",
-      "community": 9,
+      "community": 1,
       "norm_label": "status_colors"
     },
     {
@@ -11031,7 +11031,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_disasterfeed_disasterfeedsettings",
-      "community": 9,
+      "community": 1,
       "norm_label": "disasterfeedsettings()"
     },
     {
@@ -11041,7 +11041,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_routing",
-      "community": 9,
+      "community": 1,
       "norm_label": "routing.tsx"
     },
     {
@@ -11051,7 +11051,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_routing_props",
-      "community": 9,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -11061,7 +11061,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_routing_fallback_messages",
-      "community": 9,
+      "community": 1,
       "norm_label": "fallback_messages"
     },
     {
@@ -11071,7 +11071,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_routing_routingsettings",
-      "community": 9,
+      "community": 1,
       "norm_label": "routingsettings()"
     },
     {
@@ -11081,7 +11081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp",
-      "community": 9,
+      "community": 1,
       "norm_label": "smtp.tsx"
     },
     {
@@ -11091,7 +11091,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp_props",
-      "community": 9,
+      "community": 1,
       "norm_label": "props"
     },
     {
@@ -11101,7 +11101,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp_smtpsettings",
-      "community": 9,
+      "community": 1,
       "norm_label": "smtpsettings()"
     },
     {
@@ -11111,7 +11111,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users",
-      "community": 9,
+      "community": 39,
       "norm_label": "users.tsx"
     },
     {
@@ -11121,7 +11121,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_roleoptions",
-      "community": 9,
+      "community": 39,
       "norm_label": "roleoptions"
     },
     {
@@ -11131,7 +11131,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_columns",
-      "community": 9,
+      "community": 39,
       "norm_label": "columns"
     },
     {
@@ -11141,7 +11141,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_makeusercard",
-      "community": 9,
+      "community": 39,
       "norm_label": "makeusercard()"
     },
     {
@@ -11151,7 +11151,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_userfields",
-      "community": 9,
+      "community": 39,
       "norm_label": "userfields"
     },
     {
@@ -11161,7 +11161,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_settingsusersindex",
-      "community": 9,
+      "community": 39,
       "norm_label": "settingsusersindex()"
     },
     {
@@ -11391,7 +11391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_pagination",
-      "community": 15,
+      "community": 29,
       "norm_label": "pagination.ts"
     },
     {
@@ -11411,7 +11411,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_card_cardactions",
-      "community": 17,
+      "community": 15,
       "norm_label": "cardactions"
     },
     {
@@ -11471,7 +11471,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_inuseentry",
-      "community": 7,
+      "community": 15,
       "norm_label": "inuseentry"
     },
     {
@@ -11541,7 +11541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields",
-      "community": 5,
+      "community": 12,
       "norm_label": "fields.ts"
     },
     {
@@ -11561,7 +11561,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldtype",
-      "community": 5,
+      "community": 15,
       "norm_label": "fieldtype"
     },
     {
@@ -11581,7 +11581,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_existingfile",
-      "community": 23,
+      "community": 12,
       "norm_label": "existingfile"
     },
     {
@@ -11611,7 +11611,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination",
-      "community": 15,
+      "community": 29,
       "norm_label": "pagination.ts"
     },
     {
@@ -11621,7 +11621,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_crudqueryparams",
-      "community": 15,
+      "community": 29,
       "norm_label": "crudqueryparams"
     },
     {
@@ -11631,7 +11631,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_paginationmeta",
-      "community": 15,
+      "community": 29,
       "norm_label": "paginationmeta"
     },
     {
@@ -11641,7 +11641,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_paginatedresponse",
-      "community": 15,
+      "community": 29,
       "norm_label": "paginatedresponse"
     },
     {
@@ -11651,7 +11651,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_tableapiresponse",
-      "community": 15,
+      "community": 29,
       "norm_label": "tableapiresponse"
     },
     {
@@ -11681,7 +11681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_utils_geocoding",
-      "community": 4,
+      "community": 14,
       "norm_label": "geocoding.ts"
     },
     {
@@ -11691,7 +11691,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_utils_geocoding_nominatimaddress",
-      "community": 4,
+      "community": 14,
       "norm_label": "nominatimaddress"
     },
     {
@@ -11701,7 +11701,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_utils_geocoding_reversegeocoderesult",
-      "community": 4,
+      "community": 14,
       "norm_label": "reversegeocoderesult"
     },
     {
@@ -11711,7 +11711,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_utils_geocoding_reversegeocode",
-      "community": 4,
+      "community": 14,
       "norm_label": "reversegeocode()"
     },
     {
@@ -11801,7 +11801,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client",
-      "community": 2,
+      "community": 60,
       "norm_label": "client.ts"
     },
     {
@@ -11811,7 +11811,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_getcsrftoken",
-      "community": 2,
+      "community": 60,
       "norm_label": "getcsrftoken()"
     },
     {
@@ -11821,7 +11821,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror",
-      "community": 25,
+      "community": 60,
       "norm_label": "apierror"
     },
     {
@@ -11831,7 +11831,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror_constructor",
-      "community": 25,
+      "community": 60,
       "norm_label": ".constructor()"
     },
     {
@@ -11841,7 +11841,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apienvelope",
-      "community": 2,
+      "community": 60,
       "norm_label": "apienvelope"
     },
     {
@@ -11851,7 +11851,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_readcookie",
-      "community": 2,
+      "community": 60,
       "norm_label": "readcookie()"
     },
     {
@@ -11861,7 +11861,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_attachheaders",
-      "community": 2,
+      "community": 60,
       "norm_label": "attachheaders()"
     },
     {
@@ -11871,7 +11871,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_toapierror",
-      "community": 2,
+      "community": 60,
       "norm_label": "toapierror()"
     },
     {
@@ -11881,7 +11881,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_createhttpclient",
-      "community": 2,
+      "community": 60,
       "norm_label": "createhttpclient()"
     },
     {
@@ -12101,7 +12101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_depots",
-      "community": 2,
+      "community": 25,
       "norm_label": "depots.ts"
     },
     {
@@ -12111,7 +12111,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_depots_depotsservice",
-      "community": 2,
+      "community": 25,
       "norm_label": "depotsservice"
     },
     {
@@ -12141,7 +12141,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_evacuationcenters",
-      "community": 17,
+      "community": 10,
       "norm_label": "evacuationcenters.ts"
     },
     {
@@ -12151,7 +12151,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_evacuationcenters_evacuationcentersservice",
-      "community": 17,
+      "community": 10,
       "norm_label": "evacuationcentersservice"
     },
     {
@@ -12171,7 +12171,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_incidents_incidentsservice",
-      "community": 2,
+      "community": 9,
       "norm_label": "incidentsservice"
     },
     {
@@ -12181,7 +12181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_reports",
-      "community": 2,
+      "community": 9,
       "norm_label": "reports.ts"
     },
     {
@@ -12191,7 +12191,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_reports_crud",
-      "community": 2,
+      "community": 9,
       "norm_label": "crud"
     },
     {
@@ -12201,7 +12201,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_reports_reportsservice",
-      "community": 2,
+      "community": 9,
       "norm_label": "reportsservice"
     },
     {
@@ -12491,7 +12491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_date",
-      "community": 5,
+      "community": 12,
       "norm_label": "date.ts"
     },
     {
@@ -12501,7 +12501,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_lib_date_formatdateshort",
-      "community": 5,
+      "community": 12,
       "norm_label": "formatdateshort()"
     },
     {
@@ -12511,7 +12511,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror",
-      "community": 7,
+      "community": 15,
       "norm_label": "parseapierror.ts"
     },
     {
@@ -12521,7 +12521,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror_parsedapierror",
-      "community": 7,
+      "community": 15,
       "norm_label": "parsedapierror"
     },
     {
@@ -12641,7 +12641,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_auth",
-      "community": 55,
+      "community": 56,
       "norm_label": "auth.php"
     },
     {
@@ -12671,7 +12671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_web",
-      "community": 57,
+      "community": 51,
       "norm_label": "web.php"
     },
     {
@@ -13281,7 +13281,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedingestortest",
-      "community": 11,
+      "community": 65,
       "norm_label": "disasterfeedingestortest.php"
     },
     {
@@ -13431,7 +13431,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest",
-      "community": 6,
+      "community": 11,
       "norm_label": "dispatchtest.php"
     },
     {
@@ -13451,7 +13451,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_coordinator_can_create_a_dispatch",
-      "community": 27,
+      "community": 3,
       "norm_label": ".test_coordinator_can_create_a_dispatch()"
     },
     {
@@ -13461,7 +13461,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_viewer_cannot_create_a_dispatch",
-      "community": 27,
+      "community": 3,
       "norm_label": ".test_viewer_cannot_create_a_dispatch()"
     },
     {
@@ -13561,7 +13561,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_tests_feature_idempotentcreatetest_idempotentcreatetest_test_posting_the_same_area_id_twice_creates_only_one_zone",
-      "community": 11,
+      "community": 16,
       "norm_label": ".test_posting_the_same_area_id_twice_creates_only_one_zone()"
     },
     {
@@ -13571,7 +13571,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "backend_tests_feature_idempotentcreatetest_idempotentcreatetest_test_posting_the_same_request_id_twice_creates_only_one_row",
-      "community": 3,
+      "community": 70,
       "norm_label": ".test_posting_the_same_request_id_twice_creates_only_one_row()"
     },
     {
@@ -13591,7 +13591,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_tests_feature_optimizationfallbacktest_optimizationfallbacktest",
-      "community": 11,
+      "community": 3,
       "norm_label": "optimizationfallbacktest"
     },
     {
@@ -13601,7 +13601,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_tests_feature_optimizationfallbacktest_optimizationfallbacktest_test_job_completes_with_greedy_fallback_when_solver_service_is_unreachable",
-      "community": 11,
+      "community": 3,
       "norm_label": ".test_job_completes_with_greedy_fallback_when_solver_service_is_unreachable()"
     },
     {
@@ -13611,7 +13611,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_tests_feature_optimizationfallbacktest_optimizationfallbacktest_test_job_completes_with_greedy_fallback_when_solver_service_errors",
-      "community": 11,
+      "community": 3,
       "norm_label": ".test_job_completes_with_greedy_fallback_when_solver_service_errors()"
     },
     {
@@ -13621,7 +13621,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "backend_tests_feature_optimizationfallbacktest_optimizationfallbacktest_test_job_uses_solver_service_result_when_reachable",
-      "community": 11,
+      "community": 3,
       "norm_label": ".test_job_uses_solver_service_result_when_reachable()"
     },
     {
@@ -13631,7 +13631,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest",
-      "community": 60,
+      "community": 11,
       "norm_label": "reportdownloadtest.php"
     },
     {
@@ -13641,7 +13641,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest_reportdownloadtest",
-      "community": 60,
+      "community": 11,
       "norm_label": "reportdownloadtest"
     },
     {
@@ -13651,7 +13651,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest_reportdownloadtest_test_ndrrmc_sitrep_downloads_as_pdf_by_default",
-      "community": 60,
+      "community": 11,
       "norm_label": ".test_ndrrmc_sitrep_downloads_as_pdf_by_default()"
     },
     {
@@ -13661,7 +13661,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest_reportdownloadtest_test_ndrrmc_sitrep_downloads_as_csv_when_requested",
-      "community": 60,
+      "community": 11,
       "norm_label": ".test_ndrrmc_sitrep_downloads_as_csv_when_requested()"
     },
     {
@@ -13671,7 +13671,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest_reportdownloadtest_test_other_report_types_still_download_as_plain_text",
-      "community": 60,
+      "community": 11,
       "norm_label": ".test_other_report_types_still_download_as_plain_text()"
     },
     {
@@ -13681,7 +13681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest",
-      "community": 6,
+      "community": 11,
       "norm_label": "rolegatingtest.php"
     },
     {
@@ -13821,7 +13821,7 @@
       "source_location": "L178",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_viewer_cannot_reach_dispatch_position_route_even_as_assigned_driver",
-      "community": 31,
+      "community": 27,
       "norm_label": ".test_viewer_cannot_reach_dispatch_position_route_even_as_assigned_driver()"
     },
     {
@@ -13841,7 +13841,7 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_coordinator_can_update_any_dispatch_position",
-      "community": 27,
+      "community": 31,
       "norm_label": ".test_coordinator_can_update_any_dispatch_position()"
     },
     {
@@ -13871,7 +13871,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_useraccountlifecycletest",
-      "community": 11,
+      "community": 16,
       "norm_label": "useraccountlifecycletest.php"
     },
     {
@@ -14061,7 +14061,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_tests_unit_disasterfeedsettingtest_disasterfeedsettingtest",
-      "community": 0,
+      "community": 23,
       "norm_label": "disasterfeedsettingtest"
     },
     {
@@ -14071,7 +14071,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_tests_unit_disasterfeedsettingtest_disasterfeedsettingtest_test_not_due_when_no_source_is_enabled",
-      "community": 0,
+      "community": 23,
       "norm_label": ".test_not_due_when_no_source_is_enabled()"
     },
     {
@@ -14081,7 +14081,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_tests_unit_disasterfeedsettingtest_disasterfeedsettingtest_test_due_on_first_run_when_a_source_is_enabled",
-      "community": 0,
+      "community": 23,
       "norm_label": ".test_due_on_first_run_when_a_source_is_enabled()"
     },
     {
@@ -14091,7 +14091,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_tests_unit_disasterfeedsettingtest_disasterfeedsettingtest_test_not_due_before_the_interval_elapses",
-      "community": 0,
+      "community": 23,
       "norm_label": ".test_not_due_before_the_interval_elapses()"
     },
     {
@@ -14101,7 +14101,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_tests_unit_disasterfeedsettingtest_disasterfeedsettingtest_test_due_once_the_interval_has_elapsed",
-      "community": 0,
+      "community": 23,
       "norm_label": ".test_due_once_the_interval_has_elapsed()"
     },
     {
@@ -14121,7 +14121,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest",
-      "community": 74,
+      "community": 16,
       "norm_label": "ensureuserisactivetest"
     },
     {
@@ -14131,7 +14131,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_allows_an_active_user_through",
-      "community": 74,
+      "community": 16,
       "norm_label": ".test_allows_an_active_user_through()"
     },
     {
@@ -14141,7 +14141,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_redirects_a_suspended_user_to_login_on_a_web_request",
-      "community": 74,
+      "community": 16,
       "norm_label": ".test_redirects_a_suspended_user_to_login_on_a_web_request()"
     },
     {
@@ -14151,7 +14151,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_returns_403_for_a_suspended_user_on_an_api_request",
-      "community": 74,
+      "community": 16,
       "norm_label": ".test_returns_403_for_a_suspended_user_on_an_api_request()"
     },
     {
@@ -14161,7 +14161,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_passes_through_a_guest_request_untouched",
-      "community": 74,
+      "community": 16,
       "norm_label": ".test_passes_through_a_guest_request_untouched()"
     },
     {
@@ -14241,7 +14241,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_unit_ndrrmcreportbuildertest",
-      "community": 11,
+      "community": 6,
       "norm_label": "ndrrmcreportbuildertest.php"
     },
     {
@@ -14337,7 +14337,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_app_api_optimize",
-      "community": 58,
+      "community": 34,
       "norm_label": "optimize.py"
     },
     {
@@ -14347,7 +14347,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "solver_service_app_api_optimize_optimize_allocation",
-      "community": 58,
+      "community": 34,
       "norm_label": "optimize_allocation()"
     },
     {
@@ -14357,7 +14357,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "solver_service_app_api_optimize_optimize_routing",
-      "community": 58,
+      "community": 34,
       "norm_label": "optimize_routing()"
     },
     {
@@ -14367,7 +14367,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "solver_service_app_api_optimize_rationale_14",
-      "community": 58,
+      "community": 34,
       "norm_label": "called by app\\\\jobs\\\\runoptimizationjob (laravel) whenever an incident     is lo"
     },
     {
@@ -14377,7 +14377,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "solver_service_app_api_optimize_rationale_24",
-      "community": 58,
+      "community": 34,
       "norm_label": "depot-to-zone routing suggestions (straight-line v1; osrm later)."
     },
     {
@@ -14517,7 +14517,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "solver_service_app_models_schemas_allocationresponse",
-      "community": 40,
+      "community": 34,
       "norm_label": "allocationresponse"
     },
     {
@@ -14527,7 +14527,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_app_solvers_base",
-      "community": 40,
+      "community": 34,
       "norm_label": "base.py"
     },
     {
@@ -14537,7 +14537,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "solver_service_app_solvers_base_basesolver",
-      "community": 40,
+      "community": 34,
       "norm_label": "basesolver"
     },
     {
@@ -14547,7 +14547,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "abc",
-      "community": 40,
+      "community": 34,
       "norm_label": "abc"
     },
     {
@@ -14557,7 +14557,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "solver_service_app_solvers_base_basesolver_solve",
-      "community": 40,
+      "community": 34,
       "norm_label": ".solve()"
     },
     {
@@ -14567,7 +14567,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "solver_service_app_solvers_base_rationale_6",
-      "community": 40,
+      "community": 34,
       "norm_label": "all solvers (allocation, routing) implement this interface so     `api/optimize."
     },
     {
@@ -14577,7 +14577,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver",
-      "community": 40,
+      "community": 34,
       "norm_label": "ortools_solver.py"
     },
     {
@@ -14587,7 +14587,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver_ortoolsroutingsolver",
-      "community": 40,
+      "community": 34,
       "norm_label": "ortoolsroutingsolver"
     },
     {
@@ -14597,7 +14597,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver_ortoolsroutingsolver_solve",
-      "community": 40,
+      "community": 34,
       "norm_label": ".solve()"
     },
     {
@@ -14607,7 +14607,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver_ortoolsroutingsolver_distance_matrix",
-      "community": 40,
+      "community": 34,
       "norm_label": "._distance_matrix()"
     },
     {
@@ -14617,7 +14617,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver_rationale_8",
-      "community": 40,
+      "community": 34,
       "norm_label": "depot -> zone routing using or-tools' routing library.     v1 uses haversine str"
     },
     {
@@ -14627,7 +14627,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "solver_service_app_solvers_ortools_solver_rationale_45",
-      "community": 40,
+      "community": 34,
       "norm_label": "# note: translating the raw or-tools route back into"
     },
     {
@@ -14637,7 +14637,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_app_solvers_pulp_solver",
-      "community": 35,
+      "community": 34,
       "norm_label": "pulp_solver.py"
     },
     {
@@ -14677,7 +14677,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_main",
-      "community": 58,
+      "community": 34,
       "norm_label": "main.py"
     },
     {
@@ -14687,7 +14687,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "solver_service_main_health",
-      "community": 58,
+      "community": 34,
       "norm_label": "health()"
     },
     {
@@ -14697,7 +14697,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "solver_service_main_rationale_18",
-      "community": 58,
+      "community": 34,
       "norm_label": "health check consumed by docker/compose and the backend's depends_on condition."
     },
     {
@@ -14771,6 +14771,236 @@
       "norm_label": "performance and correctness bench tests for the allocation/routing solvers.  run"
     },
     {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude",
+      "community": 62,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "claude_claude_md",
+      "community": 62,
+      "norm_label": "claude.md"
+    },
+    {
+      "label": "What this is",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "claude_what_this_is",
+      "community": 62,
+      "norm_label": "what this is"
+    },
+    {
+      "label": "Repo layout (three deployable units)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "claude_repo_layout_three_deployable_units",
+      "community": 62,
+      "norm_label": "repo layout (three deployable units)"
+    },
+    {
+      "label": "Commands",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "claude_commands",
+      "community": 62,
+      "norm_label": "commands"
+    },
+    {
+      "label": "Architecture",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "claude_architecture",
+      "community": 62,
+      "norm_label": "architecture"
+    },
+    {
+      "label": "Domain model (backend/app/Models, backend/database/migrations)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "claude_domain_model_backend_app_models_backend_database_migrations",
+      "community": 62,
+      "norm_label": "domain model (backend/app/models, backend/database/migrations)"
+    },
+    {
+      "label": "Optimization flow (the core cross-service interaction)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L81",
+      "_origin": "ast",
+      "id": "claude_optimization_flow_the_core_cross_service_interaction",
+      "community": 62,
+      "norm_label": "optimization flow (the core cross-service interaction)"
+    },
+    {
+      "label": "Automated disaster feed (backend/app/Services/DisasterFeed)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "claude_automated_disaster_feed_backend_app_services_disasterfeed",
+      "community": 62,
+      "norm_label": "automated disaster feed (backend/app/services/disasterfeed)"
+    },
+    {
+      "label": "Directions / turn-by-turn navigation (backend/app/Services/Directions)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "id": "claude_directions_turn_by_turn_navigation_backend_app_services_directions",
+      "community": 62,
+      "norm_label": "directions / turn-by-turn navigation (backend/app/services/directions)"
+    },
+    {
+      "label": "Backend request layering",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L112",
+      "_origin": "ast",
+      "id": "claude_backend_request_layering",
+      "community": 62,
+      "norm_label": "backend request layering"
+    },
+    {
+      "label": "Frontend (backend/resources/js)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L122",
+      "_origin": "ast",
+      "id": "claude_frontend_backend_resources_js",
+      "community": 62,
+      "norm_label": "frontend (backend/resources/js)"
+    },
+    {
+      "label": "Solver-service structure",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130",
+      "_origin": "ast",
+      "id": "claude_solver_service_structure",
+      "community": 62,
+      "norm_label": "solver-service structure"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L139",
+      "_origin": "ast",
+      "id": "claude_graphify",
+      "community": 62,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "INTEGRATION.md",
+      "file_type": "document",
+      "source_file": "INTEGRATION.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "integration",
+      "community": 203,
+      "norm_label": "integration.md"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 74,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "DisasterResource+",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_disasterresource",
+      "community": 74,
+      "norm_label": "disasterresource+"
+    },
+    {
+      "label": "Quick start (Docker)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "readme_quick_start_docker",
+      "community": 74,
+      "norm_label": "quick start (docker)"
+    },
+    {
+      "label": "Local development without Docker",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "readme_local_development_without_docker",
+      "community": 74,
+      "norm_label": "local development without docker"
+    },
+    {
+      "label": "Local dev without pdo_pgsql",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "readme_local_dev_without_pdo_pgsql",
+      "community": 74,
+      "norm_label": "local dev without pdo_pgsql"
+    },
+    {
+      "label": "Routing (OSRM)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "readme_routing_osrm",
+      "community": 74,
+      "norm_label": "routing (osrm)"
+    },
+    {
+      "label": "Folder structure",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "readme_folder_structure",
+      "community": 74,
+      "norm_label": "folder structure"
+    },
+    {
+      "label": "Notes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "readme_notes",
+      "community": 74,
+      "norm_label": "notes"
+    },
+    {
       "label": "formatDate",
       "file_type": "code",
       "source_file": "backend/resources/js/Components/form/Field.tsx",
@@ -14787,21 +15017,8 @@
       "source_location": "L481",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_module_usecrud",
-      "community": 7,
+      "community": 58,
       "norm_label": "usecrud"
-    },
-    {
-      "label": "DisasterResource+",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "disasterresource_system",
-      "community": 35,
-      "norm_label": "disasterresource+"
     },
     {
       "label": "Backend (Laravel)",
@@ -14812,9 +15029,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "backend_service",
-      "community": 30,
-      "norm_label": "backend (laravel)"
+      "community": 34,
+      "norm_label": "backend (laravel)",
+      "id": "backend_service"
     },
     {
       "label": "Solver Service (FastAPI)",
@@ -14825,9 +15042,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "solver_service",
-      "community": 35,
-      "norm_label": "solver service (fastapi)"
+      "community": 34,
+      "norm_label": "solver service (fastapi)",
+      "id": "solver_service"
     },
     {
       "label": "Docker Infrastructure",
@@ -14838,9 +15055,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docker_infra",
-      "community": 35,
-      "norm_label": "docker infrastructure"
+      "community": 200,
+      "norm_label": "docker infrastructure",
+      "id": "docker_infra"
     },
     {
       "label": "Inertia",
@@ -14851,9 +15068,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "inertia",
       "community": 51,
-      "norm_label": "inertia"
+      "norm_label": "inertia",
+      "id": "inertia"
     },
     {
       "label": "React",
@@ -14864,9 +15081,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "react",
-      "community": 30,
-      "norm_label": "react"
+      "community": 218,
+      "norm_label": "react",
+      "id": "react"
     },
     {
       "label": "TypeScript",
@@ -14877,9 +15094,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "typescript",
-      "community": 30,
-      "norm_label": "typescript"
+      "community": 226,
+      "norm_label": "typescript",
+      "id": "typescript"
     },
     {
       "label": "Laravel Sanctum",
@@ -14890,9 +15107,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "sanctum",
-      "community": 30,
-      "norm_label": "laravel sanctum"
+      "community": 223,
+      "norm_label": "laravel sanctum",
+      "id": "sanctum"
     },
     {
       "label": "Laravel Reverb",
@@ -14903,9 +15120,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "reverb",
-      "community": 30,
-      "norm_label": "laravel reverb"
+      "community": 34,
+      "norm_label": "laravel reverb",
+      "id": "reverb"
     },
     {
       "label": "OR-Tools",
@@ -14916,9 +15133,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ortools",
-      "community": 35,
-      "norm_label": "or-tools"
+      "community": 212,
+      "norm_label": "or-tools",
+      "id": "ortools"
     },
     {
       "label": "PuLP",
@@ -14929,9 +15146,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "pulp",
-      "community": 35,
-      "norm_label": "pulp"
+      "community": 34,
+      "norm_label": "pulp",
+      "id": "pulp"
     },
     {
       "label": "PostgreSQL with PostGIS",
@@ -14942,9 +15159,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "postgresql_postgis",
-      "community": 53,
-      "norm_label": "postgresql with postgis"
+      "community": 34,
+      "norm_label": "postgresql with postgis",
+      "id": "postgresql_postgis"
     },
     {
       "label": "OSRM (Open Source Routing Machine)",
@@ -14955,9 +15172,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "osrm",
-      "community": 53,
-      "norm_label": "osrm (open source routing machine)"
+      "community": 34,
+      "norm_label": "osrm (open source routing machine)",
+      "id": "osrm"
     },
     {
       "label": "Leaflet.js",
@@ -14968,9 +15185,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "leaflet",
-      "community": 30,
-      "norm_label": "leaflet.js"
+      "community": 206,
+      "norm_label": "leaflet.js",
+      "id": "leaflet"
     },
     {
       "label": "Recharts",
@@ -14981,9 +15198,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "recharts",
-      "community": 30,
-      "norm_label": "recharts"
+      "community": 219,
+      "norm_label": "recharts",
+      "id": "recharts"
     },
     {
       "label": "Tailwind CSS",
@@ -14994,9 +15211,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "tailwind",
-      "community": 30,
-      "norm_label": "tailwind css"
+      "community": 224,
+      "norm_label": "tailwind css",
+      "id": "tailwind"
     },
     {
       "label": "FastAPI",
@@ -15007,9 +15224,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "fastapi",
-      "community": 58,
-      "norm_label": "fastapi"
+      "community": 34,
+      "norm_label": "fastapi",
+      "id": "fastapi"
     },
     {
       "label": "Laravel Framework",
@@ -15020,9 +15237,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "laravel",
-      "community": 30,
-      "norm_label": "laravel framework"
+      "community": 204,
+      "norm_label": "laravel framework",
+      "id": "laravel"
     },
     {
       "label": "RunOptimizationJob",
@@ -15033,9 +15250,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "runoptimizationjob",
-      "community": 35,
-      "norm_label": "runoptimizationjob"
+      "community": 57,
+      "norm_label": "runoptimizationjob",
+      "id": "runoptimizationjob"
     },
     {
       "label": "OptimizationServiceClient",
@@ -15046,9 +15263,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "optimizationserviceclient",
-      "community": 35,
-      "norm_label": "optimizationserviceclient"
+      "community": 211,
+      "norm_label": "optimizationserviceclient",
+      "id": "optimizationserviceclient"
     },
     {
       "label": "PulpAllocationSolver",
@@ -15059,9 +15276,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "pulpalloc_solver",
-      "community": 35,
-      "norm_label": "pulpallocationsolver"
+      "community": 217,
+      "norm_label": "pulpallocationsolver",
+      "id": "pulpalloc_solver"
     },
     {
       "label": "ORToolsRoutingSolver",
@@ -15072,9 +15289,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "ortoolsrouting_solver",
-      "community": 35,
-      "norm_label": "ortoolsroutingsolver"
+      "community": 213,
+      "norm_label": "ortoolsroutingsolver",
+      "id": "ortoolsrouting_solver"
     },
     {
       "label": "BaseSolver",
@@ -15085,9 +15302,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "basesolver",
       "community": 35,
-      "norm_label": "basesolver"
+      "norm_label": "basesolver",
+      "id": "basesolver"
     },
     {
       "label": "DisasterAlertEvent",
@@ -15098,9 +15315,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "disasteralert_event",
-      "community": 30,
-      "norm_label": "disasteralertevent"
+      "community": 198,
+      "norm_label": "disasteralertevent",
+      "id": "disasteralert_event"
     },
     {
       "label": "PollDisasterFeedsJob",
@@ -15111,9 +15328,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "polldisasterfeeds_job",
-      "community": 75,
-      "norm_label": "polldisasterfeedsjob"
+      "community": 215,
+      "norm_label": "polldisasterfeedsjob",
+      "id": "polldisasterfeeds_job"
     },
     {
       "label": "AutoResolveIncidentsJob",
@@ -15124,9 +15341,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "autoresolveincidents_job",
       "community": 111,
-      "norm_label": "autoresolveincidentsjob"
+      "norm_label": "autoresolveincidentsjob",
+      "id": "autoresolveincidents_job"
     },
     {
       "label": "DisasterFeedIngestor",
@@ -15137,9 +15354,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "disasterfeed_ingestor",
-      "community": 75,
-      "norm_label": "disasterfeedingestor"
+      "community": 199,
+      "norm_label": "disasterfeedingestor",
+      "id": "disasterfeed_ingestor"
     },
     {
       "label": "UsgsEarthquakeFeedClient",
@@ -15150,9 +15367,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "usgsearth_feedclient",
-      "community": 75,
-      "norm_label": "usgsearthquakefeedclient"
+      "community": 229,
+      "norm_label": "usgsearthquakefeedclient",
+      "id": "usgsearth_feedclient"
     },
     {
       "label": "GdacsFeedClient",
@@ -15163,9 +15380,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "gdacs_feedclient",
-      "community": 75,
-      "norm_label": "gdacsfeedclient"
+      "community": 201,
+      "norm_label": "gdacsfeedclient",
+      "id": "gdacs_feedclient"
     },
     {
       "label": "DirectionsRouter",
@@ -15176,9 +15393,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "directionsrouter",
-      "community": 53,
-      "norm_label": "directionsrouter"
+      "community": 196,
+      "norm_label": "directionsrouter",
+      "id": "directionsrouter"
     },
     {
       "label": "OsrmDirectionsProvider",
@@ -15189,9 +15406,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "osrm_directionsprovider",
-      "community": 53,
-      "norm_label": "osrmdirectionsprovider"
+      "community": 214,
+      "norm_label": "osrmdirectionsprovider",
+      "id": "osrm_directionsprovider"
     },
     {
       "label": "PremiumDirectionsProvider",
@@ -15202,9 +15419,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "premium_directionsprovider",
-      "community": 53,
-      "norm_label": "premiumdirectionsprovider"
+      "community": 216,
+      "norm_label": "premiumdirectionsprovider",
+      "id": "premium_directionsprovider"
     },
     {
       "label": "GeofenceService",
@@ -15215,9 +15432,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "geofenceservice",
-      "community": 53,
-      "norm_label": "geofenceservice"
+      "community": 6,
+      "norm_label": "geofenceservice",
+      "id": "geofenceservice"
     },
     {
       "label": "DepotCapacityChecker",
@@ -15228,9 +15445,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "depotcapacity_checker",
-      "community": 111,
-      "norm_label": "depotcapacitychecker"
+      "community": 85,
+      "norm_label": "depotcapacitychecker",
+      "id": "depotcapacity_checker"
     },
     {
       "label": "Disaster (Domain Model)",
@@ -15241,9 +15458,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "disaster_model",
-      "community": 59,
-      "norm_label": "disaster (domain model)"
+      "community": 197,
+      "norm_label": "disaster (domain model)",
+      "id": "disaster_model"
     },
     {
       "label": "Zone (Domain Model)",
@@ -15254,9 +15471,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "zone_model",
-      "community": 59,
-      "norm_label": "zone (domain model)"
+      "community": 232,
+      "norm_label": "zone (domain model)",
+      "id": "zone_model"
     },
     {
       "label": "ResourceRequest (Domain Model)",
@@ -15267,9 +15484,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "resourcerequest_model",
-      "community": 59,
-      "norm_label": "resourcerequest (domain model)"
+      "community": 221,
+      "norm_label": "resourcerequest (domain model)",
+      "id": "resourcerequest_model"
     },
     {
       "label": "Depot (Domain Model)",
@@ -15280,9 +15497,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "depot_model",
-      "community": 59,
-      "norm_label": "depot (domain model)"
+      "community": 81,
+      "norm_label": "depot (domain model)",
+      "id": "depot_model"
     },
     {
       "label": "Resource (Domain Model)",
@@ -15293,9 +15510,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "resource_model",
-      "community": 59,
-      "norm_label": "resource (domain model)"
+      "community": 220,
+      "norm_label": "resource (domain model)",
+      "id": "resource_model"
     },
     {
       "label": "ResourceType (Domain Model)",
@@ -15306,9 +15523,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "resourcetype_model",
-      "community": 59,
-      "norm_label": "resourcetype (domain model)"
+      "community": 222,
+      "norm_label": "resourcetype (domain model)",
+      "id": "resourcetype_model"
     },
     {
       "label": "Allocation (Domain Model)",
@@ -15319,9 +15536,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "allocation_model",
       "community": 59,
-      "norm_label": "allocation (domain model)"
+      "norm_label": "allocation (domain model)",
+      "id": "allocation_model"
     },
     {
       "label": "OptimizationRun (Domain Model)",
@@ -15332,9 +15549,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "optimizationrun_model",
-      "community": 59,
-      "norm_label": "optimizationrun (domain model)"
+      "community": 210,
+      "norm_label": "optimizationrun (domain model)",
+      "id": "optimizationrun_model"
     },
     {
       "label": "User (Domain Model)",
@@ -15345,9 +15562,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "user_model",
       "community": 194,
-      "norm_label": "user (domain model)"
+      "norm_label": "user (domain model)",
+      "id": "user_model"
     },
     {
       "label": "TriggerSolver (React Component)",
@@ -15358,9 +15575,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "triggersolver_component",
-      "community": 35,
-      "norm_label": "triggersolver (react component)"
+      "community": 225,
+      "norm_label": "triggersolver (react component)",
+      "id": "triggersolver_component"
     },
     {
       "label": "IncidentMap (React Component)",
@@ -15371,9 +15588,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "incidentmap_component",
-      "community": 30,
-      "norm_label": "incidentmap (react component)"
+      "community": 202,
+      "norm_label": "incidentmap (react component)",
+      "id": "incidentmap_component"
     },
     {
       "label": "DirectionsPanel (React Component)",
@@ -15384,9 +15601,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "directionspl_component",
       "community": 109,
-      "norm_label": "directionspanel (react component)"
+      "norm_label": "directionspanel (react component)",
+      "id": "directionspl_component"
     },
     {
       "label": "useDirections (React Hook)",
@@ -15397,9 +15614,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "usedirections_hook",
-      "community": 109,
-      "norm_label": "usedirections (react hook)"
+      "community": 227,
+      "norm_label": "usedirections (react hook)",
+      "id": "usedirections_hook"
     },
     {
       "label": "useVoiceGuidance (React Hook)",
@@ -15410,9 +15627,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "usevoiceguidance_hook",
-      "community": 109,
-      "norm_label": "usevoiceguidance (react hook)"
+      "community": 228,
+      "norm_label": "usevoiceguidance (react hook)",
+      "id": "usevoiceguidance_hook"
     },
     {
       "label": "DashboardController",
@@ -15423,9 +15640,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboardctl_controller",
-      "community": 76,
-      "norm_label": "dashboardcontroller"
+      "community": 79,
+      "norm_label": "dashboardcontroller",
+      "id": "dashboardctl_controller"
     },
     {
       "label": "IncidentController",
@@ -15436,9 +15653,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "incidentctl_controller",
       "community": 193,
-      "norm_label": "incidentcontroller"
+      "norm_label": "incidentcontroller",
+      "id": "incidentctl_controller"
     },
     {
       "label": "DirectionsController",
@@ -15449,9 +15666,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "directionsctl_controller",
-      "community": 53,
-      "norm_label": "directionscontroller"
+      "community": 195,
+      "norm_label": "directionscontroller",
+      "id": "directionsctl_controller"
     },
     {
       "label": "AppLayout",
@@ -15462,9 +15679,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "applayout_layout",
       "community": 76,
-      "norm_label": "applayout"
+      "norm_label": "applayout",
+      "id": "applayout_layout"
     },
     {
       "label": "Dashboard (Page)",
@@ -15475,9 +15692,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "dashboardpage_page",
-      "community": 76,
-      "norm_label": "dashboard (page)"
+      "community": 80,
+      "norm_label": "dashboard (page)",
+      "id": "dashboardpage_page"
     },
     {
       "label": "Login (Page)",
@@ -15488,9 +15705,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "loginpage_page",
-      "community": 76,
-      "norm_label": "login (page)"
+      "community": 207,
+      "norm_label": "login (page)",
+      "id": "loginpage_page"
     },
     {
       "label": "Vite",
@@ -15501,9 +15718,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "vite",
-      "community": 30,
-      "norm_label": "vite"
+      "community": 230,
+      "norm_label": "vite",
+      "id": "vite"
     },
     {
       "label": "Composer",
@@ -15514,9 +15731,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "composer",
       "community": 30,
-      "norm_label": "composer"
+      "norm_label": "composer",
+      "id": "composer"
     },
     {
       "label": "npm",
@@ -15527,9 +15744,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "npm",
-      "community": 30,
-      "norm_label": "npm"
+      "community": 208,
+      "norm_label": "npm",
+      "id": "npm"
     },
     {
       "label": "Docker Compose",
@@ -15540,9 +15757,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "docker_compose",
-      "community": 53,
-      "norm_label": "docker compose"
+      "community": 34,
+      "norm_label": "docker compose",
+      "id": "docker_compose"
     },
     {
       "label": "Coolify",
@@ -15553,9 +15770,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "coolify",
-      "community": 53,
-      "norm_label": "coolify"
+      "community": 34,
+      "norm_label": "coolify",
+      "id": "coolify"
     },
     {
       "label": "Traefik",
@@ -15566,9 +15783,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "traefik",
-      "community": 30,
-      "norm_label": "traefik"
+      "community": 34,
+      "norm_label": "traefik",
+      "id": "traefik"
     },
     {
       "label": "Laravel Echo",
@@ -15579,9 +15796,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "laravel_echo",
-      "community": 30,
-      "norm_label": "laravel echo"
+      "community": 205,
+      "norm_label": "laravel echo",
+      "id": "laravel_echo"
     },
     {
       "label": "Pydantic",
@@ -15592,9 +15809,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "pydantic",
-      "community": 35,
-      "norm_label": "pydantic"
+      "community": 34,
+      "norm_label": "pydantic",
+      "id": "pydantic"
     },
     {
       "label": "Uvicorn",
@@ -15605,9 +15822,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "uvicorn",
-      "community": 35,
-      "norm_label": "uvicorn"
+      "community": 34,
+      "norm_label": "uvicorn",
+      "id": "uvicorn"
     },
     {
       "label": "python-json-logger",
@@ -15618,9 +15835,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "python_json_logger",
-      "community": 35,
-      "norm_label": "python-json-logger"
+      "community": 34,
+      "norm_label": "python-json-logger",
+      "id": "python_json_logger"
     },
     {
       "label": "WebSocket Real-time Broadcasting",
@@ -15631,9 +15848,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "websocket_realtime",
-      "community": 30,
-      "norm_label": "websocket real-time broadcasting"
+      "community": 231,
+      "norm_label": "websocket real-time broadcasting",
+      "id": "websocket_realtime"
     },
     {
       "label": "Resource Optimization Flow",
@@ -15644,9 +15861,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "optimization_flow",
-      "community": 35,
-      "norm_label": "resource optimization flow"
+      "community": 209,
+      "norm_label": "resource optimization flow",
+      "id": "optimization_flow"
     },
     {
       "label": "Automated Disaster Feed Polling",
@@ -15657,9 +15874,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "disaster_feed_auto",
       "community": 75,
-      "norm_label": "automated disaster feed polling"
+      "norm_label": "automated disaster feed polling",
+      "id": "disaster_feed_auto"
     },
     {
       "label": "Directions and Turn-by-Turn Navigation",
@@ -15670,9 +15887,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "directions_routing",
       "community": 53,
-      "norm_label": "directions and turn-by-turn navigation"
+      "norm_label": "directions and turn-by-turn navigation",
+      "id": "directions_routing"
     }
   ],
   "links": [
@@ -48063,94 +48280,204 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "conceptually_related_to",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disasterresource_system",
-      "target": "backend_service"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disasterresource_system",
-      "target": "docker_infra"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disasterresource_system",
-      "target": "solver_service"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "composer"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "inertia"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "laravel"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
       "source_file": "CLAUDE.md",
-      "source_location": null,
+      "source_location": "L1",
       "weight": 1.0,
-      "source": "backend_service",
-      "target": "leaflet"
+      "source": "claude",
+      "target": "claude_claude_md",
+      "confidence_score": 1.0
     },
     {
-      "relation": "uses",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
+      "source_file": "CLAUDE.md",
+      "source_location": "L69",
       "weight": 1.0,
-      "source": "backend_service",
-      "target": "npm"
+      "source": "claude_claude_md",
+      "target": "claude_architecture",
+      "confidence_score": 1.0
     },
     {
-      "relation": "uses",
+      "relation": "contains",
       "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
+      "source_file": "CLAUDE.md",
+      "source_location": "L21",
       "weight": 1.0,
-      "source": "backend_service",
-      "target": "osrm"
+      "source": "claude_claude_md",
+      "target": "claude_commands",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_repo_layout_three_deployable_units",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "claude_claude_md",
+      "target": "claude_what_this_is",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_automated_disaster_feed_backend_app_services_disasterfeed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_backend_request_layering",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_directions_turn_by_turn_navigation_backend_app_services_directions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_domain_model_backend_app_models_backend_database_migrations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_frontend_backend_resources_js",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L81",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_optimization_flow_the_core_cross_service_interaction",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L130",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_solver_service_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_disasterresource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "readme_disasterresource",
+      "target": "readme_folder_structure",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "readme_disasterresource",
+      "target": "readme_local_development_without_docker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "readme_disasterresource",
+      "target": "readme_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "readme_disasterresource",
+      "target": "readme_quick_start_docker",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "readme_disasterresource",
+      "target": "readme_routing_osrm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "readme_local_development_without_docker",
+      "target": "readme_local_dev_without_pdo_pgsql",
+      "confidence_score": 1.0
     },
     {
       "relation": "uses",
@@ -48161,86 +48488,6 @@
       "weight": 1.0,
       "source": "backend_service",
       "target": "postgresql_postgis"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "react"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "recharts"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "reverb"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "sanctum"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "solver_service"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "tailwind"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "typescript"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "backend_service",
-      "target": "vite"
     },
     {
       "relation": "orchestrates",
@@ -48271,46 +48518,6 @@
       "weight": 1.0,
       "source": "docker_compose",
       "target": "solver_service"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "optimizationserviceclient",
-      "target": "solver_service"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "solver_service",
-      "target": "fastapi"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "solver_service",
-      "target": "ortools"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "solver_service",
-      "target": "pulp"
     },
     {
       "relation": "uses",
@@ -48343,16 +48550,6 @@
       "target": "uvicorn"
     },
     {
-      "relation": "calls",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "triggersolver_component",
-      "target": "solver_service"
-    },
-    {
       "relation": "orchestrates",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -48361,26 +48558,6 @@
       "weight": 1.0,
       "source": "docker_compose",
       "target": "reverb"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "laravel_echo",
-      "target": "reverb"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "reverb",
-      "target": "disasteralert_event"
     },
     {
       "relation": "conceptually_related_to",
@@ -48393,36 +48570,6 @@
       "target": "reverb"
     },
     {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "websocket_realtime",
-      "target": "reverb"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ortoolsrouting_solver",
-      "target": "ortools"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "pulpalloc_solver",
-      "target": "pulp"
-    },
-    {
       "relation": "orchestrates",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -48430,16 +48577,6 @@
       "source_location": null,
       "weight": 1.0,
       "source": "docker_compose",
-      "target": "postgresql_postgis"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "geofenceservice",
       "target": "postgresql_postgis"
     },
     {
@@ -48451,326 +48588,6 @@
       "weight": 1.0,
       "source": "docker_compose",
       "target": "osrm"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "osrm_directionsprovider",
-      "target": "osrm"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "incidentmap_component",
-      "target": "leaflet"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "optimization_flow",
-      "target": "runoptimizationjob"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "runoptimizationjob",
-      "target": "optimizationserviceclient"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "optimization_flow",
-      "target": "optimizationserviceclient"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "pulpalloc_solver",
-      "target": "basesolver"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "ortoolsrouting_solver",
-      "target": "basesolver"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "websocket_realtime",
-      "target": "disasteralert_event"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disaster_feed_auto",
-      "target": "polldisasterfeeds_job"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "polldisasterfeeds_job",
-      "target": "disasterfeed_ingestor"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "autoresolveincidents_job",
-      "target": "depotcapacity_checker"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disaster_feed_auto",
-      "target": "disasterfeed_ingestor"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disasterfeed_ingestor",
-      "target": "gdacs_feedclient"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disasterfeed_ingestor",
-      "target": "usgsearth_feedclient"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directions_routing",
-      "target": "directionsrouter"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directionsctl_controller",
-      "target": "directionsrouter"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directionsrouter",
-      "target": "osrm_directionsprovider"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directionsrouter",
-      "target": "premium_directionsprovider"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directions_routing",
-      "target": "osrm_directionsprovider"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disaster_model",
-      "target": "optimizationrun_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disaster_model",
-      "target": "resourcerequest_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "disaster_model",
-      "target": "zone_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "zone_model",
-      "target": "resourcerequest_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "allocation_model",
-      "target": "resourcerequest_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "allocation_model",
-      "target": "depot_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "depot_model",
-      "target": "resource_model"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "resource_model",
-      "target": "resourcetype_model"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "confidence_score": 0.9,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "directionspl_component",
-      "target": "usedirections_hook"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "usevoiceguidance_hook",
-      "target": "directionspl_component"
-    },
-    {
-      "relation": "calls",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboardctl_controller",
-      "target": "dashboardpage_page"
-    },
-    {
-      "relation": "uses",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "dashboardpage_page",
-      "target": "applayout_layout"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "CLAUDE.md",
-      "source_location": null,
-      "weight": 1.0,
-      "source": "loginpage_page",
-      "target": "applayout_layout"
     },
     {
       "relation": "uses",

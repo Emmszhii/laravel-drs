@@ -231,5 +231,14 @@
   "229": "UsgsEarthquakeFeedClient",
   "230": "Vite",
   "231": "WebSocket Real-time Broadcasting",
-  "232": "Zone (Domain Model)"
+  "232": "Zone (Domain Model)",
+  "233": "ActivityLogController.php",
+  "234": "watch-boneyard.mjs",
+  "235": "refresh-boneyard-session.mjs",
+  "236": "OptimizationController.php",
+  "237": "InertiaPageResponse",
+  "238": "build-yup-schema.ts",
+  "239": "EnsureUserIsActiveTest",
+  "240": "IncidentController.php",
+  "241": "RoutingSettingsController.php"
 }

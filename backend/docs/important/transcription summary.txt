@@ -1,0 +1,73 @@
+Panayam para sa Pangangalap ng Kinakailangan: Sistema ng Imbentaryo at Pamamahagi ng mga Kagamitan para sa Sakuna (CDRRMO, Lungsod ng San Pablo)
+Pangkalahatang-ideya ng Pulong at ng Sistema
+Nagsagawa si Tagapagsalita 1 (mananaliksik/estudyante) ng panayam upang mangalap ng mga pangangailangan kasama si Tagapagsalita 2 (opisyal ng CDRRMO) para sa isang ipinapanukalang web-based na Sistema para sa Imbentaryo at Alokasyon ng mga Kagamitan sa Sakuna. Ang paunang pagsubok ay nakalaan para sa CDRRMO ng Lungsod ng San Pablo.
+Ang layunin ng iminungkahing sistema ay:
+Itala ang mga insidente, mga apektadong lugar, at subaybayan ang imbentaryo o stock sa depot
+Magmungkahi ng pinakamainam na mga plano para sa alokasyon ng mga yaman (na kailangang aprubahan bago ito isagawa)
+Magpakita ng live na mapa na may visualisasyon ng ruta na nagpapakita kung saan ihahatid ang mga resources
+Isama ang isang dashboard na nagpapakita ng real-time na impormasyon
+Istruktura ng Organisasyon
+Linawin ni Tagapagsalita 2 na magkaiba ang istruktura ng organisasyon ng opisina at ang Incident Command System (ICS):
+Istruktura ng opisina (nakumpirma para sa saklaw ng sistema): Pinuno ng Departamento → Taga-tulong na Pinuno ng Departamento → apat na dibisyon: Pananaliksik at Pagpaplano; Operasyon at Babala; Administrasyon at Pagsasanay; at Pang-administratibo. Ang Logistiks ay kabilang sa ilalim ng Administrasyon at Pagsasanay.
+ICS: Isang hiwalay at nababagay na estruktura na ginagamit sa aktwal na mga pangyayari ng pagtugon sa sakuna, kung saan ang sinumang sinanay at available na tao ay maaaring maging incident commander. Pinayuhan ni Speaker 2 ang mananaliksik na huwag isama ang ICS sa saklaw ng sistema, dahil ito ay napaka-teknikal (isang tatlong-araw na kurso na nahahati sa apat na seminar na may kabuuang humigit-kumulang dalawampu't tatlong araw ng masinsinang pagsasanay).
+Ang organizational chart na ipinakita sa panayam ay isang ICS chart lamang, hindi ang kasalukuyang opisyal na organizational chart ng opisina. Wala pang updated na opisyal na organizational chart at hindi ito maaaring gamitin o kopyahin hangga't hindi pa ito opisyal na inilalabas.
+Pagmamay-ari ng mga Yaman at Kasalukuyang Proseso
+Pagmamay-ari ng mga yaman:
+Hindi lamang sa CDRRMO nakasentro ang mga resources. Ang CSWDO (City Social Welfare and Development Office), CHO (City Health Office), at GSO (General Supply Office) ay mga hiwalay na tanggapan ng lungsod na may kanya-kanyang mga stock.
+Ang GSO ang nagbibigay ng mga suplay para sa CDRRMO. Ang CSWDO at CHO naman ang iba pang mga kaugnay na tanggapan.
+Hindi nakikita ng CDRRMO ang imbentaryo ng ibang mga opisina maliban kung pormal nilang hihilingin ang bilang nito.
+Rekomendasyon sa saklaw mula kay Speaker 2: Para sa pananaliksik, limitahan ang saklaw sa CDRRMO lamang, bagaman ang pagkakaroon ng kakayahang makita ang stock ng bawat departamento ang pinakamainam at mas kapaki-pakinabang na sitwasyon.
+Kasalukuyang mga kasangkapan at mga suliranin:
+Sa kasalukuyan, ang seksyon ng logistics ay gumagamit ng mga Excel sheet at database para subaybayan ang mga mapagkukunan.
+Ang Logistics ang may pananagutan sa pag-update ng impormasyon tungkol sa mga resources; taun-taon namang humihiling ang dibisyon ng pananaliksik at pagpaplano ng mga na-update na datos mula sa logistics.
+Ang bawat dibisyon ay may sariling maliit na imbentaryo; kapag ang mga item ay inilipat sa ibang dibisyon, muling binibilang at sinusuri ito ng tumatanggap na dibisyon.
+Hindi posible ang agarang pagmamanman gamit ang kasalukuyang mga kagamitan — hindi nakikita ang mga antas ng stock nang real time, at nalalaman lamang ang mga kakulangan kapag sinuri na.
+Ang pinaka-matagal at madalas pagkakamaling bahagi ng kasalukuyang proseso ay ang pagkakamali ng tao sa pagbibilang, na mabilis na lumalala.
+Kung tatanungin kung ano ang isang bagay na dapat i-automate agad, sinabi ni Speaker 2 na ang imbentaryo ng mga yaman ang dapat unahin, dahil ito ay isang pangkalahatang problema at ang isang mahusay na kasangkapan sa imbentaryo ay makakatanggal sa pangangailangan ng manwal na pagbibilang ng bawat item.
+Pagpapasya sa Pamamahagi
+Ang mga kahilingan para sa mga kagamitan ay ipinapadala sa seksiyon ng logistics.
+Ang prayoridad sa pagtupad ay nakabatay sa mga pangangailangan — ang kagyat na pangangailangan ang pangunahing batayan kahit gaano pa kalayo.
+Sa mga totoong pangyayari kung saan lumampas ang demand sa supply, ang prayoritisasyon ay isinasagawa gamit ang ICS.
+Ang anumang planong alokasyon na iminungkahi ng sistema ay dapat aprubahan muna bago ito maisakatuparan; hindi maaaring ipagpatuloy ang alokasyon kung wala ang apruba.
+Ang may kapangyarihang mag-apruba ay ang hepe ng departamento.
+Mga kahilingan ng barangay para sa mga mapagkukunan: Hindi dapat humiling ang mga barangay ng tulong mula sa CDRRMO dahil kinakailangang maglaan ang bawat barangay ng limang porsyento ng kanilang sariling pondo bawat taon para sa pondo ng DRRM.
+Mga Hangganan ng Saklaw at mga Paksa na Ipinaubaya muna
+Ang mga proseso ng pag-log ng insidente at mga operasyon (na sumasaklaw sa lahat ng walumpung barangay) ay naitala ngunit malinaw na itinuring ng parehong partido na hindi kabilang sa saklaw ng pananaliksik na ito.
+Hindi dapat gawing modelo sa sistema ang istruktura ng ICS.
+Ang kakayahang makita ang stock sa maraming opisina (CSWDO, CHO) ay kinikilala bilang pinakamainam ngunit ipinagpaliban muna; ang saklaw na limitado lamang sa CDRRMO ang praktikal na layunin para sa pananaliksik na ito.
+
+Panayam tungkol sa Proseso at Mga Kinakailangan ng Seksiyon ng Logistika
+Mga Umiiral na Proseso at Kasangkapan
+Pag-log ng mga Insidente at mga Tala
+Ang Seksyon ng Logistik ay gumagamit lamang ng pisikal na logbook para itala ang mga item; walang ginagamit na digital na kasangkapan para sa pag-log ng mga insidente.
+Ang Seksyon ng Operasyon ang humahawak sa mga tala ng insidente, kabilang ang mga detalye ng biktima, mga sasakyang sangkot, at oras, at may sarili silang mga porma.
+Ang mga tala ay iniingatan nang hiwalay ayon sa bawat seksyon: Ang Logistics ang nangangasiwa sa kagamitan at suplay, ang Planning naman ang humahawak sa mga dokumento at mga update tungkol sa impormasyon ng mga yaman, at ang Operations ang namamahala sa mga form ng insidente.
+Walang iisang sistema na pinagsama-sama para sa lahat ng talaan mula sa iba't ibang seksyon.
+Proseso ng Paghiling at Imbentaryo
+Mayroong form o listahan ng kahilingan para sa mga bagay na kailangang hiramin o gamitin; gumagamit naman ang Logistics ng logbook para sa mga bagay na kailangang isauli.
+Ang Logistics ang nagsusumite ng mga espesipikasyon para sa mga kinakailangang item; ang GSU (General Services Unit) ang nagpoproseso nito, nagsasagawa ng bidding, at nagbibigay ng kontrata sa supplier na may pinakamababang kwalipikadong bid. Hindi ang Logistics ang pumipili ng supplier.
+Ang tungkulin ng logistics sa supply chain ay ang pagtanggap ng mga kalakal: kapag naihatid, tinitiyak ng mga kawani na tugma ang dami at mga detalye sa kahilingan, pagkatapos ay pipirma sila sa mga dokumento ng inspeksyon bago ito itala sa imbentaryo.
+Sinusubaybayan ang imbentaryo kada quarter (unang, ikalawa, ikatlo, ikaapat na quarter). Ang mga antas ng stock mula sa isang quarter ang ginagamit upang ayusin ang kahilingan para sa susunod na quarter, na nakakatulong upang mabawasan ang panganib ng sobra o kakulangan.
+Ang mga item na may petsa ng pag-expire (halimbawa, alak) ay nilalagyan ng label na nagsasaad ng taon ng kanilang pag-expire; mayroong buffer na humigit-kumulang isa hanggang tatlong taon. Ang mga ulat sa pagkonsumo ay tumutulong upang malaman kung may posibleng sobra.
+Ang mga bagay ay may label at nakaayos nang maayos; madali ang pagsubaybay dahil sa kakaunting uri ng mga bagay, karamihan ay mga kagamitang medikal, panlinis, at gamit sa opisina.
+Pamamahagi ng mga Yaman at Tulong sa pagitan ng mga Ahensya
+Kapag ang ibang mga lugar tulad ng Nagcarlan at Alaminos ay nangangailangan ng mga kagamitan, lalo na para sa rescue, tumatawag sila sa Operations. Pagkatapos, nakikipag-ugnayan ang Operations sa Logistics para maipadala ang mga kinakailangang kagamitan.
+Hindi palaging ginagamit ang mga pormal na form ng kahilingan sa mga agarang sitwasyon sa pagitan ng mga ahensya; ang koordinasyon ay direktang ginagawa sa pamamagitan ng komunikasyon mula Operasyon papuntang Operasyon.
+Ang organisasyon ay kasapi ng Pedrimo, na kinabibilangan ng lahat ng mga lokalidad sa Laguna; ang balangkas ng pagiging kasapi nito ang pundasyon ng pagbabahagi ng mga yaman sa pagitan ng mga ahensya.
+Ang pagpili ng mga mapagkukunan ay nakabatay sa kalidad (na may kasamang paliwanag at karanasan mula sa nakaraan), kagyat na pangangailangan (batay sa pagtatasa ng Planning), at pagsunod sa mga espesipikasyon. Hindi pangunahing konsiderasyon ang lapit sa supplier; ang pagpili ng supplier ay isinasagawa sa proseso ng pag-bid ng GSU.
+Mga Kinakailangan para sa Pag-apruba
+Lahat ng kahilingan para sa pagkuha ng gobyerno ay kailangang aprubahan at dumadaan sa pormal na proseso; ang mga bagay na may presyo na lampas sa itinakdang halaga ay isinasailalim sa bidding, at ang kontrata ay ibinibigay sa pinakamababang nag-bid.
+Mga puwang, mga limitasyon, at mga pagsasaalang-alang sa awtomasyon
+Mahalagang Puang — Sasakyang Pangliligtas
+Ang pinakamahalagang pangangailangan sa kagamitan ay ang pagkakaroon ng nakalaang Sasakyan para sa Pagliligtas. Kapag wala ito, kailangang ilipat ang mabibigat na mga kagamitan sa hiwalay na sasakyan sa bawat insidente, ngunit ang isang Sasakyan para sa Pagliligtas ay maaaring magdala ng lahat ng kinakailangang kagamitan sa isang tugon lamang.
+Mga Alalahanin sa Awtomasyon
+Ang mga kasalukuyang kasangkapan ay limitado lamang sa Excel, na bagama't may mga limitasyon ay gumagana naman nang maayos.
+Isang mahalagang isyu tungkol sa awtomasyon ay ang pagpapatuloy ng kahandaan sa sakuna: kailangang manatiling gumagana ang seksyon kahit mawalan ng internet at/o kuryente. Dapat may plano ang anumang awtomatikong sistema para sa mga matagal na pagkawala ng serbisyo.
+Ang nais na tampok ng awtomasyon ay ang awtomatikong pagbabawas ng imbentaryo kapag may kahilingan.
+Pinananatili ang mga backup sa papel para sa mga pagkakataong walang kuryente; ang sistemang ito ng sunud-sunod na backup (digital 12 Excel 12 papel) ay sadyang ginawa upang maging maaasahan.
+Tsart ng Organisasyon
+Mayroong tsart ng organisasyon ngunit hindi pa ito na-update dahil sa mga kasalukuyang pagbabago sa organisasyon ("shake-up"). Ang tsart ay nasa ilalim ng Planning Section (o posibleng Admin).
+Susunod na Hakbang sa Panayam
+Balak ni Speaker 1 na magsagawa ng follow-up na panayam sa Planning Section. Kailangan ng isang contact mula sa Planning, maaaring si Ralph o kahit sinong available na miyembro ng Planning staff; napansin ni Speaker 3 na minsan ay hindi available si Ralph kaya iminungkahi niyang kumuha ng contact mula sa kahit sinong miyembro ng Planning staff.
+Nakiusap din si Speaker 1 na kunan ng larawan ang mga form ng kahilingan bago siya umalis.
+
