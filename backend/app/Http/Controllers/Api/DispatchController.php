@@ -119,7 +119,7 @@ class DispatchController extends BaseController
     {
         $user = auth()->user();
         $isAssignedDriver = $user && $dispatch->driver_id === $user->id;
-        $isCoordinatorTier = $user && in_array($user->role, ['admin', 'developer', 'coordinator'], true);
+        $isCoordinatorTier = $user && ($user->is_system_admin || in_array($user->role, ['incident_management', 'operations', 'admin_training'], true));
 
         abort_unless($isAssignedDriver || $isCoordinatorTier, 403, 'Only the assigned driver or a coordinator can update this dispatch.');
     }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('viewer'); // admin | coordinator | viewer
+            $table->string('role')->default('viewer'); // viewer | incident_management | ert | logistics | operations | research_planning | admin_training
             $table->rememberToken();
             $table->timestamps();
         });

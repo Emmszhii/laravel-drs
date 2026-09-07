@@ -15,7 +15,7 @@ class ReportDownloadTest extends TestCase
 
     public function test_ndrrmc_sitrep_downloads_as_pdf_by_default(): void
     {
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
         $disaster = Disaster::factory()->create();
         Zone::factory()->create(['disaster_id' => $disaster->id]);
         $report = Report::factory()->create([
@@ -33,7 +33,7 @@ class ReportDownloadTest extends TestCase
 
     public function test_ndrrmc_sitrep_downloads_as_csv_when_requested(): void
     {
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
         $disaster = Disaster::factory()->create();
         Zone::factory()->create(['disaster_id' => $disaster->id]);
         $report = Report::factory()->create([
@@ -51,7 +51,7 @@ class ReportDownloadTest extends TestCase
 
     public function test_other_report_types_still_download_as_plain_text(): void
     {
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
         $disaster = Disaster::factory()->create();
         $report = Report::factory()->create([
             'disaster_id' => $disaster->id,

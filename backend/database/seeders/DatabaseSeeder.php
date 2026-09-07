@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
     {
         $admin = User::factory()->create([
             'first_name' => 'Admin',
-            'last_name' => 'Coordinator',
+            'last_name' => 'Training',
             'email' => 'admin@disasterresource.local',
-            'role' => 'admin',
+            'role' => 'admin_training',
+            'is_system_admin' => true,
         ]);
 
         $this->call([
@@ -30,10 +31,10 @@ class DatabaseSeeder extends Seeder
 
         // WithoutModelEvents (above) suppresses User::booted()'s auto-sync
         // hook, so this account needs its Spatie role assigned explicitly —
-        // otherwise it passes every backend role:admin check but the
+        // otherwise it passes every backend role:admin_training check but the
         // sidebar nav (which reads Spatie roles) renders empty for it.
-        if (! $admin->hasRole('admin')) {
-            $admin->assignRole('admin');
+        if (! $admin->hasRole('admin_training')) {
+            $admin->assignRole('admin_training');
         }
     }
 }

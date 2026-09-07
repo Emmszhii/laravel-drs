@@ -25,7 +25,7 @@ const features = [
     icon: ShieldCheck,
     title: "Multi-Role Security (RBAC)",
     description:
-      "Role-based access for admins, coordinators, and field respondents, plus a public read-only incident view.",
+      "Role-based access for CDRRMO's Incident Management, ERT, Logistics, Operations, and Research and Planning divisions, plus a public read-only incident view.",
   },
   {
     icon: WifiOff,
@@ -97,7 +97,7 @@ export default function About() {
 
       <footer className="border-t border-[var(--line)] px-8 py-6">
         <p className="mx-auto max-w-5xl text-xs text-[var(--text-secondary)]">
-          DisasterResource+ &middot; Built for LDRRMO coordination.
+          DisasterResource+ &middot; Built for CDRRMO San Pablo City coordination.
         </p>
       </footer>
     </div>

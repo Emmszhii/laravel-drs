@@ -17,10 +17,10 @@ class DispatchTest extends TestCase
 
     public function test_coordinator_can_create_a_dispatch(): void
     {
-        $coordinator = User::factory()->create(['role' => 'coordinator']);
+        $coordinator = User::factory()->create(['role' => 'incident_management']);
         $disaster = Disaster::factory()->create();
         $depot = Depot::factory()->create();
-        $driver = User::factory()->create(['role' => 'respondent']);
+        $driver = User::factory()->create(['role' => 'ert']);
 
         $this->actingAs($coordinator)->postJson('/api/dispatches', [
             'disaster_id' => $disaster->id,
@@ -62,7 +62,7 @@ class DispatchTest extends TestCase
     {
         Event::fake([DispatchPositionUpdated::class]);
 
-        $driver = User::factory()->create(['role' => 'respondent']);
+        $driver = User::factory()->create(['role' => 'ert']);
         $dispatch = Dispatch::factory()->create(['driver_id' => $driver->id, 'status' => 'pending']);
 
         $this->actingAs($driver)->postJson("/api/dispatches/{$dispatch->id}/position", [
@@ -81,8 +81,8 @@ class DispatchTest extends TestCase
 
     public function test_a_different_respondent_cannot_update_someone_elses_dispatch_position(): void
     {
-        $driver = User::factory()->create(['role' => 'respondent']);
-        $otherRespondent = User::factory()->create(['role' => 'respondent']);
+        $driver = User::factory()->create(['role' => 'ert']);
+        $otherRespondent = User::factory()->create(['role' => 'ert']);
         $dispatch = Dispatch::factory()->create(['driver_id' => $driver->id]);
 
         $this->actingAs($otherRespondent)->postJson("/api/dispatches/{$dispatch->id}/position", [
@@ -93,8 +93,8 @@ class DispatchTest extends TestCase
 
     public function test_coordinator_can_update_position_on_behalf_of_a_driver(): void
     {
-        $coordinator = User::factory()->create(['role' => 'coordinator']);
-        $driver = User::factory()->create(['role' => 'respondent']);
+        $coordinator = User::factory()->create(['role' => 'incident_management']);
+        $driver = User::factory()->create(['role' => 'ert']);
         $dispatch = Dispatch::factory()->create(['driver_id' => $driver->id]);
 
         $this->actingAs($coordinator)->postJson("/api/dispatches/{$dispatch->id}/position", [

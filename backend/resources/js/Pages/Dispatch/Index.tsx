@@ -12,6 +12,8 @@ import { depotsService } from "@/api-service/modules/depots";
 import { ApiError } from "@/api-service/client";
 import type { Dispatch, Disaster, Depot } from "@/Types/models";
 
+const COORDINATOR_TIER_ROLES = ["incident_management", "operations", "admin_training"];
+
 const STATUS_LABELS: Record<Dispatch["status"], string> = {
   pending: "Pending",
   en_route: "En route",
@@ -29,7 +31,9 @@ const emptyForm = {
 };
 
 function DispatchIndex() {
-  const { auth } = usePage().props as { auth: { user: { id: string; role: string } | null } };
+  const { auth } = usePage().props as {
+    auth: { user: { id: string; role: string; is_system_admin: boolean } | null };
+  };
   const [dispatchList, setDispatchList] = useState<Dispatch[]>([]);
   const [loading, setLoading] = useState(true);
   const [incidents, setIncidents] = useState<Disaster[]>([]);
@@ -45,7 +49,7 @@ function DispatchIndex() {
   const { sharing, error: geoError, start, stop } = useLiveGeolocation(selectedDispatchId);
 
   const canCoordinate =
-    auth.user && ["admin", "developer", "coordinator"].includes(auth.user.role);
+    auth.user && (auth.user.is_system_admin || COORDINATOR_TIER_ROLES.includes(auth.user.role));
 
   const load = () => {
     setLoading(true);

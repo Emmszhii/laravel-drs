@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\RequestController;
 use App\Http\Controllers\Api\ResourceController;
+use App\Http\Controllers\Api\ResourceLoanController;
 use App\Http\Controllers\Api\ResourceTypeController;
 use App\Http\Controllers\Api\RoutingSettingController;
 use App\Http\Controllers\Api\Settings\UserController;
@@ -30,18 +31,16 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     // Static-segment routes (pagination-search) MUST be registered before the
     // {incident} wildcard route below, or Laravel matches the wildcard first
     // and treats "pagination-search" as an incident ID. Matches the read-only
-    // tier (view-incidents permission / role:...,coordinator,respondent group
-    // on the web /incidents route) — this used to be admin,developer-only,
-    // leaving coordinator/respondent with a permanently empty incidents list
-    // despite having page access.
-    Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
+    // tier (view-incidents permission / the read-only role group on the web
+    // /incidents route).
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
         Route::get('/incidents/pagination-search', [IncidentController::class, 'paginationSearch']);
     });
 
     Route::get('/incidents', [IncidentController::class, 'index']);
     Route::get('/incidents/{incident}', [IncidentController::class, 'show']);
 
-    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+    Route::middleware(['role:incident_management,operations,admin_training,system_admin'])->group(function () {
         Route::post('/incidents', [IncidentController::class, 'store']);
         Route::post('/incidents/{incident}/areas', [IncidentController::class, 'storeArea']);
         Route::post('/incidents/{incident}/areas/{area}', [IncidentController::class, 'updateArea']);
@@ -54,14 +53,21 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     Route::get('/requests', [RequestController::class, 'index']);
     Route::get('/requests/pagination-search', [RequestController::class, 'paginationSearch']);
 
-    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+    Route::middleware(['role:incident_management,operations,admin_training,system_admin'])->group(function () {
         Route::post('/requests', [RequestController::class, 'store']);
+    });
+
+    // Department-head sign-off (ICS 213-RR) — Logistics owns approval, plus
+    // Admin & Training / system_admin.
+    Route::middleware(['role:logistics,admin_training,system_admin'])->group(function () {
+        Route::patch('/requests/{request}/approve', [RequestController::class, 'approve']);
+        Route::patch('/requests/{request}/reject', [RequestController::class, 'reject']);
     });
 
     Route::get('/directions', [DirectionsController::class, 'index']);
 
-    // Read-only access for coordinator/respondent, in addition to admin/developer.
-    Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
+    // Read-only access for every division.
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index']);
         Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
 
@@ -75,7 +81,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/dispatches/pagination-search', [DispatchController::class, 'paginationSearch']);
         Route::get('/dispatches/drivers', [DispatchController::class, 'drivers']);
         // Self-authorized inside the controller: the assigned driver, or a
-        // coordinator+, may report a position/status update.
+        // coordinator+ tier, may report a position/status update.
         Route::post('/dispatches/{dispatch}/position', [DispatchController::class, 'updatePosition']);
         Route::post('/dispatches/{dispatch}/status', [DispatchController::class, 'updateStatus']);
 
@@ -83,7 +89,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/evacuation-centers/pagination-search', [EvacuationCenterController::class, 'paginationSearch']);
     });
 
-    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+    Route::middleware(['role:incident_management,operations,admin_training,system_admin'])->group(function () {
         Route::post('/dispatches', [DispatchController::class, 'store']);
 
         Route::post('/evacuation-centers', [EvacuationCenterController::class, 'store']);
@@ -91,7 +97,14 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::delete('/evacuation-centers/{id}', [EvacuationCenterController::class, 'destroy']);
     });
 
-    Route::middleware(['role:admin,developer'])->group(function () {
+    // Logistics owns depot/resource stock management, plus system_admin.
+    Route::middleware(['role:logistics,admin_training,system_admin'])->group(function () {
+        Route::get('/resource-loans', [ResourceLoanController::class, 'index']);
+        Route::post('/resource-loans', [ResourceLoanController::class, 'store']);
+        Route::post('/resource-loans/{id}', [ResourceLoanController::class, 'update']);
+    });
+
+    Route::middleware(['role:system_admin'])->group(function () {
         Route::get('/routing-settings', [RoutingSettingController::class, 'show']);
         Route::patch('/routing-settings', [RoutingSettingController::class, 'update']);
         Route::post('/routing-settings/test', [RoutingSettingController::class, 'test']);

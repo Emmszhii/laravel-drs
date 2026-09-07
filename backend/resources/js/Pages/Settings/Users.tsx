@@ -9,16 +9,11 @@ import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { useToast } from "@/Components/Toast";
 import { ApiError } from "@/api-service/client";
 import { usersService } from "@/api-service/modules/users";
+import { ROLE_LABELS, APP_ROLES } from "@/api-service/modules/roles";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
 
-const roleOptions = [
-  { value: "developer", label: "Developer" },
-  { value: "admin", label: "Admin" },
-  { value: "coordinator", label: "Coordinator" },
-  { value: "viewer", label: "Viewer" },
-  { value: "respondent", label: "Respondent" },
-];
+const roleOptions = APP_ROLES.map((value) => ({ value, label: ROLE_LABELS[value] }));
 
 const columns: ColumnDef<AdminUser>[] = [
   { key: "name", label: "Name" },
@@ -29,6 +24,16 @@ const columns: ColumnDef<AdminUser>[] = [
     filterable: true,
     type: "select",
     typeData: roleOptions,
+  },
+  {
+    key: "is_system_admin",
+    label: "System admin",
+    filterable: true,
+    type: "select",
+    typeData: [
+      { value: "1", label: "Yes" },
+      { value: "0", label: "No" },
+    ],
   },
 ];
 
@@ -55,7 +60,8 @@ function makeUserCard(handlers: {
             />
           </div>
           <div className="text-xs text-[var(--text-secondary)]">
-            {row.email} · {row.role}
+            {row.email} · {ROLE_LABELS[row.role] ?? row.role}
+            {row.is_system_admin ? " · System admin" : ""}
           </div>
         </div>
         <div className="flex gap-3 text-xs">
@@ -114,6 +120,12 @@ const userFields: FieldDef<AdminUser>[] = [
     options: roleOptions,
   },
   { key: "is_active", label: "Active", type: "checkbox", defaultValue: true },
+  {
+    key: "is_system_admin",
+    label: "System admin (Settings, user management, routing)",
+    type: "checkbox",
+    defaultValue: false,
+  },
 ];
 
 function SettingsUsersIndex() {

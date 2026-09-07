@@ -13,7 +13,11 @@ class ResourceType extends Model
 
     protected $table = 'app_resource_types';
 
-    protected $fillable = ['name', 'unit'];
+    protected $fillable = ['name', 'unit', 'is_consumable'];
+
+    protected $casts = [
+        'is_consumable' => 'boolean',
+    ];
 
     public function resources(): HasMany
     {

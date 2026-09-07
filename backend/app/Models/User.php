@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['first_name', 'last_name', 'email', 'password', 'role', 'is_active'])]
+#[Fillable(['first_name', 'last_name', 'email', 'password', 'role', 'is_active', 'is_system_admin'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -60,6 +60,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_active' => 'boolean',
+            'is_system_admin' => 'boolean',
         ];
     }
 
@@ -81,6 +82,7 @@ class User extends Authenticatable
             'email' => $this->email,
             'role' => $this->role,
             'is_active' => $this->is_active,
+            'is_system_admin' => $this->is_system_admin,
             'roles' => $this->getRoleNames()->all(),
             'permissions' => $this->getAllPermissions()->pluck('name')->all(),
         ];

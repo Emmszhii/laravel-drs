@@ -37,8 +37,9 @@ class UserController extends BaseController
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users,email'],
-            'role' => ['required', 'in:developer,admin,coordinator,viewer,respondent'],
+            'role' => ['required', 'in:viewer,incident_management,ert,logistics,operations,research_planning,admin_training'],
             'is_active' => ['sometimes', 'boolean'],
+            'is_system_admin' => ['sometimes', 'boolean'],
         ];
     }
 
@@ -49,8 +50,9 @@ class UserController extends BaseController
             'last_name' => ['sometimes', 'string', 'max:255'],
             'email' => ['sometimes', 'email', 'max:255', 'unique:users,email,'.$model->id],
             'password' => ['nullable', 'string', 'min:8'],
-            'role' => ['sometimes', 'in:developer,admin,coordinator,viewer,respondent'],
+            'role' => ['sometimes', 'in:viewer,incident_management,ert,logistics,operations,research_planning,admin_training'],
             'is_active' => ['sometimes', 'boolean'],
+            'is_system_admin' => ['sometimes', 'boolean'],
         ];
     }
 

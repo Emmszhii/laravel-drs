@@ -25,11 +25,14 @@ Route::get('/public', [PublicDashboardController::class, 'index'])->name('public
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Read-only access for coordinator/respondent, in addition to admin/developer.
-    Route::middleware(['role:admin,developer,coordinator,respondent'])->group(function () {
+    // Every CDRRMO division (plus system_admin) gets read access — mirrors
+    // the `view-*` permission tier from RoleSeeder.
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
         Route::get('/incidents', [IncidentController::class, 'index'])->name('web.incidents.index');
         Route::get('/resources', [ResourceInventoryController::class, 'index'])->name('resources.index');
         Route::get('/resources/types', [ResourceInventoryController::class, 'types'])->name('resources.types');
+        Route::get('/resources/loans', [ResourceInventoryController::class, 'loans'])->name('resources.loans');
+        Route::get('/requests', [ResourceInventoryController::class, 'requests'])->name('requests.index');
         Route::get('/depots', [DepotController::class, 'index'])->name('depots.index');
         Route::get('/dispatch', [DispatchController::class, 'index'])->name('dispatch.index');
         Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index'])->name('evacuation-centers.index');
@@ -38,12 +41,12 @@ Route::middleware(['auth', 'active'])->group(function () {
     // Matches the `run-optimization` permission holders (RoleSeeder) — was
     // previously only `auth`-gated (no `role:` check at all), letting any
     // authenticated user, including viewer, trigger the solver directly.
-    Route::middleware(['role:admin,developer,coordinator'])->group(function () {
+    Route::middleware(['role:incident_management,operations,admin_training,system_admin'])->group(function () {
         Route::post('/incidents/{disaster}/optimize', [OptimizationController::class, 'trigger'])
             ->name('incidents.optimize');
     });
 
-    Route::middleware(['role:admin,developer'])->group(function () {
+    Route::middleware(['role:system_admin'])->group(function () {
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
         Route::get('/settings/users', [UsersController::class, 'index'])->name('settings.users');
 

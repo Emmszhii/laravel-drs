@@ -36,6 +36,7 @@ class UserFactory extends Factory
             // a DB-level default until the model is refreshed, which bites
             // anything (e.g. actingAs() in tests) that reads it immediately.
             'is_active' => true,
+            'is_system_admin' => false,
             'remember_token' => Str::random(10),
         ];
     }

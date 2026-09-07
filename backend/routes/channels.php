@@ -12,9 +12,10 @@ Broadcast::channel('dispatches', function ($user) {
     return $user !== null;
 });
 
-// Presence channel example — coordinators actively viewing the EOC dashboard.
+// Presence channel example — Incident Management/Operations/Admin & Training
+// staff actively viewing the EOC dashboard.
 Broadcast::channel('eoc-dashboard', function ($user) {
-    return in_array($user->role, ['admin', 'coordinator'], true)
+    return ($user->is_system_admin || in_array($user->role, ['incident_management', 'operations', 'admin_training'], true))
         ? ['id' => $user->id, 'name' => $user->name]
         : false;
 });

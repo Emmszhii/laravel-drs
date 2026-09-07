@@ -20,7 +20,7 @@ class IdempotentCreateTest extends TestCase
 
     public function test_posting_the_same_incident_id_twice_creates_only_one_row(): void
     {
-        $coordinator = User::factory()->create(['role' => 'coordinator']);
+        $coordinator = User::factory()->create(['role' => 'incident_management']);
         $id = (string) Str::uuid();
 
         $payload = [
@@ -41,7 +41,7 @@ class IdempotentCreateTest extends TestCase
 
     public function test_posting_the_same_area_id_twice_creates_only_one_zone(): void
     {
-        $coordinator = User::factory()->create(['role' => 'coordinator']);
+        $coordinator = User::factory()->create(['role' => 'incident_management']);
         $disaster = \App\Models\Disaster::factory()->create();
         $id = (string) Str::uuid();
 
@@ -60,7 +60,7 @@ class IdempotentCreateTest extends TestCase
 
     public function test_posting_the_same_request_id_twice_creates_only_one_row(): void
     {
-        $coordinator = User::factory()->create(['role' => 'coordinator']);
+        $coordinator = User::factory()->create(['role' => 'incident_management']);
         $zone = Zone::factory()->create();
         $resourceType = ResourceType::factory()->create();
         $id = (string) Str::uuid();

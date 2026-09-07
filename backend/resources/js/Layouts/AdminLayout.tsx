@@ -8,16 +8,23 @@ import { OfflineBanner } from "@/Components/OfflineBanner";
 
 // Roles allowed to reach each link — mirrors the `role:` middleware groups
 // in routes/web.php exactly, so the sidebar never shows a link that would
-// 403 when clicked.
+// 403 when clicked. "system_admin" is a synthetic entry checked separately
+// below via is_system_admin (see EnsureUserHasRole), not a real Spatie role.
+const STAFF_ROLES = ["incident_management", "ert", "logistics", "operations", "research_planning", "admin_training"];
+
 const navItems = [
-  { href: "/", label: "Dashboard", roles: ["admin", "developer", "coordinator", "respondent", "viewer"] },
-  { href: "/incidents", label: "Incidents", roles: ["admin", "developer", "coordinator", "respondent"] },
-  { href: "/resources", label: "Resources", roles: ["admin", "developer", "coordinator", "respondent"] },
-  { href: "/depots", label: "Depots", roles: ["admin", "developer", "coordinator", "respondent"] },
-  { href: "/dispatch", label: "Dispatch", roles: ["admin", "developer", "coordinator", "respondent"] },
-  { href: "/evacuation-centers", label: "Evacuation", roles: ["admin", "developer", "coordinator", "respondent"] },
-  { href: "/reports", label: "Reports", roles: ["admin", "developer"] },
-  { href: "/settings/users", label: "Settings", roles: ["admin", "developer"] },
+  { href: "/", label: "Dashboard", roles: [...STAFF_ROLES, "viewer"] },
+  { href: "/incidents", label: "Incidents", roles: STAFF_ROLES },
+  { href: "/resources", label: "Resources", roles: STAFF_ROLES },
+  { href: "/requests", label: "Requests", roles: STAFF_ROLES },
+  { href: "/depots", label: "Depots", roles: STAFF_ROLES },
+  { href: "/dispatch", label: "Dispatch", roles: STAFF_ROLES },
+  { href: "/evacuation-centers", label: "Evacuation", roles: STAFF_ROLES },
+];
+
+const systemAdminNavItems = [
+  { href: "/reports", label: "Reports" },
+  { href: "/settings/users", label: "Settings" },
 ];
 
 /**
@@ -31,11 +38,14 @@ const navItems = [
  * treatment.
  */
 export default function AdminLayout({ children }: PropsWithChildren) {
-  const { url } = usePage();
+  const page = usePage();
+  const { url } = page;
   const { hasRole } = usePermission();
-  const visibleNavItems = navItems.filter((item) =>
-    item.roles.some((role) => hasRole(role)),
-  );
+  const isSystemAdmin = Boolean((page.props as { auth?: { user?: { is_system_admin?: boolean } | null } }).auth?.user?.is_system_admin);
+  const visibleNavItems = [
+    ...navItems.filter((item) => item.roles.some((role) => hasRole(role))),
+    ...(isSystemAdmin ? systemAdminNavItems : []),
+  ];
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)]">

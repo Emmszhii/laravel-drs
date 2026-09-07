@@ -1,6 +1,6 @@
 export type PageProps<T = {}> = T & {
   auth: {
-    user: { id: string; name: string; email: string; role: string } | null;
+    user: { id: string; name: string; email: string; role: string; is_system_admin: boolean } | null;
   };
 };
 
@@ -9,7 +9,7 @@ declare module '@inertiajs/core' {
   interface PageProps {
     auth?: {
       user:
-        | ({ id: string; name: string; email: string; role: string } & {
+        | ({ id: string; name: string; email: string; role: string; is_system_admin: boolean } & {
             roles?: string[];
             permissions?: string[];
           })
@@ -101,6 +101,24 @@ export interface ResourceType {
   id: string;
   name: string;
   unit: string;
+  is_consumable: boolean;
+}
+
+/** A borrowed-item lifecycle record — GET /api/resource-loans. */
+export interface ResourceLoan {
+  [key: string]: unknown;
+  id: string;
+  resource_id: string;
+  borrower_name: string;
+  borrower_contact: string | null;
+  quantity: number;
+  issued_at: string;
+  due_at: string | null;
+  returned_at: string | null;
+  status: "issued" | "returned" | "for_repair" | "condemned" | "surrendered";
+  notes: string | null;
+  resource?: ResourceStock;
+  issued_by?: { id: string; name: string };
 }
 
 /** One depot-to-destination resource-in-transit trip — GET /api/dispatches. */
@@ -149,8 +167,9 @@ export interface AdminUser {
   last_name: string;
   name: string;
   email: string;
-  role: "developer" | "admin" | "coordinator" | "viewer" | "respondent";
+  role: "viewer" | "incident_management" | "ert" | "logistics" | "operations" | "research_planning" | "admin_training";
   is_active: boolean;
+  is_system_admin: boolean;
 }
 
 export interface Report {
@@ -171,8 +190,13 @@ export interface ResourceRequest {
   quantity_requested: number;
   priority: "low" | "medium" | "high" | "critical";
   status: "pending" | "enroute" | "unmet" | "fulfilled";
+  /** Department-head sign-off (ICS 213-RR) — independent of fulfillment `status` above. */
+  approval_status: "pending" | "approved" | "rejected";
+  approved_at: string | null;
+  rejection_reason: string | null;
   zone?: Zone & { disaster?: Disaster };
   resource_type?: ResourceType;
+  approver?: { id: string; name: string };
 }
 
 /** Aggregate dashboard stats — GET / (Web\DashboardController). */

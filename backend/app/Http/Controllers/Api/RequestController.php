@@ -75,4 +75,36 @@ class RequestController extends BaseController
 
         return $this->sendResponse($model->load(['zone.disaster', 'resourceType']), 'Record created successfully.', 201);
     }
+
+    /**
+     * Department-head sign-off (the office's paper ICS 213-RR form) — status
+     * change only, no depot/stock quantities are touched here.
+     */
+    public function approve(ResourceRequest $request): JsonResponse
+    {
+        $request->update([
+            'approval_status' => 'approved',
+            'approved_by' => auth()->id(),
+            'approved_at' => now(),
+            'rejection_reason' => null,
+        ]);
+
+        return $this->sendResponse($request->fresh(['zone.disaster', 'resourceType', 'approver']), 'Request approved.');
+    }
+
+    public function reject(Request $httpRequest, ResourceRequest $request): JsonResponse
+    {
+        $validated = $httpRequest->validate([
+            'rejection_reason' => ['required', 'string', 'max:255'],
+        ]);
+
+        $request->update([
+            'approval_status' => 'rejected',
+            'approved_by' => auth()->id(),
+            'approved_at' => now(),
+            'rejection_reason' => $validated['rejection_reason'],
+        ]);
+
+        return $this->sendResponse($request->fresh(['zone.disaster', 'resourceType', 'approver']), 'Request rejected.');
+    }
 }

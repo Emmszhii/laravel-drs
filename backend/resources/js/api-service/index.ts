@@ -15,13 +15,15 @@ export type {
 } from "./http";
 export { buildFormData, buildQueryString, hasBinaryFiles } from "./form-data";
 
-export { APP_ROLES, normalizeRole, sharesAdminAccess } from "./modules/roles";
+export { APP_ROLES, ROLE_LABELS, normalizeRole, sharesAdminAccess } from "./modules/roles";
 export type { AppRole } from "./modules/roles";
 
 export { incidentsService } from "./modules/incidents";
 export { depotsService } from "./modules/depots";
 export { resourceTypesService } from "./modules/resourceTypes";
 export { resourcesService } from "./modules/resources";
+export { resourceLoansService } from "./modules/resourceLoans";
+export { requestsService } from "./modules/requests";
 export { usersService } from "./modules/users";
 export { reportsService } from "./modules/reports";
 export { dispatchesService } from "./modules/dispatches";

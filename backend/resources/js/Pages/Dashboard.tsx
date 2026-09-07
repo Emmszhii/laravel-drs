@@ -72,10 +72,23 @@ function RequestCard(row: ResourceRequest, _actions: CardActions) {
           {row.quantity_requested} {row.resource_type?.unit ?? ""}
         </div>
       </div>
-      <div
-        className={`text-xs font-semibold uppercase ${statusColor[row.status]}`}
-      >
-        {row.status}
+      <div className="flex flex-col items-end gap-1">
+        <div
+          className={`text-xs font-semibold uppercase ${statusColor[row.status]}`}
+        >
+          {row.status}
+        </div>
+        <div
+          className={`text-[10px] font-semibold uppercase ${
+            row.approval_status === "approved"
+              ? "text-ok"
+              : row.approval_status === "rejected"
+                ? "text-critical"
+                : "text-pending"
+          }`}
+        >
+          {row.approval_status}
+        </div>
       </div>
     </div>
   );
@@ -208,9 +221,9 @@ function Dashboard({ incidents, depots, stats, utilization }: Props) {
 }
 
 Dashboard.layout = (page: JSX.Element) => {
-  const role = (page.props as Props).auth.user?.role;
+  const user = (page.props as Props).auth.user;
 
-  return sharesAdminAccess(role) ? (
+  return sharesAdminAccess(user?.role, user?.is_system_admin) ? (
     <AdminLayout>{page}</AdminLayout>
   ) : (
     <AppLayout>{page}</AppLayout>

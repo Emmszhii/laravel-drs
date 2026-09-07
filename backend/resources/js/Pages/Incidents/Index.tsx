@@ -20,6 +20,7 @@ import { Disaster, Depot, Zone } from "@/Types/models";
 import { reverseGeocode } from "@/Utils/geocoding";
 import { matchPsgcLocation } from "@/Utils/psgcLookup";
 import { usePermission } from "@/Hooks/use-permissions";
+import { usePage } from "@inertiajs/react";
 
 const emptyForm = {
   name: "",
@@ -52,11 +53,13 @@ function IncidentsIndex() {
   const [region, setRegion] = useState("");
   const [province, setProvince] = useState("");
   const [city, setCity] = useState("");
-  const { can, hasRole } = usePermission();
+  const { can } = usePermission();
+  const isSystemAdmin = Boolean(usePage().props.auth?.user?.is_system_admin);
   const canManageIncidents = can("manage-incidents");
-  // DELETE /api/incidents/{id} is admin/developer-only (stricter than
-  // manage-incidents, which coordinator also holds for create/edit).
-  const canDeleteIncidents = hasRole("admin") || hasRole("developer");
+  // DELETE /api/incidents/{id} is system_admin-only (stricter than
+  // manage-incidents, which incident_management/operations also hold for
+  // create/edit).
+  const canDeleteIncidents = isSystemAdmin;
 
   const MIN_LOADING_MS = 400;
 

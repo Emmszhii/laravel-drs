@@ -8,28 +8,23 @@ import type { ResourceStock, ResourceType } from "@/Types/models";
 export function ResourcesTabs() {
   const { url } = usePage();
   const onTypes = url.startsWith("/resources/types");
+  const onLoans = url.startsWith("/resources/loans");
+
+  const tabClass = (active: boolean) =>
+    `border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
+      active ? "border-[var(--amber)]" : "border-transparent text-[var(--text-secondary)]"
+    }`;
 
   return (
     <div className="flex gap-5 border-b border-white/10 px-6">
-      <Link
-        href="/resources"
-        className={`border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
-          onTypes
-            ? "border-transparent text-[var(--text-secondary)]"
-            : "border-[var(--amber)]"
-        }`}
-      >
+      <Link href="/resources" className={tabClass(!onTypes && !onLoans)}>
         Stock
       </Link>
-      <Link
-        href="/resources/types"
-        className={`border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
-          onTypes
-            ? "border-[var(--amber)]"
-            : "border-transparent text-[var(--text-secondary)]"
-        }`}
-      >
+      <Link href="/resources/types" className={tabClass(onTypes)}>
         Resource types
+      </Link>
+      <Link href="/resources/loans" className={tabClass(onLoans)}>
+        Borrowed items
       </Link>
     </div>
   );
@@ -74,7 +69,7 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
       <div>
         <div className="font-semibold">{row.name}</div>
         <div className="text-xs text-[var(--text-secondary)]">
-          Unit: {row.unit}
+          Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"}
         </div>
       </div>
       <div className="flex gap-3 text-xs">
@@ -122,6 +117,16 @@ export const typeColumns: ColumnDef<ResourceType>[] = [
     key: "unit",
     label: "Unit",
     filterable: true,
+  },
+  {
+    key: "is_consumable",
+    label: "Kind",
+    filterable: true,
+    type: "select",
+    typeData: [
+      { value: "1", label: "Consumable" },
+      { value: "0", label: "Borrowed/equipment" },
+    ],
   },
 ];
 
@@ -182,5 +187,13 @@ export const typeFields: FieldDef<ResourceType>[] = [
     required: true,
     colSpan: 2,
     placeholder: "e.g. kits, packs, containers",
+  },
+  {
+    key: "is_consumable",
+    label: "Consumable (used up, not returned)",
+    type: "checkbox",
+    defaultValue: true,
+    colSpan: 2,
+    helpText: "Uncheck for borrowed tools/equipment that need sign-in/sign-out and a return date.",
   },
 ];

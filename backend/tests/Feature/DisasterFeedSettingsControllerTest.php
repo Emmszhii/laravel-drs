@@ -32,7 +32,7 @@ class DisasterFeedSettingsControllerTest extends TestCase
 
     public function test_admin_can_view_and_update_settings(): void
     {
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
 
         $this->actingAs($admin)
             ->get('/settings/disaster-feed')
@@ -53,7 +53,7 @@ class DisasterFeedSettingsControllerTest extends TestCase
 
     public function test_invalid_poll_interval_is_rejected(): void
     {
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
 
         $this->actingAs($admin)
             ->patchJson('/api/disaster-feed-settings', [
@@ -70,7 +70,7 @@ class DisasterFeedSettingsControllerTest extends TestCase
     public function test_run_now_queues_the_poll_job(): void
     {
         Queue::fake();
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
 
         $this->actingAs($admin)
             ->postJson('/api/disaster-feed-settings/run')

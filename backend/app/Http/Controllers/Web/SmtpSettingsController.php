@@ -8,9 +8,9 @@ use Inertia\Inertia;
 use Inertia\Response;
 
 /**
- * Renders the admin-only Settings → SMTP page (Inertia page:
+ * Renders the system-admin-only Settings → SMTP page (Inertia page:
  * Pages/Settings/Smtp.tsx) — configure/test the optional admin-managed
- * outgoing mail server. Gated by the `role:admin,developer` middleware.
+ * outgoing mail server. Gated by the `role:system_admin` middleware.
  */
 class SmtpSettingsController extends Controller
 {

@@ -21,6 +21,22 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         /**
+         * `laravel/octane` is required only for the deployed container (see
+         * backend/Dockerfile's CMD, which calls `octane:start` directly) —
+         * but merely having the package installed makes OctaneServiceProvider
+         * override `php artisan dev`'s "server" slot to `octane:start --watch`
+         * (see Octane::registerDevCommands()). Octane's signal handling
+         * there references pcntl's SIGINT/SIGTERM/SIGHUP constants, which
+         * don't exist on Windows, crashing `artisan dev` locally. Re-register
+         * "server" back to plain `serve` — a userland call always outranks
+         * Octane's vendor-priority registration in DevCommands::register(),
+         * regardless of provider boot order.
+         */
+        if (class_exists(\Illuminate\Foundation\DevCommands::class)) {
+            \Illuminate\Foundation\DevCommands::artisan('serve', 'server');
+        }
+
+        /**
          * REUSABLE API
          */
         Route::macro('module', function (string $prefix, string $controller, string $name) {

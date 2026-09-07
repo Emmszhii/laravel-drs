@@ -21,4 +21,14 @@ class ResourceInventoryController extends Controller
     {
         return Inertia::render('Resources/Types');
     }
+
+    public function loans(): Response
+    {
+        return Inertia::render('Resources/Loans');
+    }
+
+    public function requests(): Response
+    {
+        return Inertia::render('Requests/Index');
+    }
 }

@@ -21,6 +21,14 @@ class ResourceRequest extends Model
         'priority',
         'status',
         'requested_by',
+        'approval_status',
+        'approved_by',
+        'approved_at',
+        'rejection_reason',
+    ];
+
+    protected $casts = [
+        'approved_at' => 'datetime',
     ];
 
     public function zone(): BelongsTo
@@ -36,5 +44,11 @@ class ResourceRequest extends Model
     public function allocations(): HasMany
     {
         return $this->hasMany(Allocation::class, 'request_id');
+    }
+
+    /** The Logistics/Admin & Training staff member who approved or rejected this request. */
+    public function approver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
     }
 }

@@ -240,5 +240,7 @@
   "238": "build-yup-schema.ts",
   "239": "EnsureUserIsActiveTest",
   "240": "IncidentController.php",
-  "241": "RoutingSettingsController.php"
+  "241": "RoutingSettingsController.php",
+  "242": "2026_09_06_000002_add_approval_fields_to_requests_table.php",
+  "243": "2026_09_06_000003_add_consumable_and_loans_to_resources.php"
 }

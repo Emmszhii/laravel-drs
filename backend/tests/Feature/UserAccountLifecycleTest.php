@@ -40,7 +40,7 @@ class UserAccountLifecycleTest extends TestCase
 
     public function test_admin_can_suspend_another_user(): void
     {
-        $admin = User::factory()->create(['role' => 'admin', 'is_active' => true]);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true, 'is_active' => true]);
         $target = User::factory()->create(['role' => 'viewer', 'is_active' => true]);
 
         $this->actingAs($admin)
@@ -52,7 +52,7 @@ class UserAccountLifecycleTest extends TestCase
 
     public function test_admin_cannot_suspend_their_own_account(): void
     {
-        $admin = User::factory()->create(['role' => 'admin', 'is_active' => true]);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true, 'is_active' => true]);
 
         $this->actingAs($admin)
             ->postJson("/api/settings/users/{$admin->id}/suspend")
@@ -63,7 +63,7 @@ class UserAccountLifecycleTest extends TestCase
 
     public function test_admin_can_activate_a_suspended_user(): void
     {
-        $admin = User::factory()->create(['role' => 'admin', 'is_active' => true]);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true, 'is_active' => true]);
         $target = User::factory()->create(['role' => 'viewer', 'is_active' => false]);
 
         $this->actingAs($admin)
@@ -77,7 +77,7 @@ class UserAccountLifecycleTest extends TestCase
     {
         Mail::fake();
 
-        $admin = User::factory()->create(['role' => 'admin']);
+        $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
         $target = User::factory()->create();
 
         $this->actingAs($admin)
