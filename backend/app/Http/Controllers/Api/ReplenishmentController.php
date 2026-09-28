@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Events\ReplenishmentRunUpdated;
 use App\Http\Controllers\Controller;
 use App\Jobs\RunReplenishmentJob;
+use App\Models\Backtest;
 use App\Models\DataCheckFlag;
 use App\Models\QuarterBudget;
 use App\Models\ReplenishmentRun;
+use App\Models\ResourceType;
+use App\Models\VedPolicy;
 use App\Services\Replenishment\DataChecks;
 use App\Services\Replenishment\HistoryImporter;
+use App\Services\Replenishment\QuarterHistory;
+use App\Services\Replenishment\ReplenishmentServiceClient;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -64,6 +69,7 @@ class ReplenishmentController extends Controller
             'year' => ['required', 'integer', 'between:2020,2100'],
             'quarter' => ['required', 'integer', 'between:1,4'],
             'budget' => ['required', 'numeric', 'min:0'],
+            'rule' => ['nullable', 'in:per_item_multiplier,scenario'],
         ]);
 
         QuarterBudget::updateOrCreate(
@@ -82,11 +88,59 @@ class ReplenishmentController extends Controller
             'year' => $data['year'],
             'quarter' => $data['quarter'],
             'budget' => $data['budget'],
+            'rule' => $data['rule'] ?? 'per_item_multiplier',
             'run_by' => $request->user()->id,
         ]);
         RunReplenishmentJob::dispatch($run);
 
         return response()->json($run->fresh(), 202);
+    }
+
+    /**
+     * Admin: rolling-origin backtest on the encoded history. Each quarter uses its
+     * recorded budget where there is one, otherwise the budget given here.
+     */
+    public function backtest(Request $request, QuarterHistory $history, ReplenishmentServiceClient $client): JsonResponse
+    {
+        $data = $request->validate(['budget' => ['required', 'numeric', 'min:0']]);
+
+        $h = $history->build(now()->year + 1, 1); // everything encoded so far
+        abort_if(count($h['quarters']) < 5, 422, 'The backtest needs at least 5 encoded quarters.');
+
+        $policies = VedPolicy::all()->keyBy('ved_class');
+        $budgets = QuarterBudget::all()->keyBy(fn ($b) => "{$b->year}-{$b->quarter}");
+        $payload = [
+            'budget' => (float) $data['budget'],
+            'budgets' => array_map(fn ($yq) => $budgets["{$yq[0]}-{$yq[1]}"]->budget_amount ?? null, $h['quarters']),
+            'typhoon_quarters' => $h['event_quarters'],
+            'stockout_quarters' => $h['stockout_quarters'],
+            'm' => (int) $policies->max('coverage_m'),
+            // ponytail: every rule starts the first backtested quarter with zero stock (the records
+            // don't hold opening stock per quarter); pass initial_stock once the office has it.
+            'items' => ResourceType::orderBy('name')->get()
+                ->filter(fn ($t) => $t->unit_cost && ! empty($h['use'][$t->id]))
+                ->map(fn ($t) => [
+                    'id' => $t->id, 'q' => 0, 'unit_cost' => $t->unit_cost,
+                    'weight' => $policies[$t->ved_class]->weight, 'coverage_k' => $policies[$t->ved_class]->coverage_k,
+                    'history' => $h['use'][$t->id],
+                ])->values()->all(),
+        ];
+        abort_if(! $payload['items'], 422, 'No item has both a unit cost and encoded history.');
+
+        $backtest = Backtest::create([
+            'budget' => $data['budget'],
+            'quarters' => $h['quarters'],
+            'inputs' => $payload,
+            'result' => $client->backtest($payload),
+            'run_by' => $request->user()->id,
+        ]);
+
+        return response()->json($backtest, 201);
+    }
+
+    public function latestBacktest(): JsonResponse
+    {
+        return response()->json(Backtest::latest()->first()?->makeHidden('inputs'));
     }
 
     /** Admin: the approved run becomes the quarter's purchase plan; one per quarter. */

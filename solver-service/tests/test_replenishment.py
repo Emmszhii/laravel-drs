@@ -137,3 +137,96 @@ def test_endpoint_round_trip():
     resp = TestClient(app).post("/api/v1/replenishment/solve", json=body)
     assert resp.status_code == 200
     assert [o["x"] for o in resp.json()["orders"]] == [127, 240, 350, 0]
+
+
+# --- Sprint 4: scenario model (Stage 2) and rolling-origin backtest ---
+
+from app.models.replenishment import BacktestRequest  # noqa: E402
+from app.solvers.replenishment import backtest, flat_rule_orders  # noqa: E402
+
+
+def test_flat_rule_same_percentage_cut_matches_worked_example():
+    # Constant history makes the flat 1.5 target equal Table 5's (480, 300, 600, 128).
+    items = [ReplenishmentItem(id="food", q=0, unit_cost=500, history=[320] * 4),
+             ReplenishmentItem(id="hygiene", q=0, unit_cost=350, history=[200] * 4),
+             ReplenishmentItem(id="water", q=0, unit_cost=150, history=[400] * 4),
+             ReplenishmentItem(id="medical", q=0, unit_cost=900, history=[85] * 4)]
+    orders, _ = flat_rule_orders(items, {"food": 150, "hygiene": 60, "water": 250, "medical": 200}, 200_000)
+    assert (orders["food"], orders["hygiene"], orders["water"], orders["medical"]) == (218, 159, 232, 0)
+    assert sum(orders[i] * c for i, c in [("food", 500), ("hygiene", 350), ("water", 150)]) == 199_450
+
+
+def test_scenario_model_protects_against_the_typhoon_quarter_when_budget_allows():
+    typhoon = [100, 100, 100, 100, 100, 100, 100, 900]
+    res = solve(ReplenishmentRequest(rule="scenario", budget=1_000_000, items=[
+        ReplenishmentItem(id="food", q=0, unit_cost=10, coverage_k=7, history=typhoon)]))
+    o = by_id(res)["food"]
+    assert o.x == 900 and res.objective == 0
+    assert o.target == 100 and o.reason == FULLY_COVERED  # reason is still read against the covering level
+
+    # The per-item multiplier stops at the covering level (2nd-highest = 100) and never buys for the typhoon.
+    stage1 = by_id(solve(ReplenishmentRequest(budget=1_000_000, items=[
+        ReplenishmentItem(id="food", q=0, unit_cost=10, coverage_k=7, history=typhoon)])))["food"]
+    assert stage1.x == 100
+
+
+def test_scenario_objective_is_the_average_weighted_shortage():
+    res = solve(ReplenishmentRequest(rule="scenario", budget=0, items=[
+        ReplenishmentItem(id="a", q=20, unit_cost=10, weight=2, history=[10, 30, 50, 10])]))
+    # m = 25; shortages 0, 10, 30, 0 -> 2 * (40 / 25) / 4
+    assert res.objective == round(2 * (40 / 25) / 4, 6)
+    assert res.binding["budget"] is True
+
+
+def test_scenario_budget_curve_never_rises_and_spends_within_budget():
+    rng = random.Random(3)
+    items = [ReplenishmentItem(id=str(i), q=rng.randint(0, 40), unit_cost=rng.choice([20, 90, 350]),
+                               weight=rng.choice([1, 2, 3]), history=[rng.randint(0, 80) for _ in range(10)]) for i in range(10)]
+    req = ReplenishmentRequest(rule="scenario", budget=15_000, items=items)
+    vals = [p["expected_shortage"] for p in budget_curve(req)["points"]]
+    assert all(b <= a + 1e-9 for a, b in zip(vals, vals[1:]))
+    assert solve(req).spent <= 15_000
+
+
+def test_scenario_lists_items_without_history_for_manual_setting():
+    o = by_id(solve(ReplenishmentRequest(rule="scenario", budget=100, items=[
+        ReplenishmentItem(id="new", q=0, unit_cost=10, target=50)])))
+    assert o["new"].reason == SET_MANUALLY
+
+
+def backtest_fixture():
+    rng = random.Random(5)
+    hist = lambda base, spike: [base + rng.randint(-10, 10) if q != 5 else spike for q in range(12)]  # noqa: E731
+    return BacktestRequest(budget=60_000, typhoon_quarters=[5], stockout_quarters=[5], items=[
+        ReplenishmentItem(id="food", q=0, unit_cost=500, weight=2, coverage_k=7, history=hist(100, 400)),
+        ReplenishmentItem(id="hygiene", q=0, unit_cost=350, weight=2, coverage_k=7, history=hist(60, 200)),
+        ReplenishmentItem(id="medical", q=0, unit_cost=900, weight=3, coverage_k=8, history=hist(20, 60)),
+        ReplenishmentItem(id="paper", q=0, unit_cost=250, weight=1, coverage_k=6, history=hist(15, 20)),
+    ])
+
+
+def test_backtest_scores_every_rule_from_the_fifth_quarter_on_earlier_quarters_only():
+    out = backtest(backtest_fixture())
+    assert [row["t"] for row in out["quarters"]] == list(range(4, 12))
+    row = out["quarters"][1]  # t = 5, the typhoon quarter
+    assert row["typhoon"] and row["stockout"]
+    for rule in ("flat_1_5", "per_item_multiplier", "scenario"):
+        m = row["rules"][rule]
+        assert m["feasible"] and m["budget_used"] <= 1
+        assert 0 <= m["fill_rate"] <= 1
+    s = out["summary"]
+    assert s["backtested_quarters"] == 8
+    assert set(s["wins_vs_flat"]) == {"per_item_multiplier", "scenario"}
+    assert s["target_met"]["scenario"] == (s["wins_vs_flat"]["scenario"] > 4)
+
+
+def test_backtest_includes_the_offices_actual_orders_when_recorded():
+    req = backtest_fixture().model_copy(update={"actual_orders": {"4": {"food": 50}}})
+    row = backtest(req)["quarters"][0]
+    assert row["rules"]["office_actual"]["budget_used"] == round(50 * 500 / 60_000, 4)
+
+
+def test_backtest_endpoint_round_trip():
+    resp = TestClient(app).post("/api/v1/replenishment/backtest", json=backtest_fixture().model_dump())
+    assert resp.status_code == 200
+    assert resp.json()["summary"]["backtested_quarters"] == 8

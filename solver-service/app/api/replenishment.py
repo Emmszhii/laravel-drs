@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from app.models.replenishment import ReplenishmentRequest, ReplenishmentResponse
+from app.models.replenishment import BacktestRequest, ReplenishmentRequest, ReplenishmentResponse
 from app.solvers import replenishment
 
 router = APIRouter()
@@ -20,3 +20,9 @@ def solve(payload: ReplenishmentRequest) -> ReplenishmentResponse:
 def budget_curve(payload: ReplenishmentRequest) -> dict:
     """Same payload as /solve; returns 11 {budget, expected_shortage} points and the next-P10,000 diff."""
     return replenishment.budget_curve(payload)
+
+
+@router.post("/backtest")
+def backtest(payload: BacktestRequest) -> dict:
+    """Rolling-origin backtest: flat 1.5 vs per-item multiplier vs scenario model (and the office's own orders)."""
+    return replenishment.backtest(payload)

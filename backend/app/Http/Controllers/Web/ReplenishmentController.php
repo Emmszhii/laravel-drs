@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Backtest;
 use App\Models\DataCheckFlag;
 use App\Models\QuarterBudget;
 use App\Models\ReplenishmentRun;
@@ -36,6 +37,7 @@ class ReplenishmentController extends Controller
             'run' => $run?->makeHidden('inputs'),
             'items' => ResourceType::orderBy('name')->get(['id', 'name', 'unit', 'ved_class', 'unit_cost']),
             'flags' => DataCheckFlag::with('resourceType:id,name')->where('status', 'open')->get(),
+            'backtest' => Backtest::latest()->first()?->makeHidden('inputs'),
             'policies' => VedPolicy::orderByRaw("CASE ved_class WHEN 'V' THEN 1 WHEN 'E' THEN 2 ELSE 3 END")->get(),
             'defaults' => [
                 'year' => $next->year,

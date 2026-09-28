@@ -1215,8 +1215,8 @@
     "semantic_hash": ""
   },
   "backend/resources/js/Types/models.d.ts": {
-    "mtime": 1790617586.6976368,
-    "ast_hash": "1ca0152bf4ca7d93a83e9eee830c1a5f",
+    "mtime": 1790618567.6095345,
+    "ast_hash": "5320b228a7c093434af1f1ee42102b51",
     "semantic_hash": ""
   },
   "backend/resources/js/Types/pagination.ts": {
@@ -1390,8 +1390,8 @@
     "semantic_hash": "540773f73edc8f23026bb56bb4ec5c84"
   },
   "backend/routes/api.php": {
-    "mtime": 1790618103.8018472,
-    "ast_hash": "ba7fec48be9abe0e09d246bf6d97efe6",
+    "mtime": 1790618557.3554332,
+    "ast_hash": "0511899efce0122a05272990e7d987aa",
     "semantic_hash": ""
   },
   "backend/routes/auth.php": {
@@ -2015,8 +2015,8 @@
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Api/ReplenishmentController.php": {
-    "mtime": 1790617562.7612858,
-    "ast_hash": "137f41df53969a4a091539652e2acf72",
+    "mtime": 1790618556.9935722,
+    "ast_hash": "8dfa8d225ea2195c1b766fe150ce6469",
     "semantic_hash": ""
   },
   "backend/app/Jobs/RunReplenishmentJob.php": {
@@ -2060,13 +2060,13 @@
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/QuarterHistory.php": {
-    "mtime": 1790617830.635653,
-    "ast_hash": "2a398a29f20793fb28131c8d65583194",
+    "mtime": 1790618525.2701564,
+    "ast_hash": "82773cb961fedd502f02c5608bfaab05",
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/ReplenishmentServiceClient.php": {
-    "mtime": 1790617528.1375842,
-    "ast_hash": "3d2a144f605afee3073b7bf6604f724b",
+    "mtime": 1790618537.3800628,
+    "ast_hash": "5f5c1d14545451aa8245bc5401e5de0e",
     "semantic_hash": ""
   },
   "backend/database/migrations/2026_09_29_000001_create_replenishment_tables.php": {
@@ -2075,28 +2075,28 @@
     "semantic_hash": ""
   },
   "backend/tests/Feature/ReplenishmentTest.php": {
-    "mtime": 1790618155.7626133,
-    "ast_hash": "c6be27b08a9507e9772326e47714e65f",
+    "mtime": 1790618713.6048424,
+    "ast_hash": "3ccd30ec9575ee538ce2489c7aa0ba7e",
     "semantic_hash": ""
   },
   "solver-service/app/api/replenishment.py": {
-    "mtime": 1790617496.8086038,
-    "ast_hash": "dd64dd26b3fdeb39f2894603e8b4e493",
+    "mtime": 1790618467.8699346,
+    "ast_hash": "55a396570e2cdb6d07c1de2fee171a2f",
     "semantic_hash": ""
   },
   "solver-service/app/models/replenishment.py": {
-    "mtime": 1790616888.9850843,
-    "ast_hash": "7c03db3a463b00cf918719f1ad46097a",
+    "mtime": 1790618467.4632268,
+    "ast_hash": "f40e8e285ada4a9e35816933015c0329",
     "semantic_hash": ""
   },
   "solver-service/app/solvers/replenishment.py": {
-    "mtime": 1790617496.7857997,
-    "ast_hash": "d9532f83af13da6725413ea8ac90e22b",
+    "mtime": 1790618467.4175673,
+    "ast_hash": "664ce60f08a839c5a3d13912db3c8f3d",
     "semantic_hash": ""
   },
   "solver-service/tests/test_replenishment.py": {
-    "mtime": 1790617508.2420166,
-    "ast_hash": "1d8ae3940793eb8b6958f3bf97edc7e2",
+    "mtime": 1790618500.384605,
+    "ast_hash": "76c9b4b69e5d934a412c81139e2bcd4c",
     "semantic_hash": ""
   },
   "backend/docs/research/Capstone1_Novelty_Options.md": {
@@ -2155,8 +2155,8 @@
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Web/ReplenishmentController.php": {
-    "mtime": 1790617562.7821376,
-    "ast_hash": "6982f49f7ce4f1e1b5fa0e843dd35984",
+    "mtime": 1790618567.28976,
+    "ast_hash": "a4af126766da8951a9a0169be5940073",
     "semantic_hash": ""
   },
   "backend/database/seeders/ReplenishmentDemoSeeder.php": {
@@ -2165,8 +2165,8 @@
     "semantic_hash": ""
   },
   "backend/resources/js/Pages/Replenishment/Index.tsx": {
-    "mtime": 1790617869.1482546,
-    "ast_hash": "c14c099ba650d21258a2d73b0a61dffd",
+    "mtime": 1790618600.407442,
+    "ast_hash": "c23be0e9ed4d8360bf74f6130f5d359d",
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Api/StockController.php": {
@@ -2217,6 +2217,16 @@
   "backend/tests/Feature/StockLedgerTest.php": {
     "mtime": 1790618178.762594,
     "ast_hash": "77af1ea32a9221671a81bd7c1765203a",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/Backtest.php": {
+    "mtime": 1790618537.3587456,
+    "ast_hash": "cab69d4410b8d2d274f58661779013a5",
+    "semantic_hash": ""
+  },
+  "backend/database/migrations/2026_09_29_000003_create_backtests_table.php": {
+    "mtime": 1790618537.3374028,
+    "ast_hash": "3be2cbf723d25daef496eebb142153e6",
     "semantic_hash": ""
   }
 }

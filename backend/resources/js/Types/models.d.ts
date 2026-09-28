@@ -338,3 +338,28 @@ export interface VedPolicy {
   confirmed_by_position: string | null;
   confirmed_at: string | null;
 }
+
+export interface BacktestRuleScore {
+  fill_rate: number;
+  weighted_shortage: number;
+  items_ran_out: number;
+  budget_used: number;
+  stock_left_value: number;
+  feasible: boolean;
+  solve_ms: number;
+}
+
+export interface Backtest {
+  id: string;
+  budget: number;
+  quarters: [number, number][];
+  created_at: string;
+  result: {
+    quarters: { t: number; budget: number; typhoon: boolean; stockout: boolean; rules: Record<string, BacktestRuleScore> }[];
+    summary: {
+      backtested_quarters: number;
+      wins_vs_flat: Record<"per_item_multiplier" | "scenario", number>;
+      target_met: Record<"per_item_multiplier" | "scenario", boolean>;
+    };
+  };
+}

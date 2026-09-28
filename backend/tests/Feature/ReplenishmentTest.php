@@ -120,6 +120,41 @@ class ReplenishmentTest extends TestCase
         $this->assertSame(10000, $result['next_step']['amount']);
     }
 
+    public function test_admin_can_choose_the_scenario_model(): void
+    {
+        $this->fakeSolver();
+        $this->actingAs($this->admin())->postJson('/api/replenishment/runs', ['year' => 2026, 'quarter' => 1, 'budget' => 1, 'rule' => 'scenario'])->assertStatus(202);
+
+        $this->assertSame('scenario', ReplenishmentRun::sole()->rule);
+        Http::assertSent(fn (HttpRequest $req) => str_ends_with($req->url(), '/solve') && $req['rule'] === 'scenario');
+    }
+
+    public function test_backtest_sends_history_budgets_and_event_quarters_and_stores_the_result(): void
+    {
+        Http::fake(['*/api/v1/replenishment/backtest' => Http::response(['quarters' => [], 'summary' => ['backtested_quarters' => 1]])]);
+        $food = $this->food();
+        foreach (['2025-01-10', '2025-04-10', '2025-07-10', '2025-10-10', '2026-01-10'] as $i => $date) {
+            $this->line($food, $date, 100 + $i, $i === 2 ? 'Kristine' : null);
+        }
+        \App\Models\QuarterBudget::create(['year' => 2025, 'quarter' => 4, 'budget_amount' => 5000]);
+
+        $this->actingAs($this->logistics())->postJson('/api/replenishment/backtest', ['budget' => 1000])->assertForbidden();
+        $this->actingAs($this->admin())->postJson('/api/replenishment/backtest', ['budget' => 1000])->assertCreated();
+
+        Http::assertSent(fn (HttpRequest $req) => $req['typhoon_quarters'] === [2]
+            && $req['budgets'] == [null, null, null, 5000, null]
+            && $req['items'][0]['history'] === [100, 101, 102, 103, 104]);
+        $this->assertSame(1, \App\Models\Backtest::sole()->result['summary']['backtested_quarters']);
+    }
+
+    public function test_backtest_needs_five_encoded_quarters(): void
+    {
+        $food = $this->food();
+        $this->line($food, '2025-01-10', 10);
+
+        $this->actingAs($this->admin())->postJson('/api/replenishment/backtest', ['budget' => 1000])->assertStatus(422);
+    }
+
     public function test_a_solver_outage_fails_the_run_instead_of_hanging(): void
     {
         Http::fake(['*' => Http::response('down', 503)]);

@@ -5,13 +5,14 @@ import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YA
 import AdminLayout from "@/Layouts/AdminLayout";
 import Button from "@/Components/Common/Button";
 import { http, ApiError } from "@/api-service";
-import type { DataCheckFlag, ReplenishmentRun, ResourceType, VedPolicy } from "@/Types/models";
+import type { Backtest, DataCheckFlag, ReplenishmentRun, ResourceType, VedPolicy } from "@/Types/models";
 
 type Props = {
   runs: Pick<ReplenishmentRun, "id" | "year" | "quarter" | "budget" | "status" | "created_at" | "decided_at">[];
   run: ReplenishmentRun | null;
   items: Pick<ResourceType, "id" | "name" | "unit">[];
   flags: DataCheckFlag[];
+  backtest: Backtest | null;
   policies: VedPolicy[];
   defaults: { year: number; quarter: number; budget: number | null };
   can: { run: boolean; encode: boolean };
@@ -49,7 +50,14 @@ function errorMessage(err: unknown): string {
  * Logistics only encodes (history upload, data-check flags); the Admin (Head
  * of Office) runs the solver and approves or rejects.
  */
-export default function ReplenishmentIndex({ runs, run, items, flags, policies, defaults, can }: Props) {
+const RULE_LABELS: Record<string, string> = {
+  per_item_multiplier: "Per-item multiplier",
+  scenario: "Scenario model",
+  flat_1_5: "Flat 1.5 rule",
+  office_actual: "Office's own orders",
+};
+
+export default function ReplenishmentIndex({ runs, run, items, flags, backtest, policies, defaults, can }: Props) {
   const names = useMemo(() => Object.fromEntries(items.map((i) => [i.id, i])), [items]);
   const reload = () => router.reload({ only: ["runs", "run", "flags"] });
 
@@ -78,6 +86,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, policies, 
           {run ? <RunDetail run={run} names={names} canDecide={can.run} onDone={reload} /> : (
             <p className="text-sm text-[var(--text-secondary)]">No solver run yet.</p>
           )}
+          <BacktestPanel backtest={backtest} canRun={can.run} defaultBudget={defaults.budget} onDone={() => router.reload({ only: ["backtest"] })} />
         </div>
 
         <aside className="space-y-6">
@@ -104,7 +113,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, policies, 
 }
 
 function RunForm({ defaults, onDone }: { defaults: Props["defaults"]; onDone: () => void }) {
-  const [form, setForm] = useState({ year: defaults.year, quarter: defaults.quarter, budget: defaults.budget ?? "" });
+  const [form, setForm] = useState({ year: defaults.year, quarter: defaults.quarter, budget: defaults.budget ?? "", rule: "per_item_multiplier" });
   const [busy, setBusy] = useState(false);
 
   const submit = async (e: FormEvent) => {
@@ -124,7 +133,7 @@ function RunForm({ defaults, onDone }: { defaults: Props["defaults"]; onDone: ()
   const field = "w-full border border-white/20 bg-transparent px-2 py-1.5 text-sm";
 
   return (
-    <form onSubmit={submit} className="grid grid-cols-2 gap-3 border border-white/10 p-4 sm:grid-cols-[100px_90px_1fr_auto] sm:items-end">
+    <form onSubmit={submit} className="grid grid-cols-2 gap-3 border border-white/10 p-4 sm:grid-cols-[100px_90px_1fr_180px_auto] sm:items-end">
       <label className="text-xs uppercase text-[var(--text-secondary)]">Year
         <input className={field} type="number" min={2020} max={2100} required value={form.year}
           onChange={(e) => setForm({ ...form, year: Number(e.target.value) })} />
@@ -137,6 +146,12 @@ function RunForm({ defaults, onDone }: { defaults: Props["defaults"]; onDone: ()
       <label className="col-span-2 text-xs uppercase text-[var(--text-secondary)] sm:col-span-1">Quarterly budget (₱)
         <input className={field} type="number" min={0} step="0.01" required value={form.budget}
           onChange={(e) => setForm({ ...form, budget: e.target.value })} />
+      </label>
+      <label className="col-span-2 text-xs uppercase text-[var(--text-secondary)] sm:col-span-1">Model
+        <select className={field} value={form.rule} onChange={(e) => setForm({ ...form, rule: e.target.value })}>
+          <option value="per_item_multiplier" className="bg-black">Per-item multiplier</option>
+          <option value="scenario" className="bg-black">Scenario model</option>
+        </select>
       </label>
       <Button type="submit" disabled={busy} className="col-span-2 sm:col-span-1">{busy ? "Starting…" : "Run solver"}</Button>
     </form>
@@ -208,6 +223,7 @@ function RunDetail({ run, names, canDecide, onDone }: {
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h2 className="text-base font-semibold uppercase">
           {run.year} Q{run.quarter} recommendation · <span className={STATUS_STYLE[run.status]}>{run.status}</span>
+          <span className="ml-2 text-xs normal-case text-[var(--text-secondary)]">{RULE_LABELS[run.rule] ?? run.rule}</span>
         </h2>
         {result && (
           <span className="text-sm text-[var(--text-secondary)]">
@@ -307,6 +323,103 @@ function BudgetCurve({ points, budget }: { points: NonNullable<ReplenishmentRun[
         </ResponsiveContainer>
       </div>
     </div>
+  );
+}
+
+/**
+ * Rolling-origin backtest (Chapter III, Model Evaluation): per-quarter
+ * weighted shortage for each rule, typhoon quarters marked, and how many
+ * quarters each model beat the flat 1.5 rule.
+ */
+function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
+  backtest: Backtest | null;
+  canRun: boolean;
+  defaultBudget: number | null;
+  onDone: () => void;
+}) {
+  const [budget, setBudget] = useState(String(defaultBudget ?? backtest?.budget ?? ""));
+  const [busy, setBusy] = useState(false);
+
+  const run = async (e: FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      await http.post("/api/replenishment/backtest", { budget: Number(budget) });
+      toast.success("Backtest finished.");
+    } catch (err) {
+      toast.error(errorMessage(err));
+    } finally {
+      setBusy(false);
+      onDone();
+    }
+  };
+
+  const rules = backtest ? Object.keys(backtest.result.quarters[0]?.rules ?? {}) : [];
+  const s = backtest?.result.summary;
+
+  return (
+    <section className="space-y-3 border-t border-white/10 pt-6">
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <h2 className="text-base font-semibold uppercase">Backtest on past quarters</h2>
+          <p className="text-xs text-[var(--text-secondary)]">
+            From the 5th encoded quarter on, each rule orders using only earlier quarters and is scored on what was actually used.
+            Lower weighted shortage is better.
+          </p>
+        </div>
+        {canRun && (
+          <form onSubmit={run} className="flex items-end gap-2">
+            <label className="text-xs uppercase text-[var(--text-secondary)]">Budget per quarter (₱)
+              <input className="w-36 border border-white/20 bg-transparent px-2 py-1.5 text-sm" type="number" min={0} required
+                value={budget} onChange={(e) => setBudget(e.target.value)} />
+            </label>
+            <Button type="submit" variant="ghost" disabled={busy}>{busy ? "Running…" : "Run backtest"}</Button>
+          </form>
+        )}
+      </div>
+
+      {backtest && s && (
+        <>
+          <p className="text-sm">
+            Over {s.backtested_quarters} quarters: per-item multiplier beat flat 1.5 in {s.wins_vs_flat.per_item_multiplier}
+            {s.target_met.per_item_multiplier ? " (majority ✓)" : ""}; scenario model in {s.wins_vs_flat.scenario}
+            {s.target_met.scenario ? " (majority ✓)" : ""}.
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="text-left text-xs uppercase text-[var(--text-secondary)]">
+                <tr className="border-b border-white/10">
+                  <th className="py-2 pr-3">Quarter</th>
+                  {rules.map((r) => <th key={r} className="pr-3 text-right">{RULE_LABELS[r] ?? r}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {backtest.result.quarters.map((row) => {
+                  const [y, q] = backtest.quarters[row.t] ?? [0, 0];
+                  const best = Math.min(...rules.map((r) => row.rules[r].weighted_shortage));
+
+                  return (
+                    <tr key={row.t} className="border-b border-white/5">
+                      <td className="py-2 pr-3">
+                        {y} Q{q}
+                        {row.typhoon && <span className="ml-2 text-xs text-[var(--amber)]">event</span>}
+                        {row.stockout && <span className="ml-2 text-xs text-[var(--text-secondary)]">use understated</span>}
+                      </td>
+                      {rules.map((r) => (
+                        <td key={r} className={`pr-3 text-right ${row.rules[r].weighted_shortage === best ? "font-semibold text-[var(--amber)]" : ""}`}
+                          title={`Fill rate ${Math.round(row.rules[r].fill_rate * 100)}% · ${row.rules[r].items_ran_out} ran out · budget used ${Math.round(row.rules[r].budget_used * 100)}%`}>
+                          {row.rules[r].weighted_shortage.toFixed(2)}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      )}
+    </section>
   );
 }
 

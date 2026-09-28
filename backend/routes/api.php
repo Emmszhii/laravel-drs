@@ -113,6 +113,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/replenishment/runs', [ReplenishmentController::class, 'runs']);
         Route::get('/replenishment/runs/{run}', [ReplenishmentController::class, 'show']);
         Route::get('/replenishment/flags', [ReplenishmentController::class, 'flags']);
+        Route::get('/replenishment/backtest', [ReplenishmentController::class, 'latestBacktest']);
     });
     Route::middleware(['role:logistics'])->group(function () {
         Route::post('/replenishment/history/import', [ReplenishmentController::class, 'importHistory']);
@@ -136,6 +137,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::post('/replenishment/runs', [ReplenishmentController::class, 'run']);
         Route::post('/replenishment/runs/{run}/approve', [ReplenishmentController::class, 'approve']);
         Route::post('/replenishment/runs/{run}/reject', [ReplenishmentController::class, 'reject']);
+        Route::post('/replenishment/backtest', [ReplenishmentController::class, 'backtest']);
     });
 
     Route::middleware(['role:system_admin'])->group(function () {

@@ -22,6 +22,12 @@ class ReplenishmentServiceClient
         return $this->post('budget-curve', $payload);
     }
 
+    /** Rolling-origin backtest of the flat 1.5 rule, the per-item multiplier and the scenario model. */
+    public function backtest(array $payload): array
+    {
+        return $this->post('backtest', $payload);
+    }
+
     private function post(string $endpoint, array $payload): array
     {
         return Http::timeout(120)

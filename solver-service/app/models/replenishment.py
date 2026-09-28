@@ -16,12 +16,27 @@ class ReplenishmentItem(BaseModel):
 
 
 class ReplenishmentRequest(BaseModel):
-    rule: Literal["per_item_multiplier"] = "per_item_multiplier"
+    rule: Literal["per_item_multiplier", "scenario"] = "per_item_multiplier"
     budget: float = Field(ge=0)
     free_space: float | None = Field(None, ge=0)
     m: int = Field(8, ge=1, description="M, the number of past quarters the covering level looks at")
     time_limit_s: float = Field(10, gt=0)
     items: list[ReplenishmentItem]
+
+
+class BacktestRequest(BaseModel):
+    """Items carry their full encoded history; the backtest cuts it per quarter."""
+    items: list[ReplenishmentItem]
+    budget: float = Field(ge=0, description="Budget for any quarter without its own entry in `budgets`")
+    budgets: list[float | None] = Field(default_factory=list, description="Per-quarter budget, same index as history")
+    start: int = Field(4, ge=1, description="First backtested quarter index (4 = the 5th encoded quarter)")
+    initial_stock: dict[str, int] = Field(default_factory=dict)
+    actual_orders: dict[str, dict[str, int]] = Field(default_factory=dict, description="The office's own orders, by quarter index")
+    typhoon_quarters: list[int] = Field(default_factory=list)
+    stockout_quarters: list[int] = Field(default_factory=list, description="Quarters where recorded use understates need")
+    free_space: float | None = Field(None, ge=0)
+    m: int = Field(8, ge=1)
+    time_limit_s: float = Field(10, gt=0)
 
 
 class OrderLine(BaseModel):
