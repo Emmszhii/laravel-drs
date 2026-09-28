@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\DispatchController;
 use App\Http\Controllers\Api\EvacuationCenterController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ProfileController;
+use App\Http\Controllers\Api\ReplenishmentController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\RequestController;
 use App\Http\Controllers\Api\ResourceController;
@@ -102,6 +103,24 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/resource-loans', [ResourceLoanController::class, 'index']);
         Route::post('/resource-loans', [ResourceLoanController::class, 'store']);
         Route::post('/resource-loans/{id}', [ResourceLoanController::class, 'update']);
+    });
+
+    // Quarterly replenishment (backend/docs/system-spec.md): every division
+    // can read runs and flags; Logistics only encodes (history import, flag
+    // resolution); the Admin runs the solver and approves or rejects.
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
+        Route::get('/replenishment/runs', [ReplenishmentController::class, 'runs']);
+        Route::get('/replenishment/runs/{run}', [ReplenishmentController::class, 'show']);
+        Route::get('/replenishment/flags', [ReplenishmentController::class, 'flags']);
+    });
+    Route::middleware(['role:logistics'])->group(function () {
+        Route::post('/replenishment/history/import', [ReplenishmentController::class, 'importHistory']);
+        Route::post('/replenishment/flags/{flag}/resolve', [ReplenishmentController::class, 'resolveFlag']);
+    });
+    Route::middleware(['role:system_admin'])->group(function () {
+        Route::post('/replenishment/runs', [ReplenishmentController::class, 'run']);
+        Route::post('/replenishment/runs/{run}/approve', [ReplenishmentController::class, 'approve']);
+        Route::post('/replenishment/runs/{run}/reject', [ReplenishmentController::class, 'reject']);
     });
 
     Route::middleware(['role:system_admin'])->group(function () {

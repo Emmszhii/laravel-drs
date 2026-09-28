@@ -275,8 +275,8 @@
     "semantic_hash": ""
   },
   "backend/app/Models/ResourceType.php": {
-    "mtime": 1788702750.4987688,
-    "ast_hash": "23850857e7661d5198bd5f205c799aab",
+    "mtime": 1790616984.9615726,
+    "ast_hash": "545105369b89c573afbd49a302198d7b",
     "semantic_hash": ""
   },
   "backend/app/Models/RoutingSetting.php": {
@@ -1390,8 +1390,8 @@
     "semantic_hash": "540773f73edc8f23026bb56bb4ec5c84"
   },
   "backend/routes/api.php": {
-    "mtime": 1788702721.8946562,
-    "ast_hash": "b09dc77fde4971930486d48a250e66e4",
+    "mtime": 1790617102.8998837,
+    "ast_hash": "f1882c2ec5a9cacfc4f0db4446bce706",
     "semantic_hash": ""
   },
   "backend/routes/auth.php": {
@@ -1405,8 +1405,8 @@
     "semantic_hash": ""
   },
   "backend/routes/console.php": {
-    "mtime": 1788790481.9601264,
-    "ast_hash": "180cfb7100e609cd0ac286645b009a76",
+    "mtime": 1790617117.5117438,
+    "ast_hash": "dfe17867fefad158196499a7611464f7",
     "semantic_hash": ""
   },
   "backend/routes/web.php": {
@@ -1790,9 +1790,9 @@
     "semantic_hash": "7d13d7ca16725368a6d1201543b481f1"
   },
   "solver-service/main.py": {
-    "mtime": 1786859365.135949,
-    "ast_hash": "883796c14183173bbc75fbf05dbbdb56",
-    "semantic_hash": "883796c14183173bbc75fbf05dbbdb56"
+    "mtime": 1790616889.0682008,
+    "ast_hash": "07668b769718ada7bd30cd01ad699dd0",
+    "semantic_hash": ""
   },
   "solver-service/tests/test_solvers.py": {
     "mtime": 1788613580.9342642,
@@ -2010,8 +2010,143 @@
     "semantic_hash": ""
   },
   "backend/docs/research/CLAUDE.md": {
-    "mtime": 1788794838.1265523,
-    "ast_hash": "dee8f71006bfef81027101cd2831bdcb",
+    "mtime": 1788884105.7689362,
+    "ast_hash": "e32652afd892ebfd5f6e90b5acc97faa",
+    "semantic_hash": ""
+  },
+  "backend/app/Http/Controllers/Api/ReplenishmentController.php": {
+    "mtime": 1790617091.544111,
+    "ast_hash": "fb9895bd66651cbbd983818a75d6512c",
+    "semantic_hash": ""
+  },
+  "backend/app/Jobs/RunReplenishmentJob.php": {
+    "mtime": 1790617091.5197756,
+    "ast_hash": "0c36b95adfd16ef28da6e7547253c35e",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/DataCheckFlag.php": {
+    "mtime": 1790616979.470759,
+    "ast_hash": "12c29e45448dae2dc36f98a79d22eb7c",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/HistoryLine.php": {
+    "mtime": 1790616979.4149666,
+    "ast_hash": "a71225975d30464f315570fbe1a86a61",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/QuarterBudget.php": {
+    "mtime": 1790616979.45244,
+    "ast_hash": "74f7633a9c0e370521f36b023f857958",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/ReplenishmentRun.php": {
+    "mtime": 1790616979.4905267,
+    "ast_hash": "2d16f60afb2cccb51ecb8763f0d26c0c",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/VedPolicy.php": {
+    "mtime": 1790616979.4342127,
+    "ast_hash": "5eca1b12e7690d8044b2680c13773ad5",
+    "semantic_hash": ""
+  },
+  "backend/app/Services/Replenishment/DataChecks.php": {
+    "mtime": 1790617213.7017908,
+    "ast_hash": "b2721cc3aa380cd20c47538287aa00db",
+    "semantic_hash": ""
+  },
+  "backend/app/Services/Replenishment/HistoryImporter.php": {
+    "mtime": 1790617064.8234143,
+    "ast_hash": "e7ab1eae4d638ef5d16972b200e2ff1d",
+    "semantic_hash": ""
+  },
+  "backend/app/Services/Replenishment/QuarterHistory.php": {
+    "mtime": 1790617064.7838194,
+    "ast_hash": "f9af7fdebc439803e141be2d64a38878",
+    "semantic_hash": ""
+  },
+  "backend/app/Services/Replenishment/ReplenishmentServiceClient.php": {
+    "mtime": 1790617064.8416283,
+    "ast_hash": "26ebe98564413cf6507a523642dd813a",
+    "semantic_hash": ""
+  },
+  "backend/database/migrations/2026_09_29_000001_create_replenishment_tables.php": {
+    "mtime": 1790616960.6622136,
+    "ast_hash": "1e59ead640f1d87fa607051cc3a1a7f1",
+    "semantic_hash": ""
+  },
+  "backend/tests/Feature/ReplenishmentTest.php": {
+    "mtime": 1790617213.7230823,
+    "ast_hash": "a614353c2ec089f86f467aa895e8f713",
+    "semantic_hash": ""
+  },
+  "solver-service/app/api/replenishment.py": {
+    "mtime": 1790616889.0242562,
+    "ast_hash": "d36e697c57eb17939d1f6643bcbcff52",
+    "semantic_hash": ""
+  },
+  "solver-service/app/models/replenishment.py": {
+    "mtime": 1790616888.9850843,
+    "ast_hash": "7c03db3a463b00cf918719f1ad46097a",
+    "semantic_hash": ""
+  },
+  "solver-service/app/solvers/replenishment.py": {
+    "mtime": 1790616889.009031,
+    "ast_hash": "223505c74eb1b0667628855f71a02ef0",
+    "semantic_hash": ""
+  },
+  "solver-service/tests/test_replenishment.py": {
+    "mtime": 1790616912.0515654,
+    "ast_hash": "239b990262197c4575135d8779864c90",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/Capstone1_Novelty_Options.md": {
+    "mtime": 1790499918.7511325,
+    "ast_hash": "e65620589c811afb17244fece8a73876",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/Capstone1_Novelty_Revision_Map.md": {
+    "mtime": 1790500526.081505,
+    "ast_hash": "c4ac167f79e614b1903f3c5ed5f86039",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/DisasterResource_System_Spec.md": {
+    "mtime": 1790614307.241569,
+    "ast_hash": "14e82cce7f1eafc828ede1c711e2a460",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/MIT TODO.txt": {
+    "mtime": 1790517307.6406596,
+    "ast_hash": "7efe24da5d72fd5d064e37ad57314f8a",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/manuscript-ch1-to-3.txt": {
+    "mtime": 1788862784.4469628,
+    "ast_hash": "f412a8a7dae87be9e8ac0b3f742849ba",
+    "semantic_hash": ""
+  },
+  "backend/docs/research/plan.md": {
+    "mtime": 1790512164.6736767,
+    "ast_hash": "00ef4d73b5113f861d7cd4e6b27face5",
+    "semantic_hash": ""
+  },
+  "backend/docs/system-spec.md": {
+    "mtime": 1790616546.9807973,
+    "ast_hash": "2a64a6c17dc854dee7af074a12a21b44",
+    "semantic_hash": ""
+  },
+  "ch5.html": {
+    "mtime": 1790516022.797103,
+    "ast_hash": "afc3cea22f5295a2084b3858583d308a",
+    "semantic_hash": ""
+  },
+  "backend/docs/research-img/Figure1_TheoreticalFramework.svg": {
+    "mtime": 1788883987.0592608,
+    "ast_hash": "c50189ba2f85535607e1c42dbfe2047e",
+    "semantic_hash": ""
+  },
+  "backend/docs/research-img/Figure2_ConceptualFramework.svg": {
+    "mtime": 1789057276.9041681,
+    "ast_hash": "29d02d5bab9e577b131dbef4f768cec5",
     "semantic_hash": ""
   }
 }

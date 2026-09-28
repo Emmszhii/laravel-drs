@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api import optimize
+from app.api import optimize, replenishment
 from app.core.logging import configure_logging
 
 configure_logging()
@@ -11,6 +11,7 @@ app = FastAPI(
 )
 
 app.include_router(optimize.router, prefix="/api/v1/optimize", tags=["optimize"])
+app.include_router(replenishment.router, prefix="/api/v1/replenishment", tags=["replenishment"])
 
 
 @app.get("/health")

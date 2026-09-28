@@ -4,6 +4,7 @@ use App\Jobs\AutoResolveIncidentsJob;
 use App\Jobs\PollDisasterFeedsJob;
 use App\Jobs\SnapshotQuarterlyStockJob;
 use App\Models\DisasterFeedSetting;
+use App\Services\Replenishment\HistoryImporter;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
@@ -11,6 +12,16 @@ use Illuminate\Support\Facades\Schedule;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command('history:import {file}', function (HistoryImporter $importer) {
+    $result = $importer->import($this->argument('file'));
+    foreach ($result['errors'] as $error) {
+        $this->error($error);
+    }
+    $this->info("Imported {$result['imported']} history line(s).");
+
+    return $result['errors'] ? 1 : 0;
+})->purpose('Import encoded ICS 213-RR history (docs/templates/history-encoding-template.csv)');
 
 Artisan::command('disaster-feed:poll {--force}', function () {
     $this->comment('Polling disaster feeds...');
