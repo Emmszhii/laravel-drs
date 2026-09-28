@@ -8,6 +8,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SystemToastProvider } from "./Components/Toast";
 import AppLayout from "./Layouts/AppLayout";
 
+// Service worker for the offline app shell and the offline Stock page (see vite.config.ts).
+// Served from /sw.js so it controls the whole site; production builds only.
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {
+    // Plain-HTTP deployments other than localhost can't register a worker; the app still works online.
+  });
+}
+
 const queryClient = new QueryClient({
   defaultOptions: { queries: { refetchOnWindowFocus: false } },
 });

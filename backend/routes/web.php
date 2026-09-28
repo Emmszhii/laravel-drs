@@ -23,6 +23,18 @@ use Illuminate\Support\Facades\Route;
 // out of AppLayout since the dashboard chrome doesn't apply here.
 Route::get('/public', [PublicDashboardController::class, 'index'])->name('public');
 
+// The PWA service worker and web manifest, served from the site root so the worker's
+// scope covers every page (Vite builds both into public/build/, whose default scope
+// would be /build/ only; the worker also precaches the manifest by this root path).
+foreach (['sw.js' => 'application/javascript', 'manifest.webmanifest' => 'application/manifest+json'] as $file => $type) {
+    Route::get("/{$file}", function () use ($file, $type) {
+        $path = public_path("build/{$file}");
+        abort_unless(is_file($path), 404);
+
+        return response()->file($path, ['Content-Type' => $type, 'Cache-Control' => 'no-cache']);
+    });
+}
+
 Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 

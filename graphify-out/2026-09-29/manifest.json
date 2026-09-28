@@ -1095,8 +1095,8 @@
     "semantic_hash": "0a51f25f7a399f162cbf81d4a1566f30"
   },
   "backend/resources/js/Layouts/AdminLayout.tsx": {
-    "mtime": 1790618278.4937553,
-    "ast_hash": "6062542d157611449cc13c58ba285d72",
+    "mtime": 1790619175.9394042,
+    "ast_hash": "262a8898772eeaf670efd7be9ad18fe5",
     "semantic_hash": ""
   },
   "backend/resources/js/Layouts/AppLayout.tsx": {
@@ -1390,8 +1390,8 @@
     "semantic_hash": "540773f73edc8f23026bb56bb4ec5c84"
   },
   "backend/routes/api.php": {
-    "mtime": 1790618557.3554332,
-    "ast_hash": "0511899efce0122a05272990e7d987aa",
+    "mtime": 1790619013.508332,
+    "ast_hash": "396b6204e00f48de413d3b6f3504861f",
     "semantic_hash": ""
   },
   "backend/routes/auth.php": {
@@ -1410,8 +1410,8 @@
     "semantic_hash": ""
   },
   "backend/routes/web.php": {
-    "mtime": 1790618197.1763763,
-    "ast_hash": "853ed80c90e3048ad8ad00427540c37d",
+    "mtime": 1790619116.3067827,
+    "ast_hash": "d6e8487b208b29143d32931c2d68dd4d",
     "semantic_hash": ""
   },
   "backend/storage/framework/views/02fb506bf752ab58e91131f63a9282a8.php": {
@@ -1945,13 +1945,13 @@
     "semantic_hash": ""
   },
   "backend/app/Services/Reports/InventoryBurnRateCsvExporter.php": {
-    "mtime": 1788790627.7608216,
-    "ast_hash": "ce070980af353068eaf85b68ba26e33f",
+    "mtime": 1790618999.5857892,
+    "ast_hash": "cf9c67f5498b68deb9b4a63c12ed246d",
     "semantic_hash": ""
   },
   "backend/app/Services/Reports/InventoryBurnRateReportBuilder.php": {
-    "mtime": 1788790622.8963242,
-    "ast_hash": "95ece1adf276045da8601159c0507838",
+    "mtime": 1790618999.558393,
+    "ast_hash": "1f1a9b1ed64f28b47e2827be0920a71d",
     "semantic_hash": ""
   },
   "backend/database/factories/QuarterlyStockSnapshotFactory.php": {
@@ -1975,13 +1975,13 @@
     "semantic_hash": ""
   },
   "backend/resources/views/reports/inventory-burn-rate.blade.php": {
-    "mtime": 1788790643.8437748,
-    "ast_hash": "38e3da27a314f0a6e3b2e29196e1d24c",
+    "mtime": 1790618999.6070676,
+    "ast_hash": "f52b066e116d68ee2cc4d5f0c1855175",
     "semantic_hash": ""
   },
   "backend/storage/framework/views/cdf17bceea96e1a81e3f94dab4b418ba.php": {
-    "mtime": 1788790842.3051138,
-    "ast_hash": "3e473ee0bae9b69e9d3f78597fd6211b",
+    "mtime": 1790619056.581192,
+    "ast_hash": "0f947a04b3f1d8a8b0ea488f37cbe0f2",
     "semantic_hash": ""
   },
   "backend/tests/Feature/DispatchDeliveryDeductionTest.php": {
@@ -2015,8 +2015,8 @@
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Api/ReplenishmentController.php": {
-    "mtime": 1790618556.9935722,
-    "ast_hash": "8dfa8d225ea2195c1b766fe150ce6469",
+    "mtime": 1790619013.4905965,
+    "ast_hash": "2c8cc722ba0a6428e83a1b5fdd5385fe",
     "semantic_hash": ""
   },
   "backend/app/Jobs/RunReplenishmentJob.php": {
@@ -2060,8 +2060,8 @@
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/QuarterHistory.php": {
-    "mtime": 1790618525.2701564,
-    "ast_hash": "82773cb961fedd502f02c5608bfaab05",
+    "mtime": 1790618968.1802213,
+    "ast_hash": "6e7070b670270a497a8b83cbf28e0171",
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/ReplenishmentServiceClient.php": {
@@ -2075,8 +2075,8 @@
     "semantic_hash": ""
   },
   "backend/tests/Feature/ReplenishmentTest.php": {
-    "mtime": 1790618713.6048424,
-    "ast_hash": "3ccd30ec9575ee538ce2489c7aa0ba7e",
+    "mtime": 1790619187.3236125,
+    "ast_hash": "89d00376e7fcb5323a424848f43ef5f9",
     "semantic_hash": ""
   },
   "solver-service/app/api/replenishment.py": {
@@ -2155,8 +2155,8 @@
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Web/ReplenishmentController.php": {
-    "mtime": 1790618567.28976,
-    "ast_hash": "a4af126766da8951a9a0169be5940073",
+    "mtime": 1790619186.8896441,
+    "ast_hash": "b8ba063cd7ae4b5af2e99ec7e8b1d27f",
     "semantic_hash": ""
   },
   "backend/database/seeders/ReplenishmentDemoSeeder.php": {
@@ -2165,8 +2165,8 @@
     "semantic_hash": ""
   },
   "backend/resources/js/Pages/Replenishment/Index.tsx": {
-    "mtime": 1790618600.407442,
-    "ast_hash": "c23be0e9ed4d8360bf74f6130f5d359d",
+    "mtime": 1790619197.9010317,
+    "ast_hash": "14a12f6259ce68a469d7f541478cd1fe",
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Api/StockController.php": {
@@ -2180,8 +2180,8 @@
     "semantic_hash": ""
   },
   "backend/app/Models/StockConflict.php": {
-    "mtime": 1790618033.2083757,
-    "ast_hash": "ed66db638afa42085b6cb8f4c8299dce",
+    "mtime": 1790618891.0683136,
+    "ast_hash": "8cae4e16f145431cad11355f0070e11a",
     "semantic_hash": ""
   },
   "backend/app/Models/StockCount.php": {
@@ -2195,8 +2195,8 @@
     "semantic_hash": ""
   },
   "backend/app/Services/Stock/Reservations.php": {
-    "mtime": 1790618068.5359552,
-    "ast_hash": "d6ca53b681aea2350ca2c8e02635c451",
+    "mtime": 1790618891.092631,
+    "ast_hash": "fd90d310df2c857c70435197aaa37433",
     "semantic_hash": ""
   },
   "backend/app/Services/Stock/StockLedger.php": {
@@ -2227,6 +2227,71 @@
   "backend/database/migrations/2026_09_29_000003_create_backtests_table.php": {
     "mtime": 1790618537.3374028,
     "ast_hash": "3be2cbf723d25daef496eebb142153e6",
+    "semantic_hash": ""
+  },
+  "backend/app/Http/Controllers/Api/IcsRequestController.php": {
+    "mtime": 1790619064.3990238,
+    "ast_hash": "e389233b283c53fb55c9b5de0e54e455",
+    "semantic_hash": ""
+  },
+  "backend/app/Http/Controllers/Web/IcsRequestController.php": {
+    "mtime": 1790619116.2505536,
+    "ast_hash": "ca367c6c32a906dc9767d852aa06d354",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/Borrow.php": {
+    "mtime": 1790618882.7741227,
+    "ast_hash": "8c6bc08ee9866336a8b95ce81532ec71",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/IcsRequest.php": {
+    "mtime": 1790618882.7184043,
+    "ast_hash": "c9a5525cac85427c2f119882e1b5f0d7",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/IcsRequestLine.php": {
+    "mtime": 1790618882.7366254,
+    "ast_hash": "9c5c50cb04ebb9792872f794c8b8ec5b",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/Reservation.php": {
+    "mtime": 1790618882.7548199,
+    "ast_hash": "3bf1417ec9a00d7e1c1c7caf74759432",
+    "semantic_hash": ""
+  },
+  "backend/app/Models/StatusChange.php": {
+    "mtime": 1790618882.7938962,
+    "ast_hash": "04a96d3c0a100cc2d5f5d73a88cdb8e4",
+    "semantic_hash": ""
+  },
+  "backend/app/Services/Requests/RequestWorkflow.php": {
+    "mtime": 1790618922.2506683,
+    "ast_hash": "1904b3369fbb64765b1c75d2a04dd52e",
+    "semantic_hash": ""
+  },
+  "backend/database/migrations/2026_09_29_000004_create_ics_requests_and_borrows_tables.php": {
+    "mtime": 1790618860.4037764,
+    "ast_hash": "fc08fbbe0ebe8dfb66dafccdd23db58e",
+    "semantic_hash": ""
+  },
+  "backend/resources/js/Pages/IcsRequests/Borrowed.tsx": {
+    "mtime": 1790619175.899892,
+    "ast_hash": "bb79f1d7aa7ca68103da6a20bb365223",
+    "semantic_hash": ""
+  },
+  "backend/resources/js/Pages/IcsRequests/Index.tsx": {
+    "mtime": 1790619175.8816352,
+    "ast_hash": "47fcf5df9c8c44a556a14d9a6a589983",
+    "semantic_hash": ""
+  },
+  "backend/resources/js/Pages/IcsRequests/shared.tsx": {
+    "mtime": 1790619175.8588164,
+    "ast_hash": "6c42fb2cdd1d1dd1f7d12c714d723eb3",
+    "semantic_hash": ""
+  },
+  "backend/tests/Feature/IcsRequestWorkflowTest.php": {
+    "mtime": 1790619055.440745,
+    "ast_hash": "62d0c67cf6e89d61220d1a1e75e7b638",
     "semantic_hash": ""
   }
 }

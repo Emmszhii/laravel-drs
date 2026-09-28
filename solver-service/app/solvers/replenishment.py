@@ -37,6 +37,10 @@ STOCK_COVERS = "not ordered: current stock already covers it"
 SET_MANUALLY = "no computed order: set manually"
 
 MIN_QUARTERS = 4  # below this, the cold-start flat 1.5 rule applies
+# CBC stops once it has proven the order is within 0.01% of the best possible. Proving the last
+# fraction costs ~20x the time on an office-sized Stage 2 (10 s vs 0.56 s for 200 items x 12
+# scenarios) and changes the expected shortage by < 0.004%. "optimal" means optimal within this gap.
+MIP_GAP = 1e-4
 FLAT_FACTOR = 1.5
 NEXT_STEP = 10_000
 
@@ -111,11 +115,11 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
 
     status = "optimal"
     if x:
-        prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=req.time_limit_s))
+        prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=req.time_limit_s, gapRel=MIP_GAP))
         if prob.status == pulp.LpStatusInfeasible or any(v.varValue is None for v in x.values()):
             status = "infeasible"
-        elif prob.status != pulp.LpStatusOptimal:
-            status = "feasible"  # stopped at the time limit with an incumbent
+        elif prob.status != pulp.LpStatusOptimal or prob.sol_status == pulp.LpSolutionIntegerFeasible:
+            status = "feasible"  # stopped at the time limit with an incumbent, not a proven optimum
     elif space_modeled and sum(it.space_per_unit * q for it, _, _, _, q in plan) > req.free_space:
         status = "infeasible"
 
@@ -167,10 +171,15 @@ def budget_curve(req: ReplenishmentRequest) -> dict:
     at B against B + P10,000 for the "next P10,000 goes to" view.
     """
     points = []
+    best = None
     for pct in range(50, 151, 10):
         budget = req.budget * pct / 100
         res = solve(req.model_copy(update={"budget": budget}))
-        points.append({"pct": pct, "budget": round(budget, 2), "expected_shortage": res.objective, "status": res.status})
+        # Within the MIP gap, a larger budget's solve can land a hair above a smaller one's. The
+        # smaller budget's order is still affordable at the larger budget, so the best known
+        # shortage at this level is never worse than the level before it.
+        best = res.objective if best is None else min(best, res.objective)
+        points.append({"pct": pct, "budget": round(budget, 2), "expected_shortage": best, "status": res.status})
 
     base = solve(req)
     more = solve(req.model_copy(update={"budget": req.budget + NEXT_STEP}))

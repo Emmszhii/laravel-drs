@@ -17,13 +17,21 @@ export default defineConfig({
     // IndexedDB, see resources/js/Offline/). No runtimeCaching rules are
     // registered, so /api/* GET responses are never cached/served stale —
     // this is not a general offline-browsing/read-cache feature.
+    //
+    // Laravel serves no index.html, so the plugin's auto-injected register
+    // script never loads: resources/js/app.tsx registers the worker itself,
+    // from /sw.js (a routes/web.php route that serves public/build/sw.js)
+    // so its scope is the whole site, not just /build/. Precache URLs are
+    // made absolute and the Workbox runtime inlined for the same reason.
     VitePWA({
       registerType: "autoUpdate",
-      injectRegister: "auto",
+      injectRegister: null,
       manifest: {
         name: "DisasterResource+",
         short_name: "DisasterResource+",
         description: "Resource optimization and visualization for disaster response.",
+        start_url: "/",
+        scope: "/",
         theme_color: "#0B0D0C",
         background_color: "#0B0D0C",
         display: "standalone",
@@ -40,6 +48,16 @@ export default defineConfig({
         // server-rendered Inertia app, not a client-routed SPA) and no
         // runtimeCaching entries, so API responses are always fetched live.
         globPatterns: ["**/*.{js,css,svg,ico}"],
+        // Must be explicit: the plugin defaults to "index.html", which Laravel never builds, and
+        // binding a route to a non-precached URL throws while the worker is evaluated.
+        navigateFallback: null,
+        manifestTransforms: [
+          async (entries) => ({
+            manifest: entries.map((e) => ({ ...e, url: e.url.startsWith("/") ? e.url : `/build/${e.url}` })),
+            warnings: [],
+          }),
+        ],
+        inlineWorkboxRuntime: true,
         // The one exception: the Stock page opens offline from its last
         // online visit (items/depots embedded in the Inertia page props), so
         // stock entries can be recorded into the IndexedDB outbox during an
