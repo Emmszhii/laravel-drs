@@ -1,0 +1,78 @@
+<svg viewBox="0 0 1600 1360" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1600" height="1360" fill="#ffffff"/>
+
+  <text x="800" y="70" text-anchor="middle" font-size="40" font-weight="bold" fill="#1a1a1a">Theoretical Framework of DisasterResource+</text>
+
+  <!-- Row 1: theory boxes -->
+  <rect x="40" y="140" width="480" height="330" rx="16" fill="#dbe7fb" stroke="#3b6fd6" stroke-width="2.5"/>
+  <text x="280" y="200" text-anchor="middle" font-size="23" font-weight="bold" fill="#16305c">Linear Programming</text>
+  <text x="280" y="230" text-anchor="middle" font-size="23" font-weight="bold" fill="#16305c">&amp; Heuristic</text>
+  <text x="280" y="260" text-anchor="middle" font-size="23" font-weight="bold" fill="#16305c">Optimization Theory</text>
+  <text x="280" y="310" text-anchor="middle" font-size="19" fill="#333">Husein et al. (2026);</text>
+  <text x="280" y="338" text-anchor="middle" font-size="19" fill="#333">Ilabaca et al. (2022);</text>
+  <text x="280" y="366" text-anchor="middle" font-size="19" fill="#333">Dimez et al. (2026);</text>
+  <text x="280" y="394" text-anchor="middle" font-size="19" fill="#333">Yajie et al. (2023)</text>
+
+  <rect x="560" y="140" width="480" height="330" rx="16" fill="#d9f2e3" stroke="#2f9e5c" stroke-width="2.5"/>
+  <text x="800" y="200" text-anchor="middle" font-size="23" font-weight="bold" fill="#155c34">Local-First Computing</text>
+  <text x="800" y="230" text-anchor="middle" font-size="23" font-weight="bold" fill="#155c34">&amp; Eventual</text>
+  <text x="800" y="260" text-anchor="middle" font-size="23" font-weight="bold" fill="#155c34">Consistency Theory</text>
+  <text x="800" y="320" text-anchor="middle" font-size="19" fill="#333">Cuenca-Enrique et al.</text>
+  <text x="800" y="348" text-anchor="middle" font-size="19" fill="#333">(2024); Huber et al.</text>
+  <text x="800" y="376" text-anchor="middle" font-size="19" fill="#333">(2022); Melvin &amp; Nguyen</text>
+  <text x="800" y="404" text-anchor="middle" font-size="19" fill="#333">(2025)</text>
+
+  <rect x="1080" y="140" width="480" height="330" rx="16" fill="#fbe6d0" stroke="#e08a2c" stroke-width="2.5"/>
+  <text x="1320" y="200" text-anchor="middle" font-size="23" font-weight="bold" fill="#7a4a12">Spatial</text>
+  <text x="1320" y="230" text-anchor="middle" font-size="23" font-weight="bold" fill="#7a4a12">Decision-Support</text>
+  <text x="1320" y="260" text-anchor="middle" font-size="23" font-weight="bold" fill="#7a4a12">Theory</text>
+  <text x="1320" y="320" text-anchor="middle" font-size="19" fill="#333">Han &amp; Liu (2025); Park</text>
+  <text x="1320" y="348" text-anchor="middle" font-size="19" fill="#333">et al. (2024); Lata et al.</text>
+  <text x="1320" y="376" text-anchor="middle" font-size="19" fill="#333">(2024); Yang et al.</text>
+  <text x="1320" y="404" text-anchor="middle" font-size="19" fill="#333">(2023)</text>
+
+  <!-- Arrows row1 -> row2 -->
+  <line x1="280" y1="470" x2="280" y2="555" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="262,555 280,590 298,555" fill="#1a1a1a"/>
+  <line x1="800" y1="470" x2="800" y2="555" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="782,555 800,590 818,555" fill="#1a1a1a"/>
+  <line x1="1320" y1="470" x2="1320" y2="555" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="1302,555 1320,590 1338,555" fill="#1a1a1a"/>
+
+  <!-- Row 2: subsystem boxes -->
+  <rect x="40" y="600" width="480" height="270" rx="16" fill="#dbe7fb" stroke="#3b6fd6" stroke-width="2.5"/>
+  <text x="280" y="660" text-anchor="middle" font-size="27" font-weight="bold" fill="#16305c">Allocation Engine</text>
+  <text x="280" y="710" text-anchor="middle" font-size="19" fill="#333">PuLP Linear Programming</text>
+  <text x="280" y="738" text-anchor="middle" font-size="19" fill="#333">Solver + Urgency/Distance/</text>
+  <text x="280" y="766" text-anchor="middle" font-size="19" fill="#333">Capacity Heuristic Scoring</text>
+
+  <rect x="560" y="600" width="480" height="270" rx="16" fill="#d9f2e3" stroke="#2f9e5c" stroke-width="2.5"/>
+  <text x="800" y="660" text-anchor="middle" font-size="27" font-weight="bold" fill="#155c34">Offline-First PWA</text>
+  <text x="800" y="710" text-anchor="middle" font-size="19" fill="#333">IndexedDB Local Caching +</text>
+  <text x="800" y="738" text-anchor="middle" font-size="19" fill="#333">Priority-Aware Background</text>
+  <text x="800" y="766" text-anchor="middle" font-size="19" fill="#333">Synchronization</text>
+
+  <rect x="1080" y="600" width="480" height="270" rx="16" fill="#fbe6d0" stroke="#e08a2c" stroke-width="2.5"/>
+  <text x="1320" y="660" text-anchor="middle" font-size="27" font-weight="bold" fill="#7a4a12">Web-GIS Dashboard</text>
+  <text x="1320" y="710" text-anchor="middle" font-size="19" fill="#333">Leaflet.js Spatial</text>
+  <text x="1320" y="738" text-anchor="middle" font-size="19" fill="#333">Visualization + OSRM Route</text>
+  <text x="1320" y="766" text-anchor="middle" font-size="19" fill="#333">Computation (Laguna Province)</text>
+
+  <!-- Converging arrows row2 -> final box -->
+  <line x1="280" y1="870" x2="280" y2="960" stroke="#1a1a1a" stroke-width="4"/>
+  <line x1="280" y1="960" x2="700" y2="1090" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="676,1082 712,1096 690,1112" fill="#1a1a1a"/>
+
+  <line x1="800" y1="870" x2="800" y2="1090" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="782,1090 800,1125 818,1090" fill="#1a1a1a"/>
+
+  <line x1="1320" y1="870" x2="1320" y2="960" stroke="#1a1a1a" stroke-width="4"/>
+  <line x1="1320" y1="960" x2="900" y2="1090" stroke="#1a1a1a" stroke-width="4"/>
+  <polygon points="924,1082 888,1096 910,1112" fill="#1a1a1a"/>
+
+  <!-- Final DisasterResource+ box -->
+  <rect x="360" y="1130" width="880" height="210" rx="18" fill="#1c2340" stroke="#1c2340" stroke-width="2"/>
+  <text x="800" y="1200" text-anchor="middle" font-size="34" font-weight="bold" fill="#ffffff">DisasterResource+</text>
+  <text x="800" y="1250" text-anchor="middle" font-size="20" fill="#e6e9f5">Web-Based Resource Optimization &amp; Spatial</text>
+  <text x="800" y="1282" text-anchor="middle" font-size="20" fill="#e6e9f5">Visualization System for CDRRMO San Pablo City</text>
+</svg>

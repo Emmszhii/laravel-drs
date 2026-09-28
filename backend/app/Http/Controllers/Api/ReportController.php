@@ -5,18 +5,20 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Models\Disaster;
 use App\Models\Report;
-use App\Services\Reports\NdrrmcCsvExporter;
-use App\Services\Reports\NdrrmcReportBuilder;
+use App\Services\Reports\InventoryBurnRateCsvExporter;
+use App\Services\Reports\InventoryBurnRateReportBuilder;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Reports. Most types have no real pipeline yet — "download" streams a
- * synthesized text summary. "NDRRMC SitRep" is the exception: it's backed
- * by NdrrmcReportBuilder and rendered as a real PDF (dompdf) or CSV.
+ * synthesized text summary. "Inventory Burn-Rate Report" is the exception:
+ * it's backed by InventoryBurnRateReportBuilder and rendered as a real PDF
+ * (dompdf) or CSV.
  */
 class ReportController extends BaseController
 {
@@ -32,7 +34,7 @@ class ReportController extends BaseController
 
     protected string $sortBy = 'generated_at';
 
-    private const TYPES = ['After-action summary', 'Resource utilization', 'Response timeline', 'NDRRMC SitRep'];
+    private const TYPES = ['After-action summary', 'Resource utilization', 'Response timeline', 'Inventory Burn-Rate Report'];
 
     public function index(): \Illuminate\Http\JsonResponse
     {
@@ -44,17 +46,26 @@ class ReportController extends BaseController
         return Report::query()->with('disaster');
     }
 
+    /** "Inventory Burn-Rate Report" spans depots/quarters, not one incident, so disaster_id is conditionally required. */
+    private const DISASTER_SCOPED_TYPES = ['After-action summary', 'Resource utilization', 'Response timeline'];
+
     protected function storeRules(): array
     {
         return [
-            'disaster_id' => ['required', 'uuid', 'exists:app_disasters,id'],
+            'disaster_id' => [
+                Rule::requiredIf(fn () => in_array(request('type'), self::DISASTER_SCOPED_TYPES, true)),
+                'nullable', 'uuid', 'exists:app_disasters,id',
+            ],
             'type' => ['required', 'in:'.implode(',', self::TYPES)],
         ];
     }
 
     protected function beforeSave(array $validated, ?Model $model = null): array
     {
-        $disaster = Disaster::findOrFail($validated['disaster_id']);
+        if (! empty($validated['disaster_id'])) {
+            Disaster::findOrFail($validated['disaster_id']);
+        }
+
         $validated['name'] = $validated['type'];
         $validated['generated_at'] = now();
 
@@ -65,8 +76,8 @@ class ReportController extends BaseController
     {
         $report->loadMissing('disaster');
 
-        if ($report->type === 'NDRRMC SitRep') {
-            return $this->downloadNdrrmcSitrep($request, $report);
+        if ($report->type === 'Inventory Burn-Rate Report') {
+            return $this->downloadInventoryBurnRateReport($request, $report);
         }
 
         $lines = [
@@ -87,22 +98,21 @@ class ReportController extends BaseController
         );
     }
 
-    private function downloadNdrrmcSitrep(Request $request, Report $report): StreamedResponse|Response
+    private function downloadInventoryBurnRateReport(Request $request, Report $report): StreamedResponse|Response
     {
-        $disaster = $report->disaster ?? Disaster::findOrFail($report->disaster_id);
-        $data = app(NdrrmcReportBuilder::class)->build($disaster);
+        $data = app(InventoryBurnRateReportBuilder::class)->build();
         $format = $request->query('format', 'pdf');
-        $slug = str($disaster->name)->slug();
+        $slug = str($report->generated_at->toDateString())->slug();
 
         if ($format === 'csv') {
             return response()->streamDownload(
-                fn () => app(NdrrmcCsvExporter::class)->stream($data),
-                "ndrrmc-sitrep-{$slug}.csv",
+                fn () => app(InventoryBurnRateCsvExporter::class)->stream($data),
+                "inventory-burn-rate-{$slug}.csv",
                 ['Content-Type' => 'text/csv']
             );
         }
 
-        return Pdf::loadView('reports.ndrrmc-sitrep', $data)
-            ->download("ndrrmc-sitrep-{$slug}.pdf");
+        return Pdf::loadView('reports.inventory-burn-rate', $data)
+            ->download("inventory-burn-rate-{$slug}.pdf");
     }
 }

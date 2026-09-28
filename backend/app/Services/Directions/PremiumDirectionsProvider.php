@@ -27,7 +27,6 @@ class PremiumDirectionsProvider implements DirectionsProvider
 
         $response = Http::timeout(10)->get($url, [
             'geometries' => 'geojson',
-            'steps' => 'true',
             'overview' => 'full',
             'access_token' => $this->apiKey,
         ]);
@@ -61,22 +60,12 @@ class PremiumDirectionsProvider implements DirectionsProvider
         }
 
         $route = $body['routes'][0];
-        $leg = $route['legs'][0] ?? ['steps' => []];
 
         return [
             'ok' => true,
             'distance_m' => $route['distance'],
             'duration_s' => $route['duration'],
             'geometry' => $route['geometry']['coordinates'],
-            'steps' => collect($leg['steps'])->map(fn (array $step) => [
-                'instruction' => $step['maneuver']['instruction']
-                    ?? OsrmDirectionsProvider::humanize($step['maneuver'], $step['name'] ?? ''),
-                'distance_m' => $step['distance'],
-                'duration_s' => $step['duration'],
-                'maneuver_type' => $step['maneuver']['type'],
-                'maneuver_modifier' => $step['maneuver']['modifier'] ?? null,
-                'location' => $step['maneuver']['location'],
-            ])->all(),
         ];
     }
 }

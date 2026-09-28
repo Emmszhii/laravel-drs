@@ -77,13 +77,6 @@ export default function Login() {
         <Button type="submit" disabled={processing} className="w-full">
           {processing ? "Signing in…" : "Sign in"}
         </Button>
-
-        <Link
-          href="/about"
-          className="block text-center text-xs uppercase tracking-wide text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
-        >
-          About this system
-        </Link>
       </form>
     </div>
   );

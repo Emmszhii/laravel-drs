@@ -29,7 +29,6 @@ class OsrmDirectionsProvider implements DirectionsProvider
             $response = Http::timeout(10)
                 ->retry(2, 300)
                 ->get("{$this->baseUrl}/route/v1/driving/{$coordinates}", [
-                    'steps' => 'true',
                     'geometries' => 'geojson',
                     'overview' => 'full',
                 ]);
@@ -57,61 +56,12 @@ class OsrmDirectionsProvider implements DirectionsProvider
         }
 
         $route = $body['routes'][0];
-        $leg = $route['legs'][0] ?? ['steps' => []];
 
         return [
             'ok' => true,
             'distance_m' => $route['distance'],
             'duration_s' => $route['duration'],
             'geometry' => $route['geometry']['coordinates'],
-            'steps' => collect($leg['steps'])->map(fn (array $step) => [
-                'instruction' => self::humanize($step['maneuver'], $step['name'] ?? ''),
-                'distance_m' => $step['distance'],
-                'duration_s' => $step['duration'],
-                'maneuver_type' => $step['maneuver']['type'],
-                'maneuver_modifier' => $step['maneuver']['modifier'] ?? null,
-                'location' => $step['maneuver']['location'],
-            ])->all(),
         ];
-    }
-
-    /**
-     * Builds a plain-English instruction from OSRM's maneuver type/modifier —
-     * OSRM itself only returns structured maneuver data, not a sentence.
-     */
-    public static function humanize(array $maneuver, string $streetName): string
-    {
-        $type = $maneuver['type'];
-        $modifier = $maneuver['modifier'] ?? null;
-        $onto = $streetName !== '' ? " onto {$streetName}" : '';
-
-        return match ($type) {
-            'depart' => $streetName !== '' ? "Head out on {$streetName}" : 'Head out',
-            'arrive' => 'Arrive at your destination',
-            'turn' => match ($modifier) {
-                'left', 'sharp left', 'slight left' => "Turn left{$onto}",
-                'right', 'sharp right', 'slight right' => "Turn right{$onto}",
-                'uturn' => 'Make a U-turn',
-                default => "Continue{$onto}",
-            },
-            'new name' => $streetName !== '' ? "Continue onto {$streetName}" : 'Continue straight',
-            'merge' => "Merge{$onto}",
-            'on ramp' => "Take the ramp{$onto}",
-            'off ramp' => "Take the exit{$onto}",
-            'fork' => match ($modifier) {
-                'left', 'slight left' => "Keep left{$onto}",
-                'right', 'slight right' => "Keep right{$onto}",
-                default => "Continue{$onto}",
-            },
-            'end of road' => match ($modifier) {
-                'left' => "Turn left{$onto}",
-                'right' => "Turn right{$onto}",
-                default => "Continue{$onto}",
-            },
-            'roundabout', 'rotary', 'roundabout turn' => "Enter the roundabout{$onto}",
-            'exit roundabout', 'exit rotary' => "Exit the roundabout{$onto}",
-            'continue' => "Continue{$onto}",
-            default => $streetName !== '' ? "Continue on {$streetName}" : 'Continue',
-        };
     }
 }

@@ -134,7 +134,7 @@ class IncidentController extends BaseController
         return $this->sendResponse($zone, 'Area added successfully.', 201);
     }
 
-    /** POST /api/incidents/{incident}/areas/{area} — edits an area's population/severity and NDRRMC-standard fields. */
+    /** POST /api/incidents/{incident}/areas/{area} — edits an area's population/severity. */
     public function updateArea(Request $request, Disaster $incident, Zone $area): JsonResponse
     {
         abort_unless($area->disaster_id === $incident->id, 404);
@@ -142,14 +142,6 @@ class IncidentController extends BaseController
         $validated = $request->validate([
             'population_affected' => ['sometimes', 'integer', 'min:0'],
             'severity_level' => ['sometimes', 'in:High,Medium'],
-            'casualties_dead' => ['sometimes', 'integer', 'min:0'],
-            'casualties_injured' => ['sometimes', 'integer', 'min:0'],
-            'casualties_missing' => ['sometimes', 'integer', 'min:0'],
-            'families_affected' => ['sometimes', 'integer', 'min:0'],
-            'houses_totally_damaged' => ['sometimes', 'integer', 'min:0'],
-            'houses_partially_damaged' => ['sometimes', 'integer', 'min:0'],
-            'estimated_damage_cost' => ['nullable', 'numeric', 'min:0'],
-            'damage_cost_currency' => ['sometimes', 'string', 'max:3'],
         ]);
 
         $area->update($validated);

@@ -36,7 +36,7 @@ return new class extends Migration
             $table->foreignUuid('depot_id')->constrained('app_depots')->cascadeOnDelete();
             $table->foreignUuid('optimization_run_id')->nullable()->constrained('app_optimization_runs')->nullOnDelete();
             $table->unsignedInteger('quantity_allocated');
-            $table->string('status')->default('pending'); // pending | en_route | delivered | cancelled
+            $table->string('status')->default('pending'); // reserved | pending | en_route | fulfilled | cancelled
             $table->timestamps();
         });
     }

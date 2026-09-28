@@ -14,12 +14,10 @@ use App\Http\Controllers\Web\RoutingSettingsController;
 use App\Http\Controllers\Web\Settings\UsersController;
 use App\Http\Controllers\Web\SmtpSettingsController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-
-Route::get('/about', fn () => Inertia::render('About'))->name('about');
 
 // Unauthenticated, safe-fields-only view — the "Public users" tier from the
-// RBAC feature set. Mirrors /about's no-middleware, opted-out-layout pattern.
+// RBAC feature set. No auth middleware, and Pages/Public/Dashboard.tsx opts
+// out of AppLayout since the dashboard chrome doesn't apply here.
 Route::get('/public', [PublicDashboardController::class, 'index'])->name('public');
 
 Route::middleware(['auth', 'active'])->group(function () {

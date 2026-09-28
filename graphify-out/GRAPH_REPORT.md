@@ -1,16 +1,16 @@
-# Graph Report - laravel-drs  (2026-09-06)
+# Graph Report - laravel-drs  (2026-09-07)
 
 ## Corpus Check
-- 384 files · ~109,477 words
+- 392 files · ~110,864 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1600 nodes · 3180 edges · 244 communities (169 shown, 75 thin omitted)
-- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 201 edges (avg confidence: 0.78)
+- 1640 nodes · 3338 edges · 226 communities (157 shown, 69 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 229 edges (avg confidence: 0.78)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `fd3b6a73`
+- Built from commit: `b1b03383`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -53,47 +53,29 @@
 - BaseSolver
 - PasswordResetMail.php
 - IncidentController
-- DispatchController.php
 - Users.tsx
 - .log
 - DisasterAlertEvent
 - DispatchController
-- UserController
 - SmtpSetting
-- GlobalSearchController
 - index.ts
 - static
-- Dashboard.tsx
-- EvacuationCenterController
 - api.php
 - Inertia
-- HandlesFileUploads.php
 - Directions and Turn-by-Turn Navigation
-- ResourceController.php
 - AuthenticatedSessionController.php
 - PasswordResetController.php
 - Controller
-- index.ts
 - Allocation (Domain Model)
-- client.ts
-- ResourceRequest
 - Architecture
 - Seeder
-- SkeletonLoader.tsx
 - DisasterFeedIngestorTest
 - OsrmDirectionsProvider
-- DepotController.php
-- ProfileController.php
-- ResourceTypeController.php
-- ResourceType
 - ResourceInventoryController
 - RoutingSettingController.php
-- ScopesToAssignedBatches.php
 - DisasterResource+
 - Automated Disaster Feed Polling
 - AppLayout
-- ReportController.php
-- EvacuationCenterController.php
 - DashboardController
 - Dashboard (Page)
 - Depot (Domain Model)
@@ -105,11 +87,9 @@
 - config.py
 - Button.tsx
 - TableLoading.tsx
-- About.tsx
 - DirectionsPanel (React Component)
 - configure_logging
 - AutoResolveIncidentsJob
-- TableSpinner.jsx
 - vite-env.d.ts
 - entrypoint.sh
 - init-postgis.sh
@@ -158,21 +138,20 @@
 - refresh-boneyard-session.mjs
 - OptimizationController.php
 - InertiaPageResponse
-- build-yup-schema.ts
 - EnsureUserIsActiveTest
 - IncidentController.php
 
 ## God Nodes (most connected - your core abstractions)
-1. `Disaster` - 70 edges
-2. `User` - 55 edges
-3. `BaseController` - 44 edges
-4. `Controller` - 42 edges
-5. `TestCase` - 34 edges
-6. `Zone` - 31 edges
-7. `ResourceRequest` - 27 edges
-8. `Dispatch` - 25 edges
-9. `usePermission()` - 25 edges
-10. `DisasterFeedSetting` - 22 edges
+1. `User` - 66 edges
+2. `Disaster` - 63 edges
+3. `Resource` - 52 edges
+4. `BaseController` - 44 edges
+5. `Controller` - 42 edges
+6. `TestCase` - 42 edges
+7. `ResourceRequest` - 36 edges
+8. `Zone` - 30 edges
+9. `Depot` - 28 edges
+10. `Dispatch` - 28 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Docker Compose` --orchestrates--> `Laravel Reverb`  [EXTRACTED]
@@ -181,8 +160,8 @@
   docker-compose.yml → CLAUDE.md
 - `Docker Compose` --orchestrates--> `OSRM (Open Source Routing Machine)`  [EXTRACTED]
   docker-compose.yml → README.md
-- `DynamicFieldProps` --references--> `FieldDef`  [EXTRACTED]
-  backend/resources/js/Components/table/components/RecordModalField.tsx → backend/resources/js/Types/reusable/fields.ts
+- `ColumnFilterControlProps` --references--> `ColumnDef`  [EXTRACTED]
+  backend/resources/js/Components/table/components/ColumnFilterControl.tsx → backend/resources/js/Types/reusable/data-table.ts
 - `ReportsIndex()` --calls--> `tableListInvalidateKeys()`  [EXTRACTED]
   backend/resources/js/Pages/Reports/Index.tsx → backend/resources/js/Components/table/utils/index.ts
 
@@ -194,91 +173,87 @@
 - **Domain Model Entity Relationships** — disaster_model, zone_model, resourcerequest_model, depot_model, resource_model, resourcetype_model, allocation_model, optimizationrun_model [EXTRACTED 1.00]
 - **Automated Disaster Feed and Incident Processing** — polldisasterfeeds_job, disasterfeed_ingestor, usgsearth_feedclient, gdacs_feedclient, autoresolveincidents_job [EXTRACTED 1.00]
 
-## Communities (244 total, 75 thin omitted)
+## Communities (226 total, 69 thin omitted)
 
 ### Community 0 - "Admin API Controllers"
 Cohesion: 0.10
 Nodes (14): ActivityLogController, JsonResponse, Request, LogPageVisit, Closure, Request, Response, AppLogger (+6 more)
 
 ### Community 1 - "Frontend Bootstrap & Activity Log"
-Cohesion: 0.06
-Nodes (45): ActivityLogEntry, activityLogService, DispatchTicker(), getLastSeenId(), NotificationBell(), OfflineBanner(), SettingsTabs(), TABS (+37 more)
+Cohesion: 0.10
+Nodes (32): ActivityLogEntry, activityLogService, DispatchTicker(), getLastSeenId(), NotificationBell(), OfflineBanner(), UserProfileSection(), UserProfileSectionProps (+24 more)
 
 ### Community 2 - "API HTTP Client"
-Cohesion: 0.12
-Nodes (29): http, unwrap(), appendNestedObject(), appendNestedParam(), buildFormData(), buildQueryString(), hasBinaryFiles(), isFileFieldValue() (+21 more)
+Cohesion: 0.13
+Nodes (30): ApiEnvelope, attachHeaders(), createHttpClient(), getCsrfToken(), http, readCookie(), toApiError(), unwrap() (+22 more)
 
 ### Community 3 - "Depot & Resource Models"
-Cohesion: 0.13
-Nodes (11): Depot, BelongsTo, Resource, HasMany, ResourceType, Zone, ResourceFactory, ResourceRequestFactory (+3 more)
+Cohesion: 0.15
+Nodes (8): Allocation, BelongsTo, Resource, HasMany, ResourceType, DispatchDeliveryDeductionTest, ResourceLoanReservationTest, DepotCapacityCheckerTest
 
 ### Community 4 - "Filter/Pagination/Map Widgets"
-Cohesion: 0.22
-Nodes (5): Field(), DynamicField(), DynamicFieldProps, formatDateShort(), FileFieldValue
+Cohesion: 0.16
+Nodes (5): BelongsTo, QuarterlyStockSnapshot, ReorderSuggestionCalculator, InventoryBurnRateReportBuilder, ReorderSuggestionCalculatorTest
 
 ### Community 5 - "Form Field & Dropdown Components"
-Cohesion: 0.11
-Nodes (22): Dropdown(), DropdownOption, DropdownProps, CardFilterPanel(), CardFilterPanelProps, ColumnFilterControlProps, DefaultRecordCardProps, DEFAULT_TABS (+14 more)
+Cohesion: 0.13
+Nodes (18): Dropdown(), DropdownOption, DropdownProps, CardFilterPanel(), CardFilterPanelProps, ColumnFilterControlProps, DEFAULT_TABS, StatusFilter() (+10 more)
 
 ### Community 6 - "Dashboard & Allocation Models"
 Cohesion: 0.14
-Nodes (12): Allocation, BelongsTo, EvacuationCenter, BelongsTo, OptimizationRun, BelongsTo, HasMany, BelongsTo (+4 more)
+Nodes (13): EvacuationCenter, BelongsTo, OptimizationRun, BelongsTo, HasMany, BelongsTo, Report, BelongsTo (+5 more)
 
 ### Community 7 - "Data Table Query Hooks"
-Cohesion: 0.21
-Nodes (15): InUseEntry, RowActionMutations, RowActionsConfig, ShowToast, ToastVariant, useRecordRowActions(), buildArchiveUrl(), buildDeleteUrl() (+7 more)
+Cohesion: 0.20
+Nodes (3): OsrmDirectionsProvider, PremiumDirectionsProvider, DirectionsProvider
 
 ### Community 8 - "Directions & Routing Settings API"
-Cohesion: 0.10
-Nodes (13): DirectionsController, JsonResponse, Request, JsonResponse, Request, RoutingSettingController, RoutingSetting, DirectionsRouter (+5 more)
-
-### Community 9 - "Auth Pages & Buttons"
-Cohesion: 0.14
-Nodes (16): depotsService, fetchJson(), PsgcOption, sortByName(), usePsgc(), columns, DepotsIndex(), emptyForm (+8 more)
+Cohesion: 0.36
+Nodes (5): JsonResponse, Request, RoutingSettingController, ProviderQuotaExceededException, RuntimeException
 
 ### Community 10 - "Resource Types & Admin Layout"
-Cohesion: 0.16
-Nodes (19): normalizeQueryKey(), tableListInvalidateKeys(), usePermission(), EvacuationIndex(), TriggerSolver(), ResourcesIndex(), createFields, editFields (+11 more)
+Cohesion: 0.09
+Nodes (34): requestsService, resourceLoansService, resourcesService, resourceTypesService, tableListInvalidateKeys(), useToast(), usePermission(), AdminLayout() (+26 more)
 
 ### Community 11 - "Disaster Feed Settings & Tests"
 Cohesion: 0.10
-Nodes (9): NdrrmcReportBuilder, DispatchTest, ExampleTest, IdempotentCreateTest, TestCase, ExampleTest, NdrrmcReportBuilderTest, BaseTestCase (+1 more)
+Nodes (8): DisasterFeedIngestorTest, ExampleTest, IdempotentCreateTest, SnapshotQuarterlyStockJobTest, TestCase, ExampleTest, BaseTestCase, RefreshDatabase
 
 ### Community 12 - "Form Modal Schema Builder"
-Cohesion: 0.37
-Nodes (10): buildInitialValues(), buildPayload(), mapApiErrorsToFormik(), seedFieldValue(), FormModal(), Values, FormModalConfig, FormModalLayout (+2 more)
+Cohesion: 0.05
+Nodes (63): ChangePasswordModal(), ChangePasswordModalProps, ChangePasswordValues, fields, Field(), baseFor(), buildYupSchema(), withCustom() (+55 more)
 
 ### Community 13 - "BaseController CRUD"
-Cohesion: 0.17
-Nodes (7): DepotController, Model, BaseController, Builder, JsonResponse, Model, Request
+Cohesion: 0.07
+Nodes (20): DepotController, Model, EvacuationCenterController, Builder, JsonResponse, Model, JsonResponse, Request (+12 more)
 
 ### Community 14 - "Confirmation Modals"
-Cohesion: 0.09
-Nodes (21): Button(), Props, FilterBar(), Props, Pagination(), Props, LocationPickMap(), PH_CENTER (+13 more)
+Cohesion: 0.07
+Nodes (35): ApiError, depotsService, FilterBar(), Props, Pagination(), Props, LocationPickMap(), PH_CENTER (+27 more)
 
 ### Community 15 - "Pagination Bar Components"
-Cohesion: 0.33
-Nodes (9): CardActions, ColumnFilterType, DataTableProps, ModalState, RenderModalProps, StatusFilterTab, FieldDef, FieldType (+1 more)
+Cohesion: 0.29
+Nodes (6): Canonical tabs, CLAUDE.md — Capstone thesis writing (Chapters 1–3), Editing the Google Doc safely, Hard formatting rules (from the pattern guides), Known open defects (as of 2026-09-07 analysis), Scope claims must trace to the interview
 
 ### Community 16 - "User Auth Model & Seeder"
 Cohesion: 0.13
 Nodes (6): Authenticatable, User, DisasterFeedSettingsControllerTest, UserAccountLifecycleTest, HasRoles, Notifiable
 
 ### Community 17 - "Evacuation Centers Table UI"
-Cohesion: 0.12
-Nodes (14): FetchingSpinner(), DefaultRecordCard(), PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, ViewToggle(), ViewToggleProps (+6 more)
+Cohesion: 0.09
+Nodes (23): evacuationCentersService, incidentsService, FetchingSpinner(), DefaultRecordCard(), DefaultRecordCardProps, Toolbar(), ToolbarProps, DataTableCardField() (+15 more)
 
 ### Community 18 - "Disaster Model & Auto-Resolve Job"
-Cohesion: 0.20
-Nodes (10): ConfirmArchiveAccountModal(), ConfirmArchiveAccountModalProps, ConfirmDeleteModal(), ConfirmDeleteModalProps, ConfirmInUseModal(), ConfirmInUseModalProps, Modal(), ModalProps (+2 more)
+Cohesion: 0.60
+Nodes (3): DirectionsController, JsonResponse, Request
 
 ### Community 19 - "Database Factories"
-Cohesion: 0.10
-Nodes (10): DepotFactory, DisasterFactory, DispatchFactory, EvacuationCenterFactory, OptimizationRunFactory, ReportFactory, ResourceTypeFactory, ZoneFactory (+2 more)
+Cohesion: 0.08
+Nodes (14): AllocationFactory, DepotFactory, DisasterFactory, DispatchFactory, EvacuationCenterFactory, OptimizationRunFactory, QuarterlyStockSnapshotFactory, ReportFactory (+6 more)
 
 ### Community 20 - "Record Row Menu & Settings List"
-Cohesion: 0.17
-Nodes (15): RowMenu(), RowMenuAction, AddRecordButton(), AddRecordButtonProps, buildRecordMenu(), SettingsListHeader(), SettingsRow(), TextCell() (+7 more)
+Cohesion: 0.09
+Nodes (24): queryClient, RowMenu(), RowMenuAction, AddRecordButton(), AddRecordButtonProps, buildRecordMenu(), SettingsListHeader(), SettingsRow() (+16 more)
 
 ### Community 21 - "Service Providers"
 Cohesion: 0.14
@@ -286,11 +261,11 @@ Nodes (7): Attempting, PreventInactiveLogin, ActivityLogServiceProvider, AppServ
 
 ### Community 22 - "Shared TypeScript Model Types"
 Cohesion: 0.09
-Nodes (22): AdminUser, DashboardStats, Depot, DirectionsResult, DirectionsStep, Disaster, DisasterFeedSettingsData, Dispatch (+14 more)
+Nodes (21): AdminUser, DashboardStats, Depot, DirectionsResult, Disaster, DisasterFeedSettingsData, Dispatch, EvacuationCenter (+13 more)
 
 ### Community 23 - "Record Modal & Image Lightbox"
-Cohesion: 0.14
-Nodes (4): DisasterFeedSetting, GdacsFeedClient, UsgsEarthquakeFeedClient, DisasterFeedSettingTest
+Cohesion: 0.19
+Nodes (3): DisasterFeedSetting, UsgsEarthquakeFeedClient, DisasterFeedSettingTest
 
 ### Community 24 - "Role/Active Auth Middleware"
 Cohesion: 0.16
@@ -300,24 +275,24 @@ Nodes (11): EnsureUserHasRole, Closure, Request, Response, EnsureUserIsActive, C
 Cohesion: 0.17
 Nodes (11): 0. Current state (what's real vs. skeleton vs. missing), Backend API, Database, Integration Plan: OSRM + OR-Tools/PuLP + Laravel + PostGIS, Matrix & Routing, Optimization Engine — the biggest gap, Phase 1 — Fix the capacity bug + wire OSRM's matrix service into the solver, Phase 2 — Real CVRPTW, two-stage with the existing PuLP LP (+3 more)
 
-### Community 26 - "IncidentMap.tsx"
-Cohesion: 0.14
-Nodes (16): DirectionsPanel(), FALLBACK_MESSAGES, formatDistance(), formatDuration(), Point, Props, Depot, DispatchMarker (+8 more)
+### Community 27 - "Dispatch"
+Cohesion: 0.21
+Nodes (3): Dispatch, BelongsTo, DispatchTest
 
 ### Community 28 - "ReportController.php"
-Cohesion: 0.18
-Nodes (8): Builder, JsonResponse, Model, Request, Response, ReportController, NdrrmcCsvExporter, StreamedResponse
+Cohesion: 0.11
+Nodes (18): Builder, JsonResponse, Model, Request, Response, ReportController, BelongsTo, InventoryBurnRateCsvExporter (+10 more)
 
 ### Community 29 - "use-module.ts"
-Cohesion: 0.17
-Nodes (17): buildFormData(), errorMessage(), hasBinaryFiles(), useModule(), UseModuleOptions, UseModuleResult, ApiEnvelope, ApiError (+9 more)
+Cohesion: 0.06
+Nodes (59): InUseEntry, PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, ViewToggle(), ViewToggleProps, TableQueryParams (+51 more)
 
 ### Community 32 - "SerializesModels"
-Cohesion: 0.23
-Nodes (11): AutoResolveIncidentsJob, PollDisasterFeedsJob, RunOptimizationJob, NewAccountMail, Content, Envelope, Dispatchable, InteractsWithQueue (+3 more)
+Cohesion: 0.39
+Nodes (9): AutoResolveIncidentsJob, PollDisasterFeedsJob, RunOptimizationJob, SnapshotQuarterlyStockJob, Dispatchable, InteractsWithQueue, Queueable, SerializesModels (+1 more)
 
 ### Community 33 - "DisasterFeedIngestor"
-Cohesion: 0.16
+Cohesion: 0.14
 Nodes (5): DisasterFeedIngestor, GeofenceService, Collection, GreedyAllocationSolver, OptimizationServiceClient
 
 ### Community 34 - "AllocationRequest"
@@ -325,24 +300,20 @@ Cohesion: 0.07
 Nodes (39): ABC, Backend (Laravel), BaseModel, Coolify, Docker Compose, FastAPI, OSRM (Open Source Routing Machine), PostgreSQL with PostGIS (+31 more)
 
 ### Community 36 - "PasswordResetMail.php"
-Cohesion: 0.36
-Nodes (4): PasswordResetMail, Content, Envelope, Mailable
+Cohesion: 0.19
+Nodes (7): NewAccountMail, Content, Envelope, PasswordResetMail, Content, Envelope, Mailable
 
 ### Community 37 - "IncidentController"
 Cohesion: 0.29
 Nodes (4): IncidentController, JsonResponse, Model, Request
 
-### Community 38 - "DispatchController.php"
-Cohesion: 0.22
-Nodes (11): ImageLightbox(), ImageLightboxProps, emptyFileFieldValue, fileNameFromUrl(), FileUploadField(), FileUploadFieldProps, formatBytes(), isImageName() (+3 more)
-
 ### Community 39 - "Users.tsx"
-Cohesion: 0.08
-Nodes (23): queryClient, ChangePasswordModal(), ChangePasswordModalProps, ChangePasswordValues, fields, ICON_COLOR, SystemToastProvider(), ToastContext (+15 more)
+Cohesion: 0.09
+Nodes (17): usersService, Button(), Props, SettingsTabs(), TABS, ResetPasswordProps, INTERVAL_LABELS, Props (+9 more)
 
 ### Community 40 - ".log"
-Cohesion: 0.20
-Nodes (11): dispatchesService, incidentsService, Modal(), Props, PositionUpdatePayload, useDispatchTracking(), useLiveGeolocation(), COORDINATOR_TIER_ROLES (+3 more)
+Cohesion: 0.11
+Nodes (19): dispatchesService, Modal(), Props, Depot, DispatchMarker, Incident, IncidentMap(), PH_CENTER (+11 more)
 
 ### Community 41 - "DisasterAlertEvent"
 Cohesion: 0.20
@@ -352,105 +323,57 @@ Nodes (4): DisasterAlertEvent, DispatchPositionUpdated, InteractsWithSockets, Sh
 Cohesion: 0.30
 Nodes (4): DispatchController, JsonResponse, Model, Request
 
-### Community 43 - "UserController"
-Cohesion: 0.27
-Nodes (3): JsonResponse, Model, UserController
-
 ### Community 44 - "SmtpSetting"
-Cohesion: 0.13
-Nodes (9): JsonResponse, Request, SmtpSettingController, self, self, self, SmtpSetting, UserFactory (+1 more)
-
-### Community 45 - "GlobalSearchController"
-Cohesion: 0.18
-Nodes (4): HasMany, BelongsTo, HasMany, GeofenceService
+Cohesion: 0.09
+Nodes (12): JsonResponse, Model, UserController, JsonResponse, Request, SmtpSettingController, self, self (+4 more)
 
 ### Community 46 - "index.ts"
 Cohesion: 0.36
 Nodes (8): GlobalModalContext, GlobalModalProvider(), createGlobalModalStore(), GlobalModalStore, Listener, ModalEntry, GlobalModalHandle, useGlobalModal()
 
 ### Community 47 - "static"
-Cohesion: 0.31
-Nodes (4): Builder, JsonResponse, Model, ResourceLoanController
-
-### Community 48 - "Dashboard.tsx"
-Cohesion: 0.24
-Nodes (7): DashboardLayout(), Props, Dashboard(), Props, requestColumns, statusColor, utilizationBarColor()
-
-### Community 49 - "EvacuationCenterController"
-Cohesion: 0.31
-Nodes (4): EvacuationCenterController, Builder, JsonResponse, Model
+Cohesion: 0.32
+Nodes (5): Builder, JsonResponse, Model, Request, ResourceLoanController
 
 ### Community 50 - "api.php"
-Cohesion: 0.30
-Nodes (4): Builder, JsonResponse, Request, RequestController
+Cohesion: 0.12
+Nodes (10): Builder, JsonResponse, Request, RequestController, DashboardController, Response, BelongsTo, HasMany (+2 more)
 
 ### Community 51 - "Inertia"
-Cohesion: 0.21
-Nodes (7): DisasterFeedSettingsController, Response, Response, PublicDashboardController, Response, RoutingSettingsController, Inertia
-
-### Community 52 - "HandlesFileUploads.php"
-Cohesion: 0.40
-Nodes (9): beforeSave(), deleteStoredFile(), fileWasRemoved(), Model, Request, removedFileIds(), storeUploadedFile(), storeUploadedFiles() (+1 more)
-
-### Community 54 - "ResourceController.php"
-Cohesion: 0.31
-Nodes (4): Builder, JsonResponse, Model, ResourceController
+Cohesion: 0.29
+Nodes (4): Response, RoutingSettingsController, RoutingSetting, DirectionsRouter
 
 ### Community 55 - "AuthenticatedSessionController.php"
-Cohesion: 0.43
+Cohesion: 0.36
 Nodes (4): AuthenticatedSessionController, RedirectResponse, Request, Response
 
 ### Community 56 - "PasswordResetController.php"
-Cohesion: 0.36
+Cohesion: 0.42
 Nodes (4): PasswordResetController, RedirectResponse, Request, Response
 
 ### Community 57 - "Controller"
-Cohesion: 0.21
-Nodes (7): Controller, DepotController, Response, DispatchController, Response, IncidentController, Response
-
-### Community 58 - "index.ts"
-Cohesion: 0.27
-Nodes (12): TableQueryParams, useDebouncedValue(), useInvalidateTable(), useTableQuery(), useTableRefresh(), clientMeta(), isFilterValueActive(), normalizeQueryKey() (+4 more)
-
-### Community 60 - "client.ts"
-Cohesion: 0.22
-Nodes (10): ApiEnvelope, ApiError, attachHeaders(), createHttpClient(), getCsrfToken(), readCookie(), toApiError(), NUMERIC_FIELDS (+2 more)
-
-### Community 61 - "ResourceRequest"
 Cohesion: 0.16
-Nodes (5): BelongsTo, HasMany, ResourceRequest, AllocationFactory, AutoResolveIncidentsJobTest
+Nodes (9): Controller, DepotController, Response, DispatchController, Response, IncidentController, Response, Response (+1 more)
 
 ### Community 62 - "Architecture"
 Cohesion: 0.14
 Nodes (12): Architecture, Automated disaster feed (backend/app/Services/DisasterFeed), Backend request layering, Commands, Directions / turn-by-turn navigation (backend/app/Services/Directions), Domain model (backend/app/Models, backend/database/migrations), Frontend (backend/resources/js), graphify (+4 more)
 
 ### Community 63 - "Seeder"
-Cohesion: 0.23
-Nodes (6): DatabaseSeeder, FakerDataSeeder, RoleSeeder, UserSeeder, Seeder, WithoutModelEvents
-
-### Community 64 - "SkeletonLoader.tsx"
-Cohesion: 0.23
-Nodes (10): ModalCenter(), ModalCenterProps, ModalComponentProps, Size, WIDTHS, ModalSide(), ModalSideProps, Side (+2 more)
+Cohesion: 0.20
+Nodes (7): DatabaseSeeder, DisasterDataSeeder, FakerDataSeeder, RoleSeeder, UserSeeder, Seeder, WithoutModelEvents
 
 ### Community 65 - "DisasterFeedIngestorTest"
-Cohesion: 0.18
-Nodes (4): Disaster, HasMany, DisasterFeedIngestorTest, OptimizationFallbackTest
+Cohesion: 0.09
+Nodes (11): Depot, HasMany, Disaster, HasMany, BelongsTo, HasMany, Zone, AutoResolveIncidentsJobTest (+3 more)
 
 ### Community 66 - "OsrmDirectionsProvider"
-Cohesion: 0.29
+Cohesion: 0.25
 Nodes (3): DisasterFeedSettingController, JsonResponse, Request
 
-### Community 67 - "DepotController.php"
-Cohesion: 0.36
-Nodes (3): BelongsTo, Report, ReportDownloadTest
-
-### Community 68 - "ProfileController.php"
-Cohesion: 0.60
-Nodes (3): JsonResponse, Request, ProfileController
-
-### Community 73 - "ScopesToAssignedBatches.php"
-Cohesion: 0.40
-Nodes (3): evacuationCentersService, columns, fields
+### Community 71 - "ResourceInventoryController"
+Cohesion: 0.24
+Nodes (4): Response, PublicDashboardController, Response, ResourceInventoryController
 
 ### Community 74 - "DisasterResource+"
 Cohesion: 0.25
@@ -459,10 +382,6 @@ Nodes (7): DisasterResource+, Folder structure, Local dev without pdo_pgsql, Loc
 ### Community 87 - "config.py"
 Cohesion: 0.50
 Nodes (3): BaseSettings, Config, Settings
-
-### Community 118 - "TableSpinner.jsx"
-Cohesion: 0.27
-Nodes (10): FormModalBody(), Values, buildInitialValues(), collectErrors(), mapApiErrors(), RecordModal(), RecordModalProps, seedFieldValue() (+2 more)
 
 ### Community 234 - "watch-boneyard.mjs"
 Cohesion: 0.38
@@ -476,29 +395,29 @@ Nodes (5): backendDir, cookieHeader(), envPath, main(), parseCookies()
 Cohesion: 0.50
 Nodes (3): OptimizationController, RedirectResponse, RunOptimizationJob
 
-### Community 238 - "build-yup-schema.ts"
-Cohesion: 0.70
-Nodes (4): baseFor(), buildYupSchema(), withCustom(), withRequired()
+### Community 237 - "InertiaPageResponse"
+Cohesion: 0.22
+Nodes (4): EvacuationCenterController, Response, InertiaPageResponse, Inertia
 
 ## Knowledge Gaps
-- **230 isolated node(s):** `Props`, `ChangePasswordValues`, `fields`, `ChangePasswordModalProps`, `Props` (+225 more)
+- **228 isolated node(s):** `Props`, `ChangePasswordValues`, `fields`, `ChangePasswordModalProps`, `Props` (+223 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **75 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **69 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `BaseController` connect `BaseController CRUD` to `ProfileController.php`, `IncidentController`, `ResourceTypeController.php`, `DispatchController`, `UserController`, `static`, `EvacuationCenterController`, `api.php`, `ResourceController.php`, `Controller`, `ReportController.php`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
-- **Why does `Disaster` connect `DisasterFeedIngestorTest` to `SerializesModels`, `DisasterFeedIngestor`, `Depot & Resource Models`, `DepotController.php`, `IncidentController`, `ResourceType`, `Dashboard & Allocation Models`, `RoutingSettingController.php`, `DisasterAlertEvent`, `Disaster Feed Settings & Tests`, `OptimizationController.php`, `GlobalSearchController`, `Inertia`, `Database Factories`, `Record Modal & Image Lightbox`, `ReportController.php`, `ResourceRequest`, `RoleGatingTest`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
-- **Why does `Controller` connect `Controller` to `Admin API Controllers`, `OsrmDirectionsProvider`, `ResourceType`, `ResourceInventoryController`, `Directions & Routing Settings API`, `ActivityLogController.php`, `SmtpSetting`, `BaseController CRUD`, `EvacuationCenterController.php`, `OptimizationController.php`, `ReportController.php`, `IncidentController.php`, `Inertia`, `AuthenticatedSessionController.php`, `PasswordResetController.php`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
-- **Are the 32 inferred relationships involving `Disaster` (e.g. with `.beforeSave()` and `.downloadNdrrmcSitrep()`) actually correct?**
-  _`Disaster` has 32 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 43 inferred relationships involving `User` (e.g. with `.drivers()` and `.handle()`) actually correct?**
-  _`User` has 43 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `BaseController` connect `BaseController CRUD` to `IncidentController`, `DispatchController`, `SmtpSetting`, `static`, `api.php`, `Controller`, `ReportController.php`?**
+  _High betweenness centrality (0.054) - this node is a cross-community bridge._
+- **Why does `Controller` connect `Controller` to `Admin API Controllers`, `OsrmDirectionsProvider`, `ResourceInventoryController`, `Directions & Routing Settings API`, `ActivityLogController.php`, `SmtpSetting`, `BaseController CRUD`, `InertiaPageResponse`, `OptimizationController.php`, `IncidentController.php`, `Disaster Model & Auto-Resolve Job`, `Database Factories`, `api.php`, `Inertia`, `AuthenticatedSessionController.php`, `PasswordResetController.php`, `IncidentMap.tsx`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `Disaster` connect `DisasterFeedIngestorTest` to `SerializesModels`, `DisasterFeedIngestor`, `Depot & Resource Models`, `IncidentController`, `Dashboard & Allocation Models`, `ResourceInventoryController`, `RoutingSettingController.php`, `DisasterAlertEvent`, `Disaster Feed Settings & Tests`, `OptimizationController.php`, `api.php`, `Database Factories`, `ReportController.php`, `RoleGatingTest`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Are the 54 inferred relationships involving `User` (e.g. with `.drivers()` and `.handle()`) actually correct?**
+  _`User` has 54 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 28 inferred relationships involving `Disaster` (e.g. with `.beforeSave()` and `.index()`) actually correct?**
+  _`Disaster` has 28 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Props`, `ChangePasswordValues`, `fields` to the rest of the system?**
-  _243 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _241 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Admin API Controllers` be split into smaller, more focused modules?**
   _Cohesion score 0.09841269841269841 - nodes in this community are weakly interconnected._

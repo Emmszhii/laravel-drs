@@ -19,7 +19,7 @@ const columns: ColumnDef<Report>[] = [
       { value: "After-action summary", label: "After-action summary" },
       { value: "Resource utilization", label: "Resource utilization" },
       { value: "Response timeline", label: "Response timeline" },
-      { value: "NDRRMC SitRep", label: "NDRRMC SitRep" },
+      { value: "Inventory Burn-Rate Report", label: "Inventory Burn-Rate Report" },
     ],
   },
   {
@@ -41,7 +41,7 @@ function ReportCard(row: Report, actions: CardActions) {
         </div>
       </div>
       <div className="flex gap-3 text-xs">
-        {row.type === "NDRRMC SitRep" ? (
+        {row.type === "Inventory Burn-Rate Report" ? (
           <>
             <a
               href={reportsService.downloadUrl(row.id, "pdf")}
@@ -82,7 +82,11 @@ const reportFields: FieldDef<Report>[] = [
     key: "disaster_id",
     label: "Incident",
     type: "async-select",
-    required: true,
+    helpText: "Not needed for Inventory Burn-Rate Report, which spans all depots.",
+    validate: (value, values) =>
+      values.type !== "Inventory Burn-Rate Report" && !value
+        ? "Incident is required for this report type."
+        : undefined,
     loadOptions: async (q: string) =>
       (await incidentsService.getAll())
         .filter((d) => d.name.toLowerCase().includes(q.toLowerCase()))
@@ -97,7 +101,7 @@ const reportFields: FieldDef<Report>[] = [
       { value: "After-action summary", label: "After-action summary" },
       { value: "Resource utilization", label: "Resource utilization" },
       { value: "Response timeline", label: "Response timeline" },
-      { value: "NDRRMC SitRep", label: "NDRRMC SitRep" },
+      { value: "Inventory Burn-Rate Report", label: "Inventory Burn-Rate Report" },
     ],
   },
 ];

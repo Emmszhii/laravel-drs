@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Disaster;
 use App\Models\Report;
+use App\Models\Resource;
 use App\Models\User;
-use App\Models\Zone;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -13,15 +13,14 @@ class ReportDownloadTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_ndrrmc_sitrep_downloads_as_pdf_by_default(): void
+    public function test_inventory_burn_rate_report_downloads_as_pdf_by_default(): void
     {
         $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
-        $disaster = Disaster::factory()->create();
-        Zone::factory()->create(['disaster_id' => $disaster->id]);
+        Resource::factory()->create();
         $report = Report::factory()->create([
-            'disaster_id' => $disaster->id,
-            'type' => 'NDRRMC SitRep',
-            'name' => 'NDRRMC SitRep',
+            'disaster_id' => null,
+            'type' => 'Inventory Burn-Rate Report',
+            'name' => 'Inventory Burn-Rate Report',
             'generated_at' => now(),
         ]);
 
@@ -31,15 +30,14 @@ class ReportDownloadTest extends TestCase
         $this->assertSame('application/pdf', $response->headers->get('Content-Type'));
     }
 
-    public function test_ndrrmc_sitrep_downloads_as_csv_when_requested(): void
+    public function test_inventory_burn_rate_report_downloads_as_csv_when_requested(): void
     {
         $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
-        $disaster = Disaster::factory()->create();
-        Zone::factory()->create(['disaster_id' => $disaster->id]);
+        Resource::factory()->create();
         $report = Report::factory()->create([
-            'disaster_id' => $disaster->id,
-            'type' => 'NDRRMC SitRep',
-            'name' => 'NDRRMC SitRep',
+            'disaster_id' => null,
+            'type' => 'Inventory Burn-Rate Report',
+            'name' => 'Inventory Burn-Rate Report',
             'generated_at' => now(),
         ]);
 

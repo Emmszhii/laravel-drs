@@ -17,6 +17,7 @@ class ResourceRequest extends Model
     protected $fillable = [
         'zone_id',
         'resource_type_id',
+        'depot_id',
         'quantity_requested',
         'priority',
         'status',
@@ -39,6 +40,11 @@ class ResourceRequest extends Model
     public function resourceType(): BelongsTo
     {
         return $this->belongsTo(ResourceType::class);
+    }
+
+    public function depot(): BelongsTo
+    {
+        return $this->belongsTo(Depot::class);
     }
 
     public function allocations(): HasMany

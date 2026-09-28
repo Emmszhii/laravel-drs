@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Events\DispatchPositionUpdated;
 use App\Http\Controllers\BaseController;
 use App\Models\Dispatch;
+use App\Models\Resource;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Dispatch (resource-in-transit) CRUD + live position/status updates.
@@ -39,6 +41,7 @@ class DispatchController extends BaseController
             'depot_id' => ['required', 'uuid', 'exists:app_depots,id'],
             'resource_type_id' => ['nullable', 'uuid', 'exists:app_resource_types,id'],
             'driver_id' => ['required', 'uuid', 'exists:users,id'],
+            'allocation_id' => ['nullable', 'uuid', 'exists:app_allocations,id'],
             'vehicle_label' => ['nullable', 'string', 'max:255'],
             'origin_lat' => ['required', 'numeric'],
             'origin_lng' => ['required', 'numeric'],
@@ -97,7 +100,15 @@ class DispatchController extends BaseController
         return $this->sendResponse($dispatch->fresh());
     }
 
-    /** POST /api/dispatches/{dispatch}/status — mark delivered/cancelled. */
+    /**
+     * POST /api/dispatches/{dispatch}/status — mark delivered/cancelled. A
+     * transition to 'delivered' on a dispatch linked to an Allocation
+     * deducts the reserved stock (see RequestController::approve(), which
+     * created the reservation) and marks the request fulfilled — this is
+     * the "resource actually left the depot for the field" event, not the
+     * approval itself. A dispatch with no linked allocation is a no-op on
+     * stock, since it wasn't created through the request/approval flow.
+     */
     public function updateStatus(Request $request, Dispatch $dispatch): JsonResponse
     {
         $this->authorizeDriverOrCoordinator($dispatch);
@@ -106,10 +117,36 @@ class DispatchController extends BaseController
             'status' => ['required', 'in:en_route,delivered,cancelled'],
         ]);
 
-        $dispatch->status = $validated['status'];
-        if ($validated['status'] === 'delivered') {
-            $dispatch->delivered_at = now();
+        if ($validated['status'] === 'delivered' && $dispatch->status !== 'delivered') {
+            DB::transaction(function () use ($dispatch) {
+                $allocation = $dispatch->allocation()->lockForUpdate()->first();
+
+                if ($allocation && $allocation->status !== 'fulfilled') {
+                    $resourceRequest = $allocation->request;
+
+                    $resource = Resource::where('depot_id', $allocation->depot_id)
+                        ->where('resource_type_id', $resourceRequest->resource_type_id)
+                        ->lockForUpdate()
+                        ->first();
+
+                    if ($resource) {
+                        $resource->decrement('quantity_available', $allocation->quantity_allocated);
+                        $resource->decrement('quantity_reserved', $allocation->quantity_allocated);
+                    }
+
+                    $allocation->update(['status' => 'fulfilled']);
+                    $resourceRequest->update(['status' => 'fulfilled']);
+                }
+
+                $dispatch->status = 'delivered';
+                $dispatch->delivered_at = now();
+                $dispatch->save();
+            });
+
+            return $this->sendResponse($dispatch->fresh());
         }
+
+        $dispatch->status = $validated['status'];
         $dispatch->save();
 
         return $this->sendResponse($dispatch->fresh());

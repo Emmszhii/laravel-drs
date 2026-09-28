@@ -32,9 +32,6 @@ export default function PublicDashboard({ incidents, depots }: Props) {
           Disaster<span className="text-[var(--amber)]">Resource+</span>
         </h1>
         <div className="flex items-center gap-4 text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-          <Link href="/about" className="underline hover:text-[var(--amber)]">
-            About
-          </Link>
           <Link href="/login" className="underline hover:text-[var(--amber)]">
             Sign in
           </Link>

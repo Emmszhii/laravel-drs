@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\BaseController;
+use App\Models\Allocation;
+use App\Models\Resource;
 use App\Models\ResourceRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 /**
  * Resource-request listing + creation — backs the Dashboard's request table
@@ -77,19 +81,50 @@ class RequestController extends BaseController
     }
 
     /**
-     * Department-head sign-off (the office's paper ICS 213-RR form) — status
-     * change only, no depot/stock quantities are touched here.
+     * Department-head sign-off (the office's paper ICS 213-RR form). Also
+     * reserves the matching stock at the chosen depot and creates the
+     * Allocation row that links this request to that depot/quantity — see
+     * DispatchController::updateStatus() for where the reservation is later
+     * turned into an actual deduction once the resource is delivered.
      */
-    public function approve(ResourceRequest $request): JsonResponse
+    public function approve(Request $httpRequest, ResourceRequest $request): JsonResponse
     {
-        $request->update([
-            'approval_status' => 'approved',
-            'approved_by' => auth()->id(),
-            'approved_at' => now(),
-            'rejection_reason' => null,
+        $validated = $httpRequest->validate([
+            'depot_id' => ['required', 'uuid', 'exists:app_depots,id'],
         ]);
 
-        return $this->sendResponse($request->fresh(['zone.disaster', 'resourceType', 'approver']), 'Request approved.');
+        DB::transaction(function () use ($validated, $request) {
+            $resource = Resource::where('depot_id', $validated['depot_id'])
+                ->where('resource_type_id', $request->resource_type_id)
+                ->lockForUpdate()
+                ->first();
+
+            $available = $resource ? $resource->quantity_available - $resource->quantity_reserved : 0;
+            if ($available < $request->quantity_requested) {
+                throw ValidationException::withMessages([
+                    'depot_id' => 'Insufficient stock at the selected depot to cover this request.',
+                ]);
+            }
+
+            $resource->increment('quantity_reserved', $request->quantity_requested);
+
+            Allocation::create([
+                'request_id' => $request->id,
+                'depot_id' => $validated['depot_id'],
+                'quantity_allocated' => $request->quantity_requested,
+                'status' => 'reserved',
+            ]);
+
+            $request->update([
+                'depot_id' => $validated['depot_id'],
+                'approval_status' => 'approved',
+                'approved_by' => auth()->id(),
+                'approved_at' => now(),
+                'rejection_reason' => null,
+            ]);
+        });
+
+        return $this->sendResponse($request->fresh(['zone.disaster', 'resourceType', 'approver', 'depot']), 'Request approved.');
     }
 
     public function reject(Request $httpRequest, ResourceRequest $request): JsonResponse

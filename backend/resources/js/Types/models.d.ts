@@ -54,15 +54,6 @@ export interface Zone {
   severity_level: "High" | "Medium";
   lat: number;
   lng: number;
-  /** NDRRMC/Sendai DRR-standard indicator fields — see Disaster::ndrrmcSummary(). */
-  casualties_dead: number;
-  casualties_injured: number;
-  casualties_missing: number;
-  families_affected: number;
-  houses_totally_damaged: number;
-  houses_partially_damaged: number;
-  estimated_damage_cost: number | null;
-  damage_cost_currency: string;
 }
 
 /** GET /api/evacuation-centers. */
@@ -177,7 +168,7 @@ export interface Report {
   id: string;
   disaster_id: string | null;
   name: string;
-  type: "After-action summary" | "Resource utilization" | "Response timeline" | "NDRRMC SitRep";
+  type: "After-action summary" | "Resource utilization" | "Response timeline" | "Inventory Burn-Rate Report";
   generated_at: string;
   disaster?: Disaster;
 }
@@ -187,6 +178,8 @@ export interface ResourceRequest {
   id: string;
   zone_id: string;
   resource_type_id: string;
+  /** Set at approval time — see RequestController::approve(), which also reserves stock at this depot. */
+  depot_id: string | null;
   quantity_requested: number;
   priority: "low" | "medium" | "high" | "critical";
   status: "pending" | "enroute" | "unmet" | "fulfilled";
@@ -196,6 +189,7 @@ export interface ResourceRequest {
   rejection_reason: string | null;
   zone?: Zone & { disaster?: Disaster };
   resource_type?: ResourceType;
+  depot?: Depot;
   approver?: { id: string; name: string };
 }
 
@@ -219,15 +213,6 @@ export interface GeoJsonPoint {
   coordinates: [number, number]; // [lng, lat]
 }
 
-export interface DirectionsStep {
-  instruction: string;
-  distance_m: number;
-  duration_s: number;
-  maneuver_type: string;
-  maneuver_modifier: string | null;
-  location: [number, number]; // [lng, lat]
-}
-
 /** Response shape from GET /api/directions — see DirectionsRouter (backend). */
 export interface DirectionsResult {
   ok: boolean;
@@ -235,7 +220,6 @@ export interface DirectionsResult {
   distance_m?: number;
   duration_s?: number;
   geometry?: [number, number][]; // [lng, lat] pairs
-  steps?: DirectionsStep[];
   provider?: "osrm" | "premium";
   fallback_reason?: "cap_exceeded" | "provider_error";
 }

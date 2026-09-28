@@ -2,6 +2,7 @@
 
 use App\Jobs\AutoResolveIncidentsJob;
 use App\Jobs\PollDisasterFeedsJob;
+use App\Jobs\SnapshotQuarterlyStockJob;
 use App\Models\DisasterFeedSetting;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
@@ -28,3 +29,8 @@ Schedule::call(function () {
 })->everyFiveMinutes()->name('disaster-feed-poll')->withoutOverlapping();
 
 Schedule::job(new AutoResolveIncidentsJob)->hourly()->name('disaster-auto-resolve');
+
+// Formalizes CDRRMO's manual Q1-Q4 stock-review practice (see 2026-09-03
+// interview) — runs the day a new quarter begins, snapshotting the quarter
+// that just closed. Feeds ReorderSuggestionCalculator; advisory only.
+Schedule::job(new SnapshotQuarterlyStockJob)->quarterly()->name('quarterly-stock-snapshot');

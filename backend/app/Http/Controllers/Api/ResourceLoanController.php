@@ -8,6 +8,8 @@ use App\Models\ResourceLoan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 /**
@@ -52,33 +54,65 @@ class ResourceLoanController extends BaseController
         ];
     }
 
-    protected function beforeSave(array $validated, ?Model $model = null): array
-    {
-        if (! $model) {
-            $resource = Resource::with('resourceType')->findOrFail($validated['resource_id']);
-
-            if ($resource->resourceType->is_consumable) {
-                throw ValidationException::withMessages([
-                    'resource_id' => 'This resource type is consumable and cannot be loaned out.',
-                ]);
-            }
-
-            $validated['status'] = 'issued';
-            $validated['issued_at'] = now();
-            $validated['issued_by'] = auth()->id();
-
-            return $validated;
-        }
-
-        if (($validated['status'] ?? null) === 'returned' && ! $model->returned_at) {
-            $validated['returned_at'] = now();
-        }
-
-        return $validated;
-    }
-
     public function index(): JsonResponse
     {
         return $this->sendResponse($this->newQuery()->latest()->get());
+    }
+
+    /**
+     * Borrowed items are "reserved," not deducted from quantity_available,
+     * since they come back — see quantity_reserved release in update()
+     * below on return. Validated + locked + incremented in one transaction
+     * so two concurrent issues can't both pass the availability check.
+     */
+    public function store(Request $request): JsonResponse
+    {
+        $validated = $request->validate($this->storeRules());
+
+        $typeResource = Resource::with('resourceType')->findOrFail($validated['resource_id']);
+        if ($typeResource->resourceType->is_consumable) {
+            throw ValidationException::withMessages([
+                'resource_id' => 'This resource type is consumable and cannot be loaned out.',
+            ]);
+        }
+
+        $loan = DB::transaction(function () use ($validated) {
+            $resource = Resource::whereKey($validated['resource_id'])->lockForUpdate()->first();
+
+            if ($resource->quantity_available - $resource->quantity_reserved < $validated['quantity']) {
+                throw ValidationException::withMessages([
+                    'quantity' => 'Insufficient stock available to issue this quantity.',
+                ]);
+            }
+
+            $resource->increment('quantity_reserved', $validated['quantity']);
+
+            return ResourceLoan::create($validated + [
+                'status' => 'issued',
+                'issued_at' => now(),
+                'issued_by' => auth()->id(),
+            ]);
+        });
+
+        return $this->sendResponse($loan->load(['resource.depot', 'resource.resourceType', 'issuedBy']), 'Record created successfully.', 201);
+    }
+
+    /** On transition to 'returned', releases the reservation taken in store() above. */
+    public function update(Request $request, int|string $id): JsonResponse
+    {
+        $loan = $this->resolveModel($id);
+        $validated = $request->validate($this->updateRules($loan));
+
+        DB::transaction(function () use (&$validated, $loan) {
+            if (($validated['status'] ?? null) === 'returned' && $loan->status !== 'returned') {
+                $resource = Resource::whereKey($loan->resource_id)->lockForUpdate()->first();
+                $resource?->decrement('quantity_reserved', $loan->quantity);
+                $validated['returned_at'] = now();
+            }
+
+            $loan->update($validated);
+        });
+
+        return $this->sendResponse($loan->fresh(['resource.depot', 'resource.resourceType', 'issuedBy']), 'Record updated successfully.');
     }
 }
