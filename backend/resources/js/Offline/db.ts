@@ -1,6 +1,6 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 
-export type OutboxItemKind = "incident" | "area" | "request";
+export type OutboxItemKind = "incident" | "area" | "request" | "stock";
 export type OutboxItemStatus = "pending" | "syncing" | "failed";
 
 export interface OutboxItem {

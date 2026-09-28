@@ -20,10 +20,46 @@ export async function enqueue(
   return item;
 }
 
+/**
+ * Pending items, plus any left `syncing` when the browser closed mid-upload —
+ * those would otherwise never retry. Re-sending is safe: every item carries
+ * its clientRef as an idempotency key the server deduplicates on.
+ */
 export async function listPending(): Promise<OutboxItem[]> {
   const db = await getDb();
+  const items = await db.getAll("outbox");
 
-  return db.getAllFromIndex("outbox", "by-status", "pending");
+  return items.filter((i) => i.status !== "failed").sort((a, b) => a.createdAt - b.createdAt);
+}
+
+/** Queues a stock entry; its clientRef is the device-made ID the server deduplicates on. */
+export async function enqueueStock(payload: Record<string, unknown>): Promise<OutboxItem> {
+  const db = await getDb();
+  const item: OutboxItem = {
+    clientRef: crypto.randomUUID(),
+    kind: "stock",
+    payload: { ...payload, created_at_device: new Date().toISOString(), device: deviceLabel() },
+    status: "pending",
+    createdAt: Date.now(),
+  };
+  await db.put("outbox", item);
+
+  return item;
+}
+
+/** A stable per-browser label, so conflicts can tell which device made an entry. */
+export function deviceLabel(): string {
+  try {
+    let label = localStorage.getItem("drs-device");
+    if (!label) {
+      label = `device-${crypto.randomUUID().slice(0, 8)}`;
+      localStorage.setItem("drs-device", label);
+    }
+
+    return label;
+  } catch {
+    return "device-unknown";
+  }
 }
 
 export async function listAll(): Promise<OutboxItem[]> {

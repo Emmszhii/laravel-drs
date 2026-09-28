@@ -40,6 +40,17 @@ export default defineConfig({
         // server-rendered Inertia app, not a client-routed SPA) and no
         // runtimeCaching entries, so API responses are always fetched live.
         globPatterns: ["**/*.{js,css,svg,ico}"],
+        // The one exception: the Stock page opens offline from its last
+        // online visit (items/depots embedded in the Inertia page props), so
+        // stock entries can be recorded into the IndexedDB outbox during an
+        // outage. NetworkFirst: always fresh when online.
+        runtimeCaching: [
+          {
+            urlPattern: ({ request, url }) => request.mode === "navigate" && url.pathname === "/stock",
+            handler: "NetworkFirst",
+            options: { cacheName: "stock-page", networkTimeoutSeconds: 4, expiration: { maxEntries: 1 } },
+          },
+        ],
       },
     }),
   ],

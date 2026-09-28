@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\ResourceTypeController;
 use App\Http\Controllers\Api\RoutingSettingController;
 use App\Http\Controllers\Api\Settings\UserController;
 use App\Http\Controllers\Api\SmtpSettingController;
+use App\Http\Controllers\Api\StockController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -117,6 +118,20 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::post('/replenishment/history/import', [ReplenishmentController::class, 'importHistory']);
         Route::post('/replenishment/flags/{flag}/resolve', [ReplenishmentController::class, 'resolveFlag']);
     });
+    // Stock records: only the stock keepers (Logistics, Admin) write entries directly.
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
+        Route::get('/stock/levels', [StockController::class, 'levels']);
+    });
+    Route::middleware(['role:logistics,system_admin'])->group(function () {
+        Route::post('/stock/sync', [StockController::class, 'sync']);
+        Route::get('/stock/conflicts', [StockController::class, 'conflicts']);
+        Route::get('/stock/verify', [StockController::class, 'verify']);
+    });
+    Route::middleware(['role:logistics'])->group(function () {
+        Route::post('/stock/conflicts/{conflict}/resolve', [StockController::class, 'resolveConflict']);
+        Route::post('/stock/counts', [StockController::class, 'storeCount']);
+    });
+
     Route::middleware(['role:system_admin'])->group(function () {
         Route::post('/replenishment/runs', [ReplenishmentController::class, 'run']);
         Route::post('/replenishment/runs/{run}/approve', [ReplenishmentController::class, 'approve']);

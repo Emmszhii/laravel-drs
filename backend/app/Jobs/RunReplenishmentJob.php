@@ -4,11 +4,12 @@ namespace App\Jobs;
 
 use App\Events\ReplenishmentRunUpdated;
 use App\Models\ReplenishmentRun;
-use App\Models\Resource;
 use App\Models\ResourceType;
 use App\Models\VedPolicy;
 use App\Services\Replenishment\QuarterHistory;
 use App\Services\Replenishment\ReplenishmentServiceClient;
+use App\Services\Stock\Reservations;
+use App\Services\Stock\StockLedger;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -29,15 +30,13 @@ class RunReplenishmentJob implements ShouldQueue
     {
     }
 
-    public function handle(QuarterHistory $history, ReplenishmentServiceClient $client): void
+    public function handle(QuarterHistory $history, ReplenishmentServiceClient $client, StockLedger $ledger): void
     {
         $use = $history->build($this->run->year, $this->run->quarter)['use'];
         $policies = VedPolicy::all()->keyBy('ved_class');
-        $stock = Resource::query()
-            ->selectRaw('resource_type_id, SUM(quantity_available) AS on_hand, SUM(quantity_reserved) AS reserved')
-            ->groupBy('resource_type_id')
-            ->get()
-            ->keyBy('resource_type_id');
+        // On hand is the sum of stock entries; reserved is what approved requests still hold.
+        $onHand = $ledger->levels()->groupBy('resource_type_id')->map(fn ($rows) => $rows->sum('quantity'));
+        $reserved = Reservations::heldByItem();
 
         $payload = [
             'rule' => $this->run->rule,
@@ -47,8 +46,8 @@ class RunReplenishmentJob implements ShouldQueue
             'm' => (int) $policies->max('coverage_m'),
             'items' => ResourceType::orderBy('name')->get()->map(fn (ResourceType $t) => [
                 'id' => $t->id,
-                'q' => (int) ($stock[$t->id]->on_hand ?? 0),
-                'reserved' => (int) ($stock[$t->id]->reserved ?? 0),
+                'q' => max(0, (int) ($onHand[$t->id] ?? 0)),
+                'reserved' => (int) ($reserved[$t->id] ?? 0),
                 'unit_cost' => $t->unit_cost,
                 'space_per_unit' => $t->space_per_unit,
                 'weight' => $policies[$t->ved_class]->weight,

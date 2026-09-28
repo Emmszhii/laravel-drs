@@ -87,8 +87,11 @@ class ReplenishmentTest extends TestCase
     {
         $this->fakeSolver();
         $food = $this->food();
-        Resource::factory()->create(['depot_id' => Depot::factory()->create()->id, 'resource_type_id' => $food->id,
-            'quantity_available' => 150, 'quantity_reserved' => 20]);
+        $depot = Depot::factory()->create();
+        // On hand comes from the stock entries, not the old aggregate row.
+        app(\App\Services\Stock\StockLedger::class)->record(['resource_type_id' => $food->id, 'depot_id' => $depot->id, 'quantity' => 150, 'reason' => 'receipt'], null);
+        Resource::factory()->create(['depot_id' => $depot->id, 'resource_type_id' => $food->id,
+            'quantity_available' => 999, 'quantity_reserved' => 20]);
         foreach (['2025-01-10', '2025-04-10', '2025-07-10', '2025-10-10'] as $i => $date) {
             $this->line($food, $date, 100 + $i);
         }

@@ -16,6 +16,7 @@ const navItems = [
   { href: "/", label: "Dashboard", roles: [...STAFF_ROLES, "viewer"] },
   { href: "/incidents", label: "Incidents", roles: STAFF_ROLES },
   { href: "/replenishment", label: "Replenishment", roles: STAFF_ROLES },
+  { href: "/stock", label: "Stock", roles: STAFF_ROLES },
   { href: "/resources", label: "Resources", roles: STAFF_ROLES },
   { href: "/requests", label: "Requests", roles: STAFF_ROLES },
   { href: "/depots", label: "Depots", roles: STAFF_ROLES },
@@ -25,6 +26,7 @@ const navItems = [
 
 const systemAdminNavItems = [
   { href: "/replenishment", label: "Replenishment" },
+  { href: "/stock", label: "Stock" },
   { href: "/reports", label: "Reports" },
   { href: "/settings/users", label: "Settings" },
 ];

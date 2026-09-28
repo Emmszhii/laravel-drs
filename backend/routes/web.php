@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\ResourceInventoryController;
 use App\Http\Controllers\Web\RoutingSettingsController;
 use App\Http\Controllers\Web\Settings\UsersController;
 use App\Http\Controllers\Web\SmtpSettingsController;
+use App\Http\Controllers\Web\StockController;
 use Illuminate\Support\Facades\Route;
 
 // Unauthenticated, safe-fields-only view — the "Public users" tier from the
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::get('/dispatch', [DispatchController::class, 'index'])->name('dispatch.index');
         Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index'])->name('evacuation-centers.index');
         Route::get('/replenishment', [ReplenishmentController::class, 'index'])->name('replenishment.index');
+        Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
     });
 
     // Matches the `run-optimization` permission holders (RoleSeeder) — was
