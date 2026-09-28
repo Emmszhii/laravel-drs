@@ -9,43 +9,64 @@
     table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
     th, td { border: 1px solid #ccc; padding: 4px 6px; text-align: left; }
     th { background: #eee; }
+    td.num { text-align: right; }
+    .fingerprint { font-family: DejaVu Sans Mono, monospace; font-size: 9px; word-break: break-all; }
+    .bad { color: #b00020; font-weight: bold; }
 </style>
 </head>
 <body>
-    <h1>Inventory Burn-Rate &amp; Reorder Report</h1>
+    <h1>Quarterly Burn-Rate &amp; Reorder Report — {{ $year }} Q{{ $quarter }}</h1>
     <p class="meta">
-        Generated {{ $generated_at->toDayDateTimeString() }}<br>
-        Suggested reorder quantities are advisory only — Logistics staff still makes the final call, the same
-        as the office's existing quarterly stock-review practice.
+        CDRRMO San Pablo City · Generated {{ $generated_at->toDayDateTimeString() }}<br>
+        @if ($plan)
+            Purchase plan approved by the Head of Office{{ $plan['approved_at'] ? ' on ' . $plan['approved_at']->toFormattedDateString() : '' }}:
+            budget ₱{{ number_format($plan['budget'], 2) }}, spends ₱{{ number_format($plan['spent'] ?? 0, 2) }}.
+            Recommendations only; purchases go through GSO bidding under RA 12009.
+        @else
+            No purchase plan has been approved for this quarter yet.
+        @endif
     </p>
 
     <table>
         <thead>
             <tr>
-                <th>Depot</th>
-                <th>Resource type</th>
-                <th>Available</th>
+                <th>Item</th>
+                <th>On hand</th>
                 <th>Reserved</th>
-                <th>Avg. quarterly consumption</th>
-                <th>Suggested reorder</th>
-                <th>Note</th>
+                <th>Burn rate / quarter</th>
+                <th>Quarters of cover</th>
+                <th>Target</th>
+                <th>Reorder</th>
+                <th>Reason</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($rows as $row)
             <tr>
-                <td>{{ $row['depot'] }}</td>
-                <td>{{ $row['resource_type'] }}</td>
-                <td>{{ $row['quantity_available'] }}</td>
-                <td>{{ $row['quantity_reserved'] }}</td>
-                <td>{{ $row['avg_quarterly_consumption'] }}</td>
-                <td>{{ $row['suggested_reorder'] }}</td>
-                <td>{{ $row['note'] ?? '—' }}</td>
+                <td>{{ $row['resource_type'] }} ({{ $row['unit'] }})</td>
+                <td class="num">{{ $row['on_hand'] }}</td>
+                <td class="num">{{ $row['reserved'] }}</td>
+                <td class="num">{{ $row['burn_rate'] }}</td>
+                <td class="num">{{ $row['quarters_of_cover'] ?? '—' }}</td>
+                <td class="num">{{ $row['target'] ?? '—' }}</td>
+                <td class="num">{{ $row['reorder'] ?? '—' }}</td>
+                <td>{{ $row['reason'] ?? '—' }}</td>
             </tr>
             @empty
-            <tr><td colspan="7">No resources on record yet.</td></tr>
+            <tr><td colspan="8">No items on record yet.</td></tr>
             @endforelse
         </tbody>
     </table>
+
+    <p>
+        Stock records fingerprint (latest entry, SHA-256):<br>
+        <span class="fingerprint">{{ $fingerprint }}</span><br>
+        @if ($records_ok)
+            "Check records" passed when this report was generated.
+        @else
+            <span class="bad">"Check records" FAILED when this report was generated.</span>
+        @endif
+        Keep this copy: a chain rebuilt later would no longer match the fingerprint printed here.
+    </p>
 </body>
 </html>

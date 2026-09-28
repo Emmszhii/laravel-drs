@@ -90,8 +90,10 @@ class ReplenishmentTest extends TestCase
         $depot = Depot::factory()->create();
         // On hand comes from the stock entries, not the old aggregate row.
         app(\App\Services\Stock\StockLedger::class)->record(['resource_type_id' => $food->id, 'depot_id' => $depot->id, 'quantity' => 150, 'reason' => 'receipt'], null);
-        Resource::factory()->create(['depot_id' => $depot->id, 'resource_type_id' => $food->id,
-            'quantity_available' => 999, 'quantity_reserved' => 20]);
+        // Reserved is what approved request lines still hold.
+        $ics = \App\Models\IcsRequest::create(['requesting_division' => 'ERT', 'date' => '2025-12-01', 'purpose' => 'relief', 'status' => 'draft']);
+        $line = $ics->lines()->create(['resource_type_id' => $food->id, 'quantity_requested' => 20]);
+        \App\Models\Reservation::create(['request_line_id' => $line->id, 'resource_type_id' => $food->id, 'depot_id' => $depot->id, 'quantity' => 20]);
         foreach (['2025-01-10', '2025-04-10', '2025-07-10', '2025-10-10'] as $i => $date) {
             $this->line($food, $date, 100 + $i);
         }
@@ -166,11 +168,11 @@ class ReplenishmentTest extends TestCase
     public function test_dashboard_page_shows_each_role_only_its_own_actions(): void
     {
         $this->actingAs($this->admin())->get('/replenishment')->assertOk()
-            ->assertInertia(fn ($page) => $page->component('Replenishment/Index')->where('can', ['run' => true, 'encode' => false]));
+            ->assertInertia(fn ($page) => $page->component('Replenishment/Index')->where('can', ['run' => true, 'encode' => false, 'export' => true]));
         $this->actingAs($this->logistics())->get('/replenishment')->assertOk()
-            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => true]));
+            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => true, 'export' => true]));
         $this->actingAs(User::factory()->create(['role' => 'research_planning']))->get('/replenishment')->assertOk()
-            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => false]));
+            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => false, 'export' => true]));
     }
 
     public function test_an_unexplained_spike_blocks_the_run_until_logistics_resolves_it(): void

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\DirectionsController;
 use App\Http\Controllers\Api\DisasterFeedSettingController;
 use App\Http\Controllers\Api\DispatchController;
 use App\Http\Controllers\Api\EvacuationCenterController;
+use App\Http\Controllers\Api\IcsRequestController;
 use App\Http\Controllers\Api\IncidentController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReplenishmentController;
@@ -119,6 +120,31 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::post('/replenishment/history/import', [ReplenishmentController::class, 'importHistory']);
         Route::post('/replenishment/flags/{flag}/resolve', [ReplenishmentController::class, 'resolveFlag']);
     });
+    // ICS 213-RR requests and borrowed equipment (system-spec.md §6): requesters file,
+    // only the Admin approves or rejects, Logistics releases and runs the logbook.
+    Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
+        Route::get('/ics-requests', [IcsRequestController::class, 'index']);
+        Route::get('/borrows', [IcsRequestController::class, 'borrows']);
+    });
+    Route::middleware(['role:logistics,ert,operations,incident_management,system_admin'])->group(function () {
+        Route::post('/ics-requests', [IcsRequestController::class, 'store']);
+        Route::post('/ics-requests/{ics}/submit', [IcsRequestController::class, 'submit']);
+        Route::post('/ics-requests/{ics}/cancel', [IcsRequestController::class, 'cancel']);
+    });
+    Route::middleware(['role:system_admin'])->group(function () {
+        Route::post('/ics-requests/{ics}/approve', [IcsRequestController::class, 'approve']);
+        Route::post('/ics-requests/{ics}/reject', [IcsRequestController::class, 'reject']);
+    });
+    Route::middleware(['role:logistics'])->group(function () {
+        Route::post('/ics-requests/{ics}/release', [IcsRequestController::class, 'release']);
+        Route::post('/ics-requests/{ics}/close', [IcsRequestController::class, 'close']);
+        Route::post('/borrows/{borrow}/status', [IcsRequestController::class, 'borrowStatus']);
+    });
+
+    Route::middleware(['role:logistics,research_planning,system_admin'])->group(function () {
+        Route::get('/replenishment/report', [ReplenishmentController::class, 'report']);
+    });
+
     // Stock records: only the stock keepers (Logistics, Admin) write entries directly.
     Route::middleware(['role:incident_management,ert,logistics,operations,research_planning,admin_training,system_admin'])->group(function () {
         Route::get('/stock/levels', [StockController::class, 'levels']);

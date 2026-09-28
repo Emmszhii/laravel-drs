@@ -3,6 +3,7 @@
 namespace App\Services\Replenishment;
 
 use App\Models\HistoryLine;
+use App\Models\IcsRequestLine;
 use Illuminate\Support\Carbon;
 
 /**
@@ -21,9 +22,28 @@ class QuarterHistory
      */
     public function build(int $year, int $quarter): array
     {
-        $lines = HistoryLine::query()
-            ->where('date', '<', Carbon::create($year, ($quarter - 1) * 3 + 1, 1)->toDateString())
+        $before = Carbon::create($year, ($quarter - 1) * 3 + 1, 1)->toDateString();
+        $encoded = HistoryLine::query()
+            ->where('date', '<', $before)
             ->get(['resource_type_id', 'date', 'quantity_requested', 'quantity_released', 'event_tag']);
+
+        // Requests filed in the system feed back as new history, so the multipliers and
+        // scenarios update every quarter. Released counts only once a request is closed.
+        $live = IcsRequestLine::query()
+            ->join('app_ics_requests as r', 'r.id', '=', 'app_ics_request_lines.ics_request_id')
+            ->whereNotIn('r.status', ['draft', 'cancelled'])
+            ->where('r.date', '<', $before)
+            ->get(['app_ics_request_lines.resource_type_id', 'r.date', 'app_ics_request_lines.quantity_requested',
+                'app_ics_request_lines.quantity_released', 'r.event_tag', 'r.status'])
+            ->map(fn ($l) => (object) [
+                'resource_type_id' => $l->resource_type_id,
+                'date' => Carbon::parse($l->date),
+                'quantity_requested' => (int) $l->quantity_requested,
+                'quantity_released' => $l->status === 'closed' ? (int) $l->quantity_released : null,
+                'event_tag' => $l->event_tag,
+            ]);
+
+        $lines = $encoded->toBase()->merge($live);
 
         if ($lines->isEmpty()) {
             return ['quarters' => [], 'use' => [], 'tagged' => [], 'event_quarters' => [], 'stockout_quarters' => []];

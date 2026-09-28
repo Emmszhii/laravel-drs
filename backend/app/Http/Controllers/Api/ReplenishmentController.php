@@ -15,7 +15,11 @@ use App\Services\Replenishment\DataChecks;
 use App\Services\Replenishment\HistoryImporter;
 use App\Services\Replenishment\QuarterHistory;
 use App\Services\Replenishment\ReplenishmentServiceClient;
+use App\Services\Reports\InventoryBurnRateCsvExporter;
+use App\Services\Reports\InventoryBurnRateReportBuilder;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -136,6 +140,24 @@ class ReplenishmentController extends Controller
         ]);
 
         return response()->json($backtest, 201);
+    }
+
+    /** Quarterly burn-rate and reorder report, PDF or CSV, with the latest fingerprint printed. */
+    public function report(Request $request, InventoryBurnRateReportBuilder $builder): SymfonyResponse
+    {
+        $data = $request->validate([
+            'year' => ['nullable', 'integer', 'between:2020,2100'],
+            'quarter' => ['nullable', 'integer', 'between:1,4'],
+            'format' => ['nullable', 'in:pdf,csv'],
+        ]);
+        $report = $builder->build($data['year'] ?? null, $data['quarter'] ?? null);
+        $name = "burn-rate-reorder-{$report['year']}-q{$report['quarter']}";
+
+        if (($data['format'] ?? 'pdf') === 'csv') {
+            return response()->streamDownload(fn () => app(InventoryBurnRateCsvExporter::class)->stream($report), "{$name}.csv", ['Content-Type' => 'text/csv']);
+        }
+
+        return Pdf::loadView('reports.inventory-burn-rate', $report)->download("{$name}.pdf");
     }
 
     public function latestBacktest(): JsonResponse

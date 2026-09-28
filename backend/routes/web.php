@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\DepotController;
 use App\Http\Controllers\Web\DisasterFeedSettingsController;
 use App\Http\Controllers\Web\DispatchController;
 use App\Http\Controllers\Web\EvacuationCenterController;
+use App\Http\Controllers\Web\IcsRequestController;
 use App\Http\Controllers\Web\IncidentController;
 use App\Http\Controllers\Web\OptimizationController;
 use App\Http\Controllers\Web\PublicDashboardController;
@@ -38,6 +39,8 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index'])->name('evacuation-centers.index');
         Route::get('/replenishment', [ReplenishmentController::class, 'index'])->name('replenishment.index');
         Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
+        Route::get('/ics-requests', [IcsRequestController::class, 'index'])->name('ics-requests.index');
+        Route::get('/ics-requests/borrowed', [IcsRequestController::class, 'borrowed'])->name('ics-requests.borrowed');
     });
 
     // Matches the `run-optimization` permission holders (RoleSeeder) — was

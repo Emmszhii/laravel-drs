@@ -15,7 +15,7 @@ type Props = {
   backtest: Backtest | null;
   policies: VedPolicy[];
   defaults: { year: number; quarter: number; budget: number | null };
-  can: { run: boolean; encode: boolean };
+  can: { run: boolean; encode: boolean; export: boolean };
 };
 
 const peso = (n: number) => `₱${Math.round(n).toLocaleString("en-PH")}`;
@@ -91,6 +91,22 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
 
         <aside className="space-y-6">
           {can.encode && <HistoryUpload onDone={reload} />}
+          {can.export && (
+            <section className="space-y-2 border border-white/10 p-4 text-sm">
+              <h2 className="font-semibold uppercase">Quarterly report</h2>
+              <p className="text-xs text-[var(--text-secondary)]">
+                Burn rate, cover and the approved reorder per item, with the stock records' latest fingerprint printed.
+              </p>
+              <div className="flex gap-3">
+                {(["pdf", "csv"] as const).map((f) => (
+                  <a key={f} className="underline hover:text-[var(--amber)]"
+                    href={`/api/replenishment/report?format=${f}&year=${run?.year ?? defaults.year}&quarter=${run?.quarter ?? defaults.quarter}`}>
+                    Download {f.toUpperCase()}
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
           <section>
             <h2 className="mb-2 text-sm font-semibold uppercase">Runs</h2>
             <ul className="divide-y divide-white/10 border border-white/10 text-sm">

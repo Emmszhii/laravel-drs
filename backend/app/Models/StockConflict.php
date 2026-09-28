@@ -16,7 +16,7 @@ class StockConflict extends Model
 
     protected $table = 'app_stock_conflicts';
 
-    protected $fillable = ['stock_entry_id', 'reason', 'detail', 'status', 'resolution_note', 'resolution_entry_id', 'resolved_by', 'resolved_at'];
+    protected $fillable = ['stock_entry_id', 'request_line_id', 'reason', 'detail', 'status', 'resolution_note', 'resolution_entry_id', 'resolved_by', 'resolved_at'];
 
     protected $casts = ['resolved_at' => 'datetime'];
 
