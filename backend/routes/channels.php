@@ -19,3 +19,8 @@ Broadcast::channel('eoc-dashboard', function ($user) {
         ? ['id' => $user->id, 'name' => $user->name]
         : false;
 });
+
+// Public channel: any authenticated user can listen for replenishment run updates.
+Broadcast::channel('replenishment', function ($user) {
+    return $user !== null;
+});

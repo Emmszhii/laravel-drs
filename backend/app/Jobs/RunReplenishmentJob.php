@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\ReplenishmentRunUpdated;
 use App\Models\ReplenishmentRun;
 use App\Models\Resource;
 use App\Models\ResourceType;
@@ -60,8 +61,15 @@ class RunReplenishmentJob implements ShouldQueue
 
         try {
             $result = $client->solve($payload);
+            if ($result['status'] !== 'infeasible') {
+                $curve = $client->budgetCurve($payload);
+                $result['budget_curve'] = $curve['points'];
+                $result['next_step'] = $curve['next_step'];
+            }
         } catch (Throwable $e) {
             $this->run->update(['status' => 'failed', 'error' => mb_substr($e->getMessage(), 0, 250)]);
+            // Live refresh is best-effort: a Reverb outage must not fail the run.
+            rescue(fn () => ReplenishmentRunUpdated::dispatch($this->run));
 
             return;
         }
@@ -71,5 +79,7 @@ class RunReplenishmentJob implements ShouldQueue
             'error' => $result['status'] === 'infeasible' ? 'No feasible order.' : null,
             'result' => $result,
         ]);
+        // Live refresh is best-effort: a Reverb outage must not fail the run.
+        rescue(fn () => ReplenishmentRunUpdated::dispatch($this->run));
     }
 }

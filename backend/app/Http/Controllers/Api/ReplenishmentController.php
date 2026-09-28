@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\ReplenishmentRunUpdated;
 use App\Http\Controllers\Controller;
 use App\Jobs\RunReplenishmentJob;
 use App\Models\DataCheckFlag;
@@ -103,6 +104,7 @@ class ReplenishmentController extends Controller
                 'decision_comment' => $request->input('comment'),
             ]);
         });
+        rescue(fn () => ReplenishmentRunUpdated::dispatch($run));
 
         return response()->json($run);
     }
@@ -118,6 +120,7 @@ class ReplenishmentController extends Controller
             'decided_at' => now(),
             'decision_comment' => $data['comment'],
         ]);
+        rescue(fn () => ReplenishmentRunUpdated::dispatch($run));
 
         return response()->json($run);
     }

@@ -14,3 +14,9 @@ def solve(payload: ReplenishmentRequest) -> ReplenishmentResponse:
     approves or rejects the run in the backend. No database access here.
     """
     return replenishment.solve(payload)
+
+
+@router.post("/budget-curve")
+def budget_curve(payload: ReplenishmentRequest) -> dict:
+    """Same payload as /solve; returns 11 {budget, expected_shortage} points and the next-P10,000 diff."""
+    return replenishment.budget_curve(payload)

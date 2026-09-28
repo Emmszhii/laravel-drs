@@ -15,6 +15,7 @@ const STAFF_ROLES = ["incident_management", "ert", "logistics", "operations", "r
 const navItems = [
   { href: "/", label: "Dashboard", roles: [...STAFF_ROLES, "viewer"] },
   { href: "/incidents", label: "Incidents", roles: STAFF_ROLES },
+  { href: "/replenishment", label: "Replenishment", roles: STAFF_ROLES },
   { href: "/resources", label: "Resources", roles: STAFF_ROLES },
   { href: "/requests", label: "Requests", roles: STAFF_ROLES },
   { href: "/depots", label: "Depots", roles: STAFF_ROLES },
@@ -23,6 +24,7 @@ const navItems = [
 ];
 
 const systemAdminNavItems = [
+  { href: "/replenishment", label: "Replenishment" },
   { href: "/reports", label: "Reports" },
   { href: "/settings/users", label: "Settings" },
 ];
@@ -45,7 +47,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   const visibleNavItems = [
     ...navItems.filter((item) => item.roles.some((role) => hasRole(role))),
     ...(isSystemAdmin ? systemAdminNavItems : []),
-  ];
+  ].filter((item, i, all) => all.findIndex((other) => other.href === item.href) === i);
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)]">

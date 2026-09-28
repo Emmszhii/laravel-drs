@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             DisasterDataSeeder::class,
+            ReplenishmentDemoSeeder::class,
         ]);
 
         // WithoutModelEvents (above) suppresses User::booted()'s auto-sync

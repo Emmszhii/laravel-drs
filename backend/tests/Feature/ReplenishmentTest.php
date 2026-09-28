@@ -49,7 +49,9 @@ class ReplenishmentTest extends TestCase
 
     private function fakeSolver(): void
     {
-        Http::fake(['*/api/v1/replenishment/solve' => Http::response([
+        Http::fake([
+            '*/api/v1/replenishment/budget-curve' => Http::response(['points' => [['pct' => 100, 'budget' => 1, 'expected_shortage' => 0, 'status' => 'optimal']], 'next_step' => ['amount' => 10000, 'changes' => []]]),
+            '*/api/v1/replenishment/solve' => Http::response([
             'status' => 'optimal', 'rule' => 'per_item_multiplier', 'orders' => [], 'objective' => 0,
             'spent' => 0, 'binding' => ['budget' => false, 'space' => false], 'space_modeled' => false, 'solve_ms' => 3,
         ])]);
@@ -65,8 +67,9 @@ class ReplenishmentTest extends TestCase
 
         $h = app(QuarterHistory::class)->build(2026, 1);
 
-        $this->assertSame([[2025, 1], [2025, 2], [2025, 3], [2025, 4]], $h['quarters']);
-        $this->assertSame([15, 0, 7, 0], $h['use'][$food->id]);
+        // 2025 Q2 had no line for this item (zero use); 2025 Q4 had no record for any item (not encoded).
+        $this->assertSame([[2025, 1], [2025, 2], [2025, 3]], $h['quarters']);
+        $this->assertSame([15, 0, 7], $h['use'][$food->id]);
     }
 
     public function test_only_the_admin_can_run_the_solver_and_logistics_only_encodes(): void
@@ -102,6 +105,34 @@ class ReplenishmentTest extends TestCase
             return $item['q'] === 150 && $item['reserved'] === 20 && $item['weight'] == 2 && $item['coverage_k'] === 7
                 && $item['history'] === [100, 101, 102, 103] && $item['unit_cost'] == 500;
         });
+    }
+
+    public function test_run_stores_the_budget_curve_and_next_step(): void
+    {
+        $this->fakeSolver();
+        $this->actingAs($this->admin())->postJson('/api/replenishment/runs', ['year' => 2026, 'quarter' => 1, 'budget' => 1])->assertStatus(202);
+
+        $result = ReplenishmentRun::sole()->result;
+        $this->assertSame(100, $result['budget_curve'][0]['pct']);
+        $this->assertSame(10000, $result['next_step']['amount']);
+    }
+
+    public function test_a_solver_outage_fails_the_run_instead_of_hanging(): void
+    {
+        Http::fake(['*' => Http::response('down', 503)]);
+        $this->actingAs($this->admin())->postJson('/api/replenishment/runs', ['year' => 2026, 'quarter' => 1, 'budget' => 1])->assertStatus(202);
+
+        $this->assertSame('failed', ReplenishmentRun::sole()->status);
+    }
+
+    public function test_dashboard_page_shows_each_role_only_its_own_actions(): void
+    {
+        $this->actingAs($this->admin())->get('/replenishment')->assertOk()
+            ->assertInertia(fn ($page) => $page->component('Replenishment/Index')->where('can', ['run' => true, 'encode' => false]));
+        $this->actingAs($this->logistics())->get('/replenishment')->assertOk()
+            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => true]));
+        $this->actingAs(User::factory()->create(['role' => 'research_planning']))->get('/replenishment')->assertOk()
+            ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => false]));
     }
 
     public function test_an_unexplained_spike_blocks_the_run_until_logistics_resolves_it(): void

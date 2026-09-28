@@ -266,3 +266,75 @@ export interface DisasterFeedSettingsData {
   last_run_created_count: number;
   last_run_updated_count: number;
 }
+
+// --- Quarterly replenishment (backend/docs/system-spec.md §3-4) ---
+
+export interface ReplenishmentOrder {
+  id: string;
+  x: number;
+  target: number | null;
+  shortfall: number;
+  shortfall_pct: number;
+  reason: string;
+  basis: "multiplier" | "limited_history" | "given" | "no_history" | "no_unit_cost";
+  multiplier: number | null;
+}
+
+export interface BudgetCurvePoint {
+  pct: number;
+  budget: number;
+  expected_shortage: number;
+  status: string;
+}
+
+export interface ReplenishmentResult {
+  status: "optimal" | "feasible" | "infeasible";
+  rule: string;
+  orders: ReplenishmentOrder[];
+  objective: number;
+  spent: number;
+  binding: { budget: boolean; space: boolean };
+  space_modeled: boolean;
+  solve_ms: number;
+  budget_curve?: BudgetCurvePoint[];
+  next_step?: {
+    amount: number;
+    changes: { id: string; delta_x: number; shortfall_pct_before: number; shortfall_pct_after: number }[];
+  };
+}
+
+export type ReplenishmentRunStatus = "queued" | "completed" | "failed" | "approved" | "rejected" | "superseded";
+
+export interface ReplenishmentRun {
+  id: string;
+  year: number;
+  quarter: number;
+  budget: number;
+  rule: string;
+  status: ReplenishmentRunStatus;
+  result: ReplenishmentResult | null;
+  error: string | null;
+  decided_at: string | null;
+  decision_comment: string | null;
+  created_at: string;
+}
+
+export interface DataCheckFlag {
+  id: string;
+  rule: string;
+  resource_type_id: string;
+  resource_type?: { id: string; name: string };
+  year: number;
+  quarter: number;
+  detail: string;
+  status: "open" | "confirmed" | "corrected";
+}
+
+export interface VedPolicy {
+  ved_class: "V" | "E" | "D";
+  coverage_k: number;
+  coverage_m: number;
+  weight: number;
+  confirmed_by_position: string | null;
+  confirmed_at: string | null;
+}

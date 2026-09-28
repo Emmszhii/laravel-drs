@@ -126,5 +126,29 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
     )
 
 
+def budget_curve(req: ReplenishmentRequest) -> dict:
+    """
+    Re-solves at 11 budget levels, 50%-150% of the entered budget in 10% steps
+    (the expected shortage can never rise as the budget rises, since a larger
+    budget can always buy the smaller budget's orders), and diffs the solution
+    at B against B + P10,000 for the "next P10,000 goes to" view.
+    """
+    points = []
+    for pct in range(50, 151, 10):
+        budget = req.budget * pct / 100
+        res = solve(req.model_copy(update={"budget": budget}))
+        points.append({"pct": pct, "budget": round(budget, 2), "expected_shortage": res.objective, "status": res.status})
+
+    base = solve(req)
+    more = solve(req.model_copy(update={"budget": req.budget + NEXT_STEP}))
+    next_step = [{"id": a.id, "delta_x": b.x - a.x, "shortfall_pct_before": a.shortfall_pct, "shortfall_pct_after": b.shortfall_pct}
+                 for a, b in zip(base.orders, more.orders) if b.x != a.x]
+
+    return {"points": points, "next_step": {"amount": NEXT_STEP, "changes": next_step}}
+
+
+NEXT_STEP = 10_000
+
+
 def _ms(started: float) -> int:
     return int((time.perf_counter() - started) * 1000)

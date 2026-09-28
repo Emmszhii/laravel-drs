@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app.models.replenishment import ReplenishmentItem, ReplenishmentRequest
 from app.solvers.replenishment import (
-    BUDGET_RAN_OUT, FULLY_COVERED, SET_MANUALLY, STOCK_COVERS, covering_level, item_target, solve,
+    BUDGET_RAN_OUT, FULLY_COVERED, SET_MANUALLY, STOCK_COVERS, budget_curve, covering_level, item_target, solve,
 )
 from main import app
 
@@ -108,6 +108,28 @@ def test_budget_never_exceeded_and_money_left_only_when_targets_met():
         short = [o for o in res.orders if o.shortfall > 0]
         if short:  # leftover must be too small to buy one more unit of anything still short
             assert budget - res.spent < min(cost[o.id] for o in short)
+
+
+def test_budget_curve_has_11_levels_and_never_rises():
+    curve = budget_curve(worked_example())
+    pts = curve["points"]
+    assert [p["pct"] for p in pts] == list(range(50, 151, 10))
+    assert pts[5]["budget"] == 200_000
+    shortages = [p["expected_shortage"] for p in pts]
+    assert all(b <= a + 1e-9 for a, b in zip(shortages, shortages[1:]))
+    assert shortages[-1] == round(3 / 480, 6)  # P300,000 is P1,500 (3 food packs) short of the P301,500 full cost
+    assert curve["next_step"]["changes"] == [
+        {"id": "food", "delta_x": 20, "shortfall_pct_before": 42.3, "shortfall_pct_after": 38.1}]
+
+
+def test_budget_curve_never_rises_on_random_instances():
+    rng = random.Random(11)
+    for _ in range(10):
+        items = [ReplenishmentItem(id=str(i), q=rng.randint(0, 50), unit_cost=rng.choice([15, 40, 120, 500]),
+                                   weight=rng.choice([1, 2, 3]), target=rng.randint(0, 150)) for i in range(8)]
+        pts = budget_curve(ReplenishmentRequest(budget=rng.randint(1_000, 30_000), items=items))["points"]
+        vals = [p["expected_shortage"] for p in pts]
+        assert all(b <= a + 1e-9 for a, b in zip(vals, vals[1:]))
 
 
 def test_endpoint_round_trip():

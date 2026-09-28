@@ -8,6 +8,7 @@ use App\Http\Controllers\Web\EvacuationCenterController;
 use App\Http\Controllers\Web\IncidentController;
 use App\Http\Controllers\Web\OptimizationController;
 use App\Http\Controllers\Web\PublicDashboardController;
+use App\Http\Controllers\Web\ReplenishmentController;
 use App\Http\Controllers\Web\ReportController;
 use App\Http\Controllers\Web\ResourceInventoryController;
 use App\Http\Controllers\Web\RoutingSettingsController;
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index'])->name('depots.index');
         Route::get('/dispatch', [DispatchController::class, 'index'])->name('dispatch.index');
         Route::get('/evacuation-centers', [EvacuationCenterController::class, 'index'])->name('evacuation-centers.index');
+        Route::get('/replenishment', [ReplenishmentController::class, 'index'])->name('replenishment.index');
     });
 
     // Matches the `run-optimization` permission holders (RoleSeeder) — was
