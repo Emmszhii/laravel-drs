@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Events\ReplenishmentRunUpdated;
+use App\Models\Depot;
 use App\Models\ReplenishmentRun;
 use App\Models\ResourceType;
 use App\Models\VedPolicy;
@@ -30,6 +31,14 @@ class RunReplenishmentJob implements ShouldQueue
     {
     }
 
+    /** Total free space across the depots (one V), or null while any depot is unmeasured. */
+    public static function freeSpace(): ?float
+    {
+        $space = Depot::pluck('free_space');
+
+        return $space->isEmpty() || $space->contains(null) ? null : (float) $space->sum();
+    }
+
     public function handle(QuarterHistory $history, ReplenishmentServiceClient $client, StockLedger $ledger): void
     {
         $use = $history->build($this->run->year, $this->run->quarter)['use'];
@@ -41,8 +50,9 @@ class RunReplenishmentJob implements ShouldQueue
         $payload = [
             'rule' => $this->run->rule,
             'budget' => $this->run->budget,
-            // ponytail: depot space stays off until Logistics measures it (system-spec.md §4.5).
-            'free_space' => null,
+            // Depot space is modeled only once every depot's free space is measured (system-spec.md §4.5);
+            // the solver also needs every item's space_per_unit before it turns the limit on.
+            'free_space' => self::freeSpace(),
             'm' => (int) $policies->max('coverage_m'),
             'items' => ResourceType::orderBy('name')->get()->map(fn (ResourceType $t) => [
                 'id' => $t->id,

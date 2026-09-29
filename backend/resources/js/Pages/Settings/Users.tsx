@@ -122,7 +122,7 @@ const userFields: FieldDef<AdminUser>[] = [
   { key: "is_active", label: "Active", type: "checkbox", defaultValue: true },
   {
     key: "is_system_admin",
-    label: "System admin (Settings, user management, routing)",
+    label: "Head of Office (Admin: full access, final approval)",
     type: "checkbox",
     defaultValue: false,
   },

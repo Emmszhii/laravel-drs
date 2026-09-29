@@ -6,7 +6,7 @@ import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { resourceTypesService } from "@/api-service/modules/resourceTypes";
 import { usePermission } from "@/Hooks/use-permissions";
-import { ResourcesTabs, TypeCard, typeColumns, typeFields } from "./shared";
+import { TypeCard, typeColumns, typeFields } from "./shared";
 import type { ResourceType } from "@/Types/models";
 
 function ResourcesTypesIndex() {
@@ -20,13 +20,13 @@ function ResourcesTypesIndex() {
   return (
     <div>
       <div className="flex items-center justify-between border-b border-white/10 px-6">
-        <ResourcesTabs />
+        <h1 className="py-3 text-lg font-semibold uppercase">Items</h1>
         {canManage && (
           <Button
             className="my-2"
             onClick={() => setTypeModal({ mode: "create" })}
           >
-            + Add type
+            + Add item
           </Button>
         )}
       </div>
@@ -49,10 +49,10 @@ function ResourcesTypesIndex() {
           onClose={() => setTypeModal(null)}
           title={
             typeModal.mode === "create"
-              ? "Add resource type"
-              : "Edit resource type"
+              ? "Add item"
+              : "Edit item"
           }
-          submitLabel="Save type"
+          submitLabel="Save item"
           fields={typeFields}
           mode={typeModal.mode}
           row={typeModal.row}

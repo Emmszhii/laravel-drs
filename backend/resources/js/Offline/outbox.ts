@@ -1,35 +1,16 @@
-import { getDb, type OutboxItem, type OutboxItemKind } from "./db";
-
-/** Queues a write for later sync — used when a create fails while offline. */
-export async function enqueue(
-  kind: OutboxItemKind,
-  payload: Record<string, unknown>,
-  disasterId?: string,
-): Promise<OutboxItem> {
-  const db = await getDb();
-  const item: OutboxItem = {
-    clientRef: crypto.randomUUID(),
-    kind,
-    payload,
-    disasterId,
-    status: "pending",
-    createdAt: Date.now(),
-  };
-  await db.put("outbox", item);
-
-  return item;
-}
+import { getDb, type OutboxItem } from "./db";
 
 /**
  * Pending items, plus any left `syncing` when the browser closed mid-upload —
  * those would otherwise never retry. Re-sending is safe: every item carries
- * its clientRef as an idempotency key the server deduplicates on.
+ * its clientRef as an idempotency key the server deduplicates on. Items left
+ * from older app versions (not stock) are ignored; syncOutbox() discards them.
  */
 export async function listPending(): Promise<OutboxItem[]> {
   const db = await getDb();
   const items = await db.getAll("outbox");
 
-  return items.filter((i) => i.status !== "failed").sort((a, b) => a.createdAt - b.createdAt);
+  return items.filter((i) => i.kind === "stock" && i.status !== "failed").sort((a, b) => a.createdAt - b.createdAt);
 }
 
 /** Queues a stock entry; its clientRef is the device-made ID the server deduplicates on. */
@@ -82,7 +63,6 @@ async function setStatus(
   await db.put("outbox", item);
 }
 
-export const markSyncing = (clientRef: string) => setStatus(clientRef, "syncing");
 export const markPending = (clientRef: string) => setStatus(clientRef, "pending");
 export const markFailed = (clientRef: string, error: string) =>
   setStatus(clientRef, "failed", error);

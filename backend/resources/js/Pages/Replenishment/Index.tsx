@@ -90,6 +90,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
         </div>
 
         <aside className="space-y-6">
+          {can.run && <VedPolicyForm policies={policies} onDone={() => router.reload({ only: ["policies"] })} />}
           {can.encode && <HistoryUpload onDone={reload} />}
           {can.export && (
             <section className="space-y-2 border border-white/10 p-4 text-sm">
@@ -436,6 +437,69 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
         </>
       )}
     </section>
+  );
+}
+
+/** Admin: confirm (or edit) Table 4's coverage and weight per VED class, recording who confirmed it and when. */
+function VedPolicyForm({ policies, onDone }: { policies: VedPolicy[]; onDone: () => void }) {
+  const [rows, setRows] = useState(policies.map((p) => ({ ...p })));
+  const [position, setPosition] = useState(policies.find((p) => p.confirmed_by_position)?.confirmed_by_position ?? "");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [busy, setBusy] = useState(false);
+
+  const set = (i: number, key: "coverage_k" | "coverage_m" | "weight", value: string) =>
+    setRows(rows.map((r, j) => (j === i ? { ...r, [key]: Number(value) } : r)));
+
+  const save = async (e: FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      for (const r of rows) {
+        await http.patch(`/api/replenishment/policies/${r.ved_class}`, {
+          coverage_k: r.coverage_k, coverage_m: r.coverage_m, weight: r.weight,
+          confirmed_by_position: position, confirmed_at: date,
+        });
+      }
+      toast.success("VED policy confirmed.");
+    } catch (err) {
+      toast.error(errorMessage(err));
+    } finally {
+      setBusy(false);
+      onDone();
+    }
+  };
+
+  const field = "w-full border border-white/20 bg-transparent px-1.5 py-1 text-sm";
+
+  return (
+    <form onSubmit={save} className="space-y-2 border border-white/10 p-4 text-sm">
+      <h2 className="text-sm font-semibold uppercase">VED policy</h2>
+      <p className="text-xs text-[var(--text-secondary)]">Coverage (k of the last M quarters) and weight per class.</p>
+      <div className="grid grid-cols-[24px_1fr_1fr_1fr] items-center gap-2 text-xs text-[var(--text-secondary)]">
+        <span />
+        <span>k</span>
+        <span>M</span>
+        <span>Weight</span>
+        {rows.map((r, i) => [
+          <span key={`${r.ved_class}-c`} className="font-semibold text-[var(--text-primary)]">{r.ved_class}</span>,
+          <input key={`${r.ved_class}-k`} className={field} type="number" min={1} max={r.coverage_m} required value={r.coverage_k} onChange={(e) => set(i, "coverage_k", e.target.value)} />,
+          <input key={`${r.ved_class}-m`} className={field} type="number" min={1} max={12} required value={r.coverage_m} onChange={(e) => set(i, "coverage_m", e.target.value)} />,
+          <input key={`${r.ved_class}-w`} className={field} type="number" min={0.1} step="0.1" required value={r.weight} onChange={(e) => set(i, "weight", e.target.value)} />,
+        ])}
+      </div>
+      <label className="block text-xs uppercase text-[var(--text-secondary)]">Confirmed by (position)
+        <input className={field} required value={position} placeholder="e.g. Logistics Officer" onChange={(e) => setPosition(e.target.value)} />
+      </label>
+      <label className="block text-xs uppercase text-[var(--text-secondary)]">Date confirmed
+        <input className={field} type="date" required value={date} onChange={(e) => setDate(e.target.value)} />
+      </label>
+      <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Confirm policy"}</Button>
+      {policies[0]?.confirmed_at && (
+        <p className="text-xs text-[var(--text-secondary)]">
+          Last confirmed {policies[0].confirmed_at.slice(0, 10)} by {policies[0].confirmed_by_position}.
+        </p>
+      )}
+    </form>
   );
 }
 

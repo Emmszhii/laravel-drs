@@ -17,8 +17,7 @@ class Depot extends Model
         'name',
         'address',
         'status',
-        'lat',
-        'lng',
+        'free_space',
         'contact_first_name',
         'contact_last_name',
         'contact_email',
@@ -26,12 +25,11 @@ class Depot extends Model
     ];
 
     protected $casts = [
-        'lat' => 'float',
-        'lng' => 'float',
+        'free_space' => 'float', // m³; only used when depot space is modeled (system-spec.md §4.5)
     ];
 
-    public function resources(): HasMany
+    public function stockEntries(): HasMany
     {
-        return $this->hasMany(Resource::class);
+        return $this->hasMany(StockEntry::class);
     }
 }

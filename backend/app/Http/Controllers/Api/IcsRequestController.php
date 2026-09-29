@@ -14,7 +14,8 @@ use Illuminate\Validation\Rule;
  * ICS 213-RR requests and the borrowed-equipment logbook (system-spec.md §6).
  * Requesters (Logistics, ERT, Operations, Incident Management) file; only the
  * Admin approves or rejects; Logistics releases, closes, and records what
- * happens to borrowed items. Nobody approves their own request.
+ * happens to borrowed items. The Admin can do all of it, including approving
+ * a request they filed.
  */
 class IcsRequestController extends Controller
 {
@@ -68,7 +69,6 @@ class IcsRequestController extends Controller
 
     public function approve(Request $request, IcsRequest $ics): JsonResponse
     {
-        abort_if($ics->requested_by === $request->user()->id, 403, 'You cannot approve your own request.');
         $data = $request->validate([
             'lines' => ['required', 'array'],
             'lines.*.quantity_approved' => ['required', 'integer', 'min:0'],
@@ -82,7 +82,6 @@ class IcsRequestController extends Controller
 
     public function reject(Request $request, IcsRequest $ics): JsonResponse
     {
-        abort_if($ics->requested_by === $request->user()->id, 403, 'You cannot reject your own request.');
         $data = $request->validate(['reason' => ['required', 'string', 'max:2000']]);
         $this->workflow->reject($ics, $data['reason'], $request->user()->id);
 

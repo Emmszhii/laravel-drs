@@ -6,87 +6,36 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
+/**
+ * The 6 CDRRMO San Pablo City functional divisions confirmed by the
+ * 2026-09-03 stakeholder interview, plus `viewer` for unassigned accounts.
+ *
+ * The backend gates routes by `users.role` (EnsureUserHasRole), not by these
+ * permissions; they only drive the frontend's `can()` (Hooks/use-permissions.ts).
+ * The Admin (`is_system_admin`, the Head of Office) gets every permission
+ * (User::toInertiaPayload) and passes every role check.
+ */
 class RoleSeeder extends Seeder
 {
     public function run(): void
     {
-        $permissions = [
-            'view-dashboard',
-            'view-incidents',
-            'view-requests',
-            'manage-incidents',
-            'manage-depots',
-            'manage-requests',
-            'approve-requests',
-            'manage-evacuation-centers',
-            'run-optimization',
-            'manage-routing-settings',
-            'system-configuration',
-        ];
-
-        foreach ($permissions as $permission) {
+        foreach (['view-dashboard', 'manage-depots'] as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
 
-        // The 6 CDRRMO San Pablo City functional divisions confirmed by the
-        // 2026-09-03 stakeholder interview (see CLAUDE.md), plus `viewer` for
-        // unassigned/minimal accounts. `admin_training` also gets
-        // `system-configuration` by default (Admin & Training is the closest
-        // real-world equivalent to "runs the office's systems"), but the
-        // canonical way to grant system-configuration/Settings access is the
-        // separate `users.is_system_admin` flag (see EnsureUserHasRole),
-        // which any user can be granted independent of role.
         $rolePermissions = [
             'viewer' => ['view-dashboard'],
-            // Frontline Emergency Response Team: read access, plus managing
-            // evacuation centers during a response.
-            'ert' => ['view-dashboard', 'view-incidents', 'view-requests', 'manage-evacuation-centers'],
-            // Logistics: the office's resource/inventory division — owns
-            // depot stock and request approval (ICS 213-RR sign-off).
-            'logistics' => [
-                'view-dashboard',
-                'view-incidents',
-                'view-requests',
-                'manage-depots',
-                'manage-requests',
-                'approve-requests',
-            ],
-            'incident_management' => [
-                'view-dashboard',
-                'view-incidents',
-                'view-requests',
-                'manage-incidents',
-                'manage-requests',
-                'run-optimization',
-            ],
-            'operations' => [
-                'view-dashboard',
-                'view-incidents',
-                'view-requests',
-                'manage-incidents',
-                'manage-evacuation-centers',
-                'run-optimization',
-            ],
-            // Research and Planning: reporting/analytics, mostly read-only.
-            'research_planning' => ['view-dashboard', 'view-incidents', 'view-requests'],
-            'admin_training' => [
-                'view-dashboard',
-                'view-incidents',
-                'view-requests',
-                'manage-incidents',
-                'manage-depots',
-                'manage-requests',
-                'approve-requests',
-                'manage-evacuation-centers',
-                'run-optimization',
-                'manage-routing-settings',
-                'system-configuration',
-            ],
+            'ert' => ['view-dashboard'],
+            'logistics' => ['view-dashboard'],
+            'incident_management' => ['view-dashboard'],
+            'operations' => ['view-dashboard'],
+            'research_planning' => ['view-dashboard'],
+            // Admin and Training keeps the item catalog and depot list.
+            'admin_training' => ['view-dashboard', 'manage-depots'],
         ];
 
         foreach ($rolePermissions as $roleName => $rolePerms) {
-            $role = Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web']);
-            $role->syncPermissions($rolePerms);
+            Role::firstOrCreate(['name' => $roleName, 'guard_name' => 'web'])->syncPermissions($rolePerms);
         }
     }
 }

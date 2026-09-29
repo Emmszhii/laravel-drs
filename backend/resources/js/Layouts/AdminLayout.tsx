@@ -1,42 +1,21 @@
 import { PropsWithChildren } from "react";
 import { Link, usePage } from "@inertiajs/react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
-import { DispatchTicker } from "@/Components/DispatchTicker";
 import { NotificationBell } from "@/Components/NotificationBell";
-import { usePermission } from "@/Hooks/use-permissions";
 import { OfflineBanner } from "@/Components/OfflineBanner";
 
-// Roles allowed to reach each link — mirrors the `role:` middleware groups
-// in routes/web.php exactly, so the sidebar never shows a link that would
-// 403 when clicked. "system_admin" is a synthetic entry checked separately
-// below via is_system_admin (see EnsureUserHasRole), not a real Spatie role.
-const STAFF_ROLES = ["incident_management", "ert", "logistics", "operations", "research_planning", "admin_training"];
-
+// Every role can open these pages (routes/web.php); what each role can do on
+// them comes from the page's own `can` props. Settings is Admin only.
 const navItems = [
-  { href: "/", label: "Dashboard", roles: [...STAFF_ROLES, "viewer"] },
-  { href: "/incidents", label: "Incidents", roles: STAFF_ROLES },
-  { href: "/replenishment", label: "Replenishment", roles: STAFF_ROLES },
-  { href: "/stock", label: "Stock", roles: STAFF_ROLES },
-  { href: "/ics-requests", label: "ICS 213-RR", roles: STAFF_ROLES },
-  { href: "/resources", label: "Resources", roles: STAFF_ROLES },
-  { href: "/requests", label: "Requests", roles: STAFF_ROLES },
-  { href: "/depots", label: "Depots", roles: STAFF_ROLES },
-  { href: "/dispatch", label: "Dispatch", roles: STAFF_ROLES },
-  { href: "/evacuation-centers", label: "Evacuation", roles: STAFF_ROLES },
-];
-
-const systemAdminNavItems = [
   { href: "/replenishment", label: "Replenishment" },
   { href: "/stock", label: "Stock" },
   { href: "/ics-requests", label: "ICS 213-RR" },
-  { href: "/reports", label: "Reports" },
-  { href: "/settings/users", label: "Settings" },
+  { href: "/resources/types", label: "Items" },
+  { href: "/depots", label: "Depots" },
 ];
 
 /**
- * Sidebar shell for admin/developer roles — mirrors the design prototype's
- * `.gnav` (Dashboard/Incidents/Resources/Depots/Reports/Settings). Non-admin
- * roles keep the plain AppLayout instead; see Dashboard.tsx's `.layout`.
+ * Sidebar shell used by every page.
  *
  * Below `md`, the vertical sidebar collapses into a horizontally scrollable
  * top tab bar (active indicator moves from a left border to a bottom
@@ -46,12 +25,8 @@ const systemAdminNavItems = [
 export default function AdminLayout({ children }: PropsWithChildren) {
   const page = usePage();
   const { url } = page;
-  const { hasRole } = usePermission();
   const isSystemAdmin = Boolean((page.props as { auth?: { user?: { is_system_admin?: boolean } | null } }).auth?.user?.is_system_admin);
-  const visibleNavItems = [
-    ...navItems.filter((item) => item.roles.some((role) => hasRole(role))),
-    ...(isSystemAdmin ? systemAdminNavItems : []),
-  ].filter((item, i, all) => all.findIndex((other) => other.href === item.href) === i);
+  const visibleNavItems = isSystemAdmin ? [...navItems, { href: "/settings/users", label: "Settings" }] : navItems;
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)]">
@@ -68,12 +43,11 @@ export default function AdminLayout({ children }: PropsWithChildren) {
         </div>
       </header>
       <OfflineBanner />
-      <DispatchTicker />
       <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         <nav className="flex shrink-0 flex-row overflow-x-auto border-b border-white/10 md:w-[180px] md:flex-col md:overflow-visible md:border-r md:border-b-0">
           <div className="flex flex-1 flex-row overflow-x-auto md:flex-col md:overflow-y-auto md:py-2">
             {visibleNavItems.map((item) => {
-              const active = item.href === "/" ? url === "/" : url.startsWith(item.href);
+              const active = url.startsWith(item.href.startsWith("/settings") ? "/settings" : item.href);
               return (
                 <Link
                   key={item.href}

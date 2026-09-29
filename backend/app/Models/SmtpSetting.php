@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * Single-row settings for admin-configurable outgoing SMTP. When not
  * enabled (or missing a host), all mail keeps using the env-sourced
  * defaults in config/mail.php — this only overrides them when explicitly
- * turned on, same "off by default, explicit opt-in" shape as RoutingSetting.
+ * turned on ("off by default, explicit opt-in").
  */
 class SmtpSetting extends Model
 {

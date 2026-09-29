@@ -123,12 +123,22 @@ class IcsRequestWorkflowTest extends TestCase
         $this->assertSame('approved', $b->fresh()->status); // flagged, not blocked
     }
 
-    public function test_nobody_approves_their_own_request(): void
+    public function test_admin_can_approve_and_release_their_own_request(): void
     {
         $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 5]], $this->admin);
+        $this->approve($r, [5]);
 
-        $this->actingAs($this->admin)->postJson("/api/ics-requests/{$r->id}/approve", ['lines' => [$r->lines[0]->id => ['quantity_approved' => 5, 'depot_id' => $this->depot->id]]])
-            ->assertForbidden();
+        $this->actingAs($this->admin)->postJson("/api/ics-requests/{$r->id}/release", ['quantities' => [$r->lines[0]->id => 5]])->assertOk();
+        $this->assertSame('closed', $r->fresh()->status);
+    }
+
+    public function test_requesters_cannot_approve_or_release(): void
+    {
+        $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 5]]);
+        $line = [$r->lines[0]->id => ['quantity_approved' => 5, 'depot_id' => $this->depot->id]];
+
+        $this->actingAs($this->ert)->postJson("/api/ics-requests/{$r->id}/approve", ['lines' => $line])->assertForbidden();
+        $this->actingAs($this->ert)->postJson("/api/ics-requests/{$r->id}/release", ['quantities' => [$r->lines[0]->id => 5]])->assertForbidden();
     }
 
     public function test_rejection_needs_a_reason_and_only_from_submitted(): void

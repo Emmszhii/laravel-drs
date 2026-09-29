@@ -1,17 +1,16 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 
-export type OutboxItemKind = "incident" | "area" | "request" | "stock";
+/** Only stock entries are queued now. Older app versions also queued
+ * incident/area/request items; syncOutbox() discards those, since their
+ * endpoints no longer exist. */
+export type OutboxItemKind = "stock";
 export type OutboxItemStatus = "pending" | "syncing" | "failed";
 
 export interface OutboxItem {
-  /** Also sent to the server as the idempotency `id` — see Api\RequestController::store()
-   * and Api\IncidentController::store()/storeArea(), which treat a repeat of the same
-   * client-supplied id as a no-op instead of creating a duplicate row. */
+  /** Also sent to the server as the stock entry's device-made ID, which it deduplicates on. */
   clientRef: string;
   kind: OutboxItemKind;
   payload: Record<string, unknown>;
-  /** Only set for `area` kind — the incident (disaster) id it belongs to. */
-  disasterId?: string;
   status: OutboxItemStatus;
   error?: string;
   createdAt: number;

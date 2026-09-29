@@ -2,8 +2,6 @@ import { Link, usePage } from "@inertiajs/react";
 
 const TABS = [
   { href: "/settings/users", label: "Users" },
-  { href: "/settings/routing", label: "Routing" },
-  { href: "/settings/disaster-feed", label: "Disaster feed" },
   { href: "/settings/smtp", label: "SMTP" },
 ];
 

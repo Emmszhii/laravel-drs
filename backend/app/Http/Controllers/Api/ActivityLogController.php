@@ -8,9 +8,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * Backs the header's dispatch-log ticker and notification bell — both read
- * the same `app_loggers` audit trail (see ActivityLogServiceProvider for the
- * audited-model allowlist), just rendered differently on the frontend.
+ * Backs the header's notification bell, which reads the `app_loggers` audit
+ * trail (see ActivityLogServiceProvider for the audited-model allowlist).
  */
 class ActivityLogController extends Controller
 {

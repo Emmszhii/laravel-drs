@@ -56,6 +56,22 @@ class ReplenishmentController extends Controller
         return response()->json($flag);
     }
 
+    /** Admin: edit a VED class's coverage and weight, recording who confirmed it and when (Table 4). */
+    public function updatePolicy(Request $request, VedPolicy $policy): JsonResponse
+    {
+        $data = $request->validate([
+            'coverage_m' => ['required', 'integer', 'min:1', 'max:12'],
+            'coverage_k' => ['required', 'integer', 'min:1', 'lte:coverage_m'],
+            'weight' => ['required', 'numeric', 'gt:0'],
+            'confirmed_by_position' => ['required', 'string', 'max:255'],
+            'confirmed_at' => ['required', 'date'],
+        ]);
+
+        $policy->update($data);
+
+        return response()->json($policy);
+    }
+
     public function runs(): JsonResponse
     {
         return response()->json(ReplenishmentRun::latest()->limit(50)->get()->makeHidden('inputs'));

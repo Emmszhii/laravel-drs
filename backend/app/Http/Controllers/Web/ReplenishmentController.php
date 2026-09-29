@@ -46,7 +46,7 @@ class ReplenishmentController extends Controller
             ],
             'can' => [
                 'run' => (bool) $user->is_system_admin,
-                'encode' => $user->role === 'logistics',
+                'encode' => $user->is_system_admin || $user->role === 'logistics',
                 'export' => $user->is_system_admin || in_array($user->role, ['logistics', 'research_planning'], true),
             ],
         ]);

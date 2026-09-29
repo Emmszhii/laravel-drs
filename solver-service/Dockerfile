@@ -2,7 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# ortools/pulp both need a C++ toolchain to build/run their bundled solvers
+# pulp may need a C++ toolchain to build/run its bundled CBC solver; curl is for the health check
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential curl \
     && rm -rf /var/lib/apt/lists/*

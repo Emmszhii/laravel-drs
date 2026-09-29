@@ -1,46 +1,41 @@
-import { FormEvent, useEffect, useState } from "react";
+import { useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
-import Modal from "../../Components/Common/Modal";
-import IncidentMap from "../../Components/Map/IncidentMap";
-import LocationPickMap from "../../Components/Map/LocationPickMap";
-import usePsgc from "../../Hooks/usePsgc";
-import { matchPsgcLocation } from "@/Utils/psgcLookup";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
-import { ApiError } from "@/api-service/client";
+import { FormModal } from "@/Components/form-modal/FormModal";
+import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { depotsService } from "@/api-service/modules/depots";
 import { usePermission } from "@/Hooks/use-permissions";
-import type { ColumnDef, CardActions } from "@/Components/table";
+import type { CardActions, ColumnDef, FieldDef } from "@/Components/table";
 import type { Depot } from "@/Types/models";
 
-const NO_INCIDENTS: never[] = [];
-
-const emptyForm = {
-  name: "",
-  status: "OPERATIONAL" as Depot["status"],
-  address: "",
-  lat: null as number | null,
-  lng: null as number | null,
-  contact_first_name: "",
-  contact_last_name: "",
-  contact_email: "",
-  contact_phone: "",
-};
+const STATUS_OPTIONS = [
+  { value: "OPERATIONAL", label: "Operational" },
+  { value: "LIMITED CAPACITY", label: "Limited capacity" },
+  { value: "OFFLINE", label: "Offline" },
+];
 
 const columns: ColumnDef<Depot>[] = [
   { key: "name", label: "Name" },
   { key: "address", label: "Address" },
+  { key: "status", label: "Status", filterable: true, type: "select", typeData: STATUS_OPTIONS },
+];
+
+const fields: FieldDef<Depot>[] = [
+  { key: "name", label: "Depot name", required: true, colSpan: 2 },
+  { key: "status", label: "Status", type: "select", required: true, defaultValue: "OPERATIONAL", options: STATUS_OPTIONS },
   {
-    key: "status",
-    label: "Status",
-    filterable: true,
-    type: "select",
-    typeData: [
-      { value: "OPERATIONAL", label: "Operational" },
-      { value: "LIMITED CAPACITY", label: "Limited capacity" },
-      { value: "OFFLINE", label: "Offline" },
-    ],
+    key: "free_space",
+    label: "Free space (m³, optional)",
+    type: "number",
+    helpText: "Depot space is modeled only when every depot and every item has a space figure.",
+    transform: (v) => (v === "" || v === undefined ? null : v),
   },
+  { key: "address", label: "Address", required: true, colSpan: 2, placeholder: "e.g. City Hall compound, San Pablo City" },
+  { key: "contact_first_name", label: "Contact first name" },
+  { key: "contact_last_name", label: "Contact last name" },
+  { key: "contact_phone", label: "Contact phone" },
+  { key: "contact_email", label: "Contact email", type: "email" },
 ];
 
 function DepotCard(row: Depot, actions: CardActions) {
@@ -68,7 +63,7 @@ function DepotCard(row: Depot, actions: CardActions) {
         </div>
       </div>
       <div className="mb-2.5 text-xs text-[var(--text-secondary)]">
-        {row.address}
+        {row.address} · {row.free_space != null ? `${row.free_space} m³ free` : "Free space not measured"}
       </div>
       <span className="inline-block bg-[var(--ok-dim,rgba(63,169,140,0.15))] px-2 py-0.5 font-mono text-xs text-[var(--ok,#3FA98C)]">
         {row.status}
@@ -80,113 +75,13 @@ function DepotCard(row: Depot, actions: CardActions) {
 function DepotsIndex() {
   const { can } = usePermission();
   const canManage = can("manage-depots");
-  const [mapDepots, setMapDepots] = useState<Depot[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editing, setEditing] = useState<Depot | null>(null);
-  const [form, setForm] = useState(emptyForm);
-  const [saving, setSaving] = useState(false);
-  const [saveError, setSaveError] = useState<string | null>(null);
-  const psgc = usePsgc();
-  const [region, setRegion] = useState("");
-  const [province, setProvince] = useState("");
-
-  const loadMap = () => {
-    depotsService.getAll().then(setMapDepots);
-  };
-
-  const applyPsgcMatch = async (municipality?: string, province?: string) => {
-    const match = await matchPsgcLocation(municipality, province);
-    if (!match) return;
-    setRegion(match.regionCode);
-    await psgc.loadProvinces(match.regionCode);
-    setProvince(match.provinceCode ?? "");
-  };
-
-  useEffect(loadMap, []);
-
-  const openCreate = () => {
-    setEditing(null);
-    setForm(emptyForm);
-    setRegion("");
-    setProvince("");
-    setSaveError(null);
-    psgc.reset();
-    setModalOpen(true);
-    psgc.loadRegions();
-  };
-
-  const openEdit = (row: Depot) => {
-    setEditing(row);
-    setForm({
-      name: row.name,
-      status: row.status,
-      address: row.address,
-      lat: row.lat,
-      lng: row.lng,
-      contact_first_name: row.contact_first_name ?? "",
-      contact_last_name: row.contact_last_name ?? "",
-      contact_email: row.contact_email ?? "",
-      contact_phone: row.contact_phone ?? "",
-    });
-    setRegion("");
-    setProvince("");
-    setSaveError(null);
-    psgc.reset();
-    setModalOpen(true);
-    psgc.loadRegions();
-  };
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
-    setSaveError(null);
-
-    if (!form.name.trim() || !form.address.trim()) {
-      setSaveError("Depot name and address are required.");
-      return;
-    }
-
-    setSaving(true);
-    try {
-      const payload = {
-        name: form.name,
-        status: form.status,
-        address: form.address,
-        lat: form.lat ?? 0,
-        lng: form.lng ?? 0,
-        contact_first_name: form.contact_first_name || undefined,
-        contact_last_name: form.contact_last_name || undefined,
-        contact_email: form.contact_email || undefined,
-        contact_phone: form.contact_phone || undefined,
-      };
-
-      if (editing) {
-        await depotsService.update(editing.id, payload);
-      } else {
-        await depotsService.create(payload);
-      }
-
-      setModalOpen(false);
-      loadMap();
-    } catch (err) {
-      setSaveError(
-        err instanceof ApiError
-          ? err.message
-          : "Failed to save depot. Please try again.",
-      );
-    } finally {
-      setSaving(false);
-    }
-  };
+  const [modal, setModal] = useState<{ mode: "create" | "edit"; row?: Depot } | null>(null);
 
   return (
     <div>
-      <div className="h-[300px] border-b border-white/10 relative z-10">
-        <IncidentMap incidents={NO_INCIDENTS} depots={mapDepots} />
-      </div>
-
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
         <h1 className="text-lg font-semibold uppercase">Depots</h1>
-        {canManage && <Button onClick={openCreate}>+ Add depot</Button>}
+        {canManage && <Button onClick={() => setModal({ mode: "create" })}>+ Add depot</Button>}
       </div>
 
       <div className="p-6">
@@ -197,180 +92,28 @@ function DepotsIndex() {
           renderCard={DepotCard}
           editPermission="manage-depots"
           deletePermission="manage-depots"
-          onEditRow={openEdit}
-          onDelete={() => loadMap()}
+          onEditRow={(row) => setModal({ mode: "edit", row })}
         />
       </div>
 
-      <Modal
-        open={modalOpen}
-        title={editing ? "Edit depot" : "Add depot"}
-        onClose={() => setModalOpen(false)}
-        footer={
-          <>
-            <Button variant="ghost" onClick={() => setModalOpen(false)}>
-              Cancel
-            </Button>
-            <Button onClick={submit} disabled={saving}>
-              {saving ? "Saving…" : editing ? "Save changes" : "Add depot"}
-            </Button>
-          </>
-        }
-      >
-        <form onSubmit={submit} className="flex flex-col gap-3">
-          {saveError && (
-            <p className="border border-critical bg-[var(--bg-void)] px-3 py-2 text-xs text-critical">
-              {saveError}
-            </p>
-          )}
-          <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-              Depot name
-            </label>
-            <input
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="input"
-            />
-          </div>
-
-          <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-              Status
-            </label>
-            <select
-              value={form.status}
-              onChange={(e) =>
-                setForm({ ...form, status: e.target.value as Depot["status"] })
-              }
-              className="input"
-            >
-              <option value="OPERATIONAL">Operational</option>
-              <option value="LIMITED CAPACITY">Limited capacity</option>
-              <option value="OFFLINE">Offline</option>
-            </select>
-          </div>
-
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Region
-              </label>
-              <select
-                value={region}
-                onChange={(e) => {
-                  setRegion(e.target.value);
-                  setProvince("");
-                  psgc.loadProvinces(e.target.value);
-                }}
-                className="input"
-              >
-                <option value="">Select region…</option>
-                {psgc.regions.map((r) => (
-                  <option key={r.code} value={r.code}>
-                    {r.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Province
-              </label>
-              <select
-                value={province}
-                onChange={(e) => {
-                  setProvince(e.target.value);
-                  psgc.loadCities(e.target.value);
-                }}
-                className="input"
-              >
-                <option value="">Select province…</option>
-                {psgc.provinces.map((p) => (
-                  <option key={p.code} value={p.code}>
-                    {p.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-              Address
-            </label>
-            <input
-              value={form.address}
-              onChange={(e) => setForm({ ...form, address: e.target.value })}
-              placeholder="e.g. Barangay Hall, City, Province"
-              className="input"
-            />
-          </div>
-
-          <LocationPickMap
-            lat={form.lat}
-            lng={form.lng}
-            address={form.address}
-            onChange={(lat, lng) => setForm((f) => ({ ...f, lat, lng }))}
-            onResolveAddress={(address) => setForm((f) => ({ ...f, address }))}
-            onResolvePsgc={applyPsgcMatch}
-          />
-
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Contact first name
-              </label>
-              <input
-                value={form.contact_first_name}
-                onChange={(e) =>
-                  setForm({ ...form, contact_first_name: e.target.value })
-                }
-                className="input"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Contact last name
-              </label>
-              <input
-                value={form.contact_last_name}
-                onChange={(e) =>
-                  setForm({ ...form, contact_last_name: e.target.value })
-                }
-                className="input"
-              />
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Contact phone
-              </label>
-              <input
-                value={form.contact_phone}
-                onChange={(e) =>
-                  setForm({ ...form, contact_phone: e.target.value })
-                }
-                className="input"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
-                Contact email
-              </label>
-              <input
-                type="email"
-                value={form.contact_email}
-                onChange={(e) =>
-                  setForm({ ...form, contact_email: e.target.value })
-                }
-                className="input"
-              />
-            </div>
-          </div>
-        </form>
-      </Modal>
+      {modal && (
+        <FormModal<Depot>
+          open
+          onClose={() => setModal(null)}
+          title={modal.mode === "create" ? "Add depot" : "Edit depot"}
+          submitLabel={modal.mode === "create" ? "Add depot" : "Save changes"}
+          fields={fields}
+          mode={modal.mode}
+          row={modal.row}
+          invalidateKeys={tableListInvalidateKeys("depots")}
+          mutationFn={async (payload) =>
+            modal.mode === "create"
+              ? depotsService.create(payload as Partial<Depot>)
+              : depotsService.update(modal.row!.id, payload as Partial<Depot>)
+          }
+          onSuccess={() => setModal(null)}
+        />
+      )}
     </div>
   );
 }

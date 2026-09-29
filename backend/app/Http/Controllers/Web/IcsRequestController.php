@@ -56,7 +56,7 @@ class IcsRequestController extends Controller
         return [
             'file' => $user->is_system_admin || in_array($user->role, ['logistics', 'ert', 'operations', 'incident_management'], true),
             'decide' => (bool) $user->is_system_admin,
-            'release' => $user->role === 'logistics',
+            'release' => $user->is_system_admin || $user->role === 'logistics',
             'userId' => $user->id,
         ];
     }

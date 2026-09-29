@@ -1,22 +1,6 @@
 import { http, ApiError } from "@/api-service";
-import { listPending, markSyncing, markFailed, markPending, remove } from "./outbox";
+import { listAll, listPending, markFailed, markPending, remove } from "./outbox";
 import type { OutboxItem } from "./db";
-
-async function postForItem(item: OutboxItem): Promise<void> {
-  const payload = { ...item.payload, id: item.clientRef };
-
-  switch (item.kind) {
-    case "incident":
-      await http.post("/api/incidents", payload);
-      return;
-    case "area":
-      await http.post(`/api/incidents/${item.disasterId}/areas`, payload);
-      return;
-    case "request":
-      await http.post("/api/requests", payload);
-      return;
-  }
-}
 
 type StockSyncResult = { device_id: string; status: "accepted" | "duplicate" | "deferred"; conflicts: string[] };
 
@@ -27,9 +11,9 @@ type StockSyncResult = { device_id: string; status: "accepted" | "duplicate" | "
  * never double counts. A `deferred` entry waits for its dependency and stays
  * queued for the next sync.
  */
-async function syncStock(items: OutboxItem[]): Promise<boolean> {
+async function syncStock(items: OutboxItem[]): Promise<void> {
   if (items.length === 0) {
-    return true;
+    return;
   }
 
   try {
@@ -44,50 +28,23 @@ async function syncStock(items: OutboxItem[]): Promise<boolean> {
         await remove(r.device_id);
       }
     }
-
-    return true;
   } catch (err) {
+    // A 4xx (validation failure, permission change since queuing) is terminal:
+    // mark the entries failed and show them rather than retrying forever.
     if (err instanceof ApiError && err.status >= 400 && err.status < 500 && err.status !== 419) {
       await Promise.all(items.map((i) => markFailed(i.clientRef, err.message)));
-
-      return true;
     }
-
-    return false; // still offline (or session expired): keep everything queued
+    // Otherwise still offline (or session expired): keep everything queued.
   }
 }
 
-/**
- * Processes every queued outbox item in order. A 4xx response (validation
- * failure, permission change since queuing) is terminal — the item is
- * marked `failed` and surfaced to the user rather than retried forever. A
- * network failure (still offline) leaves the item `pending` and stops the
- * loop, since later items would fail the same way.
- */
+/** Uploads the queued stock entries, and discards items older app versions queued for removed features. */
 export async function syncOutbox(): Promise<void> {
-  const pending = await listPending();
-
-  if (!(await syncStock(pending.filter((i) => i.kind === "stock")))) {
-    return;
-  }
-
-  for (const item of pending.filter((i) => i.kind !== "stock")) {
-    await markSyncing(item.clientRef);
-
-    try {
-      await postForItem(item);
+  for (const item of await listAll()) {
+    if ((item.kind as string) !== "stock") {
       await remove(item.clientRef);
-    } catch (err) {
-      if (err instanceof ApiError && err.status >= 400 && err.status < 500) {
-        await markFailed(item.clientRef, err.message);
-        continue;
-      }
-
-      // Network failure (still offline) — revert to pending so a later
-      // syncOutbox() call retries it, and stop: later items would fail the
-      // same way.
-      await markPending(item.clientRef);
-      break;
     }
   }
+
+  await syncStock(await listPending());
 }

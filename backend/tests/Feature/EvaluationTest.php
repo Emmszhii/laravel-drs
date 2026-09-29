@@ -57,10 +57,10 @@ class EvaluationTest extends TestCase
             // endpoint, method, roles allowed
             ['/api/replenishment/runs', 'post', ['admin']],
             ['/api/replenishment/backtest', 'post', ['admin']],
-            ['/api/replenishment/history/import', 'post', ['logistics']],
+            ['/api/replenishment/history/import', 'post', ['admin', 'logistics']],
             ['/api/stock/sync', 'post', ['admin', 'logistics']],
             ['/api/stock/verify', 'get', ['admin', 'logistics']],
-            ['/api/stock/counts', 'post', ['logistics']],
+            ['/api/stock/counts', 'post', ['admin', 'logistics']],
             ['/api/replenishment/report?format=csv', 'get', ['admin', 'logistics', 'rp']],
             ['/api/ics-requests', 'post', ['admin', 'logistics', 'ert', 'ops', 'im']],
             ['/api/replenishment/runs', 'get', array_keys($roles)],

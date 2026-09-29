@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Request;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -73,6 +74,7 @@ class User extends Authenticatable
      * Shape shared with the frontend as `auth.user` (see HandleInertiaRequests
      * and bootstrap/app.php's 404/429 renderers). Includes Spatie roles/
      * permissions so Hooks/use-permissions.ts's `can`/`hasRole` checks work.
+     * The Admin (Head of Office) gets every role and permission.
      */
     public function toInertiaPayload(): array
     {
@@ -83,8 +85,8 @@ class User extends Authenticatable
             'role' => $this->role,
             'is_active' => $this->is_active,
             'is_system_admin' => $this->is_system_admin,
-            'roles' => $this->getRoleNames()->all(),
-            'permissions' => $this->getAllPermissions()->pluck('name')->all(),
+            'roles' => $this->is_system_admin ? Role::pluck('name')->all() : $this->getRoleNames()->all(),
+            'permissions' => $this->is_system_admin ? Permission::pluck('name')->all() : $this->getAllPermissions()->pluck('name')->all(),
         ];
     }
 

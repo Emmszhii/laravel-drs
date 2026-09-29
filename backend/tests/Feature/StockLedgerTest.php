@@ -199,14 +199,4 @@ class StockLedgerTest extends TestCase
 
         $this->assertEqualsCanonicalizing(['count_mismatch', 'negative_stock'], DataCheckFlag::pluck('rule')->all());
     }
-
-    public function test_opening_balance_moves_old_stock_rows_into_the_ledger_once(): void
-    {
-        \App\Models\Resource::factory()->create(['resource_type_id' => $this->item->id, 'depot_id' => $this->depot->id, 'quantity_available' => 70]);
-
-        $this->artisan('stock:opening-balance')->assertExitCode(0);
-        $this->artisan('stock:opening-balance')->assertExitCode(1);
-
-        $this->assertSame(70, app(StockLedger::class)->level($this->item->id));
-    }
 }

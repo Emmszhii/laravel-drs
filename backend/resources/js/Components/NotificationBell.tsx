@@ -13,9 +13,8 @@ function getLastSeenId(): number {
 }
 
 /**
- * Header notification bell — same `app_loggers`-backed feed as
- * DispatchTicker, shown as a dropdown of "what changed" instead of a
- * marquee. Unread count is the number of entries newer than the last id the
+ * Header notification bell — the `app_loggers` audit feed, shown as a
+ * dropdown of "what changed". Unread count is the number of entries newer than the last id the
  * user acknowledged (persisted in localStorage, since these are shared
  * system events, not per-user rows to mark read server-side).
  */
