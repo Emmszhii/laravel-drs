@@ -1,8 +1,7 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 
-/** Only stock entries are queued now. Older app versions also queued
- * incident/area/request items; syncOutbox() discards those, since their
- * endpoints no longer exist. */
+/** Every offline record is a stock entry: receipts, releases, borrowed-item
+ * issues and returns (system-spec.md §5.1). */
 export type OutboxItemKind = "stock";
 export type OutboxItemStatus = "pending" | "syncing" | "failed";
 

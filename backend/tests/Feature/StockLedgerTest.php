@@ -86,7 +86,7 @@ class StockLedgerTest extends TestCase
     public function test_an_offline_return_syncs_after_its_offline_borrow_even_when_sent_first(): void
     {
         $borrowId = (string) Str::uuid();
-        $issue = $this->entry(-1, ['reason' => 'issue', 'borrow_id' => $borrowId, 'created_at_device' => now()->subMinutes(20)->toIso8601String()]);
+        $issue = $this->entry(-1, ['reason' => 'issue', 'borrower_name' => 'J. Dela Cruz', 'borrow_id' => $borrowId, 'created_at_device' => now()->subMinutes(20)->toIso8601String()]);
         $return = $this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId, 'depends_on_device_id' => $issue['device_id'],
             'created_at_device' => now()->subMinutes(30)->toIso8601String(), 'priority' => true]);
         $this->sync([$this->entry(5)]);
@@ -99,7 +99,7 @@ class StockLedgerTest extends TestCase
 
     public function test_a_return_whose_borrow_has_not_arrived_is_deferred_not_lost(): void
     {
-        $return = $this->entry(1, ['reason' => 'return', 'depends_on_device_id' => (string) Str::uuid()]);
+        $return = $this->entry(1, ['reason' => 'return', 'borrow_id' => (string) Str::uuid(), 'depends_on_device_id' => (string) Str::uuid()]);
 
         $this->sync([$return])->assertOk()->assertJsonPath('results.0.status', 'deferred');
         $this->assertSame(0, StockEntry::count());
@@ -108,7 +108,7 @@ class StockLedgerTest extends TestCase
     public function test_returning_an_item_twice_is_kept_and_flagged(): void
     {
         $borrowId = (string) Str::uuid();
-        $this->sync([$this->entry(1), $this->entry(-1, ['reason' => 'issue', 'borrow_id' => $borrowId])]);
+        $this->sync([$this->entry(1), $this->entry(-1, ['reason' => 'issue', 'borrower_name' => 'J. Dela Cruz', 'borrow_id' => $borrowId])]);
         $this->sync([$this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId])]);
         $this->sync([$this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId])])
             ->assertJsonPath('results.0.conflicts', ['return_not_issued']);

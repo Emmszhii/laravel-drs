@@ -318,7 +318,7 @@ The full cost is ₱301,500, leaving ₱101,500 unfunded. Expected results:
 ### 5.1 Client (PWA, offline-first)
 
 - Build with **vite-plugin-pwa**: a service worker caches the app and reference data after the first online login.
-- Keep an **outbox in IndexedDB (idb)**. Each entry made offline gets a **device-made ID**, a **creation time** and a **priority**.
+- Keep an **outbox in IndexedDB (idb)**. Each entry made offline gets a **device-made ID**, a **creation time** and a **priority**. Offline entries cover stock receipts, consumable releases, and borrowed-item releases and returns: the Stock, ICS 213-RR and borrowed-equipment pages open offline, a borrowed unit issued offline gets a device-made borrow ID, and its return depends on that issue. On sync the server applies a release or return to its request line and logbook; what online checks would refuse is kept and flagged (`release_not_approved`, `return_not_issued`).
 - Queued entries **survive closing and reopening the browser**.
 - **Sync order:** priority entries first, then by creation time. An entry that **depends on** another record syncs after it (e.g., a return after its borrow).
 - Sync triggers: Background Sync (Chromium), plus **retry on every app open and on reconnect**, because Background Sync is Chromium-only.
@@ -387,7 +387,7 @@ Also required:
 - **Database:** PostgreSQL, with a unique index on the device-made ID, and the stock-entry table plus its hash chain.
 - **Solver:** a FastAPI service with PuLP 2.8.0 and CBC. It **never touches the database**; the backend calls it through a **queued job** whenever the Admin runs the solver on the quarter's budget.
 - **Realtime:** Laravel Reverb (self-hosted WebSockets).
-- **Deploy:** Docker Compose on the office server (web, queue worker, scheduler, Reverb, solver, PostgreSQL), on a UPS (≥1,500 VA).
+- **Deploy:** Docker Compose on the office server (web, queue worker, scheduler, Reverb, solver, PostgreSQL), on a UPS (≥1,500 VA), served over **HTTPS** (browsers register the offline service worker only on a secure origin).
 - **Tests:** PHPUnit (backend) and pytest (solver).
 
 ### Typical quarterly cycle

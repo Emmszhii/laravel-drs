@@ -8,6 +8,7 @@ use App\Models\IcsRequestLine;
 use App\Models\Reservation;
 use App\Models\StatusChange;
 use App\Models\StockConflict;
+use App\Models\StockEntry;
 use App\Services\Stock\Reservations;
 use App\Services\Stock\StockLedger;
 use Illuminate\Support\Facades\DB;
@@ -125,16 +126,31 @@ class RequestWorkflow
                     }
                 }
 
-                $line->increment('quantity_released', $qty);
-                $line->reservation?->decrement('quantity', min($qty, $line->reservation->quantity));
+                $this->countReleased($line, $qty);
             }
 
-            $request->load('lines');
-            $done = $request->lines->every(fn ($l) => $l->quantity_released >= (int) $l->quantity_approved);
-            $this->move($request, ['approved', 'partially_released'], $done ? 'released' : 'partially_released', $userId);
-            if ($done) {
-                $this->close($request, $userId, 'Closed automatically: everything approved was released.');
-            }
+            $this->settle($request, $userId);
+        });
+    }
+
+    /**
+     * A release, borrowed-item issue or return recorded on a device (often offline) and synced
+     * through the stock outbox (system-spec.md §5). It goes through the ledger like any stock
+     * entry, so a re-upload is ignored and a return waits for its issue (depends_on_device_id).
+     * What the online checks would refuse (the request is no longer approved, more than is left,
+     * a unit that isn't out) is kept and flagged for Logistics: the items already moved.
+     *
+     * @param  array{reason: string, request_line_id?: ?string, borrow_id?: ?string, borrower_name?: ?string,
+     *   borrower_contact?: ?string, borrower_division?: ?string, property_number?: ?string}  $data  a validated sync entry
+     * @return array{status: 'accepted'|'duplicate'|'deferred', entry: ?StockEntry, conflicts: list<string>}
+     */
+    public function applyDeviceEntry(array $data, ?string $userId): array
+    {
+        return $this->ledger->append($data, $userId, fn (StockEntry $entry) => match (true) {
+            $entry->reason === 'issue' && $entry->borrow_id !== null => $this->deviceIssue($entry, $data, $userId),
+            $entry->reason === 'return' && $entry->borrow_id !== null => $this->deviceReturn($entry, $userId),
+            $entry->reason === 'release' && $entry->request_line_id !== null => $this->deviceRelease($entry, -$entry->quantity, $userId),
+            default => [],
         });
     }
 
@@ -191,6 +207,93 @@ class RequestWorkflow
         $this->ledger->record(['resource_type_id' => $line->resource_type_id, 'depot_id' => $line->depot_id, 'quantity' => -1,
             'reason' => 'issue', 'request_line_id' => $line->id, 'borrow_id' => $borrow->id], $userId);
         StatusChange::log('borrow', $borrow->id, null, 'issued', $userId);
+    }
+
+    /** @return list<string> */
+    private function deviceIssue(StockEntry $entry, array $data, ?string $userId): array
+    {
+        $line = $entry->request_line_id ? IcsRequestLine::with('request')->find($entry->request_line_id) : null;
+        Borrow::forceCreate([
+            'id' => $entry->borrow_id, // made on the device, so an offline return can point at it
+            'request_line_id' => $line?->id,
+            'resource_type_id' => $entry->resource_type_id,
+            'depot_id' => $entry->depot_id,
+            'property_number' => $data['property_number'] ?? null,
+            'borrower_division' => $data['borrower_division'] ?? $line?->request->requesting_division ?? 'Unspecified',
+            'borrower_name' => $data['borrower_name'],
+            'borrower_contact' => $data['borrower_contact'] ?? null,
+            'issued_at' => $entry->created_at_device,
+            'status' => 'issued',
+        ]);
+        StatusChange::log('borrow', $entry->borrow_id, null, 'issued', $userId);
+
+        return $line ? $this->deviceRelease($entry, 1, $userId) : [];
+    }
+
+    /** @return list<string> */
+    private function deviceReturn(StockEntry $entry, ?string $userId): array
+    {
+        $borrow = Borrow::find($entry->borrow_id);
+        if ($borrow && in_array('returned', self::BORROW_TRANSITIONS[$borrow->status] ?? [], true)) {
+            StatusChange::log('borrow', $borrow->id, $borrow->status, 'returned', $userId);
+            $borrow->update(['status' => 'returned']);
+
+            return [];
+        }
+        // A second return of the same unit is already flagged by the ledger (return_not_issued).
+        if ($borrow?->status === 'returned') {
+            return [];
+        }
+
+        return $this->flag($entry, 'return_not_issued', $borrow
+            ? "This unit is {$borrow->status}, so it cannot be returned."
+            : 'No borrowed item matches this return.');
+    }
+
+    /** Counts a device release against its approved line. @return list<string> */
+    private function deviceRelease(StockEntry $entry, int $qty, ?string $userId): array
+    {
+        $line = IcsRequestLine::with('request', 'reservation')->find($entry->request_line_id);
+        $request = $line?->request;
+        $left = $line ? (int) $line->quantity_approved - $line->quantity_released : 0;
+        if (! $request || ! in_array($request->status, ['approved', 'partially_released'], true) || $qty > $left) {
+            return $this->flag($entry, 'release_not_approved', $request
+                ? "Released {$qty}, but the request is {$request->status} with {$left} left to release."
+                : 'No request line matches this release.');
+        }
+
+        $this->countReleased($line, $qty);
+        $this->settle($request, $userId);
+
+        return [];
+    }
+
+    private function countReleased(IcsRequestLine $line, int $qty): void
+    {
+        $line->increment('quantity_released', $qty);
+        $line->reservation?->decrement('quantity', min($qty, $line->reservation->quantity));
+    }
+
+    /** Moves the request to partially released or released (which closes it) after a release. */
+    private function settle(IcsRequest $request, ?string $userId): void
+    {
+        $request->load('lines');
+        $done = $request->lines->every(fn ($l) => $l->quantity_released >= (int) $l->quantity_approved);
+        $to = $done ? 'released' : 'partially_released';
+        if ($request->status !== $to) {
+            $this->move($request, ['approved', 'partially_released'], $to, $userId);
+        }
+        if ($done) {
+            $this->close($request, $userId, 'Closed automatically: everything approved was released.');
+        }
+    }
+
+    /** @return list<string> */
+    private function flag(StockEntry $entry, string $reason, string $detail): array
+    {
+        StockConflict::create(['stock_entry_id' => $entry->id, 'reason' => $reason, 'detail' => $detail]);
+
+        return [$reason];
     }
 
     private function freeReservations(IcsRequest $request): void

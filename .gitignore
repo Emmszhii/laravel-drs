@@ -13,3 +13,6 @@ solver-service/.pytest_cache/
 Thumbs.db
 .idea/
 .vscode/
+
+# MCP browser session logs
+.playwright-mcp/

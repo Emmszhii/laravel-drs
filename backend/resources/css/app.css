@@ -25,7 +25,7 @@
   --text-secondary: #98a19b;
 }
 
-/* Light theme override — toggled via `useTheme()` (Hooks/use-theme.ts), values mirrored from backend/docs/disasterresource-design.html. */
+/* Light theme override — toggled via `useTheme()` (Hooks/use-theme.ts). */
 :root[data-theme="light"] {
   color-scheme: light;
   --bg-void: #f3f1ea;

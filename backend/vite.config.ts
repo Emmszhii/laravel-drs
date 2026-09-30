@@ -12,11 +12,10 @@ export default defineConfig({
     }),
     react(),
     // Offline-first scope is deliberately narrow: precache the app shell
-    // (JS/CSS) so a coordinator who already has the app open can keep
-    // logging incidents/requests through a cellular dropout (queued in
-    // IndexedDB, see resources/js/Offline/). No runtimeCaching rules are
-    // registered, so /api/* GET responses are never cached/served stale —
-    // this is not a general offline-browsing/read-cache feature.
+    // (JS/CSS) and the three pages where stock moves (Stock, ICS 213-RR,
+    // borrowed items), so Logistics keeps recording through an outage
+    // (queued in IndexedDB, see resources/js/Offline/). /api/* GET responses
+    // are never cached or served stale: this is not an offline read cache.
     //
     // Laravel serves no index.html, so the plugin's auto-injected register
     // script never loads: resources/js/app.tsx registers the worker itself,
@@ -44,9 +43,8 @@ export default defineConfig({
         ],
       },
       workbox: {
-        // App-shell precache only — no navigateFallback (this is a
-        // server-rendered Inertia app, not a client-routed SPA) and no
-        // runtimeCaching entries, so API responses are always fetched live.
+        // App-shell precache; no navigateFallback (this is a server-rendered
+        // Inertia app, not a client-routed SPA).
         globPatterns: ["**/*.{js,css,svg,ico}"],
         // Must be explicit: the plugin defaults to "index.html", which Laravel never builds, and
         // binding a route to a non-precached URL throws while the worker is evaluated.
@@ -58,15 +56,26 @@ export default defineConfig({
           }),
         ],
         inlineWorkboxRuntime: true,
-        // The one exception: the Stock page opens offline from its last
-        // online visit (items/depots embedded in the Inertia page props), so
-        // stock entries can be recorded into the IndexedDB outbox during an
-        // outage. NetworkFirst: always fresh when online.
         runtimeCaching: [
+          // These pages open offline from their last online visit (their data is in the
+          // Inertia page props), so entries can go into the outbox during an outage.
+          // NetworkFirst: always fresh when online.
           {
-            urlPattern: ({ request, url }) => request.mode === "navigate" && url.pathname === "/stock",
+            urlPattern: ({ request, url }) =>
+              request.mode === "navigate" && ["/stock", "/ics-requests", "/ics-requests/borrowed"].includes(url.pathname),
             handler: "NetworkFirst",
-            options: { cacheName: "stock-page", networkTimeoutSeconds: 4, expiration: { maxEntries: 1 } },
+            options: { cacheName: "offline-pages", networkTimeoutSeconds: 4, expiration: { maxEntries: 3 } },
+          },
+          // Background Sync (Chromium): an outbox upload that fails for lack of a
+          // connection is kept by the worker and replayed when the connection returns,
+          // even with the app closed. The app still retries on open and reconnect
+          // (Offline/sync.ts); the server ignores device-made IDs it already holds.
+          // ponytail: each failed retry queues another copy of the batch; harmless (deduplicated), trim if the queue grows.
+          {
+            urlPattern: ({ url }) => url.pathname === "/api/stock/sync",
+            method: "POST",
+            handler: "NetworkOnly",
+            options: { backgroundSync: { name: "stock-outbox", options: { maxRetentionTime: 7 * 24 * 60 } } },
           },
         ],
       },

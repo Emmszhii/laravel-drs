@@ -2,7 +2,7 @@
  * @file api-service/http.ts
  * Typed CRUD helper factory bound to a resource `baseUrl`, mirroring
  * BaseController's index / pagination-search / store / update / destroy
- * endpoint shape. Each concrete service (incidents.ts, depots.ts, ...) is a
+ * endpoint shape. Each concrete service (depots.ts, resourceTypes.ts, ...) is a
  * thin, strongly-typed binding on top of this.
  *
  * Update always sends a real POST — BaseController only registers

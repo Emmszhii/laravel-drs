@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\StockConflict;
 use App\Models\StockCount;
+use App\Services\Requests\RequestWorkflow;
 use App\Services\Stock\StockLedger;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,8 +23,10 @@ class StockController extends Controller
     /**
      * Idempotent batch upload from a device's offline outbox. Every entry answers
      * accepted | duplicate | deferred (its dependency hasn't arrived; retry later).
+     * Releases against a request line, borrowed-item issues and returns also update
+     * the request and the logbook (RequestWorkflow::applyDeviceEntry).
      */
-    public function sync(Request $request, StockLedger $ledger): JsonResponse
+    public function sync(Request $request, StockLedger $ledger, RequestWorkflow $workflow): JsonResponse
     {
         $data = $request->validate([
             'entries' => ['required', 'array', 'max:500'],
@@ -36,13 +39,19 @@ class StockController extends Controller
             'entries.*.device' => ['nullable', 'string', 'max:100'],
             'entries.*.priority' => ['boolean'],
             'entries.*.depends_on_device_id' => ['nullable', 'uuid'],
-            'entries.*.borrow_id' => ['nullable', 'uuid'],
+            'entries.*.borrow_id' => ['nullable', 'uuid', 'required_if:entries.*.reason,issue,return'],
+            'entries.*.request_line_id' => ['nullable', 'uuid'],
             'entries.*.event_tag' => ['nullable', 'string', 'max:100'],
+            // A borrowed-item issue carries its logbook details (personal data: Admin and Logistics only).
+            'entries.*.borrower_name' => ['nullable', 'string', 'max:150', 'required_if:entries.*.reason,issue'],
+            'entries.*.borrower_contact' => ['nullable', 'string', 'max:100'],
+            'entries.*.borrower_division' => ['nullable', 'string', 'max:100'],
+            'entries.*.property_number' => ['nullable', 'string', 'max:100'],
         ]);
 
         $results = [];
         foreach (StockLedger::syncOrder($data['entries']) as $entry) {
-            $r = $ledger->append($entry, $request->user()->id);
+            $r = $workflow->applyDeviceEntry($entry, $request->user()->id);
             $results[] = ['device_id' => $entry['device_id'], 'status' => $r['status'], 'seq' => $r['entry']?->seq, 'conflicts' => $r['conflicts']];
         }
 

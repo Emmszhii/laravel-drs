@@ -54,9 +54,10 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
     setQueued((await listAll()).filter((i) => i.kind === "stock"));
   }, []);
 
+  // Tried even while offline: the failed upload is what hands the batch to Background Sync.
   const syncNow = useCallback(async () => {
+    await syncOutbox();
     if (navigator.onLine) {
-      await syncOutbox();
       router.reload({ only: ["levels", "conflicts", "latestFingerprint"] });
     }
     await refreshQueue();

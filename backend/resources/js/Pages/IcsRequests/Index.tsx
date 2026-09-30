@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Button from "@/Components/Common/Button";
 import { http } from "@/api-service";
+import { enqueueStock } from "@/Offline/outbox";
+import { isNetworkError, syncOutbox } from "@/Offline/sync";
 import { IcsTabs, History, field, message, type Can, type StatusChange } from "./shared";
 
 type Item = { id: string; name: string; unit: string; is_consumable: boolean };
@@ -108,6 +110,27 @@ function RequestCard({ r, depots, available, can, onDone }: {
     onDone();
   };
 
+  // Online, the server checks the release at once; with no connection it is saved as
+  // stock entries in this device's outbox (one per consumable line, one per borrowed unit).
+  const releaseNow = async () => {
+    const quantities = Object.fromEntries(Object.entries(release).map(([k, v]) => [k, Number(v) || 0]));
+    try {
+      await http.post(`/api/ics-requests/${r.id}/release`, { quantities, ...borrower });
+      toast.success("Released. Stock entries recorded.");
+    } catch (err) {
+      if (!isNetworkError(err)) {
+        toast.error(message(err));
+      } else if (r.lines.some((l) => !l.resource_type.is_consumable && quantities[l.id] > 0) && !borrower.borrower_name.trim()) {
+        return toast.error("Borrowed equipment needs the borrower's name.");
+      } else {
+        await queueRelease(r, quantities, borrower);
+        setRelease({});
+        toast.success("Saved on this device. The release syncs when you're back online.");
+      }
+    }
+    onDone();
+  };
+
   return (
     <article className="border border-white/10">
       <button type="button" onClick={() => setOpen(!open)} className="flex w-full flex-wrap items-center justify-between gap-2 px-4 py-3 text-left hover:bg-white/5">
@@ -176,9 +199,7 @@ function RequestCard({ r, depots, available, can, onDone }: {
                       onChange={(e) => setBorrower({ ...borrower, borrower_contact: e.target.value })} />
                   </>
                 )}
-                <Button onClick={() => act("release", { quantities: Object.fromEntries(Object.entries(release).map(([k, v]) => [k, Number(v) || 0])), ...borrower }, "Released. Stock entries recorded.")}>
-                  Release
-                </Button>
+                <Button onClick={releaseNow}>Release</Button>
               </>
             )}
             {can.release && r.status === "partially_released" && (
@@ -195,6 +216,27 @@ function RequestCard({ r, depots, available, can, onDone }: {
       )}
     </article>
   );
+}
+
+// ponytail: the page keeps showing the pre-release numbers until it syncs; show queued releases here if that confuses users.
+async function queueRelease(r: IcsRequest, quantities: Record<string, number>, borrower: { borrower_name: string; borrower_contact: string }) {
+  for (const l of r.lines) {
+    const qty = quantities[l.id] ?? 0;
+    if (qty <= 0 || !l.depot_id) continue;
+    const base = { resource_type_id: l.resource_type_id, depot_id: l.depot_id, request_line_id: l.id, event_tag: r.event_tag };
+    if (l.resource_type.is_consumable) {
+      await enqueueStock({ ...base, quantity: -qty, reason: "release" });
+      continue;
+    }
+    // Each borrowed unit gets a device-made borrow ID, so it can be returned before it has synced.
+    for (let i = 0; i < qty; i++) {
+      await enqueueStock({
+        ...base, quantity: -1, reason: "issue", borrow_id: crypto.randomUUID(), label: l.resource_type.name,
+        borrower_name: borrower.borrower_name, borrower_contact: borrower.borrower_contact || null, borrower_division: r.requesting_division,
+      });
+    }
+  }
+  await syncOutbox();
 }
 
 function FileForm({ items, onDone }: { items: Item[]; onDone: () => void }) {

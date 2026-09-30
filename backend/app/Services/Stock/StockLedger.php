@@ -29,12 +29,14 @@ class StockLedger
      * @param  array{device_id: string, resource_type_id: string, depot_id: string, quantity: int, reason: string,
      *   created_at_device?: string|null, device?: string|null, priority?: bool, depends_on_device_id?: string|null,
      *   request_line_id?: string|null, borrow_id?: string|null, event_tag?: string|null}  $data
+     * @param  (callable(StockEntry): list<string>)|null  $then  runs inside the same lock and transaction once the
+     *   entry is accepted (never for a duplicate or deferred one); returns any extra conflict reasons
      * @return array{status: 'accepted'|'duplicate'|'deferred', entry: ?StockEntry, conflicts: list<string>}
      */
-    public function append(array $data, ?string $userId): array
+    public function append(array $data, ?string $userId, ?callable $then = null): array
     {
         // ponytail: one global lock serializes the chain; per-depot chains if write volume ever needs it.
-        return Cache::lock('stock-ledger-chain', 15)->block(15, fn () => DB::transaction(function () use ($data, $userId) {
+        return Cache::lock('stock-ledger-chain', 15)->block(15, fn () => DB::transaction(function () use ($data, $userId, $then) {
             if ($existing = StockEntry::where('device_id', $data['device_id'])->first()) {
                 return ['status' => 'duplicate', 'entry' => $existing, 'conflicts' => []];
             }
@@ -66,7 +68,9 @@ class StockLedger
             $entry->hash = self::fingerprint($entry);
             $entry->save();
 
-            return ['status' => 'accepted', 'entry' => $entry, 'conflicts' => $this->flagConflicts($entry)];
+            $extra = $then ? $then($entry) : [];
+
+            return ['status' => 'accepted', 'entry' => $entry, 'conflicts' => [...$this->flagConflicts($entry), ...$extra]];
         }));
     }
 

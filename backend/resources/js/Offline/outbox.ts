@@ -3,8 +3,7 @@ import { getDb, type OutboxItem } from "./db";
 /**
  * Pending items, plus any left `syncing` when the browser closed mid-upload —
  * those would otherwise never retry. Re-sending is safe: every item carries
- * its clientRef as an idempotency key the server deduplicates on. Items left
- * from older app versions (not stock) are ignored; syncOutbox() discards them.
+ * its clientRef as an idempotency key the server deduplicates on.
  */
 export async function listPending(): Promise<OutboxItem[]> {
   const db = await getDb();

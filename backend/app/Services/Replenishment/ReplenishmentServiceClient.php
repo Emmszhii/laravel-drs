@@ -5,8 +5,8 @@ namespace App\Services\Replenishment;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Calls the solver-service's /api/v1/replenishment endpoints. Unlike the
- * old allocation client there is no fallback: a failed solve fails the run,
+ * Calls the solver-service's /api/v1/replenishment endpoints.
+ * There is no fallback: a failed solve fails the run,
  * and the Admin re-runs it.
  */
 class ReplenishmentServiceClient

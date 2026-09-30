@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Services\Replenishment\QuarterHistory;
 use App\Services\Stock\StockLedger;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 /**
@@ -187,6 +188,49 @@ class IcsRequestWorkflowTest extends TestCase
         $this->actingAs($this->logistics)->postJson("/api/borrows/{$two->id}/status", ['status' => 'condemned', 'note' => 'COA write-off'])->assertOk();
         $this->assertSame(4, $this->onHand($this->radio)); // a condemned unit never returns to stock
         $this->assertSame(['issued', 'for_repair', 'condemned'], $two->history()->pluck('to_status')->all());
+    }
+
+    public function test_releases_issues_and_returns_recorded_offline_update_the_request_and_logbook_on_sync(): void
+    {
+        $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 10], ['resource_type_id' => $this->radio->id, 'quantity_requested' => 1]]);
+        $this->approve($r, [10, 1]);
+        [$foodLine, $radioLine] = $r->lines->all();
+        $this->travel(1)->hours(); // the setup receipts come before anything made offline
+        $at = fn (int $min) => now()->subMinutes($min)->toIso8601String();
+        $entry = fn (array $e) => $e + ['device_id' => (string) Str::uuid(), 'depot_id' => $this->depot->id, 'device' => 'phone-1'];
+
+        $release = $entry(['resource_type_id' => $this->food->id, 'quantity' => -10, 'reason' => 'release', 'request_line_id' => $foodLine->id, 'created_at_device' => $at(30)]);
+        $borrowId = (string) Str::uuid();
+        $issue = $entry(['resource_type_id' => $this->radio->id, 'quantity' => -1, 'reason' => 'issue', 'request_line_id' => $radioLine->id,
+            'borrow_id' => $borrowId, 'borrower_name' => 'J. Dela Cruz', 'created_at_device' => $at(20)]);
+        $return = $entry(['resource_type_id' => $this->radio->id, 'quantity' => 1, 'reason' => 'return', 'borrow_id' => $borrowId,
+            'depends_on_device_id' => $issue['device_id'], 'created_at_device' => $at(25), 'priority' => true]);
+
+        // Sent return-first; uploaded twice, as a dropped connection would.
+        foreach ([1, 2] as $_) {
+            $this->actingAs($this->logistics)->postJson('/api/stock/sync', ['entries' => [$return, $release, $issue]])->assertOk();
+        }
+
+        $this->assertSame(['issue', 'return', 'release'], StockEntry::where('device', 'phone-1')->orderBy('seq')->pluck('reason')->all());
+        $this->assertSame([10, 1], $r->lines()->orderBy('quantity_requested', 'desc')->pluck('quantity_released')->all());
+        $this->assertSame('closed', $r->fresh()->status);
+        $this->assertSame(['J. Dela Cruz', 'returned', 'ERT'], [Borrow::find($borrowId)->borrower_name, Borrow::find($borrowId)->status, Borrow::find($borrowId)->borrower_division]);
+        $this->assertSame([90, 5], [$this->onHand($this->food), $this->onHand($this->radio)]);
+        $this->assertSame(0, StockConflict::count());
+    }
+
+    public function test_an_offline_release_the_request_no_longer_allows_is_kept_and_flagged(): void
+    {
+        $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 10]]);
+        $this->approve($r, [4]);
+
+        $this->actingAs($this->logistics)->postJson('/api/stock/sync', ['entries' => [[
+            'device_id' => (string) Str::uuid(), 'resource_type_id' => $this->food->id, 'depot_id' => $this->depot->id, 'quantity' => -6,
+            'reason' => 'release', 'request_line_id' => $r->lines[0]->id, 'created_at_device' => now()->toIso8601String(),
+        ]]])->assertOk()->assertJsonPath('results.0.conflicts', ['release_not_approved']);
+
+        $this->assertSame(94, $this->onHand($this->food));
+        $this->assertSame(0, $r->lines[0]->fresh()->quantity_released);
     }
 
     public function test_borrower_names_and_contacts_are_shown_only_to_the_admin_and_logistics(): void
