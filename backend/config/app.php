@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Manila'), // quarters, request dates and device times are Philippine time
 
     /*
     |--------------------------------------------------------------------------

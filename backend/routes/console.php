@@ -3,7 +3,10 @@
 use App\Services\Replenishment\HistoryImporter;
 use App\Services\Stock\StockLedger;
 use Illuminate\Foundation\Inspiring;
+use App\Models\User;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
@@ -23,11 +26,18 @@ Artisan::command('history:import {file}', function (HistoryImporter $importer) {
 Artisan::command('stock:verify', function (StockLedger $ledger) {
     $r = $ledger->verify();
     if ($r['ok']) {
+        $ledger->checkpoint();
         $this->info("Records intact: {$r['checked']} entries checked. Latest fingerprint: {$r['latest_hash']}");
 
         return 0;
     }
-    $this->error("Check failed at entry {$r['first_bad_seq']}: {$r['problem']}.");
+    $message = "Check records failed at entry {$r['first_bad_seq']}: {$r['problem']}.";
+    $this->error($message);
+    // Nobody reads the scheduler's console at 2 a.m.: log it and tell the Head of Office.
+    Log::critical($message);
+    rescue(fn () => User::where('is_system_admin', true)->pluck('email')->each(
+        fn ($email) => Mail::raw($message."\n\nRun \"Check records\" on the Stock page and compare with the fingerprint printed on the last quarterly report.",
+            fn ($m) => $m->to($email)->subject('DisasterResource+: stock records check failed'))));
 
     return 1;
 })->purpose('Check records: recompute the stock hash chain and report the first entry that no longer matches');

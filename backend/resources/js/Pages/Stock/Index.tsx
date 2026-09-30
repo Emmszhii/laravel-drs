@@ -3,10 +3,12 @@ import { router } from "@inertiajs/react";
 import { toast } from "sonner";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Button from "@/Components/Common/Button";
-import { http, ApiError } from "@/api-service";
-import { enqueueStock, listAll } from "@/Offline/outbox";
+import { http } from "@/api-service";
+import { enqueueStock, markPending, remove } from "@/Offline/outbox";
 import { syncOutbox } from "@/Offline/sync";
-import type { OutboxItem } from "@/Offline/db";
+import useOfflineSync from "@/Hooks/useOfflineSync";
+import { useAsyncAction } from "@/Hooks/use-async-action";
+import { errorMessage as message, field } from "@/lib/utils";
 
 type Named = { id: string; name: string };
 type Level = { resource_type_id: string; depot_id: string; quantity: number | string };
@@ -33,11 +35,10 @@ const MOVEMENTS = [
   { value: "adjustment_out", label: "Adjustment −", sign: -1 },
 ] as const;
 
-const field = "w-full border border-white/20 bg-transparent px-2 py-1.5 text-sm";
-
-function message(err: unknown) {
-  return err instanceof ApiError ? err.message : "Something went wrong. Try again.";
-}
+/** Plain words for a queued entry's reason. */
+const REASON_LABEL: Record<string, string> = {
+  receipt: "receipt", release: "release", adjustment: "adjustment", issue: "borrowed item issued", return: "borrowed item returned",
+};
 
 /**
  * Stock records (system-spec.md §5). Every entry is written to this device's
@@ -48,27 +49,32 @@ function message(err: unknown) {
 export default function StockIndex({ items, depots, levels, conflicts, latestFingerprint, can }: Props) {
   const itemName = useMemo(() => Object.fromEntries(items.map((i) => [i.id, i])), [items]);
   const depotName = useMemo(() => Object.fromEntries(depots.map((d) => [d.id, d.name])), [depots]);
-  const [queued, setQueued] = useState<OutboxItem[]>([]);
-
-  const refreshQueue = useCallback(async () => {
-    setQueued((await listAll()).filter((i) => i.kind === "stock"));
-  }, []);
+  const { userId, items: queued, needsSignIn, outcome } = useOfflineSync();
 
   // Tried even while offline: the failed upload is what hands the batch to Background Sync.
   const syncNow = useCallback(async () => {
-    await syncOutbox();
+    await syncOutbox(userId);
     if (navigator.onLine) {
       router.reload({ only: ["levels", "conflicts", "latestFingerprint"] });
     }
-    await refreshQueue();
-  }, [refreshQueue]);
+  }, [userId]);
 
   useEffect(() => {
-    refreshQueue();
     window.addEventListener("online", syncNow);
 
     return () => window.removeEventListener("online", syncNow);
-  }, [refreshQueue, syncNow]);
+  }, [syncNow]);
+
+  const retry = async (clientRef: string) => {
+    await markPending(clientRef);
+    await syncNow();
+  };
+
+  const discard = async (clientRef: string) => {
+    if (window.confirm("Discard this entry? It was never recorded on the server and can't be recovered.")) {
+      await remove(clientRef);
+    }
+  };
 
   const total = (typeId: string) => levels.filter((l) => l.resource_type_id === typeId).reduce((s, l) => s + Number(l.quantity), 0);
 
@@ -107,16 +113,34 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
         </div>
 
         <aside className="space-y-6">
-          {can.record && <EntryForm items={items} depots={depots} onQueued={syncNow} />}
+          {can.record && userId && <EntryForm items={items} depots={depots} userId={userId} onQueued={syncNow} />}
           {queued.length > 0 && (
             <section className="border border-[var(--amber)]/40 p-4 text-sm">
               <h2 className="mb-1 font-semibold uppercase text-[var(--amber)]">Waiting to sync on this device ({queued.length})</h2>
               <p className="mb-2 text-xs text-[var(--text-secondary)]">Saved here; they upload as soon as the connection returns.</p>
-              <ul className="space-y-1 text-xs">
+              {needsSignIn && (
+                <p role="alert" className="mb-2 text-xs font-semibold text-[var(--amber)]">
+                  Your session has ended. <a href="/login" className="underline">Sign in again</a> to sync these entries.
+                </p>
+              )}
+              {outcome === "forbidden" && (
+                <p role="alert" className="mb-2 text-xs text-[var(--critical)]">Your account can't record stock right now; these stay on this device.</p>
+              )}
+              <ul className="space-y-2 text-xs">
                 {queued.map((q) => (
                   <li key={q.clientRef}>
                     {String(q.payload.quantity)} {itemName[String(q.payload.resource_type_id)]?.name}
-                    {q.payload.priority ? " · priority" : ""}{q.status === "failed" ? ` · failed: ${q.error}` : ""}
+                    {" · "}{REASON_LABEL[String(q.payload.reason)] ?? String(q.payload.reason)}
+                    {q.payload.priority ? " · priority" : ""}
+                    {q.status === "failed" && (
+                      <>
+                        <span className="text-[var(--critical)]"> · failed: {q.error}</span>
+                        <span className="mt-1 flex gap-3">
+                          <button type="button" className="underline hover:text-[var(--amber)]" onClick={() => retry(q.clientRef)}>Retry</button>
+                          <button type="button" className="underline hover:text-[var(--critical)]" onClick={() => discard(q.clientRef)}>Discard</button>
+                        </span>
+                      </>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -130,11 +154,10 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
   );
 }
 
-function EntryForm({ items, depots, onQueued }: { items: Props["items"]; depots: Named[]; onQueued: () => void }) {
+function EntryForm({ items, depots, userId, onQueued }: { items: Props["items"]; depots: Named[]; userId: string; onQueued: () => void }) {
   const [form, setForm] = useState({ resource_type_id: items[0]?.id ?? "", depot_id: depots[0]?.id ?? "", movement: "receipt", quantity: "", priority: false, event_tag: "" });
 
-  const submit = async (e: FormEvent) => {
-    e.preventDefault();
+  const save = useAsyncAction(async () => {
     const movement = MOVEMENTS.find((m) => m.value === form.movement)!;
     await enqueueStock({
       resource_type_id: form.resource_type_id,
@@ -143,35 +166,39 @@ function EntryForm({ items, depots, onQueued }: { items: Props["items"]; depots:
       reason: movement.value.startsWith("adjustment") ? "adjustment" : movement.value,
       priority: form.priority,
       event_tag: form.event_tag || null,
-    });
+    }, userId);
     toast.success(navigator.onLine ? "Entry saved." : "Entry saved on this device. It will sync when you're back online.");
     setForm({ ...form, quantity: "", event_tag: "" });
     onQueued();
+  });
+  const submit = (e: FormEvent) => {
+    e.preventDefault();
+    save.run();
   };
 
   return (
     <form onSubmit={submit} className="space-y-3 border border-white/10 p-4">
       <h2 className="text-sm font-semibold uppercase">Record a stock entry</h2>
-      <select className={field} value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
+      <select className={field} aria-label="Item" value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
         {items.map((i) => <option key={i.id} value={i.id} className="bg-black">{i.name}</option>)}
       </select>
-      <select className={field} value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
+      <select className={field} aria-label="Depot" value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
         {depots.map((d) => <option key={d.id} value={d.id} className="bg-black">{d.name}</option>)}
       </select>
       <div className="grid grid-cols-2 gap-2">
-        <select className={field} value={form.movement} onChange={(e) => setForm({ ...form, movement: e.target.value })}>
+        <select className={field} aria-label="Movement" value={form.movement} onChange={(e) => setForm({ ...form, movement: e.target.value })}>
           {MOVEMENTS.map((m) => <option key={m.value} value={m.value} className="bg-black">{m.label}</option>)}
         </select>
-        <input className={field} type="number" min={1} required placeholder="Quantity" value={form.quantity}
+        <input className={field} type="number" min={1} required placeholder="Quantity" aria-label="Quantity" value={form.quantity}
           onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
       </div>
-      <input className={field} placeholder="Event tag (optional, e.g. Kristine)" value={form.event_tag}
+      <input className={field} placeholder="Event tag (optional, e.g. Kristine)" aria-label="Event tag (optional)" value={form.event_tag}
         onChange={(e) => setForm({ ...form, event_tag: e.target.value })} />
       <label className="flex items-center gap-2 text-sm">
         <input type="checkbox" checked={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.checked })} />
         Priority (syncs first)
       </label>
-      <Button type="submit" className="w-full">Save entry</Button>
+      <Button type="submit" disabled={save.loading} className="w-full">{save.loading ? "Saving…" : "Save entry"}</Button>
     </form>
   );
 }
@@ -184,8 +211,11 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
   onDone: () => void;
 }) {
   const [notes, setNotes] = useState<Record<string, { note: string; correction: string }>>({});
+  const [busy, setBusy] = useState<string | null>(null);
 
   const resolve = async (c: Conflict) => {
+    if (busy) return;
+    setBusy(c.id);
     const n = notes[c.id] ?? { note: "", correction: "" };
     try {
       await http.post(`/api/stock/conflicts/${c.id}/resolve`, { note: n.note, correction: n.correction ? Number(n.correction) : null });
@@ -193,6 +223,7 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
     } catch (err) {
       toast.error(message(err));
     }
+    setBusy(null);
     onDone();
   };
 
@@ -208,11 +239,11 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
             </p>
             {canResolve && (
               <div className="mt-2 flex flex-wrap gap-2">
-                <input className={`${field} min-w-[200px] flex-1`} placeholder="What happened (required)" value={notes[c.id]?.note ?? ""}
+                <input className={`${field} min-w-[200px] flex-1`} placeholder="What happened (required)" aria-label="What happened (required)" value={notes[c.id]?.note ?? ""}
                   onChange={(e) => setNotes({ ...notes, [c.id]: { ...(notes[c.id] ?? { correction: "" }), note: e.target.value } })} />
-                <input className={`${field} w-32`} type="number" placeholder="Correction ±" value={notes[c.id]?.correction ?? ""}
+                <input className={`${field} w-32`} type="number" placeholder="Correction ±" aria-label="Correction (plus or minus)" value={notes[c.id]?.correction ?? ""}
                   onChange={(e) => setNotes({ ...notes, [c.id]: { ...(notes[c.id] ?? { note: "" }), correction: e.target.value } })} />
-                <Button variant="ghost" disabled={!notes[c.id]?.note?.trim()} onClick={() => resolve(c)}>Resolve</Button>
+                <Button variant="ghost" disabled={!notes[c.id]?.note?.trim() || busy !== null} onClick={() => resolve(c)}>{busy === c.id ? "Resolving…" : "Resolve"}</Button>
               </div>
             )}
           </li>
@@ -224,30 +255,35 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
 
 function CountForm({ items, depots }: { items: Props["items"]; depots: Named[] }) {
   const [form, setForm] = useState({ resource_type_id: items[0]?.id ?? "", depot_id: depots[0]?.id ?? "", counted_quantity: "" });
+  const [busy, setBusy] = useState(false);
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    if (busy) return;
+    setBusy(true);
     try {
       await http.post("/api/stock/counts", { ...form, counted_quantity: Number(form.counted_quantity) });
       toast.success("Count recorded. A difference from recorded stock is flagged before the next solver run.");
       setForm({ ...form, counted_quantity: "" });
     } catch (err) {
       toast.error(message(err));
+    } finally {
+      setBusy(false);
     }
   };
 
   return (
     <form onSubmit={submit} className="space-y-3 border border-white/10 p-4">
       <h2 className="text-sm font-semibold uppercase">Weekly physical count</h2>
-      <select className={field} value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
+      <select className={field} aria-label="Item counted" value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
         {items.map((i) => <option key={i.id} value={i.id} className="bg-black">{i.name}</option>)}
       </select>
-      <select className={field} value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
+      <select className={field} aria-label="Depot counted" value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
         {depots.map((d) => <option key={d.id} value={d.id} className="bg-black">{d.name}</option>)}
       </select>
-      <input className={field} type="number" min={0} required placeholder="Counted quantity" value={form.counted_quantity}
+      <input className={field} type="number" min={0} required placeholder="Counted quantity" aria-label="Counted quantity" value={form.counted_quantity}
         onChange={(e) => setForm({ ...form, counted_quantity: e.target.value })} />
-      <Button type="submit" variant="ghost" className="w-full">Record count</Button>
+      <Button type="submit" variant="ghost" disabled={busy} className="w-full">{busy ? "Recording…" : "Record count"}</Button>
     </form>
   );
 }

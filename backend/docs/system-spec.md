@@ -185,7 +185,7 @@ For each item: (1) past quarterly use, both requested and released; (2) current 
 
 Flag an entry, and ask Logistics to **confirm or correct** it, when:
 
-1. A quarter's use is more than **3×** the item's usual quarterly use and no event is tagged.
+1. A quarter's use is more than **3×** the item's usual quarterly use (the **median** of its other quarters with recorded use) and no event is tagged.
 2. A stock figure is **below zero**.
 3. Recorded stock differs from the **weekly physical count**.
 
@@ -193,7 +193,7 @@ Also: all quantities must be non-negative, and every flag must be resolved befor
 
 ### 4.3 Parameters
 
-- **M = 8** past quarters when the history allows.
+- **M = 8** past quarters when the history allows. With fewer (n < M) quarters, _k_ is scaled to the same share: k′ = ⌈k · n / M⌉ of the n quarters (paper, Parameter Preparation).
 - **Covering level Lᵢ** = the amount that would have covered the item's use in _k_ of the last M quarters.
 - **Per-item multiplier** = Lᵢ ÷ mᵢ (mᵢ = average quarterly use). Recalculate every quarter.
 
@@ -218,7 +218,7 @@ Notation: qᵢ = stock at start − reserved; Tᵢ = Lᵢ; cᵢ = cost; vᵢ = s
 minimize   Z = Σᵢ wᵢ · uᵢ / Tᵢ
 subject to uᵢ ≥ Tᵢ − (qᵢ + xᵢ)              ∀i
            Σᵢ cᵢ · xᵢ ≤ B
-           Σᵢ vᵢ · (qᵢ + xᵢ) ≤ V            (only when space is modeled)
+           Σᵢ vᵢ · xᵢ ≤ V                   (only when space is modeled; V = space still free after current stock)
            0 ≤ xᵢ ≤ max(0, Tᵢ − qᵢ),  xᵢ ∈ ℤ,  uᵢ ≥ 0
 ```
 
@@ -230,7 +230,7 @@ Each past quarter s = 1…S is an equally likely scenario, and Dᵢₛ is its us
 minimize   Z = (1/S) · Σₛ Σᵢ wᵢ · uᵢₛ / mᵢ
 subject to uᵢₛ ≥ Dᵢₛ − (qᵢ + xᵢ)            ∀i, s
            Σᵢ cᵢ · xᵢ ≤ B
-           Σᵢ vᵢ · (qᵢ + xᵢ) ≤ V
+           Σᵢ vᵢ · xᵢ ≤ V
            xᵢ ≥ 0, xᵢ ∈ ℤ,  uᵢₛ ≥ 0
 ```
 
@@ -326,7 +326,7 @@ The full cost is ₱301,500, leaving ₱101,500 unfunded. Expected results:
 
 ### 5.2 Server acceptance pipeline (Figure 4)
 
-For each incoming entry:
+For each incoming entry (each is validated on its own; an invalid one answers `rejected` with its errors and the rest of the batch still saves; the quantity's sign must fit the reason: receipt > 0, release < 0, issue −1, return +1; a device time more than 5 minutes ahead is rejected):
 
 1. **Duplicate check:** a unique index on the device-made ID. If the entry was already received, **ignore** it; the upload must be idempotent.
 2. **Conflict check:** if the entry would make stock **negative**, or would **return a borrowed item twice**, **keep the entry** and **set a conflict flag** for Logistics. Never drop it.
@@ -350,6 +350,7 @@ Each flag is shown to Logistics to resolve. Every resolution is recorded, and it
 - Recomputes the chain from the **first entry**, and reports the **first entry whose fingerprint no longer matches**. A row edited directly in the DB must be detected.
 - **Print the latest fingerprint on each quarterly report.** A rebuilt chain would then no longer match the printed value; this is the paper's mitigation for someone with full DB access.
 - Run it as an artisan command, from the UI (for permitted roles), and on a schedule. **[Proposed: schedule]**
+- A passing nightly check saves a **checkpoint** (last sequence number and fingerprint, `app_chain_checkpoints`). The next check also fails if entries after the checkpoint vanished or that entry's fingerprint changed (the chain was rebuilt), which recomputing alone can't see. A failure is logged as critical and emailed to the Admins.
 
 ---
 

@@ -13,6 +13,12 @@ export interface OutboxItem {
   status: OutboxItemStatus;
   error?: string;
   createdAt: number;
+  /**
+   * The signed-in user who recorded it; only that user's session uploads it, so
+   * a shared device never files one person's entries under another's name.
+   * Missing on items queued before v2 (see getDb()).
+   */
+  userId?: string;
 }
 
 interface DrsOfflineDB extends DBSchema {
@@ -25,13 +31,21 @@ interface DrsOfflineDB extends DBSchema {
 
 let dbPromise: Promise<IDBPDatabase<DrsOfflineDB>> | null = null;
 
-/** Lazily opens (and caches) the `drs-offline` IndexedDB database. */
+/**
+ * Lazily opens (and caches) the `drs-offline` IndexedDB database.
+ * v2 added OutboxItem.userId. The upgrade leaves v1 items untouched: the owner
+ * can't be known here, so the first signed-in user to sync adopts them
+ * (outbox.ts ownedBy()). Before v2 every item was uploaded by whoever was
+ * signed in anyway, and adopting keeps the entries instead of losing them.
+ */
 export function getDb(): Promise<IDBPDatabase<DrsOfflineDB>> {
   if (!dbPromise) {
-    dbPromise = openDB<DrsOfflineDB>("drs-offline", 1, {
-      upgrade(db) {
-        const store = db.createObjectStore("outbox", { keyPath: "clientRef" });
-        store.createIndex("by-status", "status");
+    dbPromise = openDB<DrsOfflineDB>("drs-offline", 2, {
+      upgrade(db, oldVersion) {
+        if (oldVersion < 1) {
+          const store = db.createObjectStore("outbox", { keyPath: "clientRef" });
+          store.createIndex("by-status", "status");
+        }
       },
     });
   }

@@ -1,5 +1,4 @@
 import { Link, usePage } from "@inertiajs/react";
-import { ApiError } from "@/api-service";
 
 /** Real routes (not local tab state) so each subtab is a proper navigable/bookmarkable URL. */
 export function IcsTabs() {
@@ -22,11 +21,7 @@ export type Can = { file: boolean; decide: boolean; release: boolean; userId: st
 
 export type StatusChange = { id: string; from_status: string | null; to_status: string; note: string | null; created_at: string };
 
-export const field = "w-full border border-white/20 bg-transparent px-2 py-1.5 text-sm";
-
-export function message(err: unknown): string {
-  return err instanceof ApiError ? err.message : "Something went wrong. Try again.";
-}
+export { field, errorMessage as message } from "@/lib/utils";
 
 export function History({ items }: { items: StatusChange[] }) {
   return (

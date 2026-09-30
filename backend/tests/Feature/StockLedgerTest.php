@@ -161,6 +161,33 @@ class StockLedgerTest extends TestCase
         $this->artisan('stock:verify')->assertExitCode(1);
     }
 
+    public function test_each_entry_is_judged_on_its_own_and_the_sign_must_fit_the_reason(): void
+    {
+        $ok = $this->entry(10);
+        $positiveRelease = $this->entry(5, ['reason' => 'release']);
+        $bigIssue = $this->entry(-5, ['reason' => 'issue', 'borrow_id' => (string) Str::uuid(), 'borrower_name' => 'J. Dela Cruz']);
+        $future = $this->entry(3, ['created_at_device' => now()->addHour()->toIso8601String()]);
+
+        $results = collect($this->sync([$ok, $positiveRelease, $bigIssue, $future])->assertOk()->json('results'))->keyBy('device_id');
+
+        $this->assertSame('accepted', $results[$ok['device_id']]['status']);
+        foreach ([$positiveRelease, $bigIssue, $future] as $bad) {
+            $this->assertSame('rejected', $results[$bad['device_id']]['status']);
+            $this->assertNotEmpty($results[$bad['device_id']]['errors']);
+        }
+        $this->assertSame(1, StockEntry::count());
+    }
+
+    public function test_deleting_the_newest_entries_or_rebuilding_the_chain_fails_the_next_check(): void
+    {
+        $this->sync([$this->entry(10), $this->entry(20), $this->entry(30)]);
+        $this->artisan('stock:verify')->assertExitCode(0); // records a checkpoint at entry 3
+
+        DB::table('app_stock_entries')->where('seq', 3)->delete();
+        $this->assertSame(['ok' => false, 'first_bad_seq' => 3], array_intersect_key(app(StockLedger::class)->verify(), ['ok' => 1, 'first_bad_seq' => 1]));
+        $this->artisan('stock:verify')->assertExitCode(1);
+    }
+
     public function test_a_deleted_row_is_reported_as_a_missing_entry(): void
     {
         $this->sync([$this->entry(10), $this->entry(20), $this->entry(30)]);

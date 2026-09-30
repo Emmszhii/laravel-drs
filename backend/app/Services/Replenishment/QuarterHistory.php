@@ -31,7 +31,7 @@ class QuarterHistory
         // scenarios update every quarter. Released counts only once a request is closed.
         $live = IcsRequestLine::query()
             ->join('app_ics_requests as r', 'r.id', '=', 'app_ics_request_lines.ics_request_id')
-            ->whereNotIn('r.status', ['draft', 'cancelled'])
+            ->whereNotIn('r.status', ['draft', 'cancelled', 'rejected']) // a rejected request was never real demand
             ->where('r.date', '<', $before)
             ->get(['app_ics_request_lines.resource_type_id', 'r.date', 'app_ics_request_lines.quantity_requested',
                 'app_ics_request_lines.quantity_released', 'r.event_tag', 'r.status'])

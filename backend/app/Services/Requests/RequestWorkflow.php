@@ -11,6 +11,7 @@ use App\Models\StockConflict;
 use App\Models\StockEntry;
 use App\Services\Stock\Reservations;
 use App\Services\Stock\StockLedger;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -50,6 +51,7 @@ class RequestWorkflow
     public function approve(IcsRequest $request, array $lines, ?string $userId): array
     {
         return DB::transaction(function () use ($request, $lines, $userId) {
+            $this->lockRow($request);
             $this->move($request, ['submitted'], 'approved', $userId);
             $flagged = [];
 
@@ -99,6 +101,7 @@ class RequestWorkflow
     public function release(IcsRequest $request, array $quantities, array $borrower, ?string $userId): void
     {
         DB::transaction(function () use ($request, $quantities, $borrower, $userId) {
+            $this->lockRow($request);
             if (! in_array($request->status, ['approved', 'partially_released'], true)) {
                 throw ValidationException::withMessages(['status' => "A {$request->status} request cannot be released."]);
             }
@@ -158,6 +161,7 @@ class RequestWorkflow
     public function close(IcsRequest $request, ?string $userId, ?string $note = null): void
     {
         DB::transaction(function () use ($request, $userId, $note) {
+            $this->lockRow($request);
             $this->move($request, ['partially_released', 'released'], 'closed', $userId, $note);
             $this->freeReservations($request);
         });
@@ -167,6 +171,7 @@ class RequestWorkflow
     public function cancel(IcsRequest $request, ?string $userId, bool $byAdmin): void
     {
         DB::transaction(function () use ($request, $userId, $byAdmin) {
+            $this->lockRow($request);
             $this->move($request, $byAdmin ? ['draft', 'submitted', 'approved'] : ['draft', 'submitted'], 'cancelled', $userId);
             $this->freeReservations($request);
         });
@@ -175,6 +180,7 @@ class RequestWorkflow
     public function changeBorrowStatus(Borrow $borrow, string $to, ?string $userId, ?string $note = null): void
     {
         DB::transaction(function () use ($borrow, $to, $userId, $note) {
+            $this->lockRow($borrow);
             $allowed = self::BORROW_TRANSITIONS[$borrow->status] ?? [];
             if (! in_array($to, $allowed, true)) {
                 throw ValidationException::withMessages(['status' => "A {$borrow->status} item cannot become {$to}."]);
@@ -255,6 +261,10 @@ class RequestWorkflow
     {
         $line = IcsRequestLine::with('request', 'reservation')->find($entry->request_line_id);
         $request = $line?->request;
+        if ($request) {
+            $this->lockRow($request);
+            $line->refresh();
+        }
         $left = $line ? (int) $line->quantity_approved - $line->quantity_released : 0;
         if (! $request || ! in_array($request->status, ['approved', 'partially_released'], true) || $qty > $left) {
             return $this->flag($entry, 'release_not_approved', $request
@@ -299,6 +309,17 @@ class RequestWorkflow
     private function freeReservations(IcsRequest $request): void
     {
         Reservation::whereIn('request_line_id', $request->lines()->pluck('id'))->update(['quantity' => 0]);
+    }
+
+    /**
+     * Re-reads the row under SELECT … FOR UPDATE, so two people acting on the same request
+     * (or borrowed unit) at once are serialized and the second sees the first's changes.
+     * SQLite ignores the lock; it serializes writers anyway.
+     */
+    private function lockRow(Model $row): void
+    {
+        $fresh = $row->newQuery()->lockForUpdate()->findOrFail($row->getKey());
+        $row->setRawAttributes($fresh->getAttributes(), true);
     }
 
     private function move(IcsRequest $request, array $from, string $to, ?string $userId, ?string $note = null): void

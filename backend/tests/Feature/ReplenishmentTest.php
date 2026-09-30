@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\DataCheckFlag;
 use App\Models\Depot;
 use App\Models\HistoryLine;
+use App\Jobs\RunReplenishmentJob;
 use App\Models\ReplenishmentRun;
 use App\Models\ResourceType;
 use App\Models\User;
@@ -248,6 +249,27 @@ class ReplenishmentTest extends TestCase
             ->post('/api/replenishment/history/import', ['file' => UploadedFile::fake()->createWithContent('good.csv', $good)], ['Accept' => 'application/json'])
             ->assertCreated()->assertJsonPath('imported', 2);
         $this->assertSame(['team_kit', null], [HistoryLine::where('quantity_requested', 40)->value('purpose'), HistoryLine::where('quantity_requested', 40)->value('quantity_released')]);
+    }
+
+    public function test_the_same_history_file_cannot_be_imported_twice(): void
+    {
+        foreach ([['Family food packs', 'packs'], ['Hygiene kits', 'kits'], ['Medical kits', 'kits']] as [$name, $unit]) {
+            ResourceType::factory()->create(['name' => $name, 'unit' => $unit]);
+        }
+        $this->artisan('history:import', ['file' => base_path('docs/templates/history-encoding-template.csv')])->assertExitCode(0);
+        $rows = HistoryLine::count();
+
+        $this->artisan('history:import', ['file' => base_path('docs/templates/history-encoding-template.csv')])->assertExitCode(1);
+        $this->assertSame($rows, HistoryLine::count());
+    }
+
+    public function test_a_job_killed_by_the_queue_marks_its_run_failed(): void
+    {
+        $run = ReplenishmentRun::create(['year' => 2026, 'quarter' => 3, 'budget' => 1000, 'rule' => 'multiplier', 'status' => 'queued', 'requested_by' => $this->admin()->id]);
+
+        (new RunReplenishmentJob($run))->failed(new \RuntimeException('Job timed out.'));
+
+        $this->assertSame(['failed', 'Job timed out.'], [$run->fresh()->status, $run->fresh()->error]);
     }
 
     public function test_the_shipped_template_imports_cleanly(): void

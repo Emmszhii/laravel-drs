@@ -34,13 +34,13 @@ class IcsRequestController extends Controller
     {
         $data = $request->validate([
             'requesting_division' => ['required', 'string', 'max:100'],
-            'date' => ['nullable', 'date'],
+            'date' => ['nullable', 'date', 'before_or_equal:today', 'after_or_equal:'.now()->subDays(31)->toDateString()], // backdating would plant demand in a past quarter
             'purpose' => ['required', Rule::in(self::PURPOSES)],
             'event_tag' => ['nullable', 'string', 'max:100'],
             'submit' => ['boolean'],
             'lines' => ['required', 'array', 'min:1'],
             'lines.*.resource_type_id' => ['required', 'uuid', 'exists:app_resource_types,id'],
-            'lines.*.quantity_requested' => ['required', 'integer', 'min:1'],
+            'lines.*.quantity_requested' => ['required', 'integer', 'min:1', 'max:100000'],
         ]);
 
         $ics = IcsRequest::create([

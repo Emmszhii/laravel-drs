@@ -5,7 +5,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function Button({ variant = "primary", className = "", ...props }: Props) {
-  const base = "px-4 py-2 text-sm font-semibold uppercase tracking-wide";
+  const base = "px-4 py-2 text-sm font-semibold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-50";
   const styles =
     variant === "primary"
       ? "bg-[var(--amber)] text-[#1a1200]"

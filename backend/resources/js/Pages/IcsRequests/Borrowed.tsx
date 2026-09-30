@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { router } from "@inertiajs/react";
 import { toast } from "sonner";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Button from "@/Components/Common/Button";
 import { http } from "@/api-service";
-import { enqueueStock, listAll } from "@/Offline/outbox";
+import { enqueueStock } from "@/Offline/outbox";
 import { isNetworkError, syncOutbox } from "@/Offline/sync";
+import useOfflineSync from "@/Hooks/useOfflineSync";
 import type { OutboxItem } from "@/Offline/db";
 import { IcsTabs, History, field, message, type Can, type StatusChange } from "./shared";
 
@@ -55,11 +56,9 @@ function pendingBorrows(queued: OutboxItem[]): Borrow[] {
  */
 export default function Borrowed({ borrows, can }: { borrows: Borrow[]; can: Can }) {
   const [notes, setNotes] = useState<Record<string, string>>({});
-  const [queued, setQueued] = useState<OutboxItem[]>([]);
-  const refreshQueue = useCallback(async () => setQueued(await listAll()), []);
-  useEffect(() => {
-    refreshQueue();
-  }, [refreshQueue]);
+  // Only this user's queued entries (Offline/outbox.ts); the list refreshes itself on every outbox change.
+  const { items: queued } = useOfflineSync();
+  const [busy, setBusy] = useState<string | null>(null);
 
   const returning = new Set(queued.filter((q) => q.payload.reason === "return").map((q) => String(q.payload.borrow_id)));
   const rows = [...pendingBorrows(queued), ...borrows];
@@ -68,13 +67,12 @@ export default function Borrowed({ borrows, can }: { borrows: Borrow[]; can: Can
     await enqueueStock({
       resource_type_id: b.resource_type_id, depot_id: b.depot_id, quantity: 1, reason: "return",
       borrow_id: b.id, depends_on_device_id: b.pendingIssue ?? null,
-    });
+    }, can.userId);
     toast.success(`${b.resource_type.name}: return saved on this device. It syncs when you're back online.`);
-    await syncOutbox();
-    await refreshQueue();
+    await syncOutbox(can.userId);
   };
 
-  const move = async (b: Borrow, status: string) => {
+  const send = async (b: Borrow, status: string) => {
     if (b.pendingIssue) {
       return queueReturn(b); // not on the server yet; only a return can follow it offline
     }
@@ -88,6 +86,16 @@ export default function Borrowed({ borrows, can }: { borrows: Borrow[]; can: Can
       toast.error(message(err));
     }
     router.reload({ only: ["borrows"] });
+  };
+
+  const move = async (b: Borrow, status: string) => {
+    if (busy) return;
+    setBusy(b.id);
+    try {
+      await send(b, status);
+    } finally {
+      setBusy(null);
+    }
   };
 
   return (
@@ -113,10 +121,10 @@ export default function Borrowed({ borrows, can }: { borrows: Borrow[]; can: Can
                 {can.release && next && (
                   <div className="flex flex-wrap items-center gap-2">
                     {!b.pendingIssue && (
-                      <input className={`${field} w-56`} placeholder="Note (optional)" value={notes[b.id] ?? ""} onChange={(e) => setNotes({ ...notes, [b.id]: e.target.value })} />
+                      <input className={`${field} w-56`} placeholder="Note (optional)" aria-label={`Note for ${b.resource_type.name} (optional)`} value={notes[b.id] ?? ""} onChange={(e) => setNotes({ ...notes, [b.id]: e.target.value })} />
                     )}
                     {next.map((s) => (
-                      <Button key={s} variant={s === "returned" ? "primary" : "ghost"} onClick={() => move(b, s)}>{LABEL[s]}</Button>
+                      <Button key={s} variant={s === "returned" ? "primary" : "ghost"} disabled={busy !== null} onClick={() => move(b, s)}>{LABEL[s]}</Button>
                     ))}
                   </div>
                 )}

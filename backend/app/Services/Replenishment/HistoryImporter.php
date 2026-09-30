@@ -6,6 +6,7 @@ use App\Models\HistoryLine;
 use App\Models\ResourceType;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 /**
  * Imports the historical encoding template, one row per request line
@@ -76,7 +77,17 @@ class HistoryImporter
             return ['imported' => 0, 'errors' => $errors];
         }
 
-        DB::transaction(fn () => collect($rows)->each(fn ($row) => HistoryLine::create($row)));
+        // Identical rows can be genuine (two equal request lines on one day), so duplicates are caught per file.
+        $hash = hash_file('sha256', $path);
+        if ($done = DB::table('app_history_imports')->where('file_hash', $hash)->first()) {
+            return ['imported' => 0, 'errors' => ['This file was already imported on '.Carbon::parse($done->created_at)->toDateString().'; importing it again would double its quarters.']];
+        }
+
+        DB::transaction(function () use ($rows, $hash, $userId) {
+            collect($rows)->each(fn ($row) => HistoryLine::create($row));
+            DB::table('app_history_imports')->insert(['id' => (string) Str::uuid(), 'file_hash' => $hash, 'rows' => count($rows),
+                'encoded_by' => $userId, 'created_at' => now(), 'updated_at' => now()]);
+        });
 
         return ['imported' => count($rows), 'errors' => []];
     }

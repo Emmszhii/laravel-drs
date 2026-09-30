@@ -255,6 +255,32 @@ class IcsRequestWorkflowTest extends TestCase
         $this->assertSame([0], $h['event_quarters']); // tagged Kristine
     }
 
+    public function test_rejected_or_backdated_requests_do_not_become_demand(): void
+    {
+        $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 40]]);
+        $this->actingAs($this->admin)->postJson("/api/ics-requests/{$r->id}/reject", ['reason' => 'Not needed'])->assertOk();
+        $r->update(['date' => '2026-02-10']);
+        $this->assertSame([0], app(QuarterHistory::class)->build(2026, 2)['use'][$this->food->id] ?? [0]);
+
+        $this->actingAs($this->ert)->postJson('/api/ics-requests', [
+            'requesting_division' => 'ERT', 'purpose' => 'team_kit', 'date' => now()->subYear()->toDateString(),
+            'lines' => [['resource_type_id' => $this->food->id, 'quantity_requested' => 99999]],
+        ])->assertStatus(422)->assertJsonValidationErrors('date');
+    }
+
+    public function test_an_approval_conflict_can_be_resolved_with_a_correction(): void
+    {
+        $a = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 70]]);
+        $b = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 60]]);
+        $this->approve($a, [70]);
+        $this->approve($b, [60]);
+
+        $this->actingAs($this->logistics)->postJson('/api/stock/conflicts/'.StockConflict::sole()->id.'/resolve', ['note' => 'Found 30 more in the back room', 'correction' => 30])->assertOk();
+
+        $this->assertSame(130, $this->onHand($this->food));
+        $this->assertSame('resolved', StockConflict::sole()->status);
+    }
+
     public function test_quarterly_report_exports_pdf_and_csv_with_the_fingerprint(): void
     {
         $fingerprint = app(StockLedger::class)->latestFingerprint();

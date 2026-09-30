@@ -32,7 +32,7 @@ class ReplenishmentController extends Controller
 {
     public function importHistory(Request $request, HistoryImporter $importer): JsonResponse
     {
-        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt']]);
+        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:5120']]); // KB: twelve quarters of request lines fit easily
 
         $result = $importer->import($request->file('file')->getRealPath(), $request->user()->id);
 

@@ -96,7 +96,7 @@ services:
     image: laravel-drs-backend:latest
     container_name: disasterresource-queue
     restart: unless-stopped
-    command: php artisan queue:work --tries=3 --backoff=15
+    command: php artisan queue:work --tries=3 --backoff=15 --timeout=620
     env_file:
       - .env
     # No bind mount here — see the `backend` service's comment above, same reasoning.

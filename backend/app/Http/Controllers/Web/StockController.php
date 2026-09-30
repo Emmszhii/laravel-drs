@@ -34,7 +34,7 @@ class StockController extends Controller
             'latestFingerprint' => $ledger->latestFingerprint(),
             'can' => [
                 'record' => $isKeeper,
-                'resolve' => $user->role === 'logistics',
+                'resolve' => $isKeeper, // the Admin passes every role check
             ],
         ]);
     }

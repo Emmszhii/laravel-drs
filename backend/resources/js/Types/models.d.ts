@@ -85,7 +85,10 @@ export interface ReplenishmentOrder {
 export interface BudgetCurvePoint {
   pct: number;
   budget: number;
-  expected_shortage: number;
+  /** null when the solver didn't finish this level within its time limit (solved = false). */
+  expected_shortage: number | null;
+  objective: number | null;
+  solved: boolean;
   status: string;
 }
 
@@ -93,13 +96,15 @@ export interface ReplenishmentResult {
   status: "optimal" | "feasible" | "infeasible";
   rule: string;
   orders: ReplenishmentOrder[];
-  objective: number;
+  objective: number | null;
   spent: number;
   binding: { budget: boolean; space: boolean };
   space_modeled: boolean;
   solve_ms: number;
   budget_curve?: BudgetCurvePoint[];
   next_step?: {
+    /** false when the larger-budget solve didn't finish; changes is then []. */
+    solved: boolean;
     amount: number;
     changes: { id: string; delta_x: number; shortfall_pct_before: number; shortfall_pct_after: number }[];
   };

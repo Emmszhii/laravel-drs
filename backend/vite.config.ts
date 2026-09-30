@@ -59,12 +59,24 @@ export default defineConfig({
         runtimeCaching: [
           // These pages open offline from their last online visit (their data is in the
           // Inertia page props), so entries can go into the outbox during an outage.
-          // NetworkFirst: always fresh when online.
+          // NetworkFirst: always fresh when online. Workbox serializes these matchers into
+          // the worker, so the path list is repeated inline (no outer variables).
+          // Full page loads, plus the plain GETs app.tsx uses to warm this cache (Offline/pages.ts).
           {
             urlPattern: ({ request, url }) =>
-              request.mode === "navigate" && ["/stock", "/ics-requests", "/ics-requests/borrowed"].includes(url.pathname),
+              !request.headers.has("X-Inertia") && ["/stock", "/ics-requests", "/ics-requests/borrowed"].includes(url.pathname),
             handler: "NetworkFirst",
             options: { cacheName: "offline-pages", networkTimeoutSeconds: 4, expiration: { maxEntries: 3 } },
+          },
+          // Visits through Inertia <Link> (XHR with X-Inertia): a separate cache, since the JSON
+          // response differs from the HTML one. Partial reloads (router.reload({ only })) are left
+          // out so a props subset never replaces the full page. Both caches are deleted on logout.
+          {
+            urlPattern: ({ request, url }) =>
+              request.headers.get("X-Inertia") === "true" && !request.headers.has("X-Inertia-Partial-Data") &&
+              ["/stock", "/ics-requests", "/ics-requests/borrowed"].includes(url.pathname),
+            handler: "NetworkFirst",
+            options: { cacheName: "offline-pages-xhr", networkTimeoutSeconds: 4, expiration: { maxEntries: 3 } },
           },
           // Background Sync (Chromium): an outbox upload that fails for lack of a
           // connection is kept by the worker and replayed when the connection returns,
