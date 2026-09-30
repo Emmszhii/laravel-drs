@@ -1,11 +1,8 @@
 import type { ReactNode } from "react";
-import { formatDateShort } from "@/lib/date";
 
 /**
- * Shared form-field atoms — the single source of truth for label / input / error
- * styling used by both the batch create/edit modal (CreateBatchModal) and the
- * generic DataTableField record modal (RecordModal). Extracted here so the two
- * modals stay visually identical without duplicating the utility strings.
+ * Shared form-field atoms: the single source of truth for label / input / error
+ * styling used by the FormModal record forms (Items, Depots, Users).
  */
 export const labelCls =
   "mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-[var(--text-secondary)]";
@@ -18,8 +15,6 @@ export const inputCls =
 export const textareaCls =
   "w-full border border-line-strong bg-[var(--bg-void)] px-2.5 py-2 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-secondary)] transition-colors focus:border-amber focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 resize-none";
 
-/** "Mon D, YYYY" — the read-only Created-date display format. */
-export const formatDate = formatDateShort;
 export function Field({
   label,
   error,
@@ -57,29 +52,6 @@ export function Field({
           {error}
         </p>
       )}
-    </div>
-  );
-}
-export function ReadonlyField({
-  label,
-  value,
-  mono,
-}: {
-  label: string;
-  value: string;
-  mono?: boolean;
-}) {
-  return (
-    <div data-cy="field-div-6">
-      <label className={labelCls} data-cy="field-label-7">
-        {label}
-      </label>
-      <div
-        className={`flex h-9 items-center border border-line-strong bg-[var(--bg-panel-raised)] px-2.5 text-sm text-[var(--text-secondary)] ${mono ? "font-mono" : ""}`}
-        data-cy="field-div-8"
-      >
-        {value}
-      </div>
     </div>
   );
 }

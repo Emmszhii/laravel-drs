@@ -111,18 +111,6 @@ export function buildArchiveUrl<T extends object>(
 }
 
 /**
- * Builds the suspend URL for a row.
- * Falls back to `{apiUrl}/{id}/suspend`.
- */
-export function buildSuspendUrl<T extends object>(
-    row: T,
-    apiUrl: string,
-    suspendUrl?: (row: T) => string,
-): string {
-    return suspendUrl ? suspendUrl(row) : `${apiUrl}/${getRowId(row)}/archive`;
-}
-
-/**
  * Builds the delete URL for a row.
  * Falls back to `{apiUrl}/{id}`.
  */

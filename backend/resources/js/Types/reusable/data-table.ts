@@ -6,9 +6,6 @@ export type { PaginationMeta } from './pagination';
 
 export type TableViewType = 'table' | 'card';
 
-/** Shared grid template class used by settings list rows/headers. */
-export const GRID = 'sm:grid sm:grid-cols-[1fr_1fr_auto_auto] sm:items-center sm:gap-3';
-
 /** Column-filter widget kind — distinct from FieldDef's form-field FieldType. */
 export type ColumnFilterType = 'text' | 'select' | 'async-select' | 'async-multi-select' | 'date-range';
 

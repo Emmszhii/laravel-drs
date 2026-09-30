@@ -92,11 +92,6 @@ export function normalizeExistingFiles(raw: unknown): ExistingFile[] {
     return null;
   }).filter((f): f is ExistingFile => f !== null);
 }
-export const emptyFileFieldValue: FileFieldValue = {
-  existing: [],
-  files: [],
-  removedIds: []
-};
 
 // ─── thumbnail for a newly-picked local File ───────────────────────────────
 
