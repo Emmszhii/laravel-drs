@@ -162,7 +162,7 @@ function RequestCard({ r, depots, available, can, onDone }: {
                   <td className="py-2">
                     {l.resource_type.name}
                     {!l.resource_type.is_consumable && <span className="ml-2 text-xs text-[var(--text-secondary)]">borrowed</span>}
-                    {can.decide && r.status === "submitted" && !own && (
+                    {can.decide && r.status === "submitted" && (
                       <div className="mt-1 flex gap-2">
                         <select className={`${field} w-auto`} aria-label={`Depot for ${l.resource_type.name}`} value={approve[l.id]?.depot_id}
                           onChange={(e) => setApprove({ ...approve, [l.id]: { ...approve[l.id], depot_id: e.target.value } })}>
@@ -192,7 +192,8 @@ function RequestCard({ r, depots, available, can, onDone }: {
           {r.decision_reason && <p className="text-sm">Reason: {r.decision_reason}</p>}
 
           <div className="flex flex-wrap items-center gap-2">
-            {can.decide && r.status === "submitted" && !own && (
+            {/* The Admin (the only one who decides) may approve a request they filed themselves (system-spec.md §2). */}
+            {can.decide && r.status === "submitted" && (
               <>
                 <Button disabled={busy} onClick={() => act("approve", { lines: approve }, "Approved. Stock is reserved.")}>Approve</Button>
                 <input className={`${field} w-56`} placeholder="Reason (required to reject)" aria-label="Reason (required to reject)" value={reason} onChange={(e) => setReason(e.target.value)} />
