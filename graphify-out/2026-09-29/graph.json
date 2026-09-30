@@ -181,7 +181,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_events_dispatchpositionupdated_dispatchpositionupdated_construct",
-      "community": 26,
+      "community": 27,
       "norm_label": ".__construct()"
     },
     {
@@ -221,7 +221,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated",
-      "community": 26,
+      "community": 7,
       "norm_label": "replenishmentrunupdated.php"
     },
     {
@@ -231,7 +231,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated",
-      "community": 26,
+      "community": 7,
       "norm_label": "replenishmentrunupdated"
     },
     {
@@ -241,7 +241,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "shouldbroadcastnow",
-      "community": 26,
+      "community": 7,
       "norm_label": "shouldbroadcastnow"
     },
     {
@@ -251,7 +251,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_construct",
-      "community": 26,
+      "community": 7,
       "norm_label": ".__construct()"
     },
     {
@@ -261,7 +261,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcaston",
-      "community": 26,
+      "community": 7,
       "norm_label": ".broadcaston()"
     },
     {
@@ -271,7 +271,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcastas",
-      "community": 26,
+      "community": 7,
       "norm_label": ".broadcastas()"
     },
     {
@@ -281,7 +281,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcastwith",
-      "community": 26,
+      "community": 7,
       "norm_label": ".broadcastwith()"
     },
     {
@@ -1091,7 +1091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller",
-      "community": 65,
+      "community": 7,
       "norm_label": "replenishmentcontroller.php"
     },
     {
@@ -1101,7 +1101,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller",
-      "community": 65,
+      "community": 7,
       "norm_label": "replenishmentcontroller"
     },
     {
@@ -1111,7 +1111,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_importhistory",
-      "community": 65,
+      "community": 7,
       "norm_label": ".importhistory()"
     },
     {
@@ -1121,7 +1121,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_php_request",
-      "community": 65,
+      "community": 7,
       "norm_label": "request"
     },
     {
@@ -1131,7 +1131,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_php_jsonresponse",
-      "community": 65,
+      "community": 7,
       "norm_label": "jsonresponse"
     },
     {
@@ -1141,7 +1141,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_flags",
-      "community": 65,
+      "community": 7,
       "norm_label": ".flags()"
     },
     {
@@ -1151,7 +1151,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_resolveflag",
-      "community": 65,
+      "community": 7,
       "norm_label": ".resolveflag()"
     },
     {
@@ -1161,7 +1161,7 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_runs",
-      "community": 65,
+      "community": 7,
       "norm_label": ".runs()"
     },
     {
@@ -1171,7 +1171,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_show",
-      "community": 65,
+      "community": 7,
       "norm_label": ".show()"
     },
     {
@@ -1181,7 +1181,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_run",
-      "community": 65,
+      "community": 7,
       "norm_label": ".run()"
     },
     {
@@ -1191,7 +1191,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_backtest",
-      "community": 65,
+      "community": 7,
       "norm_label": ".backtest()"
     },
     {
@@ -1201,7 +1201,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_report",
-      "community": 65,
+      "community": 7,
       "norm_label": ".report()"
     },
     {
@@ -1211,7 +1211,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "symfonyresponse",
-      "community": 65,
+      "community": 7,
       "norm_label": "symfonyresponse"
     },
     {
@@ -1221,7 +1221,7 @@
       "source_location": "L163",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_latestbacktest",
-      "community": 65,
+      "community": 7,
       "norm_label": ".latestbacktest()"
     },
     {
@@ -1231,7 +1231,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_approve",
-      "community": 65,
+      "community": 7,
       "norm_label": ".approve()"
     },
     {
@@ -1241,7 +1241,7 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_reject",
-      "community": 65,
+      "community": 7,
       "norm_label": ".reject()"
     },
     {
@@ -1481,7 +1481,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_requestcontroller_requestcontroller_approve",
-      "community": 6,
+      "community": 50,
       "norm_label": ".approve()"
     },
     {
@@ -1711,7 +1711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_resourcetypecontroller",
-      "community": 246,
+      "community": 41,
       "norm_label": "resourcetypecontroller.php"
     },
     {
@@ -1721,7 +1721,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_resourcetypecontroller_resourcetypecontroller",
-      "community": 246,
+      "community": 41,
       "norm_label": "resourcetypecontroller"
     },
     {
@@ -1731,7 +1731,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_resourcetypecontroller_resourcetypecontroller_storerules",
-      "community": 246,
+      "community": 41,
       "norm_label": ".storerules()"
     },
     {
@@ -1741,7 +1741,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_resourcetypecontroller_resourcetypecontroller_updaterules",
-      "community": 246,
+      "community": 41,
       "norm_label": ".updaterules()"
     },
     {
@@ -1751,7 +1751,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_resourcetypecontroller_php_model",
-      "community": 246,
+      "community": 41,
       "norm_label": "model"
     },
     {
@@ -2571,7 +2571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller",
-      "community": 50,
+      "community": 249,
       "norm_label": "dashboardcontroller.php"
     },
     {
@@ -2581,7 +2581,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller_dashboardcontroller",
-      "community": 50,
+      "community": 249,
       "norm_label": "dashboardcontroller"
     },
     {
@@ -2591,7 +2591,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller_dashboardcontroller_index",
-      "community": 50,
+      "community": 249,
       "norm_label": ".index()"
     },
     {
@@ -2601,7 +2601,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller_php_response",
-      "community": 50,
+      "community": 249,
       "norm_label": "response"
     },
     {
@@ -2611,7 +2611,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller_dashboardcontroller_stats",
-      "community": 50,
+      "community": 249,
       "norm_label": ".stats()"
     },
     {
@@ -2621,7 +2621,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dashboardcontroller_dashboardcontroller_utilization",
-      "community": 50,
+      "community": 249,
       "norm_label": ".utilization()"
     },
     {
@@ -2711,7 +2711,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dispatchcontroller",
-      "community": 237,
+      "community": 57,
       "norm_label": "dispatchcontroller.php"
     },
     {
@@ -2721,7 +2721,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dispatchcontroller_dispatchcontroller",
-      "community": 237,
+      "community": 57,
       "norm_label": "dispatchcontroller"
     },
     {
@@ -2731,7 +2731,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dispatchcontroller_dispatchcontroller_index",
-      "community": 237,
+      "community": 57,
       "norm_label": ".index()"
     },
     {
@@ -2741,7 +2741,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_dispatchcontroller_php_response",
-      "community": 237,
+      "community": 57,
       "norm_label": "response"
     },
     {
@@ -2751,7 +2751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_evacuationcentercontroller",
-      "community": 57,
+      "community": 257,
       "norm_label": "evacuationcentercontroller.php"
     },
     {
@@ -2761,7 +2761,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_evacuationcentercontroller_evacuationcentercontroller",
-      "community": 57,
+      "community": 257,
       "norm_label": "evacuationcentercontroller"
     },
     {
@@ -2771,7 +2771,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_evacuationcentercontroller_evacuationcentercontroller_index",
-      "community": 57,
+      "community": 257,
       "norm_label": ".index()"
     },
     {
@@ -2781,7 +2781,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_evacuationcentercontroller_php_response",
-      "community": 57,
+      "community": 257,
       "norm_label": "response"
     },
     {
@@ -2901,7 +2901,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_optimizationcontroller",
-      "community": 57,
+      "community": 251,
       "norm_label": "optimizationcontroller.php"
     },
     {
@@ -2911,7 +2911,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_optimizationcontroller_optimizationcontroller",
-      "community": 57,
+      "community": 251,
       "norm_label": "optimizationcontroller"
     },
     {
@@ -2921,7 +2921,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_optimizationcontroller_optimizationcontroller_trigger",
-      "community": 57,
+      "community": 251,
       "norm_label": ".trigger()"
     },
     {
@@ -2931,7 +2931,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_optimizationcontroller_php_redirectresponse",
-      "community": 57,
+      "community": 251,
       "norm_label": "redirectresponse"
     },
     {
@@ -2981,7 +2981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller",
-      "community": 65,
+      "community": 239,
       "norm_label": "replenishmentcontroller.php"
     },
     {
@@ -2991,7 +2991,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller",
-      "community": 65,
+      "community": 239,
       "norm_label": "replenishmentcontroller"
     },
     {
@@ -3001,7 +3001,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_index",
-      "community": 65,
+      "community": 239,
       "norm_label": ".index()"
     },
     {
@@ -3011,7 +3011,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_request",
-      "community": 65,
+      "community": 239,
       "norm_label": "request"
     },
     {
@@ -3021,7 +3021,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_response",
-      "community": 65,
+      "community": 239,
       "norm_label": "response"
     },
     {
@@ -3181,7 +3181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller",
-      "community": 251,
+      "community": 57,
       "norm_label": "userscontroller.php"
     },
     {
@@ -3191,7 +3191,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_userscontroller",
-      "community": 251,
+      "community": 57,
       "norm_label": "userscontroller"
     },
     {
@@ -3201,7 +3201,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_userscontroller_index",
-      "community": 251,
+      "community": 57,
       "norm_label": ".index()"
     },
     {
@@ -3211,7 +3211,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_settings_userscontroller_php_response",
-      "community": 251,
+      "community": 57,
       "norm_label": "response"
     },
     {
@@ -3221,7 +3221,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller",
-      "community": 71,
+      "community": 237,
       "norm_label": "smtpsettingscontroller.php"
     },
     {
@@ -3231,7 +3231,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_smtpsettingscontroller",
-      "community": 71,
+      "community": 237,
       "norm_label": "smtpsettingscontroller"
     },
     {
@@ -3241,7 +3241,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_smtpsettingscontroller_index",
-      "community": 71,
+      "community": 237,
       "norm_label": ".index()"
     },
     {
@@ -3251,7 +3251,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_smtpsettingscontroller_php_response",
-      "community": 71,
+      "community": 237,
       "norm_label": "response"
     },
     {
@@ -3621,7 +3621,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_app_jobs_autoresolveincidentsjob_autoresolveincidentsjob_handle",
-      "community": 239,
+      "community": 61,
       "norm_label": ".handle()"
     },
     {
@@ -3671,7 +3671,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_app_jobs_polldisasterfeedsjob_polldisasterfeedsjob_handle",
-      "community": 3,
+      "community": 61,
       "norm_label": ".handle()"
     },
     {
@@ -3701,7 +3701,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_jobs_runoptimizationjob_runoptimizationjob_construct",
-      "community": 4,
+      "community": 3,
       "norm_label": ".__construct()"
     },
     {
@@ -3741,7 +3741,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_construct",
-      "community": 65,
+      "community": 7,
       "norm_label": ".__construct()"
     },
     {
@@ -3751,7 +3751,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_handle",
-      "community": 65,
+      "community": 239,
       "norm_label": ".handle()"
     },
     {
@@ -3981,7 +3981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_allocation",
-      "community": 6,
+      "community": 11,
       "norm_label": "allocation.php"
     },
     {
@@ -3991,7 +3991,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_allocation_allocation",
-      "community": 6,
+      "community": 50,
       "norm_label": "allocation"
     },
     {
@@ -4031,7 +4031,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_models_allocation_allocation_request",
-      "community": 6,
+      "community": 50,
       "norm_label": ".request()"
     },
     {
@@ -4041,7 +4041,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_allocation_php_belongsto",
-      "community": 6,
+      "community": 50,
       "norm_label": "belongsto"
     },
     {
@@ -4051,7 +4051,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_models_allocation_allocation_depot",
-      "community": 6,
+      "community": 50,
       "norm_label": ".depot()"
     },
     {
@@ -4081,7 +4081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_backtest",
-      "community": 65,
+      "community": 6,
       "norm_label": "backtest.php"
     },
     {
@@ -4091,7 +4091,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_app_models_backtest_backtest",
-      "community": 65,
+      "community": 6,
       "norm_label": "backtest"
     },
     {
@@ -4161,7 +4161,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_datacheckflag",
-      "community": 6,
+      "community": 107,
       "norm_label": "datacheckflag.php"
     },
     {
@@ -4171,7 +4171,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_models_datacheckflag_datacheckflag",
-      "community": 65,
+      "community": 107,
       "norm_label": "datacheckflag"
     },
     {
@@ -4181,7 +4181,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_models_datacheckflag_datacheckflag_resourcetype",
-      "community": 65,
+      "community": 107,
       "norm_label": ".resourcetype()"
     },
     {
@@ -4191,7 +4191,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_datacheckflag_php_belongsto",
-      "community": 65,
+      "community": 107,
       "norm_label": "belongsto"
     },
     {
@@ -4541,7 +4541,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_historyline",
-      "community": 107,
+      "community": 69,
       "norm_label": "historyline.php"
     },
     {
@@ -4551,7 +4551,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline",
-      "community": 107,
+      "community": 69,
       "norm_label": "historyline"
     },
     {
@@ -4561,7 +4561,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline_resourcetype",
-      "community": 107,
+      "community": 69,
       "norm_label": ".resourcetype()"
     },
     {
@@ -4571,7 +4571,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_historyline_php_belongsto",
-      "community": 107,
+      "community": 69,
       "norm_label": "belongsto"
     },
     {
@@ -4651,7 +4651,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline",
-      "community": 107,
+      "community": 127,
       "norm_label": "icsrequestline.php"
     },
     {
@@ -4661,7 +4661,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline",
-      "community": 107,
+      "community": 127,
       "norm_label": "icsrequestline"
     },
     {
@@ -4671,7 +4671,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_request",
-      "community": 107,
+      "community": 127,
       "norm_label": ".request()"
     },
     {
@@ -4681,7 +4681,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_php_belongsto",
-      "community": 107,
+      "community": 127,
       "norm_label": "belongsto"
     },
     {
@@ -4691,7 +4691,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_resourcetype",
-      "community": 107,
+      "community": 127,
       "norm_label": ".resourcetype()"
     },
     {
@@ -4701,7 +4701,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_reservation",
-      "community": 107,
+      "community": 127,
       "norm_label": ".reservation()"
     },
     {
@@ -4711,7 +4711,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasone",
-      "community": 107,
+      "community": 127,
       "norm_label": "hasone"
     },
     {
@@ -4781,7 +4781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_quarterbudget",
-      "community": 65,
+      "community": 6,
       "norm_label": "quarterbudget.php"
     },
     {
@@ -4791,7 +4791,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_app_models_quarterbudget_quarterbudget",
-      "community": 65,
+      "community": 6,
       "norm_label": "quarterbudget"
     },
     {
@@ -4851,7 +4851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_replenishmentrun",
-      "community": 6,
+      "community": 69,
       "norm_label": "replenishmentrun.php"
     },
     {
@@ -4861,7 +4861,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_models_replenishmentrun_replenishmentrun",
-      "community": 65,
+      "community": 7,
       "norm_label": "replenishmentrun"
     },
     {
@@ -4931,7 +4931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_resource",
-      "community": 6,
+      "community": 32,
       "norm_label": "resource.php"
     },
     {
@@ -5321,7 +5321,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_models_statuschange_statuschange_log",
-      "community": 36,
+      "community": 23,
       "norm_label": ".log()"
     },
     {
@@ -5371,7 +5371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_stockcount",
-      "community": 127,
+      "community": 6,
       "norm_label": "stockcount.php"
     },
     {
@@ -5381,7 +5381,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_models_stockcount_stockcount",
-      "community": 127,
+      "community": 6,
       "norm_label": "stockcount"
     },
     {
@@ -5461,7 +5461,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_models_user_user",
-      "community": 16,
+      "community": 66,
       "norm_label": "user"
     },
     {
@@ -5471,7 +5471,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "authenticatable",
-      "community": 16,
+      "community": 66,
       "norm_label": "authenticatable"
     },
     {
@@ -5481,7 +5481,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasroles",
-      "community": 16,
+      "community": 66,
       "norm_label": "hasroles"
     },
     {
@@ -5491,7 +5491,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "notifiable",
-      "community": 16,
+      "community": 66,
       "norm_label": "notifiable"
     },
     {
@@ -5511,7 +5511,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_app_models_user_user_casts",
-      "community": 16,
+      "community": 66,
       "norm_label": ".casts()"
     },
     {
@@ -5521,7 +5521,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "backend_app_models_user_user_isactive",
-      "community": 16,
+      "community": 66,
       "norm_label": ".isactive()"
     },
     {
@@ -5531,7 +5531,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "backend_app_models_user_user_toinertiapayload",
-      "community": 16,
+      "community": 66,
       "norm_label": ".toinertiapayload()"
     },
     {
@@ -5571,7 +5571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_vedpolicy",
-      "community": 65,
+      "community": 239,
       "norm_label": "vedpolicy.php"
     },
     {
@@ -5581,7 +5581,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_models_vedpolicy_vedpolicy",
-      "community": 65,
+      "community": 239,
       "norm_label": "vedpolicy"
     },
     {
@@ -6131,7 +6131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker",
-      "community": 239,
+      "community": 61,
       "norm_label": "depotcapacitychecker.php"
     },
     {
@@ -6141,7 +6141,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker_depotcapacitychecker",
-      "community": 239,
+      "community": 61,
       "norm_label": "depotcapacitychecker"
     },
     {
@@ -6151,7 +6151,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker_depotcapacitychecker_cancoveroutstanding",
-      "community": 239,
+      "community": 61,
       "norm_label": ".cancoveroutstanding()"
     },
     {
@@ -6161,7 +6161,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker_depotcapacitychecker_outstandingdemandbyresourcetype",
-      "community": 239,
+      "community": 61,
       "norm_label": ".outstandingdemandbyresourcetype()"
     },
     {
@@ -6171,7 +6171,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker_php_collection",
-      "community": 239,
+      "community": 61,
       "norm_label": "collection"
     },
     {
@@ -6181,7 +6181,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_depotcapacitychecker_depotcapacitychecker_availablestockbyresourcetype",
-      "community": 239,
+      "community": 61,
       "norm_label": ".availablestockbyresourcetype()"
     },
     {
@@ -6261,7 +6261,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient",
-      "community": 69,
+      "community": 61,
       "norm_label": "gdacsfeedclient.php"
     },
     {
@@ -6271,7 +6271,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient",
-      "community": 240,
+      "community": 61,
       "norm_label": "gdacsfeedclient"
     },
     {
@@ -6281,7 +6281,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_key",
-      "community": 240,
+      "community": 61,
       "norm_label": ".key()"
     },
     {
@@ -6291,7 +6291,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_fetchrecent",
-      "community": 240,
+      "community": 61,
       "norm_label": ".fetchrecent()"
     },
     {
@@ -6301,7 +6301,7 @@
       "source_location": "L101",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_mapfeature",
-      "community": 240,
+      "community": 61,
       "norm_label": ".mapfeature()"
     },
     {
@@ -6311,7 +6311,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_signalfor",
-      "community": 240,
+      "community": 61,
       "norm_label": ".signalfor()"
     },
     {
@@ -6321,7 +6321,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_gdacsfeedclient_gdacsfeedclient_alertlevelsatorabove",
-      "community": 240,
+      "community": 61,
       "norm_label": ".alertlevelsatorabove()"
     },
     {
@@ -6331,7 +6331,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient",
-      "community": 69,
+      "community": 61,
       "norm_label": "usgsearthquakefeedclient.php"
     },
     {
@@ -6341,7 +6341,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient",
-      "community": 69,
+      "community": 61,
       "norm_label": "usgsearthquakefeedclient"
     },
     {
@@ -6351,7 +6351,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_key",
-      "community": 69,
+      "community": 61,
       "norm_label": ".key()"
     },
     {
@@ -6361,7 +6361,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_fetchrecent",
-      "community": 69,
+      "community": 61,
       "norm_label": ".fetchrecent()"
     },
     {
@@ -6371,7 +6371,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_mapfeature",
-      "community": 69,
+      "community": 61,
       "norm_label": ".mapfeature()"
     },
     {
@@ -6381,7 +6381,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "backend_app_services_disasterfeed_usgsearthquakefeedclient_usgsearthquakefeedclient_magnitudetosignal",
-      "community": 69,
+      "community": 61,
       "norm_label": ".magnitudetosignal()"
     },
     {
@@ -6551,7 +6551,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks",
-      "community": 127,
+      "community": 107,
       "norm_label": "datachecks.php"
     },
     {
@@ -6561,7 +6561,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks",
-      "community": 65,
+      "community": 107,
       "norm_label": "datachecks"
     },
     {
@@ -6571,7 +6571,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_construct",
-      "community": 65,
+      "community": 107,
       "norm_label": ".__construct()"
     },
     {
@@ -6581,7 +6581,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_run",
-      "community": 65,
+      "community": 107,
       "norm_label": ".run()"
     },
     {
@@ -6591,7 +6591,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_usespikes",
-      "community": 65,
+      "community": 107,
       "norm_label": ".usespikes()"
     },
     {
@@ -6601,7 +6601,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_negativestock",
-      "community": 65,
+      "community": 107,
       "norm_label": ".negativestock()"
     },
     {
@@ -6611,7 +6611,7 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_countmismatches",
-      "community": 65,
+      "community": 107,
       "norm_label": ".countmismatches()"
     },
     {
@@ -6621,7 +6621,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_flag",
-      "community": 65,
+      "community": 107,
       "norm_label": ".flag()"
     },
     {
@@ -6631,7 +6631,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter",
-      "community": 107,
+      "community": 69,
       "norm_label": "historyimporter.php"
     },
     {
@@ -6641,7 +6641,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter",
-      "community": 65,
+      "community": 7,
       "norm_label": "historyimporter"
     },
     {
@@ -6651,7 +6651,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter_import",
-      "community": 107,
+      "community": 69,
       "norm_label": ".import()"
     },
     {
@@ -6661,7 +6661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory",
-      "community": 107,
+      "community": 69,
       "norm_label": "quarterhistory.php"
     },
     {
@@ -6671,7 +6671,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory_quarterhistory",
-      "community": 65,
+      "community": 107,
       "norm_label": "quarterhistory"
     },
     {
@@ -6691,7 +6691,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory_quarterhistory_index",
-      "community": 65,
+      "community": 107,
       "norm_label": ".index()"
     },
     {
@@ -6701,7 +6701,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient",
-      "community": 65,
+      "community": 239,
       "norm_label": "replenishmentserviceclient.php"
     },
     {
@@ -6711,7 +6711,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient",
-      "community": 65,
+      "community": 239,
       "norm_label": "replenishmentserviceclient"
     },
     {
@@ -6721,7 +6721,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_solve",
-      "community": 65,
+      "community": 239,
       "norm_label": ".solve()"
     },
     {
@@ -6731,7 +6731,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_budgetcurve",
-      "community": 65,
+      "community": 239,
       "norm_label": ".budgetcurve()"
     },
     {
@@ -6741,7 +6741,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_backtest",
-      "community": 65,
+      "community": 239,
       "norm_label": ".backtest()"
     },
     {
@@ -6751,7 +6751,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_post",
-      "community": 65,
+      "community": 239,
       "norm_label": ".post()"
     },
     {
@@ -6791,7 +6791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratereportbuilder",
-      "community": 65,
+      "community": 69,
       "norm_label": "inventoryburnratereportbuilder.php"
     },
     {
@@ -6801,7 +6801,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratereportbuilder_inventoryburnratereportbuilder",
-      "community": 65,
+      "community": 107,
       "norm_label": "inventoryburnratereportbuilder"
     },
     {
@@ -6811,7 +6811,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratereportbuilder_inventoryburnratereportbuilder_construct",
-      "community": 65,
+      "community": 107,
       "norm_label": ".__construct()"
     },
     {
@@ -6821,7 +6821,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratereportbuilder_inventoryburnratereportbuilder_build",
-      "community": 36,
+      "community": 107,
       "norm_label": ".build()"
     },
     {
@@ -6831,7 +6831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_requests_requestworkflow",
-      "community": 36,
+      "community": 127,
       "norm_label": "requestworkflow.php"
     },
     {
@@ -7131,7 +7131,7 @@
       "source_location": "L219",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_toapptime",
-      "community": 69,
+      "community": 127,
       "norm_label": ".toapptime()"
     },
     {
@@ -7551,7 +7551,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_permission",
-      "community": 63,
+      "community": 258,
       "norm_label": "permission.php"
     },
     {
@@ -7601,7 +7601,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_allocationfactory",
-      "community": 19,
+      "community": 11,
       "norm_label": "allocationfactory.php"
     },
     {
@@ -7711,7 +7711,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_database_factories_dispatchfactory_dispatchfactory",
-      "community": 19,
+      "community": 4,
       "norm_label": "dispatchfactory"
     },
     {
@@ -7791,7 +7791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_quarterlystocksnapshotfactory",
-      "community": 19,
+      "community": 11,
       "norm_label": "quarterlystocksnapshotfactory.php"
     },
     {
@@ -7801,7 +7801,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_quarterlystocksnapshotfactory_quarterlystocksnapshotfactory",
-      "community": 19,
+      "community": 4,
       "norm_label": "quarterlystocksnapshotfactory"
     },
     {
@@ -7851,7 +7851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_resourcefactory",
-      "community": 19,
+      "community": 11,
       "norm_label": "resourcefactory.php"
     },
     {
@@ -7861,7 +7861,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_resourcefactory_resourcefactory",
-      "community": 19,
+      "community": 4,
       "norm_label": "resourcefactory"
     },
     {
@@ -7941,7 +7941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory",
-      "community": 19,
+      "community": 23,
       "norm_label": "userfactory.php"
     },
     {
@@ -7991,7 +7991,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_zonefactory",
-      "community": 11,
+      "community": 19,
       "norm_label": "zonefactory.php"
     },
     {
@@ -8991,7 +8991,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_disasterdataseeder",
-      "community": 11,
+      "community": 63,
       "norm_label": "disasterdataseeder.php"
     },
     {
@@ -9071,7 +9071,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
-      "community": 63,
+      "community": 69,
       "norm_label": ".run()"
     },
     {
@@ -9081,7 +9081,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder",
-      "community": 63,
+      "community": 258,
       "norm_label": "roleseeder.php"
     },
     {
@@ -9091,7 +9091,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder_roleseeder",
-      "community": 63,
+      "community": 258,
       "norm_label": "roleseeder"
     },
     {
@@ -9101,7 +9101,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder_roleseeder_run",
-      "community": 63,
+      "community": 258,
       "norm_label": ".run()"
     },
     {
@@ -9131,7 +9131,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_database_seeders_userseeder_userseeder_run",
-      "community": 16,
+      "community": 63,
       "norm_label": ".run()"
     },
     {
@@ -9291,7 +9291,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal",
-      "community": 14,
+      "community": 40,
       "norm_label": "modal.tsx"
     },
     {
@@ -9301,7 +9301,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal_props",
-      "community": 14,
+      "community": 40,
       "norm_label": "props"
     },
     {
@@ -9311,7 +9311,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_modal_modal",
-      "community": 14,
+      "community": 40,
       "norm_label": "modal()"
     },
     {
@@ -9411,7 +9411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox",
-      "community": 33,
+      "community": 12,
       "norm_label": "imagelightbox.tsx"
     },
     {
@@ -9421,7 +9421,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightboxprops",
-      "community": 33,
+      "community": 12,
       "norm_label": "imagelightboxprops"
     },
     {
@@ -9431,7 +9431,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightbox",
-      "community": 33,
+      "community": 12,
       "norm_label": "imagelightbox()"
     },
     {
@@ -9561,7 +9561,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal",
-      "community": 7,
+      "community": 12,
       "norm_label": "modal.tsx"
     },
     {
@@ -9571,7 +9571,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalprops"
     },
     {
@@ -9581,7 +9581,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modal",
-      "community": 7,
+      "community": 12,
       "norm_label": "modal()"
     },
     {
@@ -9621,7 +9621,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_offlinebanner",
-      "community": 1,
+      "community": 70,
       "norm_label": "offlinebanner.tsx"
     },
     {
@@ -9631,7 +9631,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_components_offlinebanner_offlinebanner",
-      "community": 1,
+      "community": 70,
       "norm_label": "offlinebanner()"
     },
     {
@@ -10001,7 +10001,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field",
-      "community": 33,
+      "community": 12,
       "norm_label": "field.tsx"
     },
     {
@@ -10011,7 +10011,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field_field",
-      "community": 33,
+      "community": 12,
       "norm_label": "field()"
     },
     {
@@ -10021,7 +10021,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field_readonlyfield",
-      "community": 33,
+      "community": 12,
       "norm_label": "readonlyfield()"
     },
     {
@@ -10151,7 +10151,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodal.tsx"
     },
     {
@@ -10161,7 +10161,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal_confirmarchiveaccountmodalprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodalprops"
     },
     {
@@ -10171,7 +10171,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmarchiveaccountmodal_confirmarchiveaccountmodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmarchiveaccountmodal()"
     },
     {
@@ -10181,7 +10181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmdeletemodal.tsx"
     },
     {
@@ -10191,7 +10191,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal_confirmdeletemodalprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmdeletemodalprops"
     },
     {
@@ -10201,7 +10201,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirmdeletemodal_confirmdeletemodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirmdeletemodal()"
     },
     {
@@ -10211,7 +10211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirminusemodal.tsx"
     },
     {
@@ -10231,7 +10231,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal_confirminusemodalprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirminusemodalprops"
     },
     {
@@ -10241,7 +10241,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal_confirminusemodal",
-      "community": 7,
+      "community": 12,
       "norm_label": "confirminusemodal()"
     },
     {
@@ -10251,7 +10251,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalcenter.tsx"
     },
     {
@@ -10261,7 +10261,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_size",
-      "community": 7,
+      "community": 12,
       "norm_label": "size"
     },
     {
@@ -10271,7 +10271,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_widths",
-      "community": 7,
+      "community": 12,
       "norm_label": "widths"
     },
     {
@@ -10281,7 +10281,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcomponentprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalcomponentprops"
     },
     {
@@ -10291,7 +10291,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcenterprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalcenterprops"
     },
     {
@@ -10301,7 +10301,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalcenter_modalcenter",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalcenter()"
     },
     {
@@ -10311,7 +10311,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalside.tsx"
     },
     {
@@ -10321,7 +10321,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_side",
-      "community": 7,
+      "community": 12,
       "norm_label": "side"
     },
     {
@@ -10331,7 +10331,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_modalsideprops",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalsideprops"
     },
     {
@@ -10341,7 +10341,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_side_classes",
-      "community": 7,
+      "community": 12,
       "norm_label": "side_classes"
     },
     {
@@ -10351,7 +10351,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_modalside_modalside",
-      "community": 7,
+      "community": 12,
       "norm_label": "modalside()"
     },
     {
@@ -10481,7 +10481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_recordmenu",
-      "community": 20,
+      "community": 17,
       "norm_label": "recordmenu.ts"
     },
     {
@@ -10491,7 +10491,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_recordmenu_buildrecordmenu",
-      "community": 20,
+      "community": 17,
       "norm_label": "buildrecordmenu()"
     },
     {
@@ -10581,7 +10581,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_spinners_fetchingspinner",
-      "community": 17,
+      "community": 33,
       "norm_label": "fetchingspinner.jsx"
     },
     {
@@ -10591,7 +10591,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_components_spinners_fetchingspinner_fetchingspinner",
-      "community": 17,
+      "community": 33,
       "norm_label": "fetchingspinner()"
     },
     {
@@ -10621,7 +10621,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_datatablecardfield",
-      "community": 17,
+      "community": 33,
       "norm_label": "datatablecardfield.tsx"
     },
     {
@@ -10631,7 +10631,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_datatablecardfield_datatablecardfield",
-      "community": 10,
+      "community": 33,
       "norm_label": "datatablecardfield()"
     },
     {
@@ -10701,7 +10701,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_defaultrecordcard",
-      "community": 17,
+      "community": 33,
       "norm_label": "defaultrecordcard.tsx"
     },
     {
@@ -10721,7 +10721,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_defaultrecordcard_defaultrecordcard",
-      "community": 17,
+      "community": 33,
       "norm_label": "defaultrecordcard()"
     },
     {
@@ -10731,7 +10731,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination",
-      "community": 17,
+      "community": 33,
       "norm_label": "pagination.tsx"
     },
     {
@@ -10741,7 +10741,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtnprops",
-      "community": 17,
+      "community": 33,
       "norm_label": "pagebtnprops"
     },
     {
@@ -10751,7 +10751,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtn",
-      "community": 17,
+      "community": 33,
       "norm_label": "pagebtn()"
     },
     {
@@ -10761,7 +10761,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbersprops",
-      "community": 17,
+      "community": 33,
       "norm_label": "pagenumbersprops"
     },
     {
@@ -10771,7 +10771,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbers",
-      "community": 17,
+      "community": 33,
       "norm_label": "pagenumbers()"
     },
     {
@@ -10781,7 +10781,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbarprops",
-      "community": 17,
+      "community": 33,
       "norm_label": "paginationbarprops"
     },
     {
@@ -10791,7 +10791,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbar",
-      "community": 17,
+      "community": 33,
       "norm_label": "paginationbar()"
     },
     {
@@ -10881,7 +10881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield",
-      "community": 33,
+      "community": 12,
       "norm_label": "recordmodalfield.tsx"
     },
     {
@@ -10891,7 +10891,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfieldprops",
-      "community": 33,
+      "community": 12,
       "norm_label": "dynamicfieldprops"
     },
     {
@@ -10901,7 +10901,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfield",
-      "community": 33,
+      "community": 12,
       "norm_label": "dynamicfield()"
     },
     {
@@ -10911,7 +10911,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_fieldcontrol",
-      "community": 33,
+      "community": 12,
       "norm_label": "fieldcontrol()"
     },
     {
@@ -10921,7 +10921,7 @@
       "source_location": "L230",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_passwordcontrol",
-      "community": 33,
+      "community": 12,
       "norm_label": "passwordcontrol()"
     },
     {
@@ -11021,7 +11021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle",
-      "community": 17,
+      "community": 33,
       "norm_label": "viewtoggle.tsx"
     },
     {
@@ -11031,7 +11031,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggleprops",
-      "community": 17,
+      "community": 33,
       "norm_label": "viewtoggleprops"
     },
     {
@@ -11041,7 +11041,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggle",
-      "community": 17,
+      "community": 33,
       "norm_label": "viewtoggle()"
     },
     {
@@ -11251,7 +11251,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_formatcell",
-      "community": 17,
+      "community": 33,
       "norm_label": "formatcell()"
     },
     {
@@ -11551,7 +11551,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field",
-      "community": 33,
+      "community": 12,
       "norm_label": "use-file-upload-field.tsx"
     },
     {
@@ -11561,7 +11561,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_formatbytes",
-      "community": 33,
+      "community": 12,
       "norm_label": "formatbytes()"
     },
     {
@@ -11571,7 +11571,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_isimagename",
-      "community": 33,
+      "community": 12,
       "norm_label": "isimagename()"
     },
     {
@@ -11601,7 +11601,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_emptyfilefieldvalue",
-      "community": 33,
+      "community": 12,
       "norm_label": "emptyfilefieldvalue"
     },
     {
@@ -11611,7 +11611,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_localthumb",
-      "community": 33,
+      "community": 12,
       "norm_label": "localthumb()"
     },
     {
@@ -11621,7 +11621,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfieldprops",
-      "community": 33,
+      "community": 12,
       "norm_label": "fileuploadfieldprops"
     },
     {
@@ -11631,7 +11631,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfield",
-      "community": 33,
+      "community": 12,
       "norm_label": "fileuploadfield()"
     },
     {
@@ -11681,7 +11681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior",
-      "community": 7,
+      "community": 12,
       "norm_label": "use-modal-behavior.ts"
     },
     {
@@ -11691,7 +11691,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior_usemodalbehavioroptions",
-      "community": 7,
+      "community": 12,
       "norm_label": "usemodalbehavioroptions"
     },
     {
@@ -11701,7 +11701,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_modal_behavior_usemodalbehavior",
-      "community": 7,
+      "community": 12,
       "norm_label": "usemodalbehavior()"
     },
     {
@@ -11801,7 +11801,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_scroll_lock",
-      "community": 7,
+      "community": 12,
       "norm_label": "use-scroll-lock.ts"
     },
     {
@@ -11811,7 +11811,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_scroll_lock_usescrolllock",
-      "community": 7,
+      "community": 12,
       "norm_label": "usescrolllock()"
     },
     {
@@ -11941,7 +11941,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_uselivegeolocation",
-      "community": 40,
+      "community": 2,
       "norm_label": "uselivegeolocation.ts"
     },
     {
@@ -12221,7 +12221,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_enqueue",
-      "community": 14,
+      "community": 10,
       "norm_label": "enqueue()"
     },
     {
@@ -12621,7 +12621,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index",
-      "community": 10,
+      "community": 240,
       "norm_label": "index.tsx"
     },
     {
@@ -12631,7 +12631,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_columns",
-      "community": 10,
+      "community": 240,
       "norm_label": "columns"
     },
     {
@@ -12641,7 +12641,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_evacuationcard",
-      "community": 10,
+      "community": 240,
       "norm_label": "evacuationcard()"
     },
     {
@@ -12651,7 +12651,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "backend_resources_js_pages_evacuation_index_fields",
-      "community": 10,
+      "community": 240,
       "norm_label": "fields"
     },
     {
@@ -12911,7 +12911,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_pages_incidents_index_incidentsindex",
-      "community": 14,
+      "community": 10,
       "norm_label": "incidentsindex()"
     },
     {
@@ -13111,7 +13111,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index",
-      "community": 10,
+      "community": 240,
       "norm_label": "index.tsx"
     },
     {
@@ -13121,7 +13121,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_columns",
-      "community": 10,
+      "community": 240,
       "norm_label": "columns"
     },
     {
@@ -13131,7 +13131,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportcard",
-      "community": 10,
+      "community": 240,
       "norm_label": "reportcard()"
     },
     {
@@ -13141,7 +13141,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportfields",
-      "community": 10,
+      "community": 240,
       "norm_label": "reportfields"
     },
     {
@@ -13151,7 +13151,7 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "backend_resources_js_pages_reports_index_reportsindex",
-      "community": 10,
+      "community": 240,
       "norm_label": "reportsindex()"
     },
     {
@@ -13161,7 +13161,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform",
-      "community": 14,
+      "community": 10,
       "norm_label": "createrequestform.tsx"
     },
     {
@@ -13171,7 +13171,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_props",
-      "community": 14,
+      "community": 10,
       "norm_label": "props"
     },
     {
@@ -13181,7 +13181,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_priorities",
-      "community": 14,
+      "community": 10,
       "norm_label": "priorities"
     },
     {
@@ -13191,7 +13191,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_createrequestform_createrequestform",
-      "community": 14,
+      "community": 10,
       "norm_label": "createrequestform()"
     },
     {
@@ -13201,7 +13201,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index",
-      "community": 73,
+      "community": 10,
       "norm_label": "index.tsx"
     },
     {
@@ -13211,7 +13211,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index_statuscolor",
-      "community": 73,
+      "community": 10,
       "norm_label": "statuscolor"
     },
     {
@@ -13221,7 +13221,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index_approvalcolor",
-      "community": 73,
+      "community": 10,
       "norm_label": "approvalcolor"
     },
     {
@@ -13231,7 +13231,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index_columns",
-      "community": 73,
+      "community": 10,
       "norm_label": "columns"
     },
     {
@@ -13241,7 +13241,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index_makerequestcard",
-      "community": 73,
+      "community": 10,
       "norm_label": "makerequestcard()"
     },
     {
@@ -13251,7 +13251,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "backend_resources_js_pages_requests_index_requestsindex",
-      "community": 73,
+      "community": 10,
       "norm_label": "requestsindex()"
     },
     {
@@ -14101,7 +14101,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_tableviewtype",
-      "community": 17,
+      "community": 33,
       "norm_label": "tableviewtype"
     },
     {
@@ -14211,7 +14211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields",
-      "community": 33,
+      "community": 12,
       "norm_label": "fields.ts"
     },
     {
@@ -14231,7 +14231,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldtype",
-      "community": 33,
+      "community": 17,
       "norm_label": "fieldtype"
     },
     {
@@ -14251,7 +14251,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_existingfile",
-      "community": 33,
+      "community": 12,
       "norm_label": "existingfile"
     },
     {
@@ -14261,7 +14261,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_filefieldvalue",
-      "community": 33,
+      "community": 12,
       "norm_label": "filefieldvalue"
     },
     {
@@ -14491,7 +14491,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror",
-      "community": 14,
+      "community": 1,
       "norm_label": "apierror"
     },
     {
@@ -14501,7 +14501,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror_constructor",
-      "community": 14,
+      "community": 1,
       "norm_label": ".constructor()"
     },
     {
@@ -14771,7 +14771,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_depots",
-      "community": 2,
+      "community": 14,
       "norm_label": "depots.ts"
     },
     {
@@ -14781,7 +14781,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_depots_depotsservice",
-      "community": 2,
+      "community": 14,
       "norm_label": "depotsservice"
     },
     {
@@ -14801,7 +14801,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_dispatches_dispatchesservice",
-      "community": 40,
+      "community": 2,
       "norm_label": "dispatchesservice"
     },
     {
@@ -14811,7 +14811,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_evacuationcenters",
-      "community": 10,
+      "community": 240,
       "norm_label": "evacuationcenters.ts"
     },
     {
@@ -14821,7 +14821,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_evacuationcenters_evacuationcentersservice",
-      "community": 10,
+      "community": 240,
       "norm_label": "evacuationcentersservice"
     },
     {
@@ -14841,7 +14841,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_incidents_incidentsservice",
-      "community": 2,
+      "community": 240,
       "norm_label": "incidentsservice"
     },
     {
@@ -15011,7 +15011,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_roles_sharesadminaccess",
-      "community": 233,
+      "community": 78,
       "norm_label": "sharesadminaccess()"
     },
     {
@@ -15068,7 +15068,7 @@
       "label": "queryClient",
       "file_type": "code",
       "source_file": "backend/resources/js/app.tsx",
-      "source_location": "L11",
+      "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_app_queryclient",
       "community": 73,
@@ -15078,7 +15078,7 @@
       "label": "setup()",
       "file_type": "code",
       "source_file": "backend/resources/js/app.tsx",
-      "source_location": "L25",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_app_setup",
       "community": 73,
@@ -15211,7 +15211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_date",
-      "community": 33,
+      "community": 12,
       "norm_label": "date.ts"
     },
     {
@@ -15221,7 +15221,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_lib_date_formatdateshort",
-      "community": 33,
+      "community": 12,
       "norm_label": "formatdateshort()"
     },
     {
@@ -15351,7 +15351,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_api",
-      "community": 47,
+      "community": 41,
       "norm_label": "api.php"
     },
     {
@@ -15391,7 +15391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_web",
-      "community": 71,
+      "community": 249,
       "norm_label": "web.php"
     },
     {
@@ -16131,7 +16131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedingestortest",
-      "community": 11,
+      "community": 69,
       "norm_label": "disasterfeedingestortest.php"
     },
     {
@@ -16221,7 +16221,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest",
-      "community": 16,
+      "community": 246,
       "norm_label": "disasterfeedsettingscontrollertest"
     },
     {
@@ -16231,7 +16231,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest_test_viewer_is_forbidden_from_the_settings_page",
-      "community": 16,
+      "community": 246,
       "norm_label": ".test_viewer_is_forbidden_from_the_settings_page()"
     },
     {
@@ -16241,7 +16241,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest_test_viewer_is_forbidden_from_the_api",
-      "community": 16,
+      "community": 246,
       "norm_label": ".test_viewer_is_forbidden_from_the_api()"
     },
     {
@@ -16251,7 +16251,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest_test_admin_can_view_and_update_settings",
-      "community": 16,
+      "community": 246,
       "norm_label": ".test_admin_can_view_and_update_settings()"
     },
     {
@@ -16261,7 +16261,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest_test_invalid_poll_interval_is_rejected",
-      "community": 16,
+      "community": 246,
       "norm_label": ".test_invalid_poll_interval_is_rejected()"
     },
     {
@@ -16271,7 +16271,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_tests_feature_disasterfeedsettingscontrollertest_disasterfeedsettingscontrollertest_test_run_now_queues_the_poll_job",
-      "community": 16,
+      "community": 246,
       "norm_label": ".test_run_now_queues_the_poll_job()"
     },
     {
@@ -16291,7 +16291,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchdeliverydeductiontest_dispatchdeliverydeductiontest",
-      "community": 4,
+      "community": 11,
       "norm_label": "dispatchdeliverydeductiontest"
     },
     {
@@ -16301,7 +16301,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchdeliverydeductiontest_dispatchdeliverydeductiontest_test_delivering_a_dispatch_linked_to_an_allocation_deducts_stock_and_fulfills_the_request",
-      "community": 4,
+      "community": 50,
       "norm_label": ".test_delivering_a_dispatch_linked_to_an_allocation_deducts_stock_and_fulfills_the_request()"
     },
     {
@@ -16311,7 +16311,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchdeliverydeductiontest_dispatchdeliverydeductiontest_test_delivering_a_dispatch_with_no_linked_allocation_is_a_stock_noop",
-      "community": 4,
+      "community": 27,
       "norm_label": ".test_delivering_a_dispatch_with_no_linked_allocation_is_a_stock_noop()"
     },
     {
@@ -16321,7 +16321,7 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchdeliverydeductiontest_dispatchdeliverydeductiontest_test_delivering_an_already_delivered_dispatch_does_not_double_deduct",
-      "community": 4,
+      "community": 50,
       "norm_label": ".test_delivering_an_already_delivered_dispatch_does_not_double_deduct()"
     },
     {
@@ -16341,7 +16341,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest",
-      "community": 244,
+      "community": 27,
       "norm_label": "dispatchtest"
     },
     {
@@ -16351,7 +16351,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_coordinator_can_create_a_dispatch",
-      "community": 244,
+      "community": 4,
       "norm_label": ".test_coordinator_can_create_a_dispatch()"
     },
     {
@@ -16361,7 +16361,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_viewer_cannot_create_a_dispatch",
-      "community": 244,
+      "community": 4,
       "norm_label": ".test_viewer_cannot_create_a_dispatch()"
     },
     {
@@ -16371,7 +16371,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_assigned_driver_can_update_their_own_position",
-      "community": 244,
+      "community": 27,
       "norm_label": ".test_assigned_driver_can_update_their_own_position()"
     },
     {
@@ -16381,7 +16381,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_a_different_respondent_cannot_update_someone_elses_dispatch_position",
-      "community": 244,
+      "community": 27,
       "norm_label": ".test_a_different_respondent_cannot_update_someone_elses_dispatch_position()"
     },
     {
@@ -16391,8 +16391,78 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "backend_tests_feature_dispatchtest_dispatchtest_test_coordinator_can_update_position_on_behalf_of_a_driver",
-      "community": 244,
+      "community": 27,
       "norm_label": ".test_coordinator_can_update_position_on_behalf_of_a_driver()"
+    },
+    {
+      "label": "EvaluationTest.php",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest",
+      "community": 11,
+      "norm_label": "evaluationtest.php"
+    },
+    {
+      "label": "EvaluationTest",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest",
+      "community": 69,
+      "norm_label": "evaluationtest"
+    },
+    {
+      "label": ".test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
+      "community": 69,
+      "norm_label": ".test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update()"
+    },
+    {
+      "label": ".accessMatrix()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest_accessmatrix",
+      "community": 69,
+      "norm_label": ".accessmatrix()"
+    },
+    {
+      "label": ".test_role_based_access_for_each_role()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest_test_role_based_access_for_each_role",
+      "community": 69,
+      "norm_label": ".test_role_based_access_for_each_role()"
+    },
+    {
+      "label": ".test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L97",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
+      "community": 69,
+      "norm_label": ".test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged()"
+    },
+    {
+      "label": ".test_dashboard_figures_match_the_database()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L146",
+      "_origin": "ast",
+      "id": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "community": 69,
+      "norm_label": ".test_dashboard_figures_match_the_database()"
     },
     {
       "label": "ExampleTest.php",
@@ -16408,21 +16478,21 @@
       "label": "ExampleTest",
       "file_type": "code",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L8",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "backend_tests_feature_exampletest_exampletest",
       "community": 11,
       "norm_label": "exampletest"
     },
     {
-      "label": ".test_the_application_returns_a_successful_response()",
+      "label": ".test_guests_are_sent_to_the_login_page()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L13",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "backend_tests_feature_exampletest_exampletest_test_the_application_returns_a_successful_response",
+      "id": "backend_tests_feature_exampletest_exampletest_test_guests_are_sent_to_the_login_page",
       "community": 11,
-      "norm_label": ".test_the_application_returns_a_successful_response()"
+      "norm_label": ".test_guests_are_sent_to_the_login_page()"
     },
     {
       "label": "IcsRequestWorkflowTest.php",
@@ -16611,7 +16681,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_tests_feature_idempotentcreatetest_idempotentcreatetest_test_posting_the_same_incident_id_twice_creates_only_one_row",
-      "community": 16,
+      "community": 66,
       "norm_label": ".test_posting_the_same_incident_id_twice_creates_only_one_row()"
     },
     {
@@ -16621,7 +16691,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_tests_feature_idempotentcreatetest_idempotentcreatetest_test_posting_the_same_area_id_twice_creates_only_one_zone",
-      "community": 4,
+      "community": 66,
       "norm_label": ".test_posting_the_same_area_id_twice_creates_only_one_zone()"
     },
     {
@@ -16691,7 +16761,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest",
-      "community": 107,
+      "community": 69,
       "norm_label": "replenishmenttest.php"
     },
     {
@@ -16911,7 +16981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_reportdownloadtest",
-      "community": 11,
+      "community": 6,
       "norm_label": "reportdownloadtest.php"
     },
     {
@@ -16971,7 +17041,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_tests_feature_requestapprovalreservationtest_requestapprovalreservationtest",
-      "community": 4,
+      "community": 256,
       "norm_label": "requestapprovalreservationtest"
     },
     {
@@ -16981,7 +17051,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_tests_feature_requestapprovalreservationtest_requestapprovalreservationtest_makerequestanddepot",
-      "community": 4,
+      "community": 256,
       "norm_label": ".makerequestanddepot()"
     },
     {
@@ -16991,7 +17061,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "backend_tests_feature_requestapprovalreservationtest_requestapprovalreservationtest_test_approving_with_sufficient_stock_reserves_it_and_creates_an_allocation",
-      "community": 4,
+      "community": 256,
       "norm_label": ".test_approving_with_sufficient_stock_reserves_it_and_creates_an_allocation()"
     },
     {
@@ -17001,7 +17071,7 @@
       "source_location": "L69",
       "_origin": "ast",
       "id": "backend_tests_feature_requestapprovalreservationtest_requestapprovalreservationtest_test_approving_at_exactly_available_stock_succeeds",
-      "community": 4,
+      "community": 256,
       "norm_label": ".test_approving_at_exactly_available_stock_succeeds()"
     },
     {
@@ -17011,7 +17081,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "backend_tests_feature_requestapprovalreservationtest_requestapprovalreservationtest_test_approving_with_insufficient_stock_is_rejected_and_reserves_nothing",
-      "community": 4,
+      "community": 256,
       "norm_label": ".test_approving_with_insufficient_stock_is_rejected_and_reserves_nothing()"
     },
     {
@@ -17231,7 +17301,7 @@
       "source_location": "L175",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_assigned_driver_can_update_dispatch_position_even_as_ert",
-      "community": 27,
+      "community": 66,
       "norm_label": ".test_assigned_driver_can_update_dispatch_position_even_as_ert()"
     },
     {
@@ -17261,7 +17331,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_coordinator_tier_can_update_any_dispatch_position",
-      "community": 27,
+      "community": 66,
       "norm_label": ".test_coordinator_tier_can_update_any_dispatch_position()"
     },
     {
@@ -17291,7 +17361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_snapshotquarterlystockjobtest",
-      "community": 32,
+      "community": 11,
       "norm_label": "snapshotquarterlystockjobtest.php"
     },
     {
@@ -17301,7 +17371,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_tests_feature_snapshotquarterlystockjobtest_snapshotquarterlystockjobtest",
-      "community": 32,
+      "community": 11,
       "norm_label": "snapshotquarterlystockjobtest"
     },
     {
@@ -17311,7 +17381,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_tests_feature_snapshotquarterlystockjobtest_snapshotquarterlystockjobtest_test_it_snapshots_closing_stock_and_sums_fulfilled_consumption_for_the_elapsed_quarter",
-      "community": 32,
+      "community": 50,
       "norm_label": ".test_it_snapshots_closing_stock_and_sums_fulfilled_consumption_for_the_elapsed_quarter()"
     },
     {
@@ -17331,7 +17401,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest",
-      "community": 127,
+      "community": 11,
       "norm_label": "stockledgertest.php"
     },
     {
@@ -17511,7 +17581,7 @@
       "source_location": "L189",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_data_checks_flag_negative_stock_and_count_mismatches",
-      "community": 127,
+      "community": 6,
       "norm_label": ".test_data_checks_flag_negative_stock_and_count_mismatches()"
     },
     {
@@ -18524,7 +18594,7 @@
       "label": "covering_level()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L44",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_covering_level",
       "community": 68,
@@ -18534,7 +18604,7 @@
       "label": "item_target()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L50",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_item_target",
       "community": 68,
@@ -18544,7 +18614,7 @@
       "label": "solve()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L63",
+      "source_location": "L67",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_solve",
       "community": 68,
@@ -18554,7 +18624,7 @@
       "label": "budget_curve()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L162",
+      "source_location": "L166",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_budget_curve",
       "community": 68,
@@ -18564,7 +18634,7 @@
       "label": "flat_rule_orders()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L183",
+      "source_location": "L192",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_flat_rule_orders",
       "community": 68,
@@ -18574,7 +18644,7 @@
       "label": "backtest()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L199",
+      "source_location": "L208",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_backtest",
       "community": 68,
@@ -18584,7 +18654,7 @@
       "label": "_score()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L250",
+      "source_location": "L259",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_score",
       "community": 68,
@@ -18594,7 +18664,7 @@
       "label": "_ms()",
       "file_type": "code",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L274",
+      "source_location": "L283",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_ms",
       "community": 68,
@@ -18614,9 +18684,9 @@
       "label": "Use that would have covered k of the last m quarters: the (m-k+1)-th highest.",
       "file_type": "rationale",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L45",
+      "source_location": "L49",
       "_origin": "ast",
-      "id": "solver_service_app_solvers_replenishment_rationale_45",
+      "id": "solver_service_app_solvers_replenishment_rationale_49",
       "community": 68,
       "norm_label": "use that would have covered k of the last m quarters: the (m-k+1)-th highest."
     },
@@ -18624,9 +18694,9 @@
       "label": "(target, basis, multiplier). Target None means the item is listed for Logistics",
       "file_type": "rationale",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L51",
+      "source_location": "L55",
       "_origin": "ast",
-      "id": "solver_service_app_solvers_replenishment_rationale_51",
+      "id": "solver_service_app_solvers_replenishment_rationale_55",
       "community": 68,
       "norm_label": "(target, basis, multiplier). target none means the item is listed for logistics"
     },
@@ -18634,9 +18704,9 @@
       "label": "Re-solves at 11 budget levels, 50%-150% of the entered budget in 10% steps     (",
       "file_type": "rationale",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L163",
+      "source_location": "L167",
       "_origin": "ast",
-      "id": "solver_service_app_solvers_replenishment_rationale_163",
+      "id": "solver_service_app_solvers_replenishment_rationale_167",
       "community": 68,
       "norm_label": "re-solves at 11 budget levels, 50%-150% of the entered budget in 10% steps     ("
     },
@@ -18644,9 +18714,9 @@
       "label": "The office's flat 1.5 rule, cut by the same percentage for every item to fit the",
       "file_type": "rationale",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L184",
+      "source_location": "L193",
       "_origin": "ast",
-      "id": "solver_service_app_solvers_replenishment_rationale_184",
+      "id": "solver_service_app_solvers_replenishment_rationale_193",
       "community": 68,
       "norm_label": "the office's flat 1.5 rule, cut by the same percentage for every item to fit the"
     },
@@ -18654,9 +18724,9 @@
       "label": "Rolling-origin backtest: for each quarter from the 5th encoded one onward,     e",
       "file_type": "rationale",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L200",
+      "source_location": "L209",
       "_origin": "ast",
-      "id": "solver_service_app_solvers_replenishment_rationale_200",
+      "id": "solver_service_app_solvers_replenishment_rationale_209",
       "community": 68,
       "norm_label": "rolling-origin backtest: for each quarter from the 5th encoded one onward,     e"
     },
@@ -18667,7 +18737,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_main",
-      "community": 34,
+      "community": 68,
       "norm_label": "main.py"
     },
     {
@@ -18677,7 +18747,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "solver_service_main_health",
-      "community": 34,
+      "community": 68,
       "norm_label": "health()"
     },
     {
@@ -18687,8 +18757,78 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "solver_service_main_rationale_19",
-      "community": 34,
+      "community": 68,
       "norm_label": "health check consumed by docker/compose and the backend's depends_on condition."
+    },
+    {
+      "label": "test_performance.py",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance",
+      "community": 68,
+      "norm_label": "test_performance.py"
+    },
+    {
+      "label": "office_sized_request()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_office_sized_request",
+      "community": 68,
+      "norm_label": "office_sized_request()"
+    },
+    {
+      "label": "timed()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_timed",
+      "community": 68,
+      "norm_label": "timed()"
+    },
+    {
+      "label": "test_stage2_solves_200_items_12_scenarios_under_2_seconds()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_test_stage2_solves_200_items_12_scenarios_under_2_seconds",
+      "community": 68,
+      "norm_label": "test_stage2_solves_200_items_12_scenarios_under_2_seconds()"
+    },
+    {
+      "label": "test_budget_curve_of_11_resolves_under_20_seconds()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_test_budget_curve_of_11_resolves_under_20_seconds",
+      "community": 68,
+      "norm_label": "test_budget_curve_of_11_resolves_under_20_seconds()"
+    },
+    {
+      "label": "test_stage1_scales_to_200_items()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_test_stage1_scales_to_200_items",
+      "community": 68,
+      "norm_label": "test_stage1_scales_to_200_items()"
+    },
+    {
+      "label": "Performance pass marks (Chapter III, Performance Testing Procedure): a Stage 2 s",
+      "file_type": "rationale",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_performance_rationale_1",
+      "community": 68,
+      "norm_label": "performance pass marks (chapter iii, performance testing procedure): a stage 2 s"
     },
     {
       "label": "test_replenishment.py",
@@ -19071,10 +19211,20 @@
       "norm_label": "architecture"
     },
     {
-      "label": "Domain model (backend/app/Models, backend/database/migrations)",
+      "label": "New scope: quarterly replenishment system (`backend/docs/system-spec.md`)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
       "source_location": "L71",
+      "_origin": "ast",
+      "id": "claude_new_scope_quarterly_replenishment_system_backend_docs_system_spec_md",
+      "community": 62,
+      "norm_label": "new scope: quarterly replenishment system (`backend/docs/system-spec.md`)"
+    },
+    {
+      "label": "Domain model (backend/app/Models, backend/database/migrations)",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L83",
       "_origin": "ast",
       "id": "claude_domain_model_backend_app_models_backend_database_migrations",
       "community": 62,
@@ -19084,7 +19234,7 @@
       "label": "Optimization flow (the core cross-service interaction)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L81",
+      "source_location": "L93",
       "_origin": "ast",
       "id": "claude_optimization_flow_the_core_cross_service_interaction",
       "community": 62,
@@ -19094,7 +19244,7 @@
       "label": "Automated disaster feed (backend/app/Services/DisasterFeed)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L91",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "claude_automated_disaster_feed_backend_app_services_disasterfeed",
       "community": 62,
@@ -19104,7 +19254,7 @@
       "label": "Directions / turn-by-turn navigation (backend/app/Services/Directions)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L101",
+      "source_location": "L113",
       "_origin": "ast",
       "id": "claude_directions_turn_by_turn_navigation_backend_app_services_directions",
       "community": 62,
@@ -19114,7 +19264,7 @@
       "label": "Backend request layering",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L112",
+      "source_location": "L124",
       "_origin": "ast",
       "id": "claude_backend_request_layering",
       "community": 62,
@@ -19124,7 +19274,7 @@
       "label": "Frontend (backend/resources/js)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L123",
+      "source_location": "L135",
       "_origin": "ast",
       "id": "claude_frontend_backend_resources_js",
       "community": 62,
@@ -19134,7 +19284,7 @@
       "label": "Solver-service structure",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L131",
+      "source_location": "L143",
       "_origin": "ast",
       "id": "claude_solver_service_structure",
       "community": 62,
@@ -19144,7 +19294,7 @@
       "label": "graphify",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L140",
+      "source_location": "L152",
       "_origin": "ast",
       "id": "claude_graphify",
       "community": 62,
@@ -19359,6 +19509,86 @@
       "id": "algorithm_verification_once_each_phase_is_implemented",
       "community": 25,
       "norm_label": "verification (once each phase is implemented)"
+    },
+    {
+      "label": "evaluation-protocol.md",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol",
+      "community": 244,
+      "norm_label": "evaluation-protocol.md"
+    },
+    {
+      "label": "DisasterResource+ \u2014 Evaluation Protocol (Chapter III, Software Testing)",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "community": 244,
+      "norm_label": "disasterresource+ \u2014 evaluation protocol (chapter iii, software testing)"
+    },
+    {
+      "label": "1. Automated (run before every evaluation session)",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_1_automated_run_before_every_evaluation_session",
+      "community": 244,
+      "norm_label": "1. automated (run before every evaluation session)"
+    },
+    {
+      "label": "2. Offline resilience on devices (3 runs, then Safari separately)",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_2_offline_resilience_on_devices_3_runs_then_safari_separately",
+      "community": 244,
+      "norm_label": "2. offline resilience on devices (3 runs, then safari separately)"
+    },
+    {
+      "label": "3. Performance: run to dashboard (< 1 s on the office network)",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_3_performance_run_to_dashboard_1_s_on_the_office_network",
+      "community": 244,
+      "norm_label": "3. performance: run to dashboard (< 1 s on the office network)"
+    },
+    {
+      "label": "4. User acceptance tasks",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_4_user_acceptance_tasks",
+      "community": 244,
+      "norm_label": "4. user acceptance tasks"
+    },
+    {
+      "label": "5. Explanation task (target \u2265 80% correct)",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_5_explanation_task_target_80_correct",
+      "community": 244,
+      "norm_label": "5. explanation task (target \u2265 80% correct)"
+    },
+    {
+      "label": "6. ISO/IEC 25010:2023 survey",
+      "file_type": "document",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "backend_docs_evaluation_protocol_6_iso_iec_25010_2023_survey",
+      "community": 244,
+      "norm_label": "6. iso/iec 25010:2023 survey"
     },
     {
       "label": "CLAUDE.md",
@@ -20884,7 +21114,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 34,
+      "community": 68,
       "norm_label": "fastapi",
       "id": "fastapi"
     },
@@ -20910,7 +21140,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 57,
+      "community": 251,
       "norm_label": "runoptimizationjob",
       "id": "runoptimizationjob"
     },
@@ -22287,6 +22517,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "backend_app_jobs_runreplenishmentjob",
+      "target": "backend_app_events_replenishmentrunupdated",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
       "target": "backend_app_events_replenishmentrunupdated",
       "confidence_score": 1.0
     },
@@ -34849,6 +35090,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_depot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ReplenishmentTest.php",
       "source_location": "L6",
       "weight": 1.0,
@@ -35051,6 +35303,28 @@
       "source_location": "L47",
       "weight": 1.0,
       "source": "backend_tests_feature_dispatchtest_dispatchtest_test_viewer_cannot_create_a_dispatch",
+      "target": "backend_app_models_depot_depot"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "target": "backend_app_models_depot_depot"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
       "target": "backend_app_models_depot_depot"
     },
     {
@@ -36630,6 +36904,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_historyline",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ReplenishmentTest.php",
       "source_location": "L7",
       "weight": 1.0,
@@ -36678,6 +36963,17 @@
       "source_location": "L32",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
+      "target": "backend_app_models_historyline_historyline"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L154",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
       "target": "backend_app_models_historyline_historyline"
     },
     {
@@ -37405,6 +37701,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_replenishmentrun",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ReplenishmentTest.php",
       "source_location": "L8",
       "weight": 1.0,
@@ -37421,6 +37728,17 @@
       "source_location": "L39",
       "weight": 1.0,
       "source": "backend_app_services_reports_inventoryburnratereportbuilder_inventoryburnratereportbuilder_build",
+      "target": "backend_app_models_replenishmentrun_replenishmentrun"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
       "target": "backend_app_models_replenishmentrun_replenishmentrun"
     },
     {
@@ -38698,6 +39016,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_resourcetype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/IdempotentCreateTest.php",
       "source_location": "L5",
       "weight": 1.0,
@@ -38888,6 +39217,28 @@
       "source_location": "L91",
       "weight": 1.0,
       "source": "backend_tests_feature_dispatchdeliverydeductiontest_dispatchdeliverydeductiontest_test_delivering_an_already_delivered_dispatch_does_not_double_deduct",
+      "target": "backend_app_models_resourcetype_resourcetype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "target": "backend_app_models_resourcetype_resourcetype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
       "target": "backend_app_models_resourcetype_resourcetype"
     },
     {
@@ -39596,6 +39947,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_stockconflict_stockconflict",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
+      "target": "backend_app_models_stockconflict_stockconflict"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/IcsRequestWorkflowTest.php",
       "source_location": "L11",
       "weight": 1.0,
@@ -39883,6 +40256,39 @@
       "source": "backend_routes_console",
       "target": "backend_app_models_stockentry_stockentry",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_app_models_stockentry_stockentry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L157",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "target": "backend_app_models_stockentry_stockentry"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
+      "target": "backend_app_models_stockentry_stockentry"
     },
     {
       "relation": "imports",
@@ -40188,6 +40594,17 @@
       "source_location": "L9",
       "weight": 1.0,
       "source": "backend_tests_feature_dispatchtest",
+      "target": "backend_app_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
       "target": "backend_app_models_user",
       "confidence_score": 1.0
     },
@@ -40532,6 +40949,50 @@
       "source_location": "L45",
       "weight": 1.0,
       "source": "backend_tests_feature_dispatchtest_dispatchtest_test_viewer_cannot_create_a_dispatch",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L156",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L84",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_role_based_access_for_each_role",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L106",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
       "target": "backend_app_models_user_user"
     },
     {
@@ -43904,6 +44365,17 @@
       "source_location": "L10",
       "weight": 1.0,
       "source": "backend_routes_console",
+      "target": "backend_app_services_stock_stockledger",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
       "target": "backend_app_services_stock_stockledger",
       "confidence_score": 1.0
     },
@@ -61269,7 +61741,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/app.tsx",
-      "source_location": "L11",
+      "source_location": "L19",
       "weight": 1.0,
       "source": "backend_resources_js_app",
       "target": "backend_resources_js_app_queryclient",
@@ -61279,7 +61751,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/app.tsx",
-      "source_location": "L25",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "backend_resources_js_app",
       "target": "backend_resources_js_app_setup",
@@ -61869,6 +62341,27 @@
       "source_location": "L16",
       "weight": 1.0,
       "source": "backend_tests_feature_dispatchtest_dispatchtest",
+      "target": "refreshdatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "refreshdatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "mixes_in",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
       "target": "refreshdatabase",
       "confidence_score": 1.0
     },
@@ -62613,8 +63106,89 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest",
+      "target": "backend_tests_testcase_testcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest_accessmatrix",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L146",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest_test_role_based_access_for_each_role",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L97",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/EvaluationTest.php",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "backend_tests_feature_evaluationtest_evaluationtest",
+      "target": "backend_tests_testcase_testcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "backend_tests_feature_exampletest",
       "target": "backend_tests_feature_exampletest_exampletest",
@@ -62625,7 +63199,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L6",
+      "source_location": "L5",
       "weight": 1.0,
       "source": "backend_tests_feature_exampletest",
       "target": "backend_tests_testcase_testcase",
@@ -62635,17 +63209,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L13",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "backend_tests_feature_exampletest_exampletest",
-      "target": "backend_tests_feature_exampletest_exampletest_test_the_application_returns_a_successful_response",
+      "target": "backend_tests_feature_exampletest_exampletest_test_guests_are_sent_to_the_login_page",
       "confidence_score": 1.0
     },
     {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/ExampleTest.php",
-      "source_location": "L8",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "backend_tests_feature_exampletest_exampletest",
       "target": "backend_tests_testcase_testcase",
@@ -65650,7 +66224,7 @@
       "context": "generic_arg",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L183",
+      "source_location": "L192",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_flat_rule_orders",
       "target": "solver_service_app_models_replenishment_replenishmentitem",
@@ -65661,11 +66235,22 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L50",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_item_target",
       "target": "solver_service_app_models_replenishment_replenishmentitem",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_office_sized_request",
+      "target": "solver_service_app_models_replenishment_replenishmentitem"
     },
     {
       "relation": "calls",
@@ -65855,7 +66440,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L225",
+      "source_location": "L234",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_backtest",
       "target": "solver_service_app_models_replenishment_replenishmentrequest",
@@ -65866,7 +66451,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L162",
+      "source_location": "L166",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_budget_curve",
       "target": "solver_service_app_models_replenishment_replenishmentrequest",
@@ -65877,9 +66462,20 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L63",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_solve",
+      "target": "solver_service_app_models_replenishment_replenishmentrequest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_office_sized_request",
       "target": "solver_service_app_models_replenishment_replenishmentrequest",
       "confidence_score": 1.0
     },
@@ -66008,7 +66604,7 @@
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L199",
+      "source_location": "L208",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_backtest",
       "target": "solver_service_app_models_replenishment_backtestrequest",
@@ -66031,7 +66627,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L76",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_solve",
       "target": "solver_service_app_models_replenishment_orderline"
@@ -66041,7 +66637,7 @@
       "context": "return_type",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L63",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_solve",
       "target": "solver_service_app_models_replenishment_replenishmentresponse",
@@ -66580,7 +67176,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L199",
+      "source_location": "L208",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_backtest",
@@ -66590,7 +67186,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L162",
+      "source_location": "L166",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_budget_curve",
@@ -66600,7 +67196,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L44",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_covering_level",
@@ -66610,7 +67206,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L183",
+      "source_location": "L192",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_flat_rule_orders",
@@ -66620,7 +67216,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L50",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_item_target",
@@ -66630,7 +67226,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L274",
+      "source_location": "L283",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_ms",
@@ -66640,7 +67236,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L250",
+      "source_location": "L259",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_score",
@@ -66650,7 +67246,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L63",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment",
       "target": "solver_service_app_solvers_replenishment_solve",
@@ -66671,7 +67267,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L59",
+      "source_location": "L63",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_item_target",
       "target": "solver_service_app_solvers_replenishment_covering_level",
@@ -66681,9 +67277,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L45",
+      "source_location": "L49",
       "weight": 1.0,
-      "source": "solver_service_app_solvers_replenishment_rationale_45",
+      "source": "solver_service_app_solvers_replenishment_rationale_49",
       "target": "solver_service_app_solvers_replenishment_covering_level",
       "confidence_score": 1.0
     },
@@ -66702,9 +67298,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L51",
+      "source_location": "L55",
       "weight": 1.0,
-      "source": "solver_service_app_solvers_replenishment_rationale_51",
+      "source": "solver_service_app_solvers_replenishment_rationale_55",
       "target": "solver_service_app_solvers_replenishment_item_target",
       "confidence_score": 1.0
     },
@@ -66713,7 +67309,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L70",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_solve",
       "target": "solver_service_app_solvers_replenishment_item_target",
@@ -66746,7 +67342,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L225",
+      "source_location": "L234",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_backtest",
       "target": "solver_service_app_solvers_replenishment_solve",
@@ -66757,7 +67353,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L172",
+      "source_location": "L177",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_budget_curve",
       "target": "solver_service_app_solvers_replenishment_solve",
@@ -66768,7 +67364,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L125",
+      "source_location": "L129",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_solve",
       "target": "solver_service_app_solvers_replenishment_ms",
@@ -66778,9 +67374,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L163",
+      "source_location": "L167",
       "weight": 1.0,
-      "source": "solver_service_app_solvers_replenishment_rationale_163",
+      "source": "solver_service_app_solvers_replenishment_rationale_167",
       "target": "solver_service_app_solvers_replenishment_budget_curve",
       "confidence_score": 1.0
     },
@@ -66789,7 +67385,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L196",
+      "source_location": "L205",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_flat_rule_orders",
       "target": "solver_service_app_solvers_replenishment_ms",
@@ -66799,9 +67395,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L184",
+      "source_location": "L193",
       "weight": 1.0,
-      "source": "solver_service_app_solvers_replenishment_rationale_184",
+      "source": "solver_service_app_solvers_replenishment_rationale_193",
       "target": "solver_service_app_solvers_replenishment_flat_rule_orders",
       "confidence_score": 1.0
     },
@@ -66821,7 +67417,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L231",
+      "source_location": "L240",
       "weight": 1.0,
       "source": "solver_service_app_solvers_replenishment_backtest",
       "target": "solver_service_app_solvers_replenishment_score",
@@ -66831,9 +67427,9 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
-      "source_location": "L200",
+      "source_location": "L209",
       "weight": 1.0,
-      "source": "solver_service_app_solvers_replenishment_rationale_200",
+      "source": "solver_service_app_solvers_replenishment_rationale_209",
       "target": "solver_service_app_solvers_replenishment_backtest",
       "confidence_score": 1.0
     },
@@ -66877,6 +67473,132 @@
       "weight": 1.0,
       "source": "solver_service_main_rationale_19",
       "target": "solver_service_main_health",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance",
+      "target": "solver_service_tests_test_performance_office_sized_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance",
+      "target": "solver_service_tests_test_performance_test_budget_curve_of_11_resolves_under_20_seconds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance",
+      "target": "solver_service_tests_test_performance_test_stage1_scales_to_200_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance",
+      "target": "solver_service_tests_test_performance_test_stage2_solves_200_items_12_scenarios_under_2_seconds",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance",
+      "target": "solver_service_tests_test_performance_timed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_rationale_1",
+      "target": "solver_service_tests_test_performance",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_budget_curve_of_11_resolves_under_20_seconds",
+      "target": "solver_service_tests_test_performance_office_sized_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_stage1_scales_to_200_items",
+      "target": "solver_service_tests_test_performance_office_sized_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_stage2_solves_200_items_12_scenarios_under_2_seconds",
+      "target": "solver_service_tests_test_performance_office_sized_request",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_budget_curve_of_11_resolves_under_20_seconds",
+      "target": "solver_service_tests_test_performance_timed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_stage1_scales_to_200_items",
+      "target": "solver_service_tests_test_performance_timed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_performance.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_performance_test_stage2_solves_200_items_12_scenarios_under_2_seconds",
+      "target": "solver_service_tests_test_performance_timed",
       "confidence_score": 1.0
     },
     {
@@ -67422,7 +68144,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L140",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "claude_claude_md",
       "target": "claude_graphify",
@@ -67452,7 +68174,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L91",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_automated_disaster_feed_backend_app_services_disasterfeed",
@@ -67462,7 +68184,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L112",
+      "source_location": "L124",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_backend_request_layering",
@@ -67472,7 +68194,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L101",
+      "source_location": "L113",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_directions_turn_by_turn_navigation_backend_app_services_directions",
@@ -67482,7 +68204,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L71",
+      "source_location": "L83",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_domain_model_backend_app_models_backend_database_migrations",
@@ -67492,7 +68214,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L123",
+      "source_location": "L135",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_frontend_backend_resources_js",
@@ -67502,7 +68224,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L81",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "claude_architecture",
+      "target": "claude_new_scope_quarterly_replenishment_system_backend_docs_system_spec_md",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L93",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_optimization_flow_the_core_cross_service_interaction",
@@ -67512,7 +68244,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L131",
+      "source_location": "L143",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_solver_service_structure",
@@ -67696,6 +68428,76 @@
       "weight": 1.0,
       "source": "algorithm_0_current_state_what_s_real_vs_skeleton_vs_missing",
       "target": "algorithm_optimization_engine_the_biggest_gap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol",
+      "target": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_1_automated_run_before_every_evaluation_session",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_2_offline_resilience_on_devices_3_runs_then_safari_separately",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_3_performance_run_to_dashboard_1_s_on_the_office_network",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_4_user_acceptance_tasks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_5_explanation_task_target_80_correct",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/evaluation-protocol.md",
+      "source_location": "L70",
+      "weight": 1.0,
+      "source": "backend_docs_evaluation_protocol_disasterresource_evaluation_protocol_chapter_iii_software_testing",
+      "target": "backend_docs_evaluation_protocol_6_iso_iec_25010_2023_survey",
       "confidence_score": 1.0
     },
     {
@@ -69109,5 +69911,5 @@
       "source_file": "CLAUDE.md"
     }
   ],
-  "built_at_commit": "6e67cd1b0a2eff5ae0ddd90dede7b43672664a07"
+  "built_at_commit": "a4dfac9fd0fdb4a6252a99004f3fe53c3ba97800"
 }

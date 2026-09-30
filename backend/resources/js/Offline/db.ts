@@ -1,20 +1,24 @@
 import { openDB, type DBSchema, type IDBPDatabase } from "idb";
 
-export type OutboxItemKind = "incident" | "area" | "request" | "stock";
+/** Every offline record is a stock entry: receipts, releases, borrowed-item
+ * issues and returns (system-spec.md §5.1). */
+export type OutboxItemKind = "stock";
 export type OutboxItemStatus = "pending" | "syncing" | "failed";
 
 export interface OutboxItem {
-  /** Also sent to the server as the idempotency `id` — see Api\RequestController::store()
-   * and Api\IncidentController::store()/storeArea(), which treat a repeat of the same
-   * client-supplied id as a no-op instead of creating a duplicate row. */
+  /** Also sent to the server as the stock entry's device-made ID, which it deduplicates on. */
   clientRef: string;
   kind: OutboxItemKind;
   payload: Record<string, unknown>;
-  /** Only set for `area` kind — the incident (disaster) id it belongs to. */
-  disasterId?: string;
   status: OutboxItemStatus;
   error?: string;
   createdAt: number;
+  /**
+   * The signed-in user who recorded it; only that user's session uploads it, so
+   * a shared device never files one person's entries under another's name.
+   * Missing on items queued before v2 (see getDb()).
+   */
+  userId?: string;
 }
 
 interface DrsOfflineDB extends DBSchema {
@@ -27,13 +31,21 @@ interface DrsOfflineDB extends DBSchema {
 
 let dbPromise: Promise<IDBPDatabase<DrsOfflineDB>> | null = null;
 
-/** Lazily opens (and caches) the `drs-offline` IndexedDB database. */
+/**
+ * Lazily opens (and caches) the `drs-offline` IndexedDB database.
+ * v2 added OutboxItem.userId. The upgrade leaves v1 items untouched: the owner
+ * can't be known here, so the first signed-in user to sync adopts them
+ * (outbox.ts ownedBy()). Before v2 every item was uploaded by whoever was
+ * signed in anyway, and adopting keeps the entries instead of losing them.
+ */
 export function getDb(): Promise<IDBPDatabase<DrsOfflineDB>> {
   if (!dbPromise) {
-    dbPromise = openDB<DrsOfflineDB>("drs-offline", 1, {
-      upgrade(db) {
-        const store = db.createObjectStore("outbox", { keyPath: "clientRef" });
-        store.createIndex("by-status", "status");
+    dbPromise = openDB<DrsOfflineDB>("drs-offline", 2, {
+      upgrade(db, oldVersion) {
+        if (oldVersion < 1) {
+          const store = db.createObjectStore("outbox", { keyPath: "clientRef" });
+          store.createIndex("by-status", "status");
+        }
       },
     });
   }

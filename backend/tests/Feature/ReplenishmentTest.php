@@ -5,8 +5,8 @@ namespace Tests\Feature;
 use App\Models\DataCheckFlag;
 use App\Models\Depot;
 use App\Models\HistoryLine;
+use App\Jobs\RunReplenishmentJob;
 use App\Models\ReplenishmentRun;
-use App\Models\Resource;
 use App\Models\ResourceType;
 use App\Models\User;
 use App\Services\Replenishment\QuarterHistory;
@@ -72,7 +72,7 @@ class ReplenishmentTest extends TestCase
         $this->assertSame([15, 0, 7], $h['use'][$food->id]);
     }
 
-    public function test_only_the_admin_can_run_the_solver_and_logistics_only_encodes(): void
+    public function test_only_the_admin_can_run_the_solver_and_requesters_cannot_encode(): void
     {
         $this->fakeSolver();
         $body = ['year' => 2026, 'quarter' => 3, 'budget' => 200000];
@@ -80,7 +80,8 @@ class ReplenishmentTest extends TestCase
         $this->actingAs($this->logistics())->postJson('/api/replenishment/runs', $body)->assertForbidden();
         $this->actingAs(User::factory()->create(['role' => 'research_planning']))->postJson('/api/replenishment/runs', $body)->assertForbidden();
         $this->actingAs($this->admin())->postJson('/api/replenishment/runs', $body)->assertStatus(202);
-        $this->actingAs($this->admin())->postJson('/api/replenishment/history/import', [])->assertForbidden();
+        $this->actingAs($this->admin())->postJson('/api/replenishment/history/import', [])->assertStatus(422); // the Admin may encode too
+        $this->actingAs(User::factory()->create(['role' => 'ert']))->postJson('/api/replenishment/history/import', [])->assertForbidden();
     }
 
     public function test_run_sends_history_stock_less_reserved_and_ved_weight_then_completes(): void
@@ -168,7 +169,7 @@ class ReplenishmentTest extends TestCase
     public function test_dashboard_page_shows_each_role_only_its_own_actions(): void
     {
         $this->actingAs($this->admin())->get('/replenishment')->assertOk()
-            ->assertInertia(fn ($page) => $page->component('Replenishment/Index')->where('can', ['run' => true, 'encode' => false, 'export' => true]));
+            ->assertInertia(fn ($page) => $page->component('Replenishment/Index')->where('can', ['run' => true, 'encode' => true, 'export' => true]));
         $this->actingAs($this->logistics())->get('/replenishment')->assertOk()
             ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => true, 'export' => true]));
         $this->actingAs(User::factory()->create(['role' => 'research_planning']))->get('/replenishment')->assertOk()
@@ -248,6 +249,27 @@ class ReplenishmentTest extends TestCase
             ->post('/api/replenishment/history/import', ['file' => UploadedFile::fake()->createWithContent('good.csv', $good)], ['Accept' => 'application/json'])
             ->assertCreated()->assertJsonPath('imported', 2);
         $this->assertSame(['team_kit', null], [HistoryLine::where('quantity_requested', 40)->value('purpose'), HistoryLine::where('quantity_requested', 40)->value('quantity_released')]);
+    }
+
+    public function test_the_same_history_file_cannot_be_imported_twice(): void
+    {
+        foreach ([['Family food packs', 'packs'], ['Hygiene kits', 'kits'], ['Medical kits', 'kits']] as [$name, $unit]) {
+            ResourceType::factory()->create(['name' => $name, 'unit' => $unit]);
+        }
+        $this->artisan('history:import', ['file' => base_path('docs/templates/history-encoding-template.csv')])->assertExitCode(0);
+        $rows = HistoryLine::count();
+
+        $this->artisan('history:import', ['file' => base_path('docs/templates/history-encoding-template.csv')])->assertExitCode(1);
+        $this->assertSame($rows, HistoryLine::count());
+    }
+
+    public function test_a_job_killed_by_the_queue_marks_its_run_failed(): void
+    {
+        $run = ReplenishmentRun::create(['year' => 2026, 'quarter' => 3, 'budget' => 1000, 'rule' => 'multiplier', 'status' => 'queued', 'requested_by' => $this->admin()->id]);
+
+        (new RunReplenishmentJob($run))->failed(new \RuntimeException('Job timed out.'));
+
+        $this->assertSame(['failed', 'Job timed out.'], [$run->fresh()->status, $run->fresh()->error]);
     }
 
     public function test_the_shipped_template_imports_cleanly(): void

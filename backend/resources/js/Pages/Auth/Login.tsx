@@ -28,10 +28,11 @@ export default function Login() {
         </h1>
 
         <div className="space-y-1">
-          <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+          <label htmlFor="login-email" className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
             Email
           </label>
           <input
+            id="login-email"
             type="email"
             value={data.email}
             onChange={(e) => setData("email", e.target.value)}
@@ -44,7 +45,7 @@ export default function Login() {
 
         <div className="space-y-1">
           <div className="flex items-center justify-between">
-            <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label htmlFor="login-password" className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
               Password
             </label>
             <Link
@@ -56,6 +57,7 @@ export default function Login() {
           </div>
           <div className="relative">
             <input
+              id="login-password"
               type={showPassword ? "text" : "password"}
               value={data.password}
               onChange={(e) => setData("password", e.target.value)}
@@ -67,6 +69,8 @@ export default function Login() {
               type="button"
               onClick={() => setShowPassword((v) => !v)}
               tabIndex={-1}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              aria-pressed={showPassword}
               className="absolute inset-y-0 right-0 flex items-center px-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             >
               {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}

@@ -86,7 +86,7 @@ class StockLedgerTest extends TestCase
     public function test_an_offline_return_syncs_after_its_offline_borrow_even_when_sent_first(): void
     {
         $borrowId = (string) Str::uuid();
-        $issue = $this->entry(-1, ['reason' => 'issue', 'borrow_id' => $borrowId, 'created_at_device' => now()->subMinutes(20)->toIso8601String()]);
+        $issue = $this->entry(-1, ['reason' => 'issue', 'borrower_name' => 'J. Dela Cruz', 'borrow_id' => $borrowId, 'created_at_device' => now()->subMinutes(20)->toIso8601String()]);
         $return = $this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId, 'depends_on_device_id' => $issue['device_id'],
             'created_at_device' => now()->subMinutes(30)->toIso8601String(), 'priority' => true]);
         $this->sync([$this->entry(5)]);
@@ -99,7 +99,7 @@ class StockLedgerTest extends TestCase
 
     public function test_a_return_whose_borrow_has_not_arrived_is_deferred_not_lost(): void
     {
-        $return = $this->entry(1, ['reason' => 'return', 'depends_on_device_id' => (string) Str::uuid()]);
+        $return = $this->entry(1, ['reason' => 'return', 'borrow_id' => (string) Str::uuid(), 'depends_on_device_id' => (string) Str::uuid()]);
 
         $this->sync([$return])->assertOk()->assertJsonPath('results.0.status', 'deferred');
         $this->assertSame(0, StockEntry::count());
@@ -108,7 +108,7 @@ class StockLedgerTest extends TestCase
     public function test_returning_an_item_twice_is_kept_and_flagged(): void
     {
         $borrowId = (string) Str::uuid();
-        $this->sync([$this->entry(1), $this->entry(-1, ['reason' => 'issue', 'borrow_id' => $borrowId])]);
+        $this->sync([$this->entry(1), $this->entry(-1, ['reason' => 'issue', 'borrower_name' => 'J. Dela Cruz', 'borrow_id' => $borrowId])]);
         $this->sync([$this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId])]);
         $this->sync([$this->entry(1, ['reason' => 'return', 'borrow_id' => $borrowId])])
             ->assertJsonPath('results.0.conflicts', ['return_not_issued']);
@@ -161,6 +161,33 @@ class StockLedgerTest extends TestCase
         $this->artisan('stock:verify')->assertExitCode(1);
     }
 
+    public function test_each_entry_is_judged_on_its_own_and_the_sign_must_fit_the_reason(): void
+    {
+        $ok = $this->entry(10);
+        $positiveRelease = $this->entry(5, ['reason' => 'release']);
+        $bigIssue = $this->entry(-5, ['reason' => 'issue', 'borrow_id' => (string) Str::uuid(), 'borrower_name' => 'J. Dela Cruz']);
+        $future = $this->entry(3, ['created_at_device' => now()->addHour()->toIso8601String()]);
+
+        $results = collect($this->sync([$ok, $positiveRelease, $bigIssue, $future])->assertOk()->json('results'))->keyBy('device_id');
+
+        $this->assertSame('accepted', $results[$ok['device_id']]['status']);
+        foreach ([$positiveRelease, $bigIssue, $future] as $bad) {
+            $this->assertSame('rejected', $results[$bad['device_id']]['status']);
+            $this->assertNotEmpty($results[$bad['device_id']]['errors']);
+        }
+        $this->assertSame(1, StockEntry::count());
+    }
+
+    public function test_deleting_the_newest_entries_or_rebuilding_the_chain_fails_the_next_check(): void
+    {
+        $this->sync([$this->entry(10), $this->entry(20), $this->entry(30)]);
+        $this->artisan('stock:verify')->assertExitCode(0); // records a checkpoint at entry 3
+
+        DB::table('app_stock_entries')->where('seq', 3)->delete();
+        $this->assertSame(['ok' => false, 'first_bad_seq' => 3], array_intersect_key(app(StockLedger::class)->verify(), ['ok' => 1, 'first_bad_seq' => 1]));
+        $this->artisan('stock:verify')->assertExitCode(1);
+    }
+
     public function test_a_deleted_row_is_reported_as_a_missing_entry(): void
     {
         $this->sync([$this->entry(10), $this->entry(20), $this->entry(30)]);
@@ -198,15 +225,5 @@ class StockLedgerTest extends TestCase
         app(DataChecks::class)->run(now()->year, now()->quarter);
 
         $this->assertEqualsCanonicalizing(['count_mismatch', 'negative_stock'], DataCheckFlag::pluck('rule')->all());
-    }
-
-    public function test_opening_balance_moves_old_stock_rows_into_the_ledger_once(): void
-    {
-        \App\Models\Resource::factory()->create(['resource_type_id' => $this->item->id, 'depot_id' => $this->depot->id, 'quantity_available' => 70]);
-
-        $this->artisan('stock:opening-balance')->assertExitCode(0);
-        $this->artisan('stock:opening-balance')->assertExitCode(1);
-
-        $this->assertSame(70, app(StockLedger::class)->level($this->item->id));
     }
 }

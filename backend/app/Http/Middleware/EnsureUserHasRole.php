@@ -9,10 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Usage: Route::middleware('role:logistics,operations')->group(...)
  *
- * The special token `system_admin` is satisfied by `$user->is_system_admin`
- * instead of a literal `role` match — system-configuration access (Settings,
- * user management, routing, etc.) is an independent flag, not tied to any one
- * CDRRMO division, so a route can require e.g. `role:admin_training,system_admin`.
+ * A user with `is_system_admin` (the Head of Office) passes every role check,
+ * so the Admin has every role's capabilities. `role:system_admin` therefore
+ * means "Admin only".
  *
  * Register the alias in bootstrap/app.php (Laravel 11+) or app/Http/Kernel.php ($routeMiddleware).
  */
@@ -22,10 +21,8 @@ class EnsureUserHasRole
     {
         $user = $request->user();
 
-        $allowed = $user && (
-            in_array($user->role, $roles, true)
-            || (in_array('system_admin', $roles, true) && $user->is_system_admin)
-        );
+        // The Head of Office (is_system_admin) can do everything any role can.
+        $allowed = $user && ($user->is_system_admin || in_array($user->role, $roles, true));
 
         if (! $allowed) {
             abort(403, 'You do not have permission to access this resource.');

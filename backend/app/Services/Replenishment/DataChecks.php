@@ -39,12 +39,12 @@ class DataChecks
 
         foreach ($h['use'] as $typeId => $uses) {
             foreach ($uses as $i => $use) {
-                // "Usual" is the average over the other quarters the item was used at all, so
-                // an item that sits idle for a while doesn't make its busy quarters look like spikes.
+                // "Usual" is the median of the other quarters the item was used at all (the paper's
+                // definition): idle quarters don't make busy ones look like spikes, and one earlier
+                // spike doesn't raise the bar the way it would raise an average.
                 $others = $uses;
                 unset($others[$i]);
-                $others = array_filter($others);
-                $usual = $others ? array_sum($others) / count($others) : 0;
+                $usual = collect($others)->filter()->median() ?? 0;
 
                 if ($usual > 0 && $use > self::SPIKE_FACTOR * $usual && empty($h['tagged'][$typeId][$i])) {
                     [$y, $q] = $h['quarters'][$i];

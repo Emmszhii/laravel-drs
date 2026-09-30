@@ -32,7 +32,7 @@ class ReplenishmentController extends Controller
 {
     public function importHistory(Request $request, HistoryImporter $importer): JsonResponse
     {
-        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt']]);
+        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:5120']]); // KB: twelve quarters of request lines fit easily
 
         $result = $importer->import($request->file('file')->getRealPath(), $request->user()->id);
 
@@ -54,6 +54,22 @@ class ReplenishmentController extends Controller
         $flag->update(['status' => $data['resolution'], 'resolved_by' => $request->user()->id, 'resolved_at' => now()]);
 
         return response()->json($flag);
+    }
+
+    /** Admin: edit a VED class's coverage and weight, recording who confirmed it and when (Table 4). */
+    public function updatePolicy(Request $request, VedPolicy $policy): JsonResponse
+    {
+        $data = $request->validate([
+            'coverage_m' => ['required', 'integer', 'min:1', 'max:12'],
+            'coverage_k' => ['required', 'integer', 'min:1', 'lte:coverage_m'],
+            'weight' => ['required', 'numeric', 'gt:0'],
+            'confirmed_by_position' => ['required', 'string', 'max:255'],
+            'confirmed_at' => ['required', 'date'],
+        ]);
+
+        $policy->update($data);
+
+        return response()->json($policy);
     }
 
     public function runs(): JsonResponse

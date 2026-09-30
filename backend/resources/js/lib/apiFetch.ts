@@ -6,17 +6,9 @@
  * envelope and a typed ApiError on failure.
  */
 
-export class ApiError extends Error {
-  readonly status: number;
-  readonly errors?: Record<string, string[]>;
-
-  constructor(message: string, status: number, errors?: Record<string, string[]>) {
-    super(message);
-    this.name = 'ApiError';
-    this.status = status;
-    this.errors = errors;
-  }
-}
+// One ApiError class for both transports, so instanceof checks work whichever one threw.
+import { ApiError } from "@/api-service/client";
+export { ApiError };
 
 export interface ApiEnvelope<T> {
   success?: boolean;

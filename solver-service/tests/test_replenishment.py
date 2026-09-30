@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from app.models.replenishment import ReplenishmentItem, ReplenishmentRequest
 from app.solvers.replenishment import (
-    BUDGET_RAN_OUT, FULLY_COVERED, SET_MANUALLY, STOCK_COVERS, budget_curve, covering_level, item_target, solve,
+    BUDGET_RAN_OUT, FULLY_COVERED, MIP_GAP, SET_MANUALLY, STOCK_COVERS, budget_curve, covering_level, item_target, solve,
 )
 from main import app
 
@@ -23,6 +23,11 @@ def worked_example(budget=200_000):
 
 def by_id(res):
     return {o.id: o for o in res.orders}
+
+
+def assert_never_rises(raw):
+    """Raw per-level objectives (not the carried-forward curve), allowing only the MIP gap."""
+    assert all(b <= a * (1 + 2 * MIP_GAP) + 1e-9 for a, b in zip(raw, raw[1:])), raw
 
 
 def test_worked_example_least_total_shortage():
@@ -87,7 +92,8 @@ def test_reserved_stock_is_not_counted_as_available():
 
 
 def test_space_constraint_limits_orders_when_modeled():
-    res = solve(ReplenishmentRequest(budget=1_000_000, free_space=110, items=[
+    # V is the space still free after the stock on hand, so only the orders count against it.
+    res = solve(ReplenishmentRequest(budget=1_000_000, free_space=10, items=[
         ReplenishmentItem(id="a", q=50, unit_cost=10, space_per_unit=1, target=100),
         ReplenishmentItem(id="b", q=50, unit_cost=10, space_per_unit=1, target=100),
     ]))
@@ -115,8 +121,9 @@ def test_budget_curve_has_11_levels_and_never_rises():
     pts = curve["points"]
     assert [p["pct"] for p in pts] == list(range(50, 151, 10))
     assert pts[5]["budget"] == 200_000
+    assert all(p["solved"] and p["expected_shortage"] is not None for p in pts)
+    assert_never_rises([p["objective"] for p in pts])
     shortages = [p["expected_shortage"] for p in pts]
-    assert all(b <= a + 1e-9 for a, b in zip(shortages, shortages[1:]))
     assert shortages[-1] == round(3 / 480, 6)  # P300,000 is P1,500 (3 food packs) short of the P301,500 full cost
     assert curve["next_step"]["changes"] == [
         {"id": "food", "delta_x": 20, "shortfall_pct_before": 42.3, "shortfall_pct_after": 38.1}]
@@ -128,8 +135,7 @@ def test_budget_curve_never_rises_on_random_instances():
         items = [ReplenishmentItem(id=str(i), q=rng.randint(0, 50), unit_cost=rng.choice([15, 40, 120, 500]),
                                    weight=rng.choice([1, 2, 3]), target=rng.randint(0, 150)) for i in range(8)]
         pts = budget_curve(ReplenishmentRequest(budget=rng.randint(1_000, 30_000), items=items))["points"]
-        vals = [p["expected_shortage"] for p in pts]
-        assert all(b <= a + 1e-9 for a, b in zip(vals, vals[1:]))
+        assert_never_rises([p["objective"] for p in pts])
 
 
 def test_endpoint_round_trip():
@@ -183,8 +189,7 @@ def test_scenario_budget_curve_never_rises_and_spends_within_budget():
     items = [ReplenishmentItem(id=str(i), q=rng.randint(0, 40), unit_cost=rng.choice([20, 90, 350]),
                                weight=rng.choice([1, 2, 3]), history=[rng.randint(0, 80) for _ in range(10)]) for i in range(10)]
     req = ReplenishmentRequest(rule="scenario", budget=15_000, items=items)
-    vals = [p["expected_shortage"] for p in budget_curve(req)["points"]]
-    assert all(b <= a + 1e-9 for a, b in zip(vals, vals[1:]))
+    assert_never_rises([p["objective"] for p in budget_curve(req)["points"]])
     assert solve(req).spent <= 15_000
 
 

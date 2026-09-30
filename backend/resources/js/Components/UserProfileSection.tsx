@@ -4,6 +4,8 @@ import { LogOut, Moon, Sun } from "lucide-react";
 import { useAuth } from "@/Hooks/use-auth";
 import { useTheme } from "@/Hooks/use-theme";
 import { ChangePasswordModal } from "@/Components/ChangePasswordModal";
+import { listAll } from "@/Offline/outbox";
+import { clearOfflinePages } from "@/Offline/pages";
 
 interface UserProfileSectionProps {
   /** 'sidebar' = bottom-of-nav block (border above); 'header' = compact icon button + dropdown. Default 'sidebar'. */
@@ -22,13 +24,24 @@ interface UserProfileSectionProps {
 export function UserProfileSection({
   variant = "sidebar",
 }: UserProfileSectionProps) {
-  const { displayName, email, role, initials } = useAuth();
+  const { user, displayName, email, role, initials } = useAuth();
   const { theme, toggle } = useTheme();
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  const logout = () => router.post("/logout");
+  // Unsynced entries stay on this device, owned by this user, and sync at their next sign-in;
+  // the cached offline pages are deleted so the next person here can't open them.
+  const logout = async () => {
+    const queued = user ? (await listAll(user.id).catch(() => [])).length : 0;
+    if (queued > 0 && !window.confirm(
+      `${queued} stock entr${queued === 1 ? "y has" : "ies have"} not synced yet. They stay saved on this device and sync the next time you sign in here, but no one else can see them until then. Log out anyway?`,
+    )) {
+      return;
+    }
+    await clearOfflinePages();
+    router.post("/logout");
+  };
 
   useEffect(() => {
     if (!open) return;

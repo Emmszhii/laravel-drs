@@ -1,13 +1,12 @@
 import { PropsWithChildren } from "react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
-import { DispatchTicker } from "@/Components/DispatchTicker";
 import { NotificationBell } from "@/Components/NotificationBell";
 import { OfflineBanner } from "@/Components/OfflineBanner";
 
 /**
  * Outermost shell for non-admin/developer roles: brand bar + notification
  * bell + theme toggle. Admin/developer roles use AdminLayout instead (full
- * sidebar) — see Dashboard.tsx's `.layout`.
+ * sidebar); every current page sets AdminLayout as its `.layout`.
  */
 export default function AppLayout({ children }: PropsWithChildren) {
   return (
@@ -22,7 +21,6 @@ export default function AppLayout({ children }: PropsWithChildren) {
         </div>
       </header>
       <OfflineBanner />
-      <DispatchTicker />
       <main className="min-h-0 flex-1 overflow-y-auto">{children}</main>
     </div>
   );

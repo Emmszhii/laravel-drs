@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { Link, router } from "@inertiajs/react";
 import { toast } from "sonner";
-import { CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import AdminLayout from "@/Layouts/AdminLayout";
 import Button from "@/Components/Common/Button";
 import { http, ApiError } from "@/api-service";
+import { errorMessage, field } from "@/lib/utils";
 import type { Backtest, DataCheckFlag, ReplenishmentRun, ResourceType, VedPolicy } from "@/Types/models";
 
 type Props = {
@@ -35,13 +36,14 @@ const BASIS_NOTE: Record<string, string> = {
   no_unit_cost: "no unit cost: set manually",
 };
 
-function errorMessage(err: unknown): string {
-  if (err instanceof ApiError) {
-    return err.message;
-  }
+/** Reasons that mean the order needs a human look, shown in the warning color. */
+const FLAGGED_REASONS = ["no feasible order", "partly covered: the solver stopped early"];
 
-  return "Something went wrong. Try again.";
-}
+const VED_LABEL: Record<string, string> = { V: "Vital", E: "Essential", D: "Desirable" };
+
+/** "Vital: covers 3 of the last 4 quarters, weight 3" — the VED policy in plain words. */
+const policyText = (p: VedPolicy) =>
+  `${VED_LABEL[p.ved_class] ?? p.ved_class}: covers ${p.coverage_k} of the last ${p.coverage_m} quarters, weight ${p.weight}`;
 
 /**
  * Quarterly replenishment dashboard (system-spec.md §7), on the three
@@ -74,7 +76,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
       <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
         <h1 className="text-lg font-semibold uppercase">Replenishment</h1>
         <span className="text-xs text-[var(--text-secondary)]">
-          VED policy: {policies.map((p) => `${p.ved_class} ${p.coverage_k}/${p.coverage_m} ×${p.weight}`).join(" · ")}
+          VED policy: {policies.map(policyText).join(" · ")}
           {policies.every((p) => !p.confirmed_at) && " (proposal, not yet confirmed)"}
         </span>
       </div>
@@ -90,6 +92,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
         </div>
 
         <aside className="space-y-6">
+          {can.run && <VedPolicyForm policies={policies} onDone={() => router.reload({ only: ["policies"] })} />}
           {can.encode && <HistoryUpload onDone={reload} />}
           {can.export && (
             <section className="space-y-2 border border-white/10 p-4 text-sm">
@@ -146,8 +149,6 @@ function RunForm({ defaults, onDone }: { defaults: Props["defaults"]; onDone: ()
     }
   };
 
-  const field = "w-full border border-white/20 bg-transparent px-2 py-1.5 text-sm";
-
   return (
     <form onSubmit={submit} className="grid grid-cols-2 gap-3 border border-white/10 p-4 sm:grid-cols-[100px_90px_1fr_180px_auto] sm:items-end">
       <label className="text-xs uppercase text-[var(--text-secondary)]">Year
@@ -175,16 +176,21 @@ function RunForm({ defaults, onDone }: { defaults: Props["defaults"]; onDone: ()
 }
 
 function FlagList({ flags, canResolve, onDone }: { flags: DataCheckFlag[]; canResolve: boolean; onDone: () => void }) {
+  const [busy, setBusy] = useState<string | null>(null);
+
   if (flags.length === 0) {
     return null;
   }
 
   const resolve = async (flag: DataCheckFlag, resolution: "confirmed" | "corrected") => {
+    if (busy) return;
+    setBusy(flag.id);
     try {
       await http.post(`/api/replenishment/flags/${flag.id}/resolve`, { resolution });
     } catch (err) {
       toast.error(errorMessage(err));
     }
+    setBusy(null);
     onDone();
   };
 
@@ -200,8 +206,8 @@ function FlagList({ flags, canResolve, onDone }: { flags: DataCheckFlag[]; canRe
             <span><strong>{f.resource_type?.name}</strong>, {f.year} Q{f.quarter}: {f.detail}</span>
             {canResolve && (
               <span className="flex gap-2">
-                <Button variant="ghost" onClick={() => resolve(f, "confirmed")}>Confirm</Button>
-                <Button variant="ghost" onClick={() => resolve(f, "corrected")}>Corrected</Button>
+                <Button variant="ghost" disabled={busy !== null} onClick={() => resolve(f, "confirmed")}>Confirm</Button>
+                <Button variant="ghost" disabled={busy !== null} onClick={() => resolve(f, "corrected")}>Corrected</Button>
               </span>
             )}
           </li>
@@ -218,12 +224,15 @@ function RunDetail({ run, names, canDecide, onDone }: {
   onDone: () => void;
 }) {
   const [comment, setComment] = useState("");
+  const [busy, setBusy] = useState(false);
   const result = run.result;
   const orders = result?.orders ?? [];
   const manual = orders.filter((o) => o.basis === "no_history" || o.basis === "no_unit_cost");
   const planned = orders.filter((o) => !manual.includes(o));
 
   const decide = async (action: "approve" | "reject") => {
+    if (busy) return;
+    setBusy(true);
     try {
       await http.post(`/api/replenishment/runs/${run.id}/${action}`, { comment: comment || undefined });
       toast.success(action === "approve" ? "Approved. This is now the quarter's purchase plan." : "Rejected.");
@@ -231,6 +240,7 @@ function RunDetail({ run, names, canDecide, onDone }: {
     } catch (err) {
       toast.error(errorMessage(err));
     }
+    setBusy(false);
     onDone();
   };
 
@@ -259,7 +269,7 @@ function RunDetail({ run, names, canDecide, onDone }: {
             <thead className="text-left text-xs uppercase text-[var(--text-secondary)]">
               <tr className="border-b border-white/10">
                 <th className="py-2 pr-3">Item</th><th className="pr-3 text-right">Order</th>
-                <th className="pr-3 text-right">Target</th><th className="pr-3 text-right">Short</th><th>Reason</th>
+                <th className="pr-3 text-right">Target stock</th><th className="pr-3 text-right">% below target</th><th>Reason</th>
               </tr>
             </thead>
             <tbody>
@@ -270,9 +280,9 @@ function RunDetail({ run, names, canDecide, onDone }: {
                     {BASIS_NOTE[o.basis] && <span className="ml-2 text-xs text-[var(--amber)]">{BASIS_NOTE[o.basis]}</span>}
                   </td>
                   <td className="pr-3 text-right font-semibold">{o.x.toLocaleString()} {names[o.id]?.unit}</td>
-                  <td className="pr-3 text-right">{o.target?.toLocaleString()}</td>
-                  <td className="pr-3 text-right">{o.shortfall ? `${o.shortfall_pct}%` : "–"}</td>
-                  <td>{o.reason}</td>
+                  <td className="pr-3 text-right">{o.target != null ? `${o.target.toLocaleString()} ${names[o.id]?.unit ?? ""}` : "–"}</td>
+                  <td className="pr-3 text-right">{o.shortfall ? `${o.shortfall_pct}% below` : "Target met"}</td>
+                  <td className={FLAGGED_REASONS.includes(o.reason) ? "text-[var(--amber)]" : ""}>{o.reason}</td>
                 </tr>
               ))}
             </tbody>
@@ -292,7 +302,9 @@ function RunDetail({ run, names, canDecide, onDone }: {
       {result?.next_step && (
         <div>
           <h3 className="mb-1 text-sm font-semibold uppercase">The next {peso(result.next_step.amount)} goes to</h3>
-          {result.next_step.changes.length === 0 ? (
+          {result.next_step.solved === false ? (
+            <p className="text-sm text-[var(--amber)]">No change could be computed: the solver ran out of time on the larger budget.</p>
+          ) : result.next_step.changes.length === 0 ? (
             <p className="text-sm text-[var(--text-secondary)]">Nothing: every target is already met.</p>
           ) : (
             <ul className="text-sm">
@@ -310,9 +322,9 @@ function RunDetail({ run, names, canDecide, onDone }: {
       {canDecide && run.status === "completed" && (
         <div className="flex flex-wrap items-center gap-3 border-t border-white/10 pt-4">
           <input className="min-w-[240px] flex-1 border border-white/20 bg-transparent px-2 py-1.5 text-sm"
-            placeholder="Comment (required to reject)" value={comment} onChange={(e) => setComment(e.target.value)} />
-          <Button onClick={() => decide("approve")}>Approve</Button>
-          <Button variant="ghost" onClick={() => decide("reject")} disabled={!comment.trim()}>Reject</Button>
+            placeholder="Comment (required to reject)" aria-label="Comment (required to reject)" value={comment} onChange={(e) => setComment(e.target.value)} />
+          <Button disabled={busy} onClick={() => decide("approve")}>Approve</Button>
+          <Button variant="ghost" onClick={() => decide("reject")} disabled={busy || !comment.trim()}>Reject</Button>
         </div>
       )}
     </section>
@@ -320,19 +332,39 @@ function RunDetail({ run, names, canDecide, onDone }: {
 }
 
 function BudgetCurve({ points, budget }: { points: NonNullable<ReplenishmentRun["result"]>["budget_curve"] & object; budget: number }) {
+  // Levels the solver didn't finish in time carry a null shortage: Recharts leaves a gap there, never a 0.
+  const solved = points.filter((p): p is typeof p & { expected_shortage: number } => p.solved !== false && p.expected_shortage != null);
+  const unsolved = points.length - solved.length;
+  const first = solved[0];
+  const lastPoint = solved[solved.length - 1];
+  const atBudget = solved.reduce((a, b) => (Math.abs(b.budget - budget) < Math.abs(a.budget - budget) ? b : a), first);
+  const summary = first && lastPoint && atBudget
+    ? `Expected shortage goes from ${first.expected_shortage.toFixed(2)} quarters of average use at ${peso(first.budget)} to ${lastPoint.expected_shortage.toFixed(2)} at ${peso(lastPoint.budget)}; at the entered budget of ${peso(budget)} it is ${atBudget.expected_shortage.toFixed(2)}.`
+    : "The solver could not compute any point of the budget curve.";
+
   return (
     <div>
       <h3 className="mb-1 text-sm font-semibold uppercase">Budget curve</h3>
       <p className="mb-2 text-xs text-[var(--text-secondary)]">
-        Expected shortage at 50%–150% of the {peso(budget)} budget. Where the line flattens, more money stops reducing shortage.
+        Expected shortage at 50%–150% of the {peso(budget)} budget (dashed line). Where the line flattens, more money stops reducing shortage.
       </p>
-      <div className="h-56">
+      <p className="mb-2 text-xs">{summary}</p>
+      {unsolved > 0 && (
+        <p className="mb-2 text-xs text-[var(--amber)]">
+          {unsolved} of {points.length} budget levels could not be solved within the time limit and are left out of the line.
+        </p>
+      )}
+      <div className="h-64" role="img" aria-label={`Budget curve chart. ${summary}`}>
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={points} margin={{ left: 8, right: 16, top: 8, bottom: 8 }}>
+          <LineChart data={points} margin={{ left: 16, right: 16, top: 8, bottom: 8 }}>
             <CartesianGrid stroke="rgba(255,255,255,0.08)" />
-            <XAxis dataKey="budget" tickFormatter={(v: number) => `₱${Math.round(v / 1000)}k`} stroke="var(--text-secondary)" fontSize={12} />
-            <YAxis stroke="var(--text-secondary)" fontSize={12} width={48} />
-            <Tooltip formatter={(v: number) => v.toFixed(3)} labelFormatter={(v: number) => peso(v)}
+            <XAxis dataKey="budget" type="number" domain={["dataMin", "dataMax"]} tickFormatter={(v: number) => `₱${Math.round(v / 1000)}k`}
+              stroke="var(--text-secondary)" fontSize={12} />
+            <YAxis stroke="var(--text-secondary)" fontSize={12} width={56}
+              label={{ value: "Expected shortage (quarters of average use)", angle: -90, position: "insideLeft", offset: 0, fontSize: 11, fill: "var(--text-secondary)", style: { textAnchor: "middle" } }} />
+            <ReferenceLine x={budget} stroke="var(--text-primary)" strokeDasharray="4 4"
+              label={{ value: `Entered budget ${peso(budget)}`, position: "insideTopRight", fontSize: 11, fill: "var(--text-primary)" }} />
+            <Tooltip formatter={(v: unknown) => (typeof v !== "number" ? "Not solved in time" : `${v.toFixed(2)} quarters of average use`)} labelFormatter={(v: number) => peso(v)}
               contentStyle={{ background: "#111", border: "1px solid rgba(255,255,255,0.15)" }} />
             <Line type="monotone" dataKey="expected_shortage" name="Expected shortage" stroke="var(--amber)" strokeWidth={2} dot />
           </LineChart>
@@ -380,7 +412,7 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
           <h2 className="text-base font-semibold uppercase">Backtest on past quarters</h2>
           <p className="text-xs text-[var(--text-secondary)]">
             From the 5th encoded quarter on, each rule orders using only earlier quarters and is scored on what was actually used.
-            Lower weighted shortage is better.
+            Each cell shows the weighted shortage (lower is better), the share of need that was filled, and how many items ran out.
           </p>
         </div>
         {canRun && (
@@ -425,6 +457,9 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
                         <td key={r} className={`pr-3 text-right ${row.rules[r].weighted_shortage === best ? "font-semibold text-[var(--amber)]" : ""}`}
                           title={`Fill rate ${Math.round(row.rules[r].fill_rate * 100)}% · ${row.rules[r].items_ran_out} ran out · budget used ${Math.round(row.rules[r].budget_used * 100)}%`}>
                           {row.rules[r].weighted_shortage.toFixed(2)}
+                          <span className="block text-xs font-normal text-[var(--text-secondary)]">
+                            {Math.round(row.rules[r].fill_rate * 100)}% filled · {row.rules[r].items_ran_out} {row.rules[r].items_ran_out === 1 ? "item" : "items"} ran out
+                          </span>
                         </td>
                       ))}
                     </tr>
@@ -436,6 +471,71 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
         </>
       )}
     </section>
+  );
+}
+
+/** Admin: confirm (or edit) Table 4's coverage and weight per VED class, recording who confirmed it and when. */
+function VedPolicyForm({ policies, onDone }: { policies: VedPolicy[]; onDone: () => void }) {
+  const [rows, setRows] = useState(policies.map((p) => ({ ...p })));
+  const [position, setPosition] = useState(policies.find((p) => p.confirmed_by_position)?.confirmed_by_position ?? "");
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [busy, setBusy] = useState(false);
+
+  const set = (i: number, key: "coverage_k" | "coverage_m" | "weight", value: string) =>
+    setRows(rows.map((r, j) => (j === i ? { ...r, [key]: Number(value) } : r)));
+
+  const save = async (e: FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    try {
+      for (const r of rows) {
+        await http.patch(`/api/replenishment/policies/${r.ved_class}`, {
+          coverage_k: r.coverage_k, coverage_m: r.coverage_m, weight: r.weight,
+          confirmed_by_position: position, confirmed_at: date,
+        });
+      }
+      toast.success("VED policy confirmed.");
+    } catch (err) {
+      toast.error(errorMessage(err));
+    } finally {
+      setBusy(false);
+      onDone();
+    }
+  };
+
+  const vedField = "w-full border border-white/20 bg-transparent px-1.5 py-1 text-sm";
+
+  return (
+    <form onSubmit={save} className="space-y-2 border border-white/10 p-4 text-sm">
+      <h2 className="text-sm font-semibold uppercase">VED policy</h2>
+      <p className="text-xs text-[var(--text-secondary)]">
+        Per class (V = Vital, E = Essential, D = Desirable): the covering level covers k of the last M quarters; a higher weight makes its shortage count more.
+      </p>
+      <div className="grid grid-cols-[24px_1fr_1fr_1fr] items-center gap-2 text-xs text-[var(--text-secondary)]">
+        <span />
+        <span>k</span>
+        <span>M</span>
+        <span>Weight</span>
+        {rows.map((r, i) => [
+          <span key={`${r.ved_class}-c`} className="font-semibold text-[var(--text-primary)]" title={VED_LABEL[r.ved_class]}>{r.ved_class}</span>,
+          <input key={`${r.ved_class}-k`} aria-label={`${VED_LABEL[r.ved_class]}: quarters covered (k)`} className={vedField} type="number" min={1} max={r.coverage_m} required value={r.coverage_k} onChange={(e) => set(i, "coverage_k", e.target.value)} />,
+          <input key={`${r.ved_class}-m`} aria-label={`${VED_LABEL[r.ved_class]}: of the last M quarters`} className={vedField} type="number" min={1} max={12} required value={r.coverage_m} onChange={(e) => set(i, "coverage_m", e.target.value)} />,
+          <input key={`${r.ved_class}-w`} aria-label={`${VED_LABEL[r.ved_class]}: weight`} className={vedField} type="number" min={0.1} step="0.1" required value={r.weight} onChange={(e) => set(i, "weight", e.target.value)} />,
+        ])}
+      </div>
+      <label className="block text-xs uppercase text-[var(--text-secondary)]">Confirmed by (position)
+        <input className={vedField} required value={position} placeholder="e.g. Logistics Officer" onChange={(e) => setPosition(e.target.value)} />
+      </label>
+      <label className="block text-xs uppercase text-[var(--text-secondary)]">Date confirmed
+        <input className={vedField} type="date" required value={date} onChange={(e) => setDate(e.target.value)} />
+      </label>
+      <Button type="submit" disabled={busy}>{busy ? "Saving…" : "Confirm policy"}</Button>
+      {policies[0]?.confirmed_at && (
+        <p className="text-xs text-[var(--text-secondary)]">
+          Last confirmed {policies[0].confirmed_at.slice(0, 10)} by {policies[0].confirmed_by_position}.
+        </p>
+      )}
+    </form>
   );
 }
 
@@ -461,8 +561,10 @@ function HistoryUpload({ onDone }: { onDone: () => void }) {
         input.current.value = "";
       }
     } catch (err) {
-      const data = (err as { response?: { data?: { errors?: string[] } } }).response?.data;
-      setErrors(Array.isArray(data?.errors) ? data.errors : [errorMessage(err)]);
+      // The import answers 422 with one message per bad row: a list, or Laravel's field → messages map.
+      const rows = err instanceof ApiError ? (err.errors as unknown as string[] | Record<string, string[]> | undefined) : undefined;
+      const list = Array.isArray(rows) ? rows : rows ? Object.values(rows).flat() : [];
+      setErrors(list.length > 0 ? list : [errorMessage(err)]);
     } finally {
       setBusy(false);
       onDone();
@@ -476,11 +578,11 @@ function HistoryUpload({ onDone }: { onDone: () => void }) {
         One row per request line: date, item, standard_unit, quantity_requested, quantity_released, purpose, event_tag,
         requesting_division. A file with any bad row is rejected whole.
       </p>
-      <input ref={input} type="file" accept=".csv,text/csv" required className="w-full text-xs" />
+      <input ref={input} type="file" accept=".csv,text/csv" required aria-label="History CSV file" className="w-full text-xs" />
       <Button type="submit" disabled={busy}>{busy ? "Importing…" : "Import"}</Button>
       {errors.length > 0 && (
         <ul className="max-h-40 overflow-y-auto text-xs text-[var(--critical)]">
-          {errors.map((e) => <li key={e}>{e}</li>)}
+          {errors.map((e, i) => <li key={i}>{e}</li>)}
         </ul>
       )}
     </form>

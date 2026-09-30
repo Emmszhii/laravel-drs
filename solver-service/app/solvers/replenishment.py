@@ -7,15 +7,20 @@ whole-number orders x_i that minimize the weighted shortfall below target,
     min  sum_i w_i * u_i / T_i
     s.t. u_i >= T_i - (q_i + x_i)
          sum_i c_i * x_i <= B
-         sum_i v_i * (q_i + x_i) <= V        (only when space is modeled)
+         sum_i v_i * x_i <= V        (V = depot space still free after the stock on hand;
+                                      only when space is modeled)
          0 <= x_i <= max(0, T_i - q_i), x_i integer, u_i >= 0
+Since x = 0 satisfies both constraints, the model is always feasible.
 
 Stage 2 — scenario model (sample average approximation): every past quarter
-s = 1..S is an equally likely version of the next one, with use D_is,
-    min  (1/S) * sum_s sum_i w_i * u_is / m_i
+s of item i is an equally likely version of the next one, with use D_is,
+    min  sum_i (1/S_i) * sum_s w_i * u_is / m_i
     s.t. u_is >= D_is - (q_i + x_i)
          the same budget and space constraints, x_i >= 0 integer.
 Typhoon quarters stay in as their own scenarios instead of being averaged away.
+The objective is separable per item, so each item uses the S_i quarters it has
+(a new item's missing quarters are not zeros). An item with fewer than 4
+quarters uses its cold-start flat 1.5 target as its single scenario.
 
 Either way, every item gets one reason read from the solution, never
 written by hand, measured against its covering-level target.
@@ -35,6 +40,8 @@ BUDGET_RAN_OUT = "partly covered: the budget ran out"
 SPACE_LIMITED = "limited by depot space"
 STOCK_COVERS = "not ordered: current stock already covers it"
 SET_MANUALLY = "no computed order: set manually"
+STOPPED_EARLY = "partly covered: the solver stopped early"
+NO_FEASIBLE = "no feasible order"
 
 MIN_QUARTERS = 4  # below this, the cold-start flat 1.5 rule applies
 # CBC stops once it has proven the order is within 0.01% of the best possible. Proving the last
@@ -43,12 +50,18 @@ MIN_QUARTERS = 4  # below this, the cold-start flat 1.5 rule applies
 MIP_GAP = 1e-4
 FLAT_FACTOR = 1.5
 NEXT_STEP = 10_000
+EPS = 1e-6
 
 
 def covering_level(history: list[int], k: int, m: int = 8) -> int:
-    """Use that would have covered k of the last m quarters: the (m-k+1)-th highest."""
+    """
+    Use that would have covered k of the last m quarters: the (m-k+1)-th highest. With only
+    n < m quarters, k is scaled to the same share of the n, rounded up: the (n-k'+1)-th highest.
+    """
     recent = sorted(history[-m:], reverse=True)
-    return recent[min(max(m - k, 0), len(recent) - 1)]
+    n = len(recent)
+    k_eff = min(n, -(-k * n // m))  # ceil(k * n / m); equals k when n == m
+    return recent[n - k_eff]
 
 
 def item_target(item: ReplenishmentItem, m: int) -> tuple[int | None, str, float | None]:
@@ -64,6 +77,12 @@ def item_target(item: ReplenishmentItem, m: int) -> tuple[int | None, str, float
     return level, "multiplier", round(level / avg, 4)
 
 
+def _line(it, xi, target, short, reason, basis, multiplier) -> OrderLine:
+    return OrderLine(id=it.id, x=xi, target=target, shortfall=short,
+                     shortfall_pct=round(100 * short / target, 1) if target else 0,
+                     reason=reason, basis=basis, multiplier=multiplier)
+
+
 def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
     started = time.perf_counter()
     scenario = req.rule == "scenario"
@@ -74,20 +93,21 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
         target, basis, multiplier = item_target(item, req.m)
         if scenario and target is not None and not any(item.history):
             target, basis, multiplier = None, "no_history", None  # no past quarters to plan against
+        q = max(0, item.q - item.reserved)
         if target is not None and item.unit_cost is None:
             basis = "no_unit_cost"
         if target is None or item.unit_cost is None:
-            lines[item.id] = OrderLine(id=item.id, x=0, target=target, shortfall=0, shortfall_pct=0,
-                                       reason=SET_MANUALLY, basis=basis, multiplier=multiplier)
+            covered = target is not None and q >= target
+            lines[item.id] = _line(item, 0, target, 0, STOCK_COVERS if covered else SET_MANUALLY, basis, multiplier)
             continue
-        plan.append((item, target, basis, multiplier, max(0, item.q - item.reserved)))
+        plan.append((item, target, basis, multiplier, q))
 
     space_modeled = req.free_space is not None and bool(plan) and all(
         it.space_per_unit is not None for it, *_ in plan)
 
-    # Scenario matrix: every item's history left-padded to the same S quarters.
-    S = max((len(it.history) for it, *_ in plan), default=0) if scenario else 0
-    D = {it.id: [0] * (S - len(it.history)) + it.history for it, *_ in plan} if scenario else {}
+    # Scenarios per item: its own quarters, or its cold-start target when it has fewer than 4.
+    D = {it.id: (it.history if len(it.history) >= MIN_QUARTERS else [target])
+         for it, target, *_ in plan} if scenario else {}
     avg_use = {it.id: sum(it.history) / len(it.history) for it, *_ in plan} if scenario else {}
     # Upper bound per item: ordering past it can't reduce shortage any further.
     cap = {it.id: (max(D[it.id]) if scenario else target) for it, target, *_ in plan}
@@ -103,7 +123,7 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
                 if use > q:
                     u = pulp.LpVariable(f"u_{len(x)}_{s}", 0)
                     prob += u >= use - (q + x[it.id])
-                    terms.append(it.weight * u / (S * avg_use[it.id]))
+                    terms.append(it.weight * u / (len(D[it.id]) * avg_use[it.id]))
         else:
             u = pulp.LpVariable(f"u_{len(x)}", 0)
             prob += u >= target - (q + x[it.id])
@@ -111,31 +131,41 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
     prob += pulp.lpSum(terms)
     prob += pulp.lpSum(it.unit_cost * x[it.id] for it, *_ in plan if it.id in x) <= req.budget
     if space_modeled:
-        prob += pulp.lpSum(it.space_per_unit * (q + x.get(it.id, 0)) for it, _, _, _, q in plan) <= req.free_space
+        prob += pulp.lpSum(it.space_per_unit * x[it.id] for it, *_ in plan if it.id in x) <= req.free_space
 
     status = "optimal"
     if x:
         prob.solve(pulp.PULP_CBC_CMD(msg=False, timeLimit=req.time_limit_s, gapRel=MIP_GAP))
-        if prob.status == pulp.LpStatusInfeasible or any(v.varValue is None for v in x.values()):
+        if prob.status == pulp.LpStatusInfeasible or prob.sol_status == pulp.LpSolutionInfeasible:
             status = "infeasible"
+        elif (prob.sol_status not in (pulp.LpSolutionOptimal, pulp.LpSolutionIntegerFeasible)
+              or any(v.varValue is None for v in x.values())):
+            status = "not_solved"  # e.g. the time limit hit before CBC found any order
         elif prob.status != pulp.LpStatusOptimal or prob.sol_status == pulp.LpSolutionIntegerFeasible:
             status = "feasible"  # stopped at the time limit with an incumbent, not a proven optimum
-    elif space_modeled and sum(it.space_per_unit * q for it, _, _, _, q in plan) > req.free_space:
-        status = "infeasible"
 
-    if status == "infeasible":
-        return ReplenishmentResponse(status=status, rule=req.rule, orders=list(lines.values()), objective=0,
-                                     spent=0, binding={"budget": False, "space": False},
+    if status in ("infeasible", "not_solved"):
+        for it, target, basis, multiplier, q in plan:
+            lines[it.id] = _line(it, 0, target, max(0, target - q), NO_FEASIBLE, basis, multiplier)
+        return ReplenishmentResponse(status=status, rule=req.rule, orders=[lines[it.id] for it in req.items],
+                                     objective=None, spent=0, binding={"budget": False, "space": False},
                                      space_modeled=space_modeled, solve_ms=_ms(started))
 
     order = {i: int(round(v.varValue)) for i, v in x.items()}
     spent = sum(it.unit_cost * order.get(it.id, 0) for it, *_ in plan)
+    left_budget = req.budget - spent
+    left_space = (req.free_space - sum(it.space_per_unit * order.get(it.id, 0) for it, *_ in plan)
+                  if space_modeled else math.inf)
+
+    def no_money(it):  # one more unit would not fit the budget left
+        return left_budget < it.unit_cost - EPS
+
+    def no_room(it):  # one more unit would not fit the depot space left
+        return space_modeled and left_space < it.space_per_unit - EPS
+
     improvable = [it for it, _, _, _, q in plan if q + order.get(it.id, 0) < cap[it.id]]
-    budget_binding = bool(improvable) and req.budget - spent < min(it.unit_cost for it in improvable)
-    space_binding = False
-    if space_modeled and improvable:
-        used = sum(it.space_per_unit * (q + order.get(it.id, 0)) for it, _, _, _, q in plan)
-        space_binding = req.free_space - used < min(it.space_per_unit for it in improvable)
+    budget_binding = any(no_money(it) for it in improvable)
+    space_binding = any(no_room(it) for it in improvable)
 
     objective = 0.0
     for it, target, basis, multiplier, q in plan:
@@ -143,17 +173,17 @@ def solve(req: ReplenishmentRequest) -> ReplenishmentResponse:
         short = max(0, target - q - xi)
         if short == 0:
             reason = FULLY_COVERED if xi > 0 else STOCK_COVERS
-        elif space_binding and not budget_binding:
+        elif no_money(it):
+            reason = BUDGET_RAN_OUT
+        elif no_room(it):
             reason = SPACE_LIMITED
         else:
-            reason = BUDGET_RAN_OUT
+            reason = STOPPED_EARLY  # neither constraint blocks one more unit: the solve ended at its limit/gap
         if scenario:
-            objective += sum(it.weight * max(0, use - q - xi) / avg_use[it.id] for use in D[it.id]) / S
+            objective += sum(it.weight * max(0, use - q - xi) / avg_use[it.id] for use in D[it.id]) / len(D[it.id])
         else:
             objective += it.weight * short / target if target else 0
-        lines[it.id] = OrderLine(id=it.id, x=xi, target=target, shortfall=short,
-                                 shortfall_pct=round(100 * short / target, 1) if target else 0,
-                                 reason=reason, basis=basis, multiplier=multiplier)
+        lines[it.id] = _line(it, xi, target, short, reason, basis, multiplier)
 
     return ReplenishmentResponse(
         status=status, rule=req.rule, orders=[lines[it.id] for it in req.items],
@@ -169,24 +199,32 @@ def budget_curve(req: ReplenishmentRequest) -> dict:
     (the expected shortage can never rise as the budget rises, since a larger
     budget can always buy the smaller budget's orders), and diffs the solution
     at B against B + P10,000 for the "next P10,000 goes to" view.
+
+    Each point carries its own solve's raw `objective` and the plotted
+    `expected_shortage`, the best known shortage at or below that budget. A level
+    with no order (`solved` false) has both as None and is skipped in the carry-forward.
     """
     points = []
     best = None
     for pct in range(50, 151, 10):
         budget = req.budget * pct / 100
         res = solve(req.model_copy(update={"budget": budget}))
+        solved = res.objective is not None
         # Within the MIP gap, a larger budget's solve can land a hair above a smaller one's. The
         # smaller budget's order is still affordable at the larger budget, so the best known
         # shortage at this level is never worse than the level before it.
-        best = res.objective if best is None else min(best, res.objective)
-        points.append({"pct": pct, "budget": round(budget, 2), "expected_shortage": best, "status": res.status})
+        if solved:
+            best = res.objective if best is None else min(best, res.objective)
+        points.append({"pct": pct, "budget": round(budget, 2), "expected_shortage": best if solved else None,
+                       "objective": res.objective, "status": res.status, "solved": solved})
 
     base = solve(req)
     more = solve(req.model_copy(update={"budget": req.budget + NEXT_STEP}))
-    next_step = [{"id": a.id, "delta_x": b.x - a.x, "shortfall_pct_before": a.shortfall_pct, "shortfall_pct_after": b.shortfall_pct}
-                 for a, b in zip(base.orders, more.orders) if b.x != a.x]
+    solved = base.objective is not None and more.objective is not None
+    changes = [{"id": a.id, "delta_x": b.x - a.x, "shortfall_pct_before": a.shortfall_pct, "shortfall_pct_after": b.shortfall_pct}
+               for a, b in zip(base.orders, more.orders) if b.x != a.x] if solved else []
 
-    return {"points": points, "next_step": {"amount": NEXT_STEP, "changes": next_step}}
+    return {"points": points, "next_step": {"amount": NEXT_STEP, "changes": changes, "solved": solved}}
 
 
 def flat_rule_orders(items: list[ReplenishmentItem], q: dict[str, int], budget: float) -> tuple[dict[str, int], int]:
@@ -211,17 +249,24 @@ def backtest(req: BacktestRequest) -> dict:
     every rule builds its order using only earlier quarters, and the order is
     scored against that quarter's actual use. Each rule carries its own stock
     forward (q_{t+1} = max(0, q_t + x_t - D_t)), so a rule lives with its own
-    past decisions.
+    past decisions. Histories end at the same latest quarter; an item with a
+    shorter one did not exist before it starts, so its missing quarters are
+    neither history nor use.
     """
     T = max(len(it.history) for it in req.items)
-    hist = {it.id: [0] * (T - len(it.history)) + it.history for it in req.items}
+    off = {it.id: T - len(it.history) for it in req.items}
+    use = {it.id: [0] * off[it.id] + it.history for it in req.items}  # actual use by calendar quarter
+    space_modeled = req.free_space is not None and all(it.space_per_unit is not None for it in req.items)
     rules = ["flat_1_5", "per_item_multiplier", "scenario"] + (["office_actual"] if req.actual_orders else [])
     stock = {r: {it.id: req.initial_stock.get(it.id, 0) for it in req.items} for r in rules}
     quarters = []
 
     for t in range(req.start, T):
         budget = req.budgets[t] if t < len(req.budgets) and req.budgets[t] is not None else req.budget
-        past = [it.model_copy(update={"history": hist[it.id][:t], "q": 0, "reserved": 0, "target": None}) for it in req.items]
+        past = [it.model_copy(update={"history": use[it.id][off[it.id]:t], "q": 0, "reserved": 0, "target": None})
+                for it in req.items]
+        # ponytail: an item with no past use divides by 1, not its (zero) average.
+        avg = {p.id: sum(p.history) / len(p.history) if sum(p.history) else 1 for p in past}
         row = {"t": t, "budget": budget, "typhoon": t in req.typhoon_quarters, "stockout": t in req.stockout_quarters, "rules": {}}
 
         for rule in rules:
@@ -234,11 +279,13 @@ def backtest(req: BacktestRequest) -> dict:
                 res = solve(ReplenishmentRequest(rule=rule, budget=budget, free_space=req.free_space, m=req.m,
                                                  time_limit_s=req.time_limit_s,
                                                  items=[p.model_copy(update={"q": q[p.id]}) for p in past]))
-                orders, ms, feasible = {o.id: o.x for o in res.orders}, res.solve_ms, res.status != "infeasible"
+                orders, ms, feasible = {o.id: o.x for o in res.orders}, res.solve_ms, res.objective is not None
 
             spent = sum((it.unit_cost or 0) * orders.get(it.id, 0) for it in req.items)
-            row["rules"][rule] = _score(req.items, hist, t, q, orders, budget, spent, ms, feasible)
-            stock[rule] = {it.id: max(0, q[it.id] + orders.get(it.id, 0) - hist[it.id][t]) for it in req.items}
+            space = sum(it.space_per_unit * orders.get(it.id, 0) for it in req.items) if space_modeled else 0
+            feasible = feasible and spent <= budget + EPS and (not space_modeled or space <= req.free_space + EPS)
+            row["rules"][rule] = _score(req.items, use, avg, t, q, orders, budget, spent, ms, feasible)
+            stock[rule] = {it.id: max(0, q[it.id] + orders.get(it.id, 0) - use[it.id][t]) for it in req.items}
 
         quarters.append(row)
 
@@ -256,16 +303,13 @@ def backtest(req: BacktestRequest) -> dict:
     }
 
 
-def _score(items, hist, t, q, orders, budget, spent, ms, feasible) -> dict:
+def _score(items, use, avg, t, q, orders, budget, spent, ms, feasible) -> dict:
     fill_num = fill_den = ws = ran_out = leftover = 0.0
     for it in items:
-        d, have = hist[it.id][t], q[it.id] + orders.get(it.id, 0)
-        past = hist[it.id][:t]
-        # ponytail: an item with no past use divides by 1, not its (zero) average.
-        avg = (sum(past) / len(past)) if past and sum(past) else 1
+        d, have = use[it.id][t], q[it.id] + orders.get(it.id, 0)
         fill_num += min(d, have)
         fill_den += d
-        ws += it.weight * max(0, d - have) / avg
+        ws += it.weight * max(0, d - have) / avg[it.id]
         ran_out += d > have
         leftover += max(0, have - d) * (it.unit_cost or 0)
 
@@ -275,7 +319,7 @@ def _score(items, hist, t, q, orders, budget, spent, ms, feasible) -> dict:
         "items_ran_out": int(ran_out),
         "budget_used": round(spent / budget, 4) if budget else 0.0,
         "stock_left_value": round(leftover, 2),
-        "feasible": feasible and spent <= budget + 1e-6,
+        "feasible": feasible,
         "solve_ms": ms,
     }
 

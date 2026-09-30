@@ -10,7 +10,7 @@ services:
   # No `ports:` here on purpose — Coolify's blue-green rollout briefly runs
   # this deployment's containers alongside the previous one's, and a static
   # host-port publish collides between the two (same failure mode postgres/
-  # solver-service/osrm hit — see git history). Coolify's own Traefik routes
+  # solver-service hit — see git history). Coolify's own Traefik routes
   # to `backend`/`reverb` over the internal `coolify` Docker network via
   # SERVICE_FQDN_BACKEND/SERVICE_URL_REVERB (see .env.production), so the
   # host port isn't needed for external reachability. Local dev gets
@@ -86,8 +86,8 @@ services:
       - default
       - coolify
 
-  # Runs App\Jobs\RunOptimizationJob (QUEUE_CONNECTION=database) — without
-  # this nothing ever processes the queued optimization calls.
+  # Runs App\Jobs\RunReplenishmentJob (QUEUE_CONNECTION=database) — without
+  # this nothing ever processes the queued solver runs.
   queue:
     build:
       context: ./backend
@@ -96,7 +96,7 @@ services:
     image: laravel-drs-backend:latest
     container_name: disasterresource-queue
     restart: unless-stopped
-    command: php artisan queue:work --tries=3 --backoff=15
+    command: php artisan queue:work --tries=3 --backoff=15 --timeout=620
     env_file:
       - .env
     # No bind mount here — see the `backend` service's comment above, same reasoning.
@@ -110,11 +110,8 @@ services:
       - default
       - coolify
 
-  # Runs the Laravel scheduler (routes/console.php): polls the configured
-  # disaster feeds (USGS/GDACS) on the admin-set interval and auto-resolves
-  # stale incidents. Without this, nothing ever triggers PollDisasterFeedsJob
-  # / AutoResolveIncidentsJob — the `queue` service above must also be up
-  # since scheduled jobs are dispatched onto the queue, not run inline.
+  # Runs the Laravel scheduler (routes/console.php): the nightly "check
+  # records" (`stock:verify`) that catches a directly edited stock row.
   scheduler:
     build:
       context: ./backend
@@ -135,7 +132,7 @@ services:
       - default
       - coolify
 
-  # Websocket server for App\Events\DisasterAlertEvent (routes/channels.php).
+  # Websocket server for App\Events\ReplenishmentRunUpdated (routes/channels.php).
   reverb:
     build:
       context: ./backend
@@ -196,49 +193,6 @@ services:
       - default
       - coolify
 
-  # One-shot init container: prepares OSRM's Laguna-province road-network
-  # data into the named volume `osrm` serves from, then exits. Idempotent —
-  # skips already-completed steps (see docker/osrm/prepare/entrypoint.sh) —
-  # so this is a fast no-op on every `docker compose up`/deploy after the
-  # first successful run, and requires no manual server-side steps at all.
-  # `osrm` waits on this completing successfully before it starts.
-  osrm-prepare:
-    build:
-      context: ./docker/osrm/prepare
-      dockerfile: Dockerfile
-    container_name: disasterresource-osrm-prepare
-    restart: "no"
-    volumes:
-      - osrm-data-x11oqof2fbwxdq26ev780h1c:/data
-    networks:
-      - default
-
-  # Self-hosted routing engine (free, no API key) for turn-by-turn directions.
-  # No `ports:` here either — see the `postgres` comment above, same reasoning.
-  #
-  # Uses a named (external) volume rather than a bind mount to
-  # `./docker/osrm/data`: Coolify checks this repo out into a fresh,
-  # ephemeral per-deployment artifact directory on every deploy, so a
-  # relative bind mount here would lose the prepared data (and crash-loop,
-  # since osrm-routed refuses to start without it) the moment the *next*
-  # deploy ran. A named volume persists independently of the deploy
-  # checkout, and `osrm-prepare` above (re)populates it automatically.
-  # `external: true` (declared below) because this volume is populated by
-  # `osrm-prepare`, not created/seeded by Compose itself.
-  osrm:
-    image: osrm/osrm-backend
-    container_name: disasterresource-osrm
-    restart: unless-stopped
-    command: osrm-routed --algorithm mld /data/laguna-latest.osrm
-    volumes:
-      - osrm-data-x11oqof2fbwxdq26ev780h1c:/data:ro
-    depends_on:
-      osrm-prepare:
-        condition: service_completed_successfully
-    networks:
-      - default
-      - coolify
-
 # Coolify's shared network — needed to resolve other Coolify-managed
 # resources by container hostname (e.g. the standalone PostgreSQL resource
 # `.env.production`'s DB_HOST points at) and for Coolify's Traefik instance
@@ -250,8 +204,3 @@ networks:
   coolify:
     external: true
 
-# Pre-populated once directly on the host via `docker volume create` +
-# `docker run` (see the `osrm` service's comment) — not managed by Compose.
-volumes:
-  osrm-data-x11oqof2fbwxdq26ev780h1c:
-    external: true

@@ -52,7 +52,7 @@ Role-based access follows the **office's own six functional roles** (not ICS rol
 
 | Role                                     | What the paper has them do                                                                                                                                                                                                                           |
 | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Admin (Head of Office)**               | Department head / assistant department head. **System administrator**. Enters the quarterly budget, **runs the solver**, and **approves or rejects** the recommendation (an approved run becomes the purchase plan) and ICS 213-RR requests. Accountable for COA audits. |
+| **Admin (Head of Office)**               | Department head / assistant department head. **System administrator with full capability: can do everything any other role can.** Enters the quarterly budget, **runs the solver**, confirms the VED policy, and **approves or rejects** the recommendation (an approved run becomes the purchase plan) and ICS 213-RR requests, including their own. Accountable for COA audits. |
 | **Logistics** (under Admin and Training) | **Encodes the resources only**: stock entries (receipts, releases, returns, adjustments), the historical records and requests; confirms or corrects flagged data; resolves conflict flags; product owner. Does not approve, reject or run the solver. |
 | **Research and Planning**                | Reads recommendations and the budget curve for annual planning; takes the explanation task.                                                                                                                                                          |
 | **ERT**                                  | Files most ICS 213-RR requests; borrows equipment.                                                                                                                                                                                                   |
@@ -64,6 +64,7 @@ Role-based access follows the **office's own six functional roles** (not ICS rol
 
 - Logistics keeps the records the solver reads (stock entries, history, requests) and clears data-check flags. Logistics never approves, rejects or runs anything: no endorsement step, no request approval.
 - The Admin enters the budget, runs the solver, and **approves or rejects** the run. A rejection records a comment; the Admin re-runs after changing the budget, or after Logistics corrects the data.
+- **Decided (2026-09-29): the Admin has full capability.** The Admin passes every role check (`EnsureUserHasRole`), so they can also encode, release, file requests and keep the catalog, and may approve a request they filed themselves.
 - The paper matches this (glossary, Input, Process step 4, Limitations, Model Formulation, Model Deployment, System Architecture, UAT, Figure 2; updated 2026-09-29).
 
 ### 2.1 Permission matrix [Proposed: default rules, confirm with the office]
@@ -71,14 +72,15 @@ Role-based access follows the **office's own six functional roles** (not ICS rol
 | Capability                                                   | Admin        | Logistics | R&P | ERT | Ops | Incident Mgmt | Admin&Training |
 | ------------------------------------------------------------ | ------------ | --------- | --- | --- | --- | ------------- | -------------- |
 | View dashboard (stock, use, recommendation, budget curve)    | ✓            | ✓         | ✓   | ✓   | ✓   | ✓             | ✓              |
-| File an ICS 213-RR request                                   |              | ✓         |     | ✓   | ✓   | ✓             |                |
-| Approve or reject a request                                  | ✓            |           |     |     |     |               |                |
+| File an ICS 213-RR request                                   | ✓            | ✓         |     | ✓   | ✓   | ✓             |                |
+| Approve or reject a request (including one they filed)       | ✓            |           |     |     |     |               |                |
 | Lend and receive borrowed items; change borrowed-item status | ✓            | ✓         |     |     |     |               |                |
 | See borrowers' names and contact details                     | ✓            | ✓         |     |     |     |               |                |
 | Record stock receipts and adjustments                        | ✓            | ✓         |     |     |     |               |                |
+| Encode history; weekly physical count                        | ✓            | ✓         |     |     |     |               |                |
 | Enter the quarterly budget; run the solver                   | ✓            |           |     |     |     |               |                |
 | **Approve or reject a recommendation**                       | **✓**        |           |     |     |     |               |                |
-| Resolve conflict flags and data-check flags                  |              | ✓         |     |     |     |               |                |
+| Resolve conflict flags and data-check flags                  | ✓            | ✓         |     |     |     |               |                |
 | Confirm the VED policy (classes, weights, coverage)          | ✓            |           |     |     |     |               |                |
 | Export the quarterly report                                  | ✓            | ✓         | ✓   |     |     |               |                |
 | Run "check records"                                          | ✓            | ✓         |     |     |     |               |                |
@@ -87,11 +89,11 @@ Role-based access follows the **office's own six functional roles** (not ICS rol
 
 These defaults follow three rules:
 
-1. **Whoever files can't approve their own work.** Requesters (ERT, Ops, Incident Mgmt) file and only the Admin approves. Logistics encodes the data the solver reads; only the Admin runs the solver and decides on its recommendation.
+1. **The Admin can do everything.** The Head of Office passes every role check, so the Admin column is all ✓. Only the Admin runs the solver and approves; everyone else's rows are limited to their own work.
 2. **Personal data is limited to the roles that lend equipment.** Only the Admin and Logistics see borrower names and contacts (NPC safeguards).
 3. **Stock changes only through the stock keepers.** Only Logistics and the Admin create stock entries directly; everyone else changes stock only through requests and borrowing.
 
-A user can hold more than one role. For example, a Logistics staff member who also files requests gets both roles, and still can't approve anything.
+A user can hold more than one role. For example, a Logistics staff member who also files requests gets both roles, and still can't approve anything. The Admin may approve a request they filed themselves (decided 2026-09-29).
 
 ---
 
@@ -183,7 +185,7 @@ For each item: (1) past quarterly use, both requested and released; (2) current 
 
 Flag an entry, and ask Logistics to **confirm or correct** it, when:
 
-1. A quarter's use is more than **3×** the item's usual quarterly use and no event is tagged.
+1. A quarter's use is more than **3×** the item's usual quarterly use (the **median** of its other quarters with recorded use) and no event is tagged.
 2. A stock figure is **below zero**.
 3. Recorded stock differs from the **weekly physical count**.
 
@@ -191,7 +193,7 @@ Also: all quantities must be non-negative, and every flag must be resolved befor
 
 ### 4.3 Parameters
 
-- **M = 8** past quarters when the history allows.
+- **M = 8** past quarters when the history allows. With fewer (n < M) quarters, _k_ is scaled to the same share: k′ = ⌈k · n / M⌉ of the n quarters (paper, Parameter Preparation).
 - **Covering level Lᵢ** = the amount that would have covered the item's use in _k_ of the last M quarters.
 - **Per-item multiplier** = Lᵢ ÷ mᵢ (mᵢ = average quarterly use). Recalculate every quarter.
 
@@ -201,7 +203,7 @@ Also: all quantities must be non-negative, and every flag must be resolved befor
 | Essential (hygiene/cleaning, food packs, water)  | 7 of 8   | 2nd-highest           | 2         |
 | Desirable (office/routine)                       | 6 of 8   | 3rd-highest           | 1         |
 
-These values are proposals until Logistics confirms them, so store them as editable policy, not constants.
+These values are proposals until the office confirms them, so store them as editable policy, not constants. The Admin edits and confirms them on the Replenishment page, which records the confirming position and date (`PATCH /api/replenishment/policies/{class}`).
 
 **Cold start:**
 
@@ -216,7 +218,7 @@ Notation: qᵢ = stock at start − reserved; Tᵢ = Lᵢ; cᵢ = cost; vᵢ = s
 minimize   Z = Σᵢ wᵢ · uᵢ / Tᵢ
 subject to uᵢ ≥ Tᵢ − (qᵢ + xᵢ)              ∀i
            Σᵢ cᵢ · xᵢ ≤ B
-           Σᵢ vᵢ · (qᵢ + xᵢ) ≤ V            (only when space is modeled)
+           Σᵢ vᵢ · xᵢ ≤ V                   (only when space is modeled; V = space still free after current stock)
            0 ≤ xᵢ ≤ max(0, Tᵢ − qᵢ),  xᵢ ∈ ℤ,  uᵢ ≥ 0
 ```
 
@@ -228,7 +230,7 @@ Each past quarter s = 1…S is an equally likely scenario, and Dᵢₛ is its us
 minimize   Z = (1/S) · Σₛ Σᵢ wᵢ · uᵢₛ / mᵢ
 subject to uᵢₛ ≥ Dᵢₛ − (qᵢ + xᵢ)            ∀i, s
            Σᵢ cᵢ · xᵢ ≤ B
-           Σᵢ vᵢ · (qᵢ + xᵢ) ≤ V
+           Σᵢ vᵢ · xᵢ ≤ V
            xᵢ ≥ 0, xᵢ ∈ ℤ,  uᵢₛ ≥ 0
 ```
 
@@ -239,7 +241,7 @@ Typhoon quarters stay in as their own scenarios; don't average them away.
 - The paper keeps the space constraint in both stages ("within the budget and depot space"), so build it. But the office hasn't measured space yet, and Table 3 marks `space_per_unit` as "where space is modeled."
 - The constraint is **included** for a run only when (a) free space is set for the depot(s) being planned, **and** (b) every item in the run has a `space_per_unit`. Otherwise it's **left out**, and the run records `space_modeled = false`.
 - When space isn't modeled, the "limited by depot space" reason can never appear, and the dashboard shows "Depot space not modeled" next to the recommendation.
-- Measure free space **per depot**. Stage 1 and Stage 2 both use the total free space across the depots being planned (one V). Planning space depot by depot is future work. For the thesis, start with it **off** until Logistics provides the measurements, and switch it on for the backtest if the data arrives in time.
+- Measure free space **per depot**. Stage 1 and Stage 2 both use the total free space across the depots being planned (one V). Planning space depot by depot is future work. For the thesis, start with it **off** until Logistics provides the measurements, and switch it on for the backtest if the data arrives in time. Free space is entered per depot on the Depots page and space per unit per item on the Items page; the run sends the depots' total only when every depot has a figure (`RunReplenishmentJob::freeSpace()`).
 
 **Solver:** PuLP **2.8.0** (pinned), with the bundled **CBC**. Set a solve time limit (finiteness). Return an order for every item, or "no feasible order."
 
@@ -316,7 +318,7 @@ The full cost is ₱301,500, leaving ₱101,500 unfunded. Expected results:
 ### 5.1 Client (PWA, offline-first)
 
 - Build with **vite-plugin-pwa**: a service worker caches the app and reference data after the first online login.
-- Keep an **outbox in IndexedDB (idb)**. Each entry made offline gets a **device-made ID**, a **creation time** and a **priority**.
+- Keep an **outbox in IndexedDB (idb)**. Each entry made offline gets a **device-made ID**, a **creation time** and a **priority**. Offline entries cover stock receipts, consumable releases, and borrowed-item releases and returns: the Stock, ICS 213-RR and borrowed-equipment pages open offline, a borrowed unit issued offline gets a device-made borrow ID, and its return depends on that issue. On sync the server applies a release or return to its request line and logbook; what online checks would refuse is kept and flagged (`release_not_approved`, `return_not_issued`).
 - Queued entries **survive closing and reopening the browser**.
 - **Sync order:** priority entries first, then by creation time. An entry that **depends on** another record syncs after it (e.g., a return after its borrow).
 - Sync triggers: Background Sync (Chromium), plus **retry on every app open and on reconnect**, because Background Sync is Chromium-only.
@@ -324,7 +326,7 @@ The full cost is ₱301,500, leaving ₱101,500 unfunded. Expected results:
 
 ### 5.2 Server acceptance pipeline (Figure 4)
 
-For each incoming entry:
+For each incoming entry (each is validated on its own; an invalid one answers `rejected` with its errors and the rest of the batch still saves; the quantity's sign must fit the reason: receipt > 0, release < 0, issue −1, return +1; a device time more than 5 minutes ahead is rejected):
 
 1. **Duplicate check:** a unique index on the device-made ID. If the entry was already received, **ignore** it; the upload must be idempotent.
 2. **Conflict check:** if the entry would make stock **negative**, or would **return a borrowed item twice**, **keep the entry** and **set a conflict flag** for Logistics. Never drop it.
@@ -348,6 +350,7 @@ Each flag is shown to Logistics to resolve. Every resolution is recorded, and it
 - Recomputes the chain from the **first entry**, and reports the **first entry whose fingerprint no longer matches**. A row edited directly in the DB must be detected.
 - **Print the latest fingerprint on each quarterly report.** A rebuilt chain would then no longer match the printed value; this is the paper's mitigation for someone with full DB access.
 - Run it as an artisan command, from the UI (for permitted roles), and on a schedule. **[Proposed: schedule]**
+- A passing nightly check saves a **checkpoint** (last sequence number and fingerprint, `app_chain_checkpoints`). The next check also fails if entries after the checkpoint vanished or that entry's fingerprint changed (the chain was rebuilt), which recomputing alone can't see. A failure is logged as critical and emailed to the Admins.
 
 ---
 
@@ -385,7 +388,7 @@ Also required:
 - **Database:** PostgreSQL, with a unique index on the device-made ID, and the stock-entry table plus its hash chain.
 - **Solver:** a FastAPI service with PuLP 2.8.0 and CBC. It **never touches the database**; the backend calls it through a **queued job** whenever the Admin runs the solver on the quarter's budget.
 - **Realtime:** Laravel Reverb (self-hosted WebSockets).
-- **Deploy:** Docker Compose on the office server (web, queue worker, scheduler, Reverb, solver, PostgreSQL), on a UPS (≥1,500 VA).
+- **Deploy:** Docker Compose on the office server (web, queue worker, scheduler, Reverb, solver, PostgreSQL), on a UPS (≥1,500 VA), served over **HTTPS** (browsers register the offline service worker only on a secure origin).
 - **Tests:** PHPUnit (backend) and pytest (solver).
 
 ### Typical quarterly cycle
@@ -443,9 +446,9 @@ Also required:
 
 ## 11. Open questions to settle with CDRRMO before building
 
-1. ~~Who gives final approval~~. **Decided:** Logistics only encodes; the Admin runs the solver and approves or rejects (§2). The paper was updated to match.
+1. ~~Who gives final approval~~. **Decided:** Logistics only encodes; the Admin runs the solver and approves or rejects (§2), and has every other role's capabilities too. The paper was updated to match.
 2. **Confirm the permission matrix** (§2.1). It has default rules, so development can start with it; ask the office only about the rows they disagree with.
-3. **Confirmation of the VED classes, weights and coverage levels**, recorded with the date and the confirming person's position.
+3. **Confirmation of the VED classes, weights and coverage levels**, recorded with the date and the confirming person's position (the Admin enters it on the Replenishment page once the office agrees).
 4. **Depot space measurements.** It's built as an optional constraint that stays off until the data exists (§4.5). Ask Logistics for each depot's free space and each item's space per unit.
 5. **Confirm the request statuses** (§3.2): partial release is allowed by default, and the Admin can approve less than was requested.
 6. **The item level**: for example, individual medical supplies versus kits.

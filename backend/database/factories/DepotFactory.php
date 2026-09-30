@@ -18,8 +18,6 @@ class DepotFactory extends Factory
             'name' => 'Depot — '.fake()->city().' Logistics Hub',
             'address' => fake()->streetAddress().', '.fake()->city(),
             'status' => fake()->randomElement(['OPERATIONAL', 'LIMITED CAPACITY', 'OFFLINE']),
-            'lat' => fake()->latitude(5, 19),
-            'lng' => fake()->longitude(117, 127),
             'contact_first_name' => fake()->firstName(),
             'contact_last_name' => fake()->lastName(),
             'contact_email' => fake()->unique()->safeEmail(),

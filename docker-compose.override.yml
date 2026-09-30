@@ -4,7 +4,7 @@
 # deploy logs), so it never picks up this file — these host-port publishes
 # stay purely a local convenience and never collide with the previous
 # deployment's still-running containers during a Coolify rollout (see
-# docker-compose.yml's backend/reverb/solver-service/osrm comments for why
+# docker-compose.yml's backend/reverb/solver-service comments for why
 # those lost their `ports:` entries).
 #
 # The `volumes:` bind mounts below (backend/queue/scheduler/reverb/
@@ -14,11 +14,6 @@
 # wiping out `artisan`/`vendor`/`main.py` entirely (see docker-compose.yml's
 # backend service comment, and git history for the resulting
 # "Could not open input file: artisan" crash-loop investigation).
-#
-# `osrm` is NOT overridden here — it uses the same named volume + automatic
-# `osrm-prepare` init container locally as in production (see
-# docker-compose.yml), so a first local `docker compose up` downloads and
-# prepares Laguna's OSRM data automatically, no manual script needed.
 #
 # The top-level `networks: coolify:` override below neutralizes
 # docker-compose.yml's `external: true` (Compose merges named-network
@@ -93,19 +88,9 @@ services:
     volumes:
       - ./solver-service:/app
 
-  osrm:
-    ports:
-      - "5001:5000"
-
 networks:
   coolify:
     external: false
 
 volumes:
   pgdata:
-  # Neutralizes docker-compose.yml's `external: true` (same technique as the
-  # `coolify` network override above) — locally this becomes an ordinary
-  # Compose-managed volume, auto-created on first `docker compose up`, no
-  # pre-existing volume required.
-  osrm-data-x11oqof2fbwxdq26ev780h1c:
-    external: false

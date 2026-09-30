@@ -1340,8 +1340,8 @@
     "semantic_hash": "734d12db78db235d74d93be4f9eb987c"
   },
   "backend/resources/js/app.tsx": {
-    "mtime": 1788121332.049179,
-    "ast_hash": "63c2cd5eee242e2a2ccb8249ba5943b8",
+    "mtime": 1790619697.7226138,
+    "ast_hash": "5111a17bf7d160e73507628574f7085c",
     "semantic_hash": ""
   },
   "backend/resources/js/bootstrap.ts": {
@@ -1375,9 +1375,9 @@
     "semantic_hash": "09e11020f675e7ee4686c6c49cb90de5"
   },
   "backend/resources/views/app.blade.php": {
-    "mtime": 1786234523.0645976,
-    "ast_hash": "ed63cde64c99c0577e36faf5e078be27",
-    "semantic_hash": "ed63cde64c99c0577e36faf5e078be27"
+    "mtime": 1790619808.3112507,
+    "ast_hash": "ee70f50e3802a99cd21eb8717302501e",
+    "semantic_hash": ""
   },
   "backend/resources/views/emails/new-account.blade.php": {
     "mtime": 1785659384.4696724,
@@ -1410,8 +1410,8 @@
     "semantic_hash": ""
   },
   "backend/routes/web.php": {
-    "mtime": 1790619116.3067827,
-    "ast_hash": "d6e8487b208b29143d32931c2d68dd4d",
+    "mtime": 1790619807.9403005,
+    "ast_hash": "7694dded822a6836e1de878c1dc0149e",
     "semantic_hash": ""
   },
   "backend/storage/framework/views/02fb506bf752ab58e91131f63a9282a8.php": {
@@ -1555,9 +1555,9 @@
     "semantic_hash": "e25517559d25ae90bc4b1f242ca60bc8"
   },
   "backend/storage/framework/views/8c977643e781d43ba64aec4e7b77da72.php": {
-    "mtime": 1786234524.0,
-    "ast_hash": "43a58ef39bc3f96fd8e8df853200a466",
-    "semantic_hash": "43a58ef39bc3f96fd8e8df853200a466"
+    "mtime": 1790619809.0,
+    "ast_hash": "84e8b27506f10073ea512c9900d73584",
+    "semantic_hash": ""
   },
   "backend/storage/framework/views/8e30b456b7f715fc1aa4bec85d70e920.php": {
     "mtime": 1786456583.0,
@@ -1680,9 +1680,9 @@
     "semantic_hash": ""
   },
   "backend/tests/Feature/ExampleTest.php": {
-    "mtime": 1785422769.1352117,
-    "ast_hash": "0f4d91c9c5bbcd4e2f46cf885acb7fb6",
-    "semantic_hash": "0f4d91c9c5bbcd4e2f46cf885acb7fb6"
+    "mtime": 1790619589.7690022,
+    "ast_hash": "34e6525d3b47e2ca497eb290a04cea0e",
+    "semantic_hash": ""
   },
   "backend/tests/Feature/IdempotentCreateTest.php": {
     "mtime": 1788702985.3887966,
@@ -1740,8 +1740,8 @@
     "semantic_hash": "bf7a38bb00baf2d56dd7c11bba0ae1b6"
   },
   "backend/vite.config.ts": {
-    "mtime": 1790618278.533281,
-    "ast_hash": "2aeccbebef81af1a2c60d8a70651e4c6",
+    "mtime": 1790619857.3250673,
+    "ast_hash": "f696c2b73d8e10ce119ee10438a9aff8",
     "semantic_hash": ""
   },
   "docker/osrm/prepare/entrypoint.sh": {
@@ -1800,8 +1800,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1788617830.098238,
-    "ast_hash": "bf1226eb12b5e973d9b048e3cce104eb",
+    "mtime": 1790619976.1526816,
+    "ast_hash": "9def70954d478c5ed2932a309daca754",
     "semantic_hash": ""
   },
   "INTEGRATION.md": {
@@ -2090,8 +2090,8 @@
     "semantic_hash": ""
   },
   "solver-service/app/solvers/replenishment.py": {
-    "mtime": 1790618467.4175673,
-    "ast_hash": "664ce60f08a839c5a3d13912db3c8f3d",
+    "mtime": 1790619465.7413368,
+    "ast_hash": "4f58260b68bb9c0234e2343ca9609c3e",
     "semantic_hash": ""
   },
   "solver-service/tests/test_replenishment.py": {
@@ -2292,6 +2292,21 @@
   "backend/tests/Feature/IcsRequestWorkflowTest.php": {
     "mtime": 1790619055.440745,
     "ast_hash": "62d0c67cf6e89d61220d1a1e75e7b638",
+    "semantic_hash": ""
+  },
+  "backend/tests/Feature/EvaluationTest.php": {
+    "mtime": 1790619574.594694,
+    "ast_hash": "4818dd76f812cf761a56035af59b8126",
+    "semantic_hash": ""
+  },
+  "solver-service/tests/test_performance.py": {
+    "mtime": 1790619297.2873602,
+    "ast_hash": "a8f61452b0d96f900cd51ec3a7fd981a",
+    "semantic_hash": ""
+  },
+  "backend/docs/evaluation-protocol.md": {
+    "mtime": 1790619953.439128,
+    "ast_hash": "6322e0c7da1302208e70674126b3c5ba",
     "semantic_hash": ""
   }
 }

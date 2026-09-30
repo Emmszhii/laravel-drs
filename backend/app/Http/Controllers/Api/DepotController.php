@@ -7,7 +7,8 @@ use App\Models\Depot;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Depots CRUD — backs the admin/developer Depots page.
+ * Depots CRUD — backs the Depots page. free_space (m³) feeds the solver's
+ * optional depot-space limit (system-spec.md §4.5).
  */
 class DepotController extends BaseController
 {
@@ -23,7 +24,7 @@ class DepotController extends BaseController
 
     protected string $sortBy = 'name';
 
-    protected array $inUseRelations = ['resources'];
+    protected array $inUseRelations = ['stockEntries'];
 
     protected function storeRules(): array
     {
@@ -31,8 +32,7 @@ class DepotController extends BaseController
             'name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'status' => ['required', 'in:OPERATIONAL,LIMITED CAPACITY,OFFLINE'],
-            'lat' => ['required', 'numeric'],
-            'lng' => ['required', 'numeric'],
+            'free_space' => ['nullable', 'numeric', 'min:0'],
             'contact_first_name' => ['nullable', 'string', 'max:255'],
             'contact_last_name' => ['nullable', 'string', 'max:255'],
             'contact_email' => ['nullable', 'email', 'max:255'],
@@ -46,8 +46,7 @@ class DepotController extends BaseController
             'name' => ['sometimes', 'string', 'max:255'],
             'address' => ['sometimes', 'string', 'max:255'],
             'status' => ['sometimes', 'in:OPERATIONAL,LIMITED CAPACITY,OFFLINE'],
-            'lat' => ['sometimes', 'numeric'],
-            'lng' => ['sometimes', 'numeric'],
+            'free_space' => ['nullable', 'numeric', 'min:0'],
             'contact_first_name' => ['nullable', 'string', 'max:255'],
             'contact_last_name' => ['nullable', 'string', 'max:255'],
             'contact_email' => ['nullable', 'email', 'max:255'],

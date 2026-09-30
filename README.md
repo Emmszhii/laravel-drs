@@ -1,14 +1,14 @@
 # DisasterResource+
 
-A web-based resource optimization and visualization system for disaster response.
+A web-based supply-readiness system for CDRRMO San Pablo City: it plans each quarter's replenishment from the office's own history under its budget, explains every recommendation, and keeps offline-safe, tamper-evident stock records. It also digitizes the ICS 213-RR request form and the borrowed-equipment logbook.
+
+The spec it is built to is `backend/docs/system-spec.md` (from the Capstone paper, Chapters I–III).
 
 This repository contains three deployable units:
 
 - **`backend/`** — Laravel application (Inertia + React/TypeScript frontend, Sanctum auth, Reverb realtime)
-- **`solver-service/`** — Python FastAPI microservice running the OR-Tools / PuLP optimization and routing logic
-- **`docker/`** — shared infrastructure config (PostGIS bootstrap)
-
-See the project's `SUMMARY.md` / `PROJECT.md` (design phase documents) for architecture rationale, database schema, and the interactive UI/UX prototype this structure was scaffolded from.
+- **`solver-service/`** — Python FastAPI microservice running the PuLP/CBC replenishment model
+- **`docker/`** — shared infrastructure config (Postgres bootstrap)
 
 ## Quick start (Docker)
 
@@ -20,7 +20,6 @@ docker compose up --build
 - Laravel: http://localhost:8000
 - Solver service: http://localhost:8001
 - Postgres: localhost:5432
-- OSRM routing: http://localhost:5001 (see [Routing (OSRM)](#routing-osrm) below — needs a one-time data prep step first)
 
 ## Local development without Docker
 
@@ -36,14 +35,10 @@ php artisan key:generate
 php artisan migrate --seed
 npm run dev
 php artisan serve
-php artisan queue:work      # processes RunOptimizationJob (separate terminal)
+php artisan queue:work      # processes RunReplenishmentJob (separate terminal)
 php artisan reverb:start    # realtime broadcasting (separate terminal)
+php artisan schedule:work   # nightly "check records" (separate terminal)
 ```
-
-**OSRM service IN DOCKER**
-run docker
-docker compose up -d osrm
-curl "http://localhost:5001/route/v1/driving/121.774,12.8797;121.0,13.0?overview=false"
 
 **Solver service**
 ```bash
@@ -63,31 +58,11 @@ touch backend/database/database.sqlite
 
 Then in the root `.env`, set `DB_CONNECTION=sqlite` (comment out the `pgsql` block below it — `DB_DATABASE` must be empty/unset for SQLite to use `database_path('database.sqlite')` by default). Switch back to `pgsql`/`DB_HOST=postgres` before using Docker, which already has `pdo_pgsql` installed (see `backend/Dockerfile`).
 
-## Routing (OSRM)
-
-Turn-by-turn directions run on a **self-hosted OSRM** instance (free, no API key, no usage cap, no traffic data) instead of a paid provider like Google Maps or Mapbox — those require a billing-enabled account even on their "free tier." The trade-off: routes use static OpenStreetMap road-network data, not live traffic.
-
-Before directions will work, prepare the Philippines road-network data once (large download + CPU/RAM-heavy preprocessing, ~10-30+ min):
-
-```bash
-./docker/osrm/prepare.sh
-```
-
-This downloads `philippines-latest.osm.pbf` from Geofabrik into `docker/osrm/data/` and runs OSRM's extract/partition/customize steps via Docker. It only needs to be re-run if you want to refresh the road data later. Once done, `docker compose up` (or `docker compose up -d osrm`) serves it on port 5001.
-
-An admin can optionally configure a paid, Mapbox-Directions-API-compatible provider as a "premium" tier from **Settings → Routing** in the app — with usage metering against a configured monthly cap and automatic fallback to the free OSRM tier if the cap is hit or the provider errors out.
-
 ## Folder structure
 
 ```
 disaster-response-system/
 ├── backend/            Laravel (Inertia + Sanctum + Reverb)
-├── solver-service/      FastAPI optimization microservice
-└── docker/              Shared infra (PostGIS init)
+├── solver-service/     FastAPI replenishment solver
+└── docker/             Shared infra (Postgres init)
 ```
-
-Full annotated structure lives in the repo tree itself — each directory's purpose is documented inline via comments where the structure was originally specified.
-
-## Notes
-
-This scaffold intentionally matches an agreed folder structure exactly. Any structural changes (new top-level folders, moved files, added tooling configs like `composer.json`/`vite.config.ts`) should be proposed before being applied — see the note in each service's directory for what's still missing to make it a fully runnable install.

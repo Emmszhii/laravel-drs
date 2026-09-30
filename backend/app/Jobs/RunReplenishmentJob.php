@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Events\ReplenishmentRunUpdated;
+use App\Models\Depot;
 use App\Models\ReplenishmentRun;
 use App\Models\ResourceType;
 use App\Models\VedPolicy;
@@ -26,8 +27,29 @@ class RunReplenishmentJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /** The solve plus the 11-level budget curve can take minutes; the queue's retry_after must be longer. */
+    public int $timeout = 600;
+
+    /** A failed solve fails the run; the Admin re-runs it rather than the queue retrying behind their back. */
+    public int $tries = 1;
+
     public function __construct(public ReplenishmentRun $run)
     {
+    }
+
+    /** Timed out or crashed outside handle()'s own catch: never leave the run "queued". */
+    public function failed(?Throwable $e): void
+    {
+        $this->run->update(['status' => 'failed', 'error' => mb_substr($e?->getMessage() ?? 'The solver job stopped.', 0, 250)]);
+        rescue(fn () => ReplenishmentRunUpdated::dispatch($this->run));
+    }
+
+    /** Total free space across the depots (one V), or null while any depot is unmeasured. */
+    public static function freeSpace(): ?float
+    {
+        $space = Depot::pluck('free_space');
+
+        return $space->isEmpty() || $space->contains(null) ? null : (float) $space->sum();
     }
 
     public function handle(QuarterHistory $history, ReplenishmentServiceClient $client, StockLedger $ledger): void
@@ -41,8 +63,9 @@ class RunReplenishmentJob implements ShouldQueue
         $payload = [
             'rule' => $this->run->rule,
             'budget' => $this->run->budget,
-            // ponytail: depot space stays off until Logistics measures it (system-spec.md §4.5).
-            'free_space' => null,
+            // Depot space is modeled only once every depot's free space is measured (system-spec.md §4.5);
+            // the solver also needs every item's space_per_unit before it turns the limit on.
+            'free_space' => self::freeSpace(),
             'm' => (int) $policies->max('coverage_m'),
             'items' => ResourceType::orderBy('name')->get()->map(fn (ResourceType $t) => [
                 'id' => $t->id,
@@ -60,7 +83,8 @@ class RunReplenishmentJob implements ShouldQueue
 
         try {
             $result = $client->solve($payload);
-            if ($result['status'] !== 'infeasible') {
+            $solved = ($result['objective'] ?? null) !== null; // infeasible or not_solved return no objective
+            if ($solved) {
                 $curve = $client->budgetCurve($payload);
                 $result['budget_curve'] = $curve['points'];
                 $result['next_step'] = $curve['next_step'];
@@ -74,8 +98,8 @@ class RunReplenishmentJob implements ShouldQueue
         }
 
         $this->run->update([
-            'status' => $result['status'] === 'infeasible' ? 'failed' : 'completed',
-            'error' => $result['status'] === 'infeasible' ? 'No feasible order.' : null,
+            'status' => $solved ? 'completed' : 'failed',
+            'error' => ! $solved ? ($result['status'] === 'not_solved' ? 'The solver found no order within its time limit.' : 'No feasible order.') : null,
             'result' => $result,
         ]);
         // Live refresh is best-effort: a Reverb outage must not fail the run.

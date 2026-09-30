@@ -1,67 +1,10 @@
-import { Link, usePage } from "@inertiajs/react";
-import { depotsService } from "@/api-service/modules/depots";
-import { resourceTypesService } from "@/api-service/modules/resourceTypes";
 import type { CardActions, ColumnDef, FieldDef } from "@/Components/table";
-import type { ResourceStock, ResourceType } from "@/Types/models";
+import type { ResourceType } from "@/Types/models";
 
-/** Real routes (not local tab state) so each subtab is a proper navigable/bookmarkable URL. */
-export function ResourcesTabs() {
-  const { url } = usePage();
-  const onTypes = url.startsWith("/resources/types");
-  const onLoans = url.startsWith("/resources/loans");
+const VED_LABELS: Record<string, string> = { V: "Vital", E: "Essential", D: "Desirable" };
 
-  const tabClass = (active: boolean) =>
-    `border-b-2 py-2.5 text-sm font-semibold uppercase tracking-wide ${
-      active ? "border-[var(--amber)]" : "border-transparent text-[var(--text-secondary)]"
-    }`;
-
-  return (
-    <div className="flex gap-5 border-b border-white/10 px-6">
-      <Link href="/resources" className={tabClass(!onTypes && !onLoans)}>
-        Stock
-      </Link>
-      <Link href="/resources/types" className={tabClass(onTypes)}>
-        Resource types
-      </Link>
-      <Link href="/resources/loans" className={tabClass(onLoans)}>
-        Borrowed items
-      </Link>
-    </div>
-  );
-}
-
-export function StockCard(row: ResourceStock, actions: CardActions) {
-  return (
-    <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
-      <div>
-        <div className="font-semibold">{row.resource_type?.name ?? "—"}</div>
-        <div className="text-xs text-[var(--text-secondary)]">
-          {row.depot?.name ?? "—"} · Available {row.quantity_available} ·
-          Reserved {row.quantity_reserved}
-          {row.expiry_date ? ` · Expires ${row.expiry_date}` : ""}
-        </div>
-      </div>
-      <div className="flex gap-3 text-xs">
-        {actions.canEdit && (
-          <button
-            onClick={actions.onEdit}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
-          >
-            Edit
-          </button>
-        )}
-        {actions.canDelete && (
-          <button
-            onClick={actions.onDelete}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
-          >
-            Remove
-          </button>
-        )}
-      </div>
-    </div>
-  );
-}
+/** Empty optional number inputs are sent as null, so the item keeps "not set". */
+const optionalNumber = (value: unknown) => (value === "" || value === undefined ? null : value);
 
 export function TypeCard(row: ResourceType, actions: CardActions) {
   return (
@@ -69,7 +12,10 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
       <div>
         <div className="font-semibold">{row.name}</div>
         <div className="text-xs text-[var(--text-secondary)]">
-          Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"}
+          Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"} ·{" "}
+          {VED_LABELS[row.ved_class] ?? row.ved_class} ·{" "}
+          {row.unit_cost != null ? `₱${Number(row.unit_cost).toLocaleString()} each` : "No unit cost yet"}
+          {row.space_per_unit != null ? ` · ${row.space_per_unit} m³ each` : ""}
         </div>
       </div>
       <div className="flex gap-3 text-xs">
@@ -94,29 +40,23 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
   );
 }
 
-export const stockColumns: ColumnDef<ResourceStock>[] = [
-  { key: "resource_type", label: "Type" },
-  { key: "depot", label: "Depot" },
-  { key: "quantity_available", label: "Available" },
-  { key: "quantity_reserved", label: "Reserved" },
-  {
-    key: "depot_id",
-    label: "Depot",
-    filterable: true,
-    type: "async-select",
-    loadOptions: async (q: string) =>
-      (await depotsService.getAll())
-        .filter((d) => d.name.toLowerCase().includes(q.toLowerCase()))
-        .map((d) => ({ value: d.id, label: d.name })),
-  },
-];
-
 export const typeColumns: ColumnDef<ResourceType>[] = [
   { key: "name", label: "Name", filterable: false },
   {
     key: "unit",
     label: "Unit",
     filterable: true,
+  },
+  {
+    key: "ved_class",
+    label: "VED class",
+    filterable: true,
+    type: "select",
+    typeData: [
+      { value: "V", label: "Vital" },
+      { value: "E", label: "Essential" },
+      { value: "D", label: "Desirable" },
+    ],
   },
   {
     key: "is_consumable",
@@ -130,49 +70,6 @@ export const typeColumns: ColumnDef<ResourceType>[] = [
   },
 ];
 
-export const stockFields: FieldDef<ResourceStock>[] = [
-  {
-    key: "depot_id",
-    label: "Depot",
-    type: "async-select",
-    required: true,
-    colSpan: 2,
-    loadOptions: async (q: string) =>
-      (await depotsService.getAll())
-        .filter((d) => d.name.toLowerCase().includes(q.toLowerCase()))
-        .map((d) => ({ value: d.id, label: d.name })),
-  },
-  {
-    key: "resource_type_id",
-    label: "Resource type",
-    type: "async-select",
-    required: true,
-    colSpan: 2,
-    loadOptions: async (q: string) =>
-      (await resourceTypesService.getAll())
-        .filter((t) => t.name.toLowerCase().includes(q.toLowerCase()))
-        .map((t) => ({ value: t.id, label: t.name })),
-  },
-  {
-    key: "quantity_available",
-    label: "Quantity available",
-    type: "number",
-    required: true,
-  },
-  {
-    key: "quantity_reserved",
-    label: "Reserved",
-    type: "number",
-    defaultValue: 0,
-  },
-  {
-    key: "expiry_date",
-    label: "Expiry date (optional)",
-    type: "date",
-    colSpan: 2,
-  },
-];
-
 export const typeFields: FieldDef<ResourceType>[] = [
   {
     key: "name",
@@ -183,10 +80,38 @@ export const typeFields: FieldDef<ResourceType>[] = [
   },
   {
     key: "unit",
-    label: "Unit",
+    label: "Standard unit",
     required: true,
     colSpan: 2,
     placeholder: "e.g. kits, packs, containers",
+  },
+  {
+    key: "unit_cost",
+    label: "Unit cost (₱)",
+    type: "number",
+    placeholder: "Latest purchase price",
+    helpText: "The model skips items without a unit cost.",
+    transform: optionalNumber,
+  },
+  {
+    key: "ved_class",
+    label: "VED class",
+    type: "select",
+    defaultValue: "E",
+    required: true,
+    options: [
+      { value: "V", label: "Vital" },
+      { value: "E", label: "Essential" },
+      { value: "D", label: "Desirable" },
+    ],
+  },
+  {
+    key: "space_per_unit",
+    label: "Space per unit (m³, optional)",
+    type: "number",
+    colSpan: 2,
+    helpText: "Depot space is modeled only when every item and every depot has a space figure.",
+    transform: optionalNumber,
   },
   {
     key: "is_consumable",

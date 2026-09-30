@@ -21,13 +21,13 @@ class ResourceType extends Model
         'space_per_unit' => 'float',
     ];
 
-    public function resources(): HasMany
+    public function stockEntries(): HasMany
     {
-        return $this->hasMany(Resource::class);
+        return $this->hasMany(StockEntry::class);
     }
 
-    public function requests(): HasMany
+    public function historyLines(): HasMany
     {
-        return $this->hasMany(ResourceRequest::class);
+        return $this->hasMany(HistoryLine::class);
     }
 }
