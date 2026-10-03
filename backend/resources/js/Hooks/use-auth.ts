@@ -1,4 +1,5 @@
 import { usePage } from '@inertiajs/react';
+import { ADMIN_LABEL, ROLE_LABELS, normalizeRole } from '@/api-service/modules/roles';
 
 export interface AuthUser {
     id: string;
@@ -6,6 +7,7 @@ export interface AuthUser {
     email: string;
     role: string;
     is_active?: boolean;
+    is_system_admin?: boolean;
 }
 
 function initialsFor(name: string): string {
@@ -27,6 +29,7 @@ export function useAuth() {
     return {
         user,
         role: user?.role ?? 'viewer',
+        roleLabel: user?.is_system_admin ? ADMIN_LABEL : ROLE_LABELS[normalizeRole(user?.role)],
         displayName: user?.name ?? 'Guest',
         email: user?.email ?? '',
         initials: user ? initialsFor(user.name) : '—',

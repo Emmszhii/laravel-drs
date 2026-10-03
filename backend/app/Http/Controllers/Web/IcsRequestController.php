@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Borrow;
 use App\Models\Depot;
 use App\Models\IcsRequest;
+use App\Models\Kit;
 use App\Models\ResourceType;
 use App\Services\Stock\StockLedger;
 use App\Services\Stock\Reservations;
@@ -21,6 +22,12 @@ use Inertia\Response;
  */
 class IcsRequestController extends Controller
 {
+    /** Status history with who made each change and their position (the form's signature lines, digitally). */
+    private const HISTORY = 'history.user:id,first_name,last_name,position';
+
+    /** Suggestions only: the division/team field takes any text, e.g. "Operations / Team Delta" or "CGSO". */
+    private const DIVISIONS = ['Operations and Warning', 'Logistics', 'Research and Planning', 'Administration and Training', 'Administrative'];
+
     public function index(Request $request, StockLedger $ledger): Response
     {
         $available = $ledger->levels()->map(fn ($l) => [
@@ -30,23 +37,31 @@ class IcsRequestController extends Controller
         ]);
 
         return Inertia::render('IcsRequests/Index', [
-            'requests' => IcsRequest::with('lines.resourceType:id,name,unit,is_consumable', 'requester:id,first_name,last_name', 'history')
+            'requests' => IcsRequest::with('lines.resourceType:id,name,unit,category,is_consumable', 'requester:id,first_name,last_name', self::HISTORY)
                 ->latest()->limit(100)->get(),
-            'items' => ResourceType::orderBy('name')->get(['id', 'name', 'unit', 'is_consumable']),
+            'items' => ResourceType::orderBy('name')->get(['id', 'name', 'unit', 'category', 'is_consumable']),
+            'kits' => Kit::with('lines:id,kit_id,resource_type_id,quantity')->orderBy('name')->get(['id', 'name']),
             'depots' => Depot::orderBy('name')->get(['id', 'name']),
             'available' => $available,
+            'divisions' => self::DIVISIONS,
             'can' => $this->can($request),
         ]);
     }
 
     public function borrowed(Request $request): Response
     {
-        $borrows = Borrow::with('resourceType:id,name', 'history')->latest('issued_at')->limit(200)->get();
+        $borrows = Borrow::with('resourceType:id,name', self::HISTORY)->latest('issued_at')->limit(200)->get();
         if (ApiIcsRequestController::seesPersonalData($request)) {
             $borrows->each->makeVisible(['borrower_name', 'borrower_contact']);
         }
 
-        return Inertia::render('IcsRequests/Borrowed', ['borrows' => $borrows, 'can' => $this->can($request)]);
+        return Inertia::render('IcsRequests/Borrowed', [
+            'borrows' => $borrows,
+            'equipment' => ResourceType::where('is_consumable', false)->orderBy('name')->get(['id', 'name', 'unit']),
+            'depots' => Depot::orderBy('name')->get(['id', 'name']),
+            'divisions' => self::DIVISIONS,
+            'can' => $this->can($request),
+        ]);
     }
 
     private function can(Request $request): array
@@ -54,7 +69,7 @@ class IcsRequestController extends Controller
         $user = $request->user();
 
         return [
-            'file' => $user->is_system_admin || in_array($user->role, ['logistics', 'ert', 'operations', 'incident_management'], true),
+            'file' => $user->is_system_admin || in_array($user->role, ['logistics', 'operations'], true),
             'decide' => (bool) $user->is_system_admin,
             'release' => $user->is_system_admin || $user->role === 'logistics',
             'userId' => $user->id,

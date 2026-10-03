@@ -28,13 +28,13 @@ class UserSeeder extends Seeder
             $user->assignRole('admin_training');
         }
 
-        // One account per remaining CDRRMO division, for manually testing the
-        // full access matrix in the browser. DatabaseSeeder wraps the whole
+        // One account per remaining role, for manually testing the full access
+        // matrix in the browser. DatabaseSeeder wraps the whole
         // seeding run in Model::withoutEvents() (via its WithoutModelEvents
         // trait), which suppresses User::booted()'s auto-sync hook here too
         // — not just for the top-level account above — so each Spatie role
         // still needs assigning explicitly, same as above.
-        foreach (['incident_management', 'ert', 'logistics', 'operations', 'research_planning', 'viewer'] as $role) {
+        foreach (['logistics', 'operations', 'research_planning', 'administrative', 'viewer'] as $role) {
             $roleUser = User::firstOrCreate(
                 ['email' => "{$role}@disasterresource.local"],
                 [

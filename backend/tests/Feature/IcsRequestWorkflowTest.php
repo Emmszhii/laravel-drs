@@ -32,7 +32,7 @@ class IcsRequestWorkflowTest extends TestCase
 
     private Depot $depot;
 
-    private User $ert;
+    private User $operations;
 
     private User $admin;
 
@@ -47,14 +47,14 @@ class IcsRequestWorkflowTest extends TestCase
         $ledger = app(StockLedger::class);
         $ledger->record(['resource_type_id' => $this->food->id, 'depot_id' => $this->depot->id, 'quantity' => 100, 'reason' => 'receipt'], null);
         $ledger->record(['resource_type_id' => $this->radio->id, 'depot_id' => $this->depot->id, 'quantity' => 5, 'reason' => 'receipt'], null);
-        $this->ert = User::factory()->create(['role' => 'ert']);
+        $this->operations = User::factory()->create(['role' => 'operations']);
         $this->admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
         $this->logistics = User::factory()->create(['role' => 'logistics']);
     }
 
     private function file(array $lines, ?User $as = null): IcsRequest
     {
-        $id = $this->actingAs($as ?? $this->ert)->postJson('/api/ics-requests', [
+        $id = $this->actingAs($as ?? $this->operations)->postJson('/api/ics-requests', [
             'requesting_division' => 'ERT', 'purpose' => 'team_kit', 'event_tag' => 'Kristine', 'lines' => $lines,
         ])->assertCreated()->json('id');
 
@@ -65,7 +65,7 @@ class IcsRequestWorkflowTest extends TestCase
     {
         $lines = [];
         foreach ($r->lines as $i => $line) {
-            $lines[$line->id] = ['quantity_approved' => $qtys[$i], 'depot_id' => $this->depot->id];
+            $lines[$line->id] = ['quantity_approved' => $qtys[$i], 'depot_id' => $this->depot->id, 'reason' => 'Limited stock']; // only needed when cut below the request
         }
         $this->actingAs($this->admin)->postJson("/api/ics-requests/{$r->id}/approve", ['lines' => $lines])->assertOk();
     }
@@ -138,8 +138,8 @@ class IcsRequestWorkflowTest extends TestCase
         $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 5]]);
         $line = [$r->lines[0]->id => ['quantity_approved' => 5, 'depot_id' => $this->depot->id]];
 
-        $this->actingAs($this->ert)->postJson("/api/ics-requests/{$r->id}/approve", ['lines' => $line])->assertForbidden();
-        $this->actingAs($this->ert)->postJson("/api/ics-requests/{$r->id}/release", ['quantities' => [$r->lines[0]->id => 5]])->assertForbidden();
+        $this->actingAs($this->operations)->postJson("/api/ics-requests/{$r->id}/approve", ['lines' => $line])->assertForbidden();
+        $this->actingAs($this->operations)->postJson("/api/ics-requests/{$r->id}/release", ['quantities' => [$r->lines[0]->id => 5]])->assertForbidden();
     }
 
     public function test_rejection_needs_a_reason_and_only_from_submitted(): void
@@ -157,7 +157,7 @@ class IcsRequestWorkflowTest extends TestCase
         $r = $this->file([['resource_type_id' => $this->food->id, 'quantity_requested' => 20]]);
         $this->approve($r, [20]);
 
-        $this->actingAs($this->ert)->postJson("/api/ics-requests/{$r->id}/cancel")->assertStatus(422);
+        $this->actingAs($this->operations)->postJson("/api/ics-requests/{$r->id}/cancel")->assertStatus(422);
         $this->actingAs($this->admin)->postJson("/api/ics-requests/{$r->id}/cancel")->assertOk();
 
         $this->assertSame('cancelled', $r->fresh()->status);
@@ -238,7 +238,7 @@ class IcsRequestWorkflowTest extends TestCase
         Borrow::create(['resource_type_id' => $this->radio->id, 'depot_id' => $this->depot->id, 'borrower_division' => 'ERT',
             'borrower_name' => 'J. Dela Cruz', 'borrower_contact' => '0917', 'issued_at' => now(), 'status' => 'issued']);
 
-        $this->actingAs($this->ert)->getJson('/api/borrows')->assertOk()->assertJsonMissingPath('0.borrower_name');
+        $this->actingAs($this->operations)->getJson('/api/borrows')->assertOk()->assertJsonMissingPath('0.borrower_name');
         $this->actingAs(User::factory()->create(['role' => 'research_planning']))->getJson('/api/borrows')->assertJsonMissingPath('0.borrower_contact');
         $this->actingAs($this->logistics)->getJson('/api/borrows')->assertJsonPath('0.borrower_name', 'J. Dela Cruz');
         $this->actingAs($this->admin)->getJson('/api/borrows')->assertJsonPath('0.borrower_contact', '0917');
@@ -262,7 +262,7 @@ class IcsRequestWorkflowTest extends TestCase
         $r->update(['date' => '2026-02-10']);
         $this->assertSame([0], app(QuarterHistory::class)->build(2026, 2)['use'][$this->food->id] ?? [0]);
 
-        $this->actingAs($this->ert)->postJson('/api/ics-requests', [
+        $this->actingAs($this->operations)->postJson('/api/ics-requests', [
             'requesting_division' => 'ERT', 'purpose' => 'team_kit', 'date' => now()->subYear()->toDateString(),
             'lines' => [['resource_type_id' => $this->food->id, 'quantity_requested' => 99999]],
         ])->assertStatus(422)->assertJsonValidationErrors('date');
@@ -294,6 +294,6 @@ class IcsRequestWorkflowTest extends TestCase
         $pdf->assertOk();
         $this->assertSame('application/pdf', $pdf->headers->get('Content-Type'));
 
-        $this->actingAs($this->ert)->get('/api/replenishment/report')->assertForbidden();
+        $this->actingAs($this->operations)->get('/api/replenishment/report')->assertForbidden();
     }
 }

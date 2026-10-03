@@ -87,6 +87,7 @@ class StockController extends Controller
             'borrower_name' => ['nullable', 'string', 'max:150', 'required_if:reason,issue'],
             'borrower_contact' => ['nullable', 'string', 'max:100'],
             'borrower_division' => ['nullable', 'string', 'max:100'],
+            'location' => ['nullable', 'string', 'max:150'],
             'property_number' => ['nullable', 'string', 'max:100'],
         ];
     }

@@ -24,7 +24,7 @@ interface UserProfileSectionProps {
 export function UserProfileSection({
   variant = "sidebar",
 }: UserProfileSectionProps) {
-  const { user, displayName, email, role, initials } = useAuth();
+  const { user, displayName, email, roleLabel, initials } = useAuth();
   const { theme, toggle } = useTheme();
   const [passwordModalOpen, setPasswordModalOpen] = useState(false);
   const [open, setOpen] = useState(false);
@@ -78,7 +78,7 @@ export function UserProfileSection({
                   {email}
                 </span>
                 <span className="mt-0.5 block text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
-                  {role}
+                  {roleLabel}
                 </span>
               </span>
               <button
@@ -163,7 +163,7 @@ export function UserProfileSection({
         </span>
       </button>
       <div className="mt-1 pl-1 text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
-        {role}
+        {roleLabel}
       </div>
 
       <button

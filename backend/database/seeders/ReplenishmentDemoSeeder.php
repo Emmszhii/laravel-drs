@@ -45,7 +45,7 @@ class ReplenishmentDemoSeeder extends Seeder
                     'quantity_released' => $use,
                     'purpose' => 'relief',
                     'event_tag' => $i === 1 ? 'Kristine' : null,
-                    'requesting_division' => 'ERT',
+                    'requesting_division' => 'Operations / ERT',
                 ]);
             }
         }

@@ -52,7 +52,7 @@ class EvaluationTest extends TestCase
     public static function accessMatrix(): array
     {
         $roles = ['admin' => ['admin_training', true], 'logistics' => ['logistics', false], 'rp' => ['research_planning', false],
-            'ert' => ['ert', false], 'ops' => ['operations', false], 'im' => ['incident_management', false], 'at' => ['admin_training', false]];
+            'ops' => ['operations', false], 'adm' => ['administrative', false], 'at' => ['admin_training', false]];
         $rules = [
             // endpoint, method, roles allowed
             ['/api/replenishment/runs', 'post', ['admin']],
@@ -62,7 +62,7 @@ class EvaluationTest extends TestCase
             ['/api/stock/verify', 'get', ['admin', 'logistics']],
             ['/api/stock/counts', 'post', ['admin', 'logistics']],
             ['/api/replenishment/report?format=csv', 'get', ['admin', 'logistics', 'rp']],
-            ['/api/ics-requests', 'post', ['admin', 'logistics', 'ert', 'ops', 'im']],
+            ['/api/ics-requests', 'post', ['admin', 'logistics', 'ops']],
             ['/api/replenishment/runs', 'get', array_keys($roles)],
             ['/api/stock/levels', 'get', array_keys($roles)],
         ];

@@ -18,7 +18,7 @@ class Borrow extends Model
 
     protected $table = 'app_borrows';
 
-    protected $fillable = ['request_line_id', 'resource_type_id', 'depot_id', 'property_number', 'borrower_division', 'borrower_name', 'borrower_contact', 'issued_at', 'status'];
+    protected $fillable = ['request_line_id', 'resource_type_id', 'depot_id', 'property_number', 'borrower_division', 'location', 'borrower_name', 'borrower_contact', 'issued_at', 'status'];
 
     protected $hidden = ['borrower_name', 'borrower_contact'];
 

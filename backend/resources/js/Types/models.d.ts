@@ -9,7 +9,7 @@ declare module '@inertiajs/core' {
   interface PageProps {
     auth?: {
       user:
-        | ({ id: string; name: string; email: string; role: string; is_system_admin: boolean } & {
+        | ({ id: string; name: string; email: string; role: string; position?: string | null; is_system_admin: boolean } & {
             roles?: string[];
             permissions?: string[];
           })
@@ -37,6 +37,8 @@ export interface ResourceType {
   id: string;
   name: string;
   unit: string;
+  /** The paper form's Subject: medical | cleaning | office | general | other. */
+  category: "medical" | "cleaning" | "office" | "general" | "other";
   is_consumable: boolean;
   unit_cost: number | null;
   ved_class: "V" | "E" | "D";
@@ -50,7 +52,9 @@ export interface AdminUser {
   last_name: string;
   name: string;
   email: string;
-  role: "viewer" | "incident_management" | "ert" | "logistics" | "operations" | "research_planning" | "admin_training";
+  role: "viewer" | "administrative" | "logistics" | "operations" | "research_planning" | "admin_training";
+  /** Title shown beside who approved or released a request, e.g. "Head of Office". */
+  position: string | null;
   is_active: boolean;
   is_system_admin: boolean;
 }

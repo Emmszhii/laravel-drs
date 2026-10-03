@@ -6,6 +6,7 @@ use App\Models\Borrow;
 use App\Models\IcsRequest;
 use App\Models\IcsRequestLine;
 use App\Models\Reservation;
+use App\Models\ResourceType;
 use App\Models\StatusChange;
 use App\Models\StockConflict;
 use App\Models\StockEntry;
@@ -44,8 +45,9 @@ class RequestWorkflow
     /**
      * Admin approval: per line, an approved quantity (at most the requested one) and the depot
      * it comes from. Approving more than is available is flagged for Logistics, not blocked.
+     * A line approved for less than requested needs a reason (the form's "why item(s) are disapproved").
      *
-     * @param  array<string, array{quantity_approved: int, depot_id: string}>  $lines  keyed by line id
+     * @param  array<string, array{quantity_approved: int, depot_id: string, reason?: ?string}>  $lines  keyed by line id
      * @return list<string> ids of lines whose approval exceeds available stock
      */
     public function approve(IcsRequest $request, array $lines, ?string $userId): array
@@ -55,7 +57,7 @@ class RequestWorkflow
             $this->move($request, ['submitted'], 'approved', $userId);
             $flagged = [];
 
-            foreach ($request->lines as $line) {
+            foreach ($request->lines()->with('resourceType:id,name')->get() as $line) {
                 $pick = $lines[$line->id] ?? null;
                 if (! $pick) {
                     throw ValidationException::withMessages(['lines' => "Line {$line->id} needs an approved quantity and depot."]);
@@ -64,9 +66,13 @@ class RequestWorkflow
                 if ($qty > $line->quantity_requested) {
                     throw ValidationException::withMessages(['lines' => 'An approved quantity cannot exceed the requested quantity.']);
                 }
+                $reason = trim((string) ($pick['reason'] ?? ''));
+                if ($qty < $line->quantity_requested && $reason === '') {
+                    throw ValidationException::withMessages(['lines' => "Say why {$line->resourceType->name} is approved for less than the {$line->quantity_requested} requested."]);
+                }
 
                 $available = $this->ledger->level($line->resource_type_id, $pick['depot_id']) - Reservations::heldAt($line->resource_type_id, $pick['depot_id']);
-                $line->update(['quantity_approved' => $qty, 'depot_id' => $pick['depot_id']]);
+                $line->update(['quantity_approved' => $qty, 'depot_id' => $pick['depot_id'], 'approval_note' => $reason ?: null]);
                 if ($qty > 0) {
                     Reservation::create(['request_line_id' => $line->id, 'resource_type_id' => $line->resource_type_id, 'depot_id' => $pick['depot_id'], 'quantity' => $qty]);
                 }
@@ -96,7 +102,7 @@ class RequestWorkflow
      * creates one Borrow per unit, each with its own issue entry.
      *
      * @param  array<string, int>  $quantities  keyed by line id: how many are handed over now
-     * @param  array{borrower_name?: string, borrower_contact?: ?string, borrower_division?: string, property_numbers?: array<string, list<string>>}  $borrower
+     * @param  array{borrower_name?: string, borrower_contact?: ?string, borrower_division?: ?string, location?: ?string, property_numbers?: array<string, list<string>>}  $borrower
      */
     public function release(IcsRequest $request, array $quantities, array $borrower, ?string $userId): void
     {
@@ -124,8 +130,9 @@ class RequestWorkflow
                         throw ValidationException::withMessages(['borrower_name' => 'Borrowed equipment needs the borrower\'s name.']);
                     }
                     $numbers = $borrower['property_numbers'][$line->id] ?? [];
+                    $who = ['borrower_division' => $borrower['borrower_division'] ?? $request->requesting_division] + $borrower;
                     for ($i = 0; $i < $qty; $i++) {
-                        $this->issueBorrow($line, $borrower, $numbers[$i] ?? null, $request, $userId);
+                        $this->issueBorrow($line->resource_type_id, $line->depot_id, $line->id, $who, $numbers[$i] ?? null, $userId);
                     }
                 }
 
@@ -197,22 +204,50 @@ class RequestWorkflow
         });
     }
 
-    private function issueBorrow(IcsRequestLine $line, array $borrower, ?string $propertyNumber, IcsRequest $request, ?string $userId): void
+    /**
+     * A walk-in loan with no request behind it, as in the paper logbook: equipment only, to any
+     * office (the borrower is often from outside CDRRMO), one logbook row and one issue entry per unit.
+     *
+     * @param  array{resource_type_id: string, depot_id: string, quantity?: ?int, borrower_division: string, borrower_name: string,
+     *   borrower_contact?: ?string, location?: ?string, property_numbers?: list<?string>}  $data
+     * @return list<Borrow>
+     */
+    public function lend(array $data, ?string $userId): array
+    {
+        $type = ResourceType::findOrFail($data['resource_type_id']);
+        if ($type->is_consumable) {
+            throw ValidationException::withMessages(['resource_type_id' => "{$type->name} is used up, not lent out. Ask for it with an ICS 213-RR request."]);
+        }
+
+        return DB::transaction(function () use ($data, $userId) {
+            $borrows = [];
+            for ($i = 0; $i < ($data['quantity'] ?? 1); $i++) {
+                $borrows[] = $this->issueBorrow($data['resource_type_id'], $data['depot_id'], null, $data, $data['property_numbers'][$i] ?? null, $userId);
+            }
+
+            return $borrows;
+        });
+    }
+
+    private function issueBorrow(string $typeId, string $depotId, ?string $lineId, array $borrower, ?string $propertyNumber, ?string $userId): Borrow
     {
         $borrow = Borrow::create([
-            'request_line_id' => $line->id,
-            'resource_type_id' => $line->resource_type_id,
-            'depot_id' => $line->depot_id,
+            'request_line_id' => $lineId,
+            'resource_type_id' => $typeId,
+            'depot_id' => $depotId,
             'property_number' => $propertyNumber,
-            'borrower_division' => $borrower['borrower_division'] ?? $request->requesting_division,
+            'borrower_division' => $borrower['borrower_division'],
+            'location' => $borrower['location'] ?? null,
             'borrower_name' => $borrower['borrower_name'],
             'borrower_contact' => $borrower['borrower_contact'] ?? null,
             'issued_at' => now(),
             'status' => 'issued',
         ]);
-        $this->ledger->record(['resource_type_id' => $line->resource_type_id, 'depot_id' => $line->depot_id, 'quantity' => -1,
-            'reason' => 'issue', 'request_line_id' => $line->id, 'borrow_id' => $borrow->id], $userId);
+        $this->ledger->record(['resource_type_id' => $typeId, 'depot_id' => $depotId, 'quantity' => -1,
+            'reason' => 'issue', 'request_line_id' => $lineId, 'borrow_id' => $borrow->id], $userId);
         StatusChange::log('borrow', $borrow->id, null, 'issued', $userId);
+
+        return $borrow;
     }
 
     /** @return list<string> */
@@ -226,6 +261,7 @@ class RequestWorkflow
             'depot_id' => $entry->depot_id,
             'property_number' => $data['property_number'] ?? null,
             'borrower_division' => $data['borrower_division'] ?? $line?->request->requesting_division ?? 'Unspecified',
+            'location' => $data['location'] ?? null,
             'borrower_name' => $data['borrower_name'],
             'borrower_contact' => $data['borrower_contact'] ?? null,
             'issued_at' => $entry->created_at_device,

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\DepotController;
 use App\Http\Controllers\Api\IcsRequestController;
+use App\Http\Controllers\Api\KitController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\ReplenishmentController;
 use App\Http\Controllers\Api\ResourceTypeController;
@@ -30,8 +31,8 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
 
     Route::get('/activity-log', [ActivityLogController::class, 'index']);
 
-    // Read-only access for every division.
-    Route::middleware(['role:viewer,incident_management,ert,logistics,operations,research_planning,admin_training'])->group(function () {
+    // Read-only access for every role.
+    Route::middleware(['role:viewer,administrative,logistics,operations,research_planning,admin_training'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index']);
         Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
 
@@ -61,7 +62,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     });
 
     // Requesters file ICS 213-RR requests.
-    Route::middleware(['role:logistics,ert,operations,incident_management'])->group(function () {
+    Route::middleware(['role:logistics,operations'])->group(function () {
         Route::post('/ics-requests', [IcsRequestController::class, 'store']);
         Route::post('/ics-requests/{ics}/submit', [IcsRequestController::class, 'submit']);
         Route::post('/ics-requests/{ics}/cancel', [IcsRequestController::class, 'cancel']);
@@ -78,7 +79,11 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
 
         Route::post('/ics-requests/{ics}/release', [IcsRequestController::class, 'release']);
         Route::post('/ics-requests/{ics}/close', [IcsRequestController::class, 'close']);
+        Route::post('/ics-requests/{ics}/remarks', [IcsRequestController::class, 'remarks']);
+        Route::post('/borrows', [IcsRequestController::class, 'lend']);
         Route::post('/borrows/{borrow}/status', [IcsRequestController::class, 'borrowStatus']);
+        Route::post('/kits', [KitController::class, 'store']);
+        Route::delete('/kits/{kit}', [KitController::class, 'destroy']);
 
         Route::post('/stock/sync', [StockController::class, 'sync']);
         Route::get('/stock/conflicts', [StockController::class, 'conflicts']);

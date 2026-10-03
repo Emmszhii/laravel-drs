@@ -12,7 +12,7 @@ use Illuminate\Validation\Rule;
 
 /**
  * ICS 213-RR requests and the borrowed-equipment logbook (system-spec.md §6).
- * Requesters (Logistics, ERT, Operations, Incident Management) file; only the
+ * Requesters (Logistics, and Operations and Warning with its teams) file; only the
  * Admin approves or rejects; Logistics releases, closes, and records what
  * happens to borrowed items. The Admin can do all of it, including approving
  * a request they filed.
@@ -27,14 +27,18 @@ class IcsRequestController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->json(IcsRequest::with('lines.resourceType:id,name,unit,is_consumable', 'requester:id,first_name,last_name')->latest()->limit(100)->get());
+        return response()->json(IcsRequest::with('lines.resourceType:id,name,unit,category,is_consumable', 'requester:id,first_name,last_name')->latest()->limit(100)->get());
     }
 
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'requesting_division' => ['required', 'string', 'max:100'],
+            'control_no' => ['nullable', 'string', 'max:30', 'unique:app_ics_requests,control_no'], // the number printed on the paper form
+            'requesting_division' => ['required', 'string', 'max:100'], // division and team, e.g. "Operations / Team Delta"
+            'requester_name' => ['nullable', 'string', 'max:150'], // form item 1; defaults to the logged-in user
+            'requester_position' => ['nullable', 'string', 'max:100'],
             'date' => ['nullable', 'date', 'before_or_equal:today', 'after_or_equal:'.now()->subDays(31)->toDateString()], // backdating would plant demand in a past quarter
+            'time' => ['nullable', 'date_format:H:i'],
             'purpose' => ['required', Rule::in(self::PURPOSES)],
             'event_tag' => ['nullable', 'string', 'max:100'],
             'submit' => ['boolean'],
@@ -43,10 +47,15 @@ class IcsRequestController extends Controller
             'lines.*.quantity_requested' => ['required', 'integer', 'min:1', 'max:100000'],
         ]);
 
+        $user = $request->user();
         $ics = IcsRequest::create([
+            'control_no' => $data['control_no'] ?? null,
             'requesting_division' => $data['requesting_division'],
-            'requested_by' => $request->user()->id,
+            'requested_by' => $user->id,
+            'requester_name' => $data['requester_name'] ?? $user->name,
+            'requester_position' => $data['requester_position'] ?? $user->position,
             'date' => $data['date'] ?? now()->toDateString(),
+            'time' => $data['time'] ?? now()->format('H:i'),
             'purpose' => $data['purpose'],
             'event_tag' => $data['event_tag'] ?? null,
             'status' => 'draft',
@@ -73,6 +82,7 @@ class IcsRequestController extends Controller
             'lines' => ['required', 'array'],
             'lines.*.quantity_approved' => ['required', 'integer', 'min:0'],
             'lines.*.depot_id' => ['required', 'uuid', 'exists:app_depots,id'],
+            'lines.*.reason' => ['nullable', 'string', 'max:500'], // required by the workflow when the line is cut
         ]);
 
         $flagged = $this->workflow->approve($ics, $data['lines'], $request->user()->id);
@@ -95,12 +105,40 @@ class IcsRequestController extends Controller
             'quantities.*' => ['integer', 'min:0'],
             'borrower_name' => ['nullable', 'string', 'max:150'],
             'borrower_contact' => ['nullable', 'string', 'max:100'],
-            'borrower_division' => ['nullable', 'string', 'max:100'],
+            'borrower_division' => ['nullable', 'string', 'max:100'], // another office, when the borrower isn't from the requesting division
+            'location' => ['nullable', 'string', 'max:150'],
             'property_numbers' => ['nullable', 'array'],
         ]);
         $this->workflow->release($ics, $data['quantities'], $data, $request->user()->id);
 
         return response()->json($ics->fresh('lines'));
+    }
+
+    /** Form item 11: Logistics' reply. One editable text, as on the paper form. */
+    public function remarks(Request $request, IcsRequest $ics): JsonResponse
+    {
+        $data = $request->validate(['remarks' => ['nullable', 'string', 'max:2000']]);
+        $ics->update(['remarks' => $data['remarks'] ?? null]);
+
+        return response()->json($ics);
+    }
+
+    /** A walk-in loan with no ICS 213-RR behind it, to any office: the logbook's usual case. */
+    public function lend(Request $request): JsonResponse
+    {
+        $data = $request->validate([
+            'resource_type_id' => ['required', 'uuid', 'exists:app_resource_types,id'],
+            'depot_id' => ['required', 'uuid', 'exists:app_depots,id'],
+            'quantity' => ['nullable', 'integer', 'min:1', 'max:100'],
+            'borrower_division' => ['required', 'string', 'max:100'],
+            'borrower_name' => ['required', 'string', 'max:150'],
+            'borrower_contact' => ['nullable', 'string', 'max:100'],
+            'location' => ['nullable', 'string', 'max:150'],
+            'property_numbers' => ['nullable', 'array'],
+            'property_numbers.*' => ['nullable', 'string', 'max:100'],
+        ]);
+
+        return response()->json($this->workflow->lend($data, $request->user()->id), 201);
     }
 
     public function close(Request $request, IcsRequest $ics): JsonResponse

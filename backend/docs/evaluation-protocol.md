@@ -51,7 +51,7 @@ The solver's own time is shown next to each run ("solved in N ms").
 
 | Task                                                          | Who                         | Where                            |
 | ------------------------------------------------------------- | --------------------------- | -------------------------------- |
-| File an ICS 213-RR request                                    | ERT, Operations, IM         | ICS 213-RR                       |
+| File an ICS 213-RR request                                    | Operations, Logistics       | ICS 213-RR                       |
 | Lend and return a borrowed item                               | Logistics                   | ICS 213-RR → Borrowed equipment  |
 | Record entries while offline and sync them                    | Logistics                   | Stock                            |
 | Run the solver and approve or reject a recommendation         | Head of Office (Admin)      | Replenishment                    |

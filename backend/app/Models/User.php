@@ -18,7 +18,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['first_name', 'last_name', 'email', 'password', 'role', 'is_active', 'is_system_admin'])]
+#[Fillable(['first_name', 'last_name', 'email', 'password', 'role', 'position', 'is_active', 'is_system_admin'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -83,6 +83,7 @@ class User extends Authenticatable
             'name' => $this->name,
             'email' => $this->email,
             'role' => $this->role,
+            'position' => $this->position,
             'is_active' => $this->is_active,
             'is_system_admin' => $this->is_system_admin,
             'roles' => $this->is_system_admin ? Role::pluck('name')->all() : $this->getRoleNames()->all(),

@@ -11,9 +11,12 @@ class ResourceType extends Model
 {
     use HasFactory, HasUuids;
 
+    /** The "Subject" choices on the paper ICS 213-RR form. A request's subject is the set of its items' categories. */
+    public const CATEGORIES = ['medical', 'cleaning', 'office', 'general', 'other'];
+
     protected $table = 'app_resource_types';
 
-    protected $fillable = ['name', 'unit', 'is_consumable', 'unit_cost', 'ved_class', 'space_per_unit'];
+    protected $fillable = ['name', 'unit', 'category', 'is_consumable', 'unit_cost', 'ved_class', 'space_per_unit'];
 
     protected $casts = [
         'is_consumable' => 'boolean',

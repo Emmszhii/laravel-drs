@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
@@ -9,7 +9,7 @@ import { tableListInvalidateKeys } from "@/Components/table/utils";
 import { useToast } from "@/Components/Toast";
 import { ApiError } from "@/api-service/client";
 import { usersService } from "@/api-service/modules/users";
-import { ROLE_LABELS, APP_ROLES } from "@/api-service/modules/roles";
+import { ADMIN_LABEL, ROLE_DESCRIPTIONS, ROLE_LABELS, APP_ROLES } from "@/api-service/modules/roles";
 import type { ColumnDef, CardActions, FieldDef } from "@/Components/table";
 import type { AdminUser } from "@/Types/models";
 
@@ -27,7 +27,7 @@ const columns: ColumnDef<AdminUser>[] = [
   },
   {
     key: "is_system_admin",
-    label: "System admin",
+    label: ADMIN_LABEL,
     filterable: true,
     type: "select",
     typeData: [
@@ -61,7 +61,8 @@ function makeUserCard(handlers: {
           </div>
           <div className="text-xs text-[var(--text-secondary)]">
             {row.email} · {ROLE_LABELS[row.role] ?? row.role}
-            {row.is_system_admin ? " · System admin" : ""}
+            {row.position ? ` · ${row.position}` : ""}
+            {row.is_system_admin ? ` · ${ADMIN_LABEL}` : ""}
           </div>
         </div>
         <div className="flex gap-3 text-xs">
@@ -119,6 +120,14 @@ const userFields: FieldDef<AdminUser>[] = [
     required: true,
     options: roleOptions,
   },
+  {
+    key: "position",
+    label: "Position / title",
+    colSpan: 2,
+    placeholder: "e.g. Assistant Department Head, Logistics Officer",
+    helpText: "Shown beside this person's name on requests they file, approve or release.",
+    transform: (value: unknown) => (value === "" || value === undefined ? null : value),
+  },
   { key: "is_active", label: "Active", type: "checkbox", defaultValue: true },
   {
     key: "is_system_admin",
@@ -127,6 +136,26 @@ const userFields: FieldDef<AdminUser>[] = [
     defaultValue: false,
   },
 ];
+
+/** Read-only reminder of what each role can do; the roles come from system-spec.md §2. */
+function RolesNote() {
+  return (
+    <section className="space-y-2 border border-white/10 p-4 text-xs text-[var(--text-secondary)]">
+      <p>
+        Roles follow the office structure confirmed in the 2026-09-03 requirements interview. The Admin is the Head of
+        Office (the Department Head); the Assistant Department Head is a position title, not a role.
+      </p>
+      <dl className="grid gap-x-4 gap-y-1 sm:grid-cols-[220px_1fr]">
+        {ROLE_DESCRIPTIONS.map(({ label, text }) => (
+          <Fragment key={label}>
+            <dt className="font-semibold text-[var(--text-primary)]">{label}</dt>
+            <dd>{text}</dd>
+          </Fragment>
+        ))}
+      </dl>
+    </section>
+  );
+}
 
 function SettingsUsersIndex() {
   const [modal, setModal] = useState<{
@@ -174,6 +203,10 @@ function SettingsUsersIndex() {
       <div className="flex items-center justify-between px-6 py-3">
         <h2 className="text-lg font-semibold uppercase">Users</h2>
         <Button onClick={() => setModal({ mode: "create" })}>+ Add user</Button>
+      </div>
+
+      <div className="px-6 pb-3">
+        <RolesNote />
       </div>
 
       <div className="px-6 pb-6">

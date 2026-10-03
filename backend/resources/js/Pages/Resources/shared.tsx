@@ -1,4 +1,5 @@
 import type { CardActions, ColumnDef, FieldDef } from "@/Components/table";
+import { CATEGORY_LABEL, categoryOptions } from "@/lib/categories";
 import type { ResourceType } from "@/Types/models";
 
 const VED_LABELS: Record<string, string> = { V: "Vital", E: "Essential", D: "Desirable" };
@@ -12,7 +13,7 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
       <div>
         <div className="font-semibold">{row.name}</div>
         <div className="text-xs text-[var(--text-secondary)]">
-          Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"} ·{" "}
+          {CATEGORY_LABEL[row.category] ?? row.category} · Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"} ·{" "}
           {VED_LABELS[row.ved_class] ?? row.ved_class} ·{" "}
           {row.unit_cost != null ? `₱${Number(row.unit_cost).toLocaleString()} each` : "No unit cost yet"}
           {row.space_per_unit != null ? ` · ${row.space_per_unit} m³ each` : ""}
@@ -46,6 +47,13 @@ export const typeColumns: ColumnDef<ResourceType>[] = [
     key: "unit",
     label: "Unit",
     filterable: true,
+  },
+  {
+    key: "category",
+    label: "Category",
+    filterable: true,
+    type: "select",
+    typeData: categoryOptions,
   },
   {
     key: "ved_class",
@@ -84,6 +92,15 @@ export const typeFields: FieldDef<ResourceType>[] = [
     required: true,
     colSpan: 2,
     placeholder: "e.g. kits, packs, containers",
+  },
+  {
+    key: "category",
+    label: "Category (the request form's Subject)",
+    type: "select",
+    defaultValue: "general",
+    required: true,
+    colSpan: 2,
+    options: categoryOptions,
   },
   {
     key: "unit_cost",

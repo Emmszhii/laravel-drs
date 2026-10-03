@@ -13,7 +13,7 @@ class IcsRequestLine extends Model
 
     protected $table = 'app_ics_request_lines';
 
-    protected $fillable = ['ics_request_id', 'resource_type_id', 'depot_id', 'quantity_requested', 'quantity_approved', 'quantity_released'];
+    protected $fillable = ['ics_request_id', 'resource_type_id', 'depot_id', 'quantity_requested', 'quantity_approved', 'quantity_released', 'approval_note'];
 
     protected $casts = [
         'quantity_requested' => 'integer',

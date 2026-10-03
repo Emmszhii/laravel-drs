@@ -48,17 +48,19 @@ It also has two supporting modules: an **ICS 213-RR request module** with a **bo
 
 ## 2. Users and roles [Paper]
 
-Role-based access follows the **office's own six functional roles** (not ICS roles):
+Role-based access follows the **office's own structure**, as confirmed in the 2026-09-03 requirements interview (not ICS roles; source: `docs/important/transcription summary.txt`). The office is headed by the Department Head (the Head of Office), then the Assistant Department Head, then four divisions: Research and Planning; Operations and Warning; Administration and Training; and Administrative. **Logistics is a section under Administration and Training.** The Department Head approves allocation and purchase plans, so **the Head of Office is the system Admin**. ERT and the other response teams are teams inside Operations (the photographed ICS 213-RR form reads "Operation / Team Delta"). "ERT" and "Incident Management" were not named as roles, so the system has none. The Assistant Department Head is a position title on a user account (`users.position`), not a role.
 
-| Role                                     | What the paper has them do                                                                                                                                                                                                                           |
-| ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Admin (Head of Office)**               | Department head / assistant department head. **System administrator with full capability: can do everything any other role can.** Enters the quarterly budget, **runs the solver**, confirms the VED policy, and **approves or rejects** the recommendation (an approved run becomes the purchase plan) and ICS 213-RR requests, including their own. Accountable for COA audits. |
-| **Logistics** (under Admin and Training) | **Encodes the resources only**: stock entries (receipts, releases, returns, adjustments), the historical records and requests; confirms or corrects flagged data; resolves conflict flags; product owner. Does not approve, reject or run the solver. |
-| **Research and Planning**                | Reads recommendations and the budget curve for annual planning; takes the explanation task.                                                                                                                                                          |
-| **ERT**                                  | Files most ICS 213-RR requests; borrows equipment.                                                                                                                                                                                                   |
-| **Operations**                           | Files requests; borrows equipment.                                                                                                                                                                                                                   |
-| **Incident Management**                  | Files requests; views the dashboard.                                                                                                                                                                                                                 |
-| **Admin and Training**                   | Keeps the item catalog and depot list; trains users.                                                                                                                                                                                                 |
+| Role (`users.role`) | Office unit | What they do in the system |
+| --- | --- | --- |
+| **Admin (Head of Office)** (the `is_system_admin` flag, not a role value) | Department Head | **System administrator with full capability: can do everything any other role can.** Enters the quarterly budget, **runs the solver**, confirms the VED policy, and **approves or rejects** the recommendation (an approved run becomes the purchase plan) and ICS 213-RR requests, including their own. Accountable for COA audits. |
+| **Logistics** (`logistics`) | Section under Administration and Training | **Encodes the resources only**: stock entries (receipts, releases, returns, adjustments), the historical records and requests; confirms or corrects flagged data; resolves conflict flags; product owner. Does not approve, reject or run the solver. |
+| **Research and Planning** (`research_planning`) | Division | Reads recommendations and the budget curve for annual planning; takes the explanation task; exports the quarterly report. |
+| **Operations and Warning** (`operations`) | Division | Files ICS 213-RR requests for its teams (ERT, Team Delta and so on), including requests for equipment to borrow. |
+| **Administration and Training** (`admin_training`) | Division | Keeps the item catalog and depot list; trains users. |
+| **Administrative** (`administrative`) | Division | Read-only: opens every page and changes nothing. |
+| **Viewer** (`viewer`) | None (unassigned account) | Read-only, like Administrative. |
+
+**Decided (2026-10-03): the roles follow the confirmed office structure.** The earlier ERT and Incident Management roles are removed; their accounts moved to Operations (migration `2026_10_03_000002_replace_ert_and_incident_management_roles`).
 
 **Decided (2026-09-29): Logistics only encodes; the Admin runs the solver and approves or rejects.** This follows Chapter III's interview requirement: "approval by the head of office before any allocation plan takes effect."
 
@@ -66,26 +68,27 @@ Role-based access follows the **office's own six functional roles** (not ICS rol
 - The Admin enters the budget, runs the solver, and **approves or rejects** the run. A rejection records a comment; the Admin re-runs after changing the budget, or after Logistics corrects the data.
 - **Decided (2026-09-29): the Admin has full capability.** The Admin passes every role check (`EnsureUserHasRole`), so they can also encode, release, file requests and keep the catalog, and may approve a request they filed themselves.
 - The paper matches this (glossary, Input, Process step 4, Limitations, Model Formulation, Model Deployment, System Architecture, UAT, Figure 2; updated 2026-09-29).
+- On 2026-10-03 the paper's roles were also changed to the interview's structure: the Locale, Scope, Respondents, Significance, Sampling Design and Statistical Treatment name the four divisions with Logistics under Administration and Training, and Definition of Terms defines **Admin** as the system account held by the Head of Office. Respondents are sampled per division (at least three from each).
 
 ### 2.1 Permission matrix [Proposed: default rules, confirm with the office]
 
-| Capability                                                   | Admin        | Logistics | R&P | ERT | Ops | Incident Mgmt | Admin&Training |
-| ------------------------------------------------------------ | ------------ | --------- | --- | --- | --- | ------------- | -------------- |
-| View dashboard (stock, use, recommendation, budget curve)    | ✓            | ✓         | ✓   | ✓   | ✓   | ✓             | ✓              |
-| File an ICS 213-RR request                                   | ✓            | ✓         |     | ✓   | ✓   | ✓             |                |
-| Approve or reject a request (including one they filed)       | ✓            |           |     |     |     |               |                |
-| Lend and receive borrowed items; change borrowed-item status | ✓            | ✓         |     |     |     |               |                |
-| See borrowers' names and contact details                     | ✓            | ✓         |     |     |     |               |                |
-| Record stock receipts and adjustments                        | ✓            | ✓         |     |     |     |               |                |
-| Encode history; weekly physical count                        | ✓            | ✓         |     |     |     |               |                |
-| Enter the quarterly budget; run the solver                   | ✓            |           |     |     |     |               |                |
-| **Approve or reject a recommendation**                       | **✓**        |           |     |     |     |               |                |
-| Resolve conflict flags and data-check flags                  | ✓            | ✓         |     |     |     |               |                |
-| Confirm the VED policy (classes, weights, coverage)          | ✓            |           |     |     |     |               |                |
-| Export the quarterly report                                  | ✓            | ✓         | ✓   |     |     |               |                |
-| Run "check records"                                          | ✓            | ✓         |     |     |     |               |                |
-| Manage the item catalog and depots                           | ✓            |           |     |     |     |               | ✓              |
-| Manage users and assign roles                                | ✓            |           |     |     |     |               |                |
+| Capability | Admin | Logistics | R&P | Ops and Warning | Admin & Training | Administrative |
+| --- | --- | --- | --- | --- | --- | --- |
+| View dashboard (stock, use, recommendation, budget curve) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| File an ICS 213-RR request | ✓ | ✓ |  | ✓ |  |  |
+| Approve or reject a request (including one they filed) | ✓ |  |  |  |  |  |
+| Lend and receive borrowed items; change borrowed-item status | ✓ | ✓ |  |  |  |  |
+| See borrowers' names and contact details | ✓ | ✓ |  |  |  |  |
+| Record stock receipts and adjustments | ✓ | ✓ |  |  |  |  |
+| Encode history; weekly physical count | ✓ | ✓ |  |  |  |  |
+| Enter the quarterly budget; run the solver | ✓ |  |  |  |  |  |
+| **Approve or reject a recommendation** | **✓** |  |  |  |  |  |
+| Resolve conflict flags and data-check flags | ✓ | ✓ |  |  |  |  |
+| Confirm the VED policy (classes, weights, coverage) | ✓ |  |  |  |  |  |
+| Export the quarterly report | ✓ | ✓ | ✓ |  |  |  |
+| Run "check records" | ✓ | ✓ |  |  |  |  |
+| Manage the item catalog and depots | ✓ |  |  |  | ✓ |  |
+| Manage users and assign roles | ✓ |  |  |  |  |  |
 
 These defaults follow three rules:
 
@@ -93,7 +96,7 @@ These defaults follow three rules:
 2. **Personal data is limited to the roles that lend equipment.** Only the Admin and Logistics see borrower names and contacts (NPC safeguards).
 3. **Stock changes only through the stock keepers.** Only Logistics and the Admin create stock entries directly; everyone else changes stock only through requests and borrowing.
 
-A user can hold more than one role. For example, a Logistics staff member who also files requests gets both roles, and still can't approve anything. The Admin may approve a request they filed themselves (decided 2026-09-29).
+A user holds one role (`users.role`). Logistics already includes filing requests, so a Logistics staff member can file but still can't approve anything. Only the Admin, through the `is_system_admin` flag, has every role's capabilities, and may approve a request they filed themselves (decided 2026-09-29).
 
 ---
 
@@ -103,7 +106,7 @@ A user can hold more than one role. For example, a Logistics staff member who al
 
 **Depot**: a storage area. `id` (e.g., `D-002`), `name`, `free_space` (m³, when space is modeled).
 
-**ResourceType (item)**: `id` (e.g., `RT-004`), `name`, `standard_unit` (one unit per item: piece, box or set; the item level is agreed with Logistics), `unit_cost` (latest purchase price per standard unit), `ved_class` (`V` | `E` | `D`), `space_per_unit` (m³, optional), `kind` (`consumable` | `borrowable`; the office handles consumable and borrowed items separately). For borrowable equipment, track each unit individually (serial or property number). **[Proposed]**
+**ResourceType (item)**: `id` (e.g., `RT-004`), `name`, `standard_unit` (one unit per item: piece, box or set; the item level is agreed with Logistics), `unit_cost` (latest purchase price per standard unit), `ved_class` (`V` | `E` | `D`), `space_per_unit` (m³, optional), `kind` (`consumable` | `borrowable`; the office handles consumable and borrowed items separately), `category` (`medical` | `cleaning` | `office` | `general` | `other`: the "Subject" choices on the paper ICS 213-RR form, which the office stocks mostly as medical, cleaning and office supplies). For borrowable equipment, track each unit individually (serial or property number). Quantities are whole numbers, so an item's unit is the smallest amount the office hands out (the form's "cotton ball = 1/4 pack" is 1 quarter-pack), and sizes are separate items (gauze 4x4, micropore tape 1" and 2"). **[Proposed]**
 
 **StockEntry**: the **only** way stock changes. Append-only.
 
@@ -121,9 +124,11 @@ A user can hold more than one role. For example, a Logistics staff member who al
 
 **Reservation**: stock held for an approved request so that it can't be promised twice. Made when a request is approved, removed when the request is fulfilled or cancelled. **Available stock = on hand − reserved.** Approving a _recommendation_ does **not** change reservations. **[Paper]**
 
-**ResourceRequest (ICS 213-RR)**: header fields are `requesting_division/team`, `requested_by` (user), `date`, `purpose` (`team_kit` | `relief` | `office_use`), `event_tag`, `status`. Each line has `resource_type_id`, `quantity_requested`, `quantity_released`. **Requested and released quantities are both recorded.** **[Paper]**
+**ResourceRequest (ICS 213-RR)**: header fields are `control_no` (the number printed on the paper form, optional and unique), `requesting_division/team` (free text, e.g. "Operations / Team Delta"), `requested_by` (user), `requester_name` and `requester_position` (form item 1; default to the logged-in user, but may name the person who filled in the paper form), `date`, `time`, `purpose` (`team_kit` | `relief` | `office_use`), `event_tag`, `remarks` (form item 11: Logistics' reply), `status`. The form's **Subject** is not stored: it is the set of categories of the request's items. Each line has `resource_type_id`, `quantity_requested`, `quantity_released`, and `approval_note` (why the line was approved for less than requested). **Requested and released quantities are both recorded.** The form's signature lines (items 7, 8, 12) are replaced by the status log: who moved the request, their position and when. **[Paper]**
 
-**Borrow (borrowed-equipment logbook)**: `item unit`, `borrower_division`, `borrower_name`, `borrower_contact` (personal data, access restricted by role), `issued_at`, `status`, and a history of status changes. **[Paper]**
+**Kit**: a named set of request lines (e.g. "Medical backpack #1"). Logistics saves one from the request form; loading it fills a new request, which can still be edited. Saving under an existing name replaces its lines.
+
+**Borrow (borrowed-equipment logbook)**: `item unit`, `borrower_division` (any office; the borrower is often from another city office such as CGSO), `location` (where it is used), `borrower_name`, `borrower_contact` (personal data, access restricted by role), `issued_at`, `status`, and a history of status changes. The date returned is the time of the `returned` change. A Borrow comes from releasing a request line, or from a **walk-in loan** with no request (the paper logbook's usual case). **[Paper]**
 
 **QuarterHistory** (derived or encoded): per item and quarter, `year`, `quarter`, `quantity_requested`, `quantity_released`, `quantity_available_at_close`, `event_tag`, and `stockout_flag` (quarters where recorded use understates need). **[Paper]**
 
@@ -163,7 +168,9 @@ Rules:
 - Each line keeps `quantity_requested` (never changed after submit), `quantity_approved`, and `quantity_released` (the running total of releases). This way the paper's "requested and released" are both kept. The gap between requested and released is a recorded shortfall, which later feeds the history (it reduces the "understated need" limitation).
 - **Partial release is allowed.** Approval conflicts when the approved quantity exceeds _available_ stock (on hand − reserved) or when two approvals together exceed stock. In that case, flag it; don't block it silently.
 - A request line for a **borrowable** item creates a **Borrow** at release time instead of a consumable release (§3.3).
-- Every status change is logged with the user and time.
+- Every status change is logged with the user and time. The page shows each with the person's `position` (a title kept on the user account), the digital stand-in for the paper form's signature and position lines.
+- **A line approved for less than requested needs a reason** (the form's "indicate why item(s) are disapproved"); the reason is kept on the line.
+- Approval is the Admin's alone. The paper form puts the "Approving Authority" under "For Logistics Only"; the office confirmed approval stays with the Admin for now.
 
 ### 3.3 Borrowed-item lifecycle [Paper; transitions Proposed]
 
@@ -358,7 +365,8 @@ Each flag is shown to Logistics to resolve. Every resolution is recorded, and it
 
 - Digitize the office's **ICS 213-RR resource request form**, with requested **and** released quantities per line, the requesting division or team, and purpose and event tag. Use only the form's fields; don't model ICS roles.
 - **Approval reserves stock; fulfillment deducts it** (writes stock entries). Released quantities may be lower than requested, and both are kept.
-- Keep **consumables and borrowed items separate**. Borrowed items follow §3.3.
+- Keep **consumables and borrowed items separate**. Borrowed items follow §3.3. Logistics (or the Admin) can also **lend equipment directly**, with no request, to any office; consumables always go through a request.
+- Date and time default to now; a paper form can be encoded with its own date and time up to 31 days back (older ones go through the history import).
 - **Privacy:** borrower names and contacts are personal data. Restrict them by role (the NPC Circular 2023-06 safeguards) and never send them to the solver. Historical encoding leaves out names and signatures.
 
 ---
@@ -421,7 +429,7 @@ Also required:
 | Explanation task (UAT)    | Logistics and R&P answer **≥ 80%** correctly: why an item was cut, what ₱20,000 more would change, and which limit mattered.                                                                                                                                                                           |
 | UAT tasks                 | File an ICS 213-RR request; lend and return an item; record offline and sync; run the solver and approve or reject a recommendation (Admin); export the quarterly report.                                                                                                                      |
 | Backtest                  | The multiplier and the scenario model each beat flat 1.5 on weighted shortage in a majority of quarters.                                                                                                                                                                                               |
-| ISO/IEC 25010:2023 survey | Functional suitability, reliability, interaction capability and safety (fail safe) each reach **Very Acceptable** (weighted mean 4.21–5.00), with 15–20 respondents across the six roles.                                                                                                              |
+| ISO/IEC 25010:2023 survey | Functional suitability, reliability, interaction capability and safety (fail safe) each reach **Very Acceptable** (weighted mean 4.21–5.00), with 15–20 respondents across the roles.                                                                                                              |
 
 ---
 

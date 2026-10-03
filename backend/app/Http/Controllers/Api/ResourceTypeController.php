@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\BaseController;
 use App\Models\ResourceType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Validation\Rule;
 
 /**
  * Item catalog CRUD — backs the Items page. unit_cost, ved_class, space_per_unit
@@ -16,7 +17,7 @@ class ResourceTypeController extends BaseController
 
     protected array $searchable = ['name'];
 
-    protected array $filterable = ['unit', 'ved_class'];
+    protected array $filterable = ['unit', 'category', 'ved_class'];
 
     protected array $sortable = ['id', 'name', 'created_at'];
 
@@ -46,6 +47,7 @@ class ResourceTypeController extends BaseController
     private function modelRules(): array
     {
         return [
+            'category' => ['sometimes', Rule::in(ResourceType::CATEGORIES)], // the paper form's Subject
             'unit_cost' => ['nullable', 'numeric', 'min:0'],
             'ved_class' => ['sometimes', 'in:V,E,D'],
             'space_per_unit' => ['nullable', 'numeric', 'min:0'],

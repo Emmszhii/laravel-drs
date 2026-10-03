@@ -81,7 +81,7 @@ class ReplenishmentTest extends TestCase
         $this->actingAs(User::factory()->create(['role' => 'research_planning']))->postJson('/api/replenishment/runs', $body)->assertForbidden();
         $this->actingAs($this->admin())->postJson('/api/replenishment/runs', $body)->assertStatus(202);
         $this->actingAs($this->admin())->postJson('/api/replenishment/history/import', [])->assertStatus(422); // the Admin may encode too
-        $this->actingAs(User::factory()->create(['role' => 'ert']))->postJson('/api/replenishment/history/import', [])->assertForbidden();
+        $this->actingAs(User::factory()->create(['role' => 'operations']))->postJson('/api/replenishment/history/import', [])->assertForbidden();
     }
 
     public function test_run_sends_history_stock_less_reserved_and_ved_weight_then_completes(): void

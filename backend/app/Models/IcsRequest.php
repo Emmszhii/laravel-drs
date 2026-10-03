@@ -18,7 +18,7 @@ class IcsRequest extends Model
 
     protected $table = 'app_ics_requests';
 
-    protected $fillable = ['requesting_division', 'requested_by', 'date', 'purpose', 'event_tag', 'status', 'decision_reason'];
+    protected $fillable = ['control_no', 'requesting_division', 'requested_by', 'requester_name', 'requester_position', 'date', 'time', 'purpose', 'event_tag', 'status', 'decision_reason', 'remarks'];
 
     protected $casts = ['date' => 'date'];
 
