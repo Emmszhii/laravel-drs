@@ -1,76 +1,113 @@
 # DisasterResource+ — Client Demo Script, Q&A and Discovery (EN / Tagalog)
 
-Built from: the 2026-09-03 interview (`docs/important/transcription summary.txt`), the photos of CDRRMO's real ICS 213-RR form and borrowed-items logbook, and `system-spec.md`. There is no video in the docs folder, only the two interview recordings (`.m4a`), so the "how it works" below comes from the transcript summary and the spec. **Check the transcript against the audio for anything you quote to the client.**
+Built from: the 2026-09-03 interview (`docs/important/transcription summary.txt`), the photos of CDRRMO's real ICS 213-RR form and borrowed-items logbook, `system-spec.md`, and the recorded demo (`demo-video/record.mjs`). The steps in section 2 follow that recording in order, with the same sample values, so the live demo and the video say the same thing. **Check the transcript against the two interview recordings (`.m4a`) before you quote the client.**
 
-Audience: CDRRMO San Pablo (Head of Office, Logistics, Planning). ~8 minutes. Three windows: **Admin**, **Logistics**, **Operations and Warning** (the ERT teams file through it) (`logistics@disasterresource.local`, `operations@disasterresource.local`, password `password`; Admin per `UserSeeder`).
+Audience: CDRRMO San Pablo (Head of Office, Logistics, Planning). One window, signed in as the **Admin** (`admin@disasterresource.local`, password `password` on the demo database). The Admin passes every role check, so one login covers the whole demo, as in the video. To show a separate role at the end, use `logistics@disasterresource.local` or `operations@disasterresource.local` (the ERT teams file through Operations and Warning), same password.
+
+**Reset and record (demo database, not your real data):**
+
+```bash
+bash backend/docs/demo-video/reset.sh      # fresh demo.sqlite; the Admin shows as "Head of Office"
+# servers: solver-service on :8001, the "laravel-demo" launch entry on :8000
+node backend/docs/demo-video/record.mjs    # writes demo-video/raw/demo.webm (raw/ is git-ignored)
+```
+
+Run `reset.sh` before **every** live run too: the steps below depend on a clean start (hygiene kits and radios at zero, no approved plan yet).
 
 ## 1. What they told us → what we show
 
 | What CDRRMO said (interview) | Sagot ng sistema | Demo step |
 |---|---|---|
-| Logistics tracks with Excel, a logbook and paper backup; no real-time stock; shortages are found only when someone checks. | One live stock count, sum of every entry. | Step 3 |
-| The most error-prone part is **human counting**. Automatic deduction when a request is released is the feature they want. | Approval reserves stock, release deducts it. No manual recount. | Step 3 |
-| Must keep working when **internet or power is out**. | Offline entries sync later; paper backup is still advised. | Step 4 |
-| Requests come on the **ICS 213-RR form**; returns go in a **logbook**. | The form is digital (requested **and** released qty). The logbook is the borrowed-equipment page. | Steps 3 and 5 |
-| Stock is tracked **per quarter**, and one quarter's levels adjust the next quarter's request. | Quarterly replenishment from their own history, within the budget. | Step 2 |
-| The **Head of Office must approve** before any plan takes effect. | Only the Admin runs the solver and approves or rejects. | Steps 2 and 3 |
-| GSU does the bidding and picks the supplier, not Logistics. | We only **recommend**; we don't buy. | Close |
+| Logistics tracks with Excel, a logbook and paper backup; no real-time stock; shortages are found only when someone checks. | One live stock count, the sum of every entry. | Step 1 |
+| The most error-prone part is **human counting**. Automatic deduction when a request is released is the feature they want. | Approval reserves stock, release deducts it. No manual recount. | Step 2 |
+| Must keep working when **internet or power is out**. | Offline entries sync later; paper backup is still advised. | Step 1 |
+| Requests come on the **ICS 213-RR form**; returns go in a **logbook**. | The form is digital (requested **and** released qty). The logbook is the borrowed-equipment page. | Step 2 |
+| Stock is tracked **per quarter**, and one quarter's levels adjust the next quarter's request. | Quarterly replenishment from their own history, within the budget. | Step 3 |
+| The **Head of Office must approve** before any plan takes effect. | Only the Admin approves requests and the plan. | Steps 2 and 3 |
+| GSU does the bidding and picks the supplier, not Logistics. | We only **recommend**; we don't buy. | Step 3 and close |
 | Incident logging, the map and ICS roles are out of scope. | Not in the system. | Close |
 
-## 2. Demo script
+## 2. Demo script (same order and sample values as the video)
 
-### Step 1: Problem and promise (30 sec)
+### Opening (30 sec)
 
-**EN:** "You told us the hardest part is counting by hand, that you can't see stock in real time, and that the work must continue when the internet or power is down. DisasterResource+ keeps one live stock record that works offline, plans each quarter's order from your own history and budget, and shows its reasoning. The Head of Office approves everything."
+On screen: the title card ("Supply readiness for CDRRMO San Pablo City"), then sign in as the Head of Office.
 
-**TL:** "Sabi po ninyo, ang pinakamahirap ay ang manu-manong pagbibilang, hindi nakikita ang stock nang real time, at dapat tuloy ang trabaho kahit walang internet o kuryente. Ang DisasterResource+ ay may iisang live na stock record na gumagana offline, gumagawa ng plano ng order kada quarter mula sa sarili ninyong history at budget, at ipinapakita ang dahilan. Ang Head of Office po ang nag-a-approve ng lahat."
+**EN:** "You told us the hardest part is counting by hand, that you can't see stock in real time, and that the work must continue when the internet or power is down. DisasterResource+ keeps one live stock record that works offline, handles your RR requests, and plans each quarter's order from your own history and budget. The Head of Office approves everything. Everything you'll see uses sample data."
 
-### Step 2: Quarterly replenishment (2.5 min) — Admin
+**TL:** "Sabi po ninyo, ang pinakamahirap ay ang manu-manong pagbibilang, hindi nakikita ang stock nang real time, at dapat tuloy ang trabaho kahit walang internet o kuryente. Ang DisasterResource+ ay may iisang live na stock record na gumagana offline, tumatanggap ng RR requests, at gumagawa ng plano ng order kada quarter mula sa sarili ninyong history at budget. Ang Head of Office po ang nag-a-approve ng lahat. Sample data lang po ang makikita ninyo."
 
-1. **Replenishment** → show the data-check flags and resolve one.
-2. Enter the **budget** → **Run solver**. The other window updates live.
-3. Open an item → read its **reason** (e.g. "partly covered: the budget ran out").
-4. Show the **budget curve** and "**the next ₱10,000 goes to**".
-5. **Approve** → this is the purchase plan. Export the **Quarterly report**.
+### Step 1: Stock, offline and the records seal (2 min)
 
-**EN:** "Every item has a reason. If the budget is short, you see what gets cut and what ₱10,000 more would buy. It only recommends: purchases still go through GSU bidding."
+1. **Stock** → "Record a stock entry": **Hygiene kits**, depot **CDRRMO Main Storage**, **Receipt (items in)**, quantity **100** → Save. The row shows **100 kits** at once.
+2. Same form: **Handheld radios**, quantity **5** → Save (**5 units**).
+3. Go offline (airplane mode, or DevTools → Network → Offline). **Hygiene kits**, **Release (items out)**, **5** → Save. The page shows "**Waiting to sync on this device**".
+4. Go online. The entry uploads by itself and the row reads **95 kits**.
 
-**TL:** "May dahilan po ang bawat item. Kapag kulang ang budget, makikita kung ano ang natatabasan at ano ang mabibili ng dagdag na ₱10,000. Rekomendasyon lang po ito: dadaan pa rin sa bidding ng GSU ang pagbili."
+| Say (EN) | Sabihin (TL) |
+|---|---|
+| "The Stock page shows what the office has on hand, item by item." | "Ipinapakita ng Stock page kung ano ang nasa opisina, bawat item." |
+| "Logistics records items received: 100 hygiene kits into Main Storage, and the total updates at once. And 5 handheld radios." | "Nire-record ng Logistics ang mga natanggap: 100 hygiene kits sa Main Storage, at kusang nag-a-update ang total. At 5 handheld radios." |
+| "No internet during a typhoon or brownout? Logistics keeps working." | "Walang internet kapag may bagyo o brownout? Tuloy ang trabaho ng Logistics." |
+| "The entry is saved on this device and waits for the connection." | "Naka-save ang entry sa device na ito at naghihintay ng connection." |
+| "When the connection returns, it uploads by itself. Nothing is lost." | "Pagbalik ng connection, kusa itong nag-a-upload. Walang nawawala." |
+| "Records are never overwritten. A seal on the records shows if anything was changed or deleted." | "Hindi kailanman ino-overwrite ang records. May seal ang records na nagpapakita kung may binago o binura." |
 
-### Step 3: ICS 213-RR request, released stock deducted automatically (2 min)
+*Optional live extras (not in the video):* close and reopen the tab while offline and show the entry is still waiting; mark an entry **Priority**; click **Check records** and show "Records intact".
 
-1. Operations window → **ICS 213-RR** → file a request with the same fields as your paper form (Control No., date and time, name and position, division/team, subject, items and quantities). Operations has no approve or release buttons.
-2. Admin → **approve** → stock is **reserved**.
-3. Logistics → **release** (less than requested is allowed) → stock deducts automatically. Show requested vs released side by side.
+### Step 2: ICS 213-RR request and borrowed equipment (3 min)
 
-**EN:** "This is your RR form, but approval reserves the stock and release deducts it. No recounting, and both requested and released quantities are kept."
+1. **ICS 213-RR**. Point at **Load a kit** (the office's "Medical backpack #1").
+2. Fill the form: requester **Juan Dela Cruz**, position **ERT Team Leader**, division/team **Operations and Warning / ERT**, purpose **Team kit**, item 1 **Hygiene kits × 20**, **+ Add item**, item 2 **Handheld radios × 2** → **File request**.
+3. On the new request, pick the depot for each line (**CDRRMO Main Storage**, 95 and 5 available) → **Approve**. The status becomes *approved* and the stock is reserved.
+4. Release **20** and **2**, borrower **Pedro Santos** → **Release**. The status becomes *closed*. Open the log: "approved by Head of Office".
+5. **Borrowed equipment** → click **Returned** on the radio.
 
-**TL:** "Ito po ang RR form ninyo, pero kapag inaprubahan, naka-reserve ang stock, at kapag nai-release, kusa nang nababawasan. Wala nang recount, at parehong naka-save ang hiniling at na-release."
+| Say (EN) | Sabihin (TL) |
+|---|---|
+| "Requests use the same ICS 213-RR form the office already uses." | "Ang requests ay gumagamit ng parehong ICS 213-RR form na gamit na ng opisina." |
+| "Saved kits, like the office's Medical backpack #1, fill the form in one click." | "Ang mga naka-save na kit, tulad ng Medical backpack #1, ay pupuno sa form sa isang click." |
+| "Here, the response team asks for 20 hygiene kits and 2 radios." | "Dito, humihiling ang response team ng 20 hygiene kits at 2 radios." |
+| "Only the Head of Office approves. Approval reserves the stock, so it can't be promised twice." | "Ang Head of Office lang ang nag-a-approve. Nire-reserve ng approval ang stock, kaya hindi ito mapapangako nang dalawang beses." |
+| "Logistics releases the items. Stock goes down by itself; radios need the borrower's name." | "Nire-release ng Logistics ang items. Kusang bumababa ang stock; kailangan ng pangalan ng borrower para sa radios." |
+| "Every step is logged with who did it and when." | "Naka-log ang bawat hakbang kung sino ang gumawa at kailan." |
+| "Borrowed equipment is tracked until it comes back. Borrower names stay private." | "Sinusubaybayan ang hiniram na kagamitan hanggang maibalik. Pribado ang pangalan ng borrower." |
 
-### Step 4: Offline stock entries and tamper check (2 min) — Logistics
-
-1. **Stock** → airplane mode (or DevTools → Network → Offline).
-2. Record 2–3 entries (one **Priority**). Show "**Waiting to sync on this device**". Close and reopen the tab.
-3. Go online → syncs by itself, priority first.
-4. **Check records** → "Records intact".
-
-**EN:** "If the internet drops, Logistics keeps recording. Entries sync when it's back, with no duplicates. Records can't be silently edited: a changed entry is caught by the check."
-
-**TL:** "Kapag nawala ang internet, tuloy ang pag-record ng Logistics. Magsi-sync ito pagbalik ng connection, walang duplicate. Hindi rin puwedeng palihim na baguhin ang record: mahuhuli ito ng check."
-
-### Step 5: Borrowed equipment, your logbook (1 min) — Logistics
-
-Open **ICS 213-RR → Borrowed equipment** (shows the same columns as your logbook: date, item, qty, division, name, date returned). Issue one item, return it. Show borrower names visible to Logistics and Admin only.
-
-**EN:** "Your logbook, one row per unit, with the status and who has it."
+**EN (tie to their logbook):** "This is your logbook, one row per unit, with the status and who has it."
 
 **TL:** "Ito ang logbook ninyo, isang row kada unit, may status at kung sino ang may hawak."
 
+### Step 3: Quarterly purchase plan (2.5 min)
+
+1. **Replenishment**. Enter the quarterly budget **₱300,000** → **Run solver** (wait for "Spends ₱…").
+2. Point at the table: each item has an order, a target stock and a reason. Point at a row that says **partly covered**.
+3. Show the **budget curve** and "**The next ₱10,000 goes to**".
+4. **Approve** (the status reads "recommendation · approved"). Point at **Download PDF**.
+
+| Say (EN) | Sabihin (TL) |
+|---|---|
+| "Each quarter, the planner suggests what to buy, using the office's own past use." | "Kada quarter, nagmumungkahi ang planner ng bibilhin, gamit ang sariling nakaraang gamit ng opisina." |
+| "The Head of Office enters the quarter's budget, ₱300,000, and runs it." | "Ang Head of Office ang naglalagay ng budget ng quarter, ₱300,000, at pinapatakbo ito." |
+| "Every item gets an order, a target, and a reason in plain words." | "May order, target, at dahilan sa simpleng salita ang bawat item." |
+| "When the money runs short, the reason says so." | "Kapag kulang ang pera, sinasabi ito ng dahilan." |
+| "The budget curve shows the same plan at other budgets. Where it flattens, more money stops helping." | "Ipinapakita ng budget curve ang parehong plano sa ibang budget. Kapag pumatag ito, wala nang naitutulong ang dagdag na pera." |
+| "It also shows where the next ₱10,000 would go." | "Ipinapakita rin nito kung saan mapupunta ang susunod na ₱10,000." |
+| "Nothing is bought until the Head of Office approves the plan." | "Walang bibilhin hangga't hindi inaaprubahan ng Head of Office ang plano." |
+| "The approved plan prints as a report for the purchase request." | "Ang naaprubahang plano ay nagpi-print bilang report para sa purchase request." |
+
+**EN:** "It only recommends. Purchases still go through GSU bidding."
+
+**TL:** "Rekomendasyon lang po ito. Dadaan pa rin sa bidding ng GSU ang pagbili."
+
+*Optional live extras (not in the video):* show the data-check flags on this page and resolve one before running; export the quarterly report as CSV.
+
 ### Close (30 sec)
 
-**EN:** "Out of scope on purpose: incident logging, the map, ICS roles, other offices' stock, and buying. We tested the solver against our worked example, ran a 30-entry offline test on 4 devices with none lost or duplicated, and checked each role's access. What we need from you now is your data and your user list."
+On screen: the end card ("Know what to buy, and why. Next step: test the planner on the office's own records, July 2023 – June 2026.").
 
-**TL:** "Sinadya po naming hindi isama ang incident logging, mapa, ICS roles, stock ng ibang opisina, at pagbili. Na-test namin ang solver sa worked example, may 30-entry offline test sa 4 na device na walang nawala o nag-duplicate, at na-check ang access ng bawat role. Ang kailangan na lang po namin ay ang data ninyo at listahan ng users."
+**EN:** "Out of scope on purpose: incident logging, the map, ICS roles, other offices' stock, and buying. Next step is to test the planner on your own records from July 2023 to June 2026. We tested the solver against our worked example, ran a 30-entry offline test on 4 devices with none lost or duplicated, and checked each role's access. What we need from you now is your data and your user list."
+
+**TL:** "Sinadya po naming hindi isama ang incident logging, mapa, ICS roles, stock ng ibang opisina, at pagbili. Susunod na hakbang: subukan ang planner sa sarili ninyong records mula Hulyo 2023 hanggang Hunyo 2026. Na-test namin ang solver sa worked example, may 30-entry offline test sa 4 na device na walang nawala o nag-duplicate, at na-check ang access ng bawat role. Ang kailangan na lang po namin ay ang data ninyo at listahan ng users."
 
 ## 3. Likely questions (client and panel)
 
@@ -146,10 +183,11 @@ Since the 2026-10-03 update, our request carries the fields on the photo of your
 
 ## 5. Before you go on
 
-- [ ] `php artisan migrate:fresh --seed`, then the `ReplenishmentDemoSeeder`
-- [ ] Running: `php artisan serve`, `npm run dev`, `php artisan queue:work`, `php artisan reverb:start`, solver on :8001
-- [ ] Open **Stock**, **ICS 213-RR** and **Borrowed** once online (so they open offline)
+- [ ] `bash backend/docs/demo-video/reset.sh` (fresh demo database, Admin shown as "Head of Office")
+- [ ] Servers up: `solver-service` on :8001, and the **laravel-demo** launch entry on :8000 (it runs the queue inline, so no queue worker or Reverb is needed for this demo)
+- [ ] Sign in as `admin@disasterresource.local` and open **Stock** once online
+- [ ] Play the recording once, `node backend/docs/demo-video/record.mjs`, to confirm the steps still work, and keep the mp4 as a fallback
 - [ ] Backup: screenshots in `backend/docs/img/` and `docs/role-access/`
 - [ ] Bring a printed copy of section 4 and the history CSV template
 
-**If something breaks:** solver silent → check the queue worker and `solver-service` on :8001, then show a saved run. Live update missing → refresh and check Reverb. Offline step fails → use screenshots and say the 30-entry scripted run passed in `EvaluationTest`.
+**If something breaks:** solver silent → check `solver-service` on :8001, then play the video for that part. Offline step fails → play the video and say the 30-entry scripted run passed in `EvaluationTest`. Numbers look wrong (not 100 / 95 kits) → you skipped `reset.sh`.
