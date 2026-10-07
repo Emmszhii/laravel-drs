@@ -12,6 +12,12 @@
       "port": 8000
     },
     {
+      "name": "laravel-demo",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "set OPTIMIZATION_SERVICE_URL=http://127.0.0.1:8001&& set QUEUE_CONNECTION=sync&& set DB_DATABASE=%CD%\\backend\\database\\demo.sqlite&& php backend/artisan serve --host=127.0.0.1 --port=8000"],
+      "port": 8000
+    },
+    {
       "name": "vite",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "backend", "run", "dev:vite-only"],
