@@ -158,22 +158,34 @@ class ReplenishmentController extends Controller
         return response()->json($backtest, 201);
     }
 
-    /** Quarterly burn-rate and reorder report, PDF or CSV, with the latest fingerprint printed. */
+    /**
+     * Burn-rate and reorder report, PDF or CSV, with the latest fingerprint printed.
+     * One quarter, or a range within one year (quarter..quarter_to, e.g. Q1–Q4).
+     */
     public function report(Request $request, InventoryBurnRateReportBuilder $builder): SymfonyResponse
     {
         $data = $request->validate([
             'year' => ['nullable', 'integer', 'between:2020,2100'],
             'quarter' => ['nullable', 'integer', 'between:1,4'],
+            'quarter_to' => ['nullable', 'integer', 'between:1,4', 'gte:quarter'],
             'format' => ['nullable', 'in:pdf,csv'],
         ]);
-        $report = $builder->build($data['year'] ?? null, $data['quarter'] ?? null);
-        $name = "burn-rate-reorder-{$report['year']}-q{$report['quarter']}";
+        $reports = [$builder->build($data['year'] ?? null, $data['quarter'] ?? null)];
+        for ($q = $reports[0]['quarter'] + 1; $q <= ($data['quarter_to'] ?? 0); $q++) {
+            $reports[] = $builder->build($reports[0]['year'], $q);
+        }
+        $name = "burn-rate-reorder-{$reports[0]['year']}-q{$reports[0]['quarter']}".(count($reports) > 1 ? '-q'.end($reports)['quarter'] : '');
 
         if (($data['format'] ?? 'pdf') === 'csv') {
-            return response()->streamDownload(fn () => app(InventoryBurnRateCsvExporter::class)->stream($report), "{$name}.csv", ['Content-Type' => 'text/csv']);
+            return response()->streamDownload(function () use ($reports) {
+                foreach ($reports as $i => $report) {
+                    $i && print "\n";
+                    app(InventoryBurnRateCsvExporter::class)->stream($report);
+                }
+            }, "{$name}.csv", ['Content-Type' => 'text/csv']);
         }
 
-        return Pdf::loadView('reports.inventory-burn-rate', $report)->download("{$name}.pdf");
+        return Pdf::loadView('reports.inventory-burn-rate', ['reports' => $reports])->download("{$name}.pdf");
     }
 
     public function latestBacktest(): JsonResponse

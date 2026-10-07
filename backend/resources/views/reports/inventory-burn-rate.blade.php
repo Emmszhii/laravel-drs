@@ -15,6 +15,9 @@
 </style>
 </head>
 <body>
+@foreach ($reports as $report)
+@php extract($report); @endphp
+<div @if (! $loop->last) style="page-break-after: always" @endif>
     <h1>Quarterly Burn-Rate &amp; Reorder Report — {{ $year }} Q{{ $quarter }}</h1>
     <p class="meta">
         CDRRMO San Pablo City · Generated {{ $generated_at->toDayDateTimeString() }}<br>
@@ -68,5 +71,7 @@
         @endif
         Keep this copy: a chain rebuilt later would no longer match the fingerprint printed here.
     </p>
+</div>
+@endforeach
 </body>
 </html>

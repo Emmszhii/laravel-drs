@@ -95,22 +95,7 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
         <aside className="space-y-6">
           {can.run && <VedPolicyForm policies={policies} onDone={() => router.reload({ only: ["policies"] })} />}
           {can.encode && <HistoryUpload onDone={reload} />}
-          {can.export && (
-            <section className="space-y-2 border border-white/10 p-4 text-sm">
-              <h2 className="font-semibold uppercase">Quarterly report</h2>
-              <p className="text-xs text-[var(--text-secondary)]">
-                Burn rate, cover and the approved reorder per item, with the stock records' latest fingerprint printed.
-              </p>
-              <div className="flex gap-3">
-                {(["pdf", "csv"] as const).map((f) => (
-                  <a key={f} className="underline hover:text-[var(--amber)]"
-                    href={`/api/replenishment/report?format=${f}&year=${run?.year ?? defaults.year}&quarter=${run?.quarter ?? defaults.quarter}`}>
-                    Download {f.toUpperCase()}
-                  </a>
-                ))}
-              </div>
-            </section>
-          )}
+          {can.export && <ReportExport year={run?.year ?? defaults.year} quarter={run?.quarter ?? defaults.quarter} />}
           <section>
             <h2 className="mb-2 text-sm font-semibold uppercase">Runs</h2>
             <ul className="divide-y divide-white/10 border border-white/10 text-sm">
@@ -129,6 +114,46 @@ export default function ReplenishmentIndex({ runs, run, items, flags, backtest, 
         </aside>
       </div>
     </div>
+  );
+}
+
+/** Pick any year and a quarter range (Q1 only, Q1–Q4, …); the file has one section per quarter. */
+function ReportExport({ year: y0, quarter: q0 }: { year: number; quarter: number }) {
+  const [year, setYear] = useState(y0);
+  const [from, setFrom] = useState(q0);
+  const [to, setTo] = useState(q0);
+  const setRange = (f: number, t: number) => { setFrom(f); setTo(Math.max(f, t)); };
+
+  return (
+    <section className="space-y-2 border border-white/10 p-4 text-sm">
+      <h2 className="font-semibold uppercase">Report</h2>
+      <p className="text-xs text-[var(--text-secondary)]">
+        Burn rate, cover and the approved reorder per item, with the stock records' latest fingerprint printed.
+      </p>
+      <div className="grid grid-cols-3 gap-2">
+        <label className="text-xs uppercase text-[var(--text-secondary)]">Year
+          <input className={field} type="number" min={2020} max={2100} value={year} onChange={(e) => setYear(Number(e.target.value))} />
+        </label>
+        <label className="text-xs uppercase text-[var(--text-secondary)]">From
+          <select className={field} value={from} onChange={(e) => setRange(Number(e.target.value), to)}>
+            {[1, 2, 3, 4].map((q) => <option key={q} value={q} className="bg-black">Q{q}</option>)}
+          </select>
+        </label>
+        <label className="text-xs uppercase text-[var(--text-secondary)]">To
+          <select className={field} value={to} onChange={(e) => setTo(Number(e.target.value))}>
+            {[1, 2, 3, 4].filter((q) => q >= from).map((q) => <option key={q} value={q} className="bg-black">Q{q}</option>)}
+          </select>
+        </label>
+      </div>
+      <div className="flex gap-3">
+        {(["pdf", "csv"] as const).map((f) => (
+          <a key={f} className="underline hover:text-[var(--amber)]"
+            href={`/api/replenishment/report?format=${f}&year=${year}&quarter=${from}&quarter_to=${to}`}>
+            Download {f.toUpperCase()}
+          </a>
+        ))}
+      </div>
+    </section>
   );
 }
 

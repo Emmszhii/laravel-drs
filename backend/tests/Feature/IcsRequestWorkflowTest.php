@@ -296,4 +296,17 @@ class IcsRequestWorkflowTest extends TestCase
 
         $this->actingAs($this->operations)->get('/api/replenishment/report')->assertForbidden();
     }
+
+    public function test_report_covers_a_quarter_range_in_one_file(): void
+    {
+        $csv = $this->actingAs($this->logistics)->get('/api/replenishment/report?format=csv&year=2026&quarter=1&quarter_to=4');
+        $csv->assertOk()->assertHeader('content-disposition');
+        $this->assertStringContainsString('burn-rate-reorder-2026-q1-q4.csv', $csv->headers->get('content-disposition'));
+        foreach (['2026 Q1', '2026 Q2', '2026 Q3', '2026 Q4'] as $q) {
+            $this->assertStringContainsString($q, $csv->streamedContent());
+        }
+
+        $this->actingAs($this->logistics)->getJson('/api/replenishment/report?year=2026&quarter=3&quarter_to=2')->assertUnprocessable();
+        $this->actingAs($this->logistics)->get('/api/replenishment/report?year=2026&quarter=1&quarter_to=4')->assertOk();
+    }
 }
