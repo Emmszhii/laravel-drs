@@ -61,7 +61,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated",
-      "community": 4,
+      "community": 29,
       "norm_label": "replenishmentrunupdated.php"
     },
     {
@@ -71,7 +71,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated",
-      "community": 4,
+      "community": 29,
       "norm_label": "replenishmentrunupdated"
     },
     {
@@ -81,7 +81,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "shouldbroadcastnow",
-      "community": 4,
+      "community": 29,
       "norm_label": "shouldbroadcastnow"
     },
     {
@@ -91,7 +91,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "dispatchable",
-      "community": 4,
+      "community": 29,
       "norm_label": "dispatchable"
     },
     {
@@ -101,7 +101,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "interactswithsockets",
-      "community": 4,
+      "community": 29,
       "norm_label": "interactswithsockets"
     },
     {
@@ -111,7 +111,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_construct",
-      "community": 4,
+      "community": 29,
       "norm_label": ".__construct()"
     },
     {
@@ -121,7 +121,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcaston",
-      "community": 4,
+      "community": 29,
       "norm_label": ".broadcaston()"
     },
     {
@@ -131,7 +131,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcastas",
-      "community": 4,
+      "community": 29,
       "norm_label": ".broadcastas()"
     },
     {
@@ -141,7 +141,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_events_replenishmentrunupdated_replenishmentrunupdated_broadcastwith",
-      "community": 4,
+      "community": 29,
       "norm_label": ".broadcastwith()"
     },
     {
@@ -561,7 +561,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller",
-      "community": 4,
+      "community": 44,
       "norm_label": "replenishmentcontroller.php"
     },
     {
@@ -681,7 +681,7 @@
       "source_location": "L162",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_replenishmentcontroller_replenishmentcontroller_report",
-      "community": 4,
+      "community": 127,
       "norm_label": ".report()"
     },
     {
@@ -691,7 +691,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "symfonyresponse",
-      "community": 4,
+      "community": 127,
       "norm_label": "symfonyresponse"
     },
     {
@@ -1591,7 +1591,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller",
-      "community": 46,
+      "community": 65,
       "norm_label": "icsrequestcontroller.php"
     },
     {
@@ -1601,7 +1601,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
-      "community": 46,
+      "community": 65,
       "norm_label": "icsrequestcontroller"
     },
     {
@@ -1611,7 +1611,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
-      "community": 46,
+      "community": 65,
       "norm_label": ".index()"
     },
     {
@@ -1621,7 +1621,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_php_request",
-      "community": 46,
+      "community": 65,
       "norm_label": "request"
     },
     {
@@ -1631,7 +1631,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_php_response",
-      "community": 46,
+      "community": 65,
       "norm_label": "response"
     },
     {
@@ -1641,7 +1641,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
-      "community": 46,
+      "community": 65,
       "norm_label": ".borrowed()"
     },
     {
@@ -1651,7 +1651,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
-      "community": 46,
+      "community": 65,
       "norm_label": ".can()"
     },
     {
@@ -1661,7 +1661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller",
-      "community": 7,
+      "community": 70,
       "norm_label": "replenishmentcontroller.php"
     },
     {
@@ -1671,7 +1671,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller",
-      "community": 7,
+      "community": 70,
       "norm_label": "replenishmentcontroller"
     },
     {
@@ -1681,7 +1681,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_index",
-      "community": 7,
+      "community": 70,
       "norm_label": ".index()"
     },
     {
@@ -1691,7 +1691,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_request",
-      "community": 7,
+      "community": 70,
       "norm_label": "request"
     },
     {
@@ -1701,7 +1701,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_response",
-      "community": 7,
+      "community": 70,
       "norm_label": "response"
     },
     {
@@ -2061,7 +2061,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob",
-      "community": 4,
+      "community": 29,
       "norm_label": "runreplenishmentjob.php"
     },
     {
@@ -2071,7 +2071,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob",
-      "community": 4,
+      "community": 29,
       "norm_label": "runreplenishmentjob"
     },
     {
@@ -2081,7 +2081,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "shouldqueue",
-      "community": 4,
+      "community": 29,
       "norm_label": "shouldqueue"
     },
     {
@@ -2091,7 +2091,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "interactswithqueue",
-      "community": 4,
+      "community": 29,
       "norm_label": "interactswithqueue"
     },
     {
@@ -2121,7 +2121,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_construct",
-      "community": 4,
+      "community": 29,
       "norm_label": ".__construct()"
     },
     {
@@ -2131,7 +2131,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_failed",
-      "community": 4,
+      "community": 29,
       "norm_label": ".failed()"
     },
     {
@@ -2141,7 +2141,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_php_throwable",
-      "community": 4,
+      "community": 29,
       "norm_label": "throwable"
     },
     {
@@ -2151,7 +2151,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_freespace",
-      "community": 4,
+      "community": 29,
       "norm_label": ".freespace()"
     },
     {
@@ -2161,7 +2161,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_handle",
-      "community": 4,
+      "community": 61,
       "norm_label": ".handle()"
     },
     {
@@ -2171,7 +2171,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin",
-      "community": 66,
+      "community": 40,
       "norm_label": "preventinactivelogin.php"
     },
     {
@@ -2181,7 +2181,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin_preventinactivelogin",
-      "community": 66,
+      "community": 40,
       "norm_label": "preventinactivelogin"
     },
     {
@@ -2191,7 +2191,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_listeners_preventinactivelogin_preventinactivelogin_handle",
-      "community": 66,
+      "community": 40,
       "norm_label": ".handle()"
     },
     {
@@ -2201,7 +2201,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "attempting",
-      "community": 66,
+      "community": 40,
       "norm_label": "attempting"
     },
     {
@@ -2481,7 +2481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_datacheckflag",
-      "community": 7,
+      "community": 50,
       "norm_label": "datacheckflag.php"
     },
     {
@@ -2521,7 +2521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_depot",
-      "community": 69,
+      "community": 7,
       "norm_label": "depot.php"
     },
     {
@@ -2531,7 +2531,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_depot_depot",
-      "community": 69,
+      "community": 11,
       "norm_label": "depot"
     },
     {
@@ -2541,7 +2541,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasfactory",
-      "community": 69,
+      "community": 11,
       "norm_label": "hasfactory"
     },
     {
@@ -2551,7 +2551,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_models_depot_depot_stockentries",
-      "community": 69,
+      "community": 11,
       "norm_label": ".stockentries()"
     },
     {
@@ -2561,7 +2561,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_depot_php_hasmany",
-      "community": 69,
+      "community": 11,
       "norm_label": "hasmany"
     },
     {
@@ -2571,7 +2571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_historyline",
-      "community": 8,
+      "community": 86,
       "norm_label": "historyline.php"
     },
     {
@@ -2581,7 +2581,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline",
-      "community": 8,
+      "community": 69,
       "norm_label": "historyline"
     },
     {
@@ -2591,7 +2591,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline_resourcetype",
-      "community": 8,
+      "community": 69,
       "norm_label": ".resourcetype()"
     },
     {
@@ -2601,7 +2601,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_historyline_php_belongsto",
-      "community": 8,
+      "community": 69,
       "norm_label": "belongsto"
     },
     {
@@ -2751,7 +2751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_kit",
-      "community": 46,
+      "community": 7,
       "norm_label": "kit.php"
     },
     {
@@ -2761,7 +2761,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_kit_kit",
-      "community": 46,
+      "community": 7,
       "norm_label": "kit"
     },
     {
@@ -2771,7 +2771,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_models_kit_kit_lines",
-      "community": 46,
+      "community": 7,
       "norm_label": ".lines()"
     },
     {
@@ -2781,7 +2781,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_kit_php_hasmany",
-      "community": 46,
+      "community": 7,
       "norm_label": "hasmany"
     },
     {
@@ -2851,7 +2851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_reservation",
-      "community": 44,
+      "community": 61,
       "norm_label": "reservation.php"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_models_reservation_reservation",
-      "community": 44,
+      "community": 61,
       "norm_label": "reservation"
     },
     {
@@ -2871,7 +2871,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype",
-      "community": 69,
+      "community": 44,
       "norm_label": "resourcetype.php"
     },
     {
@@ -2881,7 +2881,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype",
-      "community": 69,
+      "community": 11,
       "norm_label": "resourcetype"
     },
     {
@@ -2891,7 +2891,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_stockentries",
-      "community": 69,
+      "community": 11,
       "norm_label": ".stockentries()"
     },
     {
@@ -2901,7 +2901,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_php_hasmany",
-      "community": 69,
+      "community": 11,
       "norm_label": "hasmany"
     },
     {
@@ -2911,7 +2911,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_historylines",
-      "community": 69,
+      "community": 11,
       "norm_label": ".historylines()"
     },
     {
@@ -3051,7 +3051,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_stockconflict",
-      "community": 69,
+      "community": 11,
       "norm_label": "stockconflict"
     },
     {
@@ -3061,7 +3061,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_stockconflict_entry",
-      "community": 7,
+      "community": 11,
       "norm_label": ".entry()"
     },
     {
@@ -3071,7 +3071,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_php_belongsto",
-      "community": 7,
+      "community": 11,
       "norm_label": "belongsto"
     },
     {
@@ -3101,7 +3101,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_stockentry",
-      "community": 69,
+      "community": 11,
       "norm_label": "stockentry.php"
     },
     {
@@ -3161,7 +3161,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_user",
-      "community": 11,
+      "community": 40,
       "norm_label": "user.php"
     },
     {
@@ -3191,7 +3191,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasroles",
-      "community": 66,
+      "community": 40,
       "norm_label": "hasroles"
     },
     {
@@ -3201,7 +3201,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "notifiable",
-      "community": 66,
+      "community": 40,
       "norm_label": "notifiable"
     },
     {
@@ -3251,7 +3251,7 @@
       "source_location": "L99",
       "_origin": "ast",
       "id": "backend_app_models_user_user_name",
-      "community": 66,
+      "community": 40,
       "norm_label": ".name()"
     },
     {
@@ -3261,7 +3261,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "attribute",
-      "community": 66,
+      "community": 40,
       "norm_label": "attribute"
     },
     {
@@ -3281,7 +3281,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_vedpolicy",
-      "community": 4,
+      "community": 70,
       "norm_label": "vedpolicy.php"
     },
     {
@@ -3291,7 +3291,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_models_vedpolicy_vedpolicy",
-      "community": 4,
+      "community": 70,
       "norm_label": "vedpolicy"
     },
     {
@@ -3391,7 +3391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_providers_activitylogserviceprovider",
-      "community": 7,
+      "community": 21,
       "norm_label": "activitylogserviceprovider.php"
     },
     {
@@ -3491,7 +3491,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_datachecks_datachecks_construct",
-      "community": 44,
+      "community": 50,
       "norm_label": ".__construct()"
     },
     {
@@ -3551,7 +3551,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter",
-      "community": 8,
+      "community": 86,
       "norm_label": "historyimporter.php"
     },
     {
@@ -3561,7 +3561,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter",
-      "community": 8,
+      "community": 86,
       "norm_label": "historyimporter"
     },
     {
@@ -3571,7 +3571,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter_import",
-      "community": 8,
+      "community": 86,
       "norm_label": ".import()"
     },
     {
@@ -3581,7 +3581,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory",
-      "community": 8,
+      "community": 86,
       "norm_label": "quarterhistory.php"
     },
     {
@@ -3601,7 +3601,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory_quarterhistory_build",
-      "community": 8,
+      "community": 127,
       "norm_label": ".build()"
     },
     {
@@ -3681,7 +3681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratecsvexporter",
-      "community": 70,
+      "community": 44,
       "norm_label": "inventoryburnratecsvexporter.php"
     },
     {
@@ -3691,7 +3691,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratecsvexporter_inventoryburnratecsvexporter",
-      "community": 70,
+      "community": 44,
       "norm_label": "inventoryburnratecsvexporter"
     },
     {
@@ -3701,7 +3701,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratecsvexporter_inventoryburnratecsvexporter_stream",
-      "community": 70,
+      "community": 44,
       "norm_label": ".stream()"
     },
     {
@@ -3741,7 +3741,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_services_reports_inventoryburnratereportbuilder_inventoryburnratereportbuilder_build",
-      "community": 44,
+      "community": 61,
       "norm_label": ".build()"
     },
     {
@@ -3751,7 +3751,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_requests_requestworkflow",
-      "community": 44,
+      "community": 61,
       "norm_label": "requestworkflow.php"
     },
     {
@@ -3961,7 +3961,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_services_requests_requestworkflow_php_model",
-      "community": 36,
+      "community": 61,
       "norm_label": "model"
     },
     {
@@ -3981,7 +3981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_stock_reservations",
-      "community": 44,
+      "community": 61,
       "norm_label": "reservations.php"
     },
     {
@@ -3991,7 +3991,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_app_services_stock_reservations_reservations",
-      "community": 44,
+      "community": 61,
       "norm_label": "reservations"
     },
     {
@@ -4001,7 +4001,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_services_stock_reservations_reservations_heldbyitem",
-      "community": 44,
+      "community": 61,
       "norm_label": ".heldbyitem()"
     },
     {
@@ -4011,7 +4011,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_services_stock_reservations_reservations_heldat",
-      "community": 44,
+      "community": 61,
       "norm_label": ".heldat()"
     },
     {
@@ -4021,7 +4021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger",
-      "community": 69,
+      "community": 11,
       "norm_label": "stockledger.php"
     },
     {
@@ -4111,7 +4111,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "carbon",
-      "community": 8,
+      "community": 127,
       "norm_label": "carbon"
     },
     {
@@ -4311,7 +4311,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_artisan",
-      "community": 11,
+      "community": 40,
       "norm_label": "artisan"
     },
     {
@@ -4371,7 +4371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_auth",
-      "community": 11,
+      "community": 40,
       "norm_label": "auth.php"
     },
     {
@@ -4391,7 +4391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_cache",
-      "community": 69,
+      "community": 11,
       "norm_label": "cache.php"
     },
     {
@@ -4431,7 +4431,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_mail",
-      "community": 11,
+      "community": 40,
       "norm_label": "mail.php"
     },
     {
@@ -4451,7 +4451,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_permission",
-      "community": 63,
+      "community": 40,
       "norm_label": "permission.php"
     },
     {
@@ -5655,13 +5655,43 @@
       "norm_label": "down()"
     },
     {
+      "label": "2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles",
+      "community": 40,
+      "norm_label": "2026_10_03_000002_replace_ert_and_incident_management_roles.php"
+    },
+    {
+      "label": "up()",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_up",
+      "community": 40,
+      "norm_label": "up()"
+    },
+    {
+      "label": "down()",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_down",
+      "community": 40,
+      "norm_label": "down()"
+    },
+    {
       "label": "CatalogSeeder.php",
       "file_type": "code",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder",
-      "community": 69,
+      "community": 7,
       "norm_label": "catalogseeder.php"
     },
     {
@@ -5671,7 +5701,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder",
-      "community": 69,
+      "community": 11,
       "norm_label": "catalogseeder"
     },
     {
@@ -5691,7 +5721,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder_run",
-      "community": 69,
+      "community": 11,
       "norm_label": ".run()"
     },
     {
@@ -5701,7 +5731,7 @@
       "source_location": "L94",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
-      "community": 69,
+      "community": 11,
       "norm_label": ".backpack()"
     },
     {
@@ -5751,7 +5781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder",
-      "community": 8,
+      "community": 63,
       "norm_label": "replenishmentdemoseeder.php"
     },
     {
@@ -5761,7 +5791,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
-      "community": 8,
+      "community": 63,
       "norm_label": "replenishmentdemoseeder"
     },
     {
@@ -5771,7 +5801,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
-      "community": 8,
+      "community": 63,
       "norm_label": ".run()"
     },
     {
@@ -5781,14 +5811,14 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder",
-      "community": 63,
+      "community": 40,
       "norm_label": "roleseeder.php"
     },
     {
       "label": "RoleSeeder",
       "file_type": "code",
       "source_file": "backend/database/seeders/RoleSeeder.php",
-      "source_location": "L18",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder_roleseeder",
       "community": 63,
@@ -5798,7 +5828,7 @@
       "label": ".run()",
       "file_type": "code",
       "source_file": "backend/database/seeders/RoleSeeder.php",
-      "source_location": "L20",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "backend_database_seeders_roleseeder_roleseeder_run",
       "community": 63,
@@ -5851,7 +5881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal",
-      "community": 23,
+      "community": 47,
       "norm_label": "changepasswordmodal.tsx"
     },
     {
@@ -5861,7 +5891,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordvalues",
-      "community": 23,
+      "community": 47,
       "norm_label": "changepasswordvalues"
     },
     {
@@ -5871,7 +5901,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_fields",
-      "community": 23,
+      "community": 47,
       "norm_label": "fields"
     },
     {
@@ -5881,7 +5911,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordmodalprops",
-      "community": 23,
+      "community": 47,
       "norm_label": "changepasswordmodalprops"
     },
     {
@@ -5891,7 +5921,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordmodal",
-      "community": 23,
+      "community": 47,
       "norm_label": "changepasswordmodal()"
     },
     {
@@ -5971,7 +6001,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox",
-      "community": 55,
+      "community": 12,
       "norm_label": "imagelightbox.tsx"
     },
     {
@@ -5981,7 +6011,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightboxprops",
-      "community": 55,
+      "community": 12,
       "norm_label": "imagelightboxprops"
     },
     {
@@ -5991,7 +6021,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_imagelightbox_imagelightbox",
-      "community": 55,
+      "community": 12,
       "norm_label": "imagelightbox()"
     },
     {
@@ -6001,7 +6031,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell",
-      "community": 64,
+      "community": 20,
       "norm_label": "notificationbell.tsx"
     },
     {
@@ -6011,7 +6041,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell_getlastseenid",
-      "community": 64,
+      "community": 20,
       "norm_label": "getlastseenid()"
     },
     {
@@ -6021,7 +6051,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell_notificationbell",
-      "community": 64,
+      "community": 20,
       "norm_label": "notificationbell()"
     },
     {
@@ -6131,7 +6161,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "backend_resources_js_components_toast_usetoast",
-      "community": 23,
+      "community": 47,
       "norm_label": "usetoast()"
     },
     {
@@ -6141,7 +6171,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_userprofilesection",
-      "community": 20,
+      "community": 55,
       "norm_label": "userprofilesection.tsx"
     },
     {
@@ -6151,7 +6181,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_userprofilesection_userprofilesectionprops",
-      "community": 20,
+      "community": 55,
       "norm_label": "userprofilesectionprops"
     },
     {
@@ -6161,7 +6191,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_components_userprofilesection_userprofilesection",
-      "community": 20,
+      "community": 55,
       "norm_label": "userprofilesection()"
     },
     {
@@ -6231,7 +6261,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_build_yup_schema",
-      "community": 25,
+      "community": 12,
       "norm_label": "build-yup-schema.ts"
     },
     {
@@ -6241,7 +6271,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_build_yup_schema_basefor",
-      "community": 25,
+      "community": 12,
       "norm_label": "basefor()"
     },
     {
@@ -6251,7 +6281,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_build_yup_schema_withrequired",
-      "community": 25,
+      "community": 12,
       "norm_label": "withrequired()"
     },
     {
@@ -6261,7 +6291,7 @@
       "source_location": "L58",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_build_yup_schema_withcustom",
-      "community": 25,
+      "community": 12,
       "norm_label": "withcustom()"
     },
     {
@@ -6271,7 +6301,7 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_build_yup_schema_buildyupschema",
-      "community": 25,
+      "community": 12,
       "norm_label": "buildyupschema()"
     },
     {
@@ -6331,7 +6361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_types",
-      "community": 25,
+      "community": 12,
       "norm_label": "types.ts"
     },
     {
@@ -6341,7 +6371,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_types_formmodallayout",
-      "community": 25,
+      "community": 12,
       "norm_label": "formmodallayout"
     },
     {
@@ -6351,7 +6381,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_types_formmodalconfig",
-      "community": 25,
+      "community": 12,
       "norm_label": "formmodalconfig"
     },
     {
@@ -6361,7 +6391,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_modal_types_formmodalprops",
-      "community": 25,
+      "community": 12,
       "norm_label": "formmodalprops"
     },
     {
@@ -6371,7 +6401,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field",
-      "community": 40,
+      "community": 12,
       "norm_label": "field.tsx"
     },
     {
@@ -6381,7 +6411,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_components_form_field_field",
-      "community": 40,
+      "community": 12,
       "norm_label": "field()"
     },
     {
@@ -6431,7 +6461,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_components_modal_confirminusemodal_inuseentry",
-      "community": 29,
+      "community": 23,
       "norm_label": "inuseentry"
     },
     {
@@ -6851,7 +6881,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield",
-      "community": 40,
+      "community": 12,
       "norm_label": "recordmodalfield.tsx"
     },
     {
@@ -6861,7 +6891,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfieldprops",
-      "community": 40,
+      "community": 12,
       "norm_label": "dynamicfieldprops"
     },
     {
@@ -6871,7 +6901,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfield",
-      "community": 40,
+      "community": 12,
       "norm_label": "dynamicfield()"
     },
     {
@@ -6881,7 +6911,7 @@
       "source_location": "L149",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_fieldcontrol",
-      "community": 40,
+      "community": 12,
       "norm_label": "fieldcontrol()"
     },
     {
@@ -6891,7 +6921,7 @@
       "source_location": "L230",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_passwordcontrol",
-      "community": 40,
+      "community": 12,
       "norm_label": "passwordcontrol()"
     },
     {
@@ -6991,7 +7021,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle",
-      "community": 33,
+      "community": 42,
       "norm_label": "viewtoggle.tsx"
     },
     {
@@ -7001,7 +7031,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggleprops",
-      "community": 33,
+      "community": 42,
       "norm_label": "viewtoggleprops"
     },
     {
@@ -7011,7 +7041,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggle",
-      "community": 33,
+      "community": 42,
       "norm_label": "viewtoggle()"
     },
     {
@@ -7131,7 +7161,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions",
-      "community": 29,
+      "community": 23,
       "norm_label": "use-record-row-actions.ts"
     },
     {
@@ -7141,7 +7171,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions_toastvariant",
-      "community": 29,
+      "community": 23,
       "norm_label": "toastvariant"
     },
     {
@@ -7151,7 +7181,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions_showtoast",
-      "community": 29,
+      "community": 23,
       "norm_label": "showtoast"
     },
     {
@@ -7161,7 +7191,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions_rowactionmutations",
-      "community": 29,
+      "community": 23,
       "norm_label": "rowactionmutations"
     },
     {
@@ -7171,7 +7201,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions_rowactionsconfig",
-      "community": 29,
+      "community": 23,
       "norm_label": "rowactionsconfig"
     },
     {
@@ -7181,7 +7211,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_hooks_use_record_row_actions_userecordrowactions",
-      "community": 29,
+      "community": 23,
       "norm_label": "userecordrowactions()"
     },
     {
@@ -7211,7 +7241,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index",
-      "community": 29,
+      "community": 23,
       "norm_label": "index.ts"
     },
     {
@@ -7261,7 +7291,7 @@
       "source_location": "L85",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_getrowid",
-      "community": 29,
+      "community": 23,
       "norm_label": "getrowid()"
     },
     {
@@ -7271,7 +7301,7 @@
       "source_location": "L93",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_buildrestoreurl",
-      "community": 29,
+      "community": 23,
       "norm_label": "buildrestoreurl()"
     },
     {
@@ -7281,7 +7311,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_buildarchiveurl",
-      "community": 29,
+      "community": 23,
       "norm_label": "buildarchiveurl()"
     },
     {
@@ -7291,7 +7321,7 @@
       "source_location": "L117",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_builddeleteurl",
-      "community": 29,
+      "community": 23,
       "norm_label": "builddeleteurl()"
     },
     {
@@ -7331,7 +7361,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_action",
-      "community": 29,
+      "community": 23,
       "norm_label": "use-async-action.ts"
     },
     {
@@ -7341,7 +7371,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_action_useasyncaction",
-      "community": 29,
+      "community": 23,
       "norm_label": "useasyncaction()"
     },
     {
@@ -7351,7 +7381,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field",
-      "community": 51,
+      "community": 5,
       "norm_label": "use-async-multi-select-field.tsx"
     },
     {
@@ -7361,7 +7391,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field_asyncmultiselectfieldprops",
-      "community": 51,
+      "community": 5,
       "norm_label": "asyncmultiselectfieldprops"
     },
     {
@@ -7371,7 +7401,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field_asyncmultiselectfield",
-      "community": 51,
+      "community": 5,
       "norm_label": "asyncmultiselectfield()"
     },
     {
@@ -7381,7 +7411,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field",
-      "community": 51,
+      "community": 5,
       "norm_label": "use-async-select-field.tsx"
     },
     {
@@ -7391,7 +7421,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field_valuesequal",
-      "community": 51,
+      "community": 5,
       "norm_label": "valuesequal()"
     },
     {
@@ -7401,7 +7431,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field_asyncselectfield",
-      "community": 51,
+      "community": 5,
       "norm_label": "asyncselectfield()"
     },
     {
@@ -7411,37 +7441,37 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_auth",
-      "community": 20,
+      "community": 55,
       "norm_label": "use-auth.ts"
     },
     {
       "label": "AuthUser",
       "file_type": "code",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_auth_authuser",
-      "community": 20,
+      "community": 55,
       "norm_label": "authuser"
     },
     {
       "label": "initialsFor()",
       "file_type": "code",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_auth_initialsfor",
-      "community": 20,
+      "community": 55,
       "norm_label": "initialsfor()"
     },
     {
       "label": "useAuth()",
       "file_type": "code",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L23",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_auth_useauth",
-      "community": 20,
+      "community": 55,
       "norm_label": "useauth()"
     },
     {
@@ -7451,7 +7481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field",
-      "community": 55,
+      "community": 12,
       "norm_label": "use-file-upload-field.tsx"
     },
     {
@@ -7461,7 +7491,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_formatbytes",
-      "community": 55,
+      "community": 12,
       "norm_label": "formatbytes()"
     },
     {
@@ -7471,7 +7501,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_isimagename",
-      "community": 55,
+      "community": 12,
       "norm_label": "isimagename()"
     },
     {
@@ -7501,7 +7531,7 @@
       "source_location": "L98",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_localthumb",
-      "community": 55,
+      "community": 12,
       "norm_label": "localthumb()"
     },
     {
@@ -7511,7 +7541,7 @@
       "source_location": "L123",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfieldprops",
-      "community": 55,
+      "community": 12,
       "norm_label": "fileuploadfieldprops"
     },
     {
@@ -7521,7 +7551,7 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_file_upload_field_fileuploadfield",
-      "community": 55,
+      "community": 12,
       "norm_label": "fileuploadfield()"
     },
     {
@@ -7671,7 +7701,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme",
-      "community": 20,
+      "community": 55,
       "norm_label": "use-theme.ts"
     },
     {
@@ -7681,7 +7711,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme_theme",
-      "community": 20,
+      "community": 55,
       "norm_label": "theme"
     },
     {
@@ -7691,7 +7721,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme_detectsystemtheme",
-      "community": 20,
+      "community": 55,
       "norm_label": "detectsystemtheme()"
     },
     {
@@ -7701,7 +7731,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme_getstoredtheme",
-      "community": 20,
+      "community": 55,
       "norm_label": "getstoredtheme()"
     },
     {
@@ -7711,7 +7741,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme_setstoredtheme",
-      "community": 20,
+      "community": 55,
       "norm_label": "setstoredtheme()"
     },
     {
@@ -7721,7 +7751,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_theme_usetheme",
-      "community": 20,
+      "community": 55,
       "norm_label": "usetheme()"
     },
     {
@@ -7731,7 +7761,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_useofflinesync",
-      "community": 1,
+      "community": 56,
       "norm_label": "useofflinesync.ts"
     },
     {
@@ -7741,7 +7771,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_useofflinesync_useofflinesync",
-      "community": 1,
+      "community": 56,
       "norm_label": "useofflinesync()"
     },
     {
@@ -7751,7 +7781,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_useonlinestatus",
-      "community": 1,
+      "community": 56,
       "norm_label": "useonlinestatus.ts"
     },
     {
@@ -7761,7 +7791,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_useonlinestatus_useonlinestatus",
-      "community": 1,
+      "community": 56,
       "norm_label": "useonlinestatus()"
     },
     {
@@ -7811,7 +7841,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_applayout_applayout",
-      "community": 73,
+      "community": 20,
       "norm_label": "applayout()"
     },
     {
@@ -7821,7 +7851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_offline_db",
-      "community": 65,
+      "community": 27,
       "norm_label": "db.ts"
     },
     {
@@ -7831,7 +7861,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_offline_db_outboxitemkind",
-      "community": 65,
+      "community": 27,
       "norm_label": "outboxitemkind"
     },
     {
@@ -7841,7 +7871,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_offline_db_outboxitemstatus",
-      "community": 65,
+      "community": 27,
       "norm_label": "outboxitemstatus"
     },
     {
@@ -7851,7 +7881,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_offline_db_outboxitem",
-      "community": 65,
+      "community": 27,
       "norm_label": "outboxitem"
     },
     {
@@ -7861,7 +7891,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_offline_db_drsofflinedb",
-      "community": 65,
+      "community": 27,
       "norm_label": "drsofflinedb"
     },
     {
@@ -7941,7 +7971,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_currentuserid",
-      "community": 27,
+      "community": 73,
       "norm_label": "currentuserid()"
     },
     {
@@ -7961,7 +7991,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_ownedby",
-      "community": 20,
+      "community": 27,
       "norm_label": "ownedby()"
     },
     {
@@ -7971,7 +8001,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_listall",
-      "community": 20,
+      "community": 27,
       "norm_label": "listall()"
     },
     {
@@ -8011,7 +8041,7 @@
       "source_location": "L90",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_setstatus",
-      "community": 27,
+      "community": 56,
       "norm_label": "setstatus()"
     },
     {
@@ -8021,7 +8051,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_markpending",
-      "community": 27,
+      "community": 56,
       "norm_label": "markpending()"
     },
     {
@@ -8031,7 +8061,7 @@
       "source_location": "L103",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_markfailed",
-      "community": 27,
+      "community": 56,
       "norm_label": "markfailed()"
     },
     {
@@ -8091,7 +8121,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages_clearofflinepages",
-      "community": 20,
+      "community": 55,
       "norm_label": "clearofflinepages()"
     },
     {
@@ -8101,7 +8131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync",
-      "community": 27,
+      "community": 56,
       "norm_label": "sync.ts"
     },
     {
@@ -8111,7 +8141,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync_stocksyncresult",
-      "community": 27,
+      "community": 56,
       "norm_label": "stocksyncresult"
     },
     {
@@ -8121,7 +8151,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync_syncoutcome",
-      "community": 27,
+      "community": 56,
       "norm_label": "syncoutcome"
     },
     {
@@ -8131,7 +8161,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync_lastsyncoutcome",
-      "community": 1,
+      "community": 56,
       "norm_label": "lastsyncoutcome()"
     },
     {
@@ -8141,7 +8171,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync_syncoutbox",
-      "community": 1,
+      "community": 56,
       "norm_label": "syncoutbox()"
     },
     {
@@ -8151,7 +8181,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "backend_resources_js_offline_sync_upload",
-      "community": 27,
+      "community": 56,
       "norm_label": "upload()"
     },
     {
@@ -8401,7 +8431,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index",
-      "community": 58,
+      "community": 51,
       "norm_label": "index.tsx"
     },
     {
@@ -8411,7 +8441,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_item",
-      "community": 58,
+      "community": 51,
       "norm_label": "item"
     },
     {
@@ -8421,7 +8451,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_line",
-      "community": 58,
+      "community": 51,
       "norm_label": "line"
     },
     {
@@ -8431,7 +8461,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_icsrequest",
-      "community": 58,
+      "community": 51,
       "norm_label": "icsrequest"
     },
     {
@@ -8441,7 +8471,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_kit",
-      "community": 58,
+      "community": 51,
       "norm_label": "kit"
     },
     {
@@ -8451,7 +8481,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_props",
-      "community": 58,
+      "community": 51,
       "norm_label": "props"
     },
     {
@@ -8461,7 +8491,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_purpose",
-      "community": 58,
+      "community": 51,
       "norm_label": "purpose"
     },
     {
@@ -8471,7 +8501,7 @@
       "source_location": "L53",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_status_style",
-      "community": 58,
+      "community": 51,
       "norm_label": "status_style"
     },
     {
@@ -8481,7 +8511,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_icsrequestsindex",
-      "community": 58,
+      "community": 51,
       "norm_label": "icsrequestsindex()"
     },
     {
@@ -8491,7 +8521,7 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_requestcard",
-      "community": 58,
+      "community": 51,
       "norm_label": "requestcard()"
     },
     {
@@ -8501,7 +8531,7 @@
       "source_location": "L276",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_borrower",
-      "community": 58,
+      "community": 51,
       "norm_label": "borrower"
     },
     {
@@ -8511,7 +8541,7 @@
       "source_location": "L279",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_queuerelease",
-      "community": 58,
+      "community": 51,
       "norm_label": "queuerelease()"
     },
     {
@@ -8521,7 +8551,7 @@
       "source_location": "L300",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_fileform",
-      "community": 58,
+      "community": 51,
       "norm_label": "fileform()"
     },
     {
@@ -8915,10 +8945,20 @@
       "norm_label": "userfields"
     },
     {
+      "label": "RolesNote()",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
+      "source_location": "L141",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_settings_users_rolesnote",
+      "community": 78,
+      "norm_label": "rolesnote()"
+    },
+    {
       "label": "SettingsUsersIndex()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
-      "source_location": "L140",
+      "source_location": "L160",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_users_settingsusersindex",
       "community": 78,
@@ -9001,7 +9041,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_stockindex",
-      "community": 1,
+      "community": 56,
       "norm_label": "stockindex()"
     },
     {
@@ -9251,7 +9291,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_tableviewtype",
-      "community": 33,
+      "community": 42,
       "norm_label": "tableviewtype"
     },
     {
@@ -9291,7 +9331,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_inuseentry",
-      "community": 29,
+      "community": 42,
       "norm_label": "inuseentry"
     },
     {
@@ -9331,7 +9371,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option",
-      "community": 51,
+      "community": 5,
       "norm_label": "fields-option.ts"
     },
     {
@@ -9341,7 +9381,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option_asyncselectfieldprops",
-      "community": 51,
+      "community": 5,
       "norm_label": "asyncselectfieldprops"
     },
     {
@@ -9351,7 +9391,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option_asyncmultiselectfieldprops",
-      "community": 51,
+      "community": 5,
       "norm_label": "asyncmultiselectfieldprops"
     },
     {
@@ -9361,7 +9401,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields",
-      "community": 25,
+      "community": 12,
       "norm_label": "fields.ts"
     },
     {
@@ -9371,7 +9411,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_modalmode",
-      "community": 25,
+      "community": 12,
       "norm_label": "modalmode"
     },
     {
@@ -9381,7 +9421,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldtype",
-      "community": 25,
+      "community": 42,
       "norm_label": "fieldtype"
     },
     {
@@ -9391,7 +9431,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldoption",
-      "community": 51,
+      "community": 5,
       "norm_label": "fieldoption"
     },
     {
@@ -9401,7 +9441,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_existingfile",
-      "community": 25,
+      "community": 12,
       "norm_label": "existingfile"
     },
     {
@@ -9411,7 +9451,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_filefieldvalue",
-      "community": 25,
+      "community": 12,
       "norm_label": "filefieldvalue"
     },
     {
@@ -9421,7 +9461,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fielddef",
-      "community": 25,
+      "community": 12,
       "norm_label": "fielddef"
     },
     {
@@ -9481,7 +9521,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client",
-      "community": 56,
+      "community": 64,
       "norm_label": "client.ts"
     },
     {
@@ -9491,7 +9531,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_getcsrftoken",
-      "community": 56,
+      "community": 64,
       "norm_label": "getcsrftoken()"
     },
     {
@@ -9501,7 +9541,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror",
-      "community": 47,
+      "community": 64,
       "norm_label": "apierror"
     },
     {
@@ -9511,7 +9551,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror_constructor",
-      "community": 47,
+      "community": 64,
       "norm_label": ".constructor()"
     },
     {
@@ -9521,7 +9561,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apienvelope",
-      "community": 56,
+      "community": 64,
       "norm_label": "apienvelope"
     },
     {
@@ -9531,7 +9571,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_readcookie",
-      "community": 56,
+      "community": 64,
       "norm_label": "readcookie()"
     },
     {
@@ -9541,7 +9581,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_attachheaders",
-      "community": 56,
+      "community": 64,
       "norm_label": "attachheaders()"
     },
     {
@@ -9551,7 +9591,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_toapierror",
-      "community": 56,
+      "community": 64,
       "norm_label": "toapierror()"
     },
     {
@@ -9561,7 +9601,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_createhttpclient",
-      "community": 56,
+      "community": 64,
       "norm_label": "createhttpclient()"
     },
     {
@@ -9571,7 +9611,7 @@
       "source_location": "L122",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_http",
-      "community": 78,
+      "community": 2,
       "norm_label": "http"
     },
     {
@@ -9751,7 +9791,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog",
-      "community": 64,
+      "community": 20,
       "norm_label": "activitylog.ts"
     },
     {
@@ -9761,7 +9801,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog_activitylogentry",
-      "community": 64,
+      "community": 20,
       "norm_label": "activitylogentry"
     },
     {
@@ -9771,7 +9811,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog_activitylogservice",
-      "community": 64,
+      "community": 20,
       "norm_label": "activitylogservice"
     },
     {
@@ -9828,7 +9868,7 @@
       "label": "APP_ROLES",
       "file_type": "code",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L15",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_roles_app_roles",
       "community": 2,
@@ -9838,7 +9878,7 @@
       "label": "AppRole",
       "file_type": "code",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_roles_approle",
       "community": 2,
@@ -9848,20 +9888,30 @@
       "label": "ROLE_LABELS",
       "file_type": "code",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L27",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_roles_role_labels",
       "community": 2,
       "norm_label": "role_labels"
     },
     {
+      "label": "ROLE_DESCRIPTIONS",
+      "file_type": "code",
+      "source_file": "backend/resources/js/api-service/modules/roles.ts",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "backend_resources_js_api_service_modules_roles_role_descriptions",
+      "community": 78,
+      "norm_label": "role_descriptions"
+    },
+    {
       "label": "normalizeRole()",
       "file_type": "code",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L37",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_roles_normalizerole",
-      "community": 2,
+      "community": 55,
       "norm_label": "normalizerole()"
     },
     {
@@ -9871,7 +9921,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_users",
-      "community": 78,
+      "community": 2,
       "norm_label": "users.ts"
     },
     {
@@ -9881,7 +9931,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_users_baseresource",
-      "community": 78,
+      "community": 2,
       "norm_label": "baseresource"
     },
     {
@@ -10041,7 +10091,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories",
-      "community": 10,
+      "community": 51,
       "norm_label": "categories.ts"
     },
     {
@@ -10051,7 +10101,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories_category_label",
-      "community": 10,
+      "community": 51,
       "norm_label": "category_label"
     },
     {
@@ -10071,7 +10121,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories_subjectof",
-      "community": 58,
+      "community": 51,
       "norm_label": "subjectof()"
     },
     {
@@ -10081,7 +10131,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror",
-      "community": 29,
+      "community": 42,
       "norm_label": "parseapierror.ts"
     },
     {
@@ -10091,7 +10141,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror_parsedapierror",
-      "community": 29,
+      "community": 42,
       "norm_label": "parsedapierror"
     },
     {
@@ -10101,7 +10151,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror_parseapierror",
-      "community": 29,
+      "community": 23,
       "norm_label": "parseapierror()"
     },
     {
@@ -10231,7 +10281,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_console",
-      "community": 11,
+      "community": 40,
       "norm_label": "console.php"
     },
     {
@@ -10431,7 +10481,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest",
-      "community": 69,
+      "community": 11,
       "norm_label": "catalogtest.php"
     },
     {
@@ -10441,7 +10491,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest",
-      "community": 69,
+      "community": 82,
       "norm_label": "catalogtest"
     },
     {
@@ -10451,7 +10501,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "refreshdatabase",
-      "community": 69,
+      "community": 11,
       "norm_label": "refreshdatabase"
     },
     {
@@ -10461,7 +10511,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_keeper",
-      "community": 69,
+      "community": 82,
       "norm_label": ".keeper()"
     },
     {
@@ -10471,7 +10521,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_an_item_saves_its_price_ved_class_space_and_kind",
-      "community": 69,
+      "community": 82,
       "norm_label": ".test_an_item_saves_its_price_ved_class_space_and_kind()"
     },
     {
@@ -10481,7 +10531,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_an_item_with_stock_entries_cannot_be_deleted",
-      "community": 69,
+      "community": 82,
       "norm_label": ".test_an_item_with_stock_entries_cannot_be_deleted()"
     },
     {
@@ -10491,7 +10541,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_a_depot_saves_free_space_without_map_coordinates",
-      "community": 69,
+      "community": 82,
       "norm_label": ".test_a_depot_saves_free_space_without_map_coordinates()"
     },
     {
@@ -10501,7 +10551,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_depot_space_is_sent_to_the_solver_only_when_every_depot_is_measured",
-      "community": 69,
+      "community": 82,
       "norm_label": ".test_depot_space_is_sent_to_the_solver_only_when_every_depot_is_measured()"
     },
     {
@@ -10511,7 +10561,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_the_admin_confirms_the_ved_policy_with_position_and_date",
-      "community": 4,
+      "community": 82,
       "norm_label": ".test_the_admin_confirms_the_ved_policy_with_position_and_date()"
     },
     {
@@ -10521,7 +10571,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest",
-      "community": 69,
+      "community": 11,
       "norm_label": "evaluationtest.php"
     },
     {
@@ -10531,7 +10581,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest",
-      "community": 69,
+      "community": 11,
       "norm_label": "evaluationtest"
     },
     {
@@ -10541,7 +10591,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
-      "community": 4,
+      "community": 11,
       "norm_label": ".test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update()"
     },
     {
@@ -10551,7 +10601,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_accessmatrix",
-      "community": 69,
+      "community": 11,
       "norm_label": ".accessmatrix()"
     },
     {
@@ -10561,7 +10611,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_test_role_based_access_for_each_role",
-      "community": 66,
+      "community": 11,
       "norm_label": ".test_role_based_access_for_each_role()"
     },
     {
@@ -10571,7 +10621,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged",
-      "community": 69,
+      "community": 11,
       "norm_label": ".test_scripted_offline_run_saves_everything_once_with_priority_first_and_conflicts_flagged()"
     },
     {
@@ -10581,7 +10631,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_test_dashboard_figures_match_the_database",
-      "community": 69,
+      "community": 11,
       "norm_label": ".test_dashboard_figures_match_the_database()"
     },
     {
@@ -10591,7 +10641,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_exampletest",
-      "community": 11,
+      "community": 46,
       "norm_label": "exampletest.php"
     },
     {
@@ -10601,7 +10651,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_tests_feature_exampletest_exampletest",
-      "community": 11,
+      "community": 46,
       "norm_label": "exampletest"
     },
     {
@@ -10611,7 +10661,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_tests_feature_exampletest_exampletest_test_guests_are_sent_to_the_login_page",
-      "community": 11,
+      "community": 46,
       "norm_label": ".test_guests_are_sent_to_the_login_page()"
     },
     {
@@ -10621,7 +10671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest",
-      "community": 69,
+      "community": 11,
       "norm_label": "icsformfieldstest.php"
     },
     {
@@ -10641,7 +10691,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_setup",
-      "community": 69,
+      "community": 11,
       "norm_label": ".setup()"
     },
     {
@@ -10791,7 +10841,7 @@
       "source_location": "L228",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_test_the_catalog_seeder_loads_the_forms_items_their_kind_and_the_backpack_kit",
-      "community": 46,
+      "community": 36,
       "norm_label": ".test_the_catalog_seeder_loads_the_forms_items_their_kind_and_the_backpack_kit()"
     },
     {
@@ -10801,7 +10851,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest",
-      "community": 69,
+      "community": 11,
       "norm_label": "icsrequestworkflowtest.php"
     },
     {
@@ -10811,7 +10861,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest",
-      "community": 36,
+      "community": 25,
       "norm_label": "icsrequestworkflowtest"
     },
     {
@@ -10821,7 +10871,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_setup",
-      "community": 69,
+      "community": 11,
       "norm_label": ".setup()"
     },
     {
@@ -10831,7 +10881,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_file",
-      "community": 36,
+      "community": 25,
       "norm_label": ".file()"
     },
     {
@@ -10841,7 +10891,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_approve",
-      "community": 36,
+      "community": 25,
       "norm_label": ".approve()"
     },
     {
@@ -10851,7 +10901,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_onhand",
-      "community": 36,
+      "community": 25,
       "norm_label": ".onhand()"
     },
     {
@@ -10861,7 +10911,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_approve_reserves_release_deducts_and_full_release_closes",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_approve_reserves_release_deducts_and_full_release_closes()"
     },
     {
@@ -10871,7 +10921,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_releasing_more_than_approved_is_refused",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_releasing_more_than_approved_is_refused()"
     },
     {
@@ -10881,7 +10931,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_two_approvals_that_together_exceed_stock_raise_a_flag",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_two_approvals_that_together_exceed_stock_raise_a_flag()"
     },
     {
@@ -10891,7 +10941,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_admin_can_approve_and_release_their_own_request",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_admin_can_approve_and_release_their_own_request()"
     },
     {
@@ -10901,7 +10951,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_requesters_cannot_approve_or_release",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_requesters_cannot_approve_or_release()"
     },
     {
@@ -10911,7 +10961,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_rejection_needs_a_reason_and_only_from_submitted",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_rejection_needs_a_reason_and_only_from_submitted()"
     },
     {
@@ -10921,7 +10971,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_cancel_frees_the_reservation_and_only_the_admin_cancels_after_approval",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_cancel_frees_the_reservation_and_only_the_admin_cancels_after_approval()"
     },
     {
@@ -10931,7 +10981,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_borrowed_equipment_follows_its_lifecycle_through_stock_entries",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_borrowed_equipment_follows_its_lifecycle_through_stock_entries()"
     },
     {
@@ -10941,7 +10991,7 @@
       "source_location": "L193",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_releases_issues_and_returns_recorded_offline_update_the_request_and_logbook_on_sync",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_releases_issues_and_returns_recorded_offline_update_the_request_and_logbook_on_sync()"
     },
     {
@@ -10951,7 +11001,7 @@
       "source_location": "L222",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_an_offline_release_the_request_no_longer_allows_is_kept_and_flagged",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_an_offline_release_the_request_no_longer_allows_is_kept_and_flagged()"
     },
     {
@@ -10971,7 +11021,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_filed_requests_feed_back_into_the_quarterly_history",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_filed_requests_feed_back_into_the_quarterly_history()"
     },
     {
@@ -10981,7 +11031,7 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_rejected_or_backdated_requests_do_not_become_demand",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_rejected_or_backdated_requests_do_not_become_demand()"
     },
     {
@@ -10991,7 +11041,7 @@
       "source_location": "L271",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_an_approval_conflict_can_be_resolved_with_a_correction",
-      "community": 36,
+      "community": 25,
       "norm_label": ".test_an_approval_conflict_can_be_resolved_with_a_correction()"
     },
     {
@@ -11001,7 +11051,7 @@
       "source_location": "L284",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_quarterly_report_exports_pdf_and_csv_with_the_fingerprint",
-      "community": 66,
+      "community": 25,
       "norm_label": ".test_quarterly_report_exports_pdf_and_csv_with_the_fingerprint()"
     },
     {
@@ -11011,7 +11061,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest",
-      "community": 69,
+      "community": 86,
       "norm_label": "replenishmenttest.php"
     },
     {
@@ -11021,7 +11071,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest",
-      "community": 66,
+      "community": 69,
       "norm_label": "replenishmenttest"
     },
     {
@@ -11031,7 +11081,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_admin",
-      "community": 66,
+      "community": 69,
       "norm_label": ".admin()"
     },
     {
@@ -11041,7 +11091,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_logistics",
-      "community": 66,
+      "community": 69,
       "norm_label": ".logistics()"
     },
     {
@@ -11051,7 +11101,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_food",
-      "community": 66,
+      "community": 69,
       "norm_label": ".food()"
     },
     {
@@ -11061,7 +11111,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_line",
-      "community": 66,
+      "community": 69,
       "norm_label": ".line()"
     },
     {
@@ -11071,7 +11121,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_fakesolver",
-      "community": 66,
+      "community": 69,
       "norm_label": ".fakesolver()"
     },
     {
@@ -11081,7 +11131,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_quarter_history_fills_empty_quarters_with_zero_oldest_first",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_quarter_history_fills_empty_quarters_with_zero_oldest_first()"
     },
     {
@@ -11091,7 +11141,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_only_the_admin_can_run_the_solver_and_requesters_cannot_encode",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_only_the_admin_can_run_the_solver_and_requesters_cannot_encode()"
     },
     {
@@ -11101,7 +11151,7 @@
       "source_location": "L87",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_run_sends_history_stock_less_reserved_and_ved_weight_then_completes",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_run_sends_history_stock_less_reserved_and_ved_weight_then_completes()"
     },
     {
@@ -11111,7 +11161,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_run_stores_the_budget_curve_and_next_step",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_run_stores_the_budget_curve_and_next_step()"
     },
     {
@@ -11121,7 +11171,7 @@
       "source_location": "L126",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_admin_can_choose_the_scenario_model",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_admin_can_choose_the_scenario_model()"
     },
     {
@@ -11131,7 +11181,7 @@
       "source_location": "L135",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_backtest_sends_history_budgets_and_event_quarters_and_stores_the_result",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_backtest_sends_history_budgets_and_event_quarters_and_stores_the_result()"
     },
     {
@@ -11141,7 +11191,7 @@
       "source_location": "L153",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_backtest_needs_five_encoded_quarters",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_backtest_needs_five_encoded_quarters()"
     },
     {
@@ -11151,7 +11201,7 @@
       "source_location": "L161",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_a_solver_outage_fails_the_run_instead_of_hanging",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_a_solver_outage_fails_the_run_instead_of_hanging()"
     },
     {
@@ -11161,7 +11211,7 @@
       "source_location": "L169",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_dashboard_page_shows_each_role_only_its_own_actions",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_dashboard_page_shows_each_role_only_its_own_actions()"
     },
     {
@@ -11171,7 +11221,7 @@
       "source_location": "L179",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_an_unexplained_spike_blocks_the_run_until_logistics_resolves_it",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_an_unexplained_spike_blocks_the_run_until_logistics_resolves_it()"
     },
     {
@@ -11181,7 +11231,7 @@
       "source_location": "L197",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_idle_quarters_do_not_make_normal_use_look_like_a_spike",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_idle_quarters_do_not_make_normal_use_look_like_a_spike()"
     },
     {
@@ -11191,7 +11241,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_a_tagged_spike_is_not_flagged",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_a_tagged_spike_is_not_flagged()"
     },
     {
@@ -11201,7 +11251,7 @@
       "source_location": "L220",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_admin_approves_one_run_per_quarter_and_rejection_needs_a_comment",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_admin_approves_one_run_per_quarter_and_rejection_needs_a_comment()"
     },
     {
@@ -11211,7 +11261,7 @@
       "source_location": "L235",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_logistics_imports_the_encoding_template_all_or_nothing",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_logistics_imports_the_encoding_template_all_or_nothing()"
     },
     {
@@ -11221,7 +11271,7 @@
       "source_location": "L254",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_the_same_history_file_cannot_be_imported_twice",
-      "community": 8,
+      "community": 69,
       "norm_label": ".test_the_same_history_file_cannot_be_imported_twice()"
     },
     {
@@ -11231,7 +11281,7 @@
       "source_location": "L266",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_a_job_killed_by_the_queue_marks_its_run_failed",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_a_job_killed_by_the_queue_marks_its_run_failed()"
     },
     {
@@ -11241,7 +11291,7 @@
       "source_location": "L275",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_the_shipped_template_imports_cleanly",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_the_shipped_template_imports_cleanly()"
     },
     {
@@ -11251,14 +11301,14 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest",
-      "community": 11,
+      "community": 40,
       "norm_label": "rolegatingtest.php"
     },
     {
       "label": "RoleGatingTest",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L17",
+      "source_location": "L20",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "community": 66,
@@ -11268,7 +11318,7 @@
       "label": ".test_every_role_can_open_the_read_only_pages()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L23",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_every_role_can_open_the_read_only_pages",
       "community": 66,
@@ -11278,7 +11328,7 @@
       "label": ".readOnlyWebRoutes()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L31",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_readonlywebroutes",
       "community": 66,
@@ -11288,7 +11338,7 @@
       "label": ".test_home_redirects_to_the_replenishment_dashboard()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L43",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_home_redirects_to_the_replenishment_dashboard",
       "community": 66,
@@ -11298,7 +11348,7 @@
       "label": ".test_settings_are_admin_only()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L48",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_settings_are_admin_only",
       "community": 66,
@@ -11308,7 +11358,7 @@
       "label": ".adminOnlyWebRoutes()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L56",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_adminonlywebroutes",
       "community": 66,
@@ -11318,7 +11368,7 @@
       "label": ".test_admin_passes_logistics_only_routes()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L68",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_admin_passes_logistics_only_routes",
       "community": 66,
@@ -11328,7 +11378,7 @@
       "label": ".test_only_the_admin_runs_the_solver()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L77",
+      "source_location": "L80",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_the_admin_runs_the_solver",
       "community": 66,
@@ -11338,7 +11388,7 @@
       "label": ".test_catalog_is_kept_by_admin_and_training_and_the_admin()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L84",
+      "source_location": "L87",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_catalog_is_kept_by_admin_and_training_and_the_admin",
       "community": 66,
@@ -11348,7 +11398,7 @@
       "label": ".catalogWriters()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L92",
+      "source_location": "L95",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_catalogwriters",
       "community": 66,
@@ -11358,7 +11408,7 @@
       "label": ".test_the_admin_gets_every_frontend_permission_and_role()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L102",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_admin_gets_every_frontend_permission_and_role",
       "community": 66,
@@ -11368,7 +11418,7 @@
       "label": ".test_non_admin_division_staff_cannot_reach_settings()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L113",
+      "source_location": "L117",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_non_admin_division_staff_cannot_reach_settings",
       "community": 66,
@@ -11378,7 +11428,7 @@
       "label": ".test_creating_a_user_automatically_syncs_its_spatie_role()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L125",
+      "source_location": "L129",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_creating_a_user_automatically_syncs_its_spatie_role",
       "community": 66,
@@ -11388,11 +11438,91 @@
       "label": ".test_changing_a_users_role_resyncs_its_spatie_role()",
       "file_type": "code",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L132",
+      "source_location": "L136",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_changing_a_users_role_resyncs_its_spatie_role",
       "community": 66,
       "norm_label": ".test_changing_a_users_role_resyncs_its_spatie_role()"
+    },
+    {
+      "label": ".test_administrative_is_read_only()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L148",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_administrative_is_read_only",
+      "community": 66,
+      "norm_label": ".test_administrative_is_read_only()"
+    },
+    {
+      "label": ".test_only_logistics_and_operations_file_requests()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L166",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_logistics_and_operations_file_requests",
+      "community": 66,
+      "norm_label": ".test_only_logistics_and_operations_file_requests()"
+    },
+    {
+      "label": ".test_the_removed_roles_cannot_be_saved_through_the_settings_user_api()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L176",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_removed_roles_cannot_be_saved_through_the_settings_user_api",
+      "community": 66,
+      "norm_label": ".test_the_removed_roles_cannot_be_saved_through_the_settings_user_api()"
+    },
+    {
+      "label": ".removedRoles()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L192",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_removedroles",
+      "community": 66,
+      "norm_label": ".removedroles()"
+    },
+    {
+      "label": ".test_the_removed_roles_are_not_seeded()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L197",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_removed_roles_are_not_seeded",
+      "community": 66,
+      "norm_label": ".test_the_removed_roles_are_not_seeded()"
+    },
+    {
+      "label": ".test_the_migration_moves_ert_and_incident_management_users_to_operations()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_moves_ert_and_incident_management_users_to_operations",
+      "community": 66,
+      "norm_label": ".test_the_migration_moves_ert_and_incident_management_users_to_operations()"
+    },
+    {
+      "label": ".test_the_migration_is_safe_on_an_empty_database_and_when_run_twice()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L225",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_is_safe_on_an_empty_database_and_when_run_twice",
+      "community": 66,
+      "norm_label": ".test_the_migration_is_safe_on_an_empty_database_and_when_run_twice()"
+    },
+    {
+      "label": ".runRoleMigration()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L238",
+      "_origin": "ast",
+      "id": "backend_tests_feature_rolegatingtest_rolegatingtest_runrolemigration",
+      "community": 66,
+      "norm_label": ".runrolemigration()"
     },
     {
       "label": "StockLedgerTest.php",
@@ -11401,7 +11531,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest",
-      "community": 69,
+      "community": 11,
       "norm_label": "stockledgertest.php"
     },
     {
@@ -11421,7 +11551,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_setup",
-      "community": 69,
+      "community": 11,
       "norm_label": ".setup()"
     },
     {
@@ -11611,7 +11741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_useraccountlifecycletest",
-      "community": 11,
+      "community": 40,
       "norm_label": "useraccountlifecycletest.php"
     },
     {
@@ -11701,7 +11831,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_testcase",
-      "community": 11,
+      "community": 46,
       "norm_label": "testcase.php"
     },
     {
@@ -11711,7 +11841,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_tests_testcase_testcase",
-      "community": 11,
+      "community": 46,
       "norm_label": "testcase"
     },
     {
@@ -11721,7 +11851,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basetestcase",
-      "community": 11,
+      "community": 46,
       "norm_label": "basetestcase"
     },
     {
@@ -11731,7 +11861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest",
-      "community": 11,
+      "community": 46,
       "norm_label": "ensureuserisactivetest.php"
     },
     {
@@ -11741,7 +11871,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest",
-      "community": 66,
+      "community": 46,
       "norm_label": "ensureuserisactivetest"
     },
     {
@@ -11751,7 +11881,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_allows_an_active_user_through",
-      "community": 66,
+      "community": 46,
       "norm_label": ".test_allows_an_active_user_through()"
     },
     {
@@ -11761,7 +11891,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_redirects_a_suspended_user_to_login_on_a_web_request",
-      "community": 66,
+      "community": 46,
       "norm_label": ".test_redirects_a_suspended_user_to_login_on_a_web_request()"
     },
     {
@@ -11771,7 +11901,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_returns_403_for_a_suspended_user_on_an_api_request",
-      "community": 66,
+      "community": 46,
       "norm_label": ".test_returns_403_for_a_suspended_user_on_an_api_request()"
     },
     {
@@ -11781,7 +11911,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_tests_unit_ensureuserisactivetest_ensureuserisactivetest_test_passes_through_a_guest_request_untouched",
-      "community": 66,
+      "community": 46,
       "norm_label": ".test_passes_through_a_guest_request_untouched()"
     },
     {
@@ -11791,7 +11921,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_unit_exampletest",
-      "community": 11,
+      "community": 46,
       "norm_label": "exampletest.php"
     },
     {
@@ -11801,7 +11931,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_tests_unit_exampletest_exampletest",
-      "community": 11,
+      "community": 46,
       "norm_label": "exampletest"
     },
     {
@@ -11811,7 +11941,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_tests_unit_exampletest_exampletest_test_that_true_is_true",
-      "community": 11,
+      "community": 46,
       "norm_label": ".test_that_true_is_true()"
     },
     {
@@ -11869,7 +11999,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "solver_service_app_api_replenishment_solve",
-      "community": 14,
+      "community": 17,
       "norm_label": "solve()"
     },
     {
@@ -11899,7 +12029,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "solver_service_app_api_replenishment_rationale_11",
-      "community": 14,
+      "community": 17,
       "norm_label": "called by app\\\\jobs\\\\runreplenishmentjob when the head of office (admin)     ru"
     },
     {
@@ -12129,7 +12259,7 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_line",
-      "community": 6,
+      "community": 14,
       "norm_label": "_line()"
     },
     {
@@ -12801,6 +12931,86 @@
       "id": "solver_service_tests_test_review_fixes_rationale_1",
       "community": 0,
       "norm_label": "paper revision + review fixes: space after stock, short-history covering level,"
+    },
+    {
+      "label": "test_table7.py",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7",
+      "community": 77,
+      "norm_label": "test_table7.py"
+    },
+    {
+      "label": "items()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_items",
+      "community": 77,
+      "norm_label": "items()"
+    },
+    {
+      "label": "expected_shortage()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_expected_shortage",
+      "community": 77,
+      "norm_label": "expected_shortage()"
+    },
+    {
+      "label": "test_averages_match_table_5()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_test_averages_match_table_5",
+      "community": 77,
+      "norm_label": "test_averages_match_table_5()"
+    },
+    {
+      "label": "test_per_item_multipliers_in_the_table_note()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L50",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_test_per_item_multipliers_in_the_table_note",
+      "community": 77,
+      "norm_label": "test_per_item_multipliers_in_the_table_note()"
+    },
+    {
+      "label": "test_table_7_values_and_the_sentences_under_it()",
+      "file_type": "code",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L54",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
+      "community": 77,
+      "norm_label": "test_table_7_values_and_the_sentences_under_it()"
+    },
+    {
+      "label": "Table 7 (Chapter III, Worked Example): in-sample expected shortage of the three",
+      "file_type": "rationale",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_rationale_1",
+      "community": 77,
+      "norm_label": "table 7 (chapter iii, worked example): in-sample expected shortage of the three"
+    },
+    {
+      "label": "Weighted shortage in quarters of average use, summed over items, averaged over t",
+      "file_type": "rationale",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "solver_service_tests_test_table7_rationale_37",
+      "community": 77,
+      "norm_label": "weighted shortage in quarters of average use, summed over items, averaged over t"
     },
     {
       "label": "CLAUDE.md",
@@ -13843,14 +14053,14 @@
       "norm_label": "readme.md"
     },
     {
-      "label": "What each account can see and do (2026-09-30)",
+      "label": "What each account can see and do (2026-10-03)",
       "file_type": "document",
       "source_file": "backend/docs/role-access/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "backend_docs_role_access_readme_what_each_account_can_see_and_do_2026_09_30",
+      "id": "backend_docs_role_access_readme_what_each_account_can_see_and_do_2026_10_03",
       "community": 72,
-      "norm_label": "what each account can see and do (2026-09-30)"
+      "norm_label": "what each account can see and do (2026-10-03)"
     },
     {
       "label": "system-spec.md",
@@ -13916,7 +14126,7 @@
       "label": "2.1 Permission matrix [Proposed: default rules, confirm with the office]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L70",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "backend_docs_system_spec_2_1_permission_matrix_proposed_default_rules_confirm_with_the_office",
       "community": 52,
@@ -13926,7 +14136,7 @@
       "label": "3. Domain model",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L100",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "backend_docs_system_spec_3_domain_model",
       "community": 52,
@@ -13936,7 +14146,7 @@
       "label": "3.1 Core entities [Paper, with fields from Table 3 and the text]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L102",
+      "source_location": "L105",
       "_origin": "ast",
       "id": "backend_docs_system_spec_3_1_core_entities_paper_with_fields_from_table_3_and_the_text",
       "community": 52,
@@ -13946,7 +14156,7 @@
       "label": "3.2 Request statuses [Proposed; the paper says \"every request status\" without listing them]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L144",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "backend_docs_system_spec_3_2_request_statuses_proposed_the_paper_says_every_request_status_without_listing_them",
       "community": 52,
@@ -13956,7 +14166,7 @@
       "label": "3.3 Borrowed-item lifecycle [Paper; transitions Proposed]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L172",
+      "source_location": "L175",
       "_origin": "ast",
       "id": "backend_docs_system_spec_3_3_borrowed_item_lifecycle_paper_transitions_proposed",
       "community": 52,
@@ -13966,7 +14176,7 @@
       "label": "4. Replenishment model (solver service) [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L182",
+      "source_location": "L185",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "community": 52,
@@ -13976,7 +14186,7 @@
       "label": "4.1 Inputs (IPO \"Input\")",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L184",
+      "source_location": "L187",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_1_inputs_ipo_input",
       "community": 52,
@@ -13986,7 +14196,7 @@
       "label": "4.2 Pre-solve data checks (they must pass, or be confirmed, before any solve)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L188",
+      "source_location": "L191",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_2_pre_solve_data_checks_they_must_pass_or_be_confirmed_before_any_solve",
       "community": 52,
@@ -13996,7 +14206,7 @@
       "label": "4.3 Parameters",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L198",
+      "source_location": "L201",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_3_parameters",
       "community": 52,
@@ -14006,7 +14216,7 @@
       "label": "4.4 Stage 1: per-item multiplier (MILP)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L217",
+      "source_location": "L220",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_4_stage_1_per_item_multiplier_milp",
       "community": 52,
@@ -14016,7 +14226,7 @@
       "label": "4.5 Stage 2: scenario model (sample average approximation, MILP)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L229",
+      "source_location": "L232",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_5_stage_2_scenario_model_sample_average_approximation_milp",
       "community": 52,
@@ -14026,7 +14236,7 @@
       "label": "4.6 Explanation layer (read from the solution, never written by hand)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L252",
+      "source_location": "L255",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_6_explanation_layer_read_from_the_solution_never_written_by_hand",
       "community": 52,
@@ -14036,7 +14246,7 @@
       "label": "4.7 Solver service contract [Proposed shape]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L266",
+      "source_location": "L269",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_7_solver_service_contract_proposed_shape",
       "community": 52,
@@ -14046,7 +14256,7 @@
       "label": "4.8 Backtest (rolling origin) and metrics",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L274",
+      "source_location": "L277",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_8_backtest_rolling_origin_and_metrics",
       "community": 52,
@@ -14056,7 +14266,7 @@
       "label": "4.9 Worked example (use as a solver test fixture)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L299",
+      "source_location": "L302",
       "_origin": "ast",
       "id": "backend_docs_system_spec_4_9_worked_example_use_as_a_solver_test_fixture",
       "community": 52,
@@ -14066,7 +14276,7 @@
       "label": "5. Stock records: offline, sync, integrity [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L320",
+      "source_location": "L323",
       "_origin": "ast",
       "id": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
       "community": 52,
@@ -14076,7 +14286,7 @@
       "label": "5.1 Client (PWA, offline-first)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L322",
+      "source_location": "L325",
       "_origin": "ast",
       "id": "backend_docs_system_spec_5_1_client_pwa_offline_first",
       "community": 52,
@@ -14086,7 +14296,7 @@
       "label": "5.2 Server acceptance pipeline (Figure 4)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L331",
+      "source_location": "L334",
       "_origin": "ast",
       "id": "backend_docs_system_spec_5_2_server_acceptance_pipeline_figure_4",
       "community": 52,
@@ -14096,7 +14306,7 @@
       "label": "5.3 Conflicts",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L342",
+      "source_location": "L345",
       "_origin": "ast",
       "id": "backend_docs_system_spec_5_3_conflicts",
       "community": 52,
@@ -14106,7 +14316,7 @@
       "label": "5.4 \"Check records\" command",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L352",
+      "source_location": "L355",
       "_origin": "ast",
       "id": "backend_docs_system_spec_5_4_check_records_command",
       "community": 52,
@@ -14116,7 +14326,7 @@
       "label": "6. Request module (ICS 213-RR) [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L361",
+      "source_location": "L364",
       "_origin": "ast",
       "id": "backend_docs_system_spec_6_request_module_ics_213_rr_paper",
       "community": 52,
@@ -14126,7 +14336,7 @@
       "label": "7. Dashboard and reports [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L371",
+      "source_location": "L374",
       "_origin": "ast",
       "id": "backend_docs_system_spec_7_dashboard_and_reports_paper",
       "community": 52,
@@ -14136,7 +14346,7 @@
       "label": "8. Architecture and stack [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L389",
+      "source_location": "L392",
       "_origin": "ast",
       "id": "backend_docs_system_spec_8_architecture_and_stack_paper",
       "community": 52,
@@ -14146,7 +14356,7 @@
       "label": "Typical quarterly cycle",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L399",
+      "source_location": "L402",
       "_origin": "ast",
       "id": "backend_docs_system_spec_typical_quarterly_cycle",
       "community": 52,
@@ -14156,7 +14366,7 @@
       "label": "Hardware (Table 9)",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L409",
+      "source_location": "L412",
       "_origin": "ast",
       "id": "backend_docs_system_spec_hardware_table_9",
       "community": 52,
@@ -14166,7 +14376,7 @@
       "label": "9. Acceptance criteria (what the evaluation will test) [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L416",
+      "source_location": "L419",
       "_origin": "ast",
       "id": "backend_docs_system_spec_9_acceptance_criteria_what_the_evaluation_will_test_paper",
       "community": 52,
@@ -14176,7 +14386,7 @@
       "label": "10. Build order (Sprint plan, Table 8; 2-week sprints) [Paper]",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L433",
+      "source_location": "L436",
       "_origin": "ast",
       "id": "backend_docs_system_spec_10_build_order_sprint_plan_table_8_2_week_sprints_paper",
       "community": 52,
@@ -14186,7 +14396,7 @@
       "label": "11. Open questions to settle with CDRRMO before building",
       "file_type": "document",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L452",
+      "source_location": "L455",
       "_origin": "ast",
       "id": "backend_docs_system_spec_11_open_questions_to_settle_with_cdrrmo_before_building",
       "community": 52,
@@ -14250,7 +14460,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 57,
+      "community": 65,
       "norm_label": "inertia",
       "id": "inertia"
     },
@@ -14328,7 +14538,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 0,
+      "community": 6,
       "norm_label": "pulp",
       "id": "pulp"
     },
@@ -25830,6 +26040,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles",
+      "target": "backend_app_models_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/DatabaseSeeder.php",
       "source_location": "L5",
       "weight": 1.0,
@@ -26274,7 +26495,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L70",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_admin_passes_logistics_only_routes",
       "target": "backend_app_models_user_user"
@@ -26285,7 +26506,18 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L87",
+      "source_location": "L151",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_administrative_is_read_only",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_catalog_is_kept_by_admin_and_training_and_the_admin",
       "target": "backend_app_models_user_user"
@@ -26296,7 +26528,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L134",
+      "source_location": "L138",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_changing_a_users_role_resyncs_its_spatie_role",
       "target": "backend_app_models_user_user"
@@ -26307,7 +26539,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L127",
+      "source_location": "L131",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_creating_a_user_automatically_syncs_its_spatie_role",
       "target": "backend_app_models_user_user"
@@ -26318,7 +26550,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L26",
+      "source_location": "L29",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_every_role_can_open_the_read_only_pages",
       "target": "backend_app_models_user_user"
@@ -26329,7 +26561,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L45",
+      "source_location": "L48",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_home_redirects_to_the_replenishment_dashboard",
       "target": "backend_app_models_user_user"
@@ -26340,7 +26572,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L115",
+      "source_location": "L119",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_non_admin_division_staff_cannot_reach_settings",
       "target": "backend_app_models_user_user"
@@ -26351,7 +26583,18 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L79",
+      "source_location": "L169",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_logistics_and_operations_file_requests",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L82",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_the_admin_runs_the_solver",
       "target": "backend_app_models_user_user"
@@ -26362,7 +26605,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L51",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_settings_are_admin_only",
       "target": "backend_app_models_user_user"
@@ -26373,9 +26616,42 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L105",
+      "source_location": "L109",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_admin_gets_every_frontend_permission_and_role",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L229",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_is_safe_on_an_empty_database_and_when_run_twice",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L210",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_moves_ert_and_incident_management_users_to_operations",
+      "target": "backend_app_models_user_user"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L180",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_removed_roles_cannot_be_saved_through_the_settings_user_api",
       "target": "backend_app_models_user_user"
     },
     {
@@ -28642,6 +28918,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest",
+      "target": "backend_config_mail",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/UserAccountLifecycleTest.php",
       "source_location": "L8",
       "weight": 1.0,
@@ -29561,6 +29848,26 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles",
+      "target": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_down",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles",
+      "target": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_up",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
       "source_location": "L23",
       "weight": 1.0,
@@ -29677,7 +29984,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/RoleSeeder.php",
-      "source_location": "L18",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "backend_database_seeders_roleseeder_roleseeder",
       "target": "seeder",
@@ -29780,7 +30087,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/RoleSeeder.php",
-      "source_location": "L18",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "backend_database_seeders_roleseeder",
       "target": "backend_database_seeders_roleseeder_roleseeder",
@@ -29801,7 +30108,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/RoleSeeder.php",
-      "source_location": "L20",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_database_seeders_roleseeder_roleseeder",
       "target": "backend_database_seeders_roleseeder_roleseeder_run",
@@ -30735,7 +31042,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
-      "source_location": "L145",
+      "source_location": "L165",
       "weight": 1.0,
       "source": "backend_resources_js_pages_settings_users_settingsusersindex",
       "target": "backend_resources_js_components_toast_usetoast"
@@ -34585,7 +34892,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
-      "source_location": "L149",
+      "source_location": "L169",
       "weight": 1.0,
       "source": "backend_resources_js_pages_settings_users_settingsusersindex",
       "target": "backend_resources_js_components_table_utils_index_tablelistinvalidatekeys"
@@ -34762,10 +35069,43 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Hooks/use-auth.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_hooks_use_auth",
+      "target": "backend_resources_js_api_service_modules_roles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Hooks/use-auth.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_hooks_use_auth",
+      "target": "backend_resources_js_api_service_modules_roles_normalizerole",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Hooks/use-auth.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_hooks_use_auth",
+      "target": "backend_resources_js_api_service_modules_roles_role_labels",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "source": "backend_resources_js_hooks_use_auth",
       "target": "backend_resources_js_hooks_use_auth_authuser",
@@ -34775,7 +35115,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "backend_resources_js_hooks_use_auth",
       "target": "backend_resources_js_hooks_use_auth_initialsfor",
@@ -34785,7 +35125,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L23",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "backend_resources_js_hooks_use_auth",
       "target": "backend_resources_js_hooks_use_auth_useauth",
@@ -34796,11 +35136,22 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Hooks/use-auth.ts",
-      "source_location": "L32",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "backend_resources_js_hooks_use_auth_useauth",
       "target": "backend_resources_js_hooks_use_auth_initialsfor",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/resources/js/Hooks/use-auth.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "backend_resources_js_hooks_use_auth_useauth",
+      "target": "backend_resources_js_api_service_modules_roles_normalizerole"
     },
     {
       "relation": "contains",
@@ -38159,6 +38510,17 @@
       "source_location": "L12",
       "weight": 1.0,
       "source": "backend_resources_js_pages_settings_users",
+      "target": "backend_resources_js_api_service_modules_roles_role_descriptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_settings_users",
       "target": "backend_resources_js_api_service_modules_roles_role_labels",
       "confidence_score": 1.0
     },
@@ -38218,7 +38580,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
-      "source_location": "L140",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_settings_users",
+      "target": "backend_resources_js_pages_settings_users_rolesnote",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
+      "source_location": "L160",
       "weight": 1.0,
       "source": "backend_resources_js_pages_settings_users",
       "target": "backend_resources_js_pages_settings_users_settingsusersindex",
@@ -38272,7 +38644,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Settings/Users.tsx",
-      "source_location": "L162",
+      "source_location": "L182",
       "weight": 1.0,
       "source": "backend_resources_js_pages_settings_users_settingsusersindex",
       "target": "backend_resources_js_pages_settings_users_makeusercard",
@@ -40045,7 +40417,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L15",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_roles",
       "target": "backend_resources_js_api_service_modules_roles_app_roles",
@@ -40055,7 +40427,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_roles",
       "target": "backend_resources_js_api_service_modules_roles_approle",
@@ -40065,7 +40437,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L37",
+      "source_location": "L50",
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_roles",
       "target": "backend_resources_js_api_service_modules_roles_normalizerole",
@@ -40075,7 +40447,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/api-service/modules/roles.ts",
-      "source_location": "L27",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_roles",
+      "target": "backend_resources_js_api_service_modules_roles_role_descriptions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/roles.ts",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_roles",
       "target": "backend_resources_js_api_service_modules_roles_role_labels",
@@ -40723,7 +41105,7 @@
       "relation": "mixes_in",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L19",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "refreshdatabase",
@@ -42450,7 +42832,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest",
@@ -42461,7 +42843,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L9",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest",
       "target": "backend_tests_testcase_testcase",
@@ -42471,7 +42853,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L56",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_adminonlywebroutes",
@@ -42481,7 +42863,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L92",
+      "source_location": "L95",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_catalogwriters",
@@ -42491,7 +42873,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L31",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_readonlywebroutes",
@@ -42501,7 +42883,27 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L68",
+      "source_location": "L192",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_removedroles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L238",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_runrolemigration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L71",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_admin_passes_logistics_only_routes",
@@ -42511,7 +42913,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L84",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_administrative_is_read_only",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L87",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_catalog_is_kept_by_admin_and_training_and_the_admin",
@@ -42521,7 +42933,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L132",
+      "source_location": "L136",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_changing_a_users_role_resyncs_its_spatie_role",
@@ -42531,7 +42943,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L125",
+      "source_location": "L129",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_creating_a_user_automatically_syncs_its_spatie_role",
@@ -42541,7 +42953,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L23",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_every_role_can_open_the_read_only_pages",
@@ -42551,7 +42963,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L43",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_home_redirects_to_the_replenishment_dashboard",
@@ -42561,7 +42973,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L113",
+      "source_location": "L117",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_non_admin_division_staff_cannot_reach_settings",
@@ -42571,7 +42983,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L77",
+      "source_location": "L166",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_logistics_and_operations_file_requests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_only_the_admin_runs_the_solver",
@@ -42581,7 +43003,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L48",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_settings_are_admin_only",
@@ -42591,20 +43013,82 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L102",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_admin_gets_every_frontend_permission_and_role",
       "confidence_score": 1.0
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L225",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_is_safe_on_an_empty_database_and_when_run_twice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_moves_ert_and_incident_management_users_to_operations",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L197",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_removed_roles_are_not_seeded",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_removed_roles_cannot_be_saved_through_the_settings_user_api",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/RoleGatingTest.php",
-      "source_location": "L17",
+      "source_location": "L20",
       "weight": 1.0,
       "source": "backend_tests_feature_rolegatingtest_rolegatingtest",
       "target": "backend_tests_testcase_testcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L215",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_moves_ert_and_incident_management_users_to_operations",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_runrolemigration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/RoleGatingTest.php",
+      "source_location": "L227",
+      "weight": 1.0,
+      "source": "backend_tests_feature_rolegatingtest_rolegatingtest_test_the_migration_is_safe_on_an_empty_database_and_when_run_twice",
+      "target": "backend_tests_feature_rolegatingtest_rolegatingtest_runrolemigration",
       "confidence_score": 1.0
     },
     {
@@ -43958,6 +44442,17 @@
       "target": "solver_service_app_models_replenishment_replenishmentitem"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_items",
+      "target": "solver_service_app_models_replenishment_replenishmentitem"
+    },
+    {
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/models/replenishment.py",
@@ -44283,6 +44778,17 @@
       "target": "solver_service_app_models_replenishment_replenishmentrequest"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
+      "target": "solver_service_app_models_replenishment_replenishmentrequest"
+    },
+    {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/models/replenishment.py",
@@ -44568,6 +45074,17 @@
     {
       "relation": "calls",
       "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_per_item_multipliers_in_the_table_note",
+      "target": "solver_service_app_solvers_replenishment_item_target"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "solver-service/app/solvers/replenishment.py",
       "source_location": "L101",
@@ -44649,6 +45166,17 @@
       "source_location": "L160",
       "weight": 1.0,
       "source": "solver_service_tests_test_replenishment_test_flat_rule_same_percentage_cut_matches_worked_example",
+      "target": "solver_service_app_solvers_replenishment_flat_rule_orders"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
       "target": "solver_service_app_solvers_replenishment_flat_rule_orders"
     },
     {
@@ -45577,6 +46105,120 @@
       "source": "solver_service_tests_test_review_fixes_test_no_solution_reports_none_and_every_planned_item",
       "target": "solver_service_tests_test_review_fixes_no_solution",
       "confidence_score": 0.5
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7",
+      "target": "solver_service_tests_test_table7_expected_shortage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7",
+      "target": "solver_service_tests_test_table7_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7",
+      "target": "solver_service_tests_test_table7_test_averages_match_table_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7",
+      "target": "solver_service_tests_test_table7_test_per_item_multipliers_in_the_table_note",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7",
+      "target": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_rationale_1",
+      "target": "solver_service_tests_test_table7",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_expected_shortage",
+      "target": "solver_service_tests_test_table7_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_per_item_multipliers_in_the_table_note",
+      "target": "solver_service_tests_test_table7_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
+      "target": "solver_service_tests_test_table7_items",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L37",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_rationale_37",
+      "target": "solver_service_tests_test_table7_expected_shortage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "solver-service/tests/test_table7.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "solver_service_tests_test_table7_test_table_7_values_and_the_sentences_under_it",
+      "target": "solver_service_tests_test_table7_expected_shortage",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -46535,7 +47177,7 @@
       "source_location": "L1",
       "weight": 1.0,
       "source": "backend_docs_role_access_readme",
-      "target": "backend_docs_role_access_readme_what_each_account_can_see_and_do_2026_09_30",
+      "target": "backend_docs_role_access_readme_what_each_account_can_see_and_do_2026_10_03",
       "confidence_score": 1.0
     },
     {
@@ -46552,7 +47194,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L433",
+      "source_location": "L436",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_10_build_order_sprint_plan_table_8_2_week_sprints_paper",
@@ -46562,7 +47204,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L452",
+      "source_location": "L455",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_11_open_questions_to_settle_with_cdrrmo_before_building",
@@ -46592,7 +47234,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L100",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_3_domain_model",
@@ -46602,7 +47244,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L182",
+      "source_location": "L185",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
@@ -46612,7 +47254,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L320",
+      "source_location": "L323",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
@@ -46622,7 +47264,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L361",
+      "source_location": "L364",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_6_request_module_ics_213_rr_paper",
@@ -46632,7 +47274,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L371",
+      "source_location": "L374",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_7_dashboard_and_reports_paper",
@@ -46642,7 +47284,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L389",
+      "source_location": "L392",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_8_architecture_and_stack_paper",
@@ -46652,7 +47294,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L416",
+      "source_location": "L419",
       "weight": 1.0,
       "source": "backend_docs_system_spec_disasterresource_system_specification_from_capstone_chapters_i_iii",
       "target": "backend_docs_system_spec_9_acceptance_criteria_what_the_evaluation_will_test_paper",
@@ -46682,7 +47324,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L70",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "backend_docs_system_spec_2_users_and_roles_paper",
       "target": "backend_docs_system_spec_2_1_permission_matrix_proposed_default_rules_confirm_with_the_office",
@@ -46692,7 +47334,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L102",
+      "source_location": "L105",
       "weight": 1.0,
       "source": "backend_docs_system_spec_3_domain_model",
       "target": "backend_docs_system_spec_3_1_core_entities_paper_with_fields_from_table_3_and_the_text",
@@ -46702,7 +47344,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L144",
+      "source_location": "L147",
       "weight": 1.0,
       "source": "backend_docs_system_spec_3_domain_model",
       "target": "backend_docs_system_spec_3_2_request_statuses_proposed_the_paper_says_every_request_status_without_listing_them",
@@ -46712,7 +47354,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L172",
+      "source_location": "L175",
       "weight": 1.0,
       "source": "backend_docs_system_spec_3_domain_model",
       "target": "backend_docs_system_spec_3_3_borrowed_item_lifecycle_paper_transitions_proposed",
@@ -46722,7 +47364,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L184",
+      "source_location": "L187",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_1_inputs_ipo_input",
@@ -46732,7 +47374,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L188",
+      "source_location": "L191",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_2_pre_solve_data_checks_they_must_pass_or_be_confirmed_before_any_solve",
@@ -46742,7 +47384,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L198",
+      "source_location": "L201",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_3_parameters",
@@ -46752,7 +47394,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L217",
+      "source_location": "L220",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_4_stage_1_per_item_multiplier_milp",
@@ -46762,7 +47404,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L229",
+      "source_location": "L232",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_5_stage_2_scenario_model_sample_average_approximation_milp",
@@ -46772,7 +47414,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L252",
+      "source_location": "L255",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_6_explanation_layer_read_from_the_solution_never_written_by_hand",
@@ -46782,7 +47424,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L266",
+      "source_location": "L269",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_7_solver_service_contract_proposed_shape",
@@ -46792,7 +47434,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L274",
+      "source_location": "L277",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_8_backtest_rolling_origin_and_metrics",
@@ -46802,7 +47444,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L299",
+      "source_location": "L302",
       "weight": 1.0,
       "source": "backend_docs_system_spec_4_replenishment_model_solver_service_paper",
       "target": "backend_docs_system_spec_4_9_worked_example_use_as_a_solver_test_fixture",
@@ -46812,7 +47454,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L322",
+      "source_location": "L325",
       "weight": 1.0,
       "source": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
       "target": "backend_docs_system_spec_5_1_client_pwa_offline_first",
@@ -46822,7 +47464,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L331",
+      "source_location": "L334",
       "weight": 1.0,
       "source": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
       "target": "backend_docs_system_spec_5_2_server_acceptance_pipeline_figure_4",
@@ -46832,7 +47474,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L342",
+      "source_location": "L345",
       "weight": 1.0,
       "source": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
       "target": "backend_docs_system_spec_5_3_conflicts",
@@ -46842,7 +47484,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L352",
+      "source_location": "L355",
       "weight": 1.0,
       "source": "backend_docs_system_spec_5_stock_records_offline_sync_integrity_paper",
       "target": "backend_docs_system_spec_5_4_check_records_command",
@@ -46852,7 +47494,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L409",
+      "source_location": "L412",
       "weight": 1.0,
       "source": "backend_docs_system_spec_8_architecture_and_stack_paper",
       "target": "backend_docs_system_spec_hardware_table_9",
@@ -46862,7 +47504,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/system-spec.md",
-      "source_location": "L399",
+      "source_location": "L402",
       "weight": 1.0,
       "source": "backend_docs_system_spec_8_architecture_and_stack_paper",
       "target": "backend_docs_system_spec_typical_quarterly_cycle",
@@ -47039,5 +47681,5 @@
       "source_file": "CLAUDE.md"
     }
   ],
-  "built_at_commit": "c1009560c8dd82257e05bcc4e84cb639628d330b"
+  "built_at_commit": "e3c63cec676e85449833bc809c7a8b63f9b52cd9"
 }

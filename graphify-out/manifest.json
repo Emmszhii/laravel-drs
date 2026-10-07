@@ -1085,8 +1085,8 @@
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/HistoryImporter.php": {
-    "mtime": 1790778416.2225015,
-    "ast_hash": "d5e1f75b1a45454996f93ea2648599ef",
+    "mtime": 1791228097.9498436,
+    "ast_hash": "d106b42ce5e311b4a7bf35295474d8f2",
     "semantic_hash": ""
   },
   "backend/app/Services/Replenishment/QuarterHistory.php": {
@@ -1105,8 +1105,8 @@
     "semantic_hash": ""
   },
   "backend/tests/Feature/ReplenishmentTest.php": {
-    "mtime": 1791023668.4694915,
-    "ast_hash": "bc24b6771944a844759ac20b2ff7d486",
+    "mtime": 1791228097.9834077,
+    "ast_hash": "ce8509c77d154c2eea6a7f7c09e1f868",
     "semantic_hash": ""
   },
   "solver-service/app/api/replenishment.py": {
@@ -1120,13 +1120,13 @@
     "semantic_hash": ""
   },
   "solver-service/app/solvers/replenishment.py": {
-    "mtime": 1790778478.6473918,
-    "ast_hash": "5bf655d46ded28d73578ed4a50611265",
+    "mtime": 1791030007.999383,
+    "ast_hash": "3e3ef440f69eff9bf099ff40a945f4fc",
     "semantic_hash": ""
   },
   "solver-service/tests/test_replenishment.py": {
-    "mtime": 1790778496.8064692,
-    "ast_hash": "5978489d4d200d2f958a91363b87f565",
+    "mtime": 1791030021.2443054,
+    "ast_hash": "429e97f905148aba3c12f7f9a42f1c3a",
     "semantic_hash": ""
   },
   "backend/docs/research/Capstone1_Novelty_Options.md": {
@@ -1160,8 +1160,8 @@
     "semantic_hash": ""
   },
   "backend/docs/system-spec.md": {
-    "mtime": 1791024570.9247184,
-    "ast_hash": "8700604571f86dd9d279c40a2b62c737",
+    "mtime": 1791030033.0028389,
+    "ast_hash": "8f9b4ffdffc34258f62a0852ecc4094d",
     "semantic_hash": ""
   },
   "backend/app/Events/ReplenishmentRunUpdated.php": {
@@ -1180,8 +1180,8 @@
     "semantic_hash": ""
   },
   "backend/resources/js/Pages/Replenishment/Index.tsx": {
-    "mtime": 1790778695.2892475,
-    "ast_hash": "86e860a92544226a2fdc17a207511966",
+    "mtime": 1791228401.43171,
+    "ast_hash": "2f173b13ff3807f12ee441c64c65e549",
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Api/StockController.php": {
@@ -1402,6 +1402,21 @@
   "backend/database/migrations/2026_10_03_000002_replace_ert_and_incident_management_roles.php": {
     "mtime": 1791023521.5129623,
     "ast_hash": "608b4b8e5b0e143be4acfbc432ce8f93",
+    "semantic_hash": ""
+  },
+  "solver-service/tests/test_table7.py": {
+    "mtime": 1791026986.4952784,
+    "ast_hash": "25be66a0d16687a0265313e9df51d955",
+    "semantic_hash": ""
+  },
+  "backend/docs/review-prep.md": {
+    "mtime": 1791034546.2148836,
+    "ast_hash": "efe0da592f2d3665a003aa48577515fb",
+    "semantic_hash": ""
+  },
+  "backend/docs/demo-script.md": {
+    "mtime": 1791228611.7400897,
+    "ast_hash": "105690ce19ba5ded25e18bd9b3d29c44",
     "semantic_hash": ""
   }
 }
