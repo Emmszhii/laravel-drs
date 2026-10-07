@@ -6,7 +6,8 @@ from fastapi.testclient import TestClient
 
 from app.models.replenishment import ReplenishmentItem, ReplenishmentRequest
 from app.solvers.replenishment import (
-    BUDGET_RAN_OUT, FULLY_COVERED, MIP_GAP, SET_MANUALLY, STOCK_COVERS, budget_curve, covering_level, item_target, solve,
+    BUDGET_RAN_OUT, FULLY_COVERED, MIP_GAP, SET_MANUALLY, STOCK_COVERS, budget_curve, covering_level, item_target,
+    safety_stock_target, solve,
 )
 from main import app
 
@@ -223,6 +224,13 @@ def test_backtest_scores_every_rule_from_the_fifth_quarter_on_earlier_quarters_o
     assert s["backtested_quarters"] == 8
     assert set(s["wins_vs_flat"]) == {"per_item_multiplier", "scenario"}
     assert s["target_met"]["scenario"] == (s["wins_vs_flat"]["scenario"] > 4)
+
+
+def test_backtest_includes_the_classical_safety_stock_rule():
+    assert safety_stock_target([100, 110, 90, 120, 105]) == 122  # ceil(105 + 1.65 x 10)
+    out = backtest(backtest_fixture())
+    assert all(row["rules"]["safety_stock"]["feasible"] for row in out["quarters"])
+    assert "safety_stock" not in out["summary"]["wins_vs_flat"]  # a comparison rule, not part of the target
 
 
 def test_backtest_includes_the_offices_actual_orders_when_recorded():

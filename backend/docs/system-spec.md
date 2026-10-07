@@ -278,14 +278,15 @@ A FastAPI service with no DB access. The backend sends everything the solver nee
 
 For each quarter from the **5th encoded quarter onward**, build the order using **only earlier quarters**, then score it against that quarter's actual use.
 
-Compare four rules:
+Compare five rules:
 
 1. The office's actual orders (where the records show them).
 2. The **flat 1.5 rule**, cut by the same percentage for every item to fit the budget.
-3. The per-item multiplier.
-4. The scenario model.
+3. A **classical safety-stock rule**: target = average use + 1.65 standard deviations of quarterly use (a 95% service level), cut the same way. It is a comparison rule only; it is not part of the win-count target.
+4. The per-item multiplier.
+5. The scenario model.
 
-Report per quarter, **with typhoon quarters shown separately**, and mark stockout quarters, where use understates need.
+Report per quarter, **with typhoon quarters shown separately**, and mark stockout quarters, where use understates need. Report fill rate next to weighted shortage, and repeat the comparison with equal weights so the result does not rest on the VED weights.
 
 With Dᵢₜ = actual use, qᵢₜ = start stock, xᵢₜ = order:
 

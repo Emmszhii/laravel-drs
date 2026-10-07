@@ -56,6 +56,7 @@ const RULE_LABELS: Record<string, string> = {
   per_item_multiplier: "Per-item multiplier",
   scenario: "Scenario model",
   flat_1_5: "Flat 1.5 rule",
+  safety_stock: "Safety stock (mean + 1.65 sd)",
   office_actual: "Office's own orders",
 };
 
@@ -412,7 +413,8 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
           <h2 className="text-base font-semibold uppercase">Backtest on past quarters</h2>
           <p className="text-xs text-[var(--text-secondary)]">
             From the 5th encoded quarter on, each rule orders using only earlier quarters and is scored on what was actually used.
-            Each cell shows the weighted shortage (lower is better), the share of need that was filled, and how many items ran out.
+            Each cell shows the weighted shortage (lower is better), the share of need that was filled, how many items ran out,
+            and the value of the stock left on the shelves at the quarter's end.
           </p>
         </div>
         {canRun && (
@@ -459,6 +461,7 @@ function BacktestPanel({ backtest, canRun, defaultBudget, onDone }: {
                           {row.rules[r].weighted_shortage.toFixed(2)}
                           <span className="block text-xs font-normal text-[var(--text-secondary)]">
                             {Math.round(row.rules[r].fill_rate * 100)}% filled · {row.rules[r].items_ran_out} {row.rules[r].items_ran_out === 1 ? "item" : "items"} ran out
+                            · ₱{Math.round(row.rules[r].stock_left_value).toLocaleString()} left over
                           </span>
                         </td>
                       ))}

@@ -251,6 +251,19 @@ class ReplenishmentTest extends TestCase
         $this->assertSame(['team_kit', null], [HistoryLine::where('quantity_requested', 40)->value('purpose'), HistoryLine::where('quantity_requested', 40)->value('quantity_released')]);
     }
 
+    public function test_the_excel_request_lines_sheet_saved_as_csv_imports(): void
+    {
+        $this->food();
+        // Friendly headers, a trailing empty column, and the empty rows Excel writes below the data.
+        $sheet = "\u{FEFF}Date,Item,Standard unit,Quantity requested,Quantity released,Purpose,Event tag,Requesting division,\n"
+            . "2024-10-24,Family food packs,packs,120,100,relief,Kristine,Operations and Warning,\n"
+            . ",,,,,,,,\n,,,,,,,,\n";
+
+        $this->actingAs($this->logistics())
+            ->post('/api/replenishment/history/import', ['file' => UploadedFile::fake()->createWithContent('sheet.csv', $sheet)], ['Accept' => 'application/json'])
+            ->assertCreated()->assertJsonPath('imported', 1);
+    }
+
     public function test_the_same_history_file_cannot_be_imported_twice(): void
     {
         foreach ([['Family food packs', 'packs'], ['Hygiene kits', 'kits'], ['Medical kits', 'kits']] as [$name, $unit]) {

@@ -25,7 +25,9 @@ class HistoryImporter
     {
         $handle = fopen($path, 'r');
         $bom = "\u{FEFF}";
-        $header = array_map(fn ($h) => strtolower(trim(str_replace($bom, '', (string) $h))), fgetcsv($handle) ?: []);
+        // "Quantity requested" (the Excel data-request sheet) reads as quantity_requested.
+        $header = array_map(fn ($h) => str_replace(' ', '_', strtolower(trim(str_replace($bom, '', (string) $h)))), fgetcsv($handle) ?: []);
+        $header = array_slice($header, 0, count(self::COLUMNS)); // Excel may save trailing empty columns
         if ($header !== self::COLUMNS) {
             fclose($handle);
 
@@ -36,8 +38,8 @@ class HistoryImporter
         $rows = [];
         $errors = [];
         for ($line = 2; ($cells = fgetcsv($handle)) !== false; $line++) {
-            if ($cells === [null]) {
-                continue; // blank line
+            if (implode('', array_map('trim', array_map('strval', $cells))) === '') {
+                continue; // blank line, or Excel's ",,,,," for a row whose formulas show nothing
             }
             $r = array_combine(self::COLUMNS, array_slice(array_pad(array_map('trim', $cells), count(self::COLUMNS), ''), 0, count(self::COLUMNS)));
             $type = $types[mb_strtolower($r['item'])] ?? null;

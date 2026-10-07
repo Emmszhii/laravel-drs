@@ -27,6 +27,7 @@ written by hand, measured against its covering-level target.
 """
 
 import math
+import statistics
 import time
 
 import pulp
@@ -49,6 +50,7 @@ MIN_QUARTERS = 4  # below this, the cold-start flat 1.5 rule applies
 # scenarios) and changes the expected shortage by < 0.004%. "optimal" means optimal within this gap.
 MIP_GAP = 1e-4
 FLAT_FACTOR = 1.5
+SAFETY_Z = 1.65  # one-sided z for a 95% service level, used by the classical safety-stock comparison rule
 NEXT_STEP = 10_000
 EPS = 1e-6
 
@@ -227,15 +229,24 @@ def budget_curve(req: ReplenishmentRequest) -> dict:
     return {"points": points, "next_step": {"amount": NEXT_STEP, "changes": changes, "solved": solved}}
 
 
-def flat_rule_orders(items: list[ReplenishmentItem], q: dict[str, int], budget: float) -> tuple[dict[str, int], int]:
-    """The office's flat 1.5 rule, cut by the same percentage for every item to fit the budget."""
+def flat_target(history: list[int]) -> int:
+    return math.ceil(FLAT_FACTOR * sum(history) / len(history))
+
+
+def safety_stock_target(history: list[int]) -> int:
+    """Textbook rule: average use plus z standard deviations of quarterly use (SAFETY_Z = 95% service level)."""
+    return math.ceil(statistics.fmean(history) + SAFETY_Z * statistics.pstdev(history))
+
+
+def flat_rule_orders(items: list[ReplenishmentItem], q: dict[str, int], budget: float,
+                     target_of=flat_target) -> tuple[dict[str, int], int]:
+    """A fixed rule's targets (the office's flat 1.5 by default), cut by the same percentage for every item to fit the budget."""
     started = time.perf_counter()
     want = {}
     for it in items:
         if it.unit_cost is None or not it.history:
             continue
-        target = math.ceil(FLAT_FACTOR * sum(it.history) / len(it.history))
-        want[it.id] = max(0, target - q[it.id])
+        want[it.id] = max(0, target_of(it.history) - q[it.id])
     cost = {it.id: it.unit_cost for it in items if it.id in want}
     total = sum(cost[i] * n for i, n in want.items())
     factor = min(1.0, budget / total) if total else 1.0
@@ -257,7 +268,7 @@ def backtest(req: BacktestRequest) -> dict:
     off = {it.id: T - len(it.history) for it in req.items}
     use = {it.id: [0] * off[it.id] + it.history for it in req.items}  # actual use by calendar quarter
     space_modeled = req.free_space is not None and all(it.space_per_unit is not None for it in req.items)
-    rules = ["flat_1_5", "per_item_multiplier", "scenario"] + (["office_actual"] if req.actual_orders else [])
+    rules = ["flat_1_5", "safety_stock", "per_item_multiplier", "scenario"] + (["office_actual"] if req.actual_orders else [])
     stock = {r: {it.id: req.initial_stock.get(it.id, 0) for it in req.items} for r in rules}
     quarters = []
 
@@ -271,8 +282,9 @@ def backtest(req: BacktestRequest) -> dict:
 
         for rule in rules:
             q = stock[rule]
-            if rule == "flat_1_5":
-                orders, ms, feasible = *flat_rule_orders(past, q, budget), True
+            if rule in ("flat_1_5", "safety_stock"):
+                target_of = flat_target if rule == "flat_1_5" else safety_stock_target
+                orders, ms, feasible = *flat_rule_orders(past, q, budget, target_of), True
             elif rule == "office_actual":
                 orders, ms, feasible = req.actual_orders.get(str(t), {}), 0, True
             else:
