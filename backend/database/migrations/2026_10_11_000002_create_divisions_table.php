@@ -17,8 +17,14 @@ return new class extends Migration
         Schema::create('app_divisions', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name')->unique();
-            $table->foreignUuid('parent_id')->nullable()->constrained('app_divisions')->cascadeOnDelete(); // the API refuses to delete a division with teams
+            $table->uuid('parent_id')->nullable();
             $table->timestamps();
+        });
+
+        // A separate step: in one Schema::create, Postgres gets this self-reference
+        // before the primary key exists and refuses it ("no unique constraint matching").
+        Schema::table('app_divisions', function (Blueprint $table) {
+            $table->foreign('parent_id')->references('id')->on('app_divisions')->cascadeOnDelete(); // the API refuses to delete a division with teams
         });
     }
 
