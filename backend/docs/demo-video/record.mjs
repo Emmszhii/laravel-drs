@@ -1,5 +1,5 @@
 // Records the client demo of DisasterResource+ as a captioned video (demo database, Admin = Head of Office).
-// Run: node record.mjs   (servers: solver-service on 8001, laravel-demo on 8000)
+// Run: node record.mjs   (servers: solver-service on 8001, laravel-demo on 8000), then node to-mp4.mjs for the mp4
 import { chromium } from 'file:///D:/laravel-inertia/laravel-drs/backend/node_modules/playwright/index.mjs';
 import { readdirSync, renameSync, rmSync, mkdirSync } from 'node:fs';
 
@@ -124,7 +124,7 @@ async function card(title, sub, lines, ms) {
 
 // ---------- Title ----------
 await card('DisasterResource+', 'Supply readiness for CDRRMO San Pablo City',
-  ['Stock records · ICS 213-RR requests · Quarterly purchase plan', 'Demo with sample data'], 4500);
+  ['Stock records · ICS 213-RR requests · Quarterly purchase plan · Report', 'Demo with sample data'], 4500);
 
 // ---------- Sign in ----------
 await page.goto(`${BASE}/login`);
@@ -144,7 +144,7 @@ await caption('The Stock page shows what the office has on hand, item by item.',
 await snap('stock');
 const entry = page.locator('form', { hasText: 'Record a stock entry' });
 await caption('Logistics records items received: 100 hygiene kits into Main Storage…', 0);
-await choose(entry.getByLabel('Item'), 'Hygiene kits');
+await choose(entry.getByRole('combobox', { name: 'Item', exact: true }), 'Hygiene kits');
 await choose(entry.getByLabel('Depot'), 'CDRRMO Main Storage');
 await choose(entry.getByLabel('Movement'), 'Receipt (items in)');
 await type(entry.getByLabel('Quantity'), '100');
@@ -155,7 +155,7 @@ await caption('…and the total updates at once.', 0);
 await pointAt(hygieneRow);
 await pause(1800);
 await caption('…and 5 handheld radios.', 0);
-await choose(entry.getByLabel('Item'), 'Handheld radios');
+await choose(entry.getByRole('combobox', { name: 'Item', exact: true }), 'Handheld radios');
 await type(entry.getByLabel('Quantity'), '5');
 await click(entry.getByRole('button', { name: 'Save entry' }));
 await page.waitForFunction(() => [...document.querySelectorAll('tr')].some((r) => r.textContent.includes('Handheld radios') && r.textContent.includes('5 units')));
@@ -165,7 +165,7 @@ await caption('No internet during a typhoon or brownout? Logistics keeps working
 await context.setOffline(true);
 await net(false);
 await pause(2200);
-await choose(entry.getByLabel('Item'), 'Hygiene kits');
+await choose(entry.getByRole('combobox', { name: 'Item', exact: true }), 'Hygiene kits');
 await choose(entry.getByLabel('Movement'), 'Release (items out)');
 await type(entry.getByLabel('Quantity'), '5');
 await click(entry.getByRole('button', { name: 'Save entry' }));
@@ -197,8 +197,8 @@ await pointAt(form.getByLabel('Load a kit'));
 await pause(2400);
 await caption('Here, the response team asks for 20 hygiene kits and 2 radios.', 0);
 await type(form.getByLabel("Requester's name"), 'Juan Dela Cruz');
-await type(form.getByLabel("Requester's position"), 'ERT Team Leader');
-await type(form.getByLabel('Division or team'), 'Operations and Warning / ERT');
+await type(form.getByLabel('Position', { exact: true }), 'ERT Team Leader');
+await type(form.getByLabel('Division / team'), 'Operations and Warning / ERT');
 await choose(form.getByLabel('Purpose'), 'Team kit');
 await choose(form.getByLabel('Item 1', { exact: true }), 'Hygiene kits');
 await type(form.getByLabel(/Quantity for item 1/), '20');
@@ -212,14 +212,14 @@ await caption('Only the Head of Office approves. Approval reserves the stock, so
 await choose(req.getByLabel('Depot for Hygiene kits'), 'CDRRMO Main Storage (95 available)');
 await choose(req.getByLabel('Depot for Handheld radios'), 'CDRRMO Main Storage (5 available)');
 await click(req.getByRole('button', { name: 'Approve' }));
-await req.getByText('approved', { exact: true }).waitFor();
+await req.locator('button[aria-expanded]').getByText('Approved', { exact: true }).waitFor();
 await pause(1200);
 await caption('Logistics releases the items. Stock goes down by itself; radios need the borrower\'s name.', 0);
 await type(req.getByLabel(/Quantity to release for Hygiene kits/), '20');
 await type(req.getByLabel(/Quantity to release for Handheld radios/), '2');
 await type(req.getByLabel("Borrower's name"), 'Pedro Santos');
 await click(req.getByRole('button', { name: 'Release' }));
-await req.getByText('closed', { exact: true }).waitFor();
+await req.locator('button[aria-expanded]').getByText('Closed', { exact: true }).waitFor();
 await snap('ics');
 await pause(1500);
 await caption('Every step is logged with who did it and when.', 0);
@@ -244,7 +244,7 @@ await caption('Each quarter, the planner suggests what to buy, using the office\
 await caption('The Head of Office enters the quarter\'s budget, ₱300,000, and runs it.', 0);
 await type(page.getByLabel('Quarterly budget (₱)'), '300000');
 await click(page.getByRole('button', { name: 'Run solver' }));
-const result = page.getByText(/Spends ₱/);
+const result = page.getByRole('meter', { name: 'Budget spent' });
 await result.waitFor({ timeout: 60000 });
 await pause(800);
 const table = page.locator('table', { hasText: 'Target stock' }).first();
@@ -263,12 +263,26 @@ await caption('It also shows where the next ₱10,000 would go.', 0);
 await pointAt(page.getByText(/The next ₱10,000 goes to/i));
 await pause(2600);
 await caption('Nothing is bought until the Head of Office approves the plan.', 0);
-await click(page.getByRole('button', { name: 'Approve', exact: true }));
-await page.waitForFunction(() => /recommendation\s*·\s*approved/i.test(document.body.innerText));
+await click(page.getByRole('button', { name: 'Approve plan', exact: true }));
+await page.waitForFunction(() => /recommendation\s*Approved/i.test(document.body.innerText));
 await pause(1800);
-await caption('The approved plan prints as a report for the purchase request.', 0);
-await pointAt(page.getByRole('link', { name: 'Download PDF' }));
-await pause(2800);
+// ---------- 4. Report ----------
+await step('4 · Quarterly report');
+await click(page.getByRole('link', { name: 'Report', exact: true }));
+await page.waitForURL('**/report');
+await caption('The Report page opens on the approved plan: stock, use per quarter, quarters of cover and the reorder.', 0);
+await pointAt(page.locator('section', { hasText: 'Approved plan' }).first().locator('header'));
+await snap('report');
+await pause(3400);
+const low = page.locator('td.text-critical').first();
+if (await low.count()) {
+  await caption('Red marks an item with less than one quarter of stock left.', 0);
+  await pointAt(low);
+  await pause(2800);
+}
+await caption('Any year and quarter range can be shown. It downloads as a PDF or CSV for the purchase request.', 0);
+await pointAt(page.getByRole('link', { name: 'PDF' }));
+await pause(3000);
 await caption('', 0);
 await step('');
 

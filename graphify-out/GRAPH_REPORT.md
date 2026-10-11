@@ -1,16 +1,16 @@
-# Graph Report - laravel-drs  (2026-10-06)
+# Graph Report - laravel-drs  (2026-10-11)
 
 ## Corpus Check
-- 273 files · ~117,265 words
+- 284 files · ~127,081 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1532 nodes · 3081 edges · 185 communities (122 shown, 63 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 222 edges (avg confidence: 0.79)
+- 1645 nodes · 3338 edges · 185 communities (119 shown, 66 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 228 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e3c63cec`
+- Built from commit: `786a4a78`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -67,8 +67,10 @@
 - data-table.ts
 - Allocation (Domain Model)
 - ChangePasswordModal.tsx
+- reset.sh
 - Architecture
-- Seeder
+- ReplenishmentController.php
+- ReplenishmentServiceClient
 - OsrmDirectionsProvider
 - DisasterResource+: Where a Real Technical Contribution Can Come From
 - test_replenishment.py
@@ -83,13 +85,11 @@
 - DashboardController
 - Dashboard (Page)
 - Depot (Domain Model)
-- CatalogTest
 - 2026_08_02_085355_split_users_name_into_first_last.php
 - 2026_08_02_085419_split_depots_contact_name_into_first_last.php
 - DepotCapacityChecker
 - ReplenishmentTest.php
 - config.py
-- build-yup-schema.ts
 - DirectionsPanel (React Component)
 - configure_logging
 - AutoResolveIncidentsJob
@@ -142,12 +142,12 @@
 - UsersController.php
 
 ## God Nodes (most connected - your core abstractions)
-1. `User` - 67 edges
-2. `ResourceType` - 42 edges
+1. `User` - 70 edges
+2. `ResourceType` - 44 edges
 3. `IcsRequest` - 36 edges
 4. `StockEntry` - 35 edges
-5. `StockLedger` - 33 edges
-6. `Controller` - 32 edges
+5. `Controller` - 34 edges
+6. `StockLedger` - 33 edges
 7. `ReplenishmentItem` - 32 edges
 8. `BaseController` - 30 edges
 9. `ReplenishmentRequest` - 29 edges
@@ -162,8 +162,8 @@
   docker-compose.yml → CLAUDE.md
 - `Docker Compose` --orchestrates--> `OSRM (Open Source Routing Machine)`  [EXTRACTED]
   docker-compose.yml → README.md
-- `DynamicFieldProps` --references--> `FieldDef`  [EXTRACTED]
-  backend/resources/js/Components/table/components/RecordModalField.tsx → backend/resources/js/Types/reusable/fields.ts
+- `createModuleResource()` --indirect_call--> `body()`  [INFERRED]
+  backend/resources/js/api-service/http.ts → backend/docs/demo-video/to-mp4.mjs
 
 ## Import Cycles
 - None detected.
@@ -173,19 +173,19 @@
 - **Domain Model Entity Relationships** — disaster_model, zone_model, resourcerequest_model, depot_model, resource_model, resourcetype_model, allocation_model, optimizationrun_model [EXTRACTED 1.00]
 - **Automated Disaster Feed and Incident Processing** — polldisasterfeeds_job, disasterfeed_ingestor, usgsearth_feedclient, gdacs_feedclient, autoresolveincidents_job [EXTRACTED 1.00]
 
-## Communities (185 total, 63 thin omitted)
+## Communities (185 total, 66 thin omitted)
 
 ### Community 0 - "Admin API Controllers"
-Cohesion: 0.20
-Nodes (21): BacktestRequest, Items carry their full encoded history; the backtest cuts it per quarter., ReplenishmentItem, ReplenishmentRequest, test_budget_never_exceeded_and_money_left_only_when_targets_met(), test_space_constraint_limits_orders_when_modeled(), by_id(), no_solution() (+13 more)
+Cohesion: 0.16
+Nodes (23): Pydantic, BacktestRequest, _check_items(), Items carry their full encoded history; the backtest cuts it per quarter., ReplenishmentItem, ReplenishmentRequest, test_budget_never_exceeded_and_money_left_only_when_targets_met(), test_space_constraint_limits_orders_when_modeled() (+15 more)
 
 ### Community 1 - "Frontend Bootstrap & Activity Log"
-Cohesion: 0.17
-Nodes (12): useOfflineSync(), useOnlineStatus(), lastSyncOutcome(), syncOutbox(), Conflict, EntryForm(), Level, MOVEMENTS (+4 more)
+Cohesion: 0.11
+Nodes (34): useOfflineSync(), useOnlineStatus(), DrsOfflineDB, getDb(), OutboxItem, OutboxItemKind, OutboxItemStatus, changed() (+26 more)
 
 ### Community 2 - "API HTTP Client"
-Cohesion: 0.06
-Nodes (56): ApiEnvelope, ApiError, attachHeaders(), createHttpClient(), getCsrfToken(), http, readCookie(), toApiError() (+48 more)
+Cohesion: 0.11
+Nodes (33): ApiEnvelope, attachHeaders(), createHttpClient(), getCsrfToken(), http, readCookie(), toApiError(), unwrap() (+25 more)
 
 ### Community 4 - "Filter/Pagination/Map Widgets"
 Cohesion: 0.12
@@ -196,40 +196,40 @@ Cohesion: 0.21
 Nodes (10): Dropdown(), DropdownOption, DropdownProps, CardFilterPanel(), CardFilterPanelProps, DEFAULT_TABS, StatusFilter(), StatusFilterProps (+2 more)
 
 ### Community 6 - "Dashboard & Allocation Models"
-Cohesion: 0.17
-Nodes (14): PuLP, backtest(), budget_curve(), flat_rule_orders(), _ms(), Budget-limited quarterly replenishment (Chapter III, Model Building).  Stage 1 —, Re-solves at 11 budget levels, 50%-150% of the entered budget in 10% steps     (, Textbook rule: average use plus z standard deviations of quarterly use (SAFETY_Z (+6 more)
+Cohesion: 0.15
+Nodes (16): PuLP, OrderLine, backtest(), budget_curve(), flat_rule_orders(), _line(), _ms(), Budget-limited quarterly replenishment (Chapter III, Model Building).  Stage 1 (+8 more)
 
 ### Community 7 - "Data Table Query Hooks"
-Cohesion: 0.13
-Nodes (14): Request, Response, ReplenishmentController, Backtest, DataCheckFlag, BelongsTo, KitLine, QuarterBudget (+6 more)
+Cohesion: 0.14
+Nodes (11): Backtest, Kit, HasMany, KitLine, QuarterBudget, BelongsTo, StockConflict, StockCount (+3 more)
 
 ### Community 8 - "Directions & Routing Settings API"
-Cohesion: 0.27
-Nodes (10): UserProfileSection(), UserProfileSectionProps, detectSystemTheme(), getStoredTheme(), setStoredTheme(), Theme, useTheme(), listAll() (+2 more)
+Cohesion: 0.12
+Nodes (25): errorMessage(), Props, ReplenishmentBacktest(), BASIS_NOTE, BudgetCurve(), BudgetMeter(), DecisionBar(), FLAGGED_REASONS (+17 more)
 
 ### Community 9 - "Auth Pages & Buttons"
 Cohesion: 0.07
 Nodes (16): ActivityLogController, JsonResponse, Request, AppLogger, AppLoggerObserver, Model, ActivityLogger, Model (+8 more)
 
 ### Community 10 - "Resource Types & Admin Layout"
-Cohesion: 0.31
-Nodes (6): CATEGORY_LABEL, categoryOptions, TypeCard(), typeColumns, typeFields, VED_LABELS
+Cohesion: 0.23
+Nodes (4): Reservation, QuarterHistory, InventoryBurnRateReportBuilder, Reservations
 
 ### Community 11 - "Disaster Feed Settings & Tests"
-Cohesion: 0.10
-Nodes (12): IcsRequestController, Request, Response, Depot, HasMany, Kit, HasMany, HasMany (+4 more)
+Cohesion: 0.09
+Nodes (15): IcsRequestController, Request, Response, Request, Response, StockController, Depot, HasMany (+7 more)
 
 ### Community 12 - "Form Modal Schema Builder"
-Cohesion: 0.26
-Nodes (12): buildInitialValues(), buildPayload(), mapApiErrorsToFormik(), seedFieldValue(), FormModal(), Values, FormModalBody(), Values (+4 more)
+Cohesion: 0.18
+Nodes (20): baseFor(), buildYupSchema(), withCustom(), withRequired(), buildInitialValues(), buildPayload(), mapApiErrorsToFormik(), seedFieldValue() (+12 more)
 
 ### Community 13 - "BaseController CRUD"
 Cohesion: 0.08
 Nodes (15): DepotController, Model, JsonResponse, Request, ProfileController, Model, ResourceTypeController, JsonResponse (+7 more)
 
 ### Community 14 - "Confirmation Modals"
-Cohesion: 0.25
-Nodes (6): BaseModel, Pydantic, _check_items(), OrderLine, ReplenishmentResponse, _line()
+Cohesion: 0.08
+Nodes (33): b, body(), box(), boxes(), DIR, find(), ftyp, hasCto (+25 more)
 
 ### Community 15 - "Pagination Bar Components"
 Cohesion: 0.29
@@ -240,8 +240,8 @@ Cohesion: 0.17
 Nodes (11): Critical, Critique of the paper and the system (2026-09-30), Main weaknesses, Major, Minor, Status, Suggested order, The paper (+3 more)
 
 ### Community 17 - "Evacuation Centers Table UI"
-Cohesion: 0.18
-Nodes (9): FastAPI, backtest(), budget_curve(), Called by App\\Jobs\\RunReplenishmentJob when the Head of Office (Admin)     ru, Same payload as /solve; returns 11 {budget, expected_shortage} points and the ne, Rolling-origin backtest: flat 1.5 vs per-item multiplier vs scenario model (and, solve(), health() (+1 more)
+Cohesion: 0.15
+Nodes (11): BaseModel, FastAPI, backtest(), budget_curve(), Called by App\\Jobs\\RunReplenishmentJob when the Head of Office (Admin)     ru, Same payload as /solve; returns 11 {budget, expected_shortage} points and the ne, Rolling-origin backtest: flat 1.5 vs per-item multiplier vs scenario model (and, solve() (+3 more)
 
 ### Community 18 - "Disaster Model & Auto-Resolve Job"
 Cohesion: 0.14
@@ -252,11 +252,11 @@ Cohesion: 0.57
 Nodes (6): office_sized_request(), Performance pass marks (Chapter III, Performance Testing Procedure): a Stage 2, test_budget_curve_of_11_resolves_under_20_seconds(), test_stage1_scales_to_200_items(), test_stage2_solves_200_items_12_scenarios_under_2_seconds(), timed()
 
 ### Community 20 - "Record Row Menu & Settings List"
-Cohesion: 0.29
-Nodes (6): ActivityLogEntry, activityLogService, getLastSeenId(), NotificationBell(), OfflineBanner(), navItems
+Cohesion: 0.15
+Nodes (21): caption(), card(), choose(), click(), entry, form, hygieneRow, log (+13 more)
 
 ### Community 21 - "Service Providers"
-Cohesion: 0.29
+Cohesion: 0.31
 Nodes (3): ActivityLogServiceProvider, AppServiceProvider, ServiceProvider
 
 ### Community 22 - "Shared TypeScript Model Types"
@@ -264,28 +264,28 @@ Cohesion: 0.12
 Nodes (15): AdminUser, Backtest, BacktestRuleScore, BudgetCurvePoint, DataCheckFlag, Depot, @inertiajs/core, PageProps (+7 more)
 
 ### Community 23 - "Record Modal & Image Lightbox"
-Cohesion: 0.26
-Nodes (13): InUseEntry, RowActionMutations, RowActionsConfig, ShowToast, ToastVariant, useRecordRowActions(), buildArchiveUrl(), buildDeleteUrl() (+5 more)
+Cohesion: 0.12
+Nodes (29): ChangePasswordModal(), ChangePasswordModalProps, ChangePasswordValues, fields, InUseEntry, TableQueryParams, useDebouncedValue(), useInvalidateTable() (+21 more)
 
 ### Community 24 - "Role/Active Auth Middleware"
 Cohesion: 0.16
 Nodes (11): EnsureUserHasRole, Closure, Request, Response, EnsureUserIsActive, Closure, Request, Response (+3 more)
 
-### Community 27 - "Dispatch"
-Cohesion: 0.24
-Nodes (15): getDb(), changed(), currentUser, currentUserId(), deviceLabel(), enqueueStock(), listPending(), markFailed() (+7 more)
+### Community 25 - "Index.tsx"
+Cohesion: 0.16
+Nodes (15): normalizeQueryKey(), tableListInvalidateKeys(), usePermission(), CATEGORY_LABEL, categoryOptions, columns, DepotCard(), DepotsIndex() (+7 more)
 
-### Community 29 - "use-module.ts"
-Cohesion: 0.25
-Nodes (7): normalizeQueryKey(), tableListInvalidateKeys(), columns, DepotsIndex(), fields, STATUS_OPTIONS, ResourcesTypesIndex()
+### Community 27 - "Dispatch"
+Cohesion: 0.35
+Nodes (3): DataCheckFlag, BelongsTo, DataChecks
 
 ### Community 31 - "RoleGatingTest"
-Cohesion: 0.25
-Nodes (7): After the data comes back, Asking for the data, Client demo: CDRRMO San Pablo City, Questions they may ask, The day before, The walkthrough, Words to use
+Cohesion: 0.12
+Nodes (16): 1. What they told us → what we show, 2. Demo script (same order and sample values as the video), 3. Likely questions (client and panel), 4. Ask the client, 5. Before you go on, A. Data to import, B. Users per role, C. Does our form match yours? (+8 more)
 
 ### Community 33 - "DisasterFeedIngestor"
-Cohesion: 0.16
-Nodes (12): FetchingSpinner(), DefaultRecordCard(), DefaultRecordCardProps, PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, Toolbar() (+4 more)
+Cohesion: 0.13
+Nodes (15): FetchingSpinner(), DefaultRecordCard(), DefaultRecordCardProps, PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, Toolbar() (+7 more)
 
 ### Community 34 - "AllocationRequest"
 Cohesion: 0.24
@@ -296,32 +296,32 @@ Cohesion: 0.07
 Nodes (14): IcsRequestController, JsonResponse, Request, Borrow, BelongsTo, HasMany, IcsRequest, BelongsTo (+6 more)
 
 ### Community 39 - "Users.tsx"
-Cohesion: 0.17
-Nodes (6): Button(), Props, SettingsTabs(), TABS, ResetPasswordProps, Props
+Cohesion: 0.09
+Nodes (19): ApiError, Button(), Props, PageHeader(), RouteTabs(), SettingsTabs(), ResetPasswordProps, active() (+11 more)
 
 ### Community 40 - ".log"
-Cohesion: 0.19
+Cohesion: 0.21
 Nodes (6): DatabaseSeeder, ReplenishmentDemoSeeder, RoleSeeder, UserSeeder, Seeder, WithoutModelEvents
 
 ### Community 42 - "types.ts"
-Cohesion: 0.23
-Nodes (11): ViewToggle(), ViewToggleProps, ParsedApiError, CardActions, ColumnFilterType, DataTableProps, InUseEntry, ModalState (+3 more)
+Cohesion: 0.24
+Nodes (4): ExampleTest, TestCase, ExampleTest, BaseTestCase
 
 ### Community 44 - "QuarterHistory"
 Cohesion: 0.16
 Nodes (7): HistoryLine, BelongsTo, IcsRequestLine, BelongsTo, HistoryImporter, Carbon, HasOne
 
 ### Community 46 - "Kit"
-Cohesion: 0.09
-Nodes (9): EvaluationTest, ExampleTest, TestCase, EnsureUserIsActiveTest, ExampleTest, BaseTestCase, HasRoles, Notifiable (+1 more)
+Cohesion: 0.19
+Nodes (3): Attribute, HasRoles, Notifiable
 
 ### Community 47 - "Toast.tsx"
-Cohesion: 0.16
-Nodes (13): ChangePasswordModal(), ChangePasswordModalProps, ChangePasswordValues, fields, ICON_COLOR, SystemToastProvider(), ToastContext, ToastContextValue (+5 more)
+Cohesion: 0.12
+Nodes (16): onUserChange(), queryClient, ICON_COLOR, SystemToastProvider(), ToastContext, ToastContextValue, ToastItem, VARIANT_ICON (+8 more)
 
 ### Community 51 - "FieldOption"
-Cohesion: 0.24
-Nodes (12): TableQueryParams, useDebouncedValue(), useInvalidateTable(), useTableQuery(), useTableRefresh(), clientMeta(), isFilterValueActive(), normalizeQueryKey() (+4 more)
+Cohesion: 0.25
+Nodes (12): ParsedApiError, CardActions, ColumnFilterType, DataTableProps, InUseEntry, ModalState, RenderModalProps, StatusFilterTab (+4 more)
 
 ### Community 52 - "DisasterResource+ — System Specification (from Capstone Chapters I–III)"
 Cohesion: 0.06
@@ -332,36 +332,32 @@ Cohesion: 0.06
 Nodes (31): 1. Front matter, 2.1 Background (pp. 1–3), 2.2 Research problem and research questions (pp. 3–5), 2.3 Research objectives (pp. 6–7), 2.4 Theoretical framework (pp. 7–9, Figure 1), 2.5 Conceptual framework (pp. 9–11, Figure 2, the IPO model), 2.6 Scope and limitations (pp. 11–14), 2.7 Significance (pp. 14–16) (+23 more)
 
 ### Community 55 - "use-file-upload-field.tsx"
-Cohesion: 0.27
-Nodes (11): buildFormData(), errorMessage(), hasBinaryFiles(), useModule(), UseModuleOptions, UseModuleResult, apiFetchJson(), CrudQueryParams (+3 more)
+Cohesion: 0.23
+Nodes (13): buildFormData(), errorMessage(), hasBinaryFiles(), useModule(), UseModuleOptions, UseModuleResult, ApiEnvelope, apiFetch() (+5 more)
 
 ### Community 56 - "sync.ts"
-Cohesion: 0.40
-Nodes (4): DrsOfflineDB, OutboxItem, OutboxItemKind, OutboxItemStatus
+Cohesion: 0.21
+Nodes (9): NewAccountMail, Content, Envelope, PasswordResetMail, Content, Envelope, Mailable, Queueable (+1 more)
 
 ### Community 57 - "Controller"
 Cohesion: 0.06
-Nodes (29): KitController, JsonResponse, Request, Response, JsonResponse, Request, SmtpSettingController, AuthenticatedSessionController (+21 more)
+Nodes (28): KitController, JsonResponse, Request, Response, JsonResponse, Request, SmtpSettingController, AuthenticatedSessionController (+20 more)
 
 ### Community 58 - "data-table.ts"
-Cohesion: 0.11
-Nodes (27): subjectOf(), isNetworkError(), Borrow, Borrowed(), day(), Equipment, LABEL, LendForm() (+19 more)
-
-### Community 60 - "ChangePasswordModal.tsx"
-Cohesion: 0.48
-Nodes (6): ApiEnvelope, apiFetch(), ApiFetchOptions, getCsrfToken(), readCookie(), xhrRequest()
+Cohesion: 0.09
+Nodes (33): StatusBadge(), Tone, subjectOf(), cn(), isNetworkError(), Borrow, Borrowed(), day() (+25 more)
 
 ### Community 62 - "Architecture"
 Cohesion: 0.15
 Nodes (11): Architecture, Backend request layering, Commands, Domain model conventions, Frontend (backend/resources/js), graphify, Repo layout (three deployable units), Roles (system-spec.md §2) (+3 more)
 
-### Community 63 - "Seeder"
-Cohesion: 0.33
-Nodes (3): Field(), DynamicField(), DynamicFieldProps
+### Community 63 - "ReplenishmentController.php"
+Cohesion: 0.49
+Nodes (3): Request, Response, ReplenishmentController
 
 ### Community 66 - "OsrmDirectionsProvider"
 Cohesion: 0.09
-Nodes (5): Attribute, Authenticatable, User, RoleGatingTest, UserAccountLifecycleTest
+Nodes (4): Authenticatable, User, RoleGatingTest, UserAccountLifecycleTest
 
 ### Community 67 - "DisasterResource+: Where a Real Technical Contribution Can Come From"
 Cohesion: 0.11
@@ -372,16 +368,16 @@ Cohesion: 0.17
 Nodes (21): assert_never_rises(), backtest_fixture(), by_id(), Stage 1 replenishment tests — Chapter III, Unit Testing Procedure., Raw per-level objectives (not the carried-forward curve), allowing only the MIP, test_backtest_endpoint_round_trip(), test_backtest_includes_the_classical_safety_stock_rule(), test_backtest_includes_the_offices_actual_orders_when_recorded() (+13 more)
 
 ### Community 69 - "use-file-upload-field.tsx"
-Cohesion: 0.05
-Nodes (29): ReplenishmentRunUpdated, JsonResponse, Request, ReplenishmentController, Throwable, RunReplenishmentJob, NewAccountMail, Content (+21 more)
+Cohesion: 0.10
+Nodes (15): ReplenishmentRunUpdated, JsonResponse, Request, ReplenishmentController, Throwable, RunReplenishmentJob, ReplenishmentRun, VedPolicy (+7 more)
 
 ### Community 70 - "InventoryBurnRateCsvExporter.php"
-Cohesion: 0.33
-Nodes (7): ImageLightbox(), ImageLightboxProps, FileUploadField(), FileUploadFieldProps, formatBytes(), isImageName(), LocalThumb()
+Cohesion: 0.11
+Nodes (21): Field(), ImageLightbox(), ImageLightboxProps, DynamicField(), DynamicFieldProps, AsyncMultiSelectField(), AsyncMultiSelectFieldProps, AsyncSelectField() (+13 more)
 
 ### Community 73 - "Users.tsx"
-Cohesion: 0.19
-Nodes (8): onUserChange(), queryClient, AppLayout(), currentUserCanRecord(), setCurrentUser(), CACHES, PATHS, warmOfflinePages()
+Cohesion: 0.14
+Nodes (16): ActivityLogEntry, activityLogService, getLastSeenId(), NotificationBell(), OfflineBanner(), UserProfileSection(), UserProfileSectionProps, detectSystemTheme() (+8 more)
 
 ### Community 74 - "DisasterResource+"
 Cohesion: 0.33
@@ -391,17 +387,9 @@ Nodes (5): DisasterResource+, Folder structure, Local dev without pdo_pgsql, Loc
 Cohesion: 0.39
 Nodes (6): expected_shortage(), items(), Table 7 (Chapter III, Worked Example): in-sample expected shortage of the three, Weighted shortage in quarters of average use, summed over items, averaged over t, test_per_item_multipliers_in_the_table_note(), test_table_7_values_and_the_sentences_under_it()
 
-### Community 82 - "CatalogTest"
-Cohesion: 0.33
-Nodes (7): AsyncMultiSelectField(), AsyncMultiSelectFieldProps, AsyncSelectField(), valuesEqual(), FieldOption, AsyncMultiSelectFieldProps, AsyncSelectFieldProps
-
 ### Community 86 - "ReplenishmentTest.php"
 Cohesion: 0.25
 Nodes (8): covering_level(), item_target(), Use that would have covered k of the last m quarters: the (m-k+1)-th highest. Wi, (target, basis, multiplier). Target None means the item is listed for Logistics, test_cold_start_rules(), test_covering_level_follows_ved_coverage(), test_multiplier_is_covering_level_over_average(), test_covering_level_scales_k_with_short_history()
-
-### Community 108 - "build-yup-schema.ts"
-Cohesion: 0.24
-Nodes (12): baseFor(), buildYupSchema(), withCustom(), withRequired(), FormModalConfig, FormModalLayout, FormModalProps, ExistingFile (+4 more)
 
 ### Community 127 - "cache.php"
 Cohesion: 0.10
@@ -424,24 +412,24 @@ Cohesion: 0.40
 Nodes (4): Context, Open a Claude-in-Chrome tab, Steps, Verification
 
 ## Knowledge Gaps
-- **284 isolated node(s):** `ChangePasswordValues`, `fields`, `ChangePasswordModalProps`, `Props`, `DropdownOption` (+279 more)
+- **331 isolated node(s):** `OUT`, `shotsOnly`, `entry`, `hygieneRow`, `waiting` (+326 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **63 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **66 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Controller` connect `Controller` to `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Data Table Query Hooks`, `Auth Pages & Buttons`, `Disaster Feed Settings & Tests`, `BaseController CRUD`, `cache.php`?**
+- **Why does `User` connect `OsrmDirectionsProvider` to `Depot & Resource Models`, `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Data Table Query Hooks`, `.log`, `Auth Pages & Buttons`, `Disaster Feed Settings & Tests`, `QuarterHistory`, `Kit`, `ChangePasswordModal.tsx`, `DataCheckFlag`, `Controller`, `cache.php`, `use-module.ts`, `ReplenishmentController.php`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `Controller` connect `Controller` to `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Auth Pages & Buttons`, `Disaster Feed Settings & Tests`, `BaseController CRUD`, `ReplenishmentController.php`, `cache.php`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `User` connect `OsrmDirectionsProvider` to `Depot & Resource Models`, `PasswordResetMail.php`, `Data Table Query Hooks`, `.log`, `Auth Pages & Buttons`, `Disaster Feed Settings & Tests`, `QuarterHistory`, `Kit`, `DataCheckFlag`, `Controller`, `Index.tsx`, `cache.php`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **Why does `BaseController` connect `BaseController CRUD` to `Controller`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+  _High betweenness centrality (0.016) - this node is a cross-community bridge._
 - **Are the 32 inferred relationships involving `User` (e.g. with `.handle()` and `.run()`) actually correct?**
   _`User` has 32 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 16 inferred relationships involving `ResourceType` (e.g. with `.backtest()` and `.borrowed()`) actually correct?**
-  _`ResourceType` has 16 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 15 inferred relationships involving `ResourceType` (e.g. with `.backtest()` and `.borrowed()`) actually correct?**
+  _`ResourceType` has 15 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 6 inferred relationships involving `IcsRequest` (e.g. with `.index()` and `.test_a_reduced_approval_needs_a_reason_for_that_line()`) actually correct?**
   _`IcsRequest` has 6 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `ChangePasswordValues`, `fields`, `ChangePasswordModalProps` to the rest of the system?**
-  _307 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `OUT`, `shotsOnly`, `entry` to the rest of the system?**
+  _354 weakly-connected nodes found - possible documentation gaps or missing edges._

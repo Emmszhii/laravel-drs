@@ -65,21 +65,21 @@ export function NotificationBell() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="relative flex items-center gap-1.5 border border-white/20 px-2.5 py-1.5 text-xs font-semibold tracking-wide text-[var(--text-secondary)] uppercase hover:border-amber hover:text-amber"
+        className="relative flex items-center gap-1.5 border border-line-strong px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:border-amber hover:text-amber"
         aria-label="Notifications"
       >
         <Bell size={14} />
         {unreadCount > 0 && (
           <span className="absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-critical px-1 font-mono text-[10px] text-white">
-            {unreadCount}
+            {unreadCount > 9 ? "9+" : unreadCount}
           </span>
         )}
       </button>
 
       {open && (
-        <div className="absolute top-[calc(100%+8px)] right-0 z-[4000] max-h-96 w-80 max-w-[calc(100vw-24px)] overflow-y-auto border border-white/20 bg-[var(--bg-panel-raised)] shadow-lg">
-          <div className="flex items-center justify-between border-b border-white/10 px-3.5 py-2.5">
-            <span className="text-sm font-semibold tracking-wide uppercase">
+        <div className="absolute top-[calc(100%+8px)] right-0 z-[4000] max-h-96 w-80 max-w-[calc(100vw-24px)] overflow-y-auto border border-line-strong bg-[var(--bg-panel-raised)] shadow-lg">
+          <div className="flex items-center justify-between border-b border-line px-3.5 py-2.5">
+            <span className="text-sm font-semibold">
               Notifications
             </span>
             <button
@@ -98,7 +98,7 @@ export function NotificationBell() {
             entries.map((e) => (
               <div
                 key={e.id}
-                className="border-b border-white/10 px-3.5 py-2.5 text-xs leading-relaxed"
+                className="border-b border-line px-3.5 py-2.5 text-xs leading-relaxed"
               >
                 <span className="font-mono text-[10px] text-[var(--text-secondary)]">
                   {e.ts}

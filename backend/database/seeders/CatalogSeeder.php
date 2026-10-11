@@ -11,8 +11,8 @@ use Illuminate\Database\Seeder;
  * Item catalog and depots for CDRRMO San Pablo City. ReplenishmentDemoSeeder looks the
  * demo items up by name. "Handheld radios" is borrowable, so the borrowed-item lifecycle
  * can be demoed. The second list is what the office's own ICS 213-RR form and borrow
- * logbook name (photos of 2026-09-03); none of it has a unit cost yet, so the solver
- * skips those items until the office enters one. Safe to re-run: it creates what is
+ * logbook name (photos of 2026-09-03); this seeder gives no unit costs (ReplenishmentDemoSeeder
+ * adds mock ones to the consumables), and the solver skips an item until it has one. Safe to re-run: it creates what is
  * missing and never overwrites what the office has edited.
  *
  * Sizes are separate items, and the unit is the smallest amount the office hands out:

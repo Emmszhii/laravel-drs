@@ -5,11 +5,11 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function Button({ variant = "primary", className = "", ...props }: Props) {
-  const base = "px-4 py-2 text-sm font-semibold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-50";
+  const base = "inline-flex h-9 items-center justify-center gap-1.5 whitespace-nowrap px-4 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50";
   const styles =
     variant === "primary"
-      ? "bg-[var(--amber)] text-[#1a1200]"
-      : "border border-white/20 text-[var(--text-secondary)] bg-transparent";
+      ? "bg-amber text-[#1a1200] hover:brightness-110"
+      : "border border-line-strong bg-transparent text-[var(--text-primary)] hover:bg-tint";
 
   return <button className={`${base} ${styles} ${className}`} {...props} />;
 }

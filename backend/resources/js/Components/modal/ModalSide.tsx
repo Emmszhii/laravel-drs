@@ -87,7 +87,7 @@ export function ModalSide<T>({
                         <div className="min-w-0" data-cy="modal-side-div-4">
                             {title && (
                                 <h2
-                                    className="text-lg font-semibold uppercase tracking-wide text-[var(--text-primary)]"
+                                    className="text-lg font-semibold text-[var(--text-primary)]"
                                     data-cy="modal-side-h2-5"
                                 >
                                     {title}

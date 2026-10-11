@@ -8,7 +8,8 @@ import { enqueueStock, markPending, remove } from "@/Offline/outbox";
 import { syncOutbox } from "@/Offline/sync";
 import useOfflineSync from "@/Hooks/useOfflineSync";
 import { useAsyncAction } from "@/Hooks/use-async-action";
-import { errorMessage as message, field } from "@/lib/utils";
+import { cn, errorMessage as message, field, label } from "@/lib/utils";
+import { PageHeader } from "@/Components/PageHeader";
 
 type Named = { id: string; name: string };
 type Level = { resource_type_id: string; depot_id: string; quantity: number | string };
@@ -77,46 +78,60 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
   };
 
   const total = (typeId: string) => levels.filter((l) => l.resource_type_id === typeId).reduce((s, l) => s + Number(l.quantity), 0);
+  const [search, setSearch] = useState("");
+  const shown = items.filter((i) => i.name.toLowerCase().includes(search.trim().toLowerCase()));
 
   return (
     <div>
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
-        <h1 className="text-lg font-semibold uppercase">Stock</h1>
-        <span className="max-w-[50%] truncate font-mono text-xs text-[var(--text-secondary)]" title={latestFingerprint}>
-          Latest fingerprint {latestFingerprint.slice(0, 16)}…
-        </span>
-      </div>
+      <PageHeader
+        title="Stock"
+        description="Current stock is the sum of every recorded entry. Entries save on this device first, so recording works offline."
+        actions={(
+          <span className="max-w-full truncate font-mono text-xs text-[var(--text-secondary)]" title={latestFingerprint}>
+            Fingerprint {latestFingerprint.slice(0, 16)}…
+          </span>
+        )}
+      />
 
-      <div className="grid gap-6 p-6 xl:grid-cols-[1fr_340px]">
-        <div className="space-y-6">
+      <div className="grid gap-6 p-4 sm:p-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="min-w-0 space-y-6">
           {conflicts.length > 0 && <ConflictList conflicts={conflicts} itemName={itemName} depotName={depotName} canResolve={can.resolve} onDone={syncNow} />}
 
-          <section>
-            <h2 className="mb-2 text-sm font-semibold uppercase">Current stock (sum of entries)</h2>
-            <table className="w-full text-sm">
-              <thead className="text-left text-xs uppercase text-[var(--text-secondary)]">
-                <tr className="border-b border-white/10"><th className="py-2">Item</th><th>By depot</th><th className="text-right">Total</th></tr>
-              </thead>
-              <tbody>
-                {items.map((i) => (
-                  <tr key={i.id} className="border-b border-white/5">
-                    <td className="py-2">{i.name}</td>
-                    <td className="text-xs text-[var(--text-secondary)]">
-                      {levels.filter((l) => l.resource_type_id === i.id).map((l) => `${depotName[l.depot_id]}: ${l.quantity}`).join(" · ") || "–"}
-                    </td>
-                    <td className={`text-right font-semibold ${total(i.id) < 0 ? "text-[var(--critical)]" : ""}`}>{total(i.id)} {i.unit}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <section className="panel">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
+              <h2 className="text-sm font-semibold">Current stock</h2>
+              <input className={cn(field, "w-full sm:w-64")} type="search" placeholder="Filter items" aria-label="Filter items" value={search}
+                onChange={(e) => setSearch(e.target.value)} />
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[480px] text-sm">
+                <thead className="text-left text-xs text-[var(--text-secondary)]">
+                  <tr className="border-b border-line"><th className="px-4 py-2.5 font-medium">Item</th><th className="px-3 font-medium">By depot</th><th className="px-4 text-right font-medium">Total</th></tr>
+                </thead>
+                <tbody>
+                  {shown.map((i) => (
+                    <tr key={i.id} className="border-b border-line last:border-0">
+                      <td className="px-4 py-2">{i.name}</td>
+                      <td className="px-3 text-xs text-[var(--text-secondary)]">
+                        {levels.filter((l) => l.resource_type_id === i.id).map((l) => `${depotName[l.depot_id]}: ${l.quantity}`).join(" · ") || "–"}
+                      </td>
+                      <td className={`whitespace-nowrap px-4 text-right ${total(i.id) < 0 ? "font-semibold text-critical" : total(i.id) === 0 ? "text-[var(--text-secondary)]" : "font-semibold"}`}>
+                        {total(i.id)} <span className="text-xs font-normal text-[var(--text-secondary)]">{i.unit}</span>
+                      </td>
+                    </tr>
+                  ))}
+                  {shown.length === 0 && <tr><td colSpan={3} className="px-4 py-3 text-[var(--text-secondary)]">No item matches “{search}”.</td></tr>}
+                </tbody>
+              </table>
+            </div>
           </section>
         </div>
 
-        <aside className="space-y-6">
+        <aside className="min-w-0 space-y-6">
           {can.record && userId && <EntryForm items={items} depots={depots} userId={userId} onQueued={syncNow} />}
           {queued.length > 0 && (
-            <section className="border border-[var(--amber)]/40 p-4 text-sm">
-              <h2 className="mb-1 font-semibold uppercase text-[var(--amber)]">Waiting to sync on this device ({queued.length})</h2>
+            <section className="panel border-amber p-4 text-sm">
+              <h2 className="mb-1 font-semibold text-[var(--amber)]">Waiting to sync on this device ({queued.length})</h2>
               <p className="mb-2 text-xs text-[var(--text-secondary)]">Saved here; they upload as soon as the connection returns.</p>
               {needsSignIn && (
                 <p role="alert" className="mb-2 text-xs font-semibold text-[var(--amber)]">
@@ -154,6 +169,8 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
   );
 }
 
+const itemUnit = (items: Props["items"], id: string) => items.find((i) => i.id === id)?.unit ?? "";
+
 function EntryForm({ items, depots, userId, onQueued }: { items: Props["items"]; depots: Named[]; userId: string; onQueued: () => void }) {
   const [form, setForm] = useState({ resource_type_id: items[0]?.id ?? "", depot_id: depots[0]?.id ?? "", movement: "receipt", quantity: "", priority: false, event_tag: "" });
 
@@ -177,23 +194,33 @@ function EntryForm({ items, depots, userId, onQueued }: { items: Props["items"];
   };
 
   return (
-    <form onSubmit={submit} className="space-y-3 border border-white/10 p-4">
-      <h2 className="text-sm font-semibold uppercase">Record a stock entry</h2>
-      <select className={field} aria-label="Item" value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
-        {items.map((i) => <option key={i.id} value={i.id} className="bg-black">{i.name}</option>)}
-      </select>
-      <select className={field} aria-label="Depot" value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
-        {depots.map((d) => <option key={d.id} value={d.id} className="bg-black">{d.name}</option>)}
-      </select>
-      <div className="grid grid-cols-2 gap-2">
-        <select className={field} aria-label="Movement" value={form.movement} onChange={(e) => setForm({ ...form, movement: e.target.value })}>
-          {MOVEMENTS.map((m) => <option key={m.value} value={m.value} className="bg-black">{m.label}</option>)}
+    <form onSubmit={submit} className="panel space-y-3 p-4">
+      <h2 className="text-sm font-semibold">Record a stock entry</h2>
+      <label className={label}>Item
+        <select className={field} value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
+          {items.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}
         </select>
-        <input className={field} type="number" min={1} required placeholder="Quantity" aria-label="Quantity" value={form.quantity}
-          onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
+      </label>
+      <label className={label}>Depot
+        <select className={field} value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
+          {depots.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
+        </select>
+      </label>
+      <div className="grid grid-cols-2 gap-2">
+        <label className={label}>Movement
+          <select className={field} value={form.movement} onChange={(e) => setForm({ ...form, movement: e.target.value })}>
+            {MOVEMENTS.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
+          </select>
+        </label>
+        <label className={label}>Quantity
+          <input className={field} type="number" min={1} required placeholder={itemUnit(items, form.resource_type_id)} value={form.quantity}
+            onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
+        </label>
       </div>
-      <input className={field} placeholder="Event tag (optional, e.g. Kristine)" aria-label="Event tag (optional)" value={form.event_tag}
-        onChange={(e) => setForm({ ...form, event_tag: e.target.value })} />
+      <label className={label}>Event tag (optional)
+        <input className={field} placeholder="e.g. Kristine" value={form.event_tag}
+          onChange={(e) => setForm({ ...form, event_tag: e.target.value })} />
+      </label>
       <label className="flex items-center gap-2 text-sm">
         <input type="checkbox" checked={form.priority} onChange={(e) => setForm({ ...form, priority: e.target.checked })} />
         Priority (syncs first)
@@ -228,8 +255,8 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
   };
 
   return (
-    <section className="border border-[var(--critical)]/50 p-4">
-      <h2 className="mb-3 text-sm font-semibold uppercase text-[var(--critical)]">Conflicts to resolve ({conflicts.length})</h2>
+    <section className="panel border-critical p-4" role="alert">
+      <h2 className="mb-3 text-sm font-semibold text-critical">{conflicts.length} conflict{conflicts.length === 1 ? "" : "s"} to resolve</h2>
       <ul className="space-y-4 text-sm">
         {conflicts.map((c) => (
           <li key={c.id}>
@@ -239,9 +266,9 @@ function ConflictList({ conflicts, itemName, depotName, canResolve, onDone }: {
             </p>
             {canResolve && (
               <div className="mt-2 flex flex-wrap gap-2">
-                <input className={`${field} min-w-[200px] flex-1`} placeholder="What happened (required)" aria-label="What happened (required)" value={notes[c.id]?.note ?? ""}
+                <input className={cn(field, "min-w-[200px] flex-1")} placeholder="What happened (required)" aria-label="What happened (required)" value={notes[c.id]?.note ?? ""}
                   onChange={(e) => setNotes({ ...notes, [c.id]: { ...(notes[c.id] ?? { correction: "" }), note: e.target.value } })} />
-                <input className={`${field} w-32`} type="number" placeholder="Correction ±" aria-label="Correction (plus or minus)" value={notes[c.id]?.correction ?? ""}
+                <input className={cn(field, "w-32")} type="number" placeholder="Correction ±" aria-label="Correction (plus or minus)" value={notes[c.id]?.correction ?? ""}
                   onChange={(e) => setNotes({ ...notes, [c.id]: { ...(notes[c.id] ?? { note: "" }), correction: e.target.value } })} />
                 <Button variant="ghost" disabled={!notes[c.id]?.note?.trim() || busy !== null} onClick={() => resolve(c)}>{busy === c.id ? "Resolving…" : "Resolve"}</Button>
               </div>
@@ -273,16 +300,22 @@ function CountForm({ items, depots }: { items: Props["items"]; depots: Named[] }
   };
 
   return (
-    <form onSubmit={submit} className="space-y-3 border border-white/10 p-4">
-      <h2 className="text-sm font-semibold uppercase">Weekly physical count</h2>
-      <select className={field} aria-label="Item counted" value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
-        {items.map((i) => <option key={i.id} value={i.id} className="bg-black">{i.name}</option>)}
-      </select>
-      <select className={field} aria-label="Depot counted" value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
-        {depots.map((d) => <option key={d.id} value={d.id} className="bg-black">{d.name}</option>)}
-      </select>
-      <input className={field} type="number" min={0} required placeholder="Counted quantity" aria-label="Counted quantity" value={form.counted_quantity}
-        onChange={(e) => setForm({ ...form, counted_quantity: e.target.value })} />
+    <form onSubmit={submit} className="panel space-y-3 p-4">
+      <h2 className="text-sm font-semibold">Weekly physical count</h2>
+      <label className={label}>Item counted
+        <select className={field} value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
+          {items.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}
+        </select>
+      </label>
+      <label className={label}>Depot
+        <select className={field} value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
+          {depots.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
+        </select>
+      </label>
+      <label className={label}>Counted quantity
+        <input className={field} type="number" min={0} required placeholder={itemUnit(items, form.resource_type_id)} value={form.counted_quantity}
+          onChange={(e) => setForm({ ...form, counted_quantity: e.target.value })} />
+      </label>
       <Button type="submit" variant="ghost" disabled={busy} className="w-full">{busy ? "Recording…" : "Record count"}</Button>
     </form>
   );
@@ -304,12 +337,12 @@ function CheckRecords() {
   };
 
   return (
-    <section className="space-y-2 border border-white/10 p-4 text-sm">
-      <h2 className="font-semibold uppercase">Check records</h2>
+    <section className="panel space-y-2 p-4 text-sm">
+      <h2 className="font-semibold">Check records</h2>
       <p className="text-xs text-[var(--text-secondary)]">Recomputes every entry's fingerprint from the first one and reports the first that no longer matches.</p>
       <Button variant="ghost" onClick={check} disabled={busy} className="w-full">{busy ? "Checking…" : "Check records"}</Button>
       {result && (result.ok
-        ? <p className="text-emerald-400">Records intact: {result.checked} entries checked.</p>
+        ? <p className="text-ok">Records intact: {result.checked} entries checked.</p>
         : <p className="text-[var(--critical)]">Check failed at entry #{result.first_bad_seq}: {result.problem}.</p>)}
     </section>
   );

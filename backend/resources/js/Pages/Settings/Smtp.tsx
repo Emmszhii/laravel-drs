@@ -3,6 +3,7 @@ import axios from "axios";
 import { PageProps, SmtpSettingsData } from "@/Types/models";
 import Button from "../../Components/Common/Button";
 import { SettingsTabs } from "@/Components/settings/SettingsTabs";
+import { PageHeader } from "@/Components/PageHeader";
 import AdminLayout from "../../Layouts/AdminLayout";
 
 type Props = PageProps<{ settings: SmtpSettingsData }>;
@@ -74,9 +75,10 @@ function SmtpSettings({ settings: initial, auth }: Props) {
 
   return (
     <div>
+      <PageHeader title="Settings" />
       <SettingsTabs />
-      <div className="mx-auto max-w-2xl p-8 text-[var(--text-primary)]">
-        <h1 className="mb-1 text-lg font-semibold uppercase tracking-wide">SMTP settings</h1>
+      <div className="max-w-2xl p-4 text-[var(--text-primary)] sm:p-6">
+        <h2 className="mb-1 text-base font-semibold">Outgoing email (SMTP)</h2>
         <p className="mb-6 text-sm text-[var(--text-secondary)]">
           Outgoing mail (password resets, new-account invites) uses the server's default mail
           configuration unless you enable a custom SMTP server below. If this is left off, or the
@@ -84,8 +86,8 @@ function SmtpSettings({ settings: initial, auth }: Props) {
           for anyone who doesn't touch this screen.
         </p>
 
-        <div className="mb-6 border border-white/10 p-4">
-          <div className="mb-1 text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+        <div className="mb-6 border border-line p-4">
+          <div className="mb-1 text-xs text-[var(--text-secondary)]">
             Status
           </div>
           <div className="text-sm font-semibold">
@@ -104,7 +106,7 @@ function SmtpSettings({ settings: initial, auth }: Props) {
           </label>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               Host
             </label>
             <input
@@ -112,13 +114,13 @@ function SmtpSettings({ settings: initial, auth }: Props) {
               value={host}
               onChange={(e) => setHost(e.target.value)}
               placeholder="smtp.example.com"
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 
           <div className="flex gap-4">
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              <label className="mb-1 block text-xs text-[var(--text-secondary)]">
                 Port
               </label>
               <input
@@ -128,17 +130,17 @@ function SmtpSettings({ settings: initial, auth }: Props) {
                 value={port}
                 onChange={(e) => setPort(e.target.value)}
                 placeholder="587"
-                className="w-full border border-white/20 bg-transparent p-2 text-sm"
+                className="w-full border border-line-strong bg-transparent p-2 text-sm"
               />
             </div>
             <div className="flex-1">
-              <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+              <label className="mb-1 block text-xs text-[var(--text-secondary)]">
                 Encryption
               </label>
               <select
                 value={encryption}
                 onChange={(e) => setEncryption(e.target.value as "" | "tls" | "ssl")}
-                className="w-full border border-white/20 bg-transparent p-2 text-sm"
+                className="w-full border border-line-strong bg-transparent p-2 text-sm"
               >
                 <option value="">None</option>
                 <option value="tls">TLS (STARTTLS)</option>
@@ -148,19 +150,19 @@ function SmtpSettings({ settings: initial, auth }: Props) {
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               Username
             </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               Password {settings.password_set && "(a password is currently saved)"}
             </label>
             <input
@@ -168,12 +170,12 @@ function SmtpSettings({ settings: initial, auth }: Props) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder={settings.password_set ? "Leave blank to keep current password" : ""}
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               From address
             </label>
             <input
@@ -181,31 +183,31 @@ function SmtpSettings({ settings: initial, auth }: Props) {
               value={fromAddress}
               onChange={(e) => setFromAddress(e.target.value)}
               placeholder="noreply@example.com"
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               From name
             </label>
             <input
               type="text"
               value={fromName}
               onChange={(e) => setFromName(e.target.value)}
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+            <label className="mb-1 block text-xs text-[var(--text-secondary)]">
               Send test email to
             </label>
             <input
               type="email"
               value={testTo}
               onChange={(e) => setTestTo(e.target.value)}
-              className="w-full border border-white/20 bg-transparent p-2 text-sm"
+              className="w-full border border-line-strong bg-transparent p-2 text-sm"
             />
           </div>
 

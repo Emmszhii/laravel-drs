@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { useForm } from "@inertiajs/react";
+import { Head, useForm } from "@inertiajs/react";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "../../Components/Common/Button";
 
@@ -31,15 +31,16 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
   return (
     <div className="flex h-screen items-center justify-center bg-[var(--bg-void)] text-[var(--text-primary)]">
       <form onSubmit={submit} className="w-full max-w-sm space-y-4 p-8">
-        <h1 className="text-lg font-semibold uppercase tracking-wide">
+        <h1 className="text-lg font-semibold">
           Disaster<span className="text-[var(--amber)]">Resource+</span>
         </h1>
+        <Head title="Reset password" />
         <p className="text-sm text-[var(--text-secondary)]">
           Set a password for <span className="text-[var(--text-primary)]">{data.email}</span>.
         </p>
 
         <div className="space-y-1">
-          <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+          <label className="block text-xs text-[var(--text-secondary)]">
             New password
           </label>
           <div className="relative">
@@ -47,7 +48,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
               type={showPassword ? "text" : "password"}
               value={data.password}
               onChange={(e) => setData("password", e.target.value)}
-              className="w-full border border-white/20 bg-transparent px-3 py-2 pr-9 text-sm"
+              className="w-full border border-line-strong bg-transparent px-3 py-2 pr-9 text-sm"
               autoComplete="new-password"
               required
             />
@@ -66,7 +67,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
         </div>
 
         <div className="space-y-1">
-          <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+          <label className="block text-xs text-[var(--text-secondary)]">
             Confirm password
           </label>
           <div className="relative">
@@ -74,7 +75,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
               type={showConfirm ? "text" : "password"}
               value={data.password_confirmation}
               onChange={(e) => setData("password_confirmation", e.target.value)}
-              className="w-full border border-white/20 bg-transparent px-3 py-2 pr-9 text-sm"
+              className="w-full border border-line-strong bg-transparent px-3 py-2 pr-9 text-sm"
               autoComplete="new-password"
               required
             />

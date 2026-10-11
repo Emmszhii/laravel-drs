@@ -8,7 +8,11 @@ export function cn(...inputs: ClassValue[]): string {
 }
 
 /** The plain bordered input/select used across the domain pages (Stock, ICS 213-RR, Replenishment). */
-export const field = 'w-full border border-white/20 bg-transparent px-2 py-1.5 text-sm';
+export const field =
+  'h-9 w-full border border-line-strong bg-[var(--bg-void)] px-2.5 text-sm text-[var(--text-primary)] focus:border-amber focus:outline-none disabled:opacity-50';
+
+/** A visible label wrapping its control: small secondary text, the control just under it. */
+export const label = 'flex flex-col gap-1 text-xs font-medium text-[var(--text-secondary)]';
 
 /** The API's own message for a failed request, or a generic retry hint. */
 export function errorMessage(err: unknown): string {

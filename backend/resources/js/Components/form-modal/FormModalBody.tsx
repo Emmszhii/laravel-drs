@@ -121,7 +121,7 @@ export function FormModalBody({
                 <button
                     type="submit"
                     disabled={formik.isSubmitting}
-                    className="inline-flex items-center justify-center gap-2 bg-amber px-4 py-2 text-sm font-semibold tracking-wide text-[#1a1200] uppercase transition-opacity hover:opacity-90 disabled:opacity-60"
+                    className="inline-flex items-center justify-center gap-2 bg-amber px-4 py-2 text-sm font-semibold text-[#1a1200] transition-opacity hover:opacity-90 disabled:opacity-60"
                     data-cy={submitButtonDataCy ?? 'submit-button'}
                 >
                     {formik.isSubmitting && (

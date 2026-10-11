@@ -10,12 +10,16 @@ export default {
         "bg-void": "var(--bg-void)",
         "bg-panel": "var(--bg-panel)",
         "bg-panel-raised": "var(--bg-panel-raised)",
+        panel: "var(--bg-panel)",
+        "panel-raised": "var(--bg-panel-raised)",
+        tint: "var(--tint)",
         line: "var(--line)",
         "line-strong": "var(--line-strong)",
         amber: "var(--amber)",
         critical: "var(--critical)",
         ok: "var(--ok)",
         pending: "var(--pending)",
+        info: "var(--info)",
       },
       keyframes: {
         ticker: {

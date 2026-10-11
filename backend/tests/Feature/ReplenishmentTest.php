@@ -176,6 +176,20 @@ class ReplenishmentTest extends TestCase
             ->assertInertia(fn ($page) => $page->where('can', ['run' => false, 'encode' => false, 'export' => true]));
     }
 
+    public function test_the_report_page_shows_each_quarter_in_the_range_and_who_may_download(): void
+    {
+        $this->food();
+
+        $this->actingAs($this->admin())->get('/report?year=2026&from=2&to=4')->assertOk()
+            ->assertInertia(fn ($page) => $page->component('Report/Index')
+                ->where('from', 2)->where('to', 4)->has('reports', 3)
+                ->where('reports.0.quarter', 2)->where('reports.0.plan', null)
+                ->where('can.export', true));
+        // A reversed or out-of-range range is clamped, never an error.
+        $this->actingAs(User::factory()->create(['role' => 'operations']))->get('/report?year=2026&from=3&to=1')->assertOk()
+            ->assertInertia(fn ($page) => $page->where('from', 3)->where('to', 3)->has('reports', 1)->where('can.export', false));
+    }
+
     public function test_an_unexplained_spike_blocks_the_run_until_logistics_resolves_it(): void
     {
         $this->fakeSolver();

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import { PageHeader } from "@/Components/PageHeader";
+import { StatusBadge } from "@/Components/StatusBadge";
 import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
@@ -40,7 +42,7 @@ const fields: FieldDef<Depot>[] = [
 
 function DepotCard(row: Depot, actions: CardActions) {
   return (
-    <div className="bg-[var(--bg-void)] p-5">
+    <div className="bg-panel p-5">
       <div className="mb-1 flex items-start justify-between">
         <div className="text-[15px] font-medium">{row.name}</div>
         <div className="flex gap-2 text-xs">
@@ -65,9 +67,9 @@ function DepotCard(row: Depot, actions: CardActions) {
       <div className="mb-2.5 text-xs text-[var(--text-secondary)]">
         {row.address} · {row.free_space != null ? `${row.free_space} m³ free` : "Free space not measured"}
       </div>
-      <span className="inline-block bg-[var(--ok-dim,rgba(63,169,140,0.15))] px-2 py-0.5 font-mono text-xs text-[var(--ok,#3FA98C)]">
-        {row.status}
-      </span>
+      <StatusBadge tone={row.status === "OPERATIONAL" ? "ok" : row.status === "OFFLINE" ? "critical" : "amber"}>
+        {STATUS_OPTIONS.find((o) => o.value === row.status)?.label ?? row.status}
+      </StatusBadge>
     </div>
   );
 }
@@ -79,12 +81,13 @@ function DepotsIndex() {
 
   return (
     <div>
-      <div className="flex items-center justify-between border-b border-white/10 px-6 py-3">
-        <h1 className="text-lg font-semibold uppercase">Depots</h1>
-        {canManage && <Button onClick={() => setModal({ mode: "create" })}>+ Add depot</Button>}
-      </div>
+      <PageHeader
+        title="Depots"
+        description="Where stock is kept. The solver plans around storage room only when every depot has a free space and every item a space per unit."
+        actions={canManage && <Button onClick={() => setModal({ mode: "create" })}>+ Add depot</Button>}
+      />
 
-      <div className="p-6">
+      <div className="px-4 pb-6 sm:px-6">
         <DataTableCardField<Depot>
           apiUrl="/api/depots"
           apiQueryKey="depots"

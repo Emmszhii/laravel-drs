@@ -8,6 +8,9 @@ import { enqueueStock } from "@/Offline/outbox";
 import { isNetworkError, syncOutbox } from "@/Offline/sync";
 import useOfflineSync from "@/Hooks/useOfflineSync";
 import type { OutboxItem } from "@/Offline/db";
+import { PageHeader } from "@/Components/PageHeader";
+import { StatusBadge, type Tone } from "@/Components/StatusBadge";
+import { cn, label as labelCls } from "@/lib/utils";
 import { IcsTabs, History, DivisionList, field, message, type Can, type StatusChange } from "./shared";
 
 type Borrow = {
@@ -37,6 +40,7 @@ const NEXT: Record<string, string[]> = {
 const LABEL: Record<string, string> = {
   issued: "Issued", returned: "Returned", for_repair: "For repair", condemned: "Condemned (written off)", surrendered: "Surrendered",
 };
+const TONE: Record<string, Tone> = { issued: "amber", returned: "ok", for_repair: "info", condemned: "critical", surrendered: "neutral" };
 const day = (iso: string) => new Date(iso).toLocaleDateString("en-PH");
 
 /** Units issued offline on this device, shown like logbook rows until they sync. */
@@ -107,12 +111,13 @@ export default function Borrowed({ borrows, equipment, depots, divisions, can }:
 
   return (
     <div>
+      <PageHeader title="ICS 213-RR" description="The borrowed-equipment logbook: every unit lent out, to whom, and when it came back." />
       <IcsTabs />
       <DivisionList divisions={divisions} />
-      <div className="grid gap-6 p-6 xl:grid-cols-[1fr_360px]">
-        <div>
-          {rows.length === 0 && <p className="text-sm text-[var(--text-secondary)]">Nothing has been lent out yet.</p>}
-          <ul className="divide-y divide-white/10 border border-white/10">
+      <div className="grid gap-6 p-4 sm:p-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="min-w-0">
+          {rows.length === 0 && <p className="panel p-6 text-sm text-[var(--text-secondary)]">Nothing has been lent out yet.</p>}
+          <ul className={rows.length ? "panel divide-y divide-line" : "hidden"}>
             {rows.map((b) => {
               const next = returning.has(b.id) ? undefined : b.pendingIssue ? ["returned"] : NEXT[b.status];
               const returnedAt = b.history.find((h) => h.to_status === "returned")?.created_at;
@@ -124,10 +129,9 @@ export default function Borrowed({ borrows, equipment, depots, divisions, can }:
                       {b.location ? ` · at ${b.location}` : ""}
                       {b.borrower_name && <span className="text-[var(--text-secondary)]"> · {b.borrower_name}{b.borrower_contact ? `, ${b.borrower_contact}` : ""}</span>}
                     </span>
-                    <span className="text-xs uppercase">
-                      {returning.has(b.id) ? "Return waiting to sync" : LABEL[b.status]}
-                      {b.pendingIssue && !returning.has(b.id) ? " · waiting to sync" : ""}
-                    </span>
+                    {returning.has(b.id)
+                      ? <StatusBadge tone="neutral">Return waiting to sync</StatusBadge>
+                      : <StatusBadge tone={TONE[b.status] ?? "neutral"}>{LABEL[b.status]}{b.pendingIssue ? " · waiting to sync" : ""}</StatusBadge>}
                   </div>
                   <div className="text-xs text-[var(--text-secondary)]">
                     Out {day(b.issued_at)}{returnedAt ? ` · Returned ${day(returnedAt)}` : ""}
@@ -135,7 +139,7 @@ export default function Borrowed({ borrows, equipment, depots, divisions, can }:
                   {can.release && next && (
                     <div className="flex flex-wrap items-center gap-2">
                       {!b.pendingIssue && (
-                        <input className={`${field} w-56`} placeholder="Note (optional)" aria-label={`Note for ${b.resource_type.name} (optional)`} value={notes[b.id] ?? ""} onChange={(e) => setNotes({ ...notes, [b.id]: e.target.value })} />
+                        <input className={cn(field, "w-56")} placeholder="Note (optional)" aria-label={`Note for ${b.resource_type.name} (optional)`} value={notes[b.id] ?? ""} onChange={(e) => setNotes({ ...notes, [b.id]: e.target.value })} />
                       )}
                       {next.map((s) => (
                         <Button key={s} variant={s === "returned" ? "primary" : "ghost"} disabled={busy !== null} onClick={() => move(b, s)}>{LABEL[s]}</Button>
@@ -194,29 +198,45 @@ function LendForm({ equipment, depots, userId, onDone }: { equipment: Equipment[
   };
 
   if (equipment.length === 0) {
-    return <p className="h-fit border border-white/10 p-4 text-sm text-[var(--text-secondary)]">No borrowable equipment in the catalog yet. Add an item and uncheck "Consumable".</p>;
+    return <p className="panel h-fit p-4 text-sm text-[var(--text-secondary)]">No borrowable equipment in the catalog yet. Add an item and uncheck "Consumable".</p>;
   }
 
   return (
-    <form onSubmit={submit} className="h-fit space-y-3 border border-white/10 p-4">
-      <h2 className="text-sm font-semibold uppercase">Lend equipment</h2>
-      <p className="text-xs text-[var(--text-secondary)]">For a walk-in loan with no request, like a tool lent to another office.</p>
-      <div className="flex gap-2">
-        <select className={field} aria-label="Equipment" value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
-          {equipment.map((i) => <option key={i.id} value={i.id} className="bg-black">{i.name}</option>)}
+    <form onSubmit={submit} className="panel h-fit space-y-3 p-4">
+      <div>
+        <h2 className="text-sm font-semibold">Lend equipment</h2>
+        <p className="mt-1 text-xs text-[var(--text-secondary)]">For a walk-in loan with no request, like a tool lent to another office.</p>
+      </div>
+      <div className="grid grid-cols-[minmax(0,1fr)_80px] gap-2">
+        <label className={labelCls}>Equipment
+          <select className={field} value={form.resource_type_id} onChange={(e) => setForm({ ...form, resource_type_id: e.target.value })}>
+            {equipment.map((i) => <option key={i.id} value={i.id}>{i.name}</option>)}
+          </select>
+        </label>
+        <label className={labelCls}>Quantity
+          <input className={field} type="number" min={1} max={100} required value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
+        </label>
+      </div>
+      <label className={labelCls}>Lend from depot
+        <select className={field} value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
+          {depots.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
         </select>
-        <input className={`${field} w-20`} type="number" min={1} max={100} required aria-label="Quantity" value={form.quantity} onChange={(e) => setForm({ ...form, quantity: e.target.value })} />
-      </div>
-      <select className={field} aria-label="Lend from depot" value={form.depot_id} onChange={(e) => setForm({ ...form, depot_id: e.target.value })}>
-        {depots.map((d) => <option key={d.id} value={d.id} className="bg-black">From {d.name}</option>)}
-      </select>
-      <input className={field} list="divisions" required placeholder="Borrower's division / office, e.g. CGSO" aria-label="Borrower's division or office" value={form.borrower_division}
-        onChange={(e) => setForm({ ...form, borrower_division: e.target.value })} />
+      </label>
+      <label className={labelCls}>Borrower's office
+        <input className={field} list="divisions" required placeholder="e.g. CGSO" value={form.borrower_division}
+          onChange={(e) => setForm({ ...form, borrower_division: e.target.value })} />
+      </label>
       <div className="grid grid-cols-2 gap-2">
-        <input className={field} required placeholder="Borrower's name" aria-label="Borrower's name" value={form.borrower_name} onChange={(e) => setForm({ ...form, borrower_name: e.target.value })} />
-        <input className={field} placeholder="Contact (optional)" aria-label="Borrower's contact" value={form.borrower_contact} onChange={(e) => setForm({ ...form, borrower_contact: e.target.value })} />
+        <label className={labelCls}>Borrower's name
+          <input className={field} required value={form.borrower_name} onChange={(e) => setForm({ ...form, borrower_name: e.target.value })} />
+        </label>
+        <label className={labelCls}>Contact (optional)
+          <input className={field} value={form.borrower_contact} onChange={(e) => setForm({ ...form, borrower_contact: e.target.value })} />
+        </label>
       </div>
-      <input className={field} placeholder="Location of use (optional)" aria-label="Location of use" value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+      <label className={labelCls}>Location of use (optional)
+        <input className={field} value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} />
+      </label>
       <Button type="submit" disabled={busy} className="w-full">{busy ? "Saving…" : "Lend out"}</Button>
     </form>
   );
