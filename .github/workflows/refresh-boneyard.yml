@@ -3,7 +3,7 @@ name: Refresh boneyard skeletons
 # Keeps backend/resources/js/bones/* (boneyard-js's captured skeleton shapes)
 # in sync with the actual rendered UI. Runs a throwaway SQLite-backed instance
 # of the app (never touches the real database), logs in as the seeded
-# `coordinator` test account, re-captures skeletons, and commits the result
+# Admin test account (admin@disasterresource.local, DatabaseSeeder), re-captures skeletons, and commits the result
 # back to the branch — so Coolify's own Docker build (which never runs
 # boneyard itself, see backend/Dockerfile) always builds from fresh bones.
 #
@@ -88,7 +88,7 @@ jobs:
       - name: Refresh the boneyard session cookie
         working-directory: backend
         env:
-          BONEYARD_LOGIN_EMAIL: coordinator@disasterresource.local
+          BONEYARD_LOGIN_EMAIL: admin@disasterresource.local
           BONEYARD_LOGIN_PASSWORD: password
         run: |
           node scripts/refresh-boneyard-session.mjs
