@@ -66,9 +66,10 @@ async function main() {
   }
   const sessionValue = jar.get(sessionCookieName);
 
-  const verify = await fetch(`${appUrl}/depots`, { headers: { Cookie: cookieHeader(jar) } });
+  // No redirect following: a failed login redirects /depots to /login, which would also answer 200.
+  const verify = await fetch(`${appUrl}/depots`, { redirect: "manual", headers: { Cookie: cookieHeader(jar) } });
   if (verify.status !== 200) {
-    throw new Error(`Session verification against /depots failed (status ${verify.status}).`);
+    throw new Error(`Session verification against /depots failed (status ${verify.status}${verify.headers.get("location") ? `, redirected to ${verify.headers.get("location")}` : ""}) — check BONEYARD_LOGIN_EMAIL/BONEYARD_LOGIN_PASSWORD.`);
   }
 
   const envContent = readFileSync(envPath, "utf-8");
