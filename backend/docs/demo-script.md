@@ -10,6 +10,7 @@ Audience: CDRRMO San Pablo (Head of Office, Logistics, Planning). One window, si
 bash backend/docs/demo-video/reset.sh      # fresh demo.sqlite; the Admin shows as "Head of Office"
 # servers: solver-service on :8001, the "laravel-demo" launch entry on :8000
 node backend/docs/demo-video/record.mjs    # writes demo-video/raw/demo.webm (raw/ is git-ignored)
+node backend/docs/demo-video/to-mp4.mjs    # re-encodes it to DisasterResource-demo.mp4 (H.264, needs Microsoft Edge)
 ```
 
 Run `reset.sh` before **every** live run too: the steps below depend on a clean start (hygiene kits and radios at zero, no approved plan yet).
@@ -39,7 +40,7 @@ On screen: the title card ("Supply readiness for CDRRMO San Pablo City"), then s
 
 ### Step 1: Stock, offline and the records seal (2 min)
 
-1. **Stock** → "Record a stock entry": **Hygiene kits**, depot **CDRRMO Main Storage**, **Receipt (items in)**, quantity **100** → Save. The row shows **100 kits** at once.
+1. **Stock** (sidebar, under Records) → "Record a stock entry": **Hygiene kits**, depot **CDRRMO Main Storage**, **Receipt (items in)**, quantity **100** → Save. The row shows **100 kits** at once.
 2. Same form: **Handheld radios**, quantity **5** → Save (**5 units**).
 3. Go offline (airplane mode, or DevTools → Network → Offline). **Hygiene kits**, **Release (items out)**, **5** → Save. The page shows "**Waiting to sync on this device**".
 4. Go online. The entry uploads by itself and the row reads **95 kits**.
@@ -57,11 +58,11 @@ On screen: the title card ("Supply readiness for CDRRMO San Pablo City"), then s
 
 ### Step 2: ICS 213-RR request and borrowed equipment (3 min)
 
-1. **ICS 213-RR**. Point at **Load a kit** (the office's "Medical backpack #1").
+1. **ICS 213-RR** (sidebar, under Records). Point at **Load a kit** (the office's "Medical backpack #1").
 2. Fill the form: requester **Juan Dela Cruz**, position **ERT Team Leader**, division/team **Operations and Warning / ERT**, purpose **Team kit**, item 1 **Hygiene kits × 20**, **+ Add item**, item 2 **Handheld radios × 2** → **File request**.
-3. On the new request, pick the depot for each line (**CDRRMO Main Storage**, 95 and 5 available) → **Approve**. The status becomes *approved* and the stock is reserved.
-4. Release **20** and **2**, borrower **Pedro Santos** → **Release**. The status becomes *closed*. Open the log: "approved by Head of Office".
-5. **Borrowed equipment** → click **Returned** on the radio.
+3. On the new request, pick the depot for each line (**CDRRMO Main Storage**, 95 and 5 available) → **Approve**. The status becomes **Approved** and the stock is reserved.
+4. Release **20** and **2**, borrower **Pedro Santos** → **Release**. The status becomes **Closed**. Open the log: "approved by Head of Office".
+5. **Borrowed equipment** tab → click **Returned** on the radio.
 
 | Say (EN) | Sabihin (TL) |
 |---|---|
@@ -77,12 +78,12 @@ On screen: the title card ("Supply readiness for CDRRMO San Pablo City"), then s
 
 **TL:** "Ito ang logbook ninyo, isang row kada unit, may status at kung sino ang may hawak."
 
-### Step 3: Quarterly purchase plan (2.5 min)
+### Step 3: Quarterly purchase plan (2 min)
 
-1. **Replenishment**. Enter the quarterly budget **₱300,000** → **Run solver** (wait for "Spends ₱…").
+1. **Replenishment** (sidebar, under Planning), **Recommendation** tab. Enter the quarterly budget **₱300,000** → **Run solver**. Wait for the spent-of-budget bar (**₱… of the ₱300,000 budget**).
 2. Point at the table: each item has an order, a target stock and a reason. Point at a row that says **partly covered**.
 3. Show the **budget curve** and "**The next ₱10,000 goes to**".
-4. **Approve** (the status reads "recommendation · approved"). Point at **Download PDF**.
+4. **Approve plan**. The status beside the title reads **Approved**.
 
 | Say (EN) | Sabihin (TL) |
 |---|---|
@@ -93,13 +94,26 @@ On screen: the title card ("Supply readiness for CDRRMO San Pablo City"), then s
 | "The budget curve shows the same plan at other budgets. Where it flattens, more money stops helping." | "Ipinapakita ng budget curve ang parehong plano sa ibang budget. Kapag pumatag ito, wala nang naitutulong ang dagdag na pera." |
 | "It also shows where the next ₱10,000 would go." | "Ipinapakita rin nito kung saan mapupunta ang susunod na ₱10,000." |
 | "Nothing is bought until the Head of Office approves the plan." | "Walang bibilhin hangga't hindi inaaprubahan ng Head of Office ang plano." |
-| "The approved plan prints as a report for the purchase request." | "Ang naaprubahang plano ay nagpi-print bilang report para sa purchase request." |
 
 **EN:** "It only recommends. Purchases still go through GSU bidding."
 
 **TL:** "Rekomendasyon lang po ito. Dadaan pa rin sa bidding ng GSU ang pagbili."
 
-*Optional live extras (not in the video):* show the data-check flags on this page and resolve one before running; export the quarterly report as CSV.
+*Optional live extras (not in the video):* show the data-check flags on this page and resolve one before running; open the **Backtest** tab (each model against the office's own orders on past quarters); open **Policy and history** (the VED policy and the history CSV import).
+
+### Step 4: Quarterly report (1 min)
+
+1. **Report** (sidebar, under Planning). It opens on the approved plan's quarter: "**Approved plan: ₱… of ₱300,000**".
+2. Point at a red **Quarters of cover** figure: less than one quarter of stock left.
+3. Point at **PDF** (and **CSV**): the same figures, ready for the purchase request.
+
+| Say (EN) | Sabihin (TL) |
+|---|---|
+| "The Report page opens on the approved plan: stock, use per quarter, quarters of cover and the reorder." | "Bumubukas ang Report page sa naaprubahang plano: stock, gamit kada quarter, ilang quarter pa ang kaya ng stock, at ang order." |
+| "Red marks an item with less than one quarter of stock left." | "Pula ang item na kulang na sa isang quarter ang natitirang stock." |
+| "Any year and quarter range can be shown. It downloads as a PDF or CSV for the purchase request." | "Puwedeng ipakita ang kahit anong taon at saklaw ng quarter. Nada-download ito bilang PDF o CSV para sa purchase request." |
+
+*Optional live extras (not in the video):* set **From Q1 To Q4** and click **Show** for the whole year; untick **Only items with stock, use or a reorder** to list every catalog item, as the PDF does.
 
 ### Close (30 sec)
 
@@ -190,4 +204,4 @@ Since the 2026-10-03 update, our request carries the fields on the photo of your
 - [ ] Backup: screenshots in `backend/docs/img/` and `docs/role-access/`
 - [ ] Bring a printed copy of section 4 and the history CSV template
 
-**If something breaks:** solver silent → check `solver-service` on :8001, then play the video for that part. Offline step fails → play the video and say the 30-entry scripted run passed in `EvaluationTest`. Numbers look wrong (not 100 / 95 kits) → you skipped `reset.sh`.
+**If something breaks:** solver silent → check `solver-service` on :8001, then play the video for that part. Offline step fails → play the video and say the 30-entry scripted run passed in `EvaluationTest`. Numbers look wrong (not 100 / 95 kits) → you skipped `reset.sh`. Report shows "No approved plan" → approve the plan in Step 3 first.
