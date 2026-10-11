@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-import { Boxes, ClipboardList, FileBarChart, Menu, Package, Settings, TrendingUp, Warehouse, X, type LucideIcon } from "lucide-react";
+import { Boxes, ClipboardList, FileBarChart, Menu, Network, Package, Settings, TrendingUp, Warehouse, X, type LucideIcon } from "lucide-react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
 import { NotificationBell } from "@/Components/NotificationBell";
 import { OfflineBanner } from "@/Components/OfflineBanner";
@@ -29,6 +29,7 @@ const navGroups: { label: string; items: NavItem[] }[] = [
     items: [
       { href: "/resources/types", label: "Items", icon: Boxes },
       { href: "/depots", label: "Depots", icon: Warehouse },
+      { href: "/divisions", label: "Divisions", icon: Network },
     ],
   },
 ];

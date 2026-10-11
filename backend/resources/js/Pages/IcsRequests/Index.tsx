@@ -10,6 +10,8 @@ import { isNetworkError, syncOutbox } from "@/Offline/sync";
 import { PageHeader } from "@/Components/PageHeader";
 import { StatusBadge, type Tone } from "@/Components/StatusBadge";
 import { cn, label } from "@/lib/utils";
+import { AsyncSelectField } from "@/Hooks/use-async-select-field";
+import { searchDivisions } from "@/api-service/modules/divisions";
 import { IcsTabs, History, DivisionList, field, message, type Can, type StatusChange } from "./shared";
 
 type Item = { id: string; name: string; unit: string; category: string; is_consumable: boolean };
@@ -384,6 +386,9 @@ function FileForm({ items, kits, can, onDone }: { items: Item[]; kits: Kit[]; ca
 
   const submit = async (e: FormEvent) => {
     e.preventDefault();
+    if (!form.requesting_division) {
+      return toast.error("Pick the division or team filing this request.");
+    }
     setBusy(true);
     try {
       await http.post("/api/ics-requests", {
@@ -418,10 +423,17 @@ function FileForm({ items, kits, can, onDone }: { items: Item[]; kits: Kit[]; ca
           <input className={field} value={form.requester_position} onChange={(e) => setForm({ ...form, requester_position: e.target.value })} />
         </label>
       </div>
-      <label className={label}>Division / team
-        <input className={field} list="divisions" required placeholder="e.g. Operations / Team Delta" value={form.requesting_division}
-          onChange={(e) => setForm({ ...form, requesting_division: e.target.value })} />
-      </label>
+      {/* Picked from the Divisions page; the request keeps the label as text. */}
+      <div className={label}>
+        Division / team
+        <AsyncSelectField
+          value={form.requesting_division || null}
+          onChange={(v) => setForm({ ...form, requesting_division: String(v ?? "") })}
+          loadOptions={(q) => searchDivisions(q)}
+          initialLabel={form.requesting_division}
+          placeholder="Search divisions and teams…"
+        />
+      </div>
       <div className="grid grid-cols-2 gap-2">
         <label className={label}>Purpose
           <select className={field} value={form.purpose} onChange={(e) => setForm({ ...form, purpose: e.target.value })}>

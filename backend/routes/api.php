@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ActivityLogController;
 use App\Http\Controllers\Api\DepotController;
+use App\Http\Controllers\Api\DivisionController;
 use App\Http\Controllers\Api\IcsRequestController;
 use App\Http\Controllers\Api\KitController;
 use App\Http\Controllers\Api\ProfileController;
@@ -36,6 +37,9 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index']);
         Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
 
+        Route::get('/divisions', [DivisionController::class, 'index']);
+        Route::get('/divisions/pagination-search', [DivisionController::class, 'paginationSearch']);
+
         Route::get('/resource-types', [ResourceTypeController::class, 'index']);
         Route::get('/resource-types/pagination-search', [ResourceTypeController::class, 'paginationSearch']);
 
@@ -50,11 +54,15 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
         Route::get('/stock/levels', [StockController::class, 'levels']);
     });
 
-    // Admin and Training keeps the item catalog and depot list.
+    // Admin and Training keeps the item catalog, the depot list and the divisions.
     Route::middleware(['role:admin_training'])->group(function () {
         Route::post('/depots', [DepotController::class, 'store']);
         Route::post('/depots/{id}', [DepotController::class, 'update']);
         Route::delete('/depots/{id}', [DepotController::class, 'destroy']);
+
+        Route::post('/divisions', [DivisionController::class, 'store']);
+        Route::post('/divisions/{id}', [DivisionController::class, 'update']);
+        Route::delete('/divisions/{id}', [DivisionController::class, 'destroy']);
 
         Route::post('/resource-types', [ResourceTypeController::class, 'store']);
         Route::post('/resource-types/{id}', [ResourceTypeController::class, 'update']);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\DepotController;
+use App\Http\Controllers\Web\DivisionController;
 use App\Http\Controllers\Web\IcsRequestController;
 use App\Http\Controllers\Web\ReplenishmentController;
 use App\Http\Controllers\Web\ReportController;
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'active'])->group(function () {
         Route::get('/ics-requests/borrowed', [IcsRequestController::class, 'borrowed'])->name('ics-requests.borrowed');
         Route::get('/resources/types', [ResourceInventoryController::class, 'types'])->name('resources.types');
         Route::get('/depots', [DepotController::class, 'index'])->name('depots.index');
+        Route::get('/divisions', [DivisionController::class, 'index'])->name('divisions.index');
     });
 
     Route::middleware(['role:system_admin'])->group(function () {

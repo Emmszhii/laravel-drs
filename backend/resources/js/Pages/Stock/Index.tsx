@@ -10,6 +10,8 @@ import useOfflineSync from "@/Hooks/useOfflineSync";
 import { useAsyncAction } from "@/Hooks/use-async-action";
 import { cn, errorMessage as message, field, label } from "@/lib/utils";
 import { PageHeader } from "@/Components/PageHeader";
+import { Fingerprint } from "@/Components/Fingerprint";
+import { PaginationBar } from "@/Components/table/components/Pagination";
 
 type Named = { id: string; name: string };
 type Level = { resource_type_id: string; depot_id: string; quantity: number | string };
@@ -47,6 +49,8 @@ const REASON_LABEL: Record<string, string> = {
  * browser and going offline. The server keeps a SHA-256 chain of all entries,
  * and "check records" recomputes it.
  */
+const PER_PAGE = 10;
+
 export default function StockIndex({ items, depots, levels, conflicts, latestFingerprint, can }: Props) {
   const itemName = useMemo(() => Object.fromEntries(items.map((i) => [i.id, i])), [items]);
   const depotName = useMemo(() => Object.fromEntries(depots.map((d) => [d.id, d.name])), [depots]);
@@ -79,7 +83,12 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
 
   const total = (typeId: string) => levels.filter((l) => l.resource_type_id === typeId).reduce((s, l) => s + Number(l.quantity), 0);
   const [search, setSearch] = useState("");
-  const shown = items.filter((i) => i.name.toLowerCase().includes(search.trim().toLowerCase()));
+  const matches = items.filter((i) => i.name.toLowerCase().includes(search.trim().toLowerCase()));
+  // Paged on this device, not the server: the page has to open offline with every item.
+  const [page, setPage] = useState(1);
+  const lastPage = Math.max(1, Math.ceil(matches.length / PER_PAGE));
+  const current = Math.min(page, lastPage);
+  const shown = matches.slice((current - 1) * PER_PAGE, current * PER_PAGE);
 
   return (
     <div>
@@ -87,8 +96,8 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
         title="Stock"
         description="Current stock is the sum of every recorded entry. Entries save on this device first, so recording works offline."
         actions={(
-          <span className="max-w-full truncate font-mono text-xs text-[var(--text-secondary)]" title={latestFingerprint}>
-            Fingerprint {latestFingerprint.slice(0, 16)}…
+          <span className="text-xs text-[var(--text-secondary)]">
+            Fingerprint <Fingerprint hash={latestFingerprint} />
           </span>
         )}
       />
@@ -101,7 +110,7 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
               <h2 className="text-sm font-semibold">Current stock</h2>
               <input className={cn(field, "w-full sm:w-64")} type="search" placeholder="Filter items" aria-label="Filter items" value={search}
-                onChange={(e) => setSearch(e.target.value)} />
+                onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
             </div>
             <div className="table-scroll">
               <table className="w-full text-sm sm:min-w-[480px]">
@@ -123,6 +132,15 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
                   {shown.length === 0 && <tr><td colSpan={3} className="px-4 py-3 text-[var(--text-secondary)]">No item matches “{search}”.</td></tr>}
                 </tbody>
               </table>
+            </div>
+            <div className="border-t border-line px-4 pb-4 [&>div]:mt-4">
+              <PaginationBar
+                meta={{ current_page: current, last_page: lastPage, per_page: PER_PAGE, total: matches.length,
+                  from: (current - 1) * PER_PAGE + 1, to: (current - 1) * PER_PAGE + shown.length }}
+                page={current}
+                loading={false}
+                onPageChange={setPage}
+              />
             </div>
           </section>
         </div>

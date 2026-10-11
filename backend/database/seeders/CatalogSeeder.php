@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Depot;
+use App\Models\Division;
 use App\Models\Kit;
 use App\Models\ResourceType;
 use Illuminate\Database\Seeder;
@@ -87,7 +88,28 @@ class CatalogSeeder extends Seeder
             Depot::firstOrCreate(['name' => $depot['name']], $depot + ['status' => 'OPERATIONAL']);
         }
 
+        $this->divisions();
         $this->backpack();
+    }
+
+    /**
+     * The office chart from the 2026-09-03 interview: four divisions, Logistics as a section under
+     * Administration and Training, and the response teams inside Operations ("Operation / Team Delta"
+     * on the photographed form). Add the other teams on the Divisions page.
+     */
+    private function divisions(): void
+    {
+        foreach ([
+            'Research and Planning' => [],
+            'Operations and Warning' => ['ERT', 'Team Delta'],
+            'Administration and Training' => ['Logistics'],
+            'Administrative' => [],
+        ] as $division => $teams) {
+            $parent = Division::firstOrCreate(['name' => $division]);
+            foreach ($teams as $team) {
+                Division::firstOrCreate(['name' => $team], ['parent_id' => $parent->id]);
+            }
+        }
     }
 
     /** "#1 backpack" on the form: the standard medical backpack, with the quantities finally written on it. */

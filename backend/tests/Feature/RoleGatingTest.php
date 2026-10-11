@@ -35,7 +35,7 @@ class RoleGatingTest extends TestCase
     public static function readOnlyWebRoutes(): array
     {
         $cases = [];
-        foreach (['/replenishment', '/replenishment/backtest', '/replenishment/inputs', '/report', '/stock', '/ics-requests', '/ics-requests/borrowed', '/resources/types', '/depots'] as $route) {
+        foreach (['/replenishment', '/replenishment/backtest', '/replenishment/inputs', '/report', '/stock', '/ics-requests', '/ics-requests/borrowed', '/resources/types', '/depots', '/divisions'] as $route) {
             foreach (self::ROLES as $role) {
                 $cases["{$route} as {$role}"] = [$route, $role];
             }

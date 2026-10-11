@@ -1,16 +1,16 @@
 # Graph Report - laravel-drs  (2026-10-11)
 
 ## Corpus Check
-- 329 files · ~148,576 words
+- 337 files · ~150,233 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1737 nodes · 3395 edges · 227 communities (165 shown, 62 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 229 edges (avg confidence: 0.79)
+- 1779 nodes · 3512 edges · 228 communities (166 shown, 62 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 242 edges (avg confidence: 0.79)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `17c53091`
+- Built from commit: `24e19e31`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -144,14 +144,14 @@
 - UsersController.php
 
 ## God Nodes (most connected - your core abstractions)
-1. `User` - 71 edges
+1. `User` - 75 edges
 2. `ResourceType` - 44 edges
-3. `IcsRequest` - 36 edges
-4. `StockEntry` - 35 edges
-5. `Controller` - 34 edges
+3. `Controller` - 36 edges
+4. `IcsRequest` - 36 edges
+5. `StockEntry` - 35 edges
 6. `StockLedger` - 33 edges
-7. `ReplenishmentItem` - 32 edges
-8. `BaseController` - 30 edges
+7. `BaseController` - 32 edges
+8. `ReplenishmentItem` - 32 edges
 9. `ReplenishmentRequest` - 29 edges
 10. `RequestWorkflow` - 27 edges
 
@@ -175,7 +175,7 @@
 - **Domain Model Entity Relationships** — disaster_model, zone_model, resourcerequest_model, depot_model, resource_model, resourcetype_model, allocation_model, optimizationrun_model [EXTRACTED 1.00]
 - **Automated Disaster Feed and Incident Processing** — polldisasterfeeds_job, disasterfeed_ingestor, usgsearth_feedclient, gdacs_feedclient, autoresolveincidents_job [EXTRACTED 1.00]
 
-## Communities (227 total, 62 thin omitted)
+## Communities (228 total, 62 thin omitted)
 
 ### Community 0 - "Admin API Controllers"
 Cohesion: 0.20
@@ -186,12 +186,12 @@ Cohesion: 0.15
 Nodes (25): useOfflineSync(), useOnlineStatus(), DrsOfflineDB, getDb(), OutboxItem, OutboxItemKind, OutboxItemStatus, changed() (+17 more)
 
 ### Community 2 - "API HTTP Client"
-Cohesion: 0.09
-Nodes (38): ApiEnvelope, attachHeaders(), createHttpClient(), getCsrfToken(), http, readCookie(), toApiError(), unwrap() (+30 more)
+Cohesion: 0.07
+Nodes (45): ApiEnvelope, ApiError, attachHeaders(), createHttpClient(), getCsrfToken(), http, readCookie(), toApiError() (+37 more)
 
 ### Community 3 - "Depot & Resource Models"
-Cohesion: 0.08
-Nodes (12): JsonResponse, Model, UserController, JsonResponse, Request, SmtpSettingController, SmtpSetting, DepotFactory (+4 more)
+Cohesion: 0.16
+Nodes (5): DepotFactory, ResourceTypeFactory, UserFactory, Factory, static
 
 ### Community 4 - "Filter/Pagination/Map Widgets"
 Cohesion: 0.12
@@ -206,32 +206,32 @@ Cohesion: 0.17
 Nodes (14): PuLP, backtest(), budget_curve(), flat_rule_orders(), _ms(), Budget-limited quarterly replenishment (Chapter III, Model Building).  Stage 1, Re-solves at 11 budget levels, 50%-150% of the entered budget in 10% steps, Textbook rule: average use plus z standard deviations of quarterly use (SAFETY_Z (+6 more)
 
 ### Community 7 - "Data Table Query Hooks"
-Cohesion: 0.10
-Nodes (14): Backtest, DataCheckFlag, BelongsTo, IcsRequestLine, BelongsTo, HasMany, KitLine, QuarterBudget (+6 more)
+Cohesion: 0.14
+Nodes (10): Backtest, DataCheckFlag, BelongsTo, KitLine, QuarterBudget, Reservation, BelongsTo, StockCount (+2 more)
 
 ### Community 8 - "Directions & Routing Settings API"
-Cohesion: 0.15
-Nodes (20): errorMessage(), Props, ReplenishmentBacktest(), BASIS_NOTE, BudgetCurve(), BudgetMeter(), DecisionBar(), FLAGGED_REASONS (+12 more)
+Cohesion: 0.12
+Nodes (24): errorMessage(), Props, ReplenishmentBacktest(), BASIS_NOTE, BudgetCurve(), BudgetMeter(), DecisionBar(), FLAGGED_REASONS (+16 more)
 
 ### Community 9 - "Auth Pages & Buttons"
 Cohesion: 0.12
-Nodes (11): ActivityLogController, JsonResponse, Request, AppLogger, AppLoggerObserver, Model, ActivityLogger, Model (+3 more)
+Nodes (10): ActivityLogController, JsonResponse, Request, AppLogger, AppLoggerObserver, Model, ActivityLogger, Model (+2 more)
 
 ### Community 10 - "Resource Types & Admin Layout"
-Cohesion: 0.24
-Nodes (3): BelongsTo, StockEntry, StockLedgerTest
+Cohesion: 0.15
+Nodes (6): HasMany, Division, BelongsTo, HasMany, DivisionTest, HasFactory
 
 ### Community 11 - "Disaster Feed Settings & Tests"
-Cohesion: 0.11
-Nodes (11): IcsRequestController, Request, Response, Depot, HasMany, Kit, HasMany, ResourceType (+3 more)
+Cohesion: 0.28
+Nodes (6): IcsRequestController, Request, Response, Kit, HasMany, self
 
 ### Community 12 - "Form Modal Schema Builder"
-Cohesion: 0.16
-Nodes (22): baseFor(), buildYupSchema(), withCustom(), withRequired(), buildInitialValues(), buildPayload(), mapApiErrorsToFormik(), seedFieldValue() (+14 more)
+Cohesion: 0.15
+Nodes (23): baseFor(), buildYupSchema(), withCustom(), withRequired(), buildInitialValues(), buildPayload(), mapApiErrorsToFormik(), seedFieldValue() (+15 more)
 
 ### Community 13 - "BaseController CRUD"
-Cohesion: 0.11
-Nodes (12): DepotController, Model, JsonResponse, Request, ProfileController, Model, ResourceTypeController, BaseController (+4 more)
+Cohesion: 0.09
+Nodes (15): DepotController, Model, DivisionController, Builder, Model, JsonResponse, Request, ProfileController (+7 more)
 
 ### Community 14 - "Confirmation Modals"
 Cohesion: 0.08
@@ -262,28 +262,28 @@ Cohesion: 0.15
 Nodes (21): caption(), card(), choose(), click(), entry, form, hygieneRow, log (+13 more)
 
 ### Community 21 - "Service Providers"
-Cohesion: 0.29
+Cohesion: 0.31
 Nodes (3): ActivityLogServiceProvider, AppServiceProvider, ServiceProvider
 
 ### Community 22 - "Shared TypeScript Model Types"
 Cohesion: 0.12
-Nodes (15): AdminUser, Backtest, BacktestRuleScore, BudgetCurvePoint, DataCheckFlag, Depot, @inertiajs/core, PageProps (+7 more)
+Nodes (16): AdminUser, Backtest, BacktestRuleScore, BudgetCurvePoint, DataCheckFlag, Depot, Division, @inertiajs/core (+8 more)
 
 ### Community 23 - "Record Modal & Image Lightbox"
-Cohesion: 0.16
-Nodes (24): InUseEntry, TableQueryParams, useDebouncedValue(), useInvalidateTable(), useTableQuery(), useTableRefresh(), clientMeta(), isFilterValueActive() (+16 more)
+Cohesion: 0.15
+Nodes (26): InUseEntry, DataTableCardField(), TableQueryParams, useDebouncedValue(), useInvalidateTable(), useTableQuery(), useTableRefresh(), clientMeta() (+18 more)
 
 ### Community 24 - "Role/Active Auth Middleware"
 Cohesion: 0.16
 Nodes (11): EnsureUserHasRole, Closure, Request, Response, EnsureUserIsActive, Closure, Request, Response (+3 more)
 
 ### Community 25 - "Index.tsx"
-Cohesion: 0.16
-Nodes (15): normalizeQueryKey(), tableListInvalidateKeys(), usePermission(), CATEGORY_LABEL, categoryOptions, columns, DepotCard(), DepotsIndex() (+7 more)
+Cohesion: 0.08
+Nodes (25): divisionsService, searchDivisions(), Button(), Props, PageHeader(), normalizeQueryKey(), tableListInvalidateKeys(), usePermission() (+17 more)
 
 ### Community 27 - "Dispatch"
-Cohesion: 0.15
-Nodes (15): ICON_COLOR, SystemToastProvider(), ToastContext, ToastContextValue, ToastItem, VARIANT_ICON, VARIANT_STYLES, cn() (+7 more)
+Cohesion: 0.14
+Nodes (16): Fingerprint(), ICON_COLOR, SystemToastProvider(), ToastContext, ToastContextValue, ToastItem, VARIANT_ICON, VARIANT_STYLES (+8 more)
 
 ### Community 29 - "use-module.ts"
 Cohesion: 0.15
@@ -294,8 +294,8 @@ Cohesion: 0.22
 Nodes (9): 1. What they told us → what we show, 3. Likely questions (client and panel), 4. Ask the client, 5. Before you go on, A. Data to import, B. Users per role, C. Does our form match yours?, D. Setup (+1 more)
 
 ### Community 33 - "DisasterFeedIngestor"
-Cohesion: 0.13
-Nodes (15): FetchingSpinner(), DefaultRecordCard(), DefaultRecordCardProps, PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, Toolbar() (+7 more)
+Cohesion: 0.27
+Nodes (3): JsonResponse, Model, UserController
 
 ### Community 34 - "AllocationRequest"
 Cohesion: 0.24
@@ -306,36 +306,36 @@ Cohesion: 0.06
 Nodes (15): IcsRequestController, JsonResponse, Request, Borrow, BelongsTo, HasMany, IcsRequest, BelongsTo (+7 more)
 
 ### Community 39 - "Users.tsx"
-Cohesion: 0.11
-Nodes (10): ApiError, Button(), Props, RouteTabs(), SettingsTabs(), ResetPasswordProps, Props, VedPolicyForm() (+2 more)
+Cohesion: 0.43
+Nodes (3): IcsRequestLine, BelongsTo, HasOne
 
 ### Community 40 - ".log"
-Cohesion: 0.24
-Nodes (5): DatabaseSeeder, RoleSeeder, UserSeeder, Seeder, WithoutModelEvents
+Cohesion: 0.11
+Nodes (6): CatalogSeeder, DatabaseSeeder, RoleSeeder, UserSeeder, Seeder, WithoutModelEvents
 
 ### Community 42 - "types.ts"
-Cohesion: 0.09
-Nodes (7): EvaluationTest, ExampleTest, TestCase, ExampleTest, BaseTestCase, Collection, RefreshDatabase
+Cohesion: 0.11
+Nodes (11): Depot, HasMany, ResourceType, StockConflict, CatalogTest, EvaluationTest, ExampleTest, TestCase (+3 more)
 
 ### Community 44 - "QuarterHistory"
-Cohesion: 0.17
+Cohesion: 0.18
 Nodes (5): HistoryLine, BelongsTo, HistoryImporter, ReplenishmentDemoSeeder, Carbon
 
 ### Community 46 - "Kit"
-Cohesion: 0.21
-Nodes (10): Conflict, ConflictList(), CountForm(), EntryForm(), itemUnit(), Level, MOVEMENTS, Named (+2 more)
+Cohesion: 0.13
+Nodes (14): PageBtnProps, PageNumbersProps, PaginationBar(), PaginationBarProps, Conflict, ConflictList(), CountForm(), EntryForm() (+6 more)
 
 ### Community 47 - "Toast.tsx"
-Cohesion: 0.14
-Nodes (16): onUserChange(), queryClient, UserProfileSection(), UserProfileSectionProps, detectSystemTheme(), getStoredTheme(), setStoredTheme(), Theme (+8 more)
+Cohesion: 0.10
+Nodes (21): onUserChange(), queryClient, OfflineBanner(), UserProfileSection(), UserProfileSectionProps, detectSystemTheme(), getStoredTheme(), setStoredTheme() (+13 more)
 
 ### Community 50 - "DataCheckFlag"
 Cohesion: 0.18
 Nodes (11): 1. The idea in one breath, 2. Top bar: Year, Quarter, Budget, Model, 3. The recommendation table, 4. Budget curve and "the next ₱10,000", 5. Approve or Reject, 6. Right column: VED policy, History, Report, Runs, 7. Backtest on past quarters, 8. Closing line (+3 more)
 
 ### Community 51 - "FieldOption"
-Cohesion: 0.25
-Nodes (12): ParsedApiError, CardActions, ColumnFilterType, DataTableProps, InUseEntry, ModalState, RenderModalProps, StatusFilterTab (+4 more)
+Cohesion: 0.13
+Nodes (22): FetchingSpinner(), DefaultRecordCard(), DefaultRecordCardProps, Toolbar(), ToolbarProps, ViewToggle(), ViewToggleProps, ParsedApiError (+14 more)
 
 ### Community 52 - "DisasterResource+ — System Specification (from Capstone Chapters I–III)"
 Cohesion: 0.06
@@ -354,12 +354,12 @@ Cohesion: 0.25
 Nodes (6): BaseModel, Pydantic, _check_items(), OrderLine, ReplenishmentResponse, _line()
 
 ### Community 57 - "Controller"
-Cohesion: 0.06
-Nodes (28): KitController, JsonResponse, Request, Response, AuthenticatedSessionController, RedirectResponse, Request, Response (+20 more)
+Cohesion: 0.05
+Nodes (34): KitController, JsonResponse, Request, Response, JsonResponse, Request, SmtpSettingController, AuthenticatedSessionController (+26 more)
 
 ### Community 58 - "data-table.ts"
-Cohesion: 0.09
-Nodes (33): PageHeader(), StatusBadge(), Tone, subjectOf(), isNetworkError(), Borrow, Borrowed(), day() (+25 more)
+Cohesion: 0.10
+Nodes (31): StatusBadge(), Tone, subjectOf(), isNetworkError(), Borrow, Borrowed(), day(), Equipment (+23 more)
 
 ### Community 60 - "ChangePasswordModal.tsx"
 Cohesion: 0.29
@@ -394,12 +394,12 @@ Cohesion: 0.05
 Nodes (29): ReplenishmentRunUpdated, JsonResponse, Request, ReplenishmentController, Throwable, RunReplenishmentJob, NewAccountMail, Content (+21 more)
 
 ### Community 70 - "InventoryBurnRateCsvExporter.php"
-Cohesion: 0.12
-Nodes (19): Field(), ImageLightbox(), ImageLightboxProps, DynamicField(), DynamicFieldProps, AsyncMultiSelectField(), AsyncMultiSelectFieldProps, AsyncSelectField() (+11 more)
+Cohesion: 0.13
+Nodes (17): Field(), ImageLightbox(), ImageLightboxProps, AsyncMultiSelectField(), AsyncMultiSelectFieldProps, AsyncSelectField(), valuesEqual(), FileUploadField() (+9 more)
 
 ### Community 73 - "Users.tsx"
-Cohesion: 0.21
-Nodes (9): ActivityLogEntry, activityLogService, getLastSeenId(), NotificationBell(), OfflineBanner(), navGroups, NavItem, settingsGroup (+1 more)
+Cohesion: 0.60
+Nodes (3): Request, Response, StockController
 
 ### Community 74 - "DisasterResource+"
 Cohesion: 0.33
@@ -418,8 +418,8 @@ Cohesion: 0.25
 Nodes (8): covering_level(), item_target(), Use that would have covered k of the last m quarters: the (m-k+1)-th highest. Wi, (target, basis, multiplier). Target None means the item is listed for Logistics, test_cold_start_rules(), test_covering_level_follows_ved_coverage(), test_multiplier_is_covering_level_over_average(), test_covering_level_scales_k_with_short_history()
 
 ### Community 127 - "cache.php"
-Cohesion: 0.13
-Nodes (8): JsonResponse, Request, StockController, Request, Response, StockController, StockConflict, StockLedger
+Cohesion: 0.10
+Nodes (8): JsonResponse, Request, StockController, BelongsTo, StockEntry, StockLedger, StockLedgerTest, Collection
 
 ### Community 234 - "watch-boneyard.mjs"
 Cohesion: 0.38
@@ -438,24 +438,24 @@ Cohesion: 0.40
 Nodes (4): Context, Open a Claude-in-Chrome tab, Steps, Verification
 
 ## Knowledge Gaps
-- **369 isolated node(s):** `OUT`, `shotsOnly`, `entry`, `hygieneRow`, `waiting` (+364 more)
+- **372 isolated node(s):** `OUT`, `shotsOnly`, `entry`, `hygieneRow`, `waiting` (+367 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **62 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `User` connect `OsrmDirectionsProvider` to `Depot & Resource Models`, `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Data Table Query Hooks`, `.log`, `types.ts`, `Disaster Feed Settings & Tests`, `QuarterHistory`, `Resource Types & Admin Layout`, `Controller`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `Controller` connect `Controller` to `Depot & Resource Models`, `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Auth Pages & Buttons`, `Disaster Feed Settings & Tests`, `BaseController CRUD`, `cache.php`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
-- **Why does `BaseController` connect `BaseController CRUD` to `Controller`, `types.ts`, `Depot & Resource Models`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
+- **Why does `Controller` connect `Controller` to `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Auth Pages & Buttons`, `Users.tsx`, `Disaster Feed Settings & Tests`, `BaseController CRUD`, `cache.php`?**
+  _High betweenness centrality (0.039) - this node is a cross-community bridge._
+- **Why does `User` connect `OsrmDirectionsProvider` to `Depot & Resource Models`, `PasswordResetMail.php`, `use-file-upload-field.tsx`, `Data Table Query Hooks`, `.log`, `Resource Types & Admin Layout`, `types.ts`, `QuarterHistory`, `Controller`, `cache.php`?**
+  _High betweenness centrality (0.035) - this node is a cross-community bridge._
+- **Why does `BaseController` connect `BaseController CRUD` to `.log`, `DisasterFeedIngestor`, `Controller`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **Are the 33 inferred relationships involving `User` (e.g. with `.handle()` and `.run()`) actually correct?**
   _`User` has 33 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 15 inferred relationships involving `ResourceType` (e.g. with `.backtest()` and `.borrowed()`) actually correct?**
   _`ResourceType` has 15 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 6 inferred relationships involving `IcsRequest` (e.g. with `.index()` and `.test_a_reduced_approval_needs_a_reason_for_that_line()`) actually correct?**
-  _`IcsRequest` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `OUT`, `shotsOnly`, `entry` to the rest of the system?**
-  _392 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _395 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Frontend Bootstrap & Activity Log` be split into smaller, more focused modules?**
+  _Cohesion score 0.14623655913978495 - nodes in this community are weakly interconnected._
