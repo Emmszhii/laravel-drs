@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     Route::get('/activity-log', [ActivityLogController::class, 'index']);
 
     // Read-only access for every role.
-    Route::middleware(['role:viewer,administrative,logistics,operations,research_planning,admin_training'])->group(function () {
+    Route::middleware(['role:administrative,logistics,operations,research_planning,admin_training'])->group(function () {
         Route::get('/depots', [DepotController::class, 'index']);
         Route::get('/depots/pagination-search', [DepotController::class, 'paginationSearch']);
 

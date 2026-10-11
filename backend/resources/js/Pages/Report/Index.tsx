@@ -125,7 +125,36 @@ function QuarterReport({ report: r, activeOnly }: { report: Report; activeOnly: 
           <p className="text-sm text-amber">No approved plan for this quarter, so there is no reorder yet.</p>
         )}
       </header>
-      <div className="overflow-x-auto">
+      {/* Phones get one card per item; the full table from sm up. */}
+      <ul className="divide-y divide-line sm:hidden">
+        {rows.length === 0 && <li className="px-4 py-3 text-sm text-[var(--text-secondary)]">No item has stock, use or a reorder in this quarter.</li>}
+        {rows.map((row) => (
+          <li key={row.resource_type} className="px-4 py-3 text-sm">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="font-medium">
+                {row.resource_type} <span className="text-xs font-normal text-[var(--text-secondary)]">{row.unit}</span>
+              </span>
+              <span className="shrink-0 font-semibold">{row.reorder ? `Reorder ${num(row.reorder)}` : "No reorder"}</span>
+            </div>
+            <dl className="mt-1.5 grid grid-cols-3 gap-x-3 gap-y-1 text-xs">
+              {([
+                ["On hand", num(row.on_hand)],
+                ["Reserved", row.reserved ? num(row.reserved) : "–"],
+                ["Use / quarter", row.burn_rate ? num(row.burn_rate) : "–"],
+                ["Quarters of cover", num(row.quarters_of_cover)],
+                ["Target", num(row.target)],
+              ] as const).map(([k, v]) => (
+                <div key={k}>
+                  <dt className="text-[var(--text-secondary)]">{k}</dt>
+                  <dd className={k === "Quarters of cover" && row.quarters_of_cover != null && row.quarters_of_cover < 1 ? "font-semibold text-critical" : ""}>{v}</dd>
+                </div>
+              ))}
+            </dl>
+            {row.reason && <p className="mt-1.5 text-xs text-[var(--text-secondary)]">{row.reason}</p>}
+          </li>
+        ))}
+      </ul>
+      <div className="table-scroll hidden sm:block">
         <table className="w-full min-w-[820px] text-sm">
           <thead className="text-left text-xs text-[var(--text-secondary)]">
             <tr className="border-b border-line">

@@ -207,7 +207,7 @@ class StockLedgerTest extends TestCase
 
     public function test_only_stock_keepers_write_entries(): void
     {
-        foreach (['operations', 'research_planning', 'administrative', 'admin_training', 'viewer'] as $role) {
+        foreach (['operations', 'research_planning', 'administrative', 'admin_training'] as $role) {
             $this->sync([$this->entry(1)], User::factory()->create(['role' => $role]))->assertForbidden();
         }
         $this->sync([$this->entry(1)], User::factory()->create(['is_system_admin' => true]))->assertOk();

@@ -27,7 +27,7 @@ Route::middleware(['auth', 'active'])->group(function () {
     // reasons, budget curve). The Admin passes every role check (EnsureUserHasRole).
     Route::redirect('/', '/replenishment')->name('dashboard');
 
-    Route::middleware(['role:viewer,administrative,logistics,operations,research_planning,admin_training'])->group(function () {
+    Route::middleware(['role:administrative,logistics,operations,research_planning,admin_training'])->group(function () {
         Route::get('/replenishment', [ReplenishmentController::class, 'index'])->name('replenishment.index');
         Route::get('/replenishment/backtest', [ReplenishmentController::class, 'backtest'])->name('replenishment.backtest');
         Route::get('/replenishment/inputs', [ReplenishmentController::class, 'inputs'])->name('replenishment.inputs');

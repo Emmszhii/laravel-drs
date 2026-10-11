@@ -70,7 +70,7 @@ export default function ReplenishmentBacktest({ backtest, defaults, can }: Props
               <strong>{s.wins_vs_flat.per_item_multiplier}</strong>{s.target_met.per_item_multiplier ? " (a majority)" : ""}; the scenario model in{" "}
               <strong>{s.wins_vs_flat.scenario}</strong>{s.target_met.scenario ? " (a majority)" : ""}.
             </p>
-            <div className="panel overflow-x-auto">
+            <div className="panel table-scroll">
               <table className="w-full min-w-[760px] text-sm">
                 <thead className="text-left text-xs text-[var(--text-secondary)]">
                   <tr className="border-b border-line">

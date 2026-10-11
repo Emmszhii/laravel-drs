@@ -57,8 +57,7 @@ Role-based access follows the **office's own structure**, as confirmed in the 20
 | **Research and Planning** (`research_planning`) | Division | Reads recommendations and the budget curve for annual planning; takes the explanation task; exports the quarterly report. |
 | **Operations and Warning** (`operations`) | Division | Files ICS 213-RR requests for its teams (ERT, Team Delta and so on), including requests for equipment to borrow. |
 | **Administration and Training** (`admin_training`) | Division | Keeps the item catalog and depot list; trains users. |
-| **Administrative** (`administrative`) | Division | Read-only: opens every page and changes nothing. |
-| **Viewer** (`viewer`) | None (unassigned account) | Read-only, like Administrative. |
+| **Administrative** (`administrative`) | Division | Read-only: opens every page and changes nothing. The default for a new account. |
 
 **Decided (2026-10-03): the roles follow the confirmed office structure.** The earlier ERT and Incident Management roles are removed; their accounts moved to Operations (migration `2026_10_03_000002_replace_ert_and_incident_management_roles`).
 

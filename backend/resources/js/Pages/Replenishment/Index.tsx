@@ -121,7 +121,7 @@ function RunForm({ defaults, blocked, onDone }: { defaults: Props["defaults"]; b
   return (
     <form onSubmit={submit} className="panel p-4">
       <h2 className="mb-3 text-sm font-semibold">Run the solver</h2>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-[100px_90px_minmax(140px,1fr)_minmax(160px,1fr)_auto] sm:items-end">
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-[100px_90px_minmax(140px,1fr)_minmax(160px,1fr)_auto] md:items-end">
         <label className={label}>Year
           <input className={field} type="number" min={2020} max={2100} required value={form.year}
             onChange={(e) => setForm({ ...form, year: Number(e.target.value) })} />
@@ -131,17 +131,17 @@ function RunForm({ defaults, blocked, onDone }: { defaults: Props["defaults"]; b
             {[1, 2, 3, 4].map((q) => <option key={q} value={q}>Q{q}</option>)}
           </select>
         </label>
-        <label className={`${label} col-span-2 sm:col-span-1`}>Quarterly budget (₱)
+        <label className={`${label} col-span-2 md:col-span-1`}>Quarterly budget (₱)
           <input className={field} type="number" min={0} step="0.01" required placeholder="e.g. 400000" value={form.budget}
             onChange={(e) => setForm({ ...form, budget: e.target.value })} />
         </label>
-        <label className={`${label} col-span-2 sm:col-span-1`}>Model
+        <label className={`${label} col-span-2 md:col-span-1`}>Model
           <select className={field} value={form.rule} onChange={(e) => setForm({ ...form, rule: e.target.value })}>
             <option value="per_item_multiplier">Per-item multiplier</option>
             <option value="scenario">Scenario model</option>
           </select>
         </label>
-        <Button type="submit" disabled={busy || blocked} title={blocked ? "Resolve the data checks first" : undefined} className="col-span-2 sm:col-span-1">
+        <Button type="submit" disabled={busy || blocked} title={blocked ? "Resolve the data checks first" : undefined} className="col-span-2 md:col-span-1">
           {busy ? "Starting…" : "Run solver"}
         </Button>
       </div>
@@ -228,7 +228,27 @@ function RunDetail({ run, names, canDecide, onDone }: { run: ReplenishmentRun; n
         : <p className="text-sm text-[var(--text-secondary)]">Waiting for the Head of Office to approve or reject this plan.</p>)}
 
       {planned.length > 0 && (
-        <div className="panel overflow-x-auto">
+        <>
+        {/* Phones get one card per item; the full table from sm up. */}
+        <ul className="panel divide-y divide-line sm:hidden">
+          {planned.map((o) => (
+            <li key={o.id} className="px-4 py-3 text-sm">
+              <div className="flex items-baseline justify-between gap-3">
+                <span>
+                  {names[o.id]?.name ?? o.id}
+                  {BASIS_NOTE[o.basis] && <span className="ml-2 text-xs text-amber">{BASIS_NOTE[o.basis]}</span>}
+                </span>
+                <span className="shrink-0 font-semibold">{o.x.toLocaleString()} {names[o.id]?.unit}</span>
+              </div>
+              <div className="mt-1 text-xs text-[var(--text-secondary)]">
+                Target {o.target != null ? `${o.target.toLocaleString()} ${names[o.id]?.unit ?? ""}` : "–"} ·{" "}
+                <span className={o.shortfall ? "text-amber" : ""}>{o.shortfall ? `${o.shortfall_pct}% below target` : "target met"}</span>
+              </div>
+              <div className={`mt-0.5 text-xs ${FLAGGED_REASONS.includes(o.reason) ? "text-amber" : "text-[var(--text-secondary)]"}`}>{o.reason}</div>
+            </li>
+          ))}
+        </ul>
+        <div className="panel table-scroll hidden sm:block">
           <table className="w-full min-w-[640px] text-sm">
             <thead className="text-left text-xs text-[var(--text-secondary)]">
               <tr className="border-b border-line">
@@ -255,6 +275,7 @@ function RunDetail({ run, names, canDecide, onDone }: { run: ReplenishmentRun; n
             </tbody>
           </table>
         </div>
+        </>
       )}
 
       {manual.length > 0 && (

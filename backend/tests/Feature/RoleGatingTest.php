@@ -7,6 +7,7 @@ use Database\Seeders\RoleSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
@@ -14,14 +15,14 @@ use Tests\TestCase;
 /**
  * Asserts the per-role access matrix enforced by routes/web.php and
  * routes/api.php's `role:` middleware groups (system-spec.md §2.1). Roles follow
- * the office structure confirmed in the 2026-09-03 interview, plus `viewer`; the
+ * the office structure confirmed in the 2026-09-03 interview (no unassigned role); the
  * Admin (`is_system_admin`, the Head of Office) passes every role check.
  */
 class RoleGatingTest extends TestCase
 {
     use RefreshDatabase;
 
-    private const ROLES = ['viewer', 'administrative', 'logistics', 'operations', 'research_planning', 'admin_training'];
+    private const ROLES = ['administrative', 'logistics', 'operations', 'research_planning', 'admin_training'];
 
     #[DataProvider('readOnlyWebRoutes')]
     public function test_every_role_can_open_the_read_only_pages(string $route, string $role): void
@@ -135,16 +136,16 @@ class RoleGatingTest extends TestCase
 
     public function test_changing_a_users_role_resyncs_its_spatie_role(): void
     {
-        $user = User::factory()->create(['role' => 'viewer']);
-        $this->assertTrue($user->hasRole('viewer'));
+        $user = User::factory()->create(['role' => 'administrative']);
+        $this->assertTrue($user->hasRole('administrative'));
 
         $user->update(['role' => 'admin_training']);
 
         $this->assertTrue($user->hasRole('admin_training'));
-        $this->assertFalse($user->hasRole('viewer'));
+        $this->assertFalse($user->hasRole('administrative'));
     }
 
-    /** Administrative is a read-only role, like viewer: it opens every page and changes nothing. */
+    /** Administrative is a read-only role: it opens every page and changes nothing. */
     public function test_administrative_is_read_only(): void
     {
         $this->seed(RoleSeeder::class);
@@ -165,25 +166,25 @@ class RoleGatingTest extends TestCase
     /** Requesters are Logistics and Operations and Warning (whose ERT teams file); everyone else is refused. */
     public function test_only_logistics_and_operations_file_requests(): void
     {
-        foreach (['logistics' => true, 'operations' => true, 'research_planning' => false, 'admin_training' => false, 'administrative' => false, 'viewer' => false] as $role => $allowed) {
+        foreach (['logistics' => true, 'operations' => true, 'research_planning' => false, 'admin_training' => false, 'administrative' => false] as $role => $allowed) {
             $status = $this->actingAs(User::factory()->create(['role' => $role]))->postJson('/api/ics-requests', [])->baseResponse->getStatusCode();
 
             $allowed ? $this->assertSame(422, $status, "{$role} should reach validation") : $this->assertSame(403, $status, "{$role} should be refused");
         }
     }
 
-    /** ERT is a team inside Operations and Incident Management was never named, so neither can be saved as a role. */
+    /** ERT is a team inside Operations, Incident Management was never named, and every account has a division: none can be saved as a role. */
     #[DataProvider('removedRoles')]
     public function test_the_removed_roles_cannot_be_saved_through_the_settings_user_api(string $removed): void
     {
         Mail::fake();
         $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true]);
-        $target = User::factory()->create(['role' => 'viewer']);
+        $target = User::factory()->create(['role' => 'logistics']);
         $new = ['first_name' => 'A', 'last_name' => 'B', 'email' => 'new@example.test'];
 
         $this->actingAs($admin)->postJson('/api/settings/users', $new + ['role' => $removed])->assertUnprocessable()->assertJsonValidationErrors('role');
         $this->actingAs($admin)->postJson("/api/settings/users/{$target->id}", ['role' => $removed])->assertUnprocessable()->assertJsonValidationErrors('role');
-        $this->assertSame('viewer', $target->fresh()->role);
+        $this->assertSame('logistics', $target->fresh()->role);
 
         $this->actingAs($admin)->postJson('/api/settings/users', $new + ['role' => 'administrative'])->assertSuccessful();
         $this->assertSame('administrative', User::where('email', 'new@example.test')->value('role'));
@@ -191,7 +192,7 @@ class RoleGatingTest extends TestCase
 
     public static function removedRoles(): array
     {
-        return ['ert' => ['ert'], 'incident_management' => ['incident_management']];
+        return ['ert' => ['ert'], 'incident_management' => ['incident_management'], 'viewer' => ['viewer']];
     }
 
     public function test_the_removed_roles_are_not_seeded(): void
@@ -199,7 +200,7 @@ class RoleGatingTest extends TestCase
         $this->seed(RoleSeeder::class);
 
         $this->assertEqualsCanonicalizing(
-            ['viewer', 'logistics', 'operations', 'research_planning', 'administrative', 'admin_training'],
+            ['logistics', 'operations', 'research_planning', 'administrative', 'admin_training'],
             Role::pluck('name')->all(),
         );
     }
@@ -233,6 +234,21 @@ class RoleGatingTest extends TestCase
         $this->assertSame(0, User::whereIn('role', ['ert', 'incident_management'])->count());
         $this->assertSame(1, User::where('role', 'operations')->count());
         $this->assertSame(1, DB::table('model_has_roles')->count());
+    }
+
+    /** The 2026_10_11_000001 migration: viewer accounts become Administrative, and Administrative is the new default. */
+    public function test_the_migration_moves_viewer_users_to_administrative(): void
+    {
+        $viewer = User::factory()->create(['role' => 'viewer']);
+        $logistics = User::factory()->create(['role' => 'logistics']);
+
+        (require database_path('migrations/2026_10_11_000001_remove_viewer_role.php'))->up();
+
+        $this->assertSame(['administrative', 'logistics'], [$viewer->fresh()->role, $logistics->fresh()->role]);
+        $this->assertSame(['administrative'], $viewer->fresh()->getRoleNames()->all());
+        $this->assertSame(0, Role::where('name', 'viewer')->count());
+        DB::table('users')->insert(['id' => (string) Str::uuid(), 'first_name' => 'N', 'last_name' => 'D', 'email' => 'default@example.test', 'password' => 'x']);
+        $this->assertSame('administrative', User::where('email', 'default@example.test')->value('role'));
     }
 
     private function runRoleMigration(): void

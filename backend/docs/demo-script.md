@@ -173,7 +173,6 @@ Ask for name, role and email. **Key question: how many Logistics staff will use 
 | **Administrative** | Read-only, no extra actions | "Who in Administrative needs to see the system?" | "Sino po sa Administrative ang kailangang makakita ng sistema?" |
 | **Research and Planning** | Read and export the report | "Who needs the quarterly report? Is there a contact for the follow-up interview?" | "Sino po ang nangangailangan ng report? May contact po ba para sa follow-up interview?" |
 | **Admin and Training** | Catalog, depots, training | "Who keeps the item list and trains staff?" | "Sino po ang nagma-maintain ng item list at nagte-train?" |
-| **Viewer** | Read-only | "Anyone who only needs to look?" | "May gustong makakita lang po ba?" |
 
 ### C. Does our form match yours?
 

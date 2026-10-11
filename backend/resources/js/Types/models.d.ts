@@ -52,7 +52,7 @@ export interface AdminUser {
   last_name: string;
   name: string;
   email: string;
-  role: "viewer" | "administrative" | "logistics" | "operations" | "research_planning" | "admin_training";
+  role: "administrative" | "logistics" | "operations" | "research_planning" | "admin_training";
   /** Title shown beside who approved or released a request, e.g. "Head of Office". */
   position: string | null;
   is_active: boolean;

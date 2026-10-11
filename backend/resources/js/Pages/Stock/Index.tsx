@@ -103,8 +103,8 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
               <input className={cn(field, "w-full sm:w-64")} type="search" placeholder="Filter items" aria-label="Filter items" value={search}
                 onChange={(e) => setSearch(e.target.value)} />
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[480px] text-sm">
+            <div className="table-scroll">
+              <table className="w-full text-sm sm:min-w-[480px]">
                 <thead className="text-left text-xs text-[var(--text-secondary)]">
                   <tr className="border-b border-line"><th className="px-4 py-2.5 font-medium">Item</th><th className="px-3 font-medium">By depot</th><th className="px-4 text-right font-medium">Total</th></tr>
                 </thead>
@@ -127,7 +127,8 @@ export default function StockIndex({ items, depots, levels, conflicts, latestFin
           </section>
         </div>
 
-        <aside className="min-w-0 space-y-6">
+        {/* Recording is the job on a phone: the forms come before the long stock list until the two-column layout. */}
+        <aside className="order-first min-w-0 space-y-6 xl:order-none">
           {can.record && userId && <EntryForm items={items} depots={depots} userId={userId} onQueued={syncNow} />}
           {queued.length > 0 && (
             <section className="panel border-amber p-4 text-sm">

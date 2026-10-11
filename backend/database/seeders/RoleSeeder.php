@@ -10,8 +10,8 @@ use Spatie\Permission\Models\Role;
  * The roles follow the CDRRMO San Pablo City office structure confirmed by the
  * 2026-09-03 requirements interview: Research and Planning, Operations and
  * Warning, Administration and Training, and Administrative, with Logistics as
- * a section under Administration and Training; plus `viewer` for unassigned
- * accounts. ERT teams sit inside Operations, so they are not roles; the
+ * a section under Administration and Training. Every account belongs to one of
+ * them (no unassigned role). ERT teams sit inside Operations, so they are not roles; the
  * Assistant Department Head is a `users.position`, not a role.
  *
  * The backend gates routes by `users.role` (EnsureUserHasRole), not by these
@@ -28,11 +28,10 @@ class RoleSeeder extends Seeder
         }
 
         $rolePermissions = [
-            'viewer' => ['view-dashboard'],
             'logistics' => ['view-dashboard'],
             'operations' => ['view-dashboard'],
             'research_planning' => ['view-dashboard'],
-            // Administrative is read-only, like viewer.
+            // Administrative is read-only; it is also the default for a new account.
             'administrative' => ['view-dashboard'],
             // Admin and Training keeps the item catalog and depot list.
             'admin_training' => ['view-dashboard', 'manage-depots'],

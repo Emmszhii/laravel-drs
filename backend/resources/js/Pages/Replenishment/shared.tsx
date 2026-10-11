@@ -40,7 +40,7 @@ export function ReplenishmentHeader({ policies }: { policies?: VedPolicy[] }) {
         title="Replenishment"
         description="Plan the quarter's purchases from the office's own history, within the budget, with a reason for every item."
         actions={policies && (
-          <Link href="/replenishment/inputs" className="text-xs text-[var(--text-secondary)] underline-offset-2 hover:underline">
+          <Link href="/replenishment/inputs" className="inline-block py-2.5 text-xs text-[var(--text-secondary)] underline-offset-2 hover:underline">
             {confirmed
               ? `VED policy confirmed ${confirmed.confirmed_at!.slice(0, 10)}`
               : <span className="text-amber">VED policy not yet confirmed</span>}

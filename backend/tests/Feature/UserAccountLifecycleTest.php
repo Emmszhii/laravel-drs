@@ -41,7 +41,7 @@ class UserAccountLifecycleTest extends TestCase
     public function test_admin_can_suspend_another_user(): void
     {
         $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true, 'is_active' => true]);
-        $target = User::factory()->create(['role' => 'viewer', 'is_active' => true]);
+        $target = User::factory()->create(['role' => 'administrative', 'is_active' => true]);
 
         $this->actingAs($admin)
             ->postJson("/api/settings/users/{$target->id}/suspend")
@@ -64,7 +64,7 @@ class UserAccountLifecycleTest extends TestCase
     public function test_admin_can_activate_a_suspended_user(): void
     {
         $admin = User::factory()->create(['role' => 'admin_training', 'is_system_admin' => true, 'is_active' => true]);
-        $target = User::factory()->create(['role' => 'viewer', 'is_active' => false]);
+        $target = User::factory()->create(['role' => 'administrative', 'is_active' => false]);
 
         $this->actingAs($admin)
             ->postJson("/api/settings/users/{$target->id}/activate")
@@ -87,12 +87,12 @@ class UserAccountLifecycleTest extends TestCase
         Mail::assertSent(PasswordResetMail::class, fn ($mail) => $mail->hasTo($target->email));
     }
 
-    public function test_a_viewer_cannot_suspend_users(): void
+    public function test_a_read_only_user_cannot_suspend_users(): void
     {
-        $viewer = User::factory()->create(['role' => 'viewer']);
+        $readOnly = User::factory()->create(['role' => 'administrative']);
         $target = User::factory()->create();
 
-        $this->actingAs($viewer)
+        $this->actingAs($readOnly)
             ->postJson("/api/settings/users/{$target->id}/suspend")
             ->assertStatus(403);
     }
