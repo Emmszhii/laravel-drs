@@ -45,11 +45,11 @@ function DepotCard(row: Depot, actions: CardActions) {
     <div className="bg-panel p-5">
       <div className="mb-1 flex items-start justify-between">
         <div className="text-[15px] font-medium">{row.name}</div>
-        <div className="flex gap-2 text-xs">
+        <div className="-my-2 -mr-2 flex shrink-0 text-xs">
           {actions.canEdit && (
             <button
               onClick={actions.onEdit}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
             >
               Edit
             </button>
@@ -57,7 +57,7 @@ function DepotCard(row: Depot, actions: CardActions) {
           {actions.canDelete && (
             <button
               onClick={actions.onDelete}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
             >
               Remove
             </button>

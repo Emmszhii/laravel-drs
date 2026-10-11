@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
         // trait), which suppresses User::booted()'s auto-sync hook here too
         // — not just for the top-level account above — so each Spatie role
         // still needs assigning explicitly, same as above.
-        foreach (['logistics', 'operations', 'research_planning', 'administrative', 'viewer'] as $role) {
+        foreach (['logistics', 'operations', 'research_planning', 'administrative'] as $role) {
             $roleUser = User::firstOrCreate(
                 ['email' => "{$role}@disasterresource.local"],
                 [

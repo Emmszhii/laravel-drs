@@ -189,9 +189,9 @@ function RequestCard({ r, depots, available, can, onDone }: {
             Requested by {r.requester_name ?? (r.requester ? `${r.requester.first_name} ${r.requester.last_name}` : "—")}{r.requester_position ? `, ${r.requester_position}` : ""} · Subject: {subjectOf(r.lines.map((l) => l.resource_type)) || "—"}
           </p>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[480px] text-sm">
+            <table className="w-full text-sm sm:min-w-[480px]">
               <thead className="text-left text-xs text-[var(--text-secondary)]">
-                <tr><th className="pb-1.5 font-medium">Item</th><th className="pb-1.5 pl-3 text-right font-medium">Requested</th><th className="pb-1.5 pl-3 text-right font-medium">Approved</th><th className="pb-1.5 pl-3 text-right font-medium">Released</th></tr>
+                <tr><th className="pb-1.5 font-medium">Item</th><th className="hidden pb-1.5 pl-3 text-right font-medium sm:table-cell">Requested</th><th className="hidden pb-1.5 pl-3 text-right font-medium sm:table-cell">Approved</th><th className="hidden pb-1.5 pl-3 text-right font-medium sm:table-cell">Released</th></tr>
               </thead>
               <tbody>
                 {r.lines.map((l) => (
@@ -199,18 +199,25 @@ function RequestCard({ r, depots, available, can, onDone }: {
                     <td className="py-2">
                       {l.resource_type.name}
                       {!l.resource_type.is_consumable && <span className="ml-2 text-xs text-[var(--text-secondary)]">borrowed</span>}
+                      <div className="mt-0.5 text-xs text-[var(--text-secondary)] sm:hidden">
+                        Requested {l.quantity_requested} · approved {l.quantity_approved ?? "–"} · released {l.quantity_released}
+                      </div>
                       {l.approval_note && <div className="mt-1 text-xs text-[var(--text-secondary)]">Why less: {l.approval_note}</div>}
                       {can.decide && r.status === "submitted" && (
                         <>
                           <div className="mt-1.5 flex flex-wrap gap-2">
+                            <label className={cn(label, "min-w-0 max-w-full")}>Depot
                             <select className={cn(field, "w-auto max-w-full")} aria-label={`Depot for ${l.resource_type.name}`} value={approve[l.id]?.depot_id}
                               onChange={(e) => setApprove({ ...approve, [l.id]: { ...approve[l.id], depot_id: e.target.value } })}>
                               {depots.map((d) => (
                                 <option key={d.id} value={d.id}>{d.name} ({availableAt(l.resource_type_id, d.id)} available)</option>
                               ))}
                             </select>
+                            </label>
+                            <label className={label}>Approve
                             <input className={cn(field, "w-24")} type="number" min={0} max={l.quantity_requested} aria-label={`Quantity to approve for ${l.resource_type.name}`} value={approve[l.id]?.quantity_approved}
                               onChange={(e) => setApprove({ ...approve, [l.id]: { ...approve[l.id], quantity_approved: Number(e.target.value) } })} />
+                            </label>
                           </div>
                           {cut(l) && (
                             <input className={cn(field, "mt-1.5 block")} placeholder="Why less than requested? (required)" aria-label={`Why ${l.resource_type.name} is approved for less`} value={approve[l.id]?.reason}
@@ -225,9 +232,9 @@ function RequestCard({ r, depots, available, can, onDone }: {
                           onChange={(e) => setRelease({ ...release, [l.id]: e.target.value })} />
                       )}
                     </td>
-                    <td className="py-2 pl-3 text-right">{l.quantity_requested}</td>
-                    <td className="py-2 pl-3 text-right">{l.quantity_approved ?? "–"}</td>
-                    <td className="py-2 pl-3 text-right">{l.quantity_released}</td>
+                    <td className="hidden py-2 pl-3 text-right sm:table-cell">{l.quantity_requested}</td>
+                    <td className="hidden py-2 pl-3 text-right sm:table-cell">{l.quantity_approved ?? "–"}</td>
+                    <td className="hidden py-2 pl-3 text-right sm:table-cell">{l.quantity_released}</td>
                   </tr>
                 ))}
               </tbody>
@@ -478,8 +485,8 @@ function FileForm({ items, kits, can, onDone }: { items: Item[]; kits: Kit[]; ca
         </div>
       ))}
       <div className="flex items-center justify-between text-xs text-[var(--text-secondary)]">
-        <button type="button" className="font-medium text-[var(--text-primary)] underline-offset-2 hover:underline" onClick={() => setLines([...lines, blankLine()])}>+ Add item</button>
-        {can.release && <button type="button" className="underline-offset-2 hover:underline" onClick={saveKit}>Save these lines as a kit</button>}
+        <button type="button" className="-ml-1 px-1 py-2.5 font-medium text-[var(--text-primary)] underline-offset-2 hover:underline" onClick={() => setLines([...lines, blankLine()])}>+ Add item</button>
+        {can.release && <button type="button" className="-mr-1 px-1 py-2.5 underline-offset-2 hover:underline" onClick={saveKit}>Save these lines as a kit</button>}
       </div>
       <p className="text-xs text-[var(--text-secondary)]">Subject: {subjectOf(lines.map((l) => names[l.resource_type_id]).filter(Boolean)) || "—"}</p>
       <Button type="submit" disabled={busy} className="w-full">{busy ? "Filing…" : "File request"}</Button>

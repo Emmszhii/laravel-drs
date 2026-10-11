@@ -1,6 +1,6 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
-import { Boxes, ClipboardList, FileBarChart, Package, Settings, TrendingUp, Warehouse, type LucideIcon } from "lucide-react";
+import { Boxes, ClipboardList, FileBarChart, Menu, Package, Settings, TrendingUp, Warehouse, X, type LucideIcon } from "lucide-react";
 import { UserProfileSection } from "@/Components/UserProfileSection";
 import { NotificationBell } from "@/Components/NotificationBell";
 import { OfflineBanner } from "@/Components/OfflineBanner";
@@ -38,10 +38,9 @@ const settingsGroup = { label: "Admin", items: [{ href: "/settings/users", label
 /**
  * Sidebar shell used by every page.
  *
- * Below `md`, the vertical sidebar collapses into a horizontally scrollable
- * top tab bar (active indicator moves from a left border to a bottom
- * border), matching the design prototype's `@media (max-width:720px)` `.gnav`
- * treatment.
+ * Below `lg` the sidebar is a drawer opened from the header's menu button
+ * (a 208px rail leaves a tablet too little room for the forms and tables);
+ * it closes on navigation, on Escape and on a tap outside it.
  */
 export default function AdminLayout({ children }: PropsWithChildren) {
   const page = usePage();
@@ -49,27 +48,63 @@ export default function AdminLayout({ children }: PropsWithChildren) {
   const isSystemAdmin = Boolean((page.props as { auth?: { user?: { is_system_admin?: boolean } | null } }).auth?.user?.is_system_admin);
   const groups = isSystemAdmin ? [...navGroups, settingsGroup] : navGroups;
   const isActive = (href: string) => url.startsWith(href.startsWith("/settings") ? "/settings" : href);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => setMenuOpen(false), [url]);
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)] supports-[height:100dvh]:h-dvh">
       <header className="flex items-center justify-between gap-2.5 border-b border-line px-4 py-2.5 sm:px-6">
-        <Link href="/replenishment" className="text-[15px] font-bold">
-          Disaster<span className="text-amber">Resource+</span>
-        </Link>
-        <div className="flex items-center gap-2">
-          <NotificationBell />
-          <div className="md:hidden">
-            <UserProfileSection variant="header" />
-          </div>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open menu"
+            aria-expanded={menuOpen}
+            aria-controls="main-nav"
+            className="-ml-2 flex h-9 w-9 items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] lg:hidden"
+          >
+            <Menu size={20} />
+          </button>
+          <Link href="/replenishment" className="py-2 text-[15px] font-bold">
+            Disaster<span className="text-amber">Resource+</span>
+          </Link>
         </div>
+        <NotificationBell />
       </header>
       <OfflineBanner />
-      <div className="flex min-h-0 flex-1 flex-col md:flex-row">
-        <nav aria-label="Main" className="flex shrink-0 flex-col border-b border-line md:w-52 md:border-r md:border-b-0">
-          <div className="flex flex-1 flex-row overflow-x-auto md:flex-col md:overflow-y-auto md:py-3">
+      <div className="flex min-h-0 flex-1">
+        {menuOpen && <div className="fixed inset-0 z-[3000] bg-black/40 lg:hidden" onClick={() => setMenuOpen(false)} aria-hidden />}
+        <nav
+          id="main-nav"
+          aria-label="Main"
+          className={`fixed inset-y-0 left-0 z-[3001] flex w-64 max-w-[85vw] shrink-0 flex-col border-r border-line bg-[var(--bg-void)] transition-transform lg:static lg:z-auto lg:w-52 lg:translate-x-0 ${
+            menuOpen ? "translate-x-0" : "invisible -translate-x-full lg:visible"
+          }`}
+        >
+          <div className="flex items-center justify-between border-b border-line px-4 py-2.5 lg:hidden">
+            <span className="text-[15px] font-bold">
+              Disaster<span className="text-amber">Resource+</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Close menu"
+              className="-mr-2 flex h-9 w-9 items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+            >
+              <X size={20} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-y-auto py-3">
             {groups.map((group) => (
-              <div key={group.label} className="flex flex-row md:mb-3 md:flex-col">
-                <div className="hidden px-5 pb-1 text-xs text-[var(--text-secondary)] md:block">{group.label}</div>
+              <div key={group.label} className="mb-3">
+                <div className="px-5 pb-1 text-xs text-[var(--text-secondary)]">{group.label}</div>
                 {group.items.map((item) => {
                   const active = isActive(item.href);
                   const Icon = item.icon;
@@ -78,7 +113,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
                       key={item.href}
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={`flex items-center gap-2.5 whitespace-nowrap border-b-2 px-4 py-2.5 text-sm md:border-b-0 md:border-l-2 md:px-5 md:py-2 ${
+                      className={`flex items-center gap-2.5 whitespace-nowrap border-l-2 px-5 py-2.5 text-sm lg:py-2 ${
                         active
                           ? "border-amber bg-tint font-medium text-[var(--text-primary)]"
                           : "border-transparent text-[var(--text-secondary)] hover:bg-tint hover:text-[var(--text-primary)]"
@@ -92,9 +127,7 @@ export default function AdminLayout({ children }: PropsWithChildren) {
               </div>
             ))}
           </div>
-          <div className="hidden md:block">
-            <UserProfileSection />
-          </div>
+          <UserProfileSection />
         </nav>
         <main className="min-h-0 flex-1 overflow-y-auto">
           <div className="mx-auto max-w-[1440px] pb-10">{children}</div>

@@ -981,7 +981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller",
-      "community": 25,
+      "community": 127,
       "norm_label": "stockcontroller.php"
     },
     {
@@ -991,7 +991,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller",
-      "community": 25,
+      "community": 127,
       "norm_label": "stockcontroller"
     },
     {
@@ -1001,7 +1001,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_sync",
-      "community": 10,
+      "community": 127,
       "norm_label": ".sync()"
     },
     {
@@ -1011,7 +1011,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_php_request",
-      "community": 25,
+      "community": 127,
       "norm_label": "request"
     },
     {
@@ -1021,7 +1021,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_php_jsonresponse",
-      "community": 25,
+      "community": 127,
       "norm_label": "jsonresponse"
     },
     {
@@ -1031,7 +1031,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_entryrules",
-      "community": 25,
+      "community": 127,
       "norm_label": ".entryrules()"
     },
     {
@@ -1041,7 +1041,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_rejected",
-      "community": 25,
+      "community": 127,
       "norm_label": ".rejected()"
     },
     {
@@ -1051,7 +1051,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_levels",
-      "community": 25,
+      "community": 127,
       "norm_label": ".levels()"
     },
     {
@@ -1061,7 +1061,7 @@
       "source_location": "L105",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_conflicts",
-      "community": 25,
+      "community": 127,
       "norm_label": ".conflicts()"
     },
     {
@@ -1071,7 +1071,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_resolveconflict",
-      "community": 25,
+      "community": 127,
       "norm_label": ".resolveconflict()"
     },
     {
@@ -1081,7 +1081,7 @@
       "source_location": "L143",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_storecount",
-      "community": 25,
+      "community": 127,
       "norm_label": ".storecount()"
     },
     {
@@ -1091,7 +1091,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_stockcontroller_stockcontroller_verify",
-      "community": 25,
+      "community": 127,
       "norm_label": ".verify()"
     },
     {
@@ -1591,7 +1591,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller",
-      "community": 56,
+      "community": 11,
       "norm_label": "icsrequestcontroller.php"
     },
     {
@@ -1601,7 +1601,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
-      "community": 56,
+      "community": 11,
       "norm_label": "icsrequestcontroller"
     },
     {
@@ -1611,7 +1611,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
-      "community": 56,
+      "community": 11,
       "norm_label": ".index()"
     },
     {
@@ -1621,7 +1621,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_php_request",
-      "community": 56,
+      "community": 11,
       "norm_label": "request"
     },
     {
@@ -1631,7 +1631,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_php_response",
-      "community": 56,
+      "community": 11,
       "norm_label": "response"
     },
     {
@@ -1641,7 +1641,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
-      "community": 56,
+      "community": 11,
       "norm_label": ".borrowed()"
     },
     {
@@ -1651,7 +1651,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
-      "community": 56,
+      "community": 11,
       "norm_label": ".can()"
     },
     {
@@ -1661,7 +1661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller",
-      "community": 69,
+      "community": 63,
       "norm_label": "replenishmentcontroller.php"
     },
     {
@@ -1671,7 +1671,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller",
-      "community": 69,
+      "community": 63,
       "norm_label": "replenishmentcontroller"
     },
     {
@@ -1681,7 +1681,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_index",
-      "community": 69,
+      "community": 63,
       "norm_label": ".index()"
     },
     {
@@ -1691,7 +1691,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_request",
-      "community": 69,
+      "community": 63,
       "norm_label": "request"
     },
     {
@@ -1701,7 +1701,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_php_response",
-      "community": 69,
+      "community": 63,
       "norm_label": "response"
     },
     {
@@ -1711,7 +1711,7 @@
       "source_location": "L46",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_backtest",
-      "community": 69,
+      "community": 63,
       "norm_label": ".backtest()"
     },
     {
@@ -1721,7 +1721,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_inputs",
-      "community": 69,
+      "community": 63,
       "norm_label": ".inputs()"
     },
     {
@@ -1731,7 +1731,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_policies",
-      "community": 69,
+      "community": 63,
       "norm_label": ".policies()"
     },
     {
@@ -1741,7 +1741,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_defaults",
-      "community": 69,
+      "community": 63,
       "norm_label": ".defaults()"
     },
     {
@@ -1751,7 +1751,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_replenishmentcontroller_replenishmentcontroller_can",
-      "community": 69,
+      "community": 63,
       "norm_label": ".can()"
     },
     {
@@ -1931,7 +1931,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller",
-      "community": 25,
+      "community": 11,
       "norm_label": "stockcontroller.php"
     },
     {
@@ -1941,7 +1941,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_stockcontroller",
-      "community": 25,
+      "community": 11,
       "norm_label": "stockcontroller"
     },
     {
@@ -1951,7 +1951,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_stockcontroller_index",
-      "community": 25,
+      "community": 11,
       "norm_label": ".index()"
     },
     {
@@ -1961,7 +1961,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_php_request",
-      "community": 25,
+      "community": 11,
       "norm_label": "request"
     },
     {
@@ -1971,7 +1971,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_php_response",
-      "community": 25,
+      "community": 11,
       "norm_label": "response"
     },
     {
@@ -2201,7 +2201,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "queueable",
-      "community": 69,
+      "community": 56,
       "norm_label": "queueable"
     },
     {
@@ -2211,7 +2211,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "serializesmodels",
-      "community": 69,
+      "community": 56,
       "norm_label": "serializesmodels"
     },
     {
@@ -2261,7 +2261,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "backend_app_jobs_runreplenishmentjob_runreplenishmentjob_handle",
-      "community": 10,
+      "community": 69,
       "norm_label": ".handle()"
     },
     {
@@ -2311,7 +2311,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail",
-      "community": 69,
+      "community": 56,
       "norm_label": "newaccountmail.php"
     },
     {
@@ -2321,7 +2321,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_newaccountmail",
-      "community": 69,
+      "community": 56,
       "norm_label": "newaccountmail"
     },
     {
@@ -2331,7 +2331,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "mailable",
-      "community": 69,
+      "community": 56,
       "norm_label": "mailable"
     },
     {
@@ -2341,7 +2341,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_newaccountmail_construct",
-      "community": 69,
+      "community": 56,
       "norm_label": ".__construct()"
     },
     {
@@ -2351,7 +2351,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_newaccountmail_envelope",
-      "community": 69,
+      "community": 56,
       "norm_label": ".envelope()"
     },
     {
@@ -2361,7 +2361,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_php_envelope",
-      "community": 69,
+      "community": 56,
       "norm_label": "envelope"
     },
     {
@@ -2371,7 +2371,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_newaccountmail_content",
-      "community": 69,
+      "community": 56,
       "norm_label": ".content()"
     },
     {
@@ -2381,7 +2381,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_mail_newaccountmail_php_content",
-      "community": 69,
+      "community": 56,
       "norm_label": "content"
     },
     {
@@ -2391,7 +2391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail",
-      "community": 69,
+      "community": 56,
       "norm_label": "passwordresetmail.php"
     },
     {
@@ -2401,7 +2401,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_passwordresetmail",
-      "community": 69,
+      "community": 56,
       "norm_label": "passwordresetmail"
     },
     {
@@ -2411,7 +2411,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_passwordresetmail_construct",
-      "community": 69,
+      "community": 56,
       "norm_label": ".__construct()"
     },
     {
@@ -2421,7 +2421,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_passwordresetmail_envelope",
-      "community": 69,
+      "community": 56,
       "norm_label": ".envelope()"
     },
     {
@@ -2431,7 +2431,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_php_envelope",
-      "community": 69,
+      "community": 56,
       "norm_label": "envelope"
     },
     {
@@ -2441,7 +2441,7 @@
       "source_location": "L35",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_passwordresetmail_content",
-      "community": 69,
+      "community": 56,
       "norm_label": ".content()"
     },
     {
@@ -2451,7 +2451,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_mail_passwordresetmail_php_content",
-      "community": 69,
+      "community": 56,
       "norm_label": "content"
     },
     {
@@ -2621,7 +2621,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_depot",
-      "community": 7,
+      "community": 11,
       "norm_label": "depot.php"
     },
     {
@@ -2641,7 +2641,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasfactory",
-      "community": 7,
+      "community": 11,
       "norm_label": "hasfactory"
     },
     {
@@ -2671,7 +2671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_historyline",
-      "community": 7,
+      "community": 44,
       "norm_label": "historyline.php"
     },
     {
@@ -2681,7 +2681,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline",
-      "community": 11,
+      "community": 44,
       "norm_label": "historyline"
     },
     {
@@ -2691,7 +2691,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_models_historyline_historyline_resourcetype",
-      "community": 11,
+      "community": 44,
       "norm_label": ".resourcetype()"
     },
     {
@@ -2701,7 +2701,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_historyline_php_belongsto",
-      "community": 11,
+      "community": 44,
       "norm_label": "belongsto"
     },
     {
@@ -2911,7 +2911,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_quarterbudget",
-      "community": 69,
+      "community": 7,
       "norm_label": "quarterbudget.php"
     },
     {
@@ -2921,7 +2921,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_app_models_quarterbudget_quarterbudget",
-      "community": 69,
+      "community": 7,
       "norm_label": "quarterbudget"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting_smtpsetting_current",
-      "community": 29,
+      "community": 9,
       "norm_label": ".current()"
     },
     {
@@ -3051,7 +3051,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "self",
-      "community": 10,
+      "community": 9,
       "norm_label": "self"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_app_models_statuschange_statuschange_log",
-      "community": 29,
+      "community": 9,
       "norm_label": ".log()"
     },
     {
@@ -3141,7 +3141,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict",
-      "community": 25,
+      "community": 7,
       "norm_label": "stockconflict.php"
     },
     {
@@ -3151,7 +3151,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_stockconflict",
-      "community": 25,
+      "community": 7,
       "norm_label": "stockconflict"
     },
     {
@@ -3161,7 +3161,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_stockconflict_entry",
-      "community": 25,
+      "community": 7,
       "norm_label": ".entry()"
     },
     {
@@ -3171,7 +3171,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_php_belongsto",
-      "community": 25,
+      "community": 7,
       "norm_label": "belongsto"
     },
     {
@@ -3181,7 +3181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_stockcount",
-      "community": 27,
+      "community": 7,
       "norm_label": "stockcount.php"
     },
     {
@@ -3191,7 +3191,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_app_models_stockcount_stockcount",
-      "community": 27,
+      "community": 7,
       "norm_label": "stockcount"
     },
     {
@@ -3221,7 +3221,7 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "backend_app_models_stockentry_stockentry_booted",
-      "community": 29,
+      "community": 9,
       "norm_label": ".booted()"
     },
     {
@@ -3311,7 +3311,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_app_models_user_user_booted",
-      "community": 29,
+      "community": 9,
       "norm_label": ".booted()"
     },
     {
@@ -3491,7 +3491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_providers_activitylogserviceprovider",
-      "community": 7,
+      "community": 21,
       "norm_label": "activitylogserviceprovider.php"
     },
     {
@@ -3651,7 +3651,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter",
-      "community": 7,
+      "community": 44,
       "norm_label": "historyimporter.php"
     },
     {
@@ -3661,7 +3661,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter",
-      "community": 69,
+      "community": 44,
       "norm_label": "historyimporter"
     },
     {
@@ -3671,7 +3671,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_historyimporter_historyimporter_import",
-      "community": 11,
+      "community": 44,
       "norm_label": ".import()"
     },
     {
@@ -3681,7 +3681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory",
-      "community": 7,
+      "community": 44,
       "norm_label": "quarterhistory.php"
     },
     {
@@ -3701,7 +3701,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_quarterhistory_quarterhistory_build",
-      "community": 10,
+      "community": 44,
       "norm_label": ".build()"
     },
     {
@@ -3721,7 +3721,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient",
-      "community": 69,
+      "community": 64,
       "norm_label": "replenishmentserviceclient.php"
     },
     {
@@ -3731,7 +3731,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient",
-      "community": 69,
+      "community": 64,
       "norm_label": "replenishmentserviceclient"
     },
     {
@@ -3741,7 +3741,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_solve",
-      "community": 69,
+      "community": 64,
       "norm_label": ".solve()"
     },
     {
@@ -3751,7 +3751,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_budgetcurve",
-      "community": 69,
+      "community": 64,
       "norm_label": ".budgetcurve()"
     },
     {
@@ -3761,7 +3761,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_backtest",
-      "community": 69,
+      "community": 64,
       "norm_label": ".backtest()"
     },
     {
@@ -3771,7 +3771,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_services_replenishment_replenishmentserviceclient_replenishmentserviceclient_post",
-      "community": 69,
+      "community": 64,
       "norm_label": ".post()"
     },
     {
@@ -3871,7 +3871,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_app_services_requests_requestworkflow_requestworkflow_construct",
-      "community": 10,
+      "community": 127,
       "norm_label": ".__construct()"
     },
     {
@@ -4121,7 +4121,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger",
-      "community": 27,
+      "community": 7,
       "norm_label": "stockledger.php"
     },
     {
@@ -4131,7 +4131,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger",
-      "community": 10,
+      "community": 127,
       "norm_label": "stockledger"
     },
     {
@@ -4141,7 +4141,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_append",
-      "community": 10,
+      "community": 127,
       "norm_label": ".append()"
     },
     {
@@ -4151,7 +4151,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_appendlocked",
-      "community": 10,
+      "community": 127,
       "norm_label": ".appendlocked()"
     },
     {
@@ -4161,7 +4161,7 @@
       "source_location": "L95",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_record",
-      "community": 10,
+      "community": 127,
       "norm_label": ".record()"
     },
     {
@@ -4171,7 +4171,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_syncorder",
-      "community": 10,
+      "community": 127,
       "norm_label": ".syncorder()"
     },
     {
@@ -4181,7 +4181,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_levels",
-      "community": 27,
+      "community": 127,
       "norm_label": ".levels()"
     },
     {
@@ -4191,7 +4191,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "collection",
-      "community": 27,
+      "community": 127,
       "norm_label": "collection"
     },
     {
@@ -4201,7 +4201,7 @@
       "source_location": "L140",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_level",
-      "community": 10,
+      "community": 127,
       "norm_label": ".level()"
     },
     {
@@ -4211,7 +4211,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "carbon",
-      "community": 10,
+      "community": 44,
       "norm_label": "carbon"
     },
     {
@@ -4221,7 +4221,7 @@
       "source_location": "L148",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_latestfingerprint",
-      "community": 10,
+      "community": 127,
       "norm_label": ".latestfingerprint()"
     },
     {
@@ -4231,7 +4231,7 @@
       "source_location": "L159",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_verify",
-      "community": 10,
+      "community": 127,
       "norm_label": ".verify()"
     },
     {
@@ -4241,7 +4241,7 @@
       "source_location": "L200",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_checkpoint",
-      "community": 10,
+      "community": 127,
       "norm_label": ".checkpoint()"
     },
     {
@@ -4251,7 +4251,7 @@
       "source_location": "L209",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_fingerprint",
-      "community": 10,
+      "community": 127,
       "norm_label": ".fingerprint()"
     },
     {
@@ -4261,7 +4261,7 @@
       "source_location": "L233",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_flagconflicts",
-      "community": 10,
+      "community": 127,
       "norm_label": ".flagconflicts()"
     },
     {
@@ -4271,7 +4271,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_toapptime",
-      "community": 10,
+      "community": 127,
       "norm_label": ".toapptime()"
     },
     {
@@ -4321,7 +4321,7 @@
       "source_location": "L63",
       "_origin": "ast",
       "id": "backend_app_support_activitylogger_activitylogger_logerror",
-      "community": 10,
+      "community": 9,
       "norm_label": ".logerror()"
     },
     {
@@ -4331,7 +4331,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_support_activitylogger_php_throwable",
-      "community": 10,
+      "community": 9,
       "norm_label": "throwable"
     },
     {
@@ -4491,7 +4491,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_cache",
-      "community": 27,
+      "community": 7,
       "norm_label": "cache.php"
     },
     {
@@ -4601,7 +4601,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_depotfactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "depotfactory.php"
     },
     {
@@ -4611,7 +4611,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_database_factories_depotfactory_depotfactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "depotfactory"
     },
     {
@@ -4621,7 +4621,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "factory",
-      "community": 29,
+      "community": 9,
       "norm_label": "factory"
     },
     {
@@ -4631,7 +4631,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_database_factories_depotfactory_depotfactory_definition",
-      "community": 29,
+      "community": 9,
       "norm_label": ".definition()"
     },
     {
@@ -4641,7 +4641,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_resourcetypefactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "resourcetypefactory.php"
     },
     {
@@ -4651,7 +4651,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_database_factories_resourcetypefactory_resourcetypefactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "resourcetypefactory"
     },
     {
@@ -4661,7 +4661,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_database_factories_resourcetypefactory_resourcetypefactory_definition",
-      "community": 29,
+      "community": 9,
       "norm_label": ".definition()"
     },
     {
@@ -4671,7 +4671,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "userfactory.php"
     },
     {
@@ -4681,7 +4681,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory_userfactory",
-      "community": 29,
+      "community": 9,
       "norm_label": "userfactory"
     },
     {
@@ -4691,7 +4691,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory_userfactory_definition",
-      "community": 29,
+      "community": 9,
       "norm_label": ".definition()"
     },
     {
@@ -4701,7 +4701,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "backend_database_factories_userfactory_userfactory_unverified",
-      "community": 29,
+      "community": 9,
       "norm_label": ".unverified()"
     },
     {
@@ -4711,7 +4711,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "static",
-      "community": 29,
+      "community": 9,
       "norm_label": "static"
     },
     {
@@ -5881,28 +5881,38 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder",
-      "community": 7,
+      "community": 40,
       "norm_label": "replenishmentdemoseeder.php"
     },
     {
       "label": "ReplenishmentDemoSeeder",
       "file_type": "code",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L16",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
-      "community": 11,
+      "community": 40,
       "norm_label": "replenishmentdemoseeder"
     },
     {
       "label": ".run()",
       "file_type": "code",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L18",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
       "community": 11,
       "norm_label": ".run()"
+    },
+    {
+      "label": ".line()",
+      "file_type": "code",
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_line",
+      "community": 11,
+      "norm_label": ".line()"
     },
     {
       "label": "RoleSeeder.php",
@@ -6185,6 +6195,16 @@
       "norm_label": "table"
     },
     {
+      "label": "low",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/record.mjs",
+      "source_location": "L277",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_record_low",
+      "community": 20,
+      "norm_label": "low"
+    },
+    {
       "label": "reset.sh",
       "file_type": "code",
       "source_file": "backend/docs/demo-video/reset.sh",
@@ -6227,6 +6247,336 @@
       "norm_label": "db_database"
     },
     {
+      "label": "to-mp4.mjs",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4",
+      "community": 14,
+      "norm_label": "to-mp4.mjs"
+    },
+    {
+      "label": "DIR",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_dir",
+      "community": 14,
+      "norm_label": "dir"
+    },
+    {
+      "label": "webm",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_webm",
+      "community": 14,
+      "norm_label": "webm"
+    },
+    {
+      "label": "b",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_b",
+      "community": 14,
+      "norm_label": "b"
+    },
+    {
+      "label": "boxes()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L47",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_boxes",
+      "community": 14,
+      "norm_label": "boxes()"
+    },
+    {
+      "label": "kids()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L59",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_kids",
+      "community": 14,
+      "norm_label": "kids()"
+    },
+    {
+      "label": "find()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L60",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_find",
+      "community": 14,
+      "norm_label": "find()"
+    },
+    {
+      "label": "body()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L61",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_body",
+      "community": 14,
+      "norm_label": "body()"
+    },
+    {
+      "label": "box()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L62",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_box",
+      "community": 14,
+      "norm_label": "box()"
+    },
+    {
+      "label": "u32()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L69",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_u32",
+      "community": 14,
+      "norm_label": "u32()"
+    },
+    {
+      "label": "top",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L71",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_top",
+      "community": 14,
+      "norm_label": "top"
+    },
+    {
+      "label": "moov",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_moov",
+      "community": 14,
+      "norm_label": "moov"
+    },
+    {
+      "label": "trex",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_trex",
+      "community": 14,
+      "norm_label": "trex"
+    },
+    {
+      "label": "trexDef",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_trexdef",
+      "community": 14,
+      "norm_label": "trexdef"
+    },
+    {
+      "label": "samples",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L77",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_samples",
+      "community": 14,
+      "norm_label": "samples"
+    },
+    {
+      "label": "stts",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_stts",
+      "community": 14,
+      "norm_label": "stts"
+    },
+    {
+      "label": "hasCto",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L123",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_hascto",
+      "community": 14,
+      "norm_label": "hascto"
+    },
+    {
+      "label": "negCto",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_negcto",
+      "community": 14,
+      "norm_label": "negcto"
+    },
+    {
+      "label": "syncs",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L125",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_syncs",
+      "community": 14,
+      "norm_label": "syncs"
+    },
+    {
+      "label": "mediaDur",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L126",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_mediadur",
+      "community": 14,
+      "norm_label": "mediadur"
+    },
+    {
+      "label": "readTimescale()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L128",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_readtimescale",
+      "community": 14,
+      "norm_label": "readtimescale()"
+    },
+    {
+      "label": "trak",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L132",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_trak",
+      "community": 14,
+      "norm_label": "trak"
+    },
+    {
+      "label": "mdia",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L133",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_mdia",
+      "community": 14,
+      "norm_label": "mdia"
+    },
+    {
+      "label": "mediaTS",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L134",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_mediats",
+      "community": 14,
+      "norm_label": "mediats"
+    },
+    {
+      "label": "movieTS",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L135",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_moviets",
+      "community": 14,
+      "norm_label": "moviets"
+    },
+    {
+      "label": "movieDur",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L136",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_moviedur",
+      "community": 14,
+      "norm_label": "moviedur"
+    },
+    {
+      "label": "withDuration()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L138",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_withduration",
+      "community": 14,
+      "norm_label": "withduration()"
+    },
+    {
+      "label": "stbl()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L144",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_stbl",
+      "community": 14,
+      "norm_label": "stbl()"
+    },
+    {
+      "label": "rebuild()",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L168",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_rebuild",
+      "community": 14,
+      "norm_label": "rebuild()"
+    },
+    {
+      "label": "ftyp",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L181",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_ftyp",
+      "community": 14,
+      "norm_label": "ftyp"
+    },
+    {
+      "label": "mdatBytes",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L183",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_mdatbytes",
+      "community": 14,
+      "norm_label": "mdatbytes"
+    },
+    {
+      "label": "offsets",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L186",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_offsets",
+      "community": 14,
+      "norm_label": "offsets"
+    },
+    {
+      "label": "mdatHead",
+      "file_type": "code",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L187",
+      "_origin": "ast",
+      "id": "backend_docs_demo_video_to_mp4_mdathead",
+      "community": 14,
+      "norm_label": "mdathead"
+    },
+    {
       "label": "postcss.config.js",
       "file_type": "code",
       "source_file": "backend/postcss.config.js",
@@ -6243,7 +6593,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal",
-      "community": 47,
+      "community": 23,
       "norm_label": "changepasswordmodal.tsx"
     },
     {
@@ -6253,7 +6603,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordvalues",
-      "community": 47,
+      "community": 23,
       "norm_label": "changepasswordvalues"
     },
     {
@@ -6263,7 +6613,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_fields",
-      "community": 47,
+      "community": 23,
       "norm_label": "fields"
     },
     {
@@ -6273,7 +6623,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordmodalprops",
-      "community": 47,
+      "community": 23,
       "norm_label": "changepasswordmodalprops"
     },
     {
@@ -6283,7 +6633,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_resources_js_components_changepasswordmodal_changepasswordmodal",
-      "community": 47,
+      "community": 23,
       "norm_label": "changepasswordmodal()"
     },
     {
@@ -6483,7 +6833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_statusbadge",
-      "community": 8,
+      "community": 58,
       "norm_label": "statusbadge.tsx"
     },
     {
@@ -6493,7 +6843,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_statusbadge_tone",
-      "community": 8,
+      "community": 58,
       "norm_label": "tone"
     },
     {
@@ -6503,7 +6853,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_components_statusbadge_statusbadge",
-      "community": 8,
+      "community": 58,
       "norm_label": "statusbadge()"
     },
     {
@@ -6583,7 +6933,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_components_toast_systemtoastprovider",
-      "community": 58,
+      "community": 47,
       "norm_label": "systemtoastprovider()"
     },
     {
@@ -6593,7 +6943,7 @@
       "source_location": "L110",
       "_origin": "ast",
       "id": "backend_resources_js_components_toast_usetoast",
-      "community": 47,
+      "community": 23,
       "norm_label": "usetoast()"
     },
     {
@@ -7163,7 +7513,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_datatablecardfield_datatablecardfield",
-      "community": 39,
+      "community": 33,
       "norm_label": "datatablecardfield()"
     },
     {
@@ -7653,7 +8003,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_types",
-      "community": 33,
+      "community": 51,
       "norm_label": "types.ts"
     },
     {
@@ -7763,7 +8113,7 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_normalizequerykey",
-      "community": 23,
+      "community": 25,
       "norm_label": "normalizequerykey()"
     },
     {
@@ -7773,7 +8123,7 @@
       "source_location": "L158",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_tablelistinvalidatekeys",
-      "community": 39,
+      "community": 25,
       "norm_label": "tablelistinvalidatekeys()"
     },
     {
@@ -7803,7 +8153,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field",
-      "community": 5,
+      "community": 70,
       "norm_label": "use-async-multi-select-field.tsx"
     },
     {
@@ -7813,7 +8163,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field_asyncmultiselectfieldprops",
-      "community": 5,
+      "community": 70,
       "norm_label": "asyncmultiselectfieldprops"
     },
     {
@@ -7823,7 +8173,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_multi_select_field_asyncmultiselectfield",
-      "community": 5,
+      "community": 70,
       "norm_label": "asyncmultiselectfield()"
     },
     {
@@ -7833,7 +8183,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field",
-      "community": 5,
+      "community": 70,
       "norm_label": "use-async-select-field.tsx"
     },
     {
@@ -7843,7 +8193,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field_valuesequal",
-      "community": 5,
+      "community": 70,
       "norm_label": "valuesequal()"
     },
     {
@@ -7853,7 +8203,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_async_select_field_asyncselectfield",
-      "community": 5,
+      "community": 70,
       "norm_label": "asyncselectfield()"
     },
     {
@@ -8083,7 +8433,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_permissions",
-      "community": 39,
+      "community": 25,
       "norm_label": "use-permissions.ts"
     },
     {
@@ -8093,7 +8443,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_hooks_use_permissions_usepermission",
-      "community": 39,
+      "community": 25,
       "norm_label": "usepermission()"
     },
     {
@@ -8403,7 +8753,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_setcurrentuser",
-      "community": 73,
+      "community": 47,
       "norm_label": "setcurrentuser()"
     },
     {
@@ -8413,7 +8763,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_currentuserid",
-      "community": 73,
+      "community": 47,
       "norm_label": "currentuserid()"
     },
     {
@@ -8423,7 +8773,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_offline_outbox_currentusercanrecord",
-      "community": 73,
+      "community": 47,
       "norm_label": "currentusercanrecord()"
     },
     {
@@ -8523,7 +8873,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages",
-      "community": 73,
+      "community": 47,
       "norm_label": "pages.ts"
     },
     {
@@ -8533,7 +8883,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages_paths",
-      "community": 73,
+      "community": 47,
       "norm_label": "paths"
     },
     {
@@ -8543,7 +8893,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages_caches",
-      "community": 73,
+      "community": 47,
       "norm_label": "caches"
     },
     {
@@ -8553,7 +8903,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages_warmofflinepages",
-      "community": 73,
+      "community": 47,
       "norm_label": "warmofflinepages()"
     },
     {
@@ -8563,7 +8913,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_offline_pages_clearofflinepages",
-      "community": 73,
+      "community": 47,
       "norm_label": "clearofflinepages()"
     },
     {
@@ -8713,7 +9063,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index",
-      "community": 39,
+      "community": 25,
       "norm_label": "index.tsx"
     },
     {
@@ -8723,7 +9073,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index_status_options",
-      "community": 39,
+      "community": 25,
       "norm_label": "status_options"
     },
     {
@@ -8733,7 +9083,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index_columns",
-      "community": 39,
+      "community": 25,
       "norm_label": "columns"
     },
     {
@@ -8743,7 +9093,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index_fields",
-      "community": 39,
+      "community": 25,
       "norm_label": "fields"
     },
     {
@@ -8753,7 +9103,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index_depotcard",
-      "community": 39,
+      "community": 25,
       "norm_label": "depotcard()"
     },
     {
@@ -8763,7 +9113,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "backend_resources_js_pages_depots_index_depotsindex",
-      "community": 39,
+      "community": 25,
       "norm_label": "depotsindex()"
     },
     {
@@ -8873,7 +9223,7 @@
       "source_location": "L165",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_borrowed_lendform",
-      "community": 58,
+      "community": 14,
       "norm_label": "lendform()"
     },
     {
@@ -9383,7 +9733,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index",
-      "community": 51,
+      "community": 39,
       "norm_label": "index.tsx"
     },
     {
@@ -9393,7 +9743,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_row",
-      "community": 51,
+      "community": 39,
       "norm_label": "row"
     },
     {
@@ -9403,7 +9753,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_report",
-      "community": 51,
+      "community": 39,
       "norm_label": "report"
     },
     {
@@ -9413,7 +9763,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_props",
-      "community": 51,
+      "community": 39,
       "norm_label": "props"
     },
     {
@@ -9423,7 +9773,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_num",
-      "community": 51,
+      "community": 39,
       "norm_label": "num()"
     },
     {
@@ -9433,27 +9783,27 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_reportindex",
-      "community": 51,
+      "community": 58,
       "norm_label": "reportindex()"
     },
     {
       "label": "active()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L105",
+      "source_location": "L106",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_active",
-      "community": 51,
+      "community": 39,
       "norm_label": "active()"
     },
     {
       "label": "QuarterReport()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L107",
+      "source_location": "L108",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_quarterreport",
-      "community": 51,
+      "community": 39,
       "norm_label": "quarterreport()"
     },
     {
@@ -9463,7 +9813,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_types",
-      "community": 39,
+      "community": 25,
       "norm_label": "types.tsx"
     },
     {
@@ -9473,7 +9823,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_types_resourcestypesindex",
-      "community": 39,
+      "community": 25,
       "norm_label": "resourcestypesindex()"
     },
     {
@@ -9483,7 +9833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared",
-      "community": 39,
+      "community": 25,
       "norm_label": "shared.tsx"
     },
     {
@@ -9493,7 +9843,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared_ved_labels",
-      "community": 39,
+      "community": 25,
       "norm_label": "ved_labels"
     },
     {
@@ -9503,7 +9853,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared_optionalnumber",
-      "community": 39,
+      "community": 25,
       "norm_label": "optionalnumber()"
     },
     {
@@ -9513,7 +9863,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared_typecard",
-      "community": 39,
+      "community": 25,
       "norm_label": "typecard()"
     },
     {
@@ -9523,7 +9873,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared_typecolumns",
-      "community": 39,
+      "community": 25,
       "norm_label": "typecolumns"
     },
     {
@@ -9533,7 +9883,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "backend_resources_js_pages_resources_shared_typefields",
-      "community": 39,
+      "community": 25,
       "norm_label": "typefields"
     },
     {
@@ -9933,7 +10283,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_pagination",
-      "community": 33,
+      "community": 51,
       "norm_label": "pagination.ts"
     },
     {
@@ -9943,7 +10293,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_card",
-      "community": 33,
+      "community": 51,
       "norm_label": "card.ts"
     },
     {
@@ -9953,7 +10303,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_card_cardactions",
-      "community": 33,
+      "community": 51,
       "norm_label": "cardactions"
     },
     {
@@ -9963,7 +10313,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table",
-      "community": 33,
+      "community": 51,
       "norm_label": "data-table.ts"
     },
     {
@@ -9983,7 +10333,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_columnfiltertype",
-      "community": 33,
+      "community": 51,
       "norm_label": "columnfiltertype"
     },
     {
@@ -10003,7 +10353,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_statusfiltertab",
-      "community": 33,
+      "community": 51,
       "norm_label": "statusfiltertab"
     },
     {
@@ -10013,7 +10363,7 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_inuseentry",
-      "community": 33,
+      "community": 51,
       "norm_label": "inuseentry"
     },
     {
@@ -10023,7 +10373,7 @@
       "source_location": "L38",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_modalstate",
-      "community": 33,
+      "community": 51,
       "norm_label": "modalstate"
     },
     {
@@ -10033,7 +10383,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_rendermodalprops",
-      "community": 33,
+      "community": 51,
       "norm_label": "rendermodalprops"
     },
     {
@@ -10043,7 +10393,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_datatableprops",
-      "community": 33,
+      "community": 51,
       "norm_label": "datatableprops"
     },
     {
@@ -10053,7 +10403,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option",
-      "community": 5,
+      "community": 70,
       "norm_label": "fields-option.ts"
     },
     {
@@ -10063,7 +10413,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option_asyncselectfieldprops",
-      "community": 5,
+      "community": 70,
       "norm_label": "asyncselectfieldprops"
     },
     {
@@ -10073,7 +10423,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_option_asyncmultiselectfieldprops",
-      "community": 5,
+      "community": 70,
       "norm_label": "asyncmultiselectfieldprops"
     },
     {
@@ -10083,7 +10433,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields",
-      "community": 5,
+      "community": 70,
       "norm_label": "fields.ts"
     },
     {
@@ -10103,7 +10453,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldtype",
-      "community": 5,
+      "community": 70,
       "norm_label": "fieldtype"
     },
     {
@@ -10113,7 +10463,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldoption",
-      "community": 5,
+      "community": 70,
       "norm_label": "fieldoption"
     },
     {
@@ -10153,7 +10503,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination",
-      "community": 33,
+      "community": 51,
       "norm_label": "pagination.ts"
     },
     {
@@ -10163,7 +10513,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_crudqueryparams",
-      "community": 33,
+      "community": 51,
       "norm_label": "crudqueryparams"
     },
     {
@@ -10173,7 +10523,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_paginationmeta",
-      "community": 33,
+      "community": 51,
       "norm_label": "paginationmeta"
     },
     {
@@ -10183,7 +10533,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_paginatedresponse",
-      "community": 33,
+      "community": 51,
       "norm_label": "paginatedresponse"
     },
     {
@@ -10193,7 +10543,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_pagination_tableapiresponse",
-      "community": 33,
+      "community": 51,
       "norm_label": "tableapiresponse"
     },
     {
@@ -10223,7 +10573,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror",
-      "community": 8,
+      "community": 39,
       "norm_label": "apierror"
     },
     {
@@ -10233,7 +10583,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror_constructor",
-      "community": 8,
+      "community": 39,
       "norm_label": ".constructor()"
     },
     {
@@ -10633,7 +10983,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_app",
-      "community": 73,
+      "community": 47,
       "norm_label": "app.tsx"
     },
     {
@@ -10643,7 +10993,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_resources_js_app_onuserchange",
-      "community": 73,
+      "community": 47,
       "norm_label": "onuserchange()"
     },
     {
@@ -10653,7 +11003,7 @@
       "source_location": "L50",
       "_origin": "ast",
       "id": "backend_resources_js_app_queryclient",
-      "community": 73,
+      "community": 47,
       "norm_label": "queryclient"
     },
     {
@@ -10663,7 +11013,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "backend_resources_js_app_setup",
-      "community": 73,
+      "community": 47,
       "norm_label": "setup()"
     },
     {
@@ -10673,7 +11023,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_bones_registry",
-      "community": 73,
+      "community": 47,
       "norm_label": "registry.ts"
     },
     {
@@ -10683,7 +11033,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_bootstrap",
-      "community": 73,
+      "community": 47,
       "norm_label": "bootstrap.ts"
     },
     {
@@ -10773,7 +11123,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories",
-      "community": 58,
+      "community": 25,
       "norm_label": "categories.ts"
     },
     {
@@ -10783,7 +11133,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories_category_label",
-      "community": 58,
+      "community": 25,
       "norm_label": "category_label"
     },
     {
@@ -10793,7 +11143,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_lib_categories_categoryoptions",
-      "community": 58,
+      "community": 25,
       "norm_label": "categoryoptions"
     },
     {
@@ -10813,7 +11163,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror",
-      "community": 33,
+      "community": 51,
       "norm_label": "parseapierror.ts"
     },
     {
@@ -10823,7 +11173,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_lib_parseapierror_parsedapierror",
-      "community": 33,
+      "community": 51,
       "norm_label": "parsedapierror"
     },
     {
@@ -10843,7 +11193,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_lib_utils",
-      "community": 8,
+      "community": 58,
       "norm_label": "utils.ts"
     },
     {
@@ -11243,7 +11593,7 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_the_admin_confirms_the_ved_policy_with_position_and_date",
-      "community": 66,
+      "community": 69,
       "norm_label": ".test_the_admin_confirms_the_ved_policy_with_position_and_date()"
     },
     {
@@ -11273,7 +11623,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_tests_feature_evaluationtest_evaluationtest_test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update",
-      "community": 66,
+      "community": 11,
       "norm_label": ".test_full_cycle_budget_submit_to_queued_job_to_solver_to_stored_run_to_dashboard_update()"
     },
     {
@@ -11373,7 +11723,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_setup",
-      "community": 11,
+      "community": 36,
       "norm_label": ".setup()"
     },
     {
@@ -11483,7 +11833,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_test_logistics_saves_replaces_and_removes_a_kit_and_others_cannot",
-      "community": 36,
+      "community": 7,
       "norm_label": ".test_logistics_saves_replaces_and_removes_a_kit_and_others_cannot()"
     },
     {
@@ -11523,7 +11873,7 @@
       "source_location": "L228",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_test_the_catalog_seeder_loads_the_forms_items_their_kind_and_the_backpack_kit",
-      "community": 7,
+      "community": 11,
       "norm_label": ".test_the_catalog_seeder_loads_the_forms_items_their_kind_and_the_backpack_kit()"
     },
     {
@@ -11543,7 +11893,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest",
-      "community": 36,
+      "community": 29,
       "norm_label": "icsrequestworkflowtest"
     },
     {
@@ -11563,7 +11913,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_file",
-      "community": 36,
+      "community": 29,
       "norm_label": ".file()"
     },
     {
@@ -11573,7 +11923,7 @@
       "source_location": "L64",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_approve",
-      "community": 36,
+      "community": 29,
       "norm_label": ".approve()"
     },
     {
@@ -11583,7 +11933,7 @@
       "source_location": "L73",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_onhand",
-      "community": 36,
+      "community": 29,
       "norm_label": ".onhand()"
     },
     {
@@ -11593,7 +11943,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_approve_reserves_release_deducts_and_full_release_closes",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_approve_reserves_release_deducts_and_full_release_closes()"
     },
     {
@@ -11603,7 +11953,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_releasing_more_than_approved_is_refused",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_releasing_more_than_approved_is_refused()"
     },
     {
@@ -11613,7 +11963,7 @@
       "source_location": "L113",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_two_approvals_that_together_exceed_stock_raise_a_flag",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_two_approvals_that_together_exceed_stock_raise_a_flag()"
     },
     {
@@ -11623,7 +11973,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_admin_can_approve_and_release_their_own_request",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_admin_can_approve_and_release_their_own_request()"
     },
     {
@@ -11633,7 +11983,7 @@
       "source_location": "L136",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_requesters_cannot_approve_or_release",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_requesters_cannot_approve_or_release()"
     },
     {
@@ -11643,7 +11993,7 @@
       "source_location": "L145",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_rejection_needs_a_reason_and_only_from_submitted",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_rejection_needs_a_reason_and_only_from_submitted()"
     },
     {
@@ -11653,7 +12003,7 @@
       "source_location": "L155",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_cancel_frees_the_reservation_and_only_the_admin_cancels_after_approval",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_cancel_frees_the_reservation_and_only_the_admin_cancels_after_approval()"
     },
     {
@@ -11663,7 +12013,7 @@
       "source_location": "L167",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_borrowed_equipment_follows_its_lifecycle_through_stock_entries",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_borrowed_equipment_follows_its_lifecycle_through_stock_entries()"
     },
     {
@@ -11673,7 +12023,7 @@
       "source_location": "L193",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_releases_issues_and_returns_recorded_offline_update_the_request_and_logbook_on_sync",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_releases_issues_and_returns_recorded_offline_update_the_request_and_logbook_on_sync()"
     },
     {
@@ -11683,7 +12033,7 @@
       "source_location": "L222",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_an_offline_release_the_request_no_longer_allows_is_kept_and_flagged",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_an_offline_release_the_request_no_longer_allows_is_kept_and_flagged()"
     },
     {
@@ -11703,7 +12053,7 @@
       "source_location": "L247",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_filed_requests_feed_back_into_the_quarterly_history",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_filed_requests_feed_back_into_the_quarterly_history()"
     },
     {
@@ -11713,7 +12063,7 @@
       "source_location": "L258",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_rejected_or_backdated_requests_do_not_become_demand",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_rejected_or_backdated_requests_do_not_become_demand()"
     },
     {
@@ -11723,7 +12073,7 @@
       "source_location": "L271",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_an_approval_conflict_can_be_resolved_with_a_correction",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_an_approval_conflict_can_be_resolved_with_a_correction()"
     },
     {
@@ -11733,7 +12083,7 @@
       "source_location": "L284",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_quarterly_report_exports_pdf_and_csv_with_the_fingerprint",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_quarterly_report_exports_pdf_and_csv_with_the_fingerprint()"
     },
     {
@@ -11743,7 +12093,7 @@
       "source_location": "L300",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_test_report_covers_a_quarter_range_in_one_file",
-      "community": 36,
+      "community": 29,
       "norm_label": ".test_report_covers_a_quarter_range_in_one_file()"
     },
     {
@@ -11753,7 +12103,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest",
-      "community": 7,
+      "community": 44,
       "norm_label": "replenishmenttest.php"
     },
     {
@@ -11983,7 +12333,7 @@
       "source_location": "L281",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_the_same_history_file_cannot_be_imported_twice",
-      "community": 11,
+      "community": 44,
       "norm_label": ".test_the_same_history_file_cannot_be_imported_twice()"
     },
     {
@@ -12003,7 +12353,7 @@
       "source_location": "L302",
       "_origin": "ast",
       "id": "backend_tests_feature_replenishmenttest_replenishmenttest_test_the_shipped_template_imports_cleanly",
-      "community": 3,
+      "community": 11,
       "norm_label": ".test_the_shipped_template_imports_cleanly()"
     },
     {
@@ -12243,7 +12593,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest",
-      "community": 27,
+      "community": 7,
       "norm_label": "stockledgertest.php"
     },
     {
@@ -12443,7 +12793,7 @@
       "source_location": "L216",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_data_checks_flag_negative_stock_and_count_mismatches",
-      "community": 27,
+      "community": 11,
       "norm_label": ".test_data_checks_flag_negative_stock_and_count_mismatches()"
     },
     {
@@ -12831,7 +13181,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment",
-      "community": 14,
+      "community": 0,
       "norm_label": "replenishment.py"
     },
     {
@@ -12851,7 +13201,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "basemodel",
-      "community": 14,
+      "community": 17,
       "norm_label": "basemodel"
     },
     {
@@ -12861,7 +13211,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment_check_items",
-      "community": 14,
+      "community": 0,
       "norm_label": "_check_items()"
     },
     {
@@ -12881,7 +13231,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment_replenishmentrequest_items_valid",
-      "community": 14,
+      "community": 0,
       "norm_label": "._items_valid()"
     },
     {
@@ -12901,7 +13251,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment_backtestrequest_items_valid",
-      "community": 14,
+      "community": 0,
       "norm_label": "._items_valid()"
     },
     {
@@ -12911,7 +13261,7 @@
       "source_location": "L67",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment_orderline",
-      "community": 14,
+      "community": 6,
       "norm_label": "orderline"
     },
     {
@@ -12921,7 +13271,7 @@
       "source_location": "L78",
       "_origin": "ast",
       "id": "solver_service_app_models_replenishment_replenishmentresponse",
-      "community": 14,
+      "community": 17,
       "norm_label": "replenishmentresponse"
     },
     {
@@ -12971,7 +13321,7 @@
       "source_location": "L82",
       "_origin": "ast",
       "id": "solver_service_app_solvers_replenishment_line",
-      "community": 14,
+      "community": 6,
       "norm_label": "_line()"
     },
     {
@@ -14098,7 +14448,7 @@
       "label": "1. What they told us \u2192 what we show",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L17",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "backend_docs_demo_script_1_what_they_told_us_what_we_show",
       "community": 31,
@@ -14108,7 +14458,7 @@
       "label": "2. Demo script (same order and sample values as the video)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
       "community": 31,
@@ -14118,7 +14468,7 @@
       "label": "Opening (30 sec)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "backend_docs_demo_script_opening_30_sec",
       "community": 31,
@@ -14128,7 +14478,7 @@
       "label": "Step 1: Stock, offline and the records seal (2 min)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L40",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "backend_docs_demo_script_step_1_stock_offline_and_the_records_seal_2_min",
       "community": 31,
@@ -14138,27 +14488,37 @@
       "label": "Step 2: ICS 213-RR request and borrowed equipment (3 min)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L58",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "backend_docs_demo_script_step_2_ics_213_rr_request_and_borrowed_equipment_3_min",
       "community": 31,
       "norm_label": "step 2: ics 213-rr request and borrowed equipment (3 min)"
     },
     {
-      "label": "Step 3: Quarterly purchase plan (2.5 min)",
+      "label": "Step 3: Quarterly purchase plan (2 min)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L80",
+      "source_location": "L81",
       "_origin": "ast",
-      "id": "backend_docs_demo_script_step_3_quarterly_purchase_plan_2_5_min",
+      "id": "backend_docs_demo_script_step_3_quarterly_purchase_plan_2_min",
       "community": 31,
-      "norm_label": "step 3: quarterly purchase plan (2.5 min)"
+      "norm_label": "step 3: quarterly purchase plan (2 min)"
+    },
+    {
+      "label": "Step 4: Quarterly report (1 min)",
+      "file_type": "document",
+      "source_file": "backend/docs/demo-script.md",
+      "source_location": "L104",
+      "_origin": "ast",
+      "id": "backend_docs_demo_script_step_4_quarterly_report_1_min",
+      "community": 31,
+      "norm_label": "step 4: quarterly report (1 min)"
     },
     {
       "label": "Close (30 sec)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L104",
+      "source_location": "L118",
       "_origin": "ast",
       "id": "backend_docs_demo_script_close_30_sec",
       "community": 31,
@@ -14168,7 +14528,7 @@
       "label": "3. Likely questions (client and panel)",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L112",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "backend_docs_demo_script_3_likely_questions_client_and_panel",
       "community": 31,
@@ -14178,7 +14538,7 @@
       "label": "4. Ask the client",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L133",
+      "source_location": "L147",
       "_origin": "ast",
       "id": "backend_docs_demo_script_4_ask_the_client",
       "community": 31,
@@ -14188,7 +14548,7 @@
       "label": "A. Data to import",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L135",
+      "source_location": "L149",
       "_origin": "ast",
       "id": "backend_docs_demo_script_a_data_to_import",
       "community": 31,
@@ -14198,7 +14558,7 @@
       "label": "B. Users per role",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L150",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "backend_docs_demo_script_b_users_per_role",
       "community": 31,
@@ -14208,7 +14568,7 @@
       "label": "C. Does our form match yours?",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L164",
+      "source_location": "L178",
       "_origin": "ast",
       "id": "backend_docs_demo_script_c_does_our_form_match_yours",
       "community": 31,
@@ -14218,7 +14578,7 @@
       "label": "D. Setup",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L174",
+      "source_location": "L188",
       "_origin": "ast",
       "id": "backend_docs_demo_script_d_setup",
       "community": 31,
@@ -14228,7 +14588,7 @@
       "label": "5. Before you go on",
       "file_type": "document",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L184",
+      "source_location": "L198",
       "_origin": "ast",
       "id": "backend_docs_demo_script_5_before_you_go_on",
       "community": 31,
@@ -15542,7 +15902,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 57,
+      "community": 11,
       "norm_label": "inertia",
       "id": "inertia"
     },
@@ -16283,7 +16643,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 14,
+      "community": 0,
       "norm_label": "pydantic",
       "id": "pydantic"
     },
@@ -24905,7 +25265,18 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L32",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_line",
+      "target": "backend_app_models_historyline_historyline"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L91",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
       "target": "backend_app_models_historyline_historyline"
@@ -25900,17 +26271,6 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "backend_database_seeders_replenishmentdemoseeder",
-      "target": "backend_app_models_resourcetype",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/CatalogTest.php",
       "source_location": "L7",
       "weight": 1.0,
@@ -26005,15 +26365,37 @@
       "target": "backend_app_models_resourcetype_resourcetype"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_database_seeders_replenishmentdemoseeder",
+      "target": "backend_app_models_resourcetype_resourcetype",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L124",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_line",
+      "target": "backend_app_models_resourcetype_resourcetype",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
+      "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L31",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
-      "target": "backend_app_models_resourcetype_resourcetype"
+      "target": "backend_app_models_resourcetype_resourcetype",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -31389,7 +31771,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L16",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
       "target": "seeder",
@@ -31493,7 +31875,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L16",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder",
       "target": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
@@ -31503,10 +31885,31 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
-      "source_location": "L18",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
+      "target": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_line",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder",
       "target": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/ReplenishmentDemoSeeder.php",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_run",
+      "target": "backend_database_seeders_replenishmentdemoseeder_replenishmentdemoseeder_line",
       "confidence_score": 1.0
     },
     {
@@ -31638,6 +32041,16 @@
       "weight": 1.0,
       "source": "backend_docs_demo_video_record",
       "target": "backend_docs_demo_video_record_log",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/record.mjs",
+      "source_location": "L277",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_record",
+      "target": "backend_docs_demo_video_record_low",
       "confidence_score": 1.0
     },
     {
@@ -31953,6 +32366,524 @@
       "weight": 1.0,
       "source": "backend_docs_demo_video_reset",
       "target": "backend_docs_demo_video_reset_sh__entry",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_b",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_box",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_boxes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_dir",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L60",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_find",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L181",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_ftyp",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L123",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_hascto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_kids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L183",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_mdatbytes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L187",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_mdathead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L133",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_mdia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L126",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_mediadur",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L134",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_mediats",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_moov",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L136",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_moviedur",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L135",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_moviets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_negcto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L186",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_offsets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_readtimescale",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L168",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_rebuild",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_samples",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L144",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_stbl",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L118",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_stts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L125",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_syncs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_top",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L132",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_trak",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L73",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_trex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_trexdef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_u32",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_webm",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4",
+      "target": "backend_docs_demo_video_to_mp4_withduration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L59",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_kids",
+      "target": "backend_docs_demo_video_to_mp4_boxes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_rebuild",
+      "target": "backend_docs_demo_video_to_mp4_kids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_stbl",
+      "target": "backend_docs_demo_video_to_mp4_kids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_stbl",
+      "target": "backend_docs_demo_video_to_mp4_find",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L129",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_readtimescale",
+      "target": "backend_docs_demo_video_to_mp4_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_stbl",
+      "target": "backend_docs_demo_video_to_mp4_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L139",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_withduration",
+      "target": "backend_docs_demo_video_to_mp4_body",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/resources/js/api-service/http.ts",
+      "source_location": "L71",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_http_createmoduleresource",
+      "target": "backend_docs_demo_video_to_mp4_body"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "collection",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/resources/js/Hooks/use-module.ts",
+      "source_location": "L365",
+      "weight": 1.0,
+      "source": "backend_resources_js_hooks_use_module_usemodule",
+      "target": "backend_docs_demo_video_to_mp4_body"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/resources/js/Pages/IcsRequests/Borrowed.tsx",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_borrowed_lendform",
+      "target": "backend_docs_demo_video_to_mp4_body"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L128",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index_requestcard",
+      "target": "backend_docs_demo_video_to_mp4_body"
+    },
+    {
+      "relation": "indirect_call",
+      "context": "argument",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/resources/js/Pages/Replenishment/Inputs.tsx",
+      "source_location": "L149",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_replenishment_inputs_historyupload",
+      "target": "backend_docs_demo_video_to_mp4_body"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L176",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_rebuild",
+      "target": "backend_docs_demo_video_to_mp4_box",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L145",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_stbl",
+      "target": "backend_docs_demo_video_to_mp4_box",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_withduration",
+      "target": "backend_docs_demo_video_to_mp4_box",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L148",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_stbl",
+      "target": "backend_docs_demo_video_to_mp4_u32",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L171",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_rebuild",
+      "target": "backend_docs_demo_video_to_mp4_withduration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-video/to-mp4.mjs",
+      "source_location": "L174",
+      "weight": 1.0,
+      "source": "backend_docs_demo_video_to_mp4_rebuild",
+      "target": "backend_docs_demo_video_to_mp4_stbl",
       "confidence_score": 1.0
     },
     {
@@ -41144,7 +42075,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L119",
+      "source_location": "L120",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_replenishment_shared_peso"
@@ -41186,7 +42117,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L105",
+      "source_location": "L106",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_active",
@@ -41216,7 +42147,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L107",
+      "source_location": "L108",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_quarterreport",
@@ -41257,7 +42188,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L151",
+      "source_location": "L152",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_report_index_num",
@@ -41279,7 +42210,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L108",
+      "source_location": "L109",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_report_index_active",
@@ -49755,7 +50686,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "backend_docs_demo_script_disasterresource_client_demo_script_q_a_and_discovery_en_tagalog",
       "target": "backend_docs_demo_script_1_what_they_told_us_what_we_show",
@@ -49765,7 +50696,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "backend_docs_demo_script_disasterresource_client_demo_script_q_a_and_discovery_en_tagalog",
       "target": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
@@ -49775,7 +50706,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L112",
+      "source_location": "L126",
       "weight": 1.0,
       "source": "backend_docs_demo_script_disasterresource_client_demo_script_q_a_and_discovery_en_tagalog",
       "target": "backend_docs_demo_script_3_likely_questions_client_and_panel",
@@ -49785,7 +50716,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L133",
+      "source_location": "L147",
       "weight": 1.0,
       "source": "backend_docs_demo_script_disasterresource_client_demo_script_q_a_and_discovery_en_tagalog",
       "target": "backend_docs_demo_script_4_ask_the_client",
@@ -49795,7 +50726,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L184",
+      "source_location": "L198",
       "weight": 1.0,
       "source": "backend_docs_demo_script_disasterresource_client_demo_script_q_a_and_discovery_en_tagalog",
       "target": "backend_docs_demo_script_5_before_you_go_on",
@@ -49805,7 +50736,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L104",
+      "source_location": "L118",
       "weight": 1.0,
       "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
       "target": "backend_docs_demo_script_close_30_sec",
@@ -49815,7 +50746,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
       "target": "backend_docs_demo_script_opening_30_sec",
@@ -49825,7 +50756,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L40",
+      "source_location": "L41",
       "weight": 1.0,
       "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
       "target": "backend_docs_demo_script_step_1_stock_offline_and_the_records_seal_2_min",
@@ -49835,7 +50766,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L58",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
       "target": "backend_docs_demo_script_step_2_ics_213_rr_request_and_borrowed_equipment_3_min",
@@ -49845,17 +50776,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L80",
+      "source_location": "L81",
       "weight": 1.0,
       "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
-      "target": "backend_docs_demo_script_step_3_quarterly_purchase_plan_2_5_min",
+      "target": "backend_docs_demo_script_step_3_quarterly_purchase_plan_2_min",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L135",
+      "source_location": "L104",
+      "weight": 1.0,
+      "source": "backend_docs_demo_script_2_demo_script_same_order_and_sample_values_as_the_video",
+      "target": "backend_docs_demo_script_step_4_quarterly_report_1_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/docs/demo-script.md",
+      "source_location": "L149",
       "weight": 1.0,
       "source": "backend_docs_demo_script_4_ask_the_client",
       "target": "backend_docs_demo_script_a_data_to_import",
@@ -49865,7 +50806,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L150",
+      "source_location": "L164",
       "weight": 1.0,
       "source": "backend_docs_demo_script_4_ask_the_client",
       "target": "backend_docs_demo_script_b_users_per_role",
@@ -49875,7 +50816,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L164",
+      "source_location": "L178",
       "weight": 1.0,
       "source": "backend_docs_demo_script_4_ask_the_client",
       "target": "backend_docs_demo_script_c_does_our_form_match_yours",
@@ -49885,7 +50826,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/docs/demo-script.md",
-      "source_location": "L174",
+      "source_location": "L188",
       "weight": 1.0,
       "source": "backend_docs_demo_script_4_ask_the_client",
       "target": "backend_docs_demo_script_d_setup",

@@ -1,4 +1,4 @@
-# What each account can see and do (2026-10-03)
+# What each account can see and do (2026-10-11)
 
 The roles follow the office structure confirmed in the 2026-09-03 requirements interview: Research and Planning, Operations and Warning, Administration and Training and Administrative, with Logistics as a section under Administration and Training. The Admin is the Head of Office (Department Head). ERT and the other response teams are teams inside Operations, and the Assistant Department Head is a position title, so neither is a role.
 
@@ -12,7 +12,6 @@ Every account opens every page (Replenishment, Stock, ICS 213-RR, Items, Depots)
 | **Research and Planning** | | | ✓ | | | | | | | | |
 | **Administration and Training** | | | | | | | | | | ✓ | |
 | **Administrative** | | | | | | | | | | | |
-| **Viewer** (unassigned) | | | | | | | | | | | |
 
 ![Admin: replenishment dashboard with Run solver](1-admin-replenishment.jpg)
 *Admin: runs the solver and approves or rejects; the only sidebar with Settings.*
@@ -23,7 +22,7 @@ Every account opens every page (Replenishment, Stock, ICS 213-RR, Items, Depots)
 ![Operations and Warning: ICS 213-RR with the file form only](3-operations-ics-requests.jpg)
 *Operations and Warning (its ERT teams file through it): files requests; no approve or release controls.*
 
-![Viewer: borrowed equipment without names or buttons](4-viewer-borrowed.jpg)
-*Viewer: read-only, and borrower names are hidden (only the Admin and Logistics see them).*
+![Administrative: borrowed equipment without names or buttons](4-administrative-borrowed.jpg)
+*Administrative: read-only, and borrower names are hidden (only the Admin and Logistics see them).*
 
 The Admin can also approve or reject a request they filed themselves.

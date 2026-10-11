@@ -136,7 +136,7 @@ export function UserProfileSection({
           theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
         }
         aria-label="Toggle theme"
-        className=" rounded p-1 text-[var(--text-secondary)] hover:text-[var(--amber)] flex gap-2 w-full"
+        className="flex w-full items-center gap-2 rounded px-1 py-2.5 text-[var(--text-secondary)] hover:text-[var(--amber)]"
       >
         {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
         <span className="text-xs">
@@ -169,7 +169,7 @@ export function UserProfileSection({
       <button
         type="button"
         onClick={logout}
-        className="mt-2 flex w-full items-center gap-2 rounded p-1 text-left text-xs text-[var(--text-secondary)] hover:text-critical"
+        className="mt-1 flex w-full items-center gap-2 rounded px-1 py-2.5 text-left text-xs text-[var(--text-secondary)] hover:text-critical"
       >
         <LogOut size={15} />
         Log out

@@ -51,8 +51,8 @@ function makeUserCard(handlers: {
 }) {
   return function UserCard(row: AdminUser, actions: CardActions) {
     return (
-      <div className="flex items-center justify-between border-b border-line p-3 text-sm">
-        <div>
+      <div className="flex flex-col gap-1 border-b border-line p-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="min-w-0 [overflow-wrap:anywhere]">
           <div className="flex items-center gap-2 font-semibold">
             {row.name}
             <span
@@ -66,32 +66,32 @@ function makeUserCard(handlers: {
             {row.is_system_admin ? ` · ${ADMIN_LABEL}` : ""}
           </div>
         </div>
-        <div className="flex gap-3 text-xs">
+        <div className="-ml-2 flex flex-wrap text-xs sm:ml-0 sm:shrink-0">
           {actions.canEdit && (
             <button
               onClick={actions.onEdit}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
             >
               Edit
             </button>
           )}
           <button
             onClick={() => handlers.onResetPassword(row)}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
           >
             Reset password
           </button>
           {row.is_active ? (
             <button
               onClick={() => handlers.onSuspend(row)}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--pending)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--pending)]"
             >
               Suspend
             </button>
           ) : (
             <button
               onClick={() => handlers.onActivate(row)}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--ok)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--ok)]"
             >
               Activate
             </button>
@@ -99,7 +99,7 @@ function makeUserCard(handlers: {
           {actions.canDelete && (
             <button
               onClick={actions.onDelete}
-              className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+              className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
             >
               Remove
             </button>
@@ -138,10 +138,12 @@ const userFields: FieldDef<AdminUser>[] = [
   },
 ];
 
-/** Read-only reminder of what each role can do; the roles come from system-spec.md §2. */
+/** Read-only reminder of what each role can do, folded so the list comes first; the roles come from system-spec.md §2. */
 function RolesNote() {
   return (
-    <section className="space-y-2 border border-line p-4 text-xs text-[var(--text-secondary)]">
+    <details className="border border-line text-xs text-[var(--text-secondary)]">
+      <summary className="cursor-pointer px-4 py-3 text-sm font-medium text-[var(--text-primary)]">What each role can do</summary>
+      <div className="space-y-2 px-4 pb-4">
       <p>
         Roles follow the office structure confirmed in the 2026-09-03 requirements interview. The Admin is the Head of
         Office (the Department Head); the Assistant Department Head is a position title, not a role.
@@ -154,7 +156,8 @@ function RolesNote() {
           </Fragment>
         ))}
       </dl>
-    </section>
+      </div>
+    </details>
   );
 }
 

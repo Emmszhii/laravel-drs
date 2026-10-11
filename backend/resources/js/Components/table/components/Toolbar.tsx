@@ -146,7 +146,8 @@ export function Toolbar<T>({
               <button
                 type="button"
                 onClick={onSortDirToggle}
-                className="absolute right-1.5 rounded-md p-0.5"
+                className="absolute right-0 p-2.5"
+                aria-label={`Sort ${sortDir === "asc" ? "descending" : "ascending"}`}
                 title={`Currently ${sortDir} — click to toggle`}
                 data-cy="toolbar-button-button-2"
               >

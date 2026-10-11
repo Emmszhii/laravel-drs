@@ -28,7 +28,7 @@ export function useAuth() {
 
     return {
         user,
-        role: user?.role ?? 'viewer',
+        role: user?.role ?? 'administrative',
         roleLabel: user?.is_system_admin ? ADMIN_LABEL : ROLE_LABELS[normalizeRole(user?.role)],
         displayName: user?.name ?? 'Guest',
         email: user?.email ?? '',

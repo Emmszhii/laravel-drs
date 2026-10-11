@@ -920,8 +920,8 @@
     "semantic_hash": ""
   },
   "CLAUDE.md": {
-    "mtime": 1791686345.1983097,
-    "ast_hash": "cc9ebf0db5ad093fda6740d0c80a2a2e",
+    "mtime": 1791688192.1020036,
+    "ast_hash": "1fdace912012853be041b2927e1047b4",
     "semantic_hash": ""
   },
   "README.md": {
@@ -1175,8 +1175,8 @@
     "semantic_hash": ""
   },
   "backend/database/seeders/ReplenishmentDemoSeeder.php": {
-    "mtime": 1791393147.293607,
-    "ast_hash": "55309fdad2731e005990e61c6349df29",
+    "mtime": 1791688154.9722435,
+    "ast_hash": "ba2e12f50b16d4d1afc08a0b6e55dca4",
     "semantic_hash": ""
   },
   "backend/resources/js/Pages/Replenishment/Index.tsx": {
@@ -1330,8 +1330,8 @@
     "semantic_hash": ""
   },
   "backend/database/seeders/CatalogSeeder.php": {
-    "mtime": 1791393147.292086,
-    "ast_hash": "8186161b18c8d5dddc7b6c35ef6eaef3",
+    "mtime": 1791688205.0174763,
+    "ast_hash": "e6f0af25fbe93e335a94e7577203ce47",
     "semantic_hash": ""
   },
   "backend/tests/Feature/CatalogTest.php": {
@@ -1415,8 +1415,8 @@
     "semantic_hash": ""
   },
   "backend/docs/demo-script.md": {
-    "mtime": 1791686325.5668068,
-    "ast_hash": "30c461a6c3bfad133f4fa82d47ca70ab",
+    "mtime": 1791687942.3573098,
+    "ast_hash": "493ca92ff25d657c0cb1d02e04ed1225",
     "semantic_hash": ""
   },
   "backend/app/Http/Controllers/Web/ReportController.php": {
@@ -1425,8 +1425,8 @@
     "semantic_hash": ""
   },
   "backend/docs/demo-video/record.mjs": {
-    "mtime": 1791686319.3848608,
-    "ast_hash": "be4c406958c8a9b9d5efd92e8056376a",
+    "mtime": 1791687942.4896219,
+    "ast_hash": "d4c60cd0ce50f319b2a80755647e055d",
     "semantic_hash": ""
   },
   "backend/docs/demo-video/reset.sh": {
@@ -1465,8 +1465,18 @@
     "semantic_hash": ""
   },
   "backend/resources/js/Pages/Report/Index.tsx": {
-    "mtime": 1791686288.1392555,
-    "ast_hash": "36c6af2dbfd81bbe36c7b261948d37bd",
+    "mtime": 1791687194.3736656,
+    "ast_hash": "432f8f744f5c72bea696dbe3bbbb4d59",
+    "semantic_hash": ""
+  },
+  "backend/docs/demo-video/to-mp4.mjs": {
+    "mtime": 1791687750.0307477,
+    "ast_hash": "dde5a84fbbb87a4b44e6b75859c29403",
+    "semantic_hash": ""
+  },
+  "backend/docs/demo-video/raw/demo.webm": {
+    "mtime": 1791688376.261278,
+    "ast_hash": "8b0002fdf45926d27817416c17c2e96b",
     "semantic_hash": ""
   }
 }

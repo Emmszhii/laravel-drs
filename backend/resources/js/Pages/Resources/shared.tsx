@@ -9,8 +9,8 @@ const optionalNumber = (value: unknown) => (value === "" || value === undefined 
 
 export function TypeCard(row: ResourceType, actions: CardActions) {
   return (
-    <div className="flex items-center justify-between border-b border-line p-3 text-sm">
-      <div>
+    <div className="flex flex-col gap-1 border-b border-line p-3 text-sm sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+      <div className="min-w-0 [overflow-wrap:anywhere]">
         <div className="font-semibold">{row.name}</div>
         <div className="text-xs text-[var(--text-secondary)]">
           {CATEGORY_LABEL[row.category] ?? row.category} · Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"} ·{" "}
@@ -19,11 +19,11 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
           {row.space_per_unit != null ? ` · ${row.space_per_unit} m³ each` : ""}
         </div>
       </div>
-      <div className="flex gap-3 text-xs">
+      <div className="-ml-2 flex flex-wrap text-xs sm:ml-0 sm:shrink-0">
         {actions.canEdit && (
           <button
             onClick={actions.onEdit}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
+            className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--amber)]"
           >
             Edit
           </button>
@@ -31,7 +31,7 @@ export function TypeCard(row: ResourceType, actions: CardActions) {
         {actions.canDelete && (
           <button
             onClick={actions.onDelete}
-            className="underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
+            className="px-2 py-2.5 underline text-[var(--text-secondary)] hover:text-[var(--critical)]"
           >
             Remove
           </button>

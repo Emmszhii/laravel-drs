@@ -65,10 +65,10 @@ export function NotificationBell() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="relative flex items-center gap-1.5 border border-line-strong px-2.5 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:border-amber hover:text-amber"
+        className="relative flex h-9 w-9 items-center justify-center border border-line-strong text-xs font-semibold text-[var(--text-secondary)] hover:border-amber hover:text-amber"
         aria-label="Notifications"
       >
-        <Bell size={14} />
+        <Bell size={16} />
         {unreadCount > 0 && (
           <span className="absolute -top-1.5 -right-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-critical px-1 font-mono text-[10px] text-white">
             {unreadCount > 9 ? "9+" : unreadCount}
