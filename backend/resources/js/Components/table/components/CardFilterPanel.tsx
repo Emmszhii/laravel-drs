@@ -34,7 +34,7 @@ export function CardFilterPanel<T>({
     <div className="mt-3 space-y-4 border border-line-strong bg-[var(--bg-panel)] p-4">
       {enableStatusFilter && (
         <div>
-          <span className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-[var(--text-secondary)]">
+          <span className="mb-1.5 block text-xs font-medium text-[var(--text-secondary)]">
             Status
           </span>
           <StatusFilter

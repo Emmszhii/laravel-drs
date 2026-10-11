@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { Link, useForm, usePage } from "@inertiajs/react";
+import { Head, Link, useForm, usePage } from "@inertiajs/react";
 import Button from "../../Components/Common/Button";
 
 /**
@@ -22,9 +22,10 @@ export default function ForgotPassword() {
   return (
     <div className="flex h-screen items-center justify-center bg-[var(--bg-void)] text-[var(--text-primary)]">
       <form onSubmit={submit} className="w-full max-w-sm space-y-4 p-8">
-        <h1 className="text-lg font-semibold uppercase tracking-wide">
+        <h1 className="text-lg font-semibold">
           Disaster<span className="text-[var(--amber)]">Resource+</span>
         </h1>
+        <Head title="Forgot password" />
         <p className="text-sm text-[var(--text-secondary)]">
           Enter your account email and we&rsquo;ll send you a link to reset your password.
         </p>
@@ -32,14 +33,14 @@ export default function ForgotPassword() {
         {status && <p className="text-xs text-[var(--ok)]">{status}</p>}
 
         <div className="space-y-1">
-          <label className="block text-xs uppercase tracking-wide text-[var(--text-secondary)]">
+          <label className="block text-xs text-[var(--text-secondary)]">
             Email
           </label>
           <input
             type="email"
             value={data.email}
             onChange={(e) => setData("email", e.target.value)}
-            className="w-full border border-white/20 bg-transparent px-3 py-2 text-sm"
+            className="w-full border border-line-strong bg-transparent px-3 py-2 text-sm"
             autoComplete="username"
             required
           />
@@ -52,7 +53,7 @@ export default function ForgotPassword() {
 
         <Link
           href="/login"
-          className="block text-center text-xs uppercase tracking-wide text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
+          className="block text-center text-xs text-[var(--text-secondary)] underline hover:text-[var(--amber)]"
         >
           Back to sign in
         </Link>

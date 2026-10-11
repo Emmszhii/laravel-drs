@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\DepotController;
 use App\Http\Controllers\Web\IcsRequestController;
 use App\Http\Controllers\Web\ReplenishmentController;
+use App\Http\Controllers\Web\ReportController;
 use App\Http\Controllers\Web\ResourceInventoryController;
 use App\Http\Controllers\Web\Settings\UsersController;
 use App\Http\Controllers\Web\SmtpSettingsController;
@@ -28,6 +29,9 @@ Route::middleware(['auth', 'active'])->group(function () {
 
     Route::middleware(['role:viewer,administrative,logistics,operations,research_planning,admin_training'])->group(function () {
         Route::get('/replenishment', [ReplenishmentController::class, 'index'])->name('replenishment.index');
+        Route::get('/replenishment/backtest', [ReplenishmentController::class, 'backtest'])->name('replenishment.backtest');
+        Route::get('/replenishment/inputs', [ReplenishmentController::class, 'inputs'])->name('replenishment.inputs');
+        Route::get('/report', [ReportController::class, 'index'])->name('report.index');
         Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
         Route::get('/ics-requests', [IcsRequestController::class, 'index'])->name('ics-requests.index');
         Route::get('/ics-requests/borrowed', [IcsRequestController::class, 'borrowed'])->name('ics-requests.borrowed');

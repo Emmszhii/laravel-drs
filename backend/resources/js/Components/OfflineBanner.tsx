@@ -11,7 +11,7 @@ export function OfflineBanner() {
   if (online && pendingCount === 0 && failedCount === 0) return null;
 
   return (
-    <div role="status" className="border-b border-white/10 bg-[var(--amber)]/10 px-4 py-1.5 text-xs text-[var(--amber)]">
+    <div role="status" className="border-b border-line bg-[var(--amber)]/10 px-4 py-1.5 text-xs text-[var(--amber)]">
       {!online && "You're offline — new stock entries will sync automatically. "}
       {pendingCount > 0 &&
         `${pendingCount} item${pendingCount === 1 ? "" : "s"} waiting to sync. `}

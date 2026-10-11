@@ -74,7 +74,7 @@ return null;
                         data-cy="modal-center-header-3"
                     >
                         <h2
-                            className="text-lg font-semibold uppercase tracking-wide text-[var(--text-primary)]"
+                            className="text-lg font-semibold text-[var(--text-primary)]"
                             data-cy="modal-center-h2-4"
                         >
                             {title}

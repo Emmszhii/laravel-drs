@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AdminLayout from "../../Layouts/AdminLayout";
+import { PageHeader } from "@/Components/PageHeader";
 import Button from "../../Components/Common/Button";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
@@ -19,19 +20,13 @@ function ResourcesTypesIndex() {
 
   return (
     <div>
-      <div className="flex items-center justify-between border-b border-white/10 px-6">
-        <h1 className="py-3 text-lg font-semibold uppercase">Items</h1>
-        {canManage && (
-          <Button
-            className="my-2"
-            onClick={() => setTypeModal({ mode: "create" })}
-          >
-            + Add item
-          </Button>
-        )}
-      </div>
+      <PageHeader
+        title="Items"
+        description="The catalog the solver plans from. An item needs a unit cost before the solver can order it."
+        actions={canManage && <Button onClick={() => setTypeModal({ mode: "create" })}>+ Add item</Button>}
+      />
 
-      <div className="p-6">
+      <div className="px-4 pb-6 sm:px-6">
         <DataTableCardField<ResourceType>
           apiUrl="/api/resource-types"
           apiQueryKey="resource-types"

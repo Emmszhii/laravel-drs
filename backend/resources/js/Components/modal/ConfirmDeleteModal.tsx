@@ -144,7 +144,7 @@ export function ConfirmDeleteModal({
                         type="button"
                         onClick={onConfirm}
                         disabled={busy || !isUnlocked}
-                        className="inline-flex items-center gap-1.5 bg-critical px-4 py-2 text-sm font-semibold tracking-wide text-white uppercase hover:opacity-90 disabled:opacity-60"
+                        className="inline-flex items-center gap-1.5 bg-critical px-4 py-2 text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60"
                         data-cy="confirm-delete-modal-button-button-2"
                     >
                         {busy && (

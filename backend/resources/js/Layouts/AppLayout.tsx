@@ -11,9 +11,9 @@ import { OfflineBanner } from "@/Components/OfflineBanner";
 export default function AppLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex h-screen flex-col overflow-hidden bg-[var(--bg-void)] text-[var(--text-primary)]">
-      <header className="flex flex-wrap items-center justify-between gap-2.5 border-b border-white/10 px-4 py-3 sm:px-7">
-        <div className="flex items-center gap-2 font-semibold uppercase tracking-wide">
-          Disaster<span className="text-[var(--amber)]">Resource+</span>
+      <header className="flex flex-wrap items-center justify-between gap-2.5 border-b border-line px-4 py-2.5 sm:px-6">
+        <div className="text-[15px] font-bold">
+          Disaster<span className="text-amber">Resource+</span>
         </div>
         <div className="ml-auto flex items-center gap-3">
           <UserProfileSection variant="header" />

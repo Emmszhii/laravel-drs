@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
  * styling used by the FormModal record forms (Items, Depots, Users).
  */
 export const labelCls =
-  "mb-1.5 block text-[11px] font-medium uppercase tracking-wide text-[var(--text-secondary)]";
+  "mb-1.5 block text-[11px] font-medium text-[var(--text-secondary)]";
 
 /** Single-line input / select styling — matches the design system's `.field input/select` (sharp corners, void bg, amber focus). */
 export const inputCls =

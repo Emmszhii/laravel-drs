@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 /*
-  Design tokens mirrored from the UI/UX prototype (EOC dark theme, amber accent).
-  Consider lifting these into tailwind.config.js `theme.extend.colors` once that
-  config file is added to the project.
+  Design tokens (EOC dark theme, amber accent), exposed to Tailwind as colors in
+  tailwind.config.js (`border-line`, `bg-panel`, `bg-tint`, `text-ok`, …). Use these
+  instead of `white/…` or `black/…` utilities: those only read right in one theme.
 */
 :root {
   /* Tells the browser to render native controls (select option popups,
@@ -16,11 +16,14 @@
   --bg-panel: #14181a;
   --bg-panel-raised: #1c2224;
   --line: #262e2f;
-  --line-strong: #39433f;
+  --line-strong: #3f4a46;
+  /* Hover/active wash over any surface. */
+  --tint: rgba(255, 255, 255, 0.05);
   --amber: #f2a63c;
   --critical: #e14b3f;
   --ok: #3fa98c;
   --pending: #e8c468;
+  --info: #6fb3d9;
   --text-primary: #edede6;
   --text-secondary: #98a19b;
 }
@@ -32,33 +35,58 @@
   --bg-panel: #ffffff;
   --bg-panel-raised: #efebe1;
   --line: #e1dcce;
-  --line-strong: #c8c1ae;
-  --amber: #b5761f;
+  --line-strong: #bfb7a3;
+  --tint: rgba(29, 31, 30, 0.05);
+  --amber: #a86a12;
   --critical: #c23b2e;
   --ok: #1f7a5e;
   --pending: #8a6a1a;
+  --info: #2a6f97;
   --text-primary: #1d1f1e;
   --text-secondary: #54605b;
 }
 
-@layer components {
-  .input {
-    @apply w-full border border-white/20 bg-transparent p-2 text-sm text-[var(--text-primary)];
+@layer base {
+  body {
+    background: var(--bg-void);
+    color: var(--text-primary);
   }
+  /* Every form control gets a visible edge in both themes; utilities still override it. */
   input,
   select,
   textarea {
-    @apply !border-black/20 text-[var(--text-primary)];
+    border-color: var(--line-strong);
+    color: var(--text-primary);
   }
   /*
     Tailwind's `dark:` variant follows the OS's prefers-color-scheme media
     query, not this app's own data-theme toggle (use-theme.ts) — so it can't
-    be used here. Every <select>, including ones styled via inline utility
-    classes like `bg-transparent` elsewhere in the app, needs an explicit,
-    theme-variable-driven background to actually track light/dark mode.
+    be used here. Every <select> needs an explicit, theme-variable-driven
+    background to track light/dark mode (option popups inherit it).
   */
   select {
     background-color: var(--bg-panel-raised) !important;
     color: var(--text-primary) !important;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.8;
+  }
+  /* One keyboard focus style everywhere; mouse clicks don't show it. */
+  :focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+  }
+  /* Quantities and pesos line up in columns. */
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* A bordered surface one step above the page: forms, side panels, cards. */
+  .panel {
+    @apply border border-line bg-panel;
   }
 }

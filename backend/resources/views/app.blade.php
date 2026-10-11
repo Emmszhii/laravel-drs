@@ -11,6 +11,13 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="manifest" href="/manifest.webmanifest">
     <meta name="theme-color" content="#0B0D0C">
+    {{-- Apply the saved theme before first paint (same key and fallback as Hooks/use-theme.ts), so light-mode users never see a dark flash and the sign-in pages follow it too. --}}
+    <script>
+        try {
+            var t = localStorage.getItem('disasterresource_theme');
+            document.documentElement.setAttribute('data-theme', t === 'light' || t === 'dark' ? t : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+        } catch (e) {}
+    </script>
 
     @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.tsx'])

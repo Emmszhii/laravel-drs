@@ -9,13 +9,13 @@ const optionalNumber = (value: unknown) => (value === "" || value === undefined 
 
 export function TypeCard(row: ResourceType, actions: CardActions) {
   return (
-    <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
+    <div className="flex items-center justify-between border-b border-line p-3 text-sm">
       <div>
         <div className="font-semibold">{row.name}</div>
         <div className="text-xs text-[var(--text-secondary)]">
           {CATEGORY_LABEL[row.category] ?? row.category} · Unit: {row.unit} · {row.is_consumable ? "Consumable" : "Borrowed/equipment"} ·{" "}
           {VED_LABELS[row.ved_class] ?? row.ved_class} ·{" "}
-          {row.unit_cost != null ? `₱${Number(row.unit_cost).toLocaleString()} each` : "No unit cost yet"}
+          {row.unit_cost != null ? `₱${Number(row.unit_cost).toLocaleString()} each` : <span className="text-amber">No unit cost yet</span>}
           {row.space_per_unit != null ? ` · ${row.space_per_unit} m³ each` : ""}
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import AdminLayout from "../../Layouts/AdminLayout";
 import Button from "../../Components/Common/Button";
 import { SettingsTabs } from "@/Components/settings/SettingsTabs";
+import { PageHeader } from "@/Components/PageHeader";
 import { DataTableCardField } from "@/Components/table/DataTableCardField";
 import { FormModal } from "@/Components/form-modal/FormModal";
 import { tableListInvalidateKeys } from "@/Components/table/utils";
@@ -50,7 +51,7 @@ function makeUserCard(handlers: {
 }) {
   return function UserCard(row: AdminUser, actions: CardActions) {
     return (
-      <div className="flex items-center justify-between border-b border-white/10 p-3 text-sm">
+      <div className="flex items-center justify-between border-b border-line p-3 text-sm">
         <div>
           <div className="flex items-center gap-2 font-semibold">
             {row.name}
@@ -140,7 +141,7 @@ const userFields: FieldDef<AdminUser>[] = [
 /** Read-only reminder of what each role can do; the roles come from system-spec.md §2. */
 function RolesNote() {
   return (
-    <section className="space-y-2 border border-white/10 p-4 text-xs text-[var(--text-secondary)]">
+    <section className="space-y-2 border border-line p-4 text-xs text-[var(--text-secondary)]">
       <p>
         Roles follow the office structure confirmed in the 2026-09-03 requirements interview. The Admin is the Head of
         Office (the Department Head); the Assistant Department Head is a position title, not a role.
@@ -199,17 +200,14 @@ function SettingsUsersIndex() {
 
   return (
     <div>
+      <PageHeader title="Settings" actions={<Button onClick={() => setModal({ mode: "create" })}>+ Add user</Button>} />
       <SettingsTabs />
-      <div className="flex items-center justify-between px-6 py-3">
-        <h2 className="text-lg font-semibold uppercase">Users</h2>
-        <Button onClick={() => setModal({ mode: "create" })}>+ Add user</Button>
-      </div>
 
-      <div className="px-6 pb-3">
+      <div className="px-4 py-4 sm:px-6">
         <RolesNote />
       </div>
 
-      <div className="px-6 pb-6">
+      <div className="px-4 pb-6 sm:px-6">
         <DataTableCardField<AdminUser>
           apiUrl="/api/settings/users"
           apiQueryKey="users"

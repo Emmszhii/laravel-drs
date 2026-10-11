@@ -60,7 +60,7 @@ export function UserProfileSection({
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--amber)] text-xs font-semibold text-[var(--amber)] hover:bg-white/5"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--amber)] text-xs font-semibold text-[var(--amber)] hover:bg-tint"
           aria-label="Account menu"
           title={displayName}
         >
@@ -68,8 +68,8 @@ export function UserProfileSection({
         </button>
 
         {open && (
-          <div className="absolute top-[calc(100%+8px)] right-0 z-[4000] w-64 max-w-[calc(100vw-24px)] border border-white/20 bg-[var(--bg-panel-raised)] shadow-lg">
-            <div className="flex items-center justify-between gap-2.5 border-b border-white/10 p-3">
+          <div className="absolute top-[calc(100%+8px)] right-0 z-[4000] w-64 max-w-[calc(100vw-24px)] border border-line-strong bg-[var(--bg-panel-raised)] shadow-lg">
+            <div className="flex items-center justify-between gap-2.5 border-b border-line p-3">
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium text-[var(--text-primary)]">
                   {displayName}
@@ -77,7 +77,7 @@ export function UserProfileSection({
                 <span className="block truncate text-xs text-[var(--text-secondary)]">
                   {email}
                 </span>
-                <span className="mt-0.5 block text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
+                <span className="mt-0.5 block text-xs text-[var(--text-secondary)]">
                   {roleLabel}
                 </span>
               </span>
@@ -101,7 +101,7 @@ export function UserProfileSection({
                 setOpen(false);
                 setPasswordModalOpen(true);
               }}
-              className="block w-full px-3 py-2.5 text-left text-xs hover:bg-white/5"
+              className="block w-full px-3 py-2.5 text-left text-xs hover:bg-tint"
             >
               Change password
             </button>
@@ -111,7 +111,7 @@ export function UserProfileSection({
                 setOpen(false);
                 logout();
               }}
-              className="flex w-full items-center gap-1.5 px-3 py-2.5 text-left text-xs text-[var(--text-secondary)] hover:bg-white/5 hover:text-critical"
+              className="flex w-full items-center gap-1.5 px-3 py-2.5 text-left text-xs text-[var(--text-secondary)] hover:bg-tint hover:text-critical"
             >
               <LogOut size={13} />
               Log out
@@ -128,7 +128,7 @@ export function UserProfileSection({
   }
 
   return (
-    <div className="relative border-t border-white/10 p-3">
+    <div className="relative border-t border-line p-3">
       <button
         type="button"
         onClick={toggle}
@@ -147,7 +147,7 @@ export function UserProfileSection({
       <button
         type="button"
         onClick={() => setPasswordModalOpen(true)}
-        className="flex w-full items-center gap-2.5 rounded pr-7 pl-1 py-1 text-left hover:bg-white/5"
+        className="flex w-full items-center gap-2.5 rounded pr-7 pl-1 py-1 text-left hover:bg-tint"
         title="Change password"
       >
         <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--amber)] text-xs font-semibold text-[var(--amber)]">
@@ -162,7 +162,7 @@ export function UserProfileSection({
           </span>
         </span>
       </button>
-      <div className="mt-1 pl-1 text-[10px] tracking-wide text-[var(--text-secondary)] uppercase">
+      <div className="mt-1 pl-1 text-xs text-[var(--text-secondary)]">
         {roleLabel}
       </div>
 
