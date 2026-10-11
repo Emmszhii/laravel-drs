@@ -245,6 +245,76 @@
       "norm_label": "model"
     },
     {
+      "label": "DivisionController.php",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller",
+      "community": 13,
+      "norm_label": "divisioncontroller.php"
+    },
+    {
+      "label": "DivisionController",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "community": 13,
+      "norm_label": "divisioncontroller"
+    },
+    {
+      "label": ".newQuery()",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_newquery",
+      "community": 13,
+      "norm_label": ".newquery()"
+    },
+    {
+      "label": "Builder",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_php_builder",
+      "community": 13,
+      "norm_label": "builder"
+    },
+    {
+      "label": ".storeRules()",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_storerules",
+      "community": 13,
+      "norm_label": ".storerules()"
+    },
+    {
+      "label": ".updateRules()",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_updaterules",
+      "community": 13,
+      "norm_label": ".updaterules()"
+    },
+    {
+      "label": "Model",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_api_divisioncontroller_php_model",
+      "community": 13,
+      "norm_label": "model"
+    },
+    {
       "label": "IcsRequestController.php",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Api/IcsRequestController.php",
@@ -791,7 +861,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller",
-      "community": 42,
+      "community": 40,
       "norm_label": "usercontroller.php"
     },
     {
@@ -801,7 +871,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller",
-      "community": 3,
+      "community": 33,
       "norm_label": "usercontroller"
     },
     {
@@ -811,7 +881,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_storerules",
-      "community": 3,
+      "community": 33,
       "norm_label": ".storerules()"
     },
     {
@@ -821,7 +891,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_updaterules",
-      "community": 3,
+      "community": 33,
       "norm_label": ".updaterules()"
     },
     {
@@ -831,7 +901,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_php_model",
-      "community": 3,
+      "community": 33,
       "norm_label": "model"
     },
     {
@@ -841,7 +911,7 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_beforesave",
-      "community": 3,
+      "community": 33,
       "norm_label": ".beforesave()"
     },
     {
@@ -851,7 +921,7 @@
       "source_location": "L70",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_aftercreate",
-      "community": 3,
+      "community": 33,
       "norm_label": ".aftercreate()"
     },
     {
@@ -861,7 +931,7 @@
       "source_location": "L89",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_destroy",
-      "community": 3,
+      "community": 33,
       "norm_label": ".destroy()"
     },
     {
@@ -871,7 +941,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_php_jsonresponse",
-      "community": 3,
+      "community": 33,
       "norm_label": "jsonresponse"
     },
     {
@@ -881,7 +951,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_suspend",
-      "community": 3,
+      "community": 33,
       "norm_label": ".suspend()"
     },
     {
@@ -891,7 +961,7 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_activate",
-      "community": 3,
+      "community": 33,
       "norm_label": ".activate()"
     },
     {
@@ -901,7 +971,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_settings_usercontroller_usercontroller_resetpassword",
-      "community": 3,
+      "community": 33,
       "norm_label": ".resetpassword()"
     },
     {
@@ -911,7 +981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller",
-      "community": 3,
+      "community": 57,
       "norm_label": "smtpsettingcontroller.php"
     },
     {
@@ -921,7 +991,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_smtpsettingcontroller",
-      "community": 3,
+      "community": 57,
       "norm_label": "smtpsettingcontroller"
     },
     {
@@ -931,7 +1001,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_smtpsettingcontroller_show",
-      "community": 3,
+      "community": 57,
       "norm_label": ".show()"
     },
     {
@@ -941,7 +1011,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_php_jsonresponse",
-      "community": 3,
+      "community": 57,
       "norm_label": "jsonresponse"
     },
     {
@@ -951,7 +1021,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_smtpsettingcontroller_update",
-      "community": 3,
+      "community": 57,
       "norm_label": ".update()"
     },
     {
@@ -961,7 +1031,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_php_request",
-      "community": 3,
+      "community": 57,
       "norm_label": "request"
     },
     {
@@ -971,7 +1041,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "backend_app_http_controllers_api_smtpsettingcontroller_smtpsettingcontroller_test",
-      "community": 3,
+      "community": 57,
       "norm_label": ".test()"
     },
     {
@@ -1350,7 +1420,7 @@
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "builder",
+      "id": "backend_app_http_controllers_basecontroller_php_builder",
       "community": 13,
       "norm_label": "builder"
     },
@@ -1585,6 +1655,46 @@
       "norm_label": "response"
     },
     {
+      "label": "DivisionController.php",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_web_divisioncontroller",
+      "community": 57,
+      "norm_label": "divisioncontroller.php"
+    },
+    {
+      "label": "DivisionController",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller",
+      "community": 57,
+      "norm_label": "divisioncontroller"
+    },
+    {
+      "label": ".index()",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller_index",
+      "community": 57,
+      "norm_label": ".index()"
+    },
+    {
+      "label": "Response",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_web_divisioncontroller_php_response",
+      "community": 57,
+      "norm_label": "response"
+    },
+    {
       "label": "IcsRequestController.php",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
@@ -1598,17 +1708,27 @@
       "label": "IcsRequestController",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
       "community": 11,
       "norm_label": "icsrequestcontroller"
     },
     {
+      "label": ".divisions()",
+      "file_type": "code",
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_divisions",
+      "community": 10,
+      "norm_label": ".divisions()"
+    },
+    {
       "label": ".index()",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L31",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "community": 11,
@@ -1638,7 +1758,7 @@
       "label": ".borrowed()",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L51",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
       "community": 11,
@@ -1648,7 +1768,7 @@
       "label": ".can()",
       "file_type": "code",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L67",
+      "source_location": "L71",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
       "community": 11,
@@ -1931,7 +2051,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller",
-      "community": 127,
+      "community": 73,
       "norm_label": "stockcontroller.php"
     },
     {
@@ -1941,7 +2061,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_stockcontroller",
-      "community": 127,
+      "community": 73,
       "norm_label": "stockcontroller"
     },
     {
@@ -1951,7 +2071,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_stockcontroller_index",
-      "community": 127,
+      "community": 73,
       "norm_label": ".index()"
     },
     {
@@ -1961,7 +2081,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_php_request",
-      "community": 127,
+      "community": 73,
       "norm_label": "request"
     },
     {
@@ -1971,7 +2091,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_http_controllers_web_stockcontroller_php_response",
-      "community": 127,
+      "community": 73,
       "norm_label": "response"
     },
     {
@@ -2521,7 +2641,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_borrow",
-      "community": 11,
+      "community": 7,
       "norm_label": "borrow.php"
     },
     {
@@ -2621,7 +2741,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_depot",
-      "community": 11,
+      "community": 10,
       "norm_label": "depot.php"
     },
     {
@@ -2631,7 +2751,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_depot_depot",
-      "community": 11,
+      "community": 42,
       "norm_label": "depot"
     },
     {
@@ -2641,7 +2761,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasfactory",
-      "community": 11,
+      "community": 10,
       "norm_label": "hasfactory"
     },
     {
@@ -2651,7 +2771,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_app_models_depot_depot_stockentries",
-      "community": 11,
+      "community": 10,
       "norm_label": ".stockentries()"
     },
     {
@@ -2661,8 +2781,78 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_depot_php_hasmany",
-      "community": 11,
+      "community": 10,
       "norm_label": "hasmany"
+    },
+    {
+      "label": "Division.php",
+      "file_type": "code",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_app_models_division",
+      "community": 10,
+      "norm_label": "division.php"
+    },
+    {
+      "label": "Division",
+      "file_type": "code",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_app_models_division_division",
+      "community": 10,
+      "norm_label": "division"
+    },
+    {
+      "label": ".parent()",
+      "file_type": "code",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "backend_app_models_division_division_parent",
+      "community": 42,
+      "norm_label": ".parent()"
+    },
+    {
+      "label": "BelongsTo",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "backend_app_models_division_php_belongsto",
+      "community": 10,
+      "norm_label": "belongsto"
+    },
+    {
+      "label": ".teams()",
+      "file_type": "code",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "backend_app_models_division_division_teams",
+      "community": 10,
+      "norm_label": ".teams()"
+    },
+    {
+      "label": "HasMany",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "backend_app_models_division_php_hasmany",
+      "community": 10,
+      "norm_label": "hasmany"
+    },
+    {
+      "label": ".getLabelAttribute()",
+      "file_type": "code",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "backend_app_models_division_division_getlabelattribute",
+      "community": 10,
+      "norm_label": ".getlabelattribute()"
     },
     {
       "label": "HistoryLine.php",
@@ -2711,7 +2901,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_icsrequest",
-      "community": 11,
+      "community": 7,
       "norm_label": "icsrequest.php"
     },
     {
@@ -2781,7 +2971,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline",
-      "community": 7,
+      "community": 39,
       "norm_label": "icsrequestline.php"
     },
     {
@@ -2791,7 +2981,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline",
-      "community": 7,
+      "community": 39,
       "norm_label": "icsrequestline"
     },
     {
@@ -2801,7 +2991,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_request",
-      "community": 7,
+      "community": 39,
       "norm_label": ".request()"
     },
     {
@@ -2811,7 +3001,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_php_belongsto",
-      "community": 7,
+      "community": 39,
       "norm_label": "belongsto"
     },
     {
@@ -2821,7 +3011,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_resourcetype",
-      "community": 7,
+      "community": 39,
       "norm_label": ".resourcetype()"
     },
     {
@@ -2831,7 +3021,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_app_models_icsrequestline_icsrequestline_reservation",
-      "community": 7,
+      "community": 39,
       "norm_label": ".reservation()"
     },
     {
@@ -2841,7 +3031,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "hasone",
-      "community": 7,
+      "community": 39,
       "norm_label": "hasone"
     },
     {
@@ -2851,7 +3041,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_kit",
-      "community": 7,
+      "community": 11,
       "norm_label": "kit.php"
     },
     {
@@ -2871,7 +3061,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_app_models_kit_kit_lines",
-      "community": 7,
+      "community": 11,
       "norm_label": ".lines()"
     },
     {
@@ -2881,7 +3071,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_kit_php_hasmany",
-      "community": 7,
+      "community": 11,
       "norm_label": "hasmany"
     },
     {
@@ -2971,7 +3161,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype",
-      "community": 11,
+      "community": 7,
       "norm_label": "resourcetype.php"
     },
     {
@@ -2981,7 +3171,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype",
-      "community": 11,
+      "community": 42,
       "norm_label": "resourcetype"
     },
     {
@@ -2991,7 +3181,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_stockentries",
-      "community": 11,
+      "community": 42,
       "norm_label": ".stockentries()"
     },
     {
@@ -3001,7 +3191,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_php_hasmany",
-      "community": 11,
+      "community": 42,
       "norm_label": "hasmany"
     },
     {
@@ -3011,7 +3201,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_app_models_resourcetype_resourcetype_historylines",
-      "community": 11,
+      "community": 42,
       "norm_label": ".historylines()"
     },
     {
@@ -3021,7 +3211,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting",
-      "community": 42,
+      "community": 7,
       "norm_label": "smtpsetting.php"
     },
     {
@@ -3031,7 +3221,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting_smtpsetting",
-      "community": 3,
+      "community": 57,
       "norm_label": "smtpsetting"
     },
     {
@@ -3051,7 +3241,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "self",
-      "community": 9,
+      "community": 11,
       "norm_label": "self"
     },
     {
@@ -3061,7 +3251,7 @@
       "source_location": "L47",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting_smtpsetting_isconfigured",
-      "community": 3,
+      "community": 57,
       "norm_label": ".isconfigured()"
     },
     {
@@ -3071,7 +3261,7 @@
       "source_location": "L56",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting_smtpsetting_present",
-      "community": 3,
+      "community": 57,
       "norm_label": ".present()"
     },
     {
@@ -3081,7 +3271,7 @@
       "source_location": "L81",
       "_origin": "ast",
       "id": "backend_app_models_smtpsetting_smtpsetting_applytomailer",
-      "community": 3,
+      "community": 57,
       "norm_label": ".applytomailer()"
     },
     {
@@ -3151,7 +3341,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_app_models_stockconflict_stockconflict",
-      "community": 127,
+      "community": 42,
       "norm_label": "stockconflict"
     },
     {
@@ -3201,7 +3391,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_stockentry",
-      "community": 10,
+      "community": 42,
       "norm_label": "stockentry.php"
     },
     {
@@ -3211,7 +3401,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "backend_app_models_stockentry_stockentry",
-      "community": 10,
+      "community": 127,
       "norm_label": "stockentry"
     },
     {
@@ -3231,7 +3421,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_app_models_stockentry_stockentry_resourcetype",
-      "community": 10,
+      "community": 127,
       "norm_label": ".resourcetype()"
     },
     {
@@ -3241,7 +3431,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "backend_app_models_stockentry_php_belongsto",
-      "community": 10,
+      "community": 127,
       "norm_label": "belongsto"
     },
     {
@@ -3251,7 +3441,7 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "backend_app_models_stockentry_stockentry_depot",
-      "community": 10,
+      "community": 127,
       "norm_label": ".depot()"
     },
     {
@@ -3261,7 +3451,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_models_user",
-      "community": 42,
+      "community": 40,
       "norm_label": "user.php"
     },
     {
@@ -3371,7 +3561,7 @@
       "source_location": "L111",
       "_origin": "ast",
       "id": "backend_app_models_user_user_sendpasswordresetnotification",
-      "community": 3,
+      "community": 57,
       "norm_label": ".sendpasswordresetnotification()"
     },
     {
@@ -3491,7 +3681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_app_providers_activitylogserviceprovider",
-      "community": 11,
+      "community": 21,
       "norm_label": "activitylogserviceprovider.php"
     },
     {
@@ -4171,7 +4361,7 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_syncorder",
-      "community": 44,
+      "community": 127,
       "norm_label": ".syncorder()"
     },
     {
@@ -4181,7 +4371,7 @@
       "source_location": "L132",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_levels",
-      "community": 42,
+      "community": 127,
       "norm_label": ".levels()"
     },
     {
@@ -4191,7 +4381,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "collection",
-      "community": 42,
+      "community": 127,
       "norm_label": "collection"
     },
     {
@@ -4271,7 +4461,7 @@
       "source_location": "L268",
       "_origin": "ast",
       "id": "backend_app_services_stock_stockledger_stockledger_toapptime",
-      "community": 44,
+      "community": 127,
       "norm_label": ".toapptime()"
     },
     {
@@ -4411,7 +4601,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_artisan",
-      "community": 11,
+      "community": 44,
       "norm_label": "artisan"
     },
     {
@@ -4471,7 +4661,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_auth",
-      "community": 42,
+      "community": 40,
       "norm_label": "auth.php"
     },
     {
@@ -4531,7 +4721,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_config_mail",
-      "community": 42,
+      "community": 40,
       "norm_label": "mail.php"
     },
     {
@@ -5761,7 +5951,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles",
-      "community": 42,
+      "community": 40,
       "norm_label": "2026_10_03_000002_replace_ert_and_incident_management_roles.php"
     },
     {
@@ -5771,7 +5961,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_up",
-      "community": 42,
+      "community": 40,
       "norm_label": "up()"
     },
     {
@@ -5781,7 +5971,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_03_000002_replace_ert_and_incident_management_roles_down",
-      "community": 42,
+      "community": 40,
       "norm_label": "down()"
     },
     {
@@ -5791,7 +5981,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_11_000001_remove_viewer_role",
-      "community": 42,
+      "community": 40,
       "norm_label": "2026_10_11_000001_remove_viewer_role.php"
     },
     {
@@ -5801,7 +5991,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_11_000001_remove_viewer_role_up",
-      "community": 42,
+      "community": 40,
       "norm_label": "up()"
     },
     {
@@ -5811,7 +6001,37 @@
       "source_location": "L48",
       "_origin": "ast",
       "id": "backend_database_migrations_2026_10_11_000001_remove_viewer_role_down",
-      "community": 42,
+      "community": 40,
+      "norm_label": "down()"
+    },
+    {
+      "label": "2026_10_11_000002_create_divisions_table.php",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_11_000002_create_divisions_table.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_11_000002_create_divisions_table",
+      "community": 175,
+      "norm_label": "2026_10_11_000002_create_divisions_table.php"
+    },
+    {
+      "label": "up()",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_11_000002_create_divisions_table.php",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_11_000002_create_divisions_table_up",
+      "community": 175,
+      "norm_label": "up()"
+    },
+    {
+      "label": "down()",
+      "file_type": "code",
+      "source_file": "backend/database/migrations/2026_10_11_000002_create_divisions_table.php",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "backend_database_migrations_2026_10_11_000002_create_divisions_table_down",
+      "community": 175,
       "norm_label": "down()"
     },
     {
@@ -5821,17 +6041,17 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder",
-      "community": 11,
+      "community": 10,
       "norm_label": "catalogseeder.php"
     },
     {
       "label": "CatalogSeeder",
       "file_type": "code",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder",
-      "community": 11,
+      "community": 40,
       "norm_label": "catalogseeder"
     },
     {
@@ -5848,20 +6068,30 @@
       "label": ".run()",
       "file_type": "code",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L25",
+      "source_location": "L26",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder_run",
-      "community": 11,
+      "community": 40,
       "norm_label": ".run()"
+    },
+    {
+      "label": ".divisions()",
+      "file_type": "code",
+      "source_file": "backend/database/seeders/CatalogSeeder.php",
+      "source_location": "L100",
+      "_origin": "ast",
+      "id": "backend_database_seeders_catalogseeder_catalogseeder_divisions",
+      "community": 40,
+      "norm_label": ".divisions()"
     },
     {
       "label": ".backpack()",
       "file_type": "code",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L94",
+      "source_location": "L116",
       "_origin": "ast",
       "id": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
-      "community": 11,
+      "community": 40,
       "norm_label": ".backpack()"
     },
     {
@@ -6673,7 +6903,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_button",
-      "community": 39,
+      "community": 25,
       "norm_label": "button.tsx"
     },
     {
@@ -6683,7 +6913,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_button_props",
-      "community": 39,
+      "community": 25,
       "norm_label": "props"
     },
     {
@@ -6693,7 +6923,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_components_common_button_button",
-      "community": 39,
+      "community": 25,
       "norm_label": "button()"
     },
     {
@@ -6737,6 +6967,26 @@
       "norm_label": "dropdown()"
     },
     {
+      "label": "Fingerprint.tsx",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Components/Fingerprint.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_resources_js_components_fingerprint",
+      "community": 27,
+      "norm_label": "fingerprint.tsx"
+    },
+    {
+      "label": "Fingerprint()",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Components/Fingerprint.tsx",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "backend_resources_js_components_fingerprint_fingerprint",
+      "community": 27,
+      "norm_label": "fingerprint()"
+    },
+    {
       "label": "ImageLightbox.tsx",
       "file_type": "code",
       "source_file": "backend/resources/js/Components/ImageLightbox.tsx",
@@ -6773,7 +7023,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell",
-      "community": 73,
+      "community": 2,
       "norm_label": "notificationbell.tsx"
     },
     {
@@ -6783,7 +7033,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell_getlastseenid",
-      "community": 73,
+      "community": 2,
       "norm_label": "getlastseenid()"
     },
     {
@@ -6793,7 +7043,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "backend_resources_js_components_notificationbell_notificationbell",
-      "community": 73,
+      "community": 2,
       "norm_label": "notificationbell()"
     },
     {
@@ -6803,7 +7053,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_offlinebanner",
-      "community": 73,
+      "community": 47,
       "norm_label": "offlinebanner.tsx"
     },
     {
@@ -6813,7 +7063,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_components_offlinebanner_offlinebanner",
-      "community": 73,
+      "community": 47,
       "norm_label": "offlinebanner()"
     },
     {
@@ -6823,7 +7073,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_pageheader",
-      "community": 58,
+      "community": 25,
       "norm_label": "pageheader.tsx"
     },
     {
@@ -6833,7 +7083,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_components_pageheader_pageheader",
-      "community": 58,
+      "community": 25,
       "norm_label": "pageheader()"
     },
     {
@@ -6843,7 +7093,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_routetabs",
-      "community": 39,
+      "community": 2,
       "norm_label": "routetabs.tsx"
     },
     {
@@ -6853,7 +7103,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_components_routetabs_routetabs",
-      "community": 39,
+      "community": 2,
       "norm_label": "routetabs()"
     },
     {
@@ -7413,7 +7663,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_settingstabs",
-      "community": 39,
+      "community": 2,
       "norm_label": "settingstabs.tsx"
     },
     {
@@ -7423,7 +7673,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_resources_js_components_settings_settingstabs_settingstabs",
-      "community": 39,
+      "community": 2,
       "norm_label": "settingstabs()"
     },
     {
@@ -7493,7 +7743,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_spinners_fetchingspinner",
-      "community": 33,
+      "community": 51,
       "norm_label": "fetchingspinner.jsx"
     },
     {
@@ -7503,7 +7753,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "backend_resources_js_components_spinners_fetchingspinner_fetchingspinner",
-      "community": 33,
+      "community": 51,
       "norm_label": "fetchingspinner()"
     },
     {
@@ -7533,7 +7783,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_datatablecardfield",
-      "community": 33,
+      "community": 51,
       "norm_label": "datatablecardfield.tsx"
     },
     {
@@ -7543,7 +7793,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_datatablecardfield_datatablecardfield",
-      "community": 33,
+      "community": 23,
       "norm_label": "datatablecardfield()"
     },
     {
@@ -7583,7 +7833,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_defaultrecordcard",
-      "community": 33,
+      "community": 51,
       "norm_label": "defaultrecordcard.tsx"
     },
     {
@@ -7593,7 +7843,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_defaultrecordcard_defaultrecordcardprops",
-      "community": 33,
+      "community": 51,
       "norm_label": "defaultrecordcardprops"
     },
     {
@@ -7603,7 +7853,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_defaultrecordcard_defaultrecordcard",
-      "community": 33,
+      "community": 51,
       "norm_label": "defaultrecordcard()"
     },
     {
@@ -7613,7 +7863,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination",
-      "community": 33,
+      "community": 46,
       "norm_label": "pagination.tsx"
     },
     {
@@ -7623,7 +7873,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtnprops",
-      "community": 33,
+      "community": 46,
       "norm_label": "pagebtnprops"
     },
     {
@@ -7633,7 +7883,7 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagebtn",
-      "community": 33,
+      "community": 46,
       "norm_label": "pagebtn()"
     },
     {
@@ -7643,7 +7893,7 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbersprops",
-      "community": 33,
+      "community": 46,
       "norm_label": "pagenumbersprops"
     },
     {
@@ -7653,7 +7903,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_pagenumbers",
-      "community": 33,
+      "community": 46,
       "norm_label": "pagenumbers()"
     },
     {
@@ -7663,7 +7913,7 @@
       "source_location": "L116",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbarprops",
-      "community": 33,
+      "community": 46,
       "norm_label": "paginationbarprops"
     },
     {
@@ -7673,7 +7923,7 @@
       "source_location": "L127",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_pagination_paginationbar",
-      "community": 33,
+      "community": 46,
       "norm_label": "paginationbar()"
     },
     {
@@ -7693,7 +7943,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfieldprops",
-      "community": 70,
+      "community": 12,
       "norm_label": "dynamicfieldprops"
     },
     {
@@ -7703,7 +7953,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_recordmodalfield_dynamicfield",
-      "community": 70,
+      "community": 12,
       "norm_label": "dynamicfield()"
     },
     {
@@ -7793,7 +8043,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_toolbar",
-      "community": 33,
+      "community": 51,
       "norm_label": "toolbar.tsx"
     },
     {
@@ -7803,7 +8053,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_toolbar_toolbarprops",
-      "community": 33,
+      "community": 51,
       "norm_label": "toolbarprops"
     },
     {
@@ -7813,7 +8063,7 @@
       "source_location": "L44",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_toolbar_toolbar",
-      "community": 33,
+      "community": 51,
       "norm_label": "toolbar()"
     },
     {
@@ -7823,7 +8073,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle",
-      "community": 33,
+      "community": 51,
       "norm_label": "viewtoggle.tsx"
     },
     {
@@ -7833,7 +8083,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggleprops",
-      "community": 33,
+      "community": 51,
       "norm_label": "viewtoggleprops"
     },
     {
@@ -7843,7 +8093,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_components_viewtoggle_viewtoggle",
-      "community": 33,
+      "community": 51,
       "norm_label": "viewtoggle()"
     },
     {
@@ -8053,7 +8303,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_resources_js_components_table_utils_index_formatcell",
-      "community": 33,
+      "community": 23,
       "norm_label": "formatcell()"
     },
     {
@@ -8603,7 +8853,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout",
-      "community": 73,
+      "community": 47,
       "norm_label": "adminlayout.tsx"
     },
     {
@@ -8613,7 +8863,7 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout_navitem",
-      "community": 73,
+      "community": 47,
       "norm_label": "navitem"
     },
     {
@@ -8623,27 +8873,27 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout_navgroups",
-      "community": 73,
+      "community": 47,
       "norm_label": "navgroups"
     },
     {
       "label": "settingsGroup",
       "file_type": "code",
       "source_file": "backend/resources/js/Layouts/AdminLayout.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout_settingsgroup",
-      "community": 73,
+      "community": 47,
       "norm_label": "settingsgroup"
     },
     {
       "label": "AdminLayout()",
       "file_type": "code",
       "source_file": "backend/resources/js/Layouts/AdminLayout.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_adminlayout_adminlayout",
-      "community": 73,
+      "community": 47,
       "norm_label": "adminlayout()"
     },
     {
@@ -8653,7 +8903,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_applayout",
-      "community": 73,
+      "community": 47,
       "norm_label": "applayout.tsx"
     },
     {
@@ -8663,7 +8913,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_layouts_applayout_applayout",
-      "community": 73,
+      "community": 47,
       "norm_label": "applayout()"
     },
     {
@@ -9023,7 +9273,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_forgotpassword",
-      "community": 39,
+      "community": 25,
       "norm_label": "forgotpassword.tsx"
     },
     {
@@ -9033,7 +9283,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_forgotpassword_forgotpassword",
-      "community": 39,
+      "community": 25,
       "norm_label": "forgotpassword()"
     },
     {
@@ -9043,7 +9293,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_login",
-      "community": 39,
+      "community": 25,
       "norm_label": "login.tsx"
     },
     {
@@ -9053,7 +9303,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_login_login",
-      "community": 39,
+      "community": 25,
       "norm_label": "login()"
     },
     {
@@ -9063,7 +9313,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_resetpassword",
-      "community": 39,
+      "community": 25,
       "norm_label": "resetpassword.tsx"
     },
     {
@@ -9073,7 +9323,7 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_resetpassword_resetpasswordprops",
-      "community": 39,
+      "community": 25,
       "norm_label": "resetpasswordprops"
     },
     {
@@ -9083,7 +9333,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "backend_resources_js_pages_auth_resetpassword_resetpassword",
-      "community": 39,
+      "community": 25,
       "norm_label": "resetpassword()"
     },
     {
@@ -9145,6 +9395,56 @@
       "id": "backend_resources_js_pages_depots_index_depotsindex",
       "community": 25,
       "norm_label": "depotsindex()"
+    },
+    {
+      "label": "Index.tsx",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_divisions_index",
+      "community": 25,
+      "norm_label": "index.tsx"
+    },
+    {
+      "label": "columns",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_divisions_index_columns",
+      "community": 25,
+      "norm_label": "columns"
+    },
+    {
+      "label": "fields",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_divisions_index_fields",
+      "community": 25,
+      "norm_label": "fields"
+    },
+    {
+      "label": "DivisionCard()",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_divisions_index_divisioncard",
+      "community": 25,
+      "norm_label": "divisioncard()"
+    },
+    {
+      "label": "DivisionsIndex()",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L52",
+      "_origin": "ast",
+      "id": "backend_resources_js_pages_divisions_index_divisionsindex",
+      "community": 25,
+      "norm_label": "divisionsindex()"
     },
     {
       "label": "Borrowed.tsx",
@@ -9270,7 +9570,7 @@
       "label": "Item",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L15",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_item",
       "community": 58,
@@ -9280,7 +9580,7 @@
       "label": "Line",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_line",
       "community": 58,
@@ -9290,7 +9590,7 @@
       "label": "IcsRequest",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L26",
+      "source_location": "L28",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_icsrequest",
       "community": 58,
@@ -9300,7 +9600,7 @@
       "label": "Kit",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L44",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_kit",
       "community": 58,
@@ -9310,7 +9610,7 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_props",
       "community": 58,
@@ -9320,7 +9620,7 @@
       "label": "PURPOSE",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L55",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_purpose",
       "community": 58,
@@ -9330,7 +9630,7 @@
       "label": "STATUS_TONE",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L56",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_status_tone",
       "community": 58,
@@ -9340,7 +9640,7 @@
       "label": "statusLabel()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L66",
+      "source_location": "L68",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_statuslabel",
       "community": 58,
@@ -9350,7 +9650,7 @@
       "label": "IcsRequestsIndex()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L77",
+      "source_location": "L79",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_icsrequestsindex",
       "community": 58,
@@ -9360,7 +9660,7 @@
       "label": "RequestCard()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L98",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_requestcard",
       "community": 58,
@@ -9370,7 +9670,7 @@
       "label": "Borrower",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L312",
+      "source_location": "L314",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_borrower",
       "community": 58,
@@ -9380,7 +9680,7 @@
       "label": "queueRelease()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L315",
+      "source_location": "L317",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_queuerelease",
       "community": 58,
@@ -9390,7 +9690,7 @@
       "label": "FileForm()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L336",
+      "source_location": "L338",
       "_origin": "ast",
       "id": "backend_resources_js_pages_icsrequests_index_fileform",
       "community": 58,
@@ -9643,7 +9943,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_inputs",
-      "community": 39,
+      "community": 8,
       "norm_label": "inputs.tsx"
     },
     {
@@ -9653,7 +9953,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_inputs_props",
-      "community": 39,
+      "community": 8,
       "norm_label": "props"
     },
     {
@@ -9663,7 +9963,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_inputs_replenishmentinputs",
-      "community": 39,
+      "community": 8,
       "norm_label": "replenishmentinputs()"
     },
     {
@@ -9673,7 +9973,7 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_inputs_vedpolicyform",
-      "community": 39,
+      "community": 8,
       "norm_label": "vedpolicyform()"
     },
     {
@@ -9693,7 +9993,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_shared",
-      "community": 58,
+      "community": 8,
       "norm_label": "shared.tsx"
     },
     {
@@ -9723,7 +10023,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_shared_ved_label",
-      "community": 39,
+      "community": 8,
       "norm_label": "ved_label"
     },
     {
@@ -9733,7 +10033,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_resources_js_pages_replenishment_shared_run_status",
-      "community": 58,
+      "community": 8,
       "norm_label": "run_status"
     },
     {
@@ -9770,7 +10070,7 @@
       "label": "Row",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_row",
       "community": 27,
@@ -9780,7 +10080,7 @@
       "label": "Report",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_report",
       "community": 27,
@@ -9790,7 +10090,7 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_props",
       "community": 27,
@@ -9800,7 +10100,7 @@
       "label": "num()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_num",
       "community": 27,
@@ -9810,7 +10110,7 @@
       "label": "ReportIndex()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_reportindex",
       "community": 27,
@@ -9820,7 +10120,7 @@
       "label": "active()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L106",
+      "source_location": "L107",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_active",
       "community": 27,
@@ -9830,7 +10130,7 @@
       "label": "QuarterReport()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L108",
+      "source_location": "L109",
       "_origin": "ast",
       "id": "backend_resources_js_pages_report_index_quarterreport",
       "community": 27,
@@ -9923,7 +10223,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp",
-      "community": 39,
+      "community": 25,
       "norm_label": "smtp.tsx"
     },
     {
@@ -9933,7 +10233,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp_props",
-      "community": 39,
+      "community": 25,
       "norm_label": "props"
     },
     {
@@ -9943,7 +10243,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_pages_settings_smtp_smtpsettings",
-      "community": 39,
+      "community": 25,
       "norm_label": "smtpsettings()"
     },
     {
@@ -10030,7 +10330,7 @@
       "label": "Named",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L14",
+      "source_location": "L16",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_named",
       "community": 46,
@@ -10040,7 +10340,7 @@
       "label": "Level",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L15",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_level",
       "community": 46,
@@ -10050,7 +10350,7 @@
       "label": "Conflict",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_conflict",
       "community": 46,
@@ -10060,7 +10360,7 @@
       "label": "Props",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_props",
       "community": 46,
@@ -10070,7 +10370,7 @@
       "label": "MOVEMENTS",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L32",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_movements",
       "community": 46,
@@ -10080,7 +10380,7 @@
       "label": "REASON_LABEL",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L40",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_reason_label",
       "community": 46,
@@ -10090,7 +10390,7 @@
       "label": "StockIndex()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L50",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_stockindex",
       "community": 1,
@@ -10100,7 +10400,7 @@
       "label": "itemUnit()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L173",
+      "source_location": "L191",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_itemunit",
       "community": 46,
@@ -10110,7 +10410,7 @@
       "label": "EntryForm()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L175",
+      "source_location": "L193",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_entryform",
       "community": 46,
@@ -10120,7 +10420,7 @@
       "label": "ConflictList()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L234",
+      "source_location": "L252",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_conflictlist",
       "community": 46,
@@ -10130,7 +10430,7 @@
       "label": "CountForm()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L284",
+      "source_location": "L302",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_countform",
       "community": 46,
@@ -10140,7 +10440,7 @@
       "label": "CheckRecords()",
       "file_type": "code",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L325",
+      "source_location": "L343",
       "_origin": "ast",
       "id": "backend_resources_js_pages_stock_index_checkrecords",
       "community": 46,
@@ -10187,10 +10487,20 @@
       "norm_label": "depot"
     },
     {
+      "label": "Division",
+      "file_type": "code",
+      "source_file": "backend/resources/js/Types/models.d.ts",
+      "source_location": "L36",
+      "_origin": "ast",
+      "id": "backend_resources_js_types_models_d_division",
+      "community": 22,
+      "norm_label": "division"
+    },
+    {
       "label": "ResourceType",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L35",
+      "source_location": "L46",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_resourcetype",
       "community": 22,
@@ -10200,7 +10510,7 @@
       "label": "AdminUser",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L48",
+      "source_location": "L59",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_adminuser",
       "community": 22,
@@ -10210,7 +10520,7 @@
       "label": "SmtpSettingsData",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L62",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_smtpsettingsdata",
       "community": 22,
@@ -10220,7 +10530,7 @@
       "label": "ReplenishmentOrder",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L78",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_replenishmentorder",
       "community": 22,
@@ -10230,7 +10540,7 @@
       "label": "BudgetCurvePoint",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L89",
+      "source_location": "L100",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_budgetcurvepoint",
       "community": 22,
@@ -10240,7 +10550,7 @@
       "label": "ReplenishmentResult",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L99",
+      "source_location": "L110",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_replenishmentresult",
       "community": 22,
@@ -10250,7 +10560,7 @@
       "label": "ReplenishmentRunStatus",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L117",
+      "source_location": "L128",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_replenishmentrunstatus",
       "community": 22,
@@ -10260,7 +10570,7 @@
       "label": "ReplenishmentRun",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L119",
+      "source_location": "L130",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_replenishmentrun",
       "community": 22,
@@ -10270,7 +10580,7 @@
       "label": "DataCheckFlag",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L133",
+      "source_location": "L144",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_datacheckflag",
       "community": 22,
@@ -10280,7 +10590,7 @@
       "label": "VedPolicy",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L144",
+      "source_location": "L155",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_vedpolicy",
       "community": 22,
@@ -10290,7 +10600,7 @@
       "label": "BacktestRuleScore",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L153",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_backtestrulescore",
       "community": 22,
@@ -10300,7 +10610,7 @@
       "label": "Backtest",
       "file_type": "code",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L163",
+      "source_location": "L174",
       "_origin": "ast",
       "id": "backend_resources_js_types_models_d_backtest",
       "community": 22,
@@ -10353,7 +10663,7 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_tableviewtype",
-      "community": 33,
+      "community": 51,
       "norm_label": "tableviewtype"
     },
     {
@@ -10373,7 +10683,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_data_table_columndef",
-      "community": 33,
+      "community": 51,
       "norm_label": "columndef"
     },
     {
@@ -10483,7 +10793,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_fieldtype",
-      "community": 70,
+      "community": 51,
       "norm_label": "fieldtype"
     },
     {
@@ -10513,7 +10823,7 @@
       "source_location": "L34",
       "_origin": "ast",
       "id": "backend_resources_js_types_reusable_fields_filefieldvalue",
-      "community": 12,
+      "community": 70,
       "norm_label": "filefieldvalue"
     },
     {
@@ -10603,7 +10913,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror",
-      "community": 39,
+      "community": 2,
       "norm_label": "apierror"
     },
     {
@@ -10613,7 +10923,7 @@
       "source_location": "L36",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_client_apierror_constructor",
-      "community": 39,
+      "community": 2,
       "norm_label": ".constructor()"
     },
     {
@@ -10853,7 +11163,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog",
-      "community": 73,
+      "community": 2,
       "norm_label": "activitylog.ts"
     },
     {
@@ -10863,7 +11173,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog_activitylogentry",
-      "community": 73,
+      "community": 2,
       "norm_label": "activitylogentry"
     },
     {
@@ -10873,7 +11183,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "backend_resources_js_api_service_modules_activitylog_activitylogservice",
-      "community": 73,
+      "community": 2,
       "norm_label": "activitylogservice"
     },
     {
@@ -10895,6 +11205,36 @@
       "id": "backend_resources_js_api_service_modules_depots_depotsservice",
       "community": 2,
       "norm_label": "depotsservice"
+    },
+    {
+      "label": "divisions.ts",
+      "file_type": "code",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_resources_js_api_service_modules_divisions",
+      "community": 25,
+      "norm_label": "divisions.ts"
+    },
+    {
+      "label": "divisionsService",
+      "file_type": "code",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "backend_resources_js_api_service_modules_divisions_divisionsservice",
+      "community": 25,
+      "norm_label": "divisionsservice"
+    },
+    {
+      "label": "searchDivisions()",
+      "file_type": "code",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "backend_resources_js_api_service_modules_divisions_searchdivisions",
+      "community": 25,
+      "norm_label": "searchdivisions()"
     },
     {
       "label": "resourceTypes.ts",
@@ -11343,7 +11683,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_routes_console",
-      "community": 11,
+      "community": 44,
       "norm_label": "console.php"
     },
     {
@@ -11953,7 +12293,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest",
-      "community": 11,
+      "community": 42,
       "norm_label": "catalogtest"
     },
     {
@@ -11973,7 +12313,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_keeper",
-      "community": 11,
+      "community": 42,
       "norm_label": ".keeper()"
     },
     {
@@ -11983,7 +12323,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_an_item_saves_its_price_ved_class_space_and_kind",
-      "community": 11,
+      "community": 42,
       "norm_label": ".test_an_item_saves_its_price_ved_class_space_and_kind()"
     },
     {
@@ -11993,7 +12333,7 @@
       "source_location": "L42",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_an_item_with_stock_entries_cannot_be_deleted",
-      "community": 11,
+      "community": 42,
       "norm_label": ".test_an_item_with_stock_entries_cannot_be_deleted()"
     },
     {
@@ -12003,7 +12343,7 @@
       "source_location": "L51",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_a_depot_saves_free_space_without_map_coordinates",
-      "community": 11,
+      "community": 42,
       "norm_label": ".test_a_depot_saves_free_space_without_map_coordinates()"
     },
     {
@@ -12013,7 +12353,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_depot_space_is_sent_to_the_solver_only_when_every_depot_is_measured",
-      "community": 11,
+      "community": 42,
       "norm_label": ".test_depot_space_is_sent_to_the_solver_only_when_every_depot_is_measured()"
     },
     {
@@ -12023,8 +12363,88 @@
       "source_location": "L72",
       "_origin": "ast",
       "id": "backend_tests_feature_catalogtest_catalogtest_test_the_admin_confirms_the_ved_policy_with_position_and_date",
-      "community": 11,
+      "community": 42,
       "norm_label": ".test_the_admin_confirms_the_ved_policy_with_position_and_date()"
+    },
+    {
+      "label": "DivisionTest.php",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest",
+      "community": 10,
+      "norm_label": "divisiontest.php"
+    },
+    {
+      "label": "DivisionTest",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest",
+      "community": 10,
+      "norm_label": "divisiontest"
+    },
+    {
+      "label": ".keeper()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_keeper",
+      "community": 10,
+      "norm_label": ".keeper()"
+    },
+    {
+      "label": ".test_a_team_is_saved_under_a_division_and_labelled_with_it()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_test_a_team_is_saved_under_a_division_and_labelled_with_it",
+      "community": 10,
+      "norm_label": ".test_a_team_is_saved_under_a_division_and_labelled_with_it()"
+    },
+    {
+      "label": ".test_search_matches_the_team_or_its_division()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L29",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_test_search_matches_the_team_or_its_division",
+      "community": 10,
+      "norm_label": ".test_search_matches_the_team_or_its_division()"
+    },
+    {
+      "label": ".test_teams_go_one_level_deep_and_names_are_unique()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L43",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_test_teams_go_one_level_deep_and_names_are_unique",
+      "community": 10,
+      "norm_label": ".test_teams_go_one_level_deep_and_names_are_unique()"
+    },
+    {
+      "label": ".test_a_division_with_teams_cannot_be_removed()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_test_a_division_with_teams_cannot_be_removed",
+      "community": 10,
+      "norm_label": ".test_a_division_with_teams_cannot_be_removed()"
+    },
+    {
+      "label": ".test_only_administration_and_training_edits_divisions()",
+      "file_type": "code",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L66",
+      "_origin": "ast",
+      "id": "backend_tests_feature_divisiontest_divisiontest_test_only_administration_and_training_edits_divisions",
+      "community": 10,
+      "norm_label": ".test_only_administration_and_training_edits_divisions()"
     },
     {
       "label": "EvaluationTest.php",
@@ -12133,7 +12553,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest",
-      "community": 11,
+      "community": 42,
       "norm_label": "icsformfieldstest.php"
     },
     {
@@ -12153,7 +12573,7 @@
       "source_location": "L40",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_setup",
-      "community": 11,
+      "community": 42,
       "norm_label": ".setup()"
     },
     {
@@ -12263,7 +12683,7 @@
       "source_location": "L180",
       "_origin": "ast",
       "id": "backend_tests_feature_icsformfieldstest_icsformfieldstest_test_logistics_saves_replaces_and_removes_a_kit_and_others_cannot",
-      "community": 11,
+      "community": 36,
       "norm_label": ".test_logistics_saves_replaces_and_removes_a_kit_and_others_cannot()"
     },
     {
@@ -12313,7 +12733,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest",
-      "community": 7,
+      "community": 42,
       "norm_label": "icsrequestworkflowtest.php"
     },
     {
@@ -12333,7 +12753,7 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_setup",
-      "community": 11,
+      "community": 42,
       "norm_label": ".setup()"
     },
     {
@@ -12793,7 +13213,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_rolegatingtest",
-      "community": 42,
+      "community": 40,
       "norm_label": "rolegatingtest.php"
     },
     {
@@ -13033,7 +13453,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest",
-      "community": 7,
+      "community": 42,
       "norm_label": "stockledgertest.php"
     },
     {
@@ -13043,7 +13463,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest",
-      "community": 10,
+      "community": 127,
       "norm_label": "stockledgertest"
     },
     {
@@ -13053,7 +13473,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_setup",
-      "community": 11,
+      "community": 42,
       "norm_label": ".setup()"
     },
     {
@@ -13063,7 +13483,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_entry",
-      "community": 10,
+      "community": 127,
       "norm_label": ".entry()"
     },
     {
@@ -13073,7 +13493,7 @@
       "source_location": "L52",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_logistics",
-      "community": 10,
+      "community": 127,
       "norm_label": ".logistics()"
     },
     {
@@ -13083,7 +13503,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_sync",
-      "community": 10,
+      "community": 127,
       "norm_label": ".sync()"
     },
     {
@@ -13093,7 +13513,7 @@
       "source_location": "L62",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_the_same_batch_uploaded_three_times_holds_zero_duplicates",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_the_same_batch_uploaded_three_times_holds_zero_duplicates()"
     },
     {
@@ -13103,7 +13523,7 @@
       "source_location": "L75",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_priority_entries_sync_first_then_by_creation_time",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_priority_entries_sync_first_then_by_creation_time()"
     },
     {
@@ -13113,7 +13533,7 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_an_offline_return_syncs_after_its_offline_borrow_even_when_sent_first",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_an_offline_return_syncs_after_its_offline_borrow_even_when_sent_first()"
     },
     {
@@ -13123,7 +13543,7 @@
       "source_location": "L100",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_a_return_whose_borrow_has_not_arrived_is_deferred_not_lost",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_a_return_whose_borrow_has_not_arrived_is_deferred_not_lost()"
     },
     {
@@ -13133,7 +13553,7 @@
       "source_location": "L108",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_returning_an_item_twice_is_kept_and_flagged",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_returning_an_item_twice_is_kept_and_flagged()"
     },
     {
@@ -13143,7 +13563,7 @@
       "source_location": "L119",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_an_entry_that_makes_stock_negative_is_kept_and_flagged",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_an_entry_that_makes_stock_negative_is_kept_and_flagged()"
     },
     {
@@ -13153,7 +13573,7 @@
       "source_location": "L128",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_two_devices_changing_the_same_item_offline_raise_a_flag",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_two_devices_changing_the_same_item_offline_raise_a_flag()"
     },
     {
@@ -13163,7 +13583,7 @@
       "source_location": "L137",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_resolving_a_conflict_appends_a_correction_instead_of_editing",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_resolving_a_conflict_appends_a_correction_instead_of_editing()"
     },
     {
@@ -13173,7 +13593,7 @@
       "source_location": "L150",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_check_records_fails_at_a_row_edited_directly_in_the_database",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_check_records_fails_at_a_row_edited_directly_in_the_database()"
     },
     {
@@ -13183,7 +13603,7 @@
       "source_location": "L164",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_each_entry_is_judged_on_its_own_and_the_sign_must_fit_the_reason",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_each_entry_is_judged_on_its_own_and_the_sign_must_fit_the_reason()"
     },
     {
@@ -13193,7 +13613,7 @@
       "source_location": "L181",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_deleting_the_newest_entries_or_rebuilding_the_chain_fails_the_next_check",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_deleting_the_newest_entries_or_rebuilding_the_chain_fails_the_next_check()"
     },
     {
@@ -13203,7 +13623,7 @@
       "source_location": "L191",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_a_deleted_row_is_reported_as_a_missing_entry",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_a_deleted_row_is_reported_as_a_missing_entry()"
     },
     {
@@ -13213,7 +13633,7 @@
       "source_location": "L199",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_entries_cannot_be_edited_or_deleted_through_the_app",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_entries_cannot_be_edited_or_deleted_through_the_app()"
     },
     {
@@ -13223,7 +13643,7 @@
       "source_location": "L208",
       "_origin": "ast",
       "id": "backend_tests_feature_stockledgertest_stockledgertest_test_only_stock_keepers_write_entries",
-      "community": 10,
+      "community": 127,
       "norm_label": ".test_only_stock_keepers_write_entries()"
     },
     {
@@ -13243,7 +13663,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_tests_feature_useraccountlifecycletest",
-      "community": 42,
+      "community": 40,
       "norm_label": "useraccountlifecycletest.php"
     },
     {
@@ -14638,7 +15058,7 @@
       "label": "Domain model conventions",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L89",
+      "source_location": "L90",
       "_origin": "ast",
       "id": "claude_domain_model_conventions",
       "community": 62,
@@ -14648,7 +15068,7 @@
       "label": "Backend request layering",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L95",
+      "source_location": "L96",
       "_origin": "ast",
       "id": "claude_backend_request_layering",
       "community": 62,
@@ -14658,7 +15078,7 @@
       "label": "Frontend (backend/resources/js)",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L102",
+      "source_location": "L103",
       "_origin": "ast",
       "id": "claude_frontend_backend_resources_js",
       "community": 62,
@@ -14668,7 +15088,7 @@
       "label": "Solver-service structure",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L110",
+      "source_location": "L111",
       "_origin": "ast",
       "id": "claude_solver_service_structure",
       "community": 62,
@@ -14678,7 +15098,7 @@
       "label": "graphify",
       "file_type": "document",
       "source_file": "CLAUDE.md",
-      "source_location": "L117",
+      "source_location": "L118",
       "_origin": "ast",
       "id": "claude_graphify",
       "community": 62,
@@ -18096,6 +18516,133 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_php_builder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_php_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller",
+      "target": "backend_app_http_controllers_basecontroller_basecontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller",
+      "target": "backend_app_models_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_newquery",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_storerules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_updaterules",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_basecontroller_basecontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L28",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_newquery",
+      "target": "backend_app_http_controllers_api_divisioncontroller_php_builder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_newquery",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Api/DivisionController.php",
+      "source_location": "L42",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "source": "backend_app_http_controllers_api_divisioncontroller_divisioncontroller_updaterules",
+      "target": "backend_app_http_controllers_api_divisioncontroller_php_model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Api/IcsRequestController.php",
       "source_location": "L20",
       "weight": 1.0,
@@ -18872,7 +19419,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/api.php",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "backend_routes_api",
       "target": "backend_app_http_controllers_api_kitcontroller",
@@ -19011,7 +19558,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/api.php",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "backend_routes_api",
       "target": "backend_app_http_controllers_api_profilecontroller",
@@ -19874,7 +20421,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/api.php",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "backend_routes_api",
       "target": "backend_app_http_controllers_api_resourcetypecontroller",
@@ -20045,7 +20592,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/api.php",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "backend_routes_api",
       "target": "backend_app_http_controllers_api_settings_usercontroller",
@@ -20299,7 +20846,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/api.php",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "backend_routes_api",
       "target": "backend_app_http_controllers_api_smtpsettingcontroller",
@@ -21230,6 +21777,17 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/BaseController.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_basecontroller",
+      "target": "backend_app_http_controllers_basecontroller_php_builder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/BaseController.php",
       "source_location": "L8",
       "weight": 1.0,
       "source": "backend_app_http_controllers_basecontroller",
@@ -21256,17 +21814,6 @@
       "weight": 1.0,
       "source": "backend_app_http_controllers_basecontroller",
       "target": "backend_app_http_controllers_basecontroller_php_request",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/app/Http/Controllers/BaseController.php",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "backend_app_http_controllers_basecontroller",
-      "target": "builder",
       "confidence_score": 1.0
     },
     {
@@ -21707,7 +22254,7 @@
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_basecontroller_basecontroller_applyrelationfilter",
-      "target": "builder",
+      "target": "backend_app_http_controllers_basecontroller_php_builder",
       "confidence_score": 1.0
     },
     {
@@ -21718,7 +22265,7 @@
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_basecontroller_basecontroller_applysearchterms",
-      "target": "builder",
+      "target": "backend_app_http_controllers_basecontroller_php_builder",
       "confidence_score": 1.0
     },
     {
@@ -21729,7 +22276,7 @@
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_basecontroller_basecontroller_nestedwherehas",
-      "target": "builder",
+      "target": "backend_app_http_controllers_basecontroller_php_builder",
       "confidence_score": 1.0
     },
     {
@@ -21740,7 +22287,7 @@
       "weight": 1.0,
       "context": "return_type",
       "source": "backend_app_http_controllers_basecontroller_basecontroller_newquery",
-      "target": "builder",
+      "target": "backend_app_http_controllers_basecontroller_php_builder",
       "confidence_score": 1.0
     },
     {
@@ -22009,6 +22556,27 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller",
+      "target": "backend_app_http_controllers_controller_controller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_controller_controller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
       "source_location": "L6",
       "weight": 1.0,
@@ -22020,7 +22588,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
       "target": "backend_app_http_controllers_controller_controller",
@@ -22208,8 +22776,61 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller",
+      "target": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller",
+      "target": "backend_app_http_controllers_web_divisioncontroller_php_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller",
+      "target": "inertia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller",
+      "target": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/DivisionController.php",
+      "source_location": "L15",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "backend_app_http_controllers_web_divisioncontroller_divisioncontroller_index",
+      "target": "backend_app_http_controllers_web_divisioncontroller_php_response",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
@@ -22220,7 +22841,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L14",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_php_request",
@@ -22231,7 +22852,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_php_response",
@@ -22242,7 +22863,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_models_kit_kit",
@@ -22253,7 +22874,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L12",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_services_stock_stockledger_stockledger",
@@ -22289,6 +22910,17 @@
       "source_location": "L9",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
+      "target": "backend_app_models_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_models_icsrequest",
       "confidence_score": 1.0
     },
@@ -22297,7 +22929,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L15",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "inertia",
@@ -22308,7 +22940,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L13",
+      "source_location": "L14",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_services_stock_reservations",
@@ -22319,7 +22951,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L11",
+      "source_location": "L12",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller",
       "target": "backend_app_models_resourcetype",
@@ -22329,7 +22961,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L51",
+      "source_location": "L55",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
@@ -22339,7 +22971,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L67",
+      "source_location": "L71",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
@@ -22349,7 +22981,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L31",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
+      "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_divisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L35",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
@@ -22358,9 +23000,20 @@
     {
       "relation": "calls",
       "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_divisions",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L47",
+      "source_location": "L51",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
@@ -22370,7 +23023,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L31",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
@@ -22381,12 +23034,23 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L31",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "return_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_php_response",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
+      "target": "backend_app_models_depot_depot"
     },
     {
       "relation": "calls",
@@ -22397,17 +23061,6 @@
       "source_location": "L44",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
-      "target": "backend_app_models_depot_depot"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L40",
-      "weight": 1.0,
-      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_models_icsrequest_icsrequest"
     },
     {
@@ -22416,7 +23069,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L43",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_models_kit_kit"
@@ -22427,7 +23080,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L42",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_models_resourcetype_resourcetype"
@@ -22438,7 +23091,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L36",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
       "target": "backend_app_services_stock_reservations_reservations"
@@ -22447,7 +23100,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L31",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
@@ -22455,10 +23108,21 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_index",
+      "target": "self"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L51",
+      "source_location": "L55",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
@@ -22469,7 +23133,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L67",
+      "source_location": "L71",
       "weight": 1.0,
       "context": "parameter_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
@@ -22480,7 +23144,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L51",
+      "source_location": "L55",
       "weight": 1.0,
       "context": "return_type",
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
@@ -22492,7 +23156,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L63",
+      "source_location": "L67",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
       "target": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_can",
@@ -22504,7 +23168,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L53",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
       "target": "backend_app_models_borrow_borrow"
@@ -22515,7 +23179,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L61",
+      "source_location": "L65",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
       "target": "backend_app_models_depot_depot"
@@ -22526,10 +23190,21 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
-      "source_location": "L60",
+      "source_location": "L64",
       "weight": 1.0,
       "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
       "target": "backend_app_models_resourcetype_resourcetype"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Controllers/Web/IcsRequestController.php",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "backend_app_http_controllers_web_icsrequestcontroller_icsrequestcontroller_borrowed",
+      "target": "self"
     },
     {
       "relation": "imports",
@@ -23001,7 +23676,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/web.php",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "backend_routes_web",
       "target": "backend_app_http_controllers_web_reportcontroller",
@@ -23098,7 +23773,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/web.php",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "backend_routes_web",
       "target": "backend_app_http_controllers_web_resourceinventorycontroller",
@@ -23162,7 +23837,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/web.php",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "backend_routes_web",
       "target": "backend_app_http_controllers_web_settings_userscontroller",
@@ -23237,7 +23912,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/routes/web.php",
-      "source_location": "L9",
+      "source_location": "L10",
       "weight": 1.0,
       "source": "backend_routes_web",
       "target": "backend_app_http_controllers_web_smtpsettingscontroller",
@@ -23739,6 +24414,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Middleware/HandleInertiaRequests.php",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "backend_app_http_middleware_handleinertiarequests_handleinertiarequests_version",
+      "target": "backend_app_models_division_division_parent"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/app/Http/Middleware/HandleInertiaRequests.php",
@@ -23748,6 +24434,17 @@
       "source": "backend_app_http_middleware_handleinertiarequests_handleinertiarequests_share",
       "target": "backend_app_http_middleware_handleinertiarequests_php_request",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/app/Http/Middleware/HandleInertiaRequests.php",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "backend_app_http_middleware_handleinertiarequests_handleinertiarequests_share",
+      "target": "backend_app_models_division_division_parent"
     },
     {
       "relation": "imports",
@@ -24657,6 +25354,27 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
+      "target": "model",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/Models/HistoryLine.php",
       "source_location": "L6",
       "weight": 1.0,
@@ -25059,6 +25777,27 @@
       "source_location": "L12",
       "weight": 1.0,
       "source": "backend_app_models_depot_depot",
+      "target": "hasuuids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "hasuuids",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "mixes_in",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
       "target": "hasuuids",
       "confidence_score": 1.0
     },
@@ -25848,7 +26587,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L87",
+      "source_location": "L88",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder_run",
       "target": "backend_app_models_depot_depot"
@@ -26022,6 +26761,27 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "hasfactory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "mixes_in",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
+      "target": "hasfactory",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/app/Models/ResourceType.php",
       "source_location": "L6",
       "weight": 1.0,
@@ -26069,6 +26829,189 @@
       "context": "return_type",
       "source": "backend_app_models_depot_depot_stockentries",
       "target": "backend_app_models_depot_php_hasmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "backend_app_models_division_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "backend_app_models_division_php_belongsto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_app_models_division",
+      "target": "backend_app_models_division_php_hasmany",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/CatalogSeeder.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_database_seeders_catalogseeder",
+      "target": "backend_app_models_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "backend_app_models_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
+      "target": "backend_app_models_division_division_getlabelattribute",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L22",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
+      "target": "backend_app_models_division_division_parent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "backend_app_models_division_division",
+      "target": "backend_app_models_division_division_teams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/database/seeders/CatalogSeeder.php",
+      "source_location": "L108",
+      "weight": 1.0,
+      "source": "backend_database_seeders_catalogseeder_catalogseeder_divisions",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_a_division_with_teams_cannot_be_removed",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_a_team_is_saved_under_a_division_and_labelled_with_it",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_teams_go_one_level_deep_and_names_are_unique",
+      "target": "backend_app_models_division_division"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L22",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "backend_app_models_division_division_parent",
+      "target": "backend_app_models_division_php_belongsto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/IcsFormFieldsTest.php",
+      "source_location": "L42",
+      "weight": 1.0,
+      "source": "backend_tests_feature_icsformfieldstest_icsformfieldstest_setup",
+      "target": "backend_app_models_division_division_parent"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/IcsRequestWorkflowTest.php",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "backend_tests_feature_icsrequestworkflowtest_icsrequestworkflowtest_setup",
+      "target": "backend_app_models_division_division_parent"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "backend/tests/Feature/StockLedgerTest.php",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "backend_tests_feature_stockledgertest_stockledgertest_setup",
+      "target": "backend_app_models_division_division_parent"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/app/Models/Division.php",
+      "source_location": "L27",
+      "weight": 1.0,
+      "context": "return_type",
+      "source": "backend_app_models_division_division_teams",
+      "target": "backend_app_models_division_php_hasmany",
       "confidence_score": 1.0
     },
     {
@@ -26768,7 +27711,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L6",
+      "source_location": "L7",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder",
       "target": "backend_app_models_kit_kit",
@@ -26780,7 +27723,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L96",
+      "source_location": "L118",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
       "target": "backend_app_models_kit_kit"
@@ -27181,7 +28124,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L7",
+      "source_location": "L8",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder",
       "target": "backend_app_models_resourcetype",
@@ -27268,7 +28211,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L111",
+      "source_location": "L133",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
       "target": "backend_app_models_resourcetype_resourcetype"
@@ -27279,7 +28222,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L77",
+      "source_location": "L78",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder_run",
       "target": "backend_app_models_resourcetype_resourcetype"
@@ -28994,6 +29937,50 @@
       "source_location": "L74",
       "weight": 1.0,
       "source": "backend_tests_feature_catalogtest_catalogtest_test_the_admin_confirms_the_ved_policy_with_position_and_date",
+      "target": "backend_app_models_user_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "backend_app_models_user_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_keeper",
+      "target": "backend_app_models_user_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L69",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_only_administration_and_training_edits_divisions",
+      "target": "backend_app_models_user_user",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L32",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_search_matches_the_team_or_its_division",
       "target": "backend_app_models_user_user",
       "confidence_score": 1.0
     },
@@ -32638,8 +33625,28 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "backend/database/migrations/2026_10_11_000002_create_divisions_table.php",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "backend_database_migrations_2026_10_11_000002_create_divisions_table",
+      "target": "backend_database_migrations_2026_10_11_000002_create_divisions_table_down",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/migrations/2026_10_11_000002_create_divisions_table.php",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "backend_database_migrations_2026_10_11_000002_create_divisions_table",
+      "target": "backend_database_migrations_2026_10_11_000002_create_divisions_table_up",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder",
       "target": "backend_database_seeders_catalogseeder_catalogseeder",
@@ -32650,7 +33657,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder",
       "target": "seeder",
@@ -32671,6 +33678,17 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "backend_database_seeders_catalogseeder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/IcsFormFieldsTest.php",
       "source_location": "L5",
       "weight": 1.0,
@@ -32682,7 +33700,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L94",
+      "source_location": "L116",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder",
       "target": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
@@ -32692,7 +33710,17 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L25",
+      "source_location": "L100",
+      "weight": 1.0,
+      "source": "backend_database_seeders_catalogseeder_catalogseeder",
+      "target": "backend_database_seeders_catalogseeder_catalogseeder_divisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/CatalogSeeder.php",
+      "source_location": "L26",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder",
       "target": "backend_database_seeders_catalogseeder_catalogseeder_run",
@@ -32702,7 +33730,7 @@
       "relation": "inherits",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder",
       "target": "seeder",
@@ -32797,10 +33825,21 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/database/seeders/CatalogSeeder.php",
-      "source_location": "L90",
+      "source_location": "L92",
       "weight": 1.0,
       "source": "backend_database_seeders_catalogseeder_catalogseeder_run",
       "target": "backend_database_seeders_catalogseeder_catalogseeder_backpack",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/database/seeders/CatalogSeeder.php",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "backend_database_seeders_catalogseeder_catalogseeder_run",
+      "target": "backend_database_seeders_catalogseeder_catalogseeder_divisions",
       "confidence_score": 1.0
     },
     {
@@ -33788,7 +34827,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L128",
+      "source_location": "L130",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_docs_demo_video_to_mp4_body"
@@ -34099,6 +35138,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_common_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Borrowed.tsx",
       "source_location": "L5",
       "weight": 1.0,
@@ -34246,6 +35296,17 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index",
+      "target": "backend_resources_js_components_common_button_button",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
       "target": "backend_resources_js_components_common_button_button",
       "confidence_score": 1.0
     },
@@ -34409,6 +35470,60 @@
       "weight": 1.0,
       "source": "backend_resources_js_components_table_components_cardfilterpanel",
       "target": "backend_resources_js_components_dropdown_dropdown",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Components/Fingerprint.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_resources_js_components_fingerprint",
+      "target": "backend_resources_js_components_fingerprint_fingerprint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Report/Index.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_report_index",
+      "target": "backend_resources_js_components_fingerprint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_stock_index",
+      "target": "backend_resources_js_components_fingerprint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Report/Index.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_report_index",
+      "target": "backend_resources_js_components_fingerprint_fingerprint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_stock_index",
+      "target": "backend_resources_js_components_fingerprint_fingerprint",
       "confidence_score": 1.0
     },
     {
@@ -34673,6 +35788,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_pageheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Borrowed.tsx",
       "source_location": "L11",
       "weight": 1.0,
@@ -34765,6 +35891,17 @@
       "source_location": "L3",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index",
+      "target": "backend_resources_js_components_pageheader_pageheader",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
       "target": "backend_resources_js_components_pageheader_pageheader",
       "confidence_score": 1.0
     },
@@ -35714,6 +36851,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_form_modal_formmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/Types.tsx",
       "source_location": "L6",
       "weight": 1.0,
@@ -35795,6 +36943,17 @@
       "source_location": "L7",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index",
+      "target": "backend_resources_js_components_form_modal_formmodal_formmodal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
       "target": "backend_resources_js_components_form_modal_formmodal_formmodal",
       "confidence_score": 1.0
     },
@@ -37065,6 +38224,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_table_datatablecardfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/Types.tsx",
       "source_location": "L5",
       "weight": 1.0,
@@ -37124,6 +38294,17 @@
       "source_location": "L6",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index",
+      "target": "backend_resources_js_components_table_datatablecardfield_datatablecardfield",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
       "target": "backend_resources_js_components_table_datatablecardfield_datatablecardfield",
       "confidence_score": 1.0
     },
@@ -37456,6 +38637,28 @@
       "weight": 1.0,
       "source": "backend_resources_js_components_table_components_pagination",
       "target": "backend_resources_js_types_reusable_pagination_paginationmeta",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_stock_index",
+      "target": "backend_resources_js_components_table_components_pagination",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_stock_index",
+      "target": "backend_resources_js_components_table_components_pagination_paginationbar",
       "confidence_score": 1.0
     },
     {
@@ -38579,6 +39782,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_table_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/shared.tsx",
       "source_location": "L1",
       "weight": 1.0,
@@ -38986,6 +40200,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_table_utils_index",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/Types.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -39074,6 +40299,28 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_components_table_utils_index_tablelistinvalidatekeys",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L86",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index_divisionsindex",
+      "target": "backend_resources_js_components_table_utils_index_tablelistinvalidatekeys"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/Types.tsx",
       "source_location": "L7",
       "weight": 1.0,
@@ -39152,7 +40399,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L178",
+      "source_location": "L196",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_entryform",
       "target": "backend_resources_js_hooks_use_async_action_useasyncaction"
@@ -39275,6 +40522,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index",
+      "target": "backend_resources_js_hooks_use_async_select_field",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -39283,6 +40541,17 @@
       "weight": 1.0,
       "source": "backend_resources_js_hooks_use_async_select_field_asyncselectfield",
       "target": "backend_resources_js_hooks_use_async_select_field_valuesequal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index",
+      "target": "backend_resources_js_hooks_use_async_select_field_asyncselectfield",
       "confidence_score": 1.0
     },
     {
@@ -39787,6 +41056,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_hooks_use_permissions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Resources/Types.tsx",
       "source_location": "L9",
       "weight": 1.0,
@@ -39814,6 +41094,28 @@
       "source_location": "L78",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index_depotsindex",
+      "target": "backend_resources_js_hooks_use_permissions_usepermission"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_hooks_use_permissions_usepermission",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index_divisionsindex",
       "target": "backend_resources_js_hooks_use_permissions_usepermission"
     },
     {
@@ -40145,7 +41447,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L53",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_stockindex",
       "target": "backend_resources_js_hooks_useofflinesync_useofflinesync"
@@ -40164,7 +41466,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Layouts/AdminLayout.tsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "backend_resources_js_layouts_adminlayout",
       "target": "backend_resources_js_layouts_adminlayout_adminlayout",
@@ -40194,7 +41496,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Layouts/AdminLayout.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "source": "backend_resources_js_layouts_adminlayout",
       "target": "backend_resources_js_layouts_adminlayout_settingsgroup",
@@ -40208,6 +41510,17 @@
       "source_location": "L2",
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index",
+      "target": "backend_resources_js_layouts_adminlayout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
       "target": "backend_resources_js_layouts_adminlayout",
       "confidence_score": 1.0
     },
@@ -40932,7 +42245,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L321",
+      "source_location": "L323",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_queuerelease",
       "target": "backend_resources_js_offline_outbox_enqueuestock"
@@ -40954,7 +42267,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L180",
+      "source_location": "L198",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_entryform",
       "target": "backend_resources_js_offline_outbox_enqueuestock"
@@ -41020,7 +42333,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L70",
+      "source_location": "L74",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_stockindex",
       "target": "backend_resources_js_offline_outbox_markpending"
@@ -41086,7 +42399,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L76",
+      "source_location": "L80",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_stockindex",
       "target": "backend_resources_js_offline_outbox_remove"
@@ -41406,7 +42719,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L333",
+      "source_location": "L335",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_queuerelease",
       "target": "backend_resources_js_offline_sync_syncoutbox"
@@ -41428,7 +42741,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L57",
+      "source_location": "L61",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_stockindex",
       "target": "backend_resources_js_offline_sync_syncoutbox"
@@ -41483,7 +42796,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L151",
+      "source_location": "L153",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_resources_js_offline_sync_isnetworkerror"
@@ -41643,6 +42956,112 @@
       "weight": 1.0,
       "source": "backend_resources_js_pages_depots_index_depotcard",
       "target": "backend_resources_js_pages_depots_index_status_options"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_api_service_modules_divisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_api_service_modules_divisions_divisionsservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_api_service_modules_divisions_searchdivisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_pages_divisions_index_columns",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_pages_divisions_index_divisioncard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_pages_divisions_index_divisionsindex",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_pages_divisions_index_fields",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_types_reusable_card_cardactions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_types_reusable_data_table_columndef",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/Divisions/Index.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_divisions_index",
+      "target": "backend_resources_js_types_reusable_fields_fielddef",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -41925,6 +43344,28 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index",
+      "target": "backend_resources_js_api_service_modules_divisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index",
+      "target": "backend_resources_js_api_service_modules_divisions_searchdivisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
       "source_location": "L7",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
@@ -41980,7 +43421,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_lib_utils_errormessage",
@@ -41990,7 +43431,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L312",
+      "source_location": "L314",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_borrower",
@@ -42000,7 +43441,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L336",
+      "source_location": "L338",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_fileform",
@@ -42010,7 +43451,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L26",
+      "source_location": "L28",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_icsrequest",
@@ -42020,7 +43461,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L77",
+      "source_location": "L79",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_icsrequestsindex",
@@ -42030,7 +43471,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L15",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_item",
@@ -42040,7 +43481,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L44",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_kit",
@@ -42050,7 +43491,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_line",
@@ -42060,7 +43501,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L45",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_props",
@@ -42070,7 +43511,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L55",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_purpose",
@@ -42080,7 +43521,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L315",
+      "source_location": "L317",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_queuerelease",
@@ -42090,7 +43531,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L98",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_requestcard",
@@ -42100,7 +43541,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L56",
+      "source_location": "L58",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_status_tone",
@@ -42110,7 +43551,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L66",
+      "source_location": "L68",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_index_statuslabel",
@@ -42121,7 +43562,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared",
@@ -42132,7 +43573,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared_can",
@@ -42143,7 +43584,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared_divisionlist",
@@ -42154,7 +43595,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared_history",
@@ -42165,7 +43606,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared_icstabs",
@@ -42176,7 +43617,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L13",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index",
       "target": "backend_resources_js_pages_icsrequests_shared_statuschange",
@@ -42187,7 +43628,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L183",
+      "source_location": "L185",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_resources_js_pages_icsrequests_index_statuslabel",
@@ -42199,7 +43640,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L189",
+      "source_location": "L191",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_resources_js_lib_categories_subjectof"
@@ -42210,7 +43651,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L209",
+      "source_location": "L211",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_resources_js_lib_utils_cn"
@@ -42220,7 +43661,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L157",
+      "source_location": "L159",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_requestcard",
       "target": "backend_resources_js_pages_icsrequests_index_queuerelease",
@@ -42232,7 +43673,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L491",
+      "source_location": "L432",
+      "weight": 1.0,
+      "source": "backend_resources_js_pages_icsrequests_index_fileform",
+      "target": "backend_resources_js_api_service_modules_divisions_searchdivisions"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
+      "source_location": "L503",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_fileform",
       "target": "backend_resources_js_lib_categories_subjectof"
@@ -42243,7 +43695,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/IcsRequests/Index.tsx",
-      "source_location": "L479",
+      "source_location": "L491",
       "weight": 1.0,
       "source": "backend_resources_js_pages_icsrequests_index_fileform",
       "target": "backend_resources_js_lib_utils_cn"
@@ -43059,7 +44511,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_replenishment_shared_peso"
@@ -43101,7 +44553,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L106",
+      "source_location": "L107",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_active",
@@ -43111,7 +44563,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_num",
@@ -43121,7 +44573,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_props",
@@ -43131,7 +44583,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L108",
+      "source_location": "L109",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_quarterreport",
@@ -43141,7 +44593,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L21",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_report",
@@ -43151,7 +44603,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_reportindex",
@@ -43161,7 +44613,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L10",
+      "source_location": "L11",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index",
       "target": "backend_resources_js_pages_report_index_row",
@@ -43172,7 +44624,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L137",
+      "source_location": "L138",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_report_index_num",
@@ -43184,7 +44636,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L70",
+      "source_location": "L71",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_reportindex",
       "target": "backend_resources_js_lib_utils_cn"
@@ -43194,7 +44646,7 @@
       "context": "argument",
       "confidence": "INFERRED",
       "source_file": "backend/resources/js/Pages/Report/Index.tsx",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0,
       "source": "backend_resources_js_pages_report_index_quarterreport",
       "target": "backend_resources_js_pages_report_index_active",
@@ -43664,7 +45116,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L325",
+      "source_location": "L343",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_checkrecords",
@@ -43674,7 +45126,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L16",
+      "source_location": "L18",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_conflict",
@@ -43684,7 +45136,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L234",
+      "source_location": "L252",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_conflictlist",
@@ -43694,7 +45146,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L284",
+      "source_location": "L302",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_countform",
@@ -43704,7 +45156,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L175",
+      "source_location": "L193",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_entryform",
@@ -43714,7 +45166,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L173",
+      "source_location": "L191",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_itemunit",
@@ -43724,7 +45176,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L15",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_level",
@@ -43734,7 +45186,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L32",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_movements",
@@ -43744,7 +45196,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L14",
+      "source_location": "L16",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_named",
@@ -43754,7 +45206,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L22",
+      "source_location": "L24",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_props",
@@ -43764,7 +45216,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L40",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_reason_label",
@@ -43774,7 +45226,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L50",
+      "source_location": "L54",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index",
       "target": "backend_resources_js_pages_stock_index_stockindex",
@@ -43786,7 +45238,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L179",
+      "source_location": "L197",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_entryform",
       "target": "backend_resources_js_pages_stock_index_movements"
@@ -43797,7 +45249,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L103",
+      "source_location": "L112",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_stockindex",
       "target": "backend_resources_js_lib_utils_cn"
@@ -43807,7 +45259,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L317",
+      "source_location": "L335",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_countform",
       "target": "backend_resources_js_pages_stock_index_itemunit",
@@ -43818,7 +45270,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L217",
+      "source_location": "L235",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_entryform",
       "target": "backend_resources_js_pages_stock_index_itemunit",
@@ -43830,7 +45282,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "backend/resources/js/Pages/Stock/Index.tsx",
-      "source_location": "L270",
+      "source_location": "L288",
       "weight": 1.0,
       "source": "backend_resources_js_pages_stock_index_conflictlist",
       "target": "backend_resources_js_lib_utils_cn"
@@ -43839,7 +45291,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L48",
+      "source_location": "L59",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_adminuser",
@@ -43849,7 +45301,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L163",
+      "source_location": "L174",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_backtest",
@@ -43859,7 +45311,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L153",
+      "source_location": "L164",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_backtestrulescore",
@@ -43869,7 +45321,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L89",
+      "source_location": "L100",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_budgetcurvepoint",
@@ -43879,7 +45331,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L133",
+      "source_location": "L144",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_datacheckflag",
@@ -43893,6 +45345,16 @@
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_depot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/Types/models.d.ts",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "backend_resources_js_types_models_d",
+      "target": "backend_resources_js_types_models_d_division",
       "confidence_score": 1.0
     },
     {
@@ -43919,7 +45381,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L78",
+      "source_location": "L89",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_replenishmentorder",
@@ -43929,7 +45391,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L99",
+      "source_location": "L110",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_replenishmentresult",
@@ -43939,7 +45401,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L119",
+      "source_location": "L130",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_replenishmentrun",
@@ -43949,7 +45411,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L117",
+      "source_location": "L128",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_replenishmentrunstatus",
@@ -43959,7 +45421,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L35",
+      "source_location": "L46",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_resourcetype",
@@ -43969,7 +45431,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L62",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_smtpsettingsdata",
@@ -43979,7 +45441,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/models.d.ts",
-      "source_location": "L144",
+      "source_location": "L155",
       "weight": 1.0,
       "source": "backend_resources_js_types_models_d",
       "target": "backend_resources_js_types_models_d_vedpolicy",
@@ -44349,6 +45811,17 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
+      "target": "backend_resources_js_types_reusable_fields",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/Types/reusable/fields.ts",
@@ -44406,6 +45879,17 @@
       "weight": 1.0,
       "source": "backend_resources_js_types_reusable_fields",
       "target": "backend_resources_js_types_reusable_fields_modalmode",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
+      "target": "backend_resources_js_types_reusable_fields_fieldoption",
       "confidence_score": 1.0
     },
     {
@@ -45144,6 +46628,17 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
+      "target": "backend_resources_js_api_service_http",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/resources/js/api-service/modules/resourceTypes.ts",
       "source_location": "L2",
       "weight": 1.0,
@@ -45225,6 +46720,17 @@
       "source_location": "L2",
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_depots",
+      "target": "backend_resources_js_api_service_http_createmoduleresource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
       "target": "backend_resources_js_api_service_http_createmoduleresource",
       "confidence_score": 1.0
     },
@@ -45421,6 +46927,26 @@
       "weight": 1.0,
       "source": "backend_resources_js_api_service_modules_depots",
       "target": "backend_resources_js_api_service_modules_depots_depotsservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
+      "target": "backend_resources_js_api_service_modules_divisions_divisionsservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/resources/js/api-service/modules/divisions.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_resources_js_api_service_modules_divisions",
+      "target": "backend_resources_js_api_service_modules_divisions_searchdivisions",
       "confidence_score": 1.0
     },
     {
@@ -46030,6 +47556,27 @@
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "refreshdatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "mixes_in",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "refreshdatabase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "backend/tests/Feature/EvaluationTest.php",
       "source_location": "L14",
       "weight": 1.0,
@@ -46225,6 +47772,130 @@
       "weight": 1.0,
       "source": "backend_tests_feature_catalogtest_catalogtest_test_an_item_with_stock_entries_cannot_be_deleted",
       "target": "backend_tests_feature_catalogtest_catalogtest_keeper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest",
+      "target": "backend_tests_testcase_testcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_keeper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_test_a_division_with_teams_cannot_be_removed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_test_a_team_is_saved_under_a_division_and_labelled_with_it",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L66",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_test_only_administration_and_training_edits_divisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_test_search_matches_the_team_or_its_division",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_feature_divisiontest_divisiontest_test_teams_go_one_level_deep_and_names_are_unique",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "inherits",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest",
+      "target": "backend_tests_testcase_testcase",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L61",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_a_division_with_teams_cannot_be_removed",
+      "target": "backend_tests_feature_divisiontest_divisiontest_keeper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_a_team_is_saved_under_a_division_and_labelled_with_it",
+      "target": "backend_tests_feature_divisiontest_divisiontest_keeper",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/tests/Feature/DivisionTest.php",
+      "source_location": "L48",
+      "weight": 1.0,
+      "source": "backend_tests_feature_divisiontest_divisiontest_test_teams_go_one_level_deep_and_names_are_unique",
+      "target": "backend_tests_feature_divisiontest_divisiontest_keeper",
       "confidence_score": 1.0
     },
     {
@@ -51420,7 +53091,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L117",
+      "source_location": "L118",
       "weight": 1.0,
       "source": "claude_claude_md",
       "target": "claude_graphify",
@@ -51450,7 +53121,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L95",
+      "source_location": "L96",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_backend_request_layering",
@@ -51460,7 +53131,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L89",
+      "source_location": "L90",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_domain_model_conventions",
@@ -51470,7 +53141,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L102",
+      "source_location": "L103",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_frontend_backend_resources_js",
@@ -51490,7 +53161,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CLAUDE.md",
-      "source_location": "L110",
+      "source_location": "L111",
       "weight": 1.0,
       "source": "claude_architecture",
       "target": "claude_solver_service_structure",
@@ -53667,5 +55338,5 @@
       "source_file": "CLAUDE.md"
     }
   ],
-  "built_at_commit": "17c53091580f064854ca2db3d830708c3286706d"
+  "built_at_commit": "24e19e311930e767d33cc75527079ba0ce459d12"
 }

@@ -58,7 +58,7 @@ Artisan::command('data:refresh {--force : Skip the confirmation}', function () {
             'app_status_changes', 'app_reservations', 'app_borrows', 'app_stock_conflicts', 'app_stock_counts',
             'app_stock_entries', 'app_chain_checkpoints', 'app_ics_request_lines', 'app_ics_requests', 'app_kit_lines',
             'app_kits', 'app_data_check_flags', 'app_history_lines', 'app_history_imports', 'app_backtests',
-            'app_replenishment_runs', 'app_quarter_budgets', 'app_loggers', 'app_resource_types', 'app_depots',
+            'app_replenishment_runs', 'app_quarter_budgets', 'app_loggers', 'app_resource_types', 'app_depots', 'app_divisions',
         ];
         foreach ($tables as $table) {
             DB::table($table)->delete();
@@ -72,7 +72,7 @@ Artisan::command('data:refresh {--force : Skip the confirmation}', function () {
         }
     });
     $this->call('db:seed', ['--class' => CatalogSeeder::class, '--force' => true]);
-    $this->info('Data cleared; the item catalog, depots and kit are back. Users kept. Load sample history with: php artisan data:mock');
+    $this->info('Data cleared; the item catalog, depots, divisions and kit are back. Users kept. Load sample history with: php artisan data:mock');
 
     return 0;
 })->purpose('Clear all office data except users and settings, then restore the item catalog');

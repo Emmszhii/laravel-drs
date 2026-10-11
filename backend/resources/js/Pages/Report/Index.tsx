@@ -6,6 +6,7 @@ import Button from "@/Components/Common/Button";
 import { PageHeader } from "@/Components/PageHeader";
 import { cn, field, label } from "@/lib/utils";
 import { RULE_LABELS, peso } from "@/Pages/Replenishment/shared";
+import { Fingerprint } from "@/Components/Fingerprint";
 
 type Row = {
   resource_type: string;
@@ -87,7 +88,7 @@ export default function ReportIndex({ year, from, to, reports, can }: Props) {
         {first && (
           <p className={`text-xs ${first.records_ok ? "text-[var(--text-secondary)]" : "text-critical"}`}>
             {first.records_ok ? "Stock records check passed." : "Stock records check failed: run Check records on the Stock page."}{" "}
-            Latest fingerprint <span className="break-all font-mono">{first.fingerprint}</span>, generated {new Date(first.generated_at).toLocaleString("en-PH")}.
+            Latest fingerprint <Fingerprint hash={first.fingerprint} />, generated {new Date(first.generated_at).toLocaleString("en-PH")}.
           </p>
         )}
 

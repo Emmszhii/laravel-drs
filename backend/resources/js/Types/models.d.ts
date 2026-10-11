@@ -32,6 +32,17 @@ export interface Depot {
   contact_phone?: string;
 }
 
+/** A division of the office, or a team inside one (parent_id = its division). */
+export interface Division {
+  [key: string]: unknown;
+  id: string;
+  name: string;
+  parent_id: string | null;
+  parent?: { id: string; name: string } | null;
+  /** "Operations and Warning / Team Delta", or the division's own name: what a request stores. */
+  label: string;
+}
+
 export interface ResourceType {
   [key: string]: unknown;
   id: string;
