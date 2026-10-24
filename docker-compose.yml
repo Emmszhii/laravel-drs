@@ -184,7 +184,8 @@ services:
     # above: production runs the image's baked-in code (Dockerfile's
     # `COPY . .`), not a bind-mounted ephemeral artifact path.
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      # The slim Python image has no curl; urllib raises (exit 1) on a failed or non-2xx response.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=2)"]
       interval: 10s
       timeout: 3s
       retries: 5

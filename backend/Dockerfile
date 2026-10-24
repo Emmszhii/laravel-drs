@@ -1,32 +1,49 @@
-FROM node:20-bookworm-slim AS node
+# Multi-stage: `assets` builds the frontend with Node, `vendor` installs the
+# production Composer packages, and the final stage copies out only what the
+# running app reads. No Node, Composer, frontend sources, tests or docs ship.
 
-FROM dunglas/frankenphp:php8.4-bookworm
+FROM dunglas/frankenphp:php8.4-bookworm AS php
 
 RUN install-php-extensions pdo_pgsql zip pcntl
 
-RUN apt-get update && apt-get install -y \
-    git curl unzip libpq-dev libzip-dev \
-    && rm -rf /var/lib/apt/lists/*
+WORKDIR /var/www/html
+
+FROM node:20-bookworm-slim AS assets
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci
+
+COPY vite.config.ts tsconfig.json tailwind.config.js postcss.config.js ./
+COPY resources ./resources
+RUN npm run build
+
+FROM php AS vendor
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Node for building the Inertia/React frontend assets — copied from the
-# official Node image instead of `curl | bash`'ing NodeSource's install
-# script, since that live third-party fetch is a flaky build dependency
-# (a stall/hang there produces no output, which trips Coolify's build
-# idle-timeout and aborts the whole deploy).
-COPY --from=node /usr/local/bin/node /usr/local/bin/node
-COPY --from=node /usr/local/lib/node_modules /usr/local/lib/node_modules
-RUN ln -s /usr/local/lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
-    && ln -s /usr/local/lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx
-
-WORKDIR /var/www/html
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-scripts --no-autoloader --prefer-dist --no-interaction
 
 COPY . .
+# Runs post-autoload-dump too (package:discover), which caches prod-only providers in bootstrap/cache.
+RUN composer dump-autoload --no-dev --optimize
 
-RUN composer install --no-dev --optimize-autoloader \
-    && npm install \
-    && npm run build
+FROM php
+
+# composer.json stays: Laravel reads the app namespace from it.
+COPY --from=vendor /var/www/html/artisan /var/www/html/composer.json ./
+COPY --from=vendor /var/www/html/app ./app
+COPY --from=vendor /var/www/html/bootstrap ./bootstrap
+COPY --from=vendor /var/www/html/config ./config
+COPY --from=vendor /var/www/html/database ./database
+COPY --from=vendor /var/www/html/routes ./routes
+COPY --from=vendor /var/www/html/storage ./storage
+COPY --from=vendor /var/www/html/resources/views ./resources/views
+COPY --from=vendor /var/www/html/vendor ./vendor
+COPY --from=vendor /var/www/html/public ./public
+COPY --from=assets /app/public/build ./public/build
 
 EXPOSE 8000 8080 2019
 
