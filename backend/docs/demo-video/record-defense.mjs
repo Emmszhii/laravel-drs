@@ -182,7 +182,7 @@ await page.waitForURL('**/backtest');
 await caption('The backtest plans each past quarter using only the quarters before it, then scores it on real use.', 3800);
 await type(page.getByLabel('Budget for quarters with none recorded (₱)'), '300000');
 await click(page.getByRole('button', { name: 'Run backtest' }));
-await page.getByText(/over \d+ quarters/).waitFor({ timeout: 180000 });
+await page.getByText(/over \d+ quarters/i).waitFor({ timeout: 180000 });
 await pause(800);
 const btTable = page.locator('table').last(); // the per-quarter table; the first two are the win counts and averages
 await caption("The rules are compared quarter by quarter; the office's actual orders join once its records arrive. Lower weighted shortage is better.", 0);
