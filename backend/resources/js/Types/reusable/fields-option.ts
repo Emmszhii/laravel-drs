@@ -14,15 +14,3 @@ export interface AsyncSelectFieldProps {
   error?: string;
 }
 
-/** Props consumed by <AsyncMultiSelectField> (see use-async-multi-select-field.tsx). */
-export interface AsyncMultiSelectFieldProps {
-  value: unknown[];
-  onChange: (value: unknown[]) => void;
-  loadOptions: (query: string) => Promise<FieldOption[]>;
-  getOptionLabel?: (value: unknown) => string;
-  placeholder?: string;
-  debounceMs?: number;
-  minSearchLength?: number;
-  disabled?: boolean;
-  error?: string;
-}

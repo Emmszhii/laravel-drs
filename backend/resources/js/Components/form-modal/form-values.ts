@@ -1,17 +1,11 @@
 /**
  * @file components/form-modal/form-values.ts
  * Seeding + payload helpers for <FormModal>. Mirrors RecordModal's semantics so
- * the two share behavior: file fields carry a FileFieldValue, edit mode hydrates
- * from the row, and submit honors `payloadKey`/`transform`. Also maps a Laravel
+ * the two share behavior: edit mode hydrates from the row, and submit honors `payloadKey`/`transform`. Also maps a Laravel
  * validation-error bag onto Formik field errors.
  */
 
-import { normalizeExistingFiles } from '@/Hooks/use-file-upload-field';
-import type {
-    FieldDef,
-    FileFieldValue,
-    ModalMode,
-} from '@/Types/reusable/fields';
+import type { FieldDef, ModalMode } from '@/Types/reusable/fields';
 
 /** Initial value for a single field (edit hydrates from row, create uses default). */
 function seedFieldValue<T extends object>(
@@ -19,15 +13,6 @@ function seedFieldValue<T extends object>(
     mode: ModalMode,
     row?: T,
 ): unknown {
-    if (field.type === 'file') {
-        const raw =
-            mode === 'edit' && row
-                ? (row as Record<string, unknown>)[field.key]
-                : null;
-
-        return { existing: normalizeExistingFiles(raw), files: [], removedIds: [] };
-    }
-
     if (mode === 'edit' && row) {
         let val = (row as Record<string, unknown>)[field.key];
 
@@ -68,23 +53,6 @@ export function buildPayload<T extends object>(
         const raw = values[f.key];
         const outKey = f.payloadKey ?? f.key;
         payload[outKey] = f.transform ? f.transform(raw) : raw;
-
-        // File field cleared (existing removed, no replacement picked): the
-        // request goes out as JSON, so emit the generic `remove_<key>` flag the
-        // backend understands (HandlesFileUploads::fileWasRemoved) and null the
-        // column. Mirrors DataTableField.handleSave.
-        if (f.type === 'file') {
-            const file = raw as FileFieldValue | undefined;
-            const cleared =
-                !!file &&
-                file.removedIds?.length > 0 &&
-                file.files?.length === 0;
-
-            if (cleared) {
-                payload[`remove_${outKey}`] = true;
-                payload[outKey] = null;
-            }
-        }
     });
 
     return payload;

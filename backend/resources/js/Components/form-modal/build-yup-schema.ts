@@ -7,7 +7,7 @@
  */
 
 import * as Yup from 'yup';
-import type { FieldDef, FileFieldValue } from '@/Types/reusable/fields';
+import type { FieldDef } from '@/Types/reusable/fields';
 
 /** Picks the base Yup type for a field's declared input type. */
 function baseFor<T>(field: FieldDef<T>): Yup.Schema {
@@ -22,8 +22,6 @@ function baseFor<T>(field: FieldDef<T>): Yup.Schema {
             return Yup.string().url('Enter a valid URL.');
         case 'checkbox':
             return Yup.boolean();
-        case 'file':
-            return Yup.mixed();
         default:
             return Yup.string();
     }
@@ -36,16 +34,6 @@ function withRequired<T>(schema: Yup.Schema, field: FieldDef<T>): Yup.Schema {
     }
 
     const msg = `${field.label} is required.`;
-
-    if (field.type === 'file') {
-        return schema.test('file-required', msg, (value) => {
-            const v = value as FileFieldValue | undefined;
-
-            return Boolean(
-                (v?.existing?.length ?? 0) + (v?.files?.length ?? 0) > 0,
-            );
-        });
-    }
 
     if (field.type === 'checkbox') {
         return (schema as Yup.BooleanSchema).oneOf([true], msg);

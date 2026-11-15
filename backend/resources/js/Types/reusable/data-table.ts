@@ -7,7 +7,7 @@ export type { PaginationMeta } from './pagination';
 export type TableViewType = 'table' | 'card';
 
 /** Column-filter widget kind — distinct from FieldDef's form-field FieldType. */
-export type ColumnFilterType = 'text' | 'select' | 'async-select' | 'async-multi-select' | 'date-range';
+export type ColumnFilterType = 'text' | 'select' | 'async-select' | 'date-range';
 
 export interface ColumnDef<T> {
   key: string;
@@ -19,7 +19,7 @@ export interface ColumnDef<T> {
   type?: ColumnFilterType;
   /** Static options for a `type: 'select'` filter. */
   typeData?: FieldOption[];
-  /** Options loader for `type: 'async-select' | 'async-multi-select'` filters. */
+  /** Options loader for `type: 'async-select'` filters. */
   loadOptions?: (query: string) => Promise<FieldOption[]>;
   /** Other filter keys to clear when this filter changes. */
   filterResets?: string[];

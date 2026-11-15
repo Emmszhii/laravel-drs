@@ -3,7 +3,6 @@
 use App\Services\Replenishment\HistoryImporter;
 use App\Services\Replenishment\QuarterRecordsImporter;
 use App\Services\Stock\StockLedger;
-use Illuminate\Foundation\Inspiring;
 use App\Models\User;
 use Database\Seeders\CatalogSeeder;
 use Database\Seeders\ReplenishmentDemoSeeder;
@@ -12,10 +11,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schedule;
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
 
 Artisan::command('history:import {file}', function (HistoryImporter $importer) {
     $result = $importer->import($this->argument('file'));

@@ -200,7 +200,7 @@ Since the 2026-10-03 update, our request carries the fields on the photo of your
 - [ ] Servers up: `solver-service` on :8001, and the **laravel-demo** launch entry on :8000 (it runs the queue inline, so no queue worker or Reverb is needed for this demo)
 - [ ] Sign in as `admin@disasterresource.local` and open **Stock** once online
 - [ ] Play the recording once, `node backend/docs/demo-video/record.mjs`, to confirm the steps still work, and keep the mp4 as a fallback
-- [ ] Backup: screenshots in `backend/docs/img/` and `docs/role-access/`
+- [ ] Backup: screenshots in `docs/role-access/`
 - [ ] Bring a printed copy of section 4 and the history CSV template
 
 **If something breaks:** solver silent → check `solver-service` on :8001, then play the video for that part. Offline step fails → play the video and say the 30-entry scripted run passed in `EvaluationTest`. Numbers look wrong (not 100 / 95 kits) → you skipped `reset.sh`. Report shows "No approved plan" → approve the plan in Step 3 first.

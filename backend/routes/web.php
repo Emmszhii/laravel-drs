@@ -47,4 +47,4 @@ Route::middleware(['auth', 'active'])->group(function () {
     });
 });
 
-require __DIR__.'/auth.php'; // Breeze/Fortify/Jetstream auth scaffolding, if used
+require __DIR__.'/auth.php'; // hand-written session login/logout and password reset

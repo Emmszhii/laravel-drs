@@ -6,15 +6,13 @@
  * identical to CreateBatchModal.
  *
  * Supported types: text, number, email, password, date, datetime-local,
- *                  textarea, select, checkbox, async-select, file.
+ *                  textarea, select, checkbox, async-select.
  */
 
 import { Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
 import { Field, inputCls, textareaCls } from '@/Components/form/Field';
 import { AsyncSelectField } from '@/Hooks/use-async-select-field';
-import { FileUploadField } from '@/Hooks/use-file-upload-field';
-import type { FileFieldValue } from '@/Types/reusable/fields';
 import type { FieldDef } from '../types';
 interface DynamicFieldProps<T> {
     field: FieldDef<T>;
@@ -35,37 +33,6 @@ export function DynamicField<T>({
 }: DynamicFieldProps<T>) {
     const fieldDataCy =
         field.dataCy ?? `input-${field.key.replace(/_/g, '-')}`;
-
-    if (field.type === 'file') {
-        return (
-            <Field
-                label={field.label}
-                required={field.required}
-                helpText={field.helpText}
-                error={error}
-                data-cy={`${fieldDataCy}-field`}
-            >
-                <FileUploadField
-                    value={
-                        (value as FileFieldValue) ?? {
-                            existing: [],
-                            files: [],
-                            removedIds: [],
-                        }
-                    }
-                    onChange={onChange}
-                    multiple={field.multiple}
-                    accept={field.accept}
-                    maxSizeMB={field.maxSizeMB}
-                    maxFiles={field.maxFiles}
-                    preview={field.preview}
-                    disabled={disabled}
-                    error={error}
-                    data-cy={fieldDataCy}
-                />
-            </Field>
-        );
-    }
 
     if (field.type === 'async-select') {
         return (

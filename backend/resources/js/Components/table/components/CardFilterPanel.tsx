@@ -5,7 +5,6 @@
  * DataTableCardField (markup/behavior unchanged) to keep the orchestrator lean.
  */
 
-import { AsyncMultiSelectField } from "@/Hooks/use-async-multi-select-field";
 import { AsyncSelectField } from "@/Hooks/use-async-select-field";
 import type { ColumnDef } from "@/Types/reusable/data-table";
 import { Dropdown } from "../../Dropdown";
@@ -72,30 +71,6 @@ export function CardFilterPanel<T>({
                     onChange={(value) => onColumnFilter(col.key, value)}
                   />
                 </div>
-              );
-            }
-
-            if (col.type === "async-multi-select" && col.loadOptions) {
-              const raw = columnFilters[col.key];
-              const arrValue = Array.isArray(raw) ? raw : [];
-
-              return (
-                <label key={col.key} className="block min-w-50">
-                  <span className="mb-1 block text-xs font-medium text-[var(--text-secondary)]">
-                    {col.label}
-                  </span>
-                  <AsyncMultiSelectField
-                    value={arrValue}
-                    placeholder="All"
-                    loadOptions={col.loadOptions}
-                    onChange={(v) => {
-                      onColumnFilter(col.key, v as string[]);
-                      (col.filterResets ?? []).forEach((k) =>
-                        onColumnFilter(k, ""),
-                      );
-                    }}
-                  />
-                </label>
               );
             }
 

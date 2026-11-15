@@ -8,11 +8,10 @@ DisasterResource+ — a web-based supply-readiness system for CDRRMO San Pablo C
 
 `backend/` is a full runnable Laravel 13 project (scaffolded via `composer create-project laravel/laravel:^13.0`).
 
-## Repo layout (three deployable units)
+## Repo layout (two deployable units)
 
 - `backend/` — Laravel (Inertia + React/TypeScript, Sanctum auth, Reverb realtime broadcasting)
 - `solver-service/` — Python FastAPI microservice running the PuLP 2.8.0 + CBC replenishment model
-- `docker/` — shared infra (Postgres bootstrap script for the local `postgres` service)
 
 Services are wired together via `docker-compose.yml`: `backend` (web) on 8000, `queue` (queue worker, runs `RunReplenishmentJob`), `scheduler` (nightly `stock:verify`), `reverb` (websocket server) on 8080, `solver-service` on 8001. Postgres on 5432 is defined only in `docker-compose.override.yml` (local dev); production runs on the CDRRMO office's own server (the paper's deployment; Coolify there, if used, runs on that server) with a standalone Postgres. `queue`, `scheduler`, and `reverb` build from the same `backend/Dockerfile` image as `backend` but override its `CMD`.
 

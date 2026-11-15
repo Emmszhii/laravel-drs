@@ -13,28 +13,11 @@ export type FieldType =
   | 'textarea'
   | 'select'
   | 'checkbox'
-  | 'async-select'
-  | 'file';
+  | 'async-select';
 
 export interface FieldOption {
   value: string | number;
   label: string;
-}
-
-/** A file already stored server-side (returned on an edit row). */
-export interface ExistingFile {
-  id: string | number;
-  name: string;
-  url: string;
-  size?: number;
-  type?: string;
-}
-
-/** Controlled value shape for a `type: 'file'` field. */
-export interface FileFieldValue {
-  existing: ExistingFile[];
-  files: File[];
-  removedIds: (string | number)[];
 }
 
 /** Declarative description of one form field, driving FormModal/RecordModal. */
@@ -65,13 +48,6 @@ export interface FieldDef<T = unknown> {
   initialLabel?: (row: T) => string | undefined;
   debounceMs?: number;
   minSearchLength?: number;
-
-  // file
-  multiple?: boolean;
-  accept?: string;
-  maxSizeMB?: number;
-  maxFiles?: number;
-  preview?: boolean;
 
   children?: ReactNode;
 }

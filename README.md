@@ -8,7 +8,6 @@ This repository contains three deployable units:
 
 - **`backend/`** — Laravel application (Inertia + React/TypeScript frontend, Sanctum auth, Reverb realtime)
 - **`solver-service/`** — Python FastAPI microservice running the PuLP/CBC replenishment model
-- **`docker/`** — shared infrastructure config (Postgres bootstrap)
 
 ## Quick start (Docker)
 
@@ -63,6 +62,5 @@ Then in the root `.env`, set `DB_CONNECTION=sqlite` (comment out the `pgsql` blo
 ```
 disaster-response-system/
 ├── backend/            Laravel (Inertia + Sanctum + Reverb)
-├── solver-service/     FastAPI replenishment solver
-└── docker/             Shared infra (Postgres init)
+└── solver-service/     FastAPI replenishment solver
 ```
