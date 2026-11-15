@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\Replenishment\HistoryImporter;
+use App\Services\Replenishment\QuarterRecordsImporter;
 use App\Services\Stock\StockLedger;
 use Illuminate\Foundation\Inspiring;
 use App\Models\User;
@@ -25,6 +26,21 @@ Artisan::command('history:import {file}', function (HistoryImporter $importer) {
 
     return $result['errors'] ? 1 : 0;
 })->purpose('Import encoded ICS 213-RR history (docs/templates/history-encoding-template.csv)');
+
+Artisan::command('records:import {kind : deliveries, stock or budgets} {file}', function (QuarterRecordsImporter $importer) {
+    if (! in_array($kind = $this->argument('kind'), QuarterRecordsImporter::KINDS, true)) {
+        $this->error('kind must be one of: '.implode(', ', QuarterRecordsImporter::KINDS));
+
+        return 1;
+    }
+    $result = $importer->import($kind, $this->argument('file'));
+    foreach ($result['errors'] as $error) {
+        $this->error($error);
+    }
+    $this->info("Imported {$result['imported']} {$kind} row(s).");
+
+    return $result['errors'] ? 1 : 0;
+})->purpose('Import a data-request sheet saved as CSV: deliveries (actual orders), stock (at quarter end) or budgets');
 
 Artisan::command('stock:verify', function (StockLedger $ledger) {
     $r = $ledger->verify();
@@ -57,7 +73,7 @@ Artisan::command('data:refresh {--force : Skip the confirmation}', function () {
         $tables = [
             'app_status_changes', 'app_reservations', 'app_borrows', 'app_stock_conflicts', 'app_stock_counts',
             'app_stock_entries', 'app_chain_checkpoints', 'app_ics_request_lines', 'app_ics_requests', 'app_kit_lines',
-            'app_kits', 'app_data_check_flags', 'app_history_lines', 'app_history_imports', 'app_backtests',
+            'app_kits', 'app_data_check_flags', 'app_item_quarters', 'app_history_lines', 'app_history_imports', 'app_backtests',
             'app_replenishment_runs', 'app_quarter_budgets', 'app_loggers', 'app_resource_types', 'app_depots', 'app_divisions',
         ];
         foreach ($tables as $table) {

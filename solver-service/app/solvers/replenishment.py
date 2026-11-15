@@ -254,7 +254,7 @@ def flat_rule_orders(items: list[ReplenishmentItem], q: dict[str, int], budget: 
     return {i: math.floor(n * factor) for i, n in want.items()}, _ms(started)
 
 
-def backtest(req: BacktestRequest) -> dict:
+def backtest(req: BacktestRequest, _equal_weights: bool = False) -> dict:
     """
     Rolling-origin backtest: for each quarter from the 5th encoded one onward,
     every rule builds its order using only earlier quarters, and the order is
@@ -263,22 +263,37 @@ def backtest(req: BacktestRequest) -> dict:
     past decisions. Histories end at the same latest quarter; an item with a
     shorter one did not exist before it starts, so its missing quarters are
     neither history nor use.
+
+    The office's actual orders are scored only in quarters whose orders are
+    recorded. A quarter's budget is the one recorded for it, else the cost of
+    the office's actual order, else the budget entered for the backtest. The
+    summary counts each model form's wins against every comparison rule, gives
+    each rule's mean measures with and without the stockout quarters, and
+    repeats the win counts with equal weights (Chapter III, Model Evaluation).
     """
     T = max(len(it.history) for it in req.items)
     off = {it.id: T - len(it.history) for it in req.items}
     use = {it.id: [0] * off[it.id] + it.history for it in req.items}  # actual use by calendar quarter
+    cost = {it.id: it.unit_cost or 0 for it in req.items}
     space_modeled = req.free_space is not None and all(it.space_per_unit is not None for it in req.items)
-    rules = ["flat_1_5", "safety_stock", "per_item_multiplier", "scenario"] + (["office_actual"] if req.actual_orders else [])
+    recorded = {int(t): o for t, o in req.actual_orders.items()}
+    rules = list(MODEL_FORMS) + ["flat_1_5", "safety_stock"] + (["office_actual"] if recorded else [])
     stock = {r: {it.id: req.initial_stock.get(it.id, 0) for it in req.items} for r in rules}
     quarters = []
 
     for t in range(req.start, T):
-        budget = req.budgets[t] if t < len(req.budgets) and req.budgets[t] is not None else req.budget
+        if t < len(req.budgets) and req.budgets[t] is not None:
+            budget, source = req.budgets[t], "recorded"
+        elif t in recorded:
+            budget, source = sum(cost[i] * n for i, n in recorded[t].items() if i in cost), "actual_order_cost"
+        else:
+            budget, source = req.budget, "entered"
         past = [it.model_copy(update={"history": use[it.id][off[it.id]:t], "q": 0, "reserved": 0, "target": None})
                 for it in req.items]
         # ponytail: an item with no past use divides by 1, not its (zero) average.
         avg = {p.id: sum(p.history) / len(p.history) if sum(p.history) else 1 for p in past}
-        row = {"t": t, "budget": budget, "typhoon": t in req.typhoon_quarters, "stockout": t in req.stockout_quarters, "rules": {}}
+        row = {"t": t, "budget": budget, "budget_source": source, "typhoon": t in req.typhoon_quarters,
+               "stockout": t in req.stockout_quarters, "rules": {}}
 
         for rule in rules:
             q = stock[rule]
@@ -286,32 +301,60 @@ def backtest(req: BacktestRequest) -> dict:
                 target_of = flat_target if rule == "flat_1_5" else safety_stock_target
                 orders, ms, feasible = *flat_rule_orders(past, q, budget, target_of), True
             elif rule == "office_actual":
-                orders, ms, feasible = req.actual_orders.get(str(t), {}), 0, True
+                orders, ms, feasible = recorded.get(t, {}), 0, True
             else:
                 res = solve(ReplenishmentRequest(rule=rule, budget=budget, free_space=req.free_space, m=req.m,
                                                  time_limit_s=req.time_limit_s,
                                                  items=[p.model_copy(update={"q": q[p.id]}) for p in past]))
                 orders, ms, feasible = {o.id: o.x for o in res.orders}, res.solve_ms, res.objective is not None
 
-            spent = sum((it.unit_cost or 0) * orders.get(it.id, 0) for it in req.items)
+            spent = sum(cost[it.id] * orders.get(it.id, 0) for it in req.items)
             space = sum(it.space_per_unit * orders.get(it.id, 0) for it in req.items) if space_modeled else 0
             feasible = feasible and spent <= budget + EPS and (not space_modeled or space <= req.free_space + EPS)
-            row["rules"][rule] = _score(req.items, use, avg, t, q, orders, budget, spent, ms, feasible)
+            # shortcut: an unrecorded quarter's office order is unknown, so it is not scored and the office's
+            # stock carries forward as if nothing arrived; pass every quarter's orders to avoid that.
+            scored = rule != "office_actual" or t in recorded
+            row["rules"][rule] = _score(req.items, use, avg, t, q, orders, budget, spent, ms, feasible) if scored else None
             stock[rule] = {it.id: max(0, q[it.id] + orders.get(it.id, 0) - use[it.id][t]) for it in req.items}
 
         quarters.append(row)
 
-    ws = lambda r, row: row["rules"][r]["weighted_shortage"]  # noqa: E731
-    wins = {r: sum(1 for row in quarters if ws(r, row) < ws("flat_1_5", row)) for r in ("per_item_multiplier", "scenario")}
-    n = len(quarters)
+    out = {"quarters": quarters, "summary": _summary(quarters, rules)}
+    if not _equal_weights:
+        equal = req.model_copy(update={"items": [it.model_copy(update={"weight": 1}) for it in req.items]})
+        out["equal_weights"] = backtest(equal, _equal_weights=True)["summary"]["comparisons"]
+    return out
+
+
+MODEL_FORMS = ("per_item_multiplier", "scenario")
+MEASURES = ("weighted_shortage", "fill_rate", "items_ran_out", "budget_used", "stock_left_value")
+
+
+def _summary(quarters: list[dict], rules: list[str]) -> dict:
+    """Wins of each model form against each comparison rule, over the quarters both are scored in."""
+    comparisons = {}
+    for form in MODEL_FORMS:
+        comparisons[form] = {}
+        for other in (r for r in rules if r not in MODEL_FORMS):
+            pairs = [(row["rules"][form]["weighted_shortage"], row["rules"][other]["weighted_shortage"])
+                     for row in quarters if row["rules"][other] is not None]
+            wins = sum(a < b for a, b in pairs)
+            ties = sum(a == b for a, b in pairs)
+            comparisons[form][other] = {"wins": wins, "ties": ties, "losses": len(pairs) - wins - ties,
+                                        "scored": len(pairs), "majority": bool(pairs) and wins > len(pairs) / 2}
+
+    def means(rows):
+        return {m: round(statistics.fmean(r[m] for r in rows), 4) if rows else None for m in MEASURES}
 
     return {
-        "quarters": quarters,
-        "summary": {
-            "backtested_quarters": n,
-            "wins_vs_flat": wins,
-            "target_met": {r: n > 0 and wins[r] > n / 2 for r in wins},
-        },
+        "backtested_quarters": len(quarters),
+        "comparisons": comparisons,
+        # A form meets the target when it wins a majority against every comparison rule.
+        "target_met": {f: all(c["majority"] for c in comparisons[f].values()) for f in MODEL_FORMS},
+        "means": {r: {"all": means([q["rules"][r] for q in quarters if q["rules"][r] is not None]),
+                      "without_stockout": means([q["rules"][r] for q in quarters
+                                                 if q["rules"][r] is not None and not q["stockout"]])}
+                  for r in rules},
     }
 
 

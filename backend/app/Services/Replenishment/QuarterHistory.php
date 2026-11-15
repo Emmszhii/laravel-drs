@@ -46,7 +46,7 @@ class QuarterHistory
         $lines = $encoded->toBase()->merge($live);
 
         if ($lines->isEmpty()) {
-            return ['quarters' => [], 'use' => [], 'tagged' => [], 'event_quarters' => [], 'stockout_quarters' => []];
+            return ['quarters' => [], 'use' => [], 'tagged' => [], 'event_quarters' => [], 'event_tags' => [], 'stockout_quarters' => []];
         }
 
         // ponytail: one shared start (the earliest encoded quarter) for every item, so an item
@@ -66,7 +66,7 @@ class QuarterHistory
             $use[$line->resource_type_id][$i] += $line->quantity_requested;
             if ($line->event_tag) {
                 $tagged[$line->resource_type_id][$i] = true;
-                $events[$i] = true;
+                $events[$i][$line->event_tag] = true;
             }
             // Released below requested: the office ran short, so recorded use understates need.
             if ($line->quantity_released !== null && $line->quantity_released < $line->quantity_requested) {
@@ -84,6 +84,8 @@ class QuarterHistory
             'use' => $use,
             'tagged' => $tagged,
             'event_quarters' => array_keys($events),
+            // Which tags each quarter carries, so the Admin can say which ones were typhoons.
+            'event_tags' => array_map(fn ($tags) => array_map('strval', array_keys($tags)), $events),
             'stockout_quarters' => array_keys($stockouts),
         ];
     }

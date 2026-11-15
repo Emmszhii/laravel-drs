@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\RunReplenishmentJob;
 use App\Models\Backtest;
 use App\Models\DataCheckFlag;
+use App\Models\ItemQuarter;
 use App\Models\QuarterBudget;
 use App\Models\ReplenishmentRun;
 use App\Models\ResourceType;
@@ -14,6 +15,7 @@ use App\Models\VedPolicy;
 use App\Services\Replenishment\DataChecks;
 use App\Services\Replenishment\HistoryImporter;
 use App\Services\Replenishment\QuarterHistory;
+use App\Services\Replenishment\QuarterRecordsImporter;
 use App\Services\Replenishment\ReplenishmentServiceClient;
 use App\Services\Reports\InventoryBurnRateCsvExporter;
 use App\Services\Reports\InventoryBurnRateReportBuilder;
@@ -35,6 +37,16 @@ class ReplenishmentController extends Controller
         $request->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:5120']]); // KB: twelve quarters of request lines fit easily
 
         $result = $importer->import($request->file('file')->getRealPath(), $request->user()->id);
+
+        return response()->json($result, $result['errors'] ? 422 : 201);
+    }
+
+    /** The data-request workbook's quarterly sheets: deliveries, stock at quarter end, budgets (each as CSV). */
+    public function importRecords(Request $request, string $kind, QuarterRecordsImporter $importer): JsonResponse
+    {
+        $request->validate(['file' => ['required', 'file', 'mimes:csv,txt', 'max:5120']]);
+
+        $result = $importer->import($kind, $request->file('file')->getRealPath(), $request->user()->id);
 
         return response()->json($result, $result['errors'] ? 422 : 201);
     }
@@ -122,35 +134,64 @@ class ReplenishmentController extends Controller
      */
     public function backtest(Request $request, QuarterHistory $history, ReplenishmentServiceClient $client): JsonResponse
     {
-        $data = $request->validate(['budget' => ['required', 'numeric', 'min:0']]);
+        $data = $request->validate([
+            'budget' => ['required', 'numeric', 'min:0'],
+            // Which event tags were typhoons (Chapter III: a typhoon quarter is tagged with a named typhoon).
+            // Left out, every tag counts.
+            'typhoon_tags' => ['sometimes', 'array'],
+            'typhoon_tags.*' => ['string'],
+        ]);
 
         $h = $history->build(now()->year + 1, 1); // everything encoded so far
         abort_if(count($h['quarters']) < 5, 422, 'The backtest needs at least 5 encoded quarters.');
 
         $policies = VedPolicy::all()->keyBy('ved_class');
         $budgets = QuarterBudget::all()->keyBy(fn ($b) => "{$b->year}-{$b->quarter}");
+        $index = array_flip(array_map(fn ($yq) => "{$yq[0]}-{$yq[1]}", $h['quarters']));
+        $records = ItemQuarter::all();
+        $typhoonTags = $data['typhoon_tags'] ?? array_values(array_unique(array_merge([], ...array_values($h['event_tags']))));
+        $start = 4; // the 5th encoded quarter
+
+        $items = ResourceType::orderBy('name')->get()
+            ->filter(fn ($t) => $t->unit_cost && ! empty($h['use'][$t->id]))
+            ->map(fn ($t) => [
+                'id' => $t->id, 'q' => 0, 'unit_cost' => $t->unit_cost,
+                'weight' => $policies[$t->ved_class]->weight, 'coverage_k' => $policies[$t->ved_class]->coverage_k,
+                'history' => $h['use'][$t->id],
+            ])->values()->all();
+        $ids = array_flip(array_column($items, 'id'));
+
+        // The office's actual orders, by quarter index, from the delivery records it encoded.
+        $actual = [];
+        foreach ($records->whereNotNull('quantity_ordered') as $r) {
+            if (isset($index["{$r->year}-{$r->quarter}"], $ids[$r->resource_type_id])) {
+                $actual[(string) $index["{$r->year}-{$r->quarter}"]][$r->resource_type_id] = $r->quantity_ordered;
+            }
+        }
+        // Opening stock: what was on hand when the quarter before the first backtested one closed.
+        [$y, $q] = $h['quarters'][$start - 1];
+        $opening = $records->where('year', $y)->where('quarter', $q)->whereNotNull('quantity_available_at_close')
+            ->filter(fn ($r) => isset($ids[$r->resource_type_id]))
+            ->mapWithKeys(fn ($r) => [$r->resource_type_id => $r->quantity_available_at_close])->all();
+
         $payload = [
             'budget' => (float) $data['budget'],
             'budgets' => array_map(fn ($yq) => $budgets["{$yq[0]}-{$yq[1]}"]->budget_amount ?? null, $h['quarters']),
-            'typhoon_quarters' => $h['event_quarters'],
+            'start' => $start,
+            'typhoon_quarters' => array_keys(array_filter($h['event_tags'], fn ($tags) => array_intersect($tags, $typhoonTags))),
             'stockout_quarters' => $h['stockout_quarters'],
             'm' => (int) $policies->max('coverage_m'),
-            // ponytail: every rule starts the first backtested quarter with zero stock (the records
-            // don't hold opening stock per quarter); pass initial_stock once the office has it.
-            'items' => ResourceType::orderBy('name')->get()
-                ->filter(fn ($t) => $t->unit_cost && ! empty($h['use'][$t->id]))
-                ->map(fn ($t) => [
-                    'id' => $t->id, 'q' => 0, 'unit_cost' => $t->unit_cost,
-                    'weight' => $policies[$t->ved_class]->weight, 'coverage_k' => $policies[$t->ved_class]->coverage_k,
-                    'history' => $h['use'][$t->id],
-                ])->values()->all(),
+            // Items with no closing count start at zero; the page says how many had one.
+            'initial_stock' => (object) $opening,
+            'actual_orders' => (object) $actual,
+            'items' => $items,
         ];
         abort_if(! $payload['items'], 422, 'No item has both a unit cost and encoded history.');
 
         $backtest = Backtest::create([
             'budget' => $data['budget'],
             'quarters' => $h['quarters'],
-            'inputs' => $payload,
+            'inputs' => $payload + ['typhoon_tags' => $typhoonTags],
             'result' => $client->backtest($payload),
             'run_by' => $request->user()->id,
         ]);

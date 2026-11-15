@@ -58,6 +58,7 @@ class EvaluationTest extends TestCase
             ['/api/replenishment/runs', 'post', ['admin']],
             ['/api/replenishment/backtest', 'post', ['admin']],
             ['/api/replenishment/history/import', 'post', ['admin', 'logistics']],
+            ['/api/replenishment/records/deliveries/import', 'post', ['admin', 'logistics']],
             ['/api/stock/sync', 'post', ['admin', 'logistics']],
             ['/api/stock/verify', 'get', ['admin', 'logistics']],
             ['/api/stock/counts', 'post', ['admin', 'logistics']],

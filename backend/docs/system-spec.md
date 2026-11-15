@@ -279,13 +279,19 @@ For each quarter from the **5th encoded quarter onward**, build the order using 
 
 Compare five rules:
 
-1. The office's actual orders (where the records show them).
+1. The office's actual orders (where the records show them). They come from the Deliveries sheet of the data-request workbook (what arrived in a quarter is that quarter's order), imported with `php artisan records:import deliveries <file>` or the Policy and history page into `app_item_quarters`. Only quarters with a recorded order are scored; the others show "not recorded".
 2. The **flat 1.5 rule**, cut by the same percentage for every item to fit the budget.
-3. A **classical safety-stock rule**: target = average use + 1.65 standard deviations of quarterly use (a 95% service level), cut the same way. It is a comparison rule only; it is not part of the win-count target.
+3. A **classical safety-stock rule**: target = average use + 1.65 standard deviations of quarterly use (a 95% service level), cut the same way.
 4. The per-item multiplier.
 5. The scenario model.
 
 Report per quarter, **with typhoon quarters shown separately**, and mark stockout quarters, where use understates need. Report fill rate next to weighted shortage, and repeat the comparison with equal weights so the result does not rest on the VED weights.
+
+- **Typhoon quarters:** a quarter tagged with a named typhoon. The Admin ticks which event tags were typhoons on the Backtest page (all by default); the choice is stored with the run.
+- **Budget per quarter:** the recorded budget (`app_quarter_budgets`, also imported from the Budgets sheet with `records:import budgets`), else the cost of the office's actual order, else the budget entered on the Backtest page. Each row shows which one it used.
+- **Opening stock:** each rule starts the first backtested quarter with the stock on hand at the close of the quarter before it (Stock at quarter end sheet, `records:import stock`); items with no count start at zero, and the page says how many had one.
+- **Stockout quarters:** each rule's mean measures are reported over all quarters and again without the stockout quarters.
+- **Equal weights:** the win counts are repeated with every weight set to 1.
 
 With Dᵢₜ = actual use, qᵢₜ = start stock, xᵢₜ = order:
 
@@ -297,7 +303,7 @@ With Dᵢₜ = actual use, qᵢₜ = start stock, xᵢₜ = order:
 - **Feasibility**: every run is checked against budget, space and integrality; an infeasible run counts as a failure.
 - **Solver time** in ms, as items and scenarios grow.
 
-**Target:** the per-item multiplier and the scenario model **each** give a lower weighted shortage than the flat 1.5 rule in a **majority** of backtested quarters. Report the results as per-quarter differences and a win count.
+**Target:** the per-item multiplier and the scenario model **each** give a lower weighted shortage than **every comparison rule** (the office's actual orders, flat 1.5, and safety stock) in a **majority** of the backtested quarters in which both are scored. Report the results as per-quarter differences and a win/tie/loss count per pair.
 
 ### 4.9 Worked example (use as a solver test fixture)
 
@@ -428,7 +434,7 @@ Also required:
 | Performance               | A Stage 2 solve in **< 2 s** for 200 items and 12 scenarios; an 11-point budget curve in **< 20 s**; run to dashboard in **< 1 s**.                                                                                                                                                                    |
 | Explanation task (UAT)    | Logistics and R&P answer **≥ 80%** correctly: why an item was cut, what ₱20,000 more would change, and which limit mattered.                                                                                                                                                                           |
 | UAT tasks                 | File an ICS 213-RR request; lend and return an item; record offline and sync; run the solver and approve or reject a recommendation (Admin); export the quarterly report.                                                                                                                      |
-| Backtest                  | The multiplier and the scenario model each beat flat 1.5 on weighted shortage in a majority of quarters.                                                                                                                                                                                               |
+| Backtest                  | The multiplier and the scenario model each beat every comparison rule on weighted shortage in a majority of quarters.                                                                                                                                                                                               |
 | ISO/IEC 25010:2023 survey | Functional suitability, reliability, interaction capability and safety (fail safe) each reach **Very Acceptable** (weighted mean 4.21–5.00), with 15–20 respondents across the roles.                                                                                                              |
 
 ---

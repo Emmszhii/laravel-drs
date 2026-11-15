@@ -24,5 +24,5 @@ def budget_curve(payload: ReplenishmentRequest) -> dict:
 
 @router.post("/backtest")
 def backtest(payload: BacktestRequest) -> dict:
-    """Rolling-origin backtest: flat 1.5 vs per-item multiplier vs scenario model (and the office's own orders)."""
+    """Rolling-origin backtest: the two model forms against the office's actual orders, flat 1.5 and safety stock."""
     return replenishment.backtest(payload)

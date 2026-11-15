@@ -83,6 +83,8 @@ Route::middleware(['auth:sanctum', 'active'])->group(function () {
     // Logistics encodes: history, data-check flags, stock entries, releases, the borrowed-item logbook.
     Route::middleware(['role:logistics'])->group(function () {
         Route::post('/replenishment/history/import', [ReplenishmentController::class, 'importHistory']);
+        Route::post('/replenishment/records/{kind}/import', [ReplenishmentController::class, 'importRecords'])
+            ->whereIn('kind', \App\Services\Replenishment\QuarterRecordsImporter::KINDS);
         Route::post('/replenishment/flags/{flag}/resolve', [ReplenishmentController::class, 'resolveFlag']);
 
         Route::post('/ics-requests/{ics}/release', [IcsRequestController::class, 'release']);

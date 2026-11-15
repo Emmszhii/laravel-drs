@@ -10,6 +10,7 @@ use App\Models\ReplenishmentRun;
 use App\Models\ResourceType;
 use App\Models\User;
 use App\Models\VedPolicy;
+use App\Services\Replenishment\QuarterHistory;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -43,10 +44,20 @@ class ReplenishmentController extends Controller
         ]);
     }
 
-    public function backtest(Request $request): Response
+    public function backtest(Request $request, QuarterHistory $history): Response
     {
+        $latest = Backtest::latest()->first();
+        $inputs = $latest?->inputs ?? [];
+
         return Inertia::render('Replenishment/Backtest', [
-            'backtest' => Backtest::latest()->first()?->makeHidden('inputs'),
+            'backtest' => $latest?->makeHidden('inputs'),
+            // Every event tag encoded so far, for the Admin to say which were typhoons, and what the last run used.
+            'eventTags' => collect($history->build(now()->year + 1, 1)['event_tags'])->flatten()->unique()->sort()->values(),
+            'used' => $latest ? [
+                'typhoon_tags' => $inputs['typhoon_tags'] ?? null,
+                'items' => count($inputs['items'] ?? []),
+                'opening_stock_items' => count($inputs['initial_stock'] ?? []),
+            ] : null,
             'defaults' => $this->defaults(),
             'can' => $this->can($request->user()),
         ]);

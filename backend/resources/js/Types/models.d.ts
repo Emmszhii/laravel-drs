@@ -171,17 +171,32 @@ export interface BacktestRuleScore {
   solve_ms: number;
 }
 
+export type BacktestForm = "per_item_multiplier" | "scenario";
+export type BacktestMeasure = "weighted_shortage" | "fill_rate" | "items_ran_out" | "budget_used" | "stock_left_value";
+export type BacktestComparisons = Record<BacktestForm, Record<string, { wins: number; ties: number; losses: number; scored: number; majority: boolean }>>;
+
 export interface Backtest {
   id: string;
   budget: number;
   quarters: [number, number][];
   created_at: string;
   result: {
-    quarters: { t: number; budget: number; typhoon: boolean; stockout: boolean; rules: Record<string, BacktestRuleScore> }[];
+    quarters: {
+      t: number;
+      budget: number;
+      budget_source?: "recorded" | "actual_order_cost" | "entered";
+      typhoon: boolean;
+      stockout: boolean;
+      /** null: the office's order for this quarter is not recorded, so it is not scored. */
+      rules: Record<string, BacktestRuleScore | null>;
+    }[];
     summary: {
       backtested_quarters: number;
-      wins_vs_flat: Record<"per_item_multiplier" | "scenario", number>;
-      target_met: Record<"per_item_multiplier" | "scenario", boolean>;
+      /** Missing on backtests run before every comparison rule was counted. */
+      comparisons?: BacktestComparisons;
+      target_met: Record<BacktestForm, boolean>;
+      means?: Record<string, Record<"all" | "without_stockout", Record<BacktestMeasure, number | null>>>;
     };
+    equal_weights?: BacktestComparisons;
   };
 }

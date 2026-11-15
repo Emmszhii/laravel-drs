@@ -222,21 +222,47 @@ def test_backtest_scores_every_rule_from_the_fifth_quarter_on_earlier_quarters_o
         assert 0 <= m["fill_rate"] <= 1
     s = out["summary"]
     assert s["backtested_quarters"] == 8
-    assert set(s["wins_vs_flat"]) == {"per_item_multiplier", "scenario"}
-    assert s["target_met"]["scenario"] == (s["wins_vs_flat"]["scenario"] > 4)
+    assert set(s["comparisons"]) == {"per_item_multiplier", "scenario"}
+    c = s["comparisons"]["scenario"]
+    assert set(c) == {"flat_1_5", "safety_stock"}  # no office orders recorded in this fixture
+    assert all(v["wins"] + v["ties"] + v["losses"] == v["scored"] == 8 for v in c.values())
+    assert s["target_met"]["scenario"] == all(v["wins"] > 4 for v in c.values())
+
+
+def test_backtest_reports_means_without_stockout_quarters_and_equal_weights():
+    out = backtest(backtest_fixture())
+    m = out["summary"]["means"]["flat_1_5"]
+    rows = [r["rules"]["flat_1_5"]["weighted_shortage"] for r in out["quarters"]]
+    assert m["all"]["weighted_shortage"] == round(sum(rows) / 8, 4)
+    kept = [r["rules"]["flat_1_5"]["weighted_shortage"] for r in out["quarters"] if not r["stockout"]]
+    assert m["without_stockout"]["weighted_shortage"] == round(sum(kept) / 7, 4)
+    assert set(out["equal_weights"]) == {"per_item_multiplier", "scenario"}
 
 
 def test_backtest_includes_the_classical_safety_stock_rule():
     assert safety_stock_target([100, 110, 90, 120, 105]) == 122  # ceil(105 + 1.65 x 10)
     out = backtest(backtest_fixture())
     assert all(row["rules"]["safety_stock"]["feasible"] for row in out["quarters"])
-    assert "safety_stock" not in out["summary"]["wins_vs_flat"]  # a comparison rule, not part of the target
+    assert "safety_stock" in out["summary"]["comparisons"]["scenario"]  # a comparison rule the forms must beat
 
 
 def test_backtest_includes_the_offices_actual_orders_when_recorded():
     req = backtest_fixture().model_copy(update={"actual_orders": {"4": {"food": 50}}})
-    row = backtest(req)["quarters"][0]
-    assert row["rules"]["office_actual"]["budget_used"] == round(50 * 500 / 60_000, 4)
+    out = backtest(req)
+    row = out["quarters"][0]
+    assert row["rules"]["office_actual"]["budget_used"] == 1.0  # no recorded budget: the order's own cost
+    # Unrecorded quarters are not scored as zero orders; they are left out of the comparison.
+    assert all(r["rules"]["office_actual"] is None for r in out["quarters"][1:])
+    assert out["summary"]["comparisons"]["scenario"]["office_actual"]["scored"] == 1
+
+
+def test_backtest_budget_falls_back_to_the_cost_of_the_offices_order():
+    req = backtest_fixture().model_copy(update={
+        "budgets": [None] * 4 + [None, 70_000], "actual_orders": {"4": {"food": 50, "paper": 4}}})
+    rows = backtest(req)["quarters"]
+    assert (rows[0]["budget"], rows[0]["budget_source"]) == (50 * 500 + 4 * 250, "actual_order_cost")
+    assert (rows[1]["budget"], rows[1]["budget_source"]) == (70_000, "recorded")
+    assert (rows[2]["budget"], rows[2]["budget_source"]) == (60_000, "entered")
 
 
 def test_backtest_endpoint_round_trip():

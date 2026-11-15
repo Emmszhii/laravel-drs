@@ -150,6 +150,55 @@ class ReplenishmentTest extends TestCase
         $this->assertSame(1, \App\Models\Backtest::sole()->result['summary']['backtested_quarters']);
     }
 
+    public function test_backtest_sends_the_offices_orders_opening_stock_and_only_the_chosen_typhoon_tags(): void
+    {
+        Http::fake(['*/api/v1/replenishment/backtest' => Http::response(['quarters' => [], 'summary' => ['backtested_quarters' => 1]])]);
+        $food = $this->food();
+        foreach (['2025-01-10', '2025-04-10', '2025-07-10', '2025-10-10', '2026-01-10'] as $i => $date) {
+            $this->line($food, $date, 100 + $i, [1 => 'Habagat', 2 => 'Kristine'][$i] ?? null);
+        }
+        // Stock at the close of 2025 Q4 (index 3) opens the first backtested quarter; 2026 Q1 has a recorded order.
+        \App\Models\ItemQuarter::create(['resource_type_id' => $food->id, 'year' => 2025, 'quarter' => 4, 'quantity_available_at_close' => 40]);
+        \App\Models\ItemQuarter::create(['resource_type_id' => $food->id, 'year' => 2026, 'quarter' => 1, 'quantity_ordered' => 90]);
+
+        $this->actingAs($this->admin())->postJson('/api/replenishment/backtest', ['budget' => 1000, 'typhoon_tags' => ['Kristine']])->assertCreated();
+
+        // Both are sent as JSON objects ({} when empty), so compare their decoded form.
+        Http::assertSent(fn (HttpRequest $req) => $req['typhoon_quarters'] === [2]
+            && json_decode(json_encode($req['initial_stock']), true) === [$food->id => 40]
+            && json_decode(json_encode($req['actual_orders']), true) === [4 => [$food->id => 90]]);
+        $this->assertSame(['Kristine'], \App\Models\Backtest::sole()->inputs['typhoon_tags']);
+    }
+
+    public function test_quarter_records_import_deliveries_stock_and_budgets_and_reimport_replaces(): void
+    {
+        $this->food();
+        $import = fn (string $kind, string $body) => $this->actingAs($this->logistics())->post(
+            "/api/replenishment/records/{$kind}/import",
+            ['file' => UploadedFile::fake()->createWithContent('sheet.csv', "\u{FEFF}".$body)],
+            ['Accept' => 'application/json'],
+        );
+
+        $import('deliveries', "Date received,Item,Standard unit,Quantity received,Unit price (₱),Document no.,Notes\n"
+            ."2025-01-05,Family food packs,packs,100,500,IAR-1,\n2025-02-05,Family food packs,packs,20,500,IAR-2,\n,,,,,,\n")->assertCreated();
+        $this->assertSame(120, \App\Models\ItemQuarter::sole()->quantity_ordered);
+        // A corrected sheet replaces the quarter instead of adding to it.
+        $import('deliveries', "Date received,Item,Standard unit,Quantity received\n2025-03-01,Family food packs,packs,70\n")->assertCreated();
+        $this->assertSame(70, \App\Models\ItemQuarter::sole()->quantity_ordered);
+
+        $import('stock', "Item,Standard unit,2025 Q1,2025 Q2\nFamily food packs,packs,35,\n")->assertCreated();
+        $row = \App\Models\ItemQuarter::sole();
+        $this->assertSame([70, 35], [$row->quantity_ordered, $row->quantity_available_at_close]); // blank Q2 = not counted
+
+        $import('budgets', "Year,Quarter,Budget for supplies (₱),Where the figure comes from\n2025,Q1,\"150,000\",LDRRMF plan\n2025,Q2,,\n")->assertCreated();
+        $this->assertSame(150000.0, \App\Models\QuarterBudget::sole()->budget_amount);
+
+        // All-or-nothing: one bad row rejects the file.
+        $import('stock', "Item,Standard unit,2025 Q3\nFamily food packs,boxes,10\n")->assertStatus(422)
+            ->assertJsonPath('errors.0', 'Row 2: unit must be "packs" (convert mixed units first)');
+        $this->assertNull(\App\Models\ItemQuarter::where('quarter', 3)->first());
+    }
+
     public function test_backtest_needs_five_encoded_quarters(): void
     {
         $food = $this->food();

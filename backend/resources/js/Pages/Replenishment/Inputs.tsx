@@ -31,8 +31,8 @@ export default function ReplenishmentInputs({ policies, flags, can }: Props) {
             </p>
           )}
           {can.encode
-            ? <HistoryUpload onDone={() => router.reload({ only: ["flags"] })} />
-            : <p className="panel p-4 text-sm text-[var(--text-secondary)]">Logistics encodes the request history here.</p>}
+            ? UPLOADS.map((u) => <CsvUpload key={u.url} {...u} onDone={() => router.reload({ only: ["flags"] })} />)
+            : <p className="panel p-4 text-sm text-[var(--text-secondary)]">Logistics encodes the request history and the office's quarterly records here.</p>}
         </div>
       </div>
     </div>
@@ -130,7 +130,29 @@ function VedPolicyForm({ policies, canEdit, onDone }: { policies: VedPolicy[]; c
   );
 }
 
-function HistoryUpload({ onDone }: { onDone: () => void }) {
+type Upload = { url: string; title: string; noun: string; help: string };
+
+/** The request history, then the data-request workbook's three quarterly sheets, each saved as CSV. */
+const UPLOADS: Upload[] = [
+  {
+    url: "/api/replenishment/history/import", title: "Encode history (CSV)", noun: "history line(s)",
+    help: "One row per request line, with the columns date, item, standard_unit, quantity_requested, quantity_released, purpose, event_tag and requesting_division. A file with any bad row is rejected whole.",
+  },
+  {
+    url: "/api/replenishment/records/deliveries/import", title: "Deliveries: the office's actual orders (CSV)", noun: "delivery row(s)",
+    help: "The Deliveries sheet: Date received, Item, Standard unit, Quantity received. What arrived in a quarter is that quarter's order; importing a quarter again replaces it.",
+  },
+  {
+    url: "/api/replenishment/records/stock/import", title: "Stock at quarter end (CSV)", noun: "quarter count(s)",
+    help: "The Stock at quarter end sheet: Item, Standard unit, then one column per quarter named like 2023 Q3. Blank means not counted. The backtest opens with these counts.",
+  },
+  {
+    url: "/api/replenishment/records/budgets/import", title: "Past budgets (CSV)", noun: "budget(s)",
+    help: "The Budgets sheet: Year, Quarter, Budget for supplies. Blank means not recorded; the backtest then uses the cost of the office's own order.",
+  },
+];
+
+function CsvUpload({ url, title, noun, help, onDone }: Upload & { onDone: () => void }) {
   const input = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
@@ -146,8 +168,8 @@ function HistoryUpload({ onDone }: { onDone: () => void }) {
     setBusy(true);
     setErrors([]);
     try {
-      const res = await http.post("/api/replenishment/history/import", body);
-      toast.success(`Imported ${res.data.imported} history line(s).`);
+      const res = await http.post(url, body);
+      toast.success(`Imported ${res.data.imported} ${noun}.`);
       if (input.current) {
         input.current.value = "";
       }
@@ -165,13 +187,10 @@ function HistoryUpload({ onDone }: { onDone: () => void }) {
   return (
     <form onSubmit={upload} className="panel space-y-3 p-4">
       <div>
-        <h2 className="text-sm font-semibold">Encode history (CSV)</h2>
-        <p className="mt-1 text-xs text-[var(--text-secondary)]">
-          One row per request line, with the columns date, item, standard_unit, quantity_requested, quantity_released,
-          purpose, event_tag and requesting_division. A file with any bad row is rejected whole.
-        </p>
+        <h2 className="text-sm font-semibold">{title}</h2>
+        <p className="mt-1 text-xs text-[var(--text-secondary)]">{help}</p>
       </div>
-      <input ref={input} type="file" accept=".csv,text/csv" required aria-label="History CSV file"
+      <input ref={input} type="file" accept=".csv,text/csv" required aria-label={`${title} file`}
         className="w-full text-sm file:mr-3 file:h-9 file:cursor-pointer file:border file:border-line-strong file:bg-transparent file:px-3 file:text-sm file:text-[var(--text-primary)]" />
       <Button type="submit" disabled={busy}>{busy ? "Importing…" : "Import"}</Button>
       {errors.length > 0 && (
