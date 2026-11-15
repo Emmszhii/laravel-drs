@@ -16,3 +16,11 @@ Thumbs.db
 
 # MCP browser session logs
 .playwright-mcp/
+
+# Defense-prep videos: generated voice clips, raw recordings, screenshots and the large read-aloud videos stay local
+backend/docs/defense-prep/*/voice/
+backend/docs/defense-prep/*/raw/
+backend/docs/defense-prep/*/shots/
+backend/docs/defense-prep/pres-video/*.mp4
+backend/docs/defense-prep/reviewer-video/*.mp4
+backend/docs/defense-prep/qa-video/*.mp4

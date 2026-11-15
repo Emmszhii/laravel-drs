@@ -6,9 +6,10 @@ import { chromium } from 'file:///D:/laravel-inertia/laravel-drs/backend/node_mo
 import fs from 'node:fs';
 
 const DIR = new URL('./', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1');
-const input = `${DIR}raw/demo.webm`;
-const output = `${DIR}DisasterResource-demo.mp4`;
-const KBPS = 700;
+// Optional: node to-mp4.mjs <input.webm> <output.mp4> (defaults are the demo video's).
+const input = process.argv[2] ?? `${DIR}raw/demo.webm`;
+const output = process.argv[3] ?? `${DIR}DisasterResource-demo.mp4`;
+const KBPS = +(process.env.KBPS || 700);
 
 // ---- 1. WebM -> fragmented H.264 MP4, played once in Edge ----
 const webm = fs.readFileSync(input);

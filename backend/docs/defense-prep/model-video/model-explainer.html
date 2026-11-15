@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>How the DisasterResource+ Model Works</title>
+<style>
+/* 1280x720 explainer, recorded to video. Numbers come from the manuscript (Model Building, Explanation Layer,
+   Model Evaluation, Worked Example, Tables 9-12). */
+:root{--navy:#1b2a6b;--ink:#1f2937;--muted:#5b6474;--line:#d7dde6;--bg:#f7f8fb;--panel:#fff;--amber:#e8a317;--red:#d64545;--green:#2f9e5b;--blue:#2f6fd6;--grey:#b9c0cc;--soft:#eef2fb}
+*{box-sizing:border-box}
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+#head{position:absolute;left:0;top:0;width:1280px;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:var(--navy);color:#fff}
+#chap{font-size:24px;font-weight:700;letter-spacing:.2px}
+#step{font-size:18px;opacity:.85}
+#stage{position:absolute;left:0;top:64px;width:1280px;height:536px;padding:26px 48px}
+#capbar{position:absolute;left:0;top:600px;width:1280px;height:120px;background:#fff;border-top:3px solid var(--amber);display:flex;align-items:center;padding:0 48px}
+#cap{font-size:27px;line-height:1.35;transition:opacity .25s}
+#cap b{color:var(--navy)}
+.fade{opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.in{opacity:1;transform:none}
+h1{font-size:54px;color:var(--navy);margin:70px 0 18px}
+.sub{font-size:30px;color:var(--muted);line-height:1.4}
+.grid{display:grid;gap:16px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card h3{margin:0 0 6px;font-size:22px;color:var(--navy)}
+.card p{margin:0;font-size:19px;color:var(--muted);line-height:1.35}
+.num{font-size:40px;font-weight:700;color:var(--navy)}
+table{border-collapse:collapse;font-size:21px;background:#fff}
+th,td{border:1px solid var(--line);padding:8px 12px;text-align:right}
+th{background:var(--soft);color:var(--navy);font-size:18px}
+td:first-child,th:first-child{text-align:left}
+.hl{background:#fff6dc}
+.pill{display:inline-block;padding:4px 12px;border-radius:999px;font-size:18px;font-weight:700}
+.ok{background:#e3f4ea;color:var(--green)} .bad{background:#fbe5e5;color:var(--red)} .mid{background:#fff1d0;color:#9a6a00} .info{background:#e6eefc;color:var(--blue)}
+.bar{transition:height .9s,width .9s,left .9s,bottom .9s,background .4s,opacity .5s}
+.lbl{font-size:16px;color:var(--muted)}
+.big{font-size:26px}
+.arrow{font-size:40px;color:var(--grey);align-self:center;text-align:center}
+.flow{display:flex;gap:14px;align-items:stretch}
+.flow .card{flex:1}
+.tag{font-size:15px;color:#fff;background:var(--red);padding:2px 8px;border-radius:6px}
+</style>
+</head>
+<body>
+<div id="head"><div id="chap"></div><div id="step"></div></div>
+<div id="stage"></div>
+<div id="capbar"><div id="cap"></div></div>
+<script>
+const FAST = /fast/.test(location.search);
+const SP = new URLSearchParams(location.search).get("speed");
+const T = FAST ? 0.04 : SP ? +SP : 1;
+const S = document.getElementById('stage'), C = document.getElementById('cap');
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms * T));
+const peso = (n) => '₱' + Math.round(n).toLocaleString('en-US');
+let stepNo = 0; const STEPS = 12;
+function chapter(t) { stepNo++; document.getElementById('chap').textContent = t; document.getElementById('step').textContent = stepNo ? `Part ${stepNo} of ${STEPS}` : ''; }
+// Narration: window.__voice[i] is the spoken length (ms) of caption i; each caption stays up until its line is spoken.
+window.__caps = []; window.__capTimes = [];
+async function cap(t, ms) {
+  C.style.opacity = 0; await sleep(250); C.innerHTML = t; C.style.opacity = 1;
+  const i = window.__caps.length; window.__caps.push(C.textContent); window.__capTimes.push(performance.timeOrigin + performance.now());
+  const v = window.__voice && window.__voice[i];
+  await sleep(v ? Math.max(ms, v + 700) : ms);
+}
+function show(html) { S.innerHTML = html; }
+async function reveal(sel, gap = 500) { for (const el of S.querySelectorAll(sel)) { el.classList.add('in'); await sleep(gap); } }
+const $ = (q) => S.querySelector(q);
+
+// Worked example (Tables 10 and 11)
+const ITEMS = [
+  { n: 'Family food packs', avg: 320, tgt: 480, stock: 150, need: 330, cost: 500 },
+  { n: 'Hygiene kits', avg: 200, tgt: 300, stock: 60, need: 240, cost: 350 },
+  { n: 'Bottled water (cases)', avg: 400, tgt: 600, stock: 250, need: 350, cost: 150 },
+  { n: 'Medical kits', avg: 85, tgt: 128, stock: 200, need: 0, cost: null },
+];
+const METHODS = [
+  { n: 'Least total shortage (Stage 1)', o: [127, 240, 350], spent: 200000 },
+  { n: 'Even spread', o: [218, 170, 210], spent: 200000 },
+  { n: 'Same % cut', o: [218, 159, 232], spent: 199450 },
+];
+// Illustrative food-pack history: average 320, second-highest 419 (= 1.31 x average, the Table 12 note's multiplier).
+const HIST = [260, 300, 241, 520, 290, 419, 250, 280];
+const QLAB = ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8'];
+// Stage 1 on the worked example: weighted shortfall share sum(w*u/T), solved greedily by weight per peso of target
+// (exact for this single-budget problem with no space limit). At 200,000 and equal weights it gives Table 11: 127/240/350.
+function stage1(budget, w = [1, 1, 1, 1]) {
+  const it = ITEMS.map((x, i) => ({ i, x, max: Math.max(0, x.tgt - x.stock), r: x.cost ? w[i] / (x.tgt * x.cost) : 0 }))
+    .filter((o) => o.max > 0).sort((a, b) => b.r - a.r);
+  const o = [0, 0, 0, 0]; let left = budget;
+  for (const k of it) { const n = Math.min(k.max, Math.floor(left / k.x.cost)); o[k.i] = n; left -= n * k.x.cost; }
+  const short = ITEMS.reduce((a, x, i) => a + w[i] * Math.max(0, x.tgt - x.stock - o[i]) / x.tgt, 0);
+  return { o, spent: budget - left, short };
+}
+const TYPHOON = 3;
+
+async function run() {
+  // 0. Title
+  document.getElementById('chap').textContent = 'DisasterResource+';
+  show(`<h1 class="fade">What does the model do?</h1>
+    <div class="sub fade">Every quarter it answers one question:<br><b style="color:var(--ink)">how much of each item should the office buy, within the budget, and why?</b></div>
+    <div class="sub fade" style="margin-top:30px;font-size:22px">Numbers are the manuscript's illustrative worked example (Tables 10–12), not CDRRMO data.</div>`);
+  await reveal('.fade', 700);
+  await cap('This video walks through the replenishment model one step at a time.', 5200);
+
+  // 1. The problem
+  chapter('The problem: the budget is smaller than the need');
+  show(`<div style="display:flex;gap:40px;align-items:flex-end;height:400px;margin-top:20px">
+      <div style="flex:1;text-align:center"><div class="lbl big">Cost to reach every target</div>
+        <div id="needBar" class="bar" style="height:0;background:var(--red);border-radius:8px 8px 0 0;margin:10px auto 0;width:260px"></div>
+        <div class="num" id="needN" style="opacity:0">₱301,500</div></div>
+      <div style="flex:1;text-align:center"><div class="lbl big">Quarter's budget</div>
+        <div id="budBar" class="bar" style="height:0;background:var(--green);border-radius:8px 8px 0 0;margin:10px auto 0;width:260px"></div>
+        <div class="num" id="budN" style="opacity:0">₱200,000</div></div>
+      <div style="flex:1.1" class="card fade" id="gap"><h3>Unfunded</h3><div class="num" style="color:var(--red)">₱101,500</div>
+        <p>Something must be cut. The model decides <b>what</b>, and says <b>why</b>.</p></div></div>`);
+  await sleep(300);
+  $('#needBar').style.height = '300px'; $('#needN').style.opacity = 1; await sleep(900);
+  $('#budBar').style.height = '199px'; $('#budN').style.opacity = 1;
+  await cap('Reaching every item\'s target would cost <b>₱301,500</b>, but the budget is <b>₱200,000</b>.', 4200);
+  $('#gap').classList.add('in');
+  await cap('So <b>₱101,500</b> of need is unfunded. Someone must choose what to cut. That choice is the model\'s job.', 5200);
+
+  // 2. Inputs
+  chapter('Seven inputs');
+  const ins = [['Past use', 'Each item\'s quarterly use, requested and released'], ['Current stock', 'Sum of stock entries, less reserved'], ['Unit prices', 'Latest unit cost per item'], ['Budget', 'Entered by the Head of Office'], ['Depot space', 'Free space and space per unit'], ['VED class', 'Vital, essential, or desirable'], ['Coverage and weight', 'Per VED class (Table 9)']];
+  show(`<div class="grid" style="grid-template-columns:repeat(4,1fr);margin-top:14px">${ins.map(([h, p], i) => `<div class="card fade"><div class="lbl">${i + 1}</div><h3>${h}</h3><p>${p}</p></div>`).join('')}
+    <div class="card fade" style="background:var(--soft)"><h3>Output</h3><p>One order per item, with a reason, plus a budget curve</p></div></div>`);
+  await reveal('.fade', 450);
+  await cap('The model needs seven inputs. Logistics proposes the VED classes, coverage levels and weights; the Head of Office confirms them before any run.', 6500);
+
+  // 3. Flat 1.5 rule
+  chapter('Starting point: a target for each item');
+  show(`<table style="margin-top:6px;width:100%"><tr><th>Item</th><th>Avg. use / quarter</th><th>Target</th><th>Stock</th><th>Needed</th><th>Unit cost</th><th>Cost</th></tr>
+    ${ITEMS.map((x, i) => `<tr class="fade" id="r${i}"><td>${x.n}</td><td>${x.avg}</td><td>${x.tgt}</td><td>${x.stock}</td><td>${x.need}</td><td>${x.cost ? peso(x.cost) : '–'}</td><td>${peso(x.need * (x.cost || 0))}</td></tr>`).join('')}
+    <tr class="fade hl"><td><b>Total</b></td><td></td><td></td><td></td><td></td><td></td><td><b>₱301,500</b></td></tr></table>
+    <div class="card fade" style="margin-top:18px"><p class="big">Target = 1.5 × average use (the flat rule). &nbsp; Needed = target − stock. &nbsp; Medical kits already have enough.</p></div>`);
+  await reveal('.fade', 600);
+  await cap('First, each item needs a <b>target</b>. The simplest is the flat rule: 1.5 times average use. Stock already on hand counts toward it.', 7000);
+
+  // 4. Three ways to spend
+  chapter('How to spend ₱200,000? Three ways');
+  const panel = (m, mi) => `<div class="card fade" style="flex:1"><h3 style="font-size:20px">${m.n}</h3>
+    ${ITEMS.slice(0, 3).map((x, i) => { const reach = Math.min(1, (x.stock + m.o[i]) / x.tgt); const short = Math.round((1 - reach) * 100);
+      return `<div style="margin:16px 0 4px;font-size:17px">${x.n} <span style="float:right" class="pill ${short > 30 ? 'bad' : short > 0 ? 'mid' : 'ok'}">${short}% short</span></div>
+      <div style="position:relative;height:26px;background:#f1f3f7;border:1px solid var(--line);border-radius:6px;overflow:hidden">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:${x.stock / x.tgt * 100}%;background:var(--grey)"></div>
+        <div class="bar m${mi}" data-w="${(reach - x.stock / x.tgt) * 100}" style="position:absolute;left:${x.stock / x.tgt * 100}%;top:0;bottom:0;width:0;background:var(--blue)"></div></div>
+      <div class="lbl">order ${m.o[i]}</div>`; }).join('')}
+    <div style="margin-top:10px;font-size:18px">Spent: <b>${peso(m.spent)}</b></div></div>`;
+  show(`<div class="flow">${METHODS.map(panel).join('')}</div>
+    <div class="lbl" style="margin-top:8px"><span style="display:inline-block;width:14px;height:14px;background:var(--grey)"></span> stock on hand &nbsp; <span style="display:inline-block;width:14px;height:14px;background:var(--blue)"></span> order &nbsp; (bar = item's target)</div>`);
+  await reveal('.fade', 400);
+  for (let mi = 0; mi < 3; mi++) { S.querySelectorAll('.m' + mi).forEach((b) => (b.style.width = b.dataset.w + '%')); await sleep(900); }
+  await cap('Same money, three ways to spend it (Table 11). <b>Least total shortage</b> funds the items that close the most shortage per peso first: water, then hygiene kits.', 7600);
+  await cap('That leaves food packs <b>42% short</b>. The <b>weights</b> are the office\'s control: with the Vital weight of 3, food packs would be funded first.', 7600);
+
+  // 5. Stage 1
+  chapter('Stage 1 · Per-item multiplier');
+  const maxH = 560, scale = 300 / maxH;
+  const bars = (lineAt) => `<div style="position:relative;height:330px;margin:4px 0 0 60px;width:760px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink)">
+      ${HIST.map((v, i) => `<div class="bar hb" id="hb${i}" style="position:absolute;bottom:0;left:${20 + i * 92}px;width:64px;height:0;background:${i === TYPHOON ? 'var(--red)' : 'var(--blue)'};border-radius:5px 5px 0 0" data-h="${v * scale}"></div>
+      <div style="position:absolute;bottom:-28px;left:${20 + i * 92}px;width:64px;text-align:center" class="lbl">${QLAB[i]}</div>
+      <div class="hv" style="position:absolute;bottom:${v * scale + 6}px;left:${20 + i * 92}px;width:64px;text-align:center;font-size:17px;opacity:0;transition:opacity .5s">${v}</div>`).join('')}
+      <div id="hline" class="bar" style="position:absolute;left:0;right:0;bottom:0;height:0;border-top:3px dashed var(--amber);opacity:0"></div>
+      <div id="hlab" style="position:absolute;left:-62px;width:56px;text-align:right;line-height:1.05;font-size:15px;font-weight:700;color:#9a6a00;opacity:0;transition:opacity .5s,bottom .9s"></div>
+    </div>`;
+  show(`<div style="display:flex;gap:24px"><div>${bars()}<div class="lbl" style="margin:34px 0 0 60px">Family food packs, last 8 quarters (illustrative history, average 320). <span class="tag">Q4 = typhoon</span></div></div>
+    <div style="flex:1;margin-top:10px" class="grid"><div class="card fade"><h3>Covering level by VED class</h3><p><b>Vital</b>: highest quarter (8 of 8)<br><b>Essential</b>: 2nd highest (7 of 8)<br><b>Desirable</b>: 3rd highest (6 of 8)</p></div>
+    <div class="card fade" id="mult"><h3>Food packs: Essential</h3><p>Target = 2nd highest = <b>419</b><br>= <b>1.31 ×</b> average use</p></div></div></div>`);
+  await sleep(300);
+  for (let i = 0; i < 8; i++) { $('#hb' + i).style.height = $('#hb' + i).dataset.h + 'px'; await sleep(180); }
+  S.querySelectorAll('.hv').forEach((e) => (e.style.opacity = 1));
+  await cap('Stage 1 does not use one factor for every item. It looks at <b>each item\'s own past quarters</b>.', 5200);
+  $('.fade').classList.add('in');
+  await cap('The VED class sets how many of the last 8 quarters the target must cover. Essential items cover 7 of 8: the <b>second-highest</b> quarter.', 6800);
+  const L = $('#hline'), lab = $('#hlab');
+  L.style.opacity = 1; L.style.bottom = 419 * scale + 'px'; lab.style.bottom = 419 * scale - 16 + 'px'; lab.innerHTML = 'Target<br>419'; lab.style.opacity = 1;
+  $('#mult').classList.add('in');
+  await cap('For food packs that is <b>419</b>, or 1.31 times average use. That is the item\'s own multiplier. Medical kits got 1.12, water 1.30.', 6800);
+  await cap('Notice the <b>typhoon quarter (520) is left out</b> by design. Then Stage 1 picks whole-number orders that minimize weighted shortage below the targets, within budget and depot space.', 8200);
+
+  // 6. Stage 2
+  chapter('Stage 2 · Scenario model');
+  show(`<div style="display:flex;gap:24px"><div>${bars()}<div class="lbl" style="margin:34px 0 0 60px">Each past quarter = one possible next quarter, each with a 1-in-8 chance.</div></div>
+    <div style="flex:1;margin-top:10px" class="grid"><div class="card"><h3>Stock after ordering</h3><div class="num" id="lvl">150</div><p>food packs</p></div>
+    <div class="card"><h3>Average shortage</h3><div class="num" id="avgS" style="color:var(--red)">–</div><p>in quarters of average use, over all 8 scenarios</p></div></div></div>`);
+  for (let i = 0; i < 8; i++) { $('#hb' + i).style.height = $('#hb' + i).dataset.h + 'px'; }
+  S.querySelectorAll('.hv').forEach((e) => (e.style.opacity = 1));
+  await cap('Stage 2 sets <b>no single target</b>. It treats each of the 8 past quarters, including the typhoon, as an equally likely next quarter.', 6400);
+  const setLevel = async (lv, ms) => {
+    const L2 = $('#hline'); L2.style.opacity = 1; L2.style.bottom = lv * scale + 'px';
+    const lab2 = $('#hlab'); lab2.style.opacity = 1; lab2.style.bottom = lv * scale - 16 + 'px'; lab2.innerHTML = 'Stock<br>' + lv;
+    HIST.forEach((v, i) => ($('#hb' + i).style.background = v > lv ? 'var(--red)' : 'var(--green)'));
+    const s = HIST.reduce((a, v) => a + Math.max(0, v - lv), 0) / 8 / 320;
+    $('#lvl').textContent = lv; $('#avgS').textContent = s.toFixed(2);
+    await sleep(ms);
+  };
+  await setLevel(150, 600);
+  await cap('With only the 150 packs in stock, every scenario runs short (red). Average shortage: about half a quarter of use.', 6000);
+  await setLevel(277, 600);
+  await cap('Ordering 127 more brings stock to 277. Fewer scenarios run short, and the average shortage falls.', 5600);
+  await setLevel(419, 600);
+  await cap('At 419, only the typhoon scenario runs short. The typhoon still counts, instead of being averaged away.', 5600);
+  await setLevel(520, 600);
+  await cap('Covering the typhoon too costs more. The model weighs this for <b>every item at once</b>, within the budget, and picks the orders with the lowest average weighted shortage.', 8200);
+
+  // 7. Compare rules (Table 12)
+  chapter('Which rule leaves the least shortage?');
+  const T12 = { b: [150, 200, 250, 300, 350], flat: [0.88, 0.53, 0.37, 0.29, 0.29], mult: [0.68, 0.5, 0.41, 0.41, 0.41], scen: [0.68, 0.46, 0.28, 0.15, 0.07] };
+  const X = (i) => 100 + i * 160, Y = (v) => 400 - v * 360;
+  const path = (a) => a.map((v, i) => `${i ? 'L' : 'M'}${X(i)},${Y(v)}`).join(' ');
+  const ser = [['flat', 'Flat 1.5', '#8a94a6'], ['mult', 'Per-item multiplier (Stage 1)', '#2f6fd6'], ['scen', 'Scenario model (Stage 2)', '#2f9e5b']];
+  show(`<div style="display:flex;gap:20px"><svg width="800" height="470" viewBox="0 0 800 470">
+      <line x1="60" y1="400" x2="790" y2="400" stroke="#1f2937" stroke-width="2"/><line x1="60" y1="20" x2="60" y2="400" stroke="#1f2937" stroke-width="2"/>
+      ${[0, 0.25, 0.5, 0.75, 1].map((v) => `<text x="50" y="${Y(v) + 6}" font-size="16" text-anchor="end" fill="#5b6474">${v.toFixed(2)}</text><line x1="60" x2="790" y1="${Y(v)}" y2="${Y(v)}" stroke="#e6e9ef"/>`).join('')}
+      ${T12.b.map((b, i) => `<text x="${X(i)}" y="430" font-size="17" text-anchor="middle" fill="#5b6474">₱${b},000</text>`).join('')}
+      <text x="420" y="462" font-size="17" text-anchor="middle" fill="#5b6474">Budget</text>
+      ${ser.map(([k, , c]) => `<path class="ln" id="ln-${k}" d="${path(T12[k])}" fill="none" stroke="${c}" stroke-width="5" stroke-linecap="round" style="stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 1.6s"/>
+        ${T12[k].map((v, i) => `<circle class="dot-${k}" cx="${X(i)}" cy="${Y(v)}" r="6" fill="${c}" style="opacity:0;transition:opacity .4s"/>`).join('')}`).join('')}
+    </svg>
+    <div class="grid" style="flex:1;align-content:start;margin-top:20px">${ser.map(([k, n, c]) => `<div class="card fade" id="lg-${k}"><h3 style="color:${c}">${n}</h3></div>`).join('')}
+      <div class="lbl">Expected shortage, in quarters of average use (lower is better). Table 12: illustrative, in-sample.</div></div></div>`);
+  for (const [k] of ser) { $('#ln-' + k).style.strokeDashoffset = 0; S.querySelectorAll('.dot-' + k).forEach((d) => (d.style.opacity = 1)); $('#lg-' + k).classList.add('in'); await sleep(1700); }
+  await cap('In the worked example, the scenario model gives the least or equal-least shortage <b>at every budget</b>.', 6200);
+  await cap('From ₱250,000 up the flat rule beats Stage 1, because its higher targets partly cover the typhoon quarter that Stage 1 leaves out.', 6800);
+  await cap('These numbers are illustrative only. The real evidence will be the <b>backtest on the office\'s own records</b>.', 5600);
+
+  // 8. Reasons
+  chapter('Explanation layer · a reason for every item');
+  const RS = [['Bottled water (cases)', 'Fully covered', 'ok'], ['Hygiene kits', 'Fully covered', 'ok'], ['Medical kits', 'Not ordered: current stock already covers it', 'info'], ['Family food packs', 'Partly covered: the budget ran out', 'bad']];
+  show(`<div class="grid" style="grid-template-columns:1fr 1fr;gap:14px">${RS.map(([n, r, c]) => `<div class="card fade" style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">${n}</h3><span class="pill ${c}">${r}</span></div>`).join('')}</div>
+    <div class="card fade" style="margin-top:18px"><h3>All six reasons</h3><p style="columns:2;font-size:18px">Fully covered<br>Not ordered: current stock already covers it<br>Partly covered: the budget ran out<br>Limited by depot space<br>Partly covered: the solver stopped early<br>No computed order: set manually</p></div>`);
+  await reveal('.fade', 600);
+  await cap('Every item gets <b>one reason, read from the solution</b>: the system checks which limit stopped the item from reaching its target. Nothing is written by hand.', 7400);
+  await cap('So when food packs are cut, the Head of Office sees exactly why: <b>the budget ran out</b>.', 5200);
+
+  // 9. Budget curve
+  chapter('Budget curve · what more money would buy');
+  const lv = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+  const curve = lv.map((p) => stage1(200000 * p / 100).short);
+  const yv = (p) => curve[lv.indexOf(p)] / 1.6;
+  const BX = (i) => 80 + i * 62, BY = (v) => 380 - v * 330;
+  show(`<div style="display:flex;gap:20px"><svg width="780" height="450" viewBox="0 0 780 450">
+      <line x1="60" y1="380" x2="770" y2="380" stroke="#1f2937" stroke-width="2"/><line x1="60" y1="30" x2="60" y2="380" stroke="#1f2937" stroke-width="2"/>
+      ${lv.map((p, i) => `<text x="${BX(i)}" y="408" font-size="15" text-anchor="middle" fill="#5b6474">${p}%</text>`).join('')}
+      <text x="415" y="440" font-size="17" text-anchor="middle" fill="#5b6474">Budget level (100% = entered budget)</text>
+      <text x="40" y="200" font-size="17" fill="#5b6474" transform="rotate(-90 40 200)" text-anchor="middle">Shortage</text>
+      ${lv.map((p, i) => `<circle class="bc" cx="${BX(i)}" cy="${BY(yv(p))}" r="8" fill="${p === 100 ? '#e8a317' : '#2f6fd6'}" style="opacity:0;transition:opacity .3s"/>`).join('')}
+      <path id="bcl" d="${lv.map((p, i) => `${i ? 'L' : 'M'}${BX(i)},${BY(yv(p))}`).join(' ')}" fill="none" stroke="#2f6fd6" stroke-width="3" style="stroke-dasharray:1000;stroke-dashoffset:1000;transition:stroke-dashoffset 2s"/>
+    </svg>
+    <div class="grid" style="flex:1;align-content:start;margin-top:30px"><div class="card fade"><h3>11 re-solves</h3><p>The model is solved again at 50%, 60% … 150% of the budget.</p></div>
+      <div class="card fade"><h3>The next ₱10,000 goes to</h3><p><b>20 more food packs</b>: food goes from 42% to 38% below target.</p></div>
+      <div class="lbl">Computed with Stage 1 on the worked example, equal weights (budget ₱200,000 = 100%). Shortage = sum of share below target.</div></div></div>`);
+  for (const c of S.querySelectorAll('.bc')) { c.style.opacity = 1; await sleep(220); }
+  $('#bcl').style.strokeDashoffset = 0;
+  await reveal('.fade', 600);
+  await cap('The <b>budget curve</b> re-solves the model at 11 budget levels, from 50% to 150%, and shows how shortage changes with money.', 6600);
+  await cap('It also says what the <b>next ₱10,000</b> would buy. Here: 20 more food packs, from 42% to 38% short. Useful for planning the local DRRM fund.', 7200);
+
+  // 10. Backtest
+  chapter('Backtest · would it have worked in the past?');
+  const Q = ['Q3 2023', 'Q4 2023', 'Q1 2024', 'Q2 2024', 'Q3 2024', 'Q4 2024', 'Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026'];
+  show(`<div style="display:flex;gap:8px;margin-top:10px">${Q.map((q, i) => `<div class="qb" id="q${i}" style="flex:1;height:96px;border:2px solid var(--line);border-radius:10px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:16px;transition:background .4s,border-color .4s">${q}${i === 5 ? '<span class="tag" style="margin-top:6px">Kristine/Leon</span>' : ''}</div>`).join('')}</div>
+    <div style="margin-top:12px;font-size:19px"><span style="display:inline-block;width:16px;height:16px;background:#dbe7fb;border:1px solid var(--blue)"></span> history the rule may use &nbsp;&nbsp;
+      <span style="display:inline-block;width:16px;height:16px;background:#fff1d0;border:1px solid var(--amber)"></span> quarter being planned and scored</div>
+    <div class="grid" style="grid-template-columns:1.2fr 1fr;margin-top:16px">
+      <div class="card fade"><h3>Five rules compared</h3><p>1. The office's actual orders (main comparison)<br>2. Flat 1.5 rule<br>3. Safety-stock rule (95% service level)<br>4. Per-item multiplier (Stage 1)<br>5. Scenario model (Stage 2)</p></div>
+      <div class="card fade"><h3>How a winner is decided</h3><p>Each quarter: lower <b>weighted shortage</b> wins.<br>A model is better if it wins <b>more than half</b> of the quarters.<br>Typhoon quarters are reported one by one. Mixed results are reported as mixed.</p></div></div>`);
+  await cap('The <b>backtest</b> checks the rules on the office\'s own past quarters, Q3 2023 to Q2 2026, once the records are released.', 6400);
+  for (let t = 4; t < 12; t++) {
+    S.querySelectorAll('.qb').forEach((b, i) => { b.style.background = i < t ? '#dbe7fb' : i === t ? '#fff1d0' : '#fff'; b.style.borderColor = i < t ? 'var(--blue)' : i === t ? 'var(--amber)' : 'var(--line)'; });
+    if (t === 4) await cap('Stand at the start of the 5th quarter. Plan it using <b>only the 4 quarters before it</b>, then score the plan against what was actually used.', 6600);
+    else if (t === 5) await cap('Then move one quarter forward and repeat. The Kristine and Leon quarter is scored on its own.', 4600);
+    else await sleep(900);
+  }
+  await reveal('.fade', 600);
+  await cap('Five rules are compared, with the office\'s own orders as the main comparison. 8 to 12 quarters show a <b>direction, not statistical proof</b>.', 7600);
+
+  // 11. Decision
+  chapter('The model recommends; people decide');
+  const fl = [['Recommendation', 'Orders, reasons, budget curve'], ['Head of Office', 'Approves or rejects'], ['Purchase plan', 'The approved run for the quarter'], ['General Services Office', 'Runs the bidding (RA 12009)']];
+  show(`<div class="flow" style="margin-top:60px">${fl.map(([h, p], i) => `${i ? '<div class="arrow fade">→</div>' : ''}<div class="card fade"><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>
+    <div class="card fade" style="margin-top:40px;background:var(--soft)"><p class="big" style="color:var(--ink)">The model never buys anything. Nothing is ordered until the Head of Office approves the plan.</p></div>`);
+  await reveal('.fade', 450);
+  await cap('The output is a <b>recommendation</b>. The Head of Office approves or rejects it; an approved run becomes the quarter\'s purchase plan, and the GSO runs the bidding.', 8000);
+
+  // 12. Summary
+  chapter('Summary');
+  const sm = ['A <b>target</b> per item from its own past quarters (Stage 1), or every past quarter as a scenario (Stage 2)', 'Spend the budget where it <b>closes the most weighted shortage</b>; VED weights set priority', '<b>One reason</b> per item, read from the solution', 'A <b>budget curve</b> and what the next ₱10,000 buys', 'A <b>backtest</b> on the office\'s own records decides which rule works best', 'The <b>Head of Office decides</b>; the model only recommends'];
+  show(`<div class="grid" style="margin-top:6px;gap:12px">${sm.map((t, i) => `<div class="card fade" style="display:flex;gap:16px;align-items:center"><div class="num" style="font-size:30px;min-width:30px">${i + 1}</div><p class="big" style="color:var(--ink)">${t}</p></div>`).join('')}</div>`);
+  await reveal('.fade', 700);
+  await cap('That is the whole model: <b>plan from the office\'s own history, explain every cut, and let the backtest show which rule works.</b>', 9000);
+  window.__done = true;
+}
+run();
+</script>
+</body>
+</html>

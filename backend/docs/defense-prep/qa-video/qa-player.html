@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Panel Q&amp;A Read Aloud</title>
+<style>
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#f7f8fb;font-family:Arial,Helvetica,sans-serif;color:#1f2937}
+#head{position:absolute;left:0;top:0;width:1280px;height:62px;background:#1b2a6b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 40px;box-sizing:border-box}
+#h2{font-size:23px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:900px}
+#count{font-size:17px;opacity:.85}
+#card{position:absolute;left:48px;right:48px;top:78px;height:470px;overflow:hidden;font-size:27px;line-height:1.38;transition:opacity .3s}
+#card h1{font-size:50px;color:#1b2a6b;margin:70px 0 10px}
+#card .lede{font-size:28px;color:#5b6474}
+#h3{font-size:24px;font-weight:700;color:#1b2a6b;margin:0 0 8px}
+#card p{margin:0 0 .45em}
+#card ul,#card ol{margin:0 0 .4em;padding-left:1.3em}
+#card li{margin:.12em 0}
+#card blockquote{margin:0 0 .4em;padding:.4em .8em;background:#eef2fb;border-left:6px solid #e8a317;border-radius:0 8px 8px 0}
+#card table{border-collapse:collapse;width:100%;margin:.2em 0 .4em}
+#card th,#card td{border:1px solid #d7dde6;padding:.25em .5em;text-align:left;vertical-align:top}
+#card th{background:#eef2fb;color:#1b2a6b}
+#card strong{color:#1b2a6b}
+#card code{font-size:.85em}
+#bar{position:absolute;left:0;top:572px;width:1280px;height:148px;background:#fff;border-top:3px solid #e8a317}
+#cap{position:absolute;left:48px;right:48px;top:18px;font-size:28px;line-height:1.35;color:#1f2937;transition:opacity .2s}
+#prog{position:absolute;left:0;bottom:0;height:5px;background:#e8a317;width:0;transition:width .4s}
+</style>
+</head>
+<body>
+<div id="head"><div id="h2"></div><div id="count"></div></div>
+<div id="card"></div>
+<div id="bar"><div id="cap"></div><div id="prog"></div></div>
+<script>
+// window.__cards: [{h2,h3,html}], window.__lines: [{card,t}], window.__voice: spoken ms per line. Set by the recorder.
+const FAST = /fast/.test(location.search), T = FAST ? 0.02 : 1;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms * T));
+window.__capTimes = [];
+function fitTo(el, limitBottom, from, to) {
+  for (let px = from; px >= to; px--) { el.style.fontSize = px + 'px'; if (el.scrollHeight <= el.clientHeight + 1 && (!limitBottom || el.getBoundingClientRect().bottom <= limitBottom)) return px; }
+  return to;
+}
+function showCard(i) {
+  const c = window.__cards[i], el = document.getElementById('card');
+  document.getElementById('h2').textContent = c.h2 || 'DisasterResource+ Panel Q&A Reviewer';
+  el.innerHTML = (c.h3 ? `<div id="h3">${c.h3}</div>` : '') + c.html;
+  return fitTo(el, 0, 27, 15);
+}
+function showCap(t) {
+  const cap = document.getElementById('cap'); cap.textContent = t;
+  const lim = document.getElementById('bar').getBoundingClientRect().bottom - 10;
+  for (let px = 28; px >= 18; px--) { cap.style.fontSize = px + 'px'; if (cap.getBoundingClientRect().bottom <= lim) break; }
+}
+async function run() {
+  const C = window.__cards, L = window.__lines, V = window.__voice, card = document.getElementById('card'), cap = document.getElementById('cap');
+  let cur = -1;
+  for (let i = 0; i < L.length; i++) {
+    const x = L[i];
+    if (x.card !== cur) {
+      if (cur >= 0) await sleep(500);
+      card.style.opacity = 0; await sleep(280);
+      showCard(x.card); cur = x.card; card.style.opacity = 1;
+      document.getElementById('count').textContent = `Card ${x.card + 1} of ${C.length}`;
+      document.getElementById('prog').style.width = ((x.card + 1) / C.length * 100) + '%';
+      await sleep(300);
+    }
+    cap.style.opacity = 0; await sleep(100); showCap(x.t); cap.style.opacity = 1;
+    window.__capTimes.push(performance.timeOrigin + performance.now());
+    await sleep(Math.max(1200, (V[i] || 0) + 300));
+  }
+  await sleep(1500);
+  window.__done = true;
+}
+const wait = setInterval(() => { if (window.__lines) { clearInterval(wait); run(); } }, 50);
+</script>
+</body>
+</html>

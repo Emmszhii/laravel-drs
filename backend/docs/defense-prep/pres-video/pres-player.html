@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Proposal Defense Model Delivery</title>
+<style>
+html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#0f1621;font-family:Arial,Helvetica,sans-serif;color:#fff}
+#slide{position:absolute;left:150px;top:8px;width:980px;height:551px;border-radius:6px;background:#fff;object-fit:contain;transition:opacity .35s}
+#bar{position:absolute;left:0;top:567px;width:1280px;height:153px;background:#172131;border-top:3px solid #ff7a3d}
+#meta{position:absolute;left:40px;top:12px;right:40px;display:flex;justify-content:space-between;font-size:18px;color:#9aa7b8}
+#meta b{color:#ff7a3d}
+#cap{position:absolute;left:40px;right:40px;top:44px;font-size:29px;line-height:1.35;color:#fff;transition:opacity .2s}
+#cap.card{color:#9cc3ef;font-style:italic}
+#prog{position:absolute;left:0;bottom:0;height:5px;background:#ff7a3d;width:0;transition:width .4s}
+</style>
+</head>
+<body>
+<img id="slide" alt="">
+<div id="bar"><div id="meta"><span id="where"></span><span id="plan"></span></div><div id="cap"></div><div id="prog"></div></div>
+<script>
+// window.__lines: [{n,title,t,hold?,card?,time?}], window.__voice: spoken length (ms) per line. Set by the recorder.
+const FAST = /fast/.test(location.search), T = FAST ? 0.02 : 1;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms * T));
+const fmt = (s) => Math.floor(s / 60) + ':' + String(Math.round(s % 60)).padStart(2, '0');
+window.__capTimes = [];
+// Shrinks a long caption until it fits above the bottom of the caption bar.
+function fit(el) {
+  const limit = document.getElementById('bar').getBoundingClientRect().bottom - 10;
+  for (let px = 29; px >= 18; px--) { el.style.fontSize = px + 'px'; if (el.getBoundingClientRect().bottom <= limit) return; }
+}
+async function run() {
+  const L = window.__lines, V = window.__voice, img = document.getElementById('slide'), cap = document.getElementById('cap');
+  let cur = 0;
+  for (let i = 0; i < L.length; i++) {
+    const x = L[i];
+    if (x.n !== cur) {
+      if (cur) await sleep(700);
+      img.style.opacity = 0; await sleep(300);
+      img.src = `../slides/s${String(x.n).padStart(2, '0')}.jpg`; cur = x.n;
+      await new Promise((r) => (img.complete ? r() : (img.onload = r)));
+      img.style.opacity = 1;
+      document.getElementById('where').innerHTML = `Slide <b>${x.n}</b> of 31 · ${x.title}`;
+      document.getElementById('plan').textContent = x.time ? 'planned time ' + fmt(x.time) : '';
+      document.getElementById('prog').style.width = (x.n / 31 * 100) + '%';
+      await sleep(400);
+    }
+    cap.className = x.card ? 'card' : ''; cap.style.opacity = 0; await sleep(120);
+    cap.textContent = x.t; fit(cap); cap.style.opacity = 1;
+    window.__capTimes.push(performance.timeOrigin + performance.now());
+    await sleep(x.hold || Math.max(1500, (V[i] || 0) + 350));
+  }
+  await sleep(1500);
+  window.__done = true;
+}
+const wait = setInterval(() => { if (window.__lines) { clearInterval(wait); run(); } }, 50);
+</script>
+</body>
+</html>
