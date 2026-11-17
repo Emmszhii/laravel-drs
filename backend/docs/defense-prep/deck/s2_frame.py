@@ -113,7 +113,7 @@ def limits(d):
           "Operations and Warning: team kits restocked from their own requests",
           "Residents: supplies on hand before a typhoon (not measured)",
           "Future researchers: a backtest other LGU offices can repeat"], size=16, items=True, fill=PALE)
-    notes(s, """The limitations are grouped as the panel asked. Data: eight to twelve quarters is a small sample, so
+    notes(s, """The limitations fall into three groups. Data: eight to twelve quarters is a small sample, so
     the backtest shows a direction, not statistical proof, and quarters when stock ran out understate the real
     need. Model: it ignores lead time and expiry and assumes orders arrive before the quarter starts. Operating
     environment: only the Admin approves, Background Sync works only in Chromium browsers, and there is no
@@ -134,13 +134,13 @@ def lit_planning(d):
             ["Hewamalage et al. (2023)", "Forecast evaluation", "Methods review", "Rolling origin with simple benchmarks", "Basis of the backtest"],
             ["Meena & Mathaiyan (2024); Gizaw & Jemal (2021)", "VED analysis", "ABC–VED analysis", "Classes by the harm an item's absence causes", "Priority weights and coverage"]]
     table(s, X0, 1.9, W, rows, [2.7, 2.3, 1.9, 2.8, 2.3], size=14, row_h=0.56, bold_first=True)
-    notes(s, """Chapter Two is presented as matrices, as the guide recommends. On planning: relief inventory models
-    are well studied but underused in practice. Acar and Kaya's budget model is the closest formulation, and
-    Shehadeh and Tucker's scenario approach is the basis of my scenario model; locally, Uichanco planned DSWD
-    prepositioning against uncertain typhoon paths. Two studies justify planning from short records instead of
-    forecasting: Besbes and Mouchtaki showed that deciding directly from tens of past observations can already
-    work well, and Hewamalage and colleagues recommend rolling-origin evaluation against simple benchmarks, which
-    is my backtest. VED analysis supplies the priority classes.""")
+    notes(s, """I present the literature as matrices. On planning: relief inventory models are well studied
+    but underused in practice. Acar and Kaya's budget model is the closest formulation, and Shehadeh and Tucker's
+    scenario approach is the basis of my scenario model; locally, Uichanco planned DSWD prepositioning against
+    uncertain typhoon paths. Two studies justify planning from short records instead of forecasting: Besbes and
+    Mouchtaki showed that deciding directly from tens of past observations can already work well, and Hewamalage
+    and colleagues recommend rolling-origin evaluation against simple benchmarks, which is my backtest. VED
+    analysis supplies the priority classes.""")
 
 
 def lit_records(d):
@@ -154,13 +154,13 @@ def lit_records(d):
             ["COA (2021); Mantel et al. (2025)", "Public inventory accuracy", "Audit; impact study", "OCD inventory of ₱552M unreliable; parallel records less accurate", "One system of record"],
             ["NPC (2025); Cobrado et al. (2024)", "Privacy and access control", "Guidelines; systematic review", "Least privilege; access logs rarely studied", "Borrower data for Admin and Logistics only"]]
     table(s, X0, 1.9, W, rows, [2.7, 2.2, 1.9, 3.0, 2.3], size=14, row_h=0.62, bold_first=True)
-    notes(s, """The second matrix covers the other two contributions and the accountability topics the panel asked
-    me to add. De Bock and colleagues show that explanations of optimization lag behind those of predictive
-    models; counterfactual explanations ask what would have to change, which is what my budget curve asks of the
-    budget. On offline records, replicated counters converge when entries add or subtract, but Borrego and
-    colleagues show negatives can be prevented without coordination only within reservations, so my system flags
-    conflicts instead of refusing them. Ledger databases make old edits detectable. COA audits show public
-    inventory records drift, and the privacy rules call for least-privilege access.""")
+    notes(s, """The second matrix covers the other two contributions and the accountability topics. De Bock
+    and colleagues show that explanations of optimization lag behind those of predictive models; counterfactual
+    explanations ask what would have to change, which is what my budget curve asks of the budget. On offline
+    records, replicated counters converge when entries add or subtract, but Borrego and colleagues show negatives
+    can be prevented without coordination only within reservations, so my system flags conflicts instead of
+    refusing them. Ledger databases make old edits detectable. COA audits show public inventory records drift, and
+    the privacy rules call for least-privilege access.""")
 
 
 def related(d):
@@ -184,12 +184,13 @@ def related(d):
         c.fill.solid(); c.fill.fore_color.rgb = PALE
     source(s, "Yes = documented in the cited sources; No = described, but the feature is not among them; ND = not documented. "
               "Neither No nor ND proves a system lacks a feature (Table 2).")
-    notes(s, """This matrix compares only what each system's published sources document. Yes means documented; No
-    means the sources describe the system and the feature is not among them; ND means not documented. As the panel
-    cautioned, neither No nor ND proves a system lacks a feature. Stock tracking, expiry tracking, and offline use
-    are already documented elsewhere, so I do not claim them. What no reviewed system documents is budget-limited
-    planning, scenarios, explained recommendations, conflict-safe merging, tamper-evident records, and data checks.
-    The closest local system, Calamba City's, supports live response; this study addresses supply readiness.""")
+    notes(s, """This matrix compares only what each system's published sources document. Yes means
+    documented; No means the sources describe the system and the feature is not among them; ND means not
+    documented. Neither No nor ND proves a system lacks a feature. Stock tracking, expiry tracking, and offline
+    use are already documented elsewhere, so I do not claim them. What no reviewed system documents is
+    budget-limited planning, scenarios, explained recommendations, conflict-safe merging, tamper-evident records,
+    and data checks. The closest local system, Calamba City's, supports live response; this study addresses supply
+    readiness.""")
 
 
 def synthesis(d):

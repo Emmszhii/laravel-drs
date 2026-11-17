@@ -20,15 +20,15 @@ def erd(d):
           [("Model inputs: ", {"bold": True}), ("history lines (use D), item (unit cost c, VED class, space v), "
            "stock entries less reservations (q), quarter budget (B), depot free space (V)", {})]],
          size=15, head_size=19, items=True)
-    notes(s, """The course guide asks for the actual data model, so the paper now includes this entity-relationship
-    diagram, drawn from the migrations. The item is the center of the model: the encoded history, the data-check
-    flags, weekly counts, stock entries, and request lines all refer to it. A request has lines; an approved line
-    holds a reservation, and a borrowable line issues one borrow per unit. Each stock entry carries its sequence
-    number and the previous entry's hash, which forms the chain, and a conflict points to the correction entry
-    that settles it. Each run stores the inputs it sent and the result, and the links to User record who did
-    what. Every model input comes from these tables: use from the history lines, unit cost, VED class, and
-    space from the item, stock on hand from the entries less reservations, the budget from the quarter budget,
-    and free space from the depots, so each objective has the data it needs.""")
+    notes(s, """Figure 11 is the entity-relationship diagram of the system's database. The item is the center
+    of the model: the encoded history, the data-check flags, weekly counts, stock entries, and request lines all
+    refer to it. A request has lines; an approved line holds a reservation, and a borrowable line issues one
+    borrow per unit. Each stock entry carries its sequence number and the previous entry's hash, which forms the
+    chain, and a conflict points to the correction entry that settles it. Each run stores the inputs it sent and
+    the result, and the links to User record who did what. Every model input comes from these tables: use from the
+    history lines, unit cost, VED class, and space from the item, stock on hand from the entries less
+    reservations, the budget from the quarter budget, and free space from the depots, so each objective has the
+    data it needs.""")
 
 
 def scrum(d):
@@ -44,13 +44,13 @@ def scrum(d):
           "phones · PostgreSQL 16: unique device IDs and the chain lock · FastAPI with PuLP 2.8.0 and CBC: open-source "
           "solver, kept apart from the data · Reverb: live updates with no cloud service · PWA and IndexedDB: works "
           "offline · Docker Compose: one command on the office server", {})]], 14, anchor=MSO_ANCHOR.MIDDLE)
-    notes(s, """Development follows Scrum, shown in Figure 4 as Panel B asked. I am the development team and Scrum
-    Master, the head of Logistics is the Product Owner, and each sprint ends with a review of the working increment. There are six
-    two-week sprints. Sprints one to four build the three contributions, sprint five integrates the request module
-    and the dashboard, and sprint six is reserved for testing and evaluation, so at least two weeks of testing
-    follow integration. Features outside the objectives go to the backlog as future work. Each tool is chosen for
-    a function: Laravel for the backend and queues, React for one interface on laptops and phones, PostgreSQL for
-    the unique index and the chain lock, and PuLP with CBC for the model.""")
+    notes(s, """Development follows Scrum, shown in Figure 4. I am the development team and Scrum Master, the
+    head of Logistics is the Product Owner, and each sprint ends with a review of the working increment. There are
+    six two-week sprints. Sprints one to four build the three contributions, sprint five integrates the request
+    module and the dashboard, and sprint six is reserved for testing and evaluation, so at least two weeks of
+    testing follow integration. Features outside the objectives go to the backlog as future work. Each tool is
+    chosen for a function: Laravel for the backend and queues, React for one interface on laptops and phones,
+    PostgreSQL for the unique index and the chain lock, and PuLP with CBC for the model.""")
 
 
 def architecture(d):
@@ -80,13 +80,12 @@ def sequence(d):
           "A failed or infeasible solve marks the run failed with its error; it is not retried in the background",
           "Only a completed run can be approved or rejected, and an approval supersedes the quarter's earlier one",
           "Each run keeps its inputs, result, and who ran and decided it"], size=17, head_size=19, items=True)
-    notes(s, """This sequence diagram follows one quarterly run. The Head of Office enters the budget; the backend
-    saves it and runs the data checks, and an open flag stops the run until Logistics resolves it. Otherwise the run
-    is created and queued. The worker reads each item's history, stock less reservations, price, and VED
-    parameters, and calls the solver service, which returns the orders, reasons, and budget curve. The result is
-    stored, and Reverb pushes it to the dashboard. This answers the panel's questions on deployment: a failed run
-    is marked failed and never retried silently, only a completed run can be approved, and every run keeps its
-    inputs.""")
+    notes(s, """This sequence diagram follows one quarterly run. The Head of Office enters the budget; the
+    backend saves it and runs the data checks, and an open flag stops the run until Logistics resolves it.
+    Otherwise the run is created and queued. The worker reads each item's history, stock less reservations, price,
+    and VED parameters, and calls the solver service, which returns the orders, reasons, and budget curve. The
+    result is stored, and Reverb pushes it to the dashboard. Three safeguards follow: a failed run is marked
+    failed and never retried silently, only a completed run can be approved, and every run keeps its inputs.""")
 
 
 def offline(d):
@@ -101,13 +100,13 @@ def offline(d):
     for i, (h, b) in enumerate(cases):
         card(s, x, 1.9 + i * 0.96, W - 6.65, 0.86, [(h + ": ", {}), (b, {"bold": False, "color": MUTED})], [],
              size=16, head_size=17, fill=PALE if i == 4 else SOFT)
-    notes(s, """Panel A asked how offline entries are merged; this Level 2 data flow diagram shows one batch from a
-    device. A repeated upload carries a device-made ID the server already holds, so it is ignored. A dependent
+    notes(s, """This Level 2 data flow diagram shows how one batch of offline entries from a device is
+    merged. A repeated upload carries a device-made ID the server already holds, so it is ignored. A dependent
     entry, such as a return sent before its borrow, waits on the device and is sent again. An entry that fails
     validation is rejected and marked failed in the device's queue, so its user sees it. A conflicting entry, one
     that would make stock negative or return a unit that is not out, is kept and flagged, because the goods have
-    already moved; Logistics settles it with a correction entry. Since stock is the sum of all entries, the total is
-    correct in any arrival order.""")
+    already moved; Logistics settles it with a correction entry. Since stock is the sum of all entries, the total
+    is correct in any arrival order.""")
 
 
 def testing(d):
@@ -124,14 +123,13 @@ def testing(d):
     table(s, X0, 1.9, W, rows, [2.5, 3.2, 2.6, 3.3], size=16, row_h=0.74, bold_first=True)
     source(s, "Expected results come from the worked example (the reference test), the system's rules, and the objectives' "
               "targets; cases cover normal and exceptional inputs (Tables 16–21).")
-    notes(s, """As both panelists asked, the paper now has a testing plan and test-case tables for every type of
-    test. Unit tests cover the solver and the stock and request rules; the worked example is the reference test.
-    Integration tests cover the full run cycle, requests and borrowed items, role access, and the report. The
-    offline and integrity test runs on the office's server with two laptops and two phones, three times, and must
-    save every entry with zero duplicates and detect every edit. Performance tests set time limits for the solve,
-    the budget curve, and the dashboard update. User acceptance testing covers the role tasks, the explanation
-    task, and the survey. The cases include exceptional inputs: a zero budget, no history, a repeated upload, and a
-    failed solver.""")
+    notes(s, """The testing plan has test-case tables for every type of test. Unit tests cover the solver and
+    the stock and request rules; the worked example is the reference test. Integration tests cover the full run
+    cycle, requests and borrowed items, role access, and the report. The offline and integrity test runs on the
+    office's server with two laptops and two phones, three times, and must save every entry with zero duplicates
+    and detect every edit. Performance tests set time limits for the solve, the budget curve, and the dashboard
+    update. User acceptance testing covers the role tasks, the explanation task, and the survey. The cases include
+    exceptional inputs: a zero budget, no history, a repeated upload, and a failed solver.""")
 
 
 def uat(d):

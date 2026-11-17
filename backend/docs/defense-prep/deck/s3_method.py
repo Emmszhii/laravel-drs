@@ -30,13 +30,13 @@ def design(d):
     text(s, X0 + lw + 0.3, 5.75, W - lw - 0.3, 0.8, ["Inclusion: CDRRMO personnel who hold or will hold an account, "
          "work on supplies, requests, or planning, and consent. The number of users is to be confirmed with the office."],
          13, MUTED)
-    notes(s, """The study uses a developmental design grounded in design science: build the artifact, then evaluate
-    it, with a descriptive-evaluative part and a comparative backtest. The locale is CDRRMO San Pablo City, with
-    four divisions; Logistics is a section under Administration and Training. As the panel asked, I separate
-    stakeholders, users, and respondents. Three key informants joined the requirements interview: the head of
-    Administration and Training and two Logistics staff. All system users, at least twenty by estimate, take the
-    user acceptance tasks and the survey, which is total enumeration. That number is still to be confirmed with
-    the office's staff list.""")
+    notes(s, """The study uses a developmental design grounded in design science: build the artifact, then
+    evaluate it, with a descriptive-evaluative part and a comparative backtest. The locale is CDRRMO San Pablo
+    City, with four divisions; Logistics is a section under Administration and Training. I separate stakeholders,
+    users, and respondents. Three key informants joined the requirements interview: the head of Administration and
+    Training and two Logistics staff. All system users, at least twenty by estimate, take the user acceptance
+    tasks and the survey, which is total enumeration. That number is still to be confirmed with the office's staff
+    list.""")
 
 
 def requirements(d):
@@ -57,13 +57,14 @@ def requirements(d):
     box(s, X0 + half + 0.3, 5.4, half, 1.25, PALE)
     text(s, X0 + half + 0.45, 5.43, half - 0.3, 1.2, ["To be reviewed with the head of Logistics (Product Owner) and "
          "confirmed by the Head of Office before development; later changes enter the backlog."], 15, anchor=MSO_ANCHOR.MIDDLE)
-    notes(s, """The interview produced ten functional and six non-functional requirements, now listed in Table 6.
-    Functionally, every stock change is an entry and stock is their sum; releases deduct stock; the ICS 213-RR form
-    records requested and released quantities; borrowed equipment follows five statuses; the Head of Office
+    notes(s, """The interview produced ten functional and six non-functional requirements, listed in Table 6.
+    Functionally, every stock change is an entry and stock is their sum; releases deduct stock; the ICS 213-RR
+    form records requested and released quantities; borrowed equipment follows five statuses; the Head of Office
     approves; and the system recommends quarterly orders with reasons and flags suspicious entries. The
     non-functional requirements are working through outages without losing or doubling entries, detecting later
     edits, running on the office's devices over HTTPS, protecting borrower data, speed, and plain explanations.
-    Before development, the head of Logistics, as Product Owner, will review them and the Head of Office will confirm them.""")
+    Before development, the head of Logistics, as Product Owner, will review them and the Head of Office will
+    confirm them.""")
 
 
 def concepts(d):
@@ -81,15 +82,15 @@ def concepts(d):
     text(s, X0 + 0.15, 6.17, W - 0.3, 0.56, [[("Algorithm analysis: ", {"bold": True, "color": NAVY}),
          ("the model is an optimizer, not a classifier, so it is judged by weighted shortage, feasibility on every "
           "constraint, and measured solve time, not accuracy.", {})]], 14, anchor=MSO_ANCHOR.MIDDLE)
-    notes(s, """Panel B asked me to turn the arrow chains into a diagram; this is Figure 3. It maps each technique to
-    its discipline and to the part of the system that uses it. From operations research, two mixed-integer linear
-    programs: the per-item multiplier and the scenario model, solved with PuLP and the open-source CBC solver.
-    From distributed systems and information security, append-only stock entries with device-made IDs, and a
-    hash chain. From data quality, three checks before every run: a quarter's use more than three times the usual
-    with no event tagged, a stock figure below zero, and a difference from the weekly physical count. The table
-    gives each component one purpose and one way it is evaluated, so no technique is claimed to do every task.
-    Because the model is an optimizer, not a classifier, it is analyzed by weighted shortage, by feasibility on
-    every constraint, and by measured solve time, not by accuracy or precision.""")
+    notes(s, """Figure 3 shows the applied concepts and techniques. It maps each technique to its discipline
+    and to the part of the system that uses it. From operations research, two mixed-integer linear programs: the
+    per-item multiplier and the scenario model, solved with PuLP and the open-source CBC solver. From distributed
+    systems and information security, append-only stock entries with device-made IDs, and a hash chain. From data
+    quality, three checks before every run: a quarter's use more than three times the usual with no event tagged,
+    a stock figure below zero, and a difference from the weekly physical count. The table gives each component one
+    purpose and one way it is evaluated, so no technique is claimed to do every task. Because the model is an
+    optimizer, not a classifier, it is analyzed by weighted shortage, by feasibility on every constraint, and by
+    measured solve time, not by accuracy or precision.""")
 
 
 def model(d):
@@ -111,13 +112,13 @@ def model(d):
     text(s, X0 + W * 0.66 + 0.25, 4.8, W * 0.34 - 0.25, 1.85,
          ["q = stock on hand less reserved", "Proposed by Logistics, confirmed by the Head of Office, fixed before "
           "the backtest", "Under 4 quarters of history: flat 1.5, \"limited history\""], 13, MUTED, space=4)
-    notes(s, """The model has two stages, kept distinct as the panel asked. Stage one, the per-item multiplier, first
-    sets each item's target from its own history: the amount that would have covered its use in k of its last
-    eight quarters, with k set by the VED class. It then chooses whole-number orders that minimize the weighted
-    shortfall below the targets, within the budget and the depot space. Stage two, the scenario model, sets no
-    single target: it treats each past quarter as an equally likely next quarter and minimizes the average
-    weighted shortage across them. Current stock counts after subtracting reserved quantities. Logistics
-    proposes the classes and weights, and they are fixed before the backtest.""")
+    notes(s, """The model has two stages, and they are kept distinct. Stage one, the per-item multiplier,
+    first sets each item's target from its own history: the amount that would have covered its use in k of its
+    last eight quarters, with k set by the VED class. It then chooses whole-number orders that minimize the
+    weighted shortfall below the targets, within the budget and the depot space. Stage two, the scenario model,
+    sets no single target: it treats each past quarter as an equally likely next quarter and minimizes the average
+    weighted shortage across them. Current stock counts after subtracting reserved quantities. Logistics proposes
+    the classes and weights, and they are fixed before the backtest.""")
 
 
 def example(d):

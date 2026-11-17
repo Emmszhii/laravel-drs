@@ -140,11 +140,10 @@ def problem(d):
                                 "not as findings."], 14, MUTED)
     notes(s, """The problem the study addresses is that the office lacks three things. First, a replenishment
     basis that plans each item from its own history under the budget; without it, orders sized for an ordinary
-    quarter can fall short in a typhoon quarter. Second, recommendations that explain what was cut and why
-    when the budget falls short; without that, a shortfall is hard to defend. Third, stock records that stay
-    correct through outages and reveal later edits; otherwise a release can be counted twice or missed. As the
-    panel advised, I present these effects as possibilities that can follow from the current practice, not as
-    established findings.""")
+    quarter can fall short in a typhoon quarter. Second, recommendations that explain what was cut and why when
+    the budget falls short; without that, a shortfall is hard to defend. Third, stock records that stay correct
+    through outages and reveal later edits; otherwise a release can be counted twice or missed. I present these
+    effects as possibilities that can follow from the current practice, not as established findings.""")
 
 
 def questions(d):
@@ -166,13 +165,12 @@ def questions(d):
         text(s, X0 + 0.7, y + 0.1, 1.55, 0.45, [tag], 14, NAVY, True, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
         text(s, X0 + 2.4, y - 0.04, W - 2.4, 1.0, [q], 18)
         y += 1.0
-    notes(s, """The study asks five questions, simplified as the panel suggested, and none of them asks how to build
-    something. Question one describes the office's current practice and counts the request lines where less was
-    released than requested. Question two concerns the model: whether the per-item multiplier or the scenario
-    model gives less weighted shortage than the office's actual orders and two simple rules on past quarters.
-    Questions three to five concern the system: whether the records and request module meet their test
-    criteria, whether staff can use the explanations, and whether personnel find the system acceptable under
-    ISO/IEC 25010.""")
+    notes(s, """The study asks five questions, and none of them asks how to build something. Question one
+    describes the office's current practice and counts the request lines where less was released than requested.
+    Question two concerns the model: whether the per-item multiplier or the scenario model gives less weighted
+    shortage than the office's actual orders and two simple rules on past quarters. Questions three to five
+    concern the system: whether the records and request module meet their test criteria, whether staff can use the
+    explanations, and whether personnel find the system acceptable under ISO/IEC 25010.""")
 
 
 def objectives(d):
@@ -188,13 +186,13 @@ def objectives(d):
             ["4", "Develop the dashboard with reasons and a budget curve", "At least 80% correct in the explanation task"],
             ["5", "Evaluate acceptability (ISO/IEC 25010:2023)", "Weighted mean 4.21–5.00 per characteristic"]]
     table(s, X0, 3.05, W, rows, [0.6, 5.2, 5.7], size=17, row_h=0.62)
-    notes(s, """The general objective is to design, develop, and evaluate the system to support, not to improve,
-    the office's quarterly decisions. Each specific objective now separates what will be built from what will be
-    determined, and none promises a result in advance. Objective two determines whether either model form gives
-    lower weighted shortage than the comparison rules in a majority of backtested quarters. Objective three
-    tests the records for zero duplicates and losses. Objective four checks whether staff answer at least eighty
-    percent of the explanation questions correctly. Objective five uses the Very Acceptable range as the
-    criterion. Each objective matches one research question.""")
+    notes(s, """The general objective is to design, develop, and evaluate the system to support, not to
+    improve, the office's quarterly decisions. Each specific objective separates what will be built from what will
+    be determined, and none promises a result in advance. Objective two determines whether either model form gives
+    lower weighted shortage than the comparison rules in a majority of backtested quarters. Objective three tests
+    the records for zero duplicates and losses. Objective four checks whether staff answer at least eighty percent
+    of the explanation questions correctly. Objective five uses the Very Acceptable range as the criterion. Each
+    objective matches one research question.""")
 
 
 def alignment(d):
@@ -207,12 +205,12 @@ def alignment(d):
             ["5", "System", "UAT: ISO/IEC 25010:2023 survey", "Weighted mean 4.21–5.00"]]
     table(s, X0, 2.0, W, rows, [0.6, 2.6, 4.8, 3.5], size=17, row_h=0.7)
     source(s, "Table 1 of the paper (Alignment of Research Questions, Objectives, and Procedures).")
-    notes(s, """This table answers the panel's request for one-to-one alignment. Each research question has one
-    objective and one procedure in Chapter Three, and each procedure has a stated criterion. Question one is
-    answered from the interview and the encoded records. Question two is answered by the rolling-origin
-    backtest. Question three by the unit, integration, and offline tests. Questions four and five by user
-    acceptance testing: the explanation task and the ISO/IEC 25010 survey. So the panel can trace every
-    question to how it will be answered and what counts as meeting it.""")
+    notes(s, """This table shows the one-to-one alignment. Each research question has one objective and one
+    procedure in Chapter Three, and each procedure has a stated criterion. Question one is answered from the
+    interview and the encoded records. Question two is answered by the rolling-origin backtest. Question three by
+    the unit, integration, and offline tests. Questions four and five by user acceptance testing: the explanation
+    task and the ISO/IEC 25010 survey. So the panel can trace every question to how it will be answered and what
+    counts as meeting it.""")
 
 
 def add(d):
