@@ -1,0 +1,40 @@
+# Build context for the Dockerfile: only what the build stages read.
+.git
+.gitignore
+.env*
+*.log
+CLAUDE.md
+AGENTS.md
+README*
+.claude
+.idea
+.vscode
+
+# Installed or built inside the image
+node_modules
+vendor
+public/build
+public/hot
+public/storage
+public/frankenphp-worker.php
+frankenphp
+**/caddy
+
+# Local runtime state; keep the empty storage tree (its .gitignore files)
+bootstrap/cache/*.php
+storage/app/**
+storage/framework/**
+storage/logs/**
+storage/pail
+storage/*.key
+!storage/**/.gitignore
+database/*.sqlite*
+
+# Not used by the running app or the build
+docs
+tests
+scripts
+phpunit.xml
+.phpunit.result.cache
+.phpunit.cache
+boneyard.config.json
